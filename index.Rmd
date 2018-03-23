@@ -1,0 +1,8 @@
+---
+title: "Patterns and Trends"
+author: "Patrick Laube and Nils Ratnaweera"
+site: bookdown::gitbook
+documentclass: book
+---
+
+# Hello World
