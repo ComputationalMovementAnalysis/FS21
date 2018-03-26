@@ -6,10 +6,14 @@ library(sp)
 library(adehabitatHR)
 library(scales)
 library(plotly)
+library(sf)
+library(purrr)
 
 euclid <- function(x1,y1,x2,y2){
   return(sqrt((x1-x2)^2+(y1-y2)^2)) 
 }
+
+
 
 as.ggPolygon <- function(SpatialPolygonDataframe){
   SpatialPolygonDataframe$data$id <- rownames(SpatialPolygonDataframe@data)
@@ -64,32 +68,91 @@ base_breaks <- function(n = 10){
 # - Explore Dataset: remove outliers, find sampling interval, make subsets and find overlapping areas of individuals)
 # - Make my first simple map
 
+
+## Read and clean data
 wildschweinRAW <- read_delim("20_Rawdata/wildschwein.csv",";")
 
 wildschwein <- rowid_to_column(wildschweinRAW,"fixNr")
 
-
-wildschwein <- dplyr::select(wildschwein, Tier,DatumUTC,ZeitUTC,Lat,Long,X,Y)
-
+wildschwein <- dplyr::select(wildschwein, Tier,DatumUTC,ZeitUTC,Lat,Long)
 wildschwein <- separate(wildschwein, Tier,into = c("TierID","TierName","CollarID"))
-
 wildschwein <- mutate(wildschwein, DatetimeUTC = parse_datetime(paste(DatumUTC,ZeitUTC),format = "%d.%m.%Y %H:%M:%S", locale = locale(tz = "UTC")))
 
-ggplot(wildschwein, aes(X,Y, colour = TierID)) +
-  geom_point()
 
+wildschwein <- select(wildschwein, -DatumUTC,-ZeitUTC)
 
-mdf <- MCP_df(wildschwein,"TierID","Lat","Long",95)
-
-
-
-ggplot(mdf,aes(lat,long,group = group, fill = id))  +
-  geom_polygon(alpha = 0.5, colour = "black") +
+# Visualize Points via. lat/long. Note: lat/long are plotted as cartesian coordinates
+ggplot(wildschwein, aes(Long,Lat, colour = TierID)) +
+  geom_point() +
   coord_fixed(1)
 
 
+# turn df into sf-object
+wildschwein_sf = st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326, agr = "constant")
+
+# Transform coordinate system
+wildschwein_sf <- st_transform(wildschwein_sf, 2056)
+
+# calculate MCP for each individual (prepare as function)
+mcp95 <- wildschwein_sf2056 %>%
+  select(TierID) %>%
+  as("Spatial") %>%
+  mcp(95)%>%
+  st_as_sf() %>%
+  st_set_crs(st_crs(wildschwein_sf2056))
+
+ggplot(mcp95) +
+  geom_sf(aes(fill = id), alpha = 0.3) +
+  coord_sf(datum = 2056) + 
+  theme(
+    legend.position = "none",
+    panel.grid.major = element_line(colour = "transparent"),
+    panel.background = element_rect(fill = "transparent")
+    )
 
 
+
+# find which MPCs overlap (maby illustrate this with map()?)
+overlap <- matrix(nrow = nrow(mcp95),ncol = nrow(mcp95))
+for(feature in 1:nrow(mcp95)){
+  overlap[feature,] <- st_intersects(mcp95[feature,],mcp95,sparse = F)
+}
+overlap[lower.tri(overlap,T)] <- NA
+
+rownames(overlap) <- mcp95$id
+colnames(overlap) <- mcp95$id
+
+# Trying to find overlapping time windows:
+overlap_temporal <- wildschwein %>%
+  group_by(TierID) %>%
+  summarise(
+    min = min(DatetimeUTC,na.rm = T),
+    max = max(DatetimeUTC,na.rm = T)
+  ) %>%
+  ungroup() %>%
+  mutate(
+    interval = interval(min,max)
+  )
+
+overlap_temporal_mat <- matrix(nrow = nrow(overlap_temporal),ncol = nrow(overlap_temporal))
+for(row_i in 1:nrow(overlap_temporal)){
+  for(col_i in 1:nrow(overlap_temporal)){
+    overlap_temporal_mat[row_i,col_i] <- lubridate::int_overlaps(overlap_temporal$interval[row_i,],overlap_temporal$interval[col_i,])
+  }
+}
+overlap_temporal_mat[lower.tri(overlap_temporal_mat,T)] <- NA
+
+rownames(overlap_temporal_mat) <- overlap_temporal$TierID
+colnames(overlap_temporal_mat) <- overlap_temporal$TierID
+
+
+overlap_spat_temp <- overlap_temporal_mat & overlap
+
+as.data.frame(overlap_spat_temp) %>%
+  rownames_to_column("id1") %>%
+  gather(id2,bool,-id1) %>%
+  filter(bool == TRUE) %>%
+  select(-bool)
 
 #############################################################################
 ## Lesson 2 #################################################################
@@ -101,7 +164,7 @@ ggplot(mdf,aes(lat,long,group = group, fill = id))  +
 
 
 
-# how many fixes per animal?
+# how many fixes per animal? how many collars per animal? 
 wildschwein %>%
   group_by(TierID) %>%
   summarise(
@@ -109,6 +172,10 @@ wildschwein %>%
     collars = length(unique(CollarID)),
     names = paste(unique(TierName),collapse = ",")
     )
+
+ggplot(wildschwein, aes(DatetimeUTC,TierID, colour = TierID)) +
+  geom_line() +
+  theme(legend.position = "none")
 
 
 # what is the sampling interval? 
@@ -216,7 +283,7 @@ wildschwein %>%
 
 
 # Leaflet 
-factpal <- colorFactor(topo.colors(length(levels(cp@data$id))), cp@data$id)
+factpal <- colorFactor(topo.colors(length(levels(cp@data$id))), cp@data$id))
 
 leaflet(cp) %>%
   addPolygons(popup = paste("ID: ",cp@data$id), color = ~factpal(cp@data$id)) %>%
