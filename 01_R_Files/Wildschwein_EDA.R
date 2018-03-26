@@ -8,6 +8,7 @@ library(scales)
 library(plotly)
 library(sf)
 library(purrr)
+library(stringr)
 
 euclid <- function(x1,y1,x2,y2){
   return(sqrt((x1-x2)^2+(y1-y2)^2)) 
@@ -60,6 +61,12 @@ base_breaks <- function(n = 10){
   }
 }
 
+
+str_remove_trailing <- function(string,trailing_char){
+  ifelse(str_sub(string,-1,-1) == trailing_char,str_sub(string,1,-2),string)
+}
+
+
 #############################################################################
 ## Lesson 1 #################################################################
 #############################################################################
@@ -74,18 +81,31 @@ wildschweinRAW <- read_delim("20_Rawdata/wildschwein.csv",";")
 
 wildschwein <- rowid_to_column(wildschweinRAW,"fixNr")
 
-wildschwein <- dplyr::select(wildschwein, Tier,DatumUTC,ZeitUTC,Lat,Long)
+wildschwein <- dplyr::select(wildschwein, Tier,DatumUTC,ZeitpUTC,Lat,Long)
+
+wildschwein <- mutate(wildschwein,Tier = str_remove_trailing(Tier,"_"))
+
 wildschwein <- separate(wildschwein, Tier,into = c("TierID","TierName","CollarID"))
-wildschwein <- mutate(wildschwein, DatetimeUTC = parse_datetime(paste(DatumUTC,ZeitUTC),format = "%d.%m.%Y %H:%M:%S", locale = locale(tz = "UTC")))
+
+wildschwein$ZeitpUTC
+
+wildschwein <- mutate(wildschwein, DatetimeUTC = parse_datetime(ZeitpUTC))
 
 
-wildschwein <- select(wildschwein, -DatumUTC,-ZeitUTC)
+wildschwein <- select(wildschwein, -DatumUTC,-ZeitpUTC)
+
+# warum sind so viele Positionen NA?!
+wildschwein <- filter(wildschwein,!is.na(Lat))
 
 # Visualize Points via. lat/long. Note: lat/long are plotted as cartesian coordinates
 ggplot(wildschwein, aes(Long,Lat, colour = TierID)) +
   geom_point() +
   coord_fixed(1)
 
+wildschwein %>%
+  filter(is.na(Lat)) %>%
+  group_by(TierID) %>%
+  summarise(n = n())
 
 # turn df into sf-object
 wildschwein_sf = st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326, agr = "constant")
