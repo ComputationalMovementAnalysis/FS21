@@ -9,58 +9,15 @@ library(plotly)
 library(sf)
 library(purrr)
 library(stringr)
+library(data.table)
+
+
+library(devtools)
+library(CMAtools)
 
 euclid <- function(x1,y1,x2,y2){
   return(sqrt((x1-x2)^2+(y1-y2)^2)) 
 }
-
-
-
-as.ggPolygon <- function(SpatialPolygonDataframe){
-  SpatialPolygonDataframe$data$id <- rownames(SpatialPolygonDataframe@data)
-  fortified <- fortify(SpatialPolygonDataframe, region = "id")
-  merged <- merge(fortified,SpatialPolygonDataframe@data, by = "id")
-  return(merged)
-}
-
-
-MCP_df <- function(dataframe,animalID,Lat,Long,percent = 95,output = "ggplot"){
-  lapply(c("sp","adehabitatHR","tidyverse"), require, character.only = TRUE)
-  SpatialPolygonDataframe <- SpatialPointsDataFrame(dataframe[,c(Lat,Long)],dataframe)
-  cp <- mcp(SpatialPolygonDataframe[,animalID],percent = percent)
-  if(!(output %in% c("ggplot","spdf"))) stop("Argument 'output' must be either 'ggplot' or 'spdf'")
-  if(output == "ggplot"){
-    cp <- as.ggPolygon(cp)
-    print("output created for ggplot")
-  } else if(output == "spdf"){
-    print("output returend as 'SpatialPointsDataFrame' (spdf)")
-  } else("something went seriously wrong!")
-  return(cp)
-}
-
-
-number_groups <- function(input,include_next = F){
-  input[is.na(input)] <- FALSE 
-  group = head(cumsum(c(TRUE,!input)),-1)
-  if(include_next == F){
-    group[!input] <- NA
-  } else{
-    compare <- head(group,-1) == tail(group,-1)
-    uniques <- !(c(compare,F) | c(F,compare))
-    group[which(uniques)] <- NA
-  } 
-  group <- as.factor(group)
-  levels(group) <- 1:length(levels(group))
-  return(group)
-}
-
-
-base_breaks <- function(n = 10){
-  function(x) {
-    axisTicks(log10(range(x, na.rm = TRUE)), log = TRUE, n = n)
-  }
-}
-
 
 str_remove_trailing <- function(string,trailing_char){
   ifelse(str_sub(string,-1,-1) == trailing_char,str_sub(string,1,-2),string)
@@ -87,10 +44,15 @@ wildschwein <- mutate(wildschwein,Tier = str_remove_trailing(Tier,"_"))
 
 wildschwein <- separate(wildschwein, Tier,into = c("TierID","TierName","CollarID"))
 
-wildschwein$ZeitpUTC
+
+wildschwein <- wildschwein %>%
+  group_by(TierID) %>%
+  mutate(CollarIDfac = LETTERS[as.integer(factor(CollarID))]) %>%
+  ungroup() %>%
+  mutate(TierID = paste0(TierID,CollarIDfac)) %>%
+  select(-CollarIDfac)
 
 wildschwein <- mutate(wildschwein, DatetimeUTC = parse_datetime(ZeitpUTC))
-
 
 wildschwein <- select(wildschwein, -DatumUTC,-ZeitpUTC)
 
@@ -100,12 +62,10 @@ wildschwein <- filter(wildschwein,!is.na(Lat))
 # Visualize Points via. lat/long. Note: lat/long are plotted as cartesian coordinates
 ggplot(wildschwein, aes(Long,Lat, colour = TierID)) +
   geom_point() +
-  coord_fixed(1)
+  coord_fixed(1) +
+  theme(legend.position = "none")
 
-wildschwein %>%
-  filter(is.na(Lat)) %>%
-  group_by(TierID) %>%
-  summarise(n = n())
+wildschwein <- filter(wildschwein,Lat<50)
 
 # turn df into sf-object
 wildschwein_sf = st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326, agr = "constant")
@@ -113,16 +73,14 @@ wildschwein_sf = st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326, ag
 # Transform coordinate system
 wildschwein_sf <- st_transform(wildschwein_sf, 2056)
 
-# calculate MCP for each individual (prepare as function)
-mcp95 <- wildschwein_sf2056 %>%
-  select(TierID) %>%
-  as("Spatial") %>%
-  mcp(95)%>%
-  st_as_sf() %>%
-  st_set_crs(st_crs(wildschwein_sf2056))
+
+
+mcp95 <- mcp_sf(wildschwein_sf,TierID)
+
 
 ggplot(mcp95) +
   geom_sf(aes(fill = id), alpha = 0.3) +
+  geom_sf(data = st_centroid(mcp95), aes(colour = id)) +
   coord_sf(datum = 2056) + 
   theme(
     legend.position = "none",
@@ -131,19 +89,10 @@ ggplot(mcp95) +
     )
 
 
-
-# find which MPCs overlap (maby illustrate this with map()?)
-overlap <- matrix(nrow = nrow(mcp95),ncol = nrow(mcp95))
-for(feature in 1:nrow(mcp95)){
-  overlap[feature,] <- st_intersects(mcp95[feature,],mcp95,sparse = F)
-}
-overlap[lower.tri(overlap,T)] <- NA
-
-rownames(overlap) <- mcp95$id
-colnames(overlap) <- mcp95$id
+polygon_selfoverlap(mcp95,"id")
 
 # Trying to find overlapping time windows:
-overlap_temporal <- wildschwein %>%
+wildschwein_intervals <- wildschwein %>%
   group_by(TierID) %>%
   summarise(
     min = min(DatetimeUTC,na.rm = T),
@@ -154,25 +103,94 @@ overlap_temporal <- wildschwein %>%
     interval = interval(min,max)
   )
 
-overlap_temporal_mat <- matrix(nrow = nrow(overlap_temporal),ncol = nrow(overlap_temporal))
-for(row_i in 1:nrow(overlap_temporal)){
-  for(col_i in 1:nrow(overlap_temporal)){
-    overlap_temporal_mat[row_i,col_i] <- lubridate::int_overlaps(overlap_temporal$interval[row_i,],overlap_temporal$interval[col_i,])
+overlap_temporal(wildschwein_intervals,"TierID","interval")
+dataframe <- wildschwein_intervals
+id_col <- "TierID"
+interval_col = "interval"
+
+overlap_temporal(wildschwein_intervals,"TierID","interval")
+overlap_temporal <- matrix(nrow = nrow(wildschwein_intervals),ncol = nrow(wildschwein_intervals))
+rownames(overlap_temporal) <- wildschwein_intervals$TierID
+colnames(overlap_temporal) <- wildschwein_intervals$TierID
+for(row_i in 1:nrow(wildschwein_intervals)){
+  for(col_i in 1:nrow(wildschwein_intervals)){
+    overlap_temporal[row_i,col_i] <- lubridate::int_overlaps(wildschwein_intervals$interval[row_i,],wildschwein_intervals$interval[col_i,])
   }
 }
-overlap_temporal_mat[lower.tri(overlap_temporal_mat,T)] <- NA
-
-rownames(overlap_temporal_mat) <- overlap_temporal$TierID
-colnames(overlap_temporal_mat) <- overlap_temporal$TierID
+overlap_temporal[lower.tri(overlap_temporal,T)] <- NA
 
 
-overlap_spat_temp <- overlap_temporal_mat & overlap
 
-as.data.frame(overlap_spat_temp) %>%
+
+overlap_spat_temp <- overlap_temporal & overlap_spatial
+
+overlap_spat_temp <- overlap_spat_temp %>%
+  as.data.frame() %>%
   rownames_to_column("id1") %>%
   gather(id2,bool,-id1) %>%
   filter(bool == TRUE) %>%
   select(-bool)
+
+wildschwein <- wildschwein_sf %>%
+  st_coordinates(wildschwein_sf) %>%
+  as_tibble() %>%
+  bind_cols(wildschwein)
+
+id1 = overlap_spat_temp$id1[1]
+id2 = overlap_spat_temp$id2[1]
+
+
+wildschwein_dt1 <- wildschwein %>%
+  filter(TierID == id1) %>%
+  arrange(DatetimeUTC) %>%
+  mutate(
+    lag = lag(DatetimeUTC),
+    lead = lead(DatetimeUTC),
+    winBack = ifelse(is.na(lag),0,ceiling(difftime(DatetimeUTC,lag)/2)),
+    winFront = ifelse(is.na(lead),0,floor(difftime(lead,DatetimeUTC)/2)-1),
+    start = DatetimeUTC-winBack,
+    end = DatetimeUTC+winFront
+  ) %>%
+  select(-c(lag,lead,winBack,winFront)) %>%
+  rename_all(function(x){paste0(x,"1")}) %>%
+  as.data.table() %>%
+  setkey(start1,end1)
+
+
+wildschwein_dt2 <- wildschwein %>%
+  filter(TierID == id2) %>%
+  arrange(DatetimeUTC) %>%
+  mutate(
+    lag = lag(DatetimeUTC),
+    lead = lead(DatetimeUTC),
+    winBack = ifelse(is.na(lag),0,ceiling(difftime(DatetimeUTC,lag)/2)),
+    winFront = ifelse(is.na(lead),0,floor(difftime(lead,DatetimeUTC)/2)-1),
+    start = DatetimeUTC-winBack,
+    end = DatetimeUTC+winFront
+  ) %>%
+  select(-c(lag,lead,winBack,winFront)) %>%
+  rename_all(function(x){paste0(x,"2")}) %>%
+  as.data.table() %>%
+  setkey(start2,end2)
+
+
+wildschwein_dt1$difftime <- as.integer(difftime(wildschwein_dt1$end1,wildschwein_dt1$start1,units = "hours"))
+which.max(wildschwein_dt1$difftime)
+
+temporal_join_df <- foverlaps(wildschwein_dt1,wildschwein_dt2,mult = "first",nomatch = 0)
+
+temporal_join <- temporal_join_df %>%
+  as.tibble() %>%
+  select(-c(start1,end1,start2,end2)) %>%
+  mutate(distance = euclid(X1,Y1,X2,Y2)) %>%
+  filter(distance < 100)
+
+
+temporal_join %>%
+  ggplot(aes(distance)) +
+  geom_histogram(binwidth = 10, colour = "black")
+
+temporal_join
 
 #############################################################################
 ## Lesson 2 #################################################################
@@ -192,6 +210,14 @@ wildschwein %>%
     collars = length(unique(CollarID)),
     names = paste(unique(TierName),collapse = ",")
     )
+
+wildschwein %>%
+  group_by(CollarID) %>%
+  summarise(
+    fixes = n(),
+    collars = length(unique(TierID)),
+    names = paste(unique(TierName),collapse = ",")
+  )
 
 ggplot(wildschwein, aes(DatetimeUTC,TierID, colour = TierID)) +
   geom_line() +
