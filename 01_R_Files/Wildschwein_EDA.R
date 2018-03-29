@@ -11,7 +11,6 @@ library(purrr)
 library(stringr)
 library(data.table)
 
-
 library(devtools)
 library(CMAtools)
 
@@ -73,7 +72,13 @@ wildschwein_sf = st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326, ag
 # Transform coordinate system
 wildschwein_sf <- st_transform(wildschwein_sf, 2056)
 
+bbox <- st_bbox(wildschwein_sf)
 
+str(bbox)
+
+sf::are
+
+(bbox[[3]]-bbox[[1]])*(bbox[[4]]- bbox[[2]])/(1000^2)
 
 mcp95 <- mcp_sf(wildschwein_sf,TierID)
 
