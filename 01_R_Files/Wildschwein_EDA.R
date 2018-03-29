@@ -1,4 +1,10 @@
 
+# install all packages in library
+# install_github() for ggplot
+# install_git() for CMAtools
+library(devtools)
+
+
 library(tidyverse)
 library(lubridate)
 library(leaflet)
@@ -10,8 +16,6 @@ library(sf)
 library(purrr)
 library(stringr)
 library(data.table)
-
-library(devtools)
 library(CMAtools)
 
 euclid <- function(x1,y1,x2,y2){
@@ -76,7 +80,8 @@ bbox <- st_bbox(wildschwein_sf)
 
 str(bbox)
 
-sf::are
+# bbox_area_cart
+
 
 (bbox[[3]]-bbox[[1]])*(bbox[[4]]- bbox[[2]])/(1000^2)
 
@@ -94,7 +99,8 @@ ggplot(mcp95) +
     )
 
 
-polygon_selfoverlap(mcp95,"id")
+# TODO: why does this work without specifying the "id_col"?
+overlap_spatial(mcp95)
 
 # Trying to find overlapping time windows:
 wildschwein_intervals <- wildschwein %>%
@@ -108,12 +114,10 @@ wildschwein_intervals <- wildschwein %>%
     interval = interval(min,max)
   )
 
-overlap_temporal(wildschwein_intervals,"TierID","interval")
-dataframe <- wildschwein_intervals
-id_col <- "TierID"
-interval_col = "interval"
 
-overlap_temporal(wildschwein_intervals,"TierID","interval")
+# ToDO: make this work with id_col = "null"
+overlap_temporal(wildschwein_intervals,"interval","TierID")
+
 overlap_temporal <- matrix(nrow = nrow(wildschwein_intervals),ncol = nrow(wildschwein_intervals))
 rownames(overlap_temporal) <- wildschwein_intervals$TierID
 colnames(overlap_temporal) <- wildschwein_intervals$TierID
