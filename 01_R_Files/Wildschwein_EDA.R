@@ -1,14 +1,13 @@
 
 
 # install.packages("devtools")
-# library(devtools)
-# install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
+devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
 # install_github("rstudio/ggplot2")
 
 
-
-## General purpuse libraries
+## General purpose libraries
 library(CMAtools)
+library(zoo)
 
 library(tidyverse)
 library(lubridate)
@@ -48,9 +47,9 @@ str_remove_trailing <- function(string,trailing_char){
 
 
 ## Read and clean data
-wildschweinRAW <- read_delim("20_Rawdata/wildschwein.csv",";")
+wildschwein <- read_delim("20_Rawdata/wildschwein.csv",";",col_types = cols(timelag = col_double()))
 
-wildschwein <- rowid_to_column(wildschweinRAW,"fixNr")
+wildschwein <- rowid_to_column(wildschwein,"fixNr")
 
 wildschwein <- dplyr::select(wildschwein, Tier,DatumUTC,ZeitpUTC,Lat,Long)
 
@@ -89,16 +88,163 @@ wildschwein_sf = st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326, ag
 # Transform coordinate system
 wildschwein_sf <- st_transform(wildschwein_sf, 2056)
 
+wildschwein <- wildschwein_sf %>%
+  st_coordinates() %>%
+  as_tibble() %>%
+  rename(E = X, N = Y) %>%
+  bind_cols(wildschwein)
+
+
+
+#############################################################################
+## Lesson 2 #################################################################
+#############################################################################
+# - Enrich trajectories (step length, speed, 5min/3hrs)
+# - Simple multi-scale analysis (with dplyr summarize for 5min and 3hrs)
+# - Moving windows
+# - Map back in space
+wildschwein <- wildschwein %>%
+  group_by(TierID) %>%
+  mutate(
+    timelag = as.integer(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs"))
+  )
+    
+
+
+wildschwein <- wildschwein %>%
+  group_by(TierID) %>%
+  mutate(
+    steplength = euclid(lead(E),lead(N),E,N),
+    speed = steplength/timelag,
+    speed2 = rollmean(speed,3,NA,align = "left"),
+    speed3 = rollmean(speed,5,NA,align = "left"),
+    speed4 = rollmean(speed,10,NA,align = "left")
+  )
+
+
+ggplot() +
+  geom_line(data = wildschwein[1:50,], aes(DatetimeUTC,speed), colour = "black") +
+  geom_line(data = wildschwein[1:50,], aes(DatetimeUTC,speed2), colour = "red") +
+  geom_line(data = wildschwein[1:50,], aes(DatetimeUTC,speed3), colour = "green") +
+  geom_line(data = wildschwein[1:50,], aes(DatetimeUTC,speed4), colour = "blue")
+
+
+
+## How fast is a Cow, or a Wild Boar?
+# We want to find out if an animal is moving or resting. The simplest way to do  
+# this would be to calculate the distance or traveling speed between two points  
+# and define a threshold and based on gps accuracy to decide whether an animal 
+# is moving or not. 
+
+# Laube & Purves (2011) define "static" fixes as "those whose average Euclidean 
+# distance to other fixes inside a temporal window v is less than some 
+# threshold d".
+
+# Let's create this on our some dummy coordinates and work with them for now.
+
+X = cumsum(rnorm(20))
+Y = cumsum(rnorm(20))
+
+plot(X,Y,type = "l") 
+
+# We'll assume they have a sampling interval of 5 minutes. If we take a temporal 
+# window of 20 minutes, that would mean we include 5 fixes into the calculation. 
+# We need to calculate the following Eucledian distances (pos representing a 
+# X,Y-position):
+
+# 1) pos[n-2] to pos[n] 
+# 2) pos[n-1] to pos[n]
+# 3) pos[n] to pos[n+1]
+# 4) pos[n] to pos[n+2]
+
+# We can use the custom function "euclid()" to calculate the distances 
+# and dplyr functions lead/lag to create the necessary offsets.
+before_last_pos <- euclid(lag(X, 2),lag(Y, 2),X,Y)   # 1)
+last_pos <- euclid(lag(X, 1),lag(Y, 1),X,Y)   # 2)
+next_pos <- euclid(X,Y,lead(X, 1),lead(Y, 1)) # 3)
+after_next_pos <- euclid(X,Y,lead(X, 2),lead(Y, 2)) # 4)
+
+# We now want to find out the mean PER ROW. The follwing gives us the overall mean:
+mean(c(before_last_pos,last_pos,next_pos,after_next_pos), na.rm = T) 
+# To retrive the mean per row, we can do this:
+rowMeans <- rowMeans(
+  cbind(before_last_pos,last_pos,next_pos,after_next_pos) # binds the vectors as columns as a matrix
+)
+
+# We can now combine the above code with a mutate funtion and thus append the rowMean values 
+# to our roe deer data:
+wildschwein <- wildschwein %>%
+  group_by(TierID) %>%
+  mutate(
+    stepMean = rowMeans(
+      cbind(
+        euclid(lag(E, 2),lag(N, 2),E,N),
+        euclid(lag(E, 1),lag(N, 1),E,N),
+        euclid(E,N,lead(E, 1),lead(N, 1)),
+        euclid(E,N,lead(E, 2),lead(N, 2))
+        )
+      )
+  )
+
+# This illustrates very nicely what dplyr can do. You can do basically anything with your grouped 
+# intput data, as long as the output is a vector dplyr can deal with it. Note, you've yust coded a
+# moving window with n = 5 fixes.
+
+wildschwein %>%
+  ggplot(aes(stepMean)) +
+  geom_histogram(binwidth = 1)+
+  lims(x = c(0,100)) +
+  geom_vline(xintercept = 10)
+
+wildschwein <- wildschwein %>%
+  mutate(
+    stop = stepMean < 100
+  )
+
+factpal <- colorFactor(topo.colors(3), wildschwein$stop)
+
+                          
+wildschwein[0:500,] %>%
+  leaflet() %>%
+  addCircles(lng = ~Long, lat = ~Lat, color = ~factpal(stop)) %>%
+  addPolylines(lng = ~Long, lat = ~Lat) %>%
+  addTiles() %>%
+  addLegend(pal = factpal, values = ~stop, title = "Point belongs to stop?")
+
+
+
+
+
+
 bbox <- st_bbox(wildschwein_sf)
 
-(bbox[[3]]-bbox[[1]])*(bbox[[4]]- bbox[[2]])/(1000^2)
+mcp95 <- mcp_sf(wildschwein_sf,TierID, 95)
 
-mcp95 <- mcp_sf(wildschwein_sf,TierID)
+mcp95_centeroid <- st_centroid(mcp95)
+
+mcp95_centeroid <- mcp95_centeroid %>%
+  st_coordinates() %>%
+  as_tibble() %>%
+  rename(E = X, N = Y) %>%
+  bind_cols(mcp95_centeroid)
+
+ug <- mcp95_centeroid %>%
+  mutate(
+    ug = ifelse(E>2610000,"ug1","ug2")
+  ) %>%
+  select(id,ug)
 
 
-p <- ggplot(mcp95) +
+mcp95 <- left_join(mcp95,ug,by = "id")
+
+
+
+
+mcp95 %>%
+  filter(ug == "ug1") %>%
+  ggplot() +
   geom_sf(aes(fill = id), alpha = 0.3) +
-  geom_sf(data = st_centroid(mcp95), aes(colour = id)) +
+  # geom_sf(data = st_centroid(mcp95), aes(colour = id)) +
   coord_sf(datum = 2056) + 
   theme(
     legend.position = "none",
@@ -106,13 +252,11 @@ p <- ggplot(mcp95) +
     panel.background = element_rect(fill = "transparent")
     )
 
-ggplotly(p)
-
-
-# TODO: why does this work without specifying the "id_col"?
+pl
+# Find spatial overlap
 overlap_spatial_mat <- overlap_spatial(mcp95,"id")
 
-# Trying to find overlapping time windows:
+# Find temporal overlap
 wildschwein_intervals <- wildschwein %>%
   group_by(TierID) %>%
   summarise(
@@ -137,78 +281,25 @@ overlap_spat_temp <- overlap_spat_temp %>%
   filter(bool == TRUE) %>%
   select(-bool)
 
-wildschwein <- wildschwein_sf %>%
-  st_coordinates(wildschwein_sf) %>%
-  as_tibble() %>%
-  bind_cols(wildschwein)
-
-id1 = overlap_spat_temp$id1[1]
-id2 = overlap_spat_temp$id2[1]
 
 
-wildschwein_dt1 <- wildschwein %>%
-  filter(TierID == id1) %>%
-  arrange(DatetimeUTC) %>%
-  mutate(
-    lag = lag(DatetimeUTC),
-    lead = lead(DatetimeUTC),
-    winBack = ifelse(is.na(lag),0,ceiling(difftime(DatetimeUTC,lag)/2)),
-    winFront = ifelse(is.na(lead),0,floor(difftime(lead,DatetimeUTC)/2)-1),
-    start = DatetimeUTC-winBack,
-    end = DatetimeUTC+winFront
-  ) %>%
-  select(-c(lag,lead,winBack,winFront)) %>%
-  rename_all(function(x){paste0(x,"1")}) %>%
-  as.data.table() %>%
-  setkey(start1,end1)
 
 
-wildschwein_dt2 <- wildschwein %>%
-  filter(TierID == id2) %>%
-  arrange(DatetimeUTC) %>%
-  mutate(
-    lag = lag(DatetimeUTC),
-    lead = lead(DatetimeUTC),
-    winBack = ifelse(is.na(lag),0,ceiling(difftime(DatetimeUTC,lag)/2)),
-    winFront = ifelse(is.na(lead),0,floor(difftime(lead,DatetimeUTC)/2)-1),
-    start = DatetimeUTC-winBack,
-    end = DatetimeUTC+winFront
-  ) %>%
-  select(-c(lag,lead,winBack,winFront)) %>%
-  rename_all(function(x){paste0(x,"2")}) %>%
-  as.data.table() %>%
-  setkey(start2,end2)
+
+temporal_join(wildschwein,TierID,overlap_spat_temp$id1[1],overlap_spat_temp$id2[1],DatetimeUTC,mult = "first",0)
 
 
-temporal_join_df <- foverlaps(wildschwein_dt1,wildschwein_dt2,mult = "first",nomatch = 0)
 
-temporal_join <- temporal_join_df %>%
-  as.tibble() %>%
-  select(-c(start1,end1,start2,end2)) %>%
-  mutate(distance = euclid(X1,Y1,X2,Y2)) %>%
-  filter(distance < 100)
+ggplot(temporal_join) +
+  geom_point(aes(E2,N2), colour = "blue") +
+  geom_point(aes(E1,N1), colour = "red")
 
 
-temporal_join <- temporal_join %>%
-  mutate(
-    timediff = difftime(lead(DatetimeUTC1),DatetimeUTC2,units = "hours")<2,
-    timediffgr = number_groups(timediff,include_next = T)
-    )
-
-number_groups(c(T,T,T,F,T,T,NA,F),T)
-
-temporal_join$timediff
-
-leaflet(temporal_join)
+leaflet(temporal_join) %>%
+  addCircles(lng = ~Long1,lat = ~Lat1) %>%
+  addTiles()
 
 
-#############################################################################
-## Lesson 2 #################################################################
-#############################################################################
-# - Enrich trajectories (step length, speed, 5min/3hrs)
-# - Simple multi-scale analysis (with dplyr summarize for 5min and 3hrs)
-# - Moving windows
-# - Map back in space
 
 
 
@@ -280,7 +371,7 @@ wildschwein %>%
   filter(group == "(0,2]") %>%
   filter(!is.na(groupSeq)) %>%
   mutate(
-    steplength1 = euclid(X,Y,lead(X,1),lead(Y,1)),
+  steplength1 = euclid(X,Y,lead(X,1),lead(Y,1)),
     timediff1 = as.integer(difftime(lead(DatetimeUTC,1),DatetimeUTC,unit = "secs")),
     speed1 = steplength1/timediff1,
     steplength10 = euclid(X,Y,lead(X,10),lead(Y,10)),
@@ -332,14 +423,10 @@ wildschwein %>%
   ) %>%
   filter(TierID == "015",dayNr %in% 15:16) %>%
   ggplot(aes(X,Y,colour = samplegr)) +
-  geom_point() +
-  geom_path()
-
-
-
+  geom_point() 
 
 # Leaflet 
-factpal <- colorFactor(topo.colors(length(levels(cp@data$id))), cp@data$id))
+factpal <- colorFactor(topo.colors(length(levels(cp@data$id))), cp@data$id)
 
 leaflet(cp) %>%
   addPolygons(popup = paste("ID: ",cp@data$id), color = ~factpal(cp@data$id)) %>%
