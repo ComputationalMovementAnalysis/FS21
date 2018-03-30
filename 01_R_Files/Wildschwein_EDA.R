@@ -1,22 +1,33 @@
 
-# install all packages in library
-# install_github() for ggplot
-# install_git() for CMAtools
-library(devtools)
 
+# install.packages("devtools")
+# library(devtools)
+# install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
+# install_github("rstudio/ggplot2")
+
+
+
+## General purpuse libraries
+library(CMAtools)
 
 library(tidyverse)
 library(lubridate)
-library(leaflet)
-library(sp)
-library(adehabitatHR)
 library(scales)
-library(plotly)
-library(sf)
 library(purrr)
 library(stringr)
 library(data.table)
-library(CMAtools)
+
+
+## Spatial libraries
+library(sp)
+library(adehabitatHR)
+library(sf)
+library(raster)
+
+## Visualisation / Plotting
+library(leaflet)
+library(plotly)
+
 
 euclid <- function(x1,y1,x2,y2){
   return(sqrt((x1-x2)^2+(y1-y2)^2)) 
@@ -70,6 +81,8 @@ ggplot(wildschwein, aes(Long,Lat, colour = TierID)) +
 
 wildschwein <- filter(wildschwein,Lat<50)
 
+wildschwein <- filter(wildschwein, TierID != "091A")
+
 # turn df into sf-object
 wildschwein_sf = st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326, agr = "constant")
 
@@ -78,17 +91,12 @@ wildschwein_sf <- st_transform(wildschwein_sf, 2056)
 
 bbox <- st_bbox(wildschwein_sf)
 
-str(bbox)
-
-# bbox_area_cart
-
-
 (bbox[[3]]-bbox[[1]])*(bbox[[4]]- bbox[[2]])/(1000^2)
 
 mcp95 <- mcp_sf(wildschwein_sf,TierID)
 
 
-ggplot(mcp95) +
+p <- ggplot(mcp95) +
   geom_sf(aes(fill = id), alpha = 0.3) +
   geom_sf(data = st_centroid(mcp95), aes(colour = id)) +
   coord_sf(datum = 2056) + 
@@ -98,9 +106,11 @@ ggplot(mcp95) +
     panel.background = element_rect(fill = "transparent")
     )
 
+ggplotly(p)
+
 
 # TODO: why does this work without specifying the "id_col"?
-overlap_spatial(mcp95)
+overlap_spatial_mat <- overlap_spatial(mcp95,"id")
 
 # Trying to find overlapping time windows:
 wildschwein_intervals <- wildschwein %>%
@@ -115,23 +125,10 @@ wildschwein_intervals <- wildschwein %>%
   )
 
 
-# ToDO: make this work with id_col = "null"
-overlap_temporal(wildschwein_intervals,"interval","TierID")
-
-overlap_temporal <- matrix(nrow = nrow(wildschwein_intervals),ncol = nrow(wildschwein_intervals))
-rownames(overlap_temporal) <- wildschwein_intervals$TierID
-colnames(overlap_temporal) <- wildschwein_intervals$TierID
-for(row_i in 1:nrow(wildschwein_intervals)){
-  for(col_i in 1:nrow(wildschwein_intervals)){
-    overlap_temporal[row_i,col_i] <- lubridate::int_overlaps(wildschwein_intervals$interval[row_i,],wildschwein_intervals$interval[col_i,])
-  }
-}
-overlap_temporal[lower.tri(overlap_temporal,T)] <- NA
+overlap_temporal_mat <- overlap_temporal(wildschwein_intervals,"interval","TierID")
 
 
-
-
-overlap_spat_temp <- overlap_temporal & overlap_spatial
+overlap_spat_temp <- overlap_temporal_mat & overlap_spatial_mat
 
 overlap_spat_temp <- overlap_spat_temp %>%
   as.data.frame() %>%
@@ -183,9 +180,6 @@ wildschwein_dt2 <- wildschwein %>%
   setkey(start2,end2)
 
 
-wildschwein_dt1$difftime <- as.integer(difftime(wildschwein_dt1$end1,wildschwein_dt1$start1,units = "hours"))
-which.max(wildschwein_dt1$difftime)
-
 temporal_join_df <- foverlaps(wildschwein_dt1,wildschwein_dt2,mult = "first",nomatch = 0)
 
 temporal_join <- temporal_join_df %>%
@@ -195,11 +189,18 @@ temporal_join <- temporal_join_df %>%
   filter(distance < 100)
 
 
-temporal_join %>%
-  ggplot(aes(distance)) +
-  geom_histogram(binwidth = 10, colour = "black")
+temporal_join <- temporal_join %>%
+  mutate(
+    timediff = difftime(lead(DatetimeUTC1),DatetimeUTC2,units = "hours")<2,
+    timediffgr = number_groups(timediff,include_next = T)
+    )
 
-temporal_join
+number_groups(c(T,T,T,F,T,T,NA,F),T)
+
+temporal_join$timediff
+
+leaflet(temporal_join)
+
 
 #############################################################################
 ## Lesson 2 #################################################################
