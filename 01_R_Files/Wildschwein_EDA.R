@@ -26,7 +26,7 @@ library(raster)
 ## Visualisation / Plotting
 library(leaflet)
 library(plotly)
-
+library(tmap)
 
 euclid <- function(x1,y1,x2,y2){
   return(sqrt((x1-x2)^2+(y1-y2)^2)) 
@@ -142,10 +142,33 @@ ggplot() +
 
 # Let's create this on our some dummy coordinates and work with them for now.
 
-X = cumsum(rnorm(20))
-Y = cumsum(rnorm(20))
 
-plot(X,Y,type = "l") 
+sample <- wildschwein[0:50,] %>%
+  rowid_to_column("rowid") %>%
+  mutate(
+    Em2 = lag(E,2),
+    Nm2 = lag(N,2),
+    Em1 = lag(E,1),
+    Nm1 = lag(N,1),    
+    Ep1 = lead(E,1),
+    Np1 = lead(N,1),    
+    Ep2 = lead(E,2),
+    Np2 = lead(N,2)
+  )
+
+n = 10
+ggplotly(
+ggplot(sample[1:50,],aes(E,N)) + 
+  geom_point() + 
+  geom_path(alpha = 0.8) +
+  geom_segment(data = sample[n:n,],alpha = 0.8,lty = "dotted",colour = "red",aes(x = Em2,y = Nm2,xend = E,yend = N),inherit.aes = FALSE ) +
+  geom_segment(data = sample[n:n,],alpha = 0.8,lty = "dotted",colour = "red",aes(x = Em1,y = Nm1,xend = E,yend = N),inherit.aes = FALSE ) +
+  geom_segment(data = sample[n:n,],alpha = 0.8,lty = "dotted",colour = "red",aes(x = Ep1,y = Np1,xend = E,yend = N),inherit.aes = FALSE ) +
+  geom_segment(data = sample[n:n,],alpha = 0.8,lty = "dotted",colour = "red",aes(x = Ep2,y = Np2,xend = E,yend = N),inherit.aes = FALSE ) 
+)
+
+
+
 
 # We'll assume they have a sampling interval of 5 minutes. If we take a temporal 
 # window of 20 minutes, that would mean we include 5 fixes into the calculation. 
@@ -201,20 +224,77 @@ wildschwein <- wildschwein %>%
     stop = stepMean < 100
   )
 
-factpal <- colorFactor(topo.colors(3), wildschwein$stop)
+factpal <- colorFactor(hue_pal()(2), wildschwein$stop)
 
-                          
-wildschwein[0:500,] %>%
+# checking to see if this all makes sense in leaflet: (or better ggplto?)
+wildschwein[0:20,] %>%
+  filter(!is.na(stop)) %>%
   leaflet() %>%
-  addCircles(lng = ~Long, lat = ~Lat, color = ~factpal(stop)) %>%
-  addPolylines(lng = ~Long, lat = ~Lat) %>%
+  addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(stop)) %>%
+  addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
   addTiles() %>%
   addLegend(pal = factpal, values = ~stop, title = "Point belongs to stop?")
 
 
 
+#############################################################################
+## Lesson 3 #################################################################
+#############################################################################
+
+# - Matt's students package
+# - Compute similarities between trajectories (similarity measure from leiden workshop?!)
+# 
+# Introduction of Rmarkdown for Project?
+
+library(recurse)
 
 
+sample <- 
+
+
+plot(sample$E, sample$N, col = viridis_pal()(nrow(sample)), pch = 20, 
+     xlab = "x", ylab = "y", asp = 1)
+
+ggplot(sample, aes(steplength)) +geom_histogram(binwidth = 1) +lims(x = c(0,50))
+
+str(martin)
+str(sample)
+
+sample <- wildschwein %>% 
+  filter(TierID == "001A") %>%
+  select(E,N,DatetimeUTC,TierID) %>%
+  as.data.frame()
+
+revis <- getRecursions(sample,50)
+
+revis_stat <- revis$revisitStats
+
+revis_stat2 <- revis_stat %>%
+  group_by(coordIdx) %>%
+  summarise(
+    number_of_visits = max(visitIdx),
+    x = unique(x),
+    y = unique(y),
+    total_time = sum(timeInside),
+    max_time = max(timeInside),
+    mean_time = mean(timeInside)
+  )
+
+ggplotly(
+ggplot() +
+  geom_point(data = sample,aes(E,N))+
+  geom_point(data = filter(revis_stat2,number_of_visits > 10), aes(x,y, size = total_time),colour = "red",alpha = 0.2) +
+  scale_size_continuous()
+)
+
+
+
+#############################################################################
+## Lesson 4 #################################################################
+#############################################################################
+# - Operationalize and find meet patterns 
+# - Visualize spatial distribution of meet
+# - Define functions
 
 bbox <- st_bbox(wildschwein_sf)
 
@@ -238,7 +318,9 @@ ug <- mcp95_centeroid %>%
 mcp95 <- left_join(mcp95,ug,by = "id")
 
 
-
+mcp95 %>%
+  filter(ug == "ug1") %>%
+  st_bbox()
 
 mcp95 %>%
   filter(ug == "ug1") %>%
@@ -300,7 +382,14 @@ leaflet(temporal_join) %>%
   addTiles()
 
 
-
+#############################################################################
+## Lesson 5 #################################################################
+#############################################################################
+# - enrich trajectories with R (overlay)
+# - attach context (land-use, slope) to trajectories, 
+# - search for correlations (speed vs. slope, speed vs. landUse). BSc Tomlinson
+# - Mapmatching MTB tracks on paths
+# - Area centered analysis (MCP, DU, KDE, home range)
 
 
 # how many fixes per animal? how many collars per animal? 
@@ -470,29 +559,10 @@ leaflet(cp) %>%
 #   facet_wrap(~TierID)
 
 
-#############################################################################
-## Lesson 3 #################################################################
-#############################################################################
-
-# - Matt's students package
-# - Compute similarities between trajectories (similarity measure from leiden workshop?!)
-# 
-# Introduction of Rmarkdown for Project?
 
 
-#############################################################################
-## Lesson 4 #################################################################
-#############################################################################
-# - Operationalize and find meet patterns 
-# - Visualize spatial distribution of meet
-# - Define functions
 
 
-#############################################################################
-## Lesson 5 #################################################################
-#############################################################################
-# - enrich trajectories with R (overlay)
-# - attach context (land-use, slope) to trajectories, 
-# - search for correlations (speed vs. slope, speed vs. landUse). BSc Tomlinson
-# - Mapmatching MTB tracks on paths
-# - Area centered analysis (MCP, DU, KDE, home range)
+
+
+

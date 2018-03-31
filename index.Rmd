@@ -1,8 +1,12 @@
 ---
-title: "Patterns and Trends"
+title: "GEO880: Patterns and Trends in Environmental Data"
 author: "Patrick Laube and Nils Ratnaweera"
-site: bookdown::gitbook
+site: bookdown::bookdown_site
 documentclass: book
+output:
+  bookdown::gitbook: default
 ---
 
-# Hello World
+# Introduction Chapter
+
+This is a nice introduction

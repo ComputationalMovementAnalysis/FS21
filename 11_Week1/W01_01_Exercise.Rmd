@@ -5,15 +5,16 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "/home/rata/CMA_FS2018")
+# knitr::opts_knit$set(root.dir = "/home/rata/CMA_FS2018")
 ```
 
+# Lesson 1
 
-## Introduction
+For our practical R course building-up skills for analyzing movement data in the software environment R, you'll be using data from the ZHAW project ["Prävention von Wildschweinschäden in der Landwirtschaft"](https://www.zhaw.ch/de/lsfm/institute-zentren/iunr/integrative-oekologie/wildtiermanagement/referenzprojekte/).
 
-For our practical R course building-up skills for analyzing movement data in the software environment R, you'll be using data from the ZHAW project "Wildtier und Mensch im Naherholungsraum"1. The project investigates the interaction and disturbance dynamics between animals living in habitats that are also used by humans as recreational areas. We'll study trajectories of _roe deer_ (dt. _Reh_) and mountain bikers, practicing the most basic analysis tasks of Computational Movement Analysis (CMA). 
+The project investigates the spatiotemporal movement patterns of wild boar (*Sus scrofa*) in agricultural landscapes. For more information you can ask [Beni Sigrist](https://www.zhaw.ch/de/ueber-uns/person/sigb/), one of the course participants involved in this project. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA). 
 
-Lesson L1 covers the necessary steps for getting ready in R and some basic concepts for setting up a well-structured R project. The lesson introduces how additional packages that provide useful functions are made available and how temporal data is handled. The lesson concludes with the creation of your first map featuring movement data.
+Lesson 1 (L1) covers the necessary steps for getting ready in R and some basic concepts for setting up a well-structured R project. The lesson introduces how additional packages that provide useful functions are made available and how temporal data is handled. The lesson concludes with the creation of your first map featuring movement data.
 
 
 **Please note** we are given this data under the condition of signing a non-disclosure agreement. Why? This is data coming out of an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected.
@@ -21,8 +22,20 @@ Lesson L1 covers the necessary steps for getting ready in R and some basic conce
 
 ## Leaning outcomes
 - You learn how to structure an R project.
-- You can read movement data from a .csv-file into a data.frame and into a move object.
-- You can produce simple maps of your trajectory data using ggplot2 and leaflet
+- You can read movement data from a .csv-file into a data.frame and into a sf object.
+- You can produce simple maps of your trajectory data using ggplot2, leaflet, plotly and tmap
+
+
+## Prerequisites
+Readings Skills from "R for Data Science" (Wickam, 2017):
+
+<!-- Todo add bibtext -->
+- RS1.1 Preface (16p, ix-xxiv)
+- RS1.2 Chap2 Workflow basics (3p, 37-39)
+- RS1.3 Chap4 Workflow scripts (3p, 77-79)
+- RS1.4 Chap6 workflow projects (6p, 111-116)
+- RS1.5 Chap8 Data Import with readr (21p)
+- RS1.6 Chap13 Date and Times with lubridate (18p, 237-256)
 
 
 ## Tasks
@@ -44,6 +57,8 @@ Create a new *RStudio Project*. Create a new R-File and divide it into the secti
 ```
 
 
+In the first section (loading environment / libraries), add the code to install and load the package "tidyverse". Once you've installed the package, you can uncomment the corresponding line of code, because you will not need to execute this line in your next R Session.
+
 ```{r}
 
 # Loading enironment / libraries ####
@@ -54,81 +69,80 @@ library(tidyverse)
 
 ```
 
-In the first section (loading environment / libraries), add the code to install and load the package "tidyverse". Once you've installed the package, you can uncomment the corresponding line of code, because you will not need to execute this line in your next R Session. 
+In the first section (loading environment / libraries), add the code to install and load the package "tidyverse". Once you've installed the package, you can uncomment the corresponding line of code, because you will not need to execute this line in your next R Session.
 
 
 
-### Task 2: Import data
+<!-- ### Task 2: Import data -->
 
-In section "data import", import the files `Roe_gps_all.csv` and `Roe_meta.csv`. 
+<!-- In section "data import", import the files `Roe_gps_all.csv` and `Roe_meta.csv`.  -->
 
-Tipp: RStudio provides [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) which you can use to build your `read_csv()` command. However, in regard to the reproducibility of your script, you will need to copy the "import" statement into your script (in the section "data import"). This will ensure that your worflow is documented without gaps.
-
-
-```{r}
-
-# Data import ####
-roe_gps_all <-read_csv("20_Rawdata/Roe_gps_all.csv")
-
-```
+<!-- Tipp: RStudio provides [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) which you can use to build your `read_csv()` command. However, in regard to the reproducibility of your script, you will need to copy the "import" statement into your script (in the section "data import"). This will ensure that your worflow is documented without gaps. -->
 
 
+<!-- ```{r} -->
 
-### Task 3: Clean data
+<!-- # Data import #### -->
+<!-- roe_gps_all <-read_csv("20_Rawdata/Roe_gps_all.csv") -->
 
-In section "Data clensing", drop the columns we do not need at the moment. Since we're not actually deleting any columns withint the original data, you can drop columns generously. For the moment, we only need columns "TierID", "LMT_Date", "LMT_Time", "DOP", "Latitude...." and "Longitude....". Remove the "...." from the column name. Do not touch the original data to do this, change the name within R.
-
-```{r}
-# Data clensing ####
-
-roe_gps_all <- select(roe_gps_all,"TierID","LMT_Date","LMT_Time","DOP","Latitude....","Longitude....")
-
-roe_gps_all <- rename(roe_gps_all,Lat = Latitude....)
-roe_gps_all <- rename(roe_gps_all,Lng = Longitude....)
-```
+<!-- ``` -->
 
 
 
+<!-- ### Task 3: Clean data -->
+
+<!-- In section "Data clensing", drop the columns we do not need at the moment. Since we're not actually deleting any columns withint the original data, you can drop columns generously. For the moment, we only need columns "TierID", "LMT_Date", "LMT_Time", "DOP", "Latitude...." and "Longitude....". Remove the "...." from the column name. Do not touch the original data to do this, change the name within R. -->
+
+<!-- ```{r} -->
+<!-- # Data clensing #### -->
+
+<!-- roe_gps_all <- select(roe_gps_all,"TierID","LMT_Date","LMT_Time","DOP","Latitude....","Longitude....") -->
+
+<!-- roe_gps_all <- rename(roe_gps_all,Lat = Latitude....) -->
+<!-- roe_gps_all <- rename(roe_gps_all,Lng = Longitude....) -->
+<!-- ``` -->
 
 
-### Task 3
-Make a first "map-like" plot of your data producing a simple scatter plot with ggplot2. Assign every individual animal its own colour (using the ggplot2 argument colour). Do you spot outliers? If so, get rid of the outliers. Plot your data again, this time without outliers. Save your plot using ggsave(). Save your code in the listing 1.4_plotting_ggplot.R. Setting up a ggplot with our data is done using the command ggplot(roe_gps_all, aes(X, Y, colour = TierID)). Creating a map is done via the basic scatter plot command geom_point(), using a fixed aspect ratio of 1.
-
-```{r}
-
-ggplot(roe_gps_all, aes(Lat,Lng, colour = TierID)) +
-  geom_point()
 
 
-```
+
+<!-- ### Task 3 -->
+<!-- Make a first "map-like" plot of your data producing a simple scatter plot with ggplot2. Assign every individual animal its own colour (using the ggplot2 argument colour). Do you spot outliers? If so, get rid of the outliers. Plot your data again, this time without outliers. Save your plot using ggsave(). Save your code in the listing 1.4_plotting_ggplot.R. Setting up a ggplot with our data is done using the command ggplot(roe_gps_all, aes(X, Y, colour = TierID)). Creating a map is done via the basic scatter plot command geom_point(), using a fixed aspect ratio of 1. -->
+
+<!-- ```{r} -->
+
+<!-- ggplot(roe_gps_all, aes(Lat,Lng, colour = TierID)) + -->
+<!--   geom_point() -->
 
 
-### Task 4
-Now we want to produce a nicer map with an OpenStreetMap basemap. This can be done with leaflet First, you load the library within your "Loading enironment / libraries" section
-
-```{r}
-# Loading enironment / libraries ####
-library(tidyverse)
-library(leaflet)
-```
-
-Then, create a leaflet object with leaflet() and subsequently add the neccessary layers. Our Layers at the moment are simply a point (circle) representation of the positions and a background basemap:
-
-```{r}
-
-map <- leaflet(roe_gps_all)
-map <- addCircles(map, lat = ~Lat, lng = ~Lng)
-
-map <- addTiles(map) 
-
-map
+<!-- ``` -->
 
 
-```
+<!-- ### Task 4 -->
+<!-- Now we want to produce a nicer map with an OpenStreetMap basemap. This can be done with leaflet First, you load the library within your "Loading enironment / libraries" section -->
+
+<!-- ```{r} -->
+<!-- # Loading enironment / libraries #### -->
+<!-- library(tidyverse) -->
+<!-- library(leaflet) -->
+<!-- ``` -->
+
+<!-- Then, create a leaflet object with leaflet() and subsequently add the neccessary layers. Our Layers at the moment are simply a point (circle) representation of the positions and a background basemap: -->
+
+<!-- ```{r} -->
+
+<!-- map <- leaflet(roe_gps_all) -->
+<!-- map <- addCircles(map, lat = ~Lat, lng = ~Lng) -->
+
+<!-- map <- addTiles(map)  -->
+
+<!-- map -->
 
 
-## Tips and suggestions
+<!-- ``` -->
 
-## Materials and Help
 
+<!-- ## Tips and suggestions -->
+
+<!-- ## Materials and Help -->
 

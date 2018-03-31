@@ -1,2 +1,0 @@
-bookdown::gitbook:
-  split_by: section+number
