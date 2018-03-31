@@ -1,13 +1,3 @@
----
-title: "Lessons L1"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-# knitr::opts_knit$set(root.dir = "/home/rata/CMA_FS2018")
-```
-
 # Lesson 1
 
 For our practical R course building-up skills for analyzing movement data in the software environment R, you'll be using data from the ZHAW project ["Prävention von Wildschweinschäden in der Landwirtschaft"](https://www.zhaw.ch/de/lsfm/institute-zentren/iunr/integrative-oekologie/wildtiermanagement/referenzprojekte/).
@@ -42,9 +32,15 @@ Readings Skills from "R for Data Science" (Wickam, 2017):
 
 ### Task 1: Prepare project
 
-Create a new *RStudio Project*. Create a new R-File and divide it into the sections neccessary in a classical Data Science Workflow. "Sections" are created within RStudio by adding Comments (#) with at least 4 Trailing dashes (-), equal signs (=), or pound signs (#) (see below).  Sections allow code folding (click on the small triangle next to the line number) and provides and navigation (type Shift+Alt+J).
+Create a new *RStudio Project*. As recommended in Wickam,
+<!-- todo insert bibtex -->
+remove the option "*Restore .RData into workspace at startup*" and "*save workspace to .RData on exit*" to "*Never*".
 
-```{r,purl=F}
+<!-- ![](http://r4ds.had.co.nz/screenshots/rstudio-workspace.png) -->
+
+Create a new R-File and divide it into the sections neccessary in a classical Data Science Workflow. "Sections" can be created within RStudio by adding Comments (#) with at least 4 Trailing dashes (-), equal signs (=), or pound signs (#) (see below).  Sections allow code folding (try click on the small triangle next to the line number) and provides and navigation (try the shortcut: Shift+Alt+J).
+
+```{r purl=F}
 
 # Loading enironment / libraries ####
 
@@ -59,90 +55,127 @@ Create a new *RStudio Project*. Create a new R-File and divide it into the secti
 
 In the first section (loading environment / libraries), add the code to install and load the package "tidyverse". Once you've installed the package, you can uncomment the corresponding line of code, because you will not need to execute this line in your next R Session.
 
-```{r}
+
+```{r,message=F,warning=F}
+
+## Task 1 ####################
+
 
 # Loading enironment / libraries ####
 
 # install.packages("tidyverse")
 library(tidyverse)
-
+library(sf)
 
 ```
 
-In the first section (loading environment / libraries), add the code to install and load the package "tidyverse". Once you've installed the package, you can uncomment the corresponding line of code, because you will not need to execute this line in your next R Session.
+
+### Task 2: Import data
+
+In section "data import", import the file `wildschwein.csv`. For everyone working on the RStudio Server, this data is saved in a Folder named "Geodata"
+<!-- todo insert correct name -->
+one level *above* your home folder. You will have to move "up" one or two levels from your project folder using the syntax and then into the correct folder using the syntax `"../../Geodata/"`(for two levels) or `"../Geodata/"` (for one level). 
 
 
+Note: 
 
-<!-- ### Task 2: Import data -->
+- If your are using [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your worflow is documented without gaps.
+- I recommend using one of the tidyverse functions (`read_*`) to import your data. These functions are less error prone than the base R functions (`read.*`). Specifically to the wildboar data, I recomment `read_delim`.
+- if you recieve warnings during import, have a look at these warnings by using the funciton `problems()`. Resolve these problems until import runs without warnings.
+- Assign correct data types as neccessary and make sure the timezone is set correctly for the date/time columnm.
 
-<!-- In section "data import", import the files `Roe_gps_all.csv` and `Roe_meta.csv`.  -->
-
-<!-- Tipp: RStudio provides [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) which you can use to build your `read_csv()` command. However, in regard to the reproducibility of your script, you will need to copy the "import" statement into your script (in the section "data import"). This will ensure that your worflow is documented without gaps. -->
-
-
-<!-- ```{r} -->
-
-<!-- # Data import #### -->
-<!-- roe_gps_all <-read_csv("20_Rawdata/Roe_gps_all.csv") -->
-
-<!-- ``` -->
+```{r}
 
 
+## Task 2 ####################
 
-<!-- ### Task 3: Clean data -->
 
-<!-- In section "Data clensing", drop the columns we do not need at the moment. Since we're not actually deleting any columns withint the original data, you can drop columns generously. For the moment, we only need columns "TierID", "LMT_Date", "LMT_Time", "DOP", "Latitude...." and "Longitude....". Remove the "...." from the column name. Do not touch the original data to do this, change the name within R. -->
-
-<!-- ```{r} -->
-<!-- # Data clensing #### -->
-
-<!-- roe_gps_all <- select(roe_gps_all,"TierID","LMT_Date","LMT_Time","DOP","Latitude....","Longitude....") -->
-
-<!-- roe_gps_all <- rename(roe_gps_all,Lat = Latitude....) -->
-<!-- roe_gps_all <- rename(roe_gps_all,Lng = Longitude....) -->
-<!-- ``` -->
+# Data import ####
+wildschwein_BE <- read_delim("../Geodata/wildschwein_BE.csv",",")
+```
 
 
 
 
 
-<!-- ### Task 3 -->
-<!-- Make a first "map-like" plot of your data producing a simple scatter plot with ggplot2. Assign every individual animal its own colour (using the ggplot2 argument colour). Do you spot outliers? If so, get rid of the outliers. Plot your data again, this time without outliers. Save your plot using ggsave(). Save your code in the listing 1.4_plotting_ggplot.R. Setting up a ggplot with our data is done using the command ggplot(roe_gps_all, aes(X, Y, colour = TierID)). Creating a map is done via the basic scatter plot command geom_point(), using a fixed aspect ratio of 1. -->
 
-<!-- ```{r} -->
+### Task 3 Explore Data
+We will use a variaty of different plotting techniques in this course, several have emerged in recent years, each with their specific strenghts and weaknesses. While base::plot() is quick and simple, it not very scaleable with growing complexity. ggplto offers solution for most use cases and has a elegant syntax that is easy to get accustomed to. plotly() offers great interactive and linked view facilites while tmap() was designed specifically for spatial data. 
 
-<!-- ggplot(roe_gps_all, aes(Lat,Lng, colour = TierID)) + -->
-<!--   geom_point() -->
+Get an overview of your data by creating a first "map-like" plot of your data producing a simple scatter plot with ggplot2. Assign every individual animal its own colour (using the ggplot2 argument colour). Do you spot outliers? If so, get rid of the outliers. Plot your data again, this time without outliers. Save your plot using ggsave(). Save your code in the appropirate section.
 
+Setting up a ggplot with our data is done using the command ggplot(roe_gps_all, aes(X, Y, colour = TierID)). Creating a map is done via the basic scatter plot command geom_point(), using a fixed aspect ratio of 1.
 
-<!-- ``` -->
+```{r}
 
-
-<!-- ### Task 4 -->
-<!-- Now we want to produce a nicer map with an OpenStreetMap basemap. This can be done with leaflet First, you load the library within your "Loading enironment / libraries" section -->
-
-<!-- ```{r} -->
-<!-- # Loading enironment / libraries #### -->
-<!-- library(tidyverse) -->
-<!-- library(leaflet) -->
-<!-- ``` -->
-
-<!-- Then, create a leaflet object with leaflet() and subsequently add the neccessary layers. Our Layers at the moment are simply a point (circle) representation of the positions and a background basemap: -->
-
-<!-- ```{r} -->
-
-<!-- map <- leaflet(roe_gps_all) -->
-<!-- map <- addCircles(map, lat = ~Lat, lng = ~Lng) -->
-
-<!-- map <- addTiles(map)  -->
-
-<!-- map -->
+## Task 3 ####################
 
 
-<!-- ``` -->
+ggplot(wildschwein_BE, aes(Lat,Long, colour = TierID)) +
+  geom_point() +
+  coord_fixed(1) +
+  theme(legend.position = "none")
+
+wildschwein_BE <- filter(wildschwein_BE, Lat < 50)
+```
 
 
-<!-- ## Tips and suggestions -->
 
-<!-- ## Materials and Help -->
 
+
+
+### Task 4: Handling spatial data
+Till now, we've handled spatial data within dataframes. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. Projecting the WGS84 (Lat/Long) coordinates into CH1903_LV95 is such a case. 
+
+Some of you might know the `sp` packge with the classes `SpatialPoints` and `SpatialPointsDataFrame`. Just recently the new and exiting package `sf`, was released on CRAN. `sf` has some huge advantages over sp:
+
+- simple featrues are essentially dataframes, which mean they interface with the tidyverse (and the dplyr SAC paradigm) 
+- are OGC (ISO 19125-1:2004) compliant and interface with GDAL, PostGIS, GeoJSON and so fourth
+- are being rapidly implemented in visualisation tools such as ggplot2, gplotly and tmap
+
+A lot of reasons to learn sf and work with this library. The down side is however, that due to its youth not all packages have implemented sf. We have created a small package (CMAtools) to help you with such cases, so we will not have to switch back and fourth between classes during this course.
+
+Use the function st_as_sf() while correctly specifying your Lat/Long Coordinates. Set the coordinate reference system using the [EPSG Code](http://spatialreference.org/ref/epsg/4326/) as an integer value. You can set the argument "agr" to "constant". Save to output of this operation to a new variable wildschwein_BE_sf.
+
+Take a look at this sf object (head(), str(),View()) and try a few classical dataframe operations on it (subseting, filtering).
+
+```{r}
+
+## Task 4 ####################
+
+wildschwein_BE_sf = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326, agr = "constant")
+```
+
+
+Now transform the coordinates into [CH1903_LV95](spatialreference.org/ref/epsg/2056/) using the function st_transform(). Again, use the EPSG code as an integer. Extract the new Coorindates using st_coordinates() and attach them (cbind()) to your original dataframe. 
+
+Note that st_transform() names the coordinates X and Y, but [CH1903 LV03](https://www.swisstopo.admin.ch/de/wissen-fakten/geodaesie-vermessung/neue-koordinaten.html) names the Axes E and N. Rename the axes accordingly before or after attaching them to your dataframe.
+
+Keep your Long / Lat coordinates, since it is helpful to have both WGS84 and CH1903+ Coordinates stored in the dataframe: 
+
+- WGS84: this is our original data therefore we should not discard this information. Additionally, some visualization tools (eg. Leaflet and ggmap) need Lat/Long Coordinates
+- CH1903+ these cartesian coordinates are helpful when calculating euclidean distances between positions (this is much more compledated with WGS84 Data) and if we use swisstopo background- and other context data
+
+
+```{r}
+
+## Task 4 (Continued) ########
+
+wildschwein_BE_sf <- st_transform(wildschwein_BE_sf, 2056)
+
+coordinates <- st_coordinates(wildschwein_BE_sf)
+
+colnames(coordinates) <- c("E","N")
+
+wildschwein_BE <- cbind(wildschwein_BE,coordinates)
+
+```
+
+
+<!-- Todo: show possibilities to make nicer maps using tmap or leaflet? -->
+
+
+## Solutions (RCode)
+
+```{r code=readLines('11_Week1/RFiles/W01_01_Exercise.R'), results='asis', echo = T, include=T, eval=F}
+```

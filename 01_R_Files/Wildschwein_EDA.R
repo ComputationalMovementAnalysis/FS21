@@ -32,9 +32,7 @@ euclid <- function(x1,y1,x2,y2){
   return(sqrt((x1-x2)^2+(y1-y2)^2)) 
 }
 
-str_remove_trailing <- function(string,trailing_char){
-  ifelse(str_sub(string,-1,-1) == trailing_char,str_sub(string,1,-2),string)
-}
+
 
 
 #############################################################################
@@ -47,30 +45,7 @@ str_remove_trailing <- function(string,trailing_char){
 
 
 ## Read and clean data
-wildschwein <- read_delim("20_Rawdata/wildschwein.csv",";",col_types = cols(timelag = col_double()))
 
-wildschwein <- rowid_to_column(wildschwein,"fixNr")
-
-wildschwein <- dplyr::select(wildschwein, Tier,DatumUTC,ZeitpUTC,Lat,Long)
-
-wildschwein <- mutate(wildschwein,Tier = str_remove_trailing(Tier,"_"))
-
-wildschwein <- separate(wildschwein, Tier,into = c("TierID","TierName","CollarID"))
-
-
-wildschwein <- wildschwein %>%
-  group_by(TierID) %>%
-  mutate(CollarIDfac = LETTERS[as.integer(factor(CollarID))]) %>%
-  ungroup() %>%
-  mutate(TierID = paste0(TierID,CollarIDfac)) %>%
-  select(-CollarIDfac)
-
-wildschwein <- mutate(wildschwein, DatetimeUTC = parse_datetime(ZeitpUTC))
-
-wildschwein <- select(wildschwein, -DatumUTC,-ZeitpUTC)
-
-# warum sind so viele Positionen NA?!
-wildschwein <- filter(wildschwein,!is.na(Lat))
 
 # Visualize Points via. lat/long. Note: lat/long are plotted as cartesian coordinates
 ggplot(wildschwein, aes(Long,Lat, colour = TierID)) +
@@ -80,7 +55,7 @@ ggplot(wildschwein, aes(Long,Lat, colour = TierID)) +
 
 wildschwein <- filter(wildschwein,Lat<50)
 
-wildschwein <- filter(wildschwein, TierID != "091A")
+
 
 # turn df into sf-object
 wildschwein_sf = st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326, agr = "constant")
@@ -136,8 +111,8 @@ ggplot() +
 # and define a threshold and based on gps accuracy to decide whether an animal 
 # is moving or not. 
 
-# Laube & Purves (2011) define "static" fixes as "those whose average Euclidean 
-# distance to other fixes inside a temporal window v is less than some 
+# Laube & Purves (2011) define "static" fixes as "those whose average Euclidean
+# distance to other fixes inside a temporal window v is less than some
 # threshold d".
 
 # Let's create this on our some dummy coordinates and work with them for now.
@@ -170,17 +145,17 @@ ggplot(sample[1:50,],aes(E,N)) +
 
 
 
-# We'll assume they have a sampling interval of 5 minutes. If we take a temporal 
-# window of 20 minutes, that would mean we include 5 fixes into the calculation. 
-# We need to calculate the following Eucledian distances (pos representing a 
+# We'll assume they have a sampling interval of 5 minutes. If we take a temporal
+# window of 20 minutes, that would mean we include 5 fixes into the calculation.
+# We need to calculate the following Eucledian distances (pos representing a
 # X,Y-position):
 
-# 1) pos[n-2] to pos[n] 
+# 1) pos[n-2] to pos[n]
 # 2) pos[n-1] to pos[n]
 # 3) pos[n] to pos[n+1]
 # 4) pos[n] to pos[n+2]
 
-# We can use the custom function "euclid()" to calculate the distances 
+# We can use the custom function "euclid()" to calculate the distances
 # and dplyr functions lead/lag to create the necessary offsets.
 before_last_pos <- euclid(lag(X, 2),lag(Y, 2),X,Y)   # 1)
 last_pos <- euclid(lag(X, 1),lag(Y, 1),X,Y)   # 2)
@@ -296,26 +271,9 @@ ggplot() +
 # - Visualize spatial distribution of meet
 # - Define functions
 
-bbox <- st_bbox(wildschwein_sf)
-
 mcp95 <- mcp_sf(wildschwein_sf,TierID, 95)
 
-mcp95_centeroid <- st_centroid(mcp95)
 
-mcp95_centeroid <- mcp95_centeroid %>%
-  st_coordinates() %>%
-  as_tibble() %>%
-  rename(E = X, N = Y) %>%
-  bind_cols(mcp95_centeroid)
-
-ug <- mcp95_centeroid %>%
-  mutate(
-    ug = ifelse(E>2610000,"ug1","ug2")
-  ) %>%
-  select(id,ug)
-
-
-mcp95 <- left_join(mcp95,ug,by = "id")
 
 
 mcp95 %>%

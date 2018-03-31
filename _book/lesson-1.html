@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html">
-
+<link rel="next" href="lesson-2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -104,7 +104,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2" data-path="lesson-1.html"><a href="lesson-1.html#prerequisites"><i class="fa fa-check"></i><b>2.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="2.3" data-path="lesson-1.html"><a href="lesson-1.html#tasks"><i class="fa fa-check"></i><b>2.3</b> Tasks</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="lesson-1.html"><a href="lesson-1.html#task-1-prepare-project"><i class="fa fa-check"></i><b>2.3.1</b> Task 1: Prepare project</a></li>
+<li class="chapter" data-level="2.3.2" data-path="lesson-1.html"><a href="lesson-1.html#task-2-import-data"><i class="fa fa-check"></i><b>2.3.2</b> Task 2: Import data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="lesson-1.html"><a href="lesson-1.html#task-3-explore-data"><i class="fa fa-check"></i><b>2.3.3</b> Task 3 Explore Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="lesson-1.html"><a href="lesson-1.html#task-4-handling-spatial-data"><i class="fa fa-check"></i><b>2.3.4</b> Task 4: Handling spatial data</a></li>
 </ul></li>
+<li class="chapter" data-level="2.4" data-path="lesson-1.html"><a href="lesson-1.html#solutions-rcode"><i class="fa fa-check"></i><b>2.4</b> Solutions (RCode)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lesson-2.html"><a href="lesson-2.html"><i class="fa fa-check"></i><b>3</b> Lesson 2</a><ul>
+<li class="chapter" data-level="3.1" data-path="lesson-2.html"><a href="lesson-2.html#learning-outcomes"><i class="fa fa-check"></i><b>3.1</b> Learning Outcomes</a></li>
+<li class="chapter" data-level="3.2" data-path="lesson-2.html"><a href="lesson-2.html#prerequisites-1"><i class="fa fa-check"></i><b>3.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.3" data-path="lesson-2.html"><a href="lesson-2.html#preperation"><i class="fa fa-check"></i><b>3.3</b> Preperation</a></li>
+<li class="chapter" data-level="3.4" data-path="lesson-2.html"><a href="lesson-2.html#tasks-1"><i class="fa fa-check"></i><b>3.4</b> Tasks</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="lesson-2.html"><a href="lesson-2.html#task-1"><i class="fa fa-check"></i><b>3.4.1</b> Task 1</a></li>
+<li class="chapter" data-level="3.4.2" data-path="lesson-2.html"><a href="lesson-2.html#task-2"><i class="fa fa-check"></i><b>3.4.2</b> Task 2</a></li>
+<li class="chapter" data-level="3.4.3" data-path="lesson-2.html"><a href="lesson-2.html#task-3"><i class="fa fa-check"></i><b>3.4.3</b> Task 3</a></li>
+<li class="chapter" data-level="3.4.4" data-path="lesson-2.html"><a href="lesson-2.html#task-4"><i class="fa fa-check"></i><b>3.4.4</b> Task 4</a></li>
+<li class="chapter" data-level="3.4.5" data-path="lesson-2.html"><a href="lesson-2.html#task-5"><i class="fa fa-check"></i><b>3.4.5</b> Task 5</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="lesson-2.html"><a href="lesson-2.html#solutions-rcode-1"><i class="fa fa-check"></i><b>3.5</b> Solutions (RCode)</a></li>
 </ul></li>
 </ul>
 
@@ -154,71 +171,96 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">2.3</span> Tasks</h2>
 <div id="task-1-prepare-project" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Task 1: Prepare project</h3>
-<p>Create a new <em>RStudio Project</em>. Create a new R-File and divide it into the sections neccessary in a classical Data Science Workflow. “Sections” are created within RStudio by adding Comments (#) with at least 4 Trailing dashes (-), equal signs (=), or pound signs (#) (see below). Sections allow code folding (click on the small triangle next to the line number) and provides and navigation (type Shift+Alt+J).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Loading enironment / libraries ####</span>
-
-<span class="co"># Data import ####</span>
-
-<span class="co"># Data clensing ####</span>
-
-<span class="co"># Data analysis and visualization ####</span></code></pre></div>
+<p>Create a new <em>RStudio Project</em>. As recommended in Wickam, <!-- todo insert bibtex --> remove the option “<em>Restore .RData into workspace at startup</em>” and “<em>save workspace to .RData on exit</em>” to “<em>Never</em>”.</p>
+<!-- ![](http://r4ds.had.co.nz/screenshots/rstudio-workspace.png) -->
+<p>Create a new R-File and divide it into the sections neccessary in a classical Data Science Workflow. “Sections” can be created within RStudio by adding Comments (#) with at least 4 Trailing dashes (-), equal signs (=), or pound signs (#) (see below). Sections allow code folding (try click on the small triangle next to the line number) and provides and navigation (try the shortcut: Shift+Alt+J).</p>
 <p>In the first section (loading environment / libraries), add the code to install and load the package “tidyverse”. Once you’ve installed the package, you can uncomment the corresponding line of code, because you will not need to execute this line in your next R Session.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Loading enironment / libraries ####</span>
+</div>
+<div id="task-2-import-data" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Task 2: Import data</h3>
+<p>In section “data import”, import the file <code>wildschwein.csv</code>. For everyone working on the RStudio Server, this data is saved in a Folder named “Geodata” <!-- todo insert correct name --> one level <em>above</em> your home folder. You will have to move “up” one or two levels from your project folder using the syntax and then into the correct folder using the syntax <code>&quot;../../Geodata/&quot;</code>(for two levels) or <code>&quot;../Geodata/&quot;</code> (for one level).</p>
+<p>Note:</p>
+<ul>
+<li>If your are using <a href="https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio">a graphical tool</a> to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your worflow is documented without gaps.</li>
+<li>I recommend using one of the tidyverse functions (<code>read_*</code>) to import your data. These functions are less error prone than the base R functions (<code>read.*</code>). Specifically to the wildboar data, I recomment <code>read_delim</code>.</li>
+<li>if you recieve warnings during import, have a look at these warnings by using the funciton <code>problems()</code>. Resolve these problems until import runs without warnings.</li>
+<li>Assign correct data types as neccessary and make sure the timezone is set correctly for the date/time columnm.</li>
+</ul>
+</div>
+<div id="task-3-explore-data" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Task 3 Explore Data</h3>
+<p>We will use a variaty of different plotting techniques in this course, several have emerged in recent years, each with their specific strenghts and weaknesses. While base::plot() is quick and simple, it not very scaleable with growing complexity. ggplto offers solution for most use cases and has a elegant syntax that is easy to get accustomed to. plotly() offers great interactive and linked view facilites while tmap() was designed specifically for spatial data.</p>
+<p>Get an overview of your data by creating a first “map-like” plot of your data producing a simple scatter plot with ggplot2. Assign every individual animal its own colour (using the ggplot2 argument colour). Do you spot outliers? If so, get rid of the outliers. Plot your data again, this time without outliers. Save your plot using ggsave(). Save your code in the appropirate section.</p>
+<p>Setting up a ggplot with our data is done using the command ggplot(roe_gps_all, aes(X, Y, colour = TierID)). Creating a map is done via the basic scatter plot command geom_point(), using a fixed aspect ratio of 1.</p>
+</div>
+<div id="task-4-handling-spatial-data" class="section level3">
+<h3><span class="header-section-number">2.3.4</span> Task 4: Handling spatial data</h3>
+<p>Till now, we’ve handled spatial data within dataframes. This works well for many tasks, but sometimes we need special <em>spatial</em> classes to handle our trajectories. Projecting the WGS84 (Lat/Long) coordinates into CH1903_LV95 is such a case.</p>
+<p>Some of you might know the <code>sp</code> packge with the classes <code>SpatialPoints</code> and <code>SpatialPointsDataFrame</code>. Just recently the new and exiting package <code>sf</code>, was released on CRAN. <code>sf</code> has some huge advantages over sp:</p>
+<ul>
+<li>simple featrues are essentially dataframes, which mean they interface with the tidyverse (and the dplyr SAC paradigm)</li>
+<li>are OGC (ISO 19125-1:2004) compliant and interface with GDAL, PostGIS, GeoJSON and so fourth</li>
+<li>are being rapidly implemented in visualisation tools such as ggplot2, gplotly and tmap</li>
+</ul>
+<p>A lot of reasons to learn sf and work with this library. The down side is however, that due to its youth not all packages have implemented sf. We have created a small package (CMAtools) to help you with such cases, so we will not have to switch back and fourth between classes during this course.</p>
+<p>Use the function st_as_sf() while correctly specifying your Lat/Long Coordinates. Set the coordinate reference system using the <a href="http://spatialreference.org/ref/epsg/4326/">EPSG Code</a> as an integer value. You can set the argument “agr” to “constant”. Save to output of this operation to a new variable wildschwein_BE_sf.</p>
+<p>Take a look at this sf object (head(), str(),View()) and try a few classical dataframe operations on it (subseting, filtering).</p>
+<p>Now transform the coordinates into <a href="spatialreference.org/ref/epsg/2056/">CH1903_LV95</a> using the function st_transform(). Again, use the EPSG code as an integer. Extract the new Coorindates using st_coordinates() and attach them (cbind()) to your original dataframe.</p>
+<p>Note that st_transform() names the coordinates X and Y, but <a href="https://www.swisstopo.admin.ch/de/wissen-fakten/geodaesie-vermessung/neue-koordinaten.html">CH1903 LV03</a> names the Axes E and N. Rename the axes accordingly before or after attaching them to your dataframe.</p>
+<p>Keep your Long / Lat coordinates, since it is helpful to have both WGS84 and CH1903+ Coordinates stored in the dataframe:</p>
+<ul>
+<li>WGS84: this is our original data therefore we should not discard this information. Additionally, some visualization tools (eg. Leaflet and ggmap) need Lat/Long Coordinates</li>
+<li>CH1903+ these cartesian coordinates are helpful when calculating euclidean distances between positions (this is much more compledated with WGS84 Data) and if we use swisstopo background- and other context data</li>
+</ul>
+<!-- Todo: show possibilities to make nicer maps using tmap or leaflet? -->
+</div>
+</div>
+<div id="solutions-rcode" class="section level2">
+<h2><span class="header-section-number">2.4</span> Solutions (RCode)</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+## Task 1 ####################
+
+
+<span class="co"># Loading enironment / libraries ####</span>
 
 <span class="co"># install.packages(&quot;tidyverse&quot;)</span>
-<span class="kw">library</span>(tidyverse)</code></pre></div>
-<pre><code>## Loading tidyverse: ggplot2
-## Loading tidyverse: tibble
-## Loading tidyverse: tidyr
-## Loading tidyverse: readr
-## Loading tidyverse: purrr
-## Loading tidyverse: dplyr</code></pre>
-<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.4.4</code></pre>
-<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.4.4</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.4.3</code></pre>
-<pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
-<pre><code>## filter(): dplyr, stats
-## lag():    dplyr, stats</code></pre>
-<p>In the first section (loading environment / libraries), add the code to install and load the package “tidyverse”. Once you’ve installed the package, you can uncomment the corresponding line of code, because you will not need to execute this line in your next R Session.</p>
-<!-- ### Task 2: Import data -->
-<!-- In section "data import", import the files `Roe_gps_all.csv` and `Roe_meta.csv`.  -->
-<!-- Tipp: RStudio provides [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) which you can use to build your `read_csv()` command. However, in regard to the reproducibility of your script, you will need to copy the "import" statement into your script (in the section "data import"). This will ensure that your worflow is documented without gaps. -->
-<!-- ```{r} -->
-<!-- # Data import #### -->
-<!-- roe_gps_all <-read_csv("20_Rawdata/Roe_gps_all.csv") -->
-<!-- ``` -->
-<!-- ### Task 3: Clean data -->
-<!-- In section "Data clensing", drop the columns we do not need at the moment. Since we're not actually deleting any columns withint the original data, you can drop columns generously. For the moment, we only need columns "TierID", "LMT_Date", "LMT_Time", "DOP", "Latitude...." and "Longitude....". Remove the "...." from the column name. Do not touch the original data to do this, change the name within R. -->
-<!-- ```{r} -->
-<!-- # Data clensing #### -->
-<!-- roe_gps_all <- select(roe_gps_all,"TierID","LMT_Date","LMT_Time","DOP","Latitude....","Longitude....") -->
-<!-- roe_gps_all <- rename(roe_gps_all,Lat = Latitude....) -->
-<!-- roe_gps_all <- rename(roe_gps_all,Lng = Longitude....) -->
-<!-- ``` -->
-<!-- ### Task 3 -->
-<!-- Make a first "map-like" plot of your data producing a simple scatter plot with ggplot2. Assign every individual animal its own colour (using the ggplot2 argument colour). Do you spot outliers? If so, get rid of the outliers. Plot your data again, this time without outliers. Save your plot using ggsave(). Save your code in the listing 1.4_plotting_ggplot.R. Setting up a ggplot with our data is done using the command ggplot(roe_gps_all, aes(X, Y, colour = TierID)). Creating a map is done via the basic scatter plot command geom_point(), using a fixed aspect ratio of 1. -->
-<!-- ```{r} -->
-<!-- ggplot(roe_gps_all, aes(Lat,Lng, colour = TierID)) + -->
-<!--   geom_point() -->
-<!-- ``` -->
-<!-- ### Task 4 -->
-<!-- Now we want to produce a nicer map with an OpenStreetMap basemap. This can be done with leaflet First, you load the library within your "Loading enironment / libraries" section -->
-<!-- ```{r} -->
-<!-- # Loading enironment / libraries #### -->
-<!-- library(tidyverse) -->
-<!-- library(leaflet) -->
-<!-- ``` -->
-<!-- Then, create a leaflet object with leaflet() and subsequently add the neccessary layers. Our Layers at the moment are simply a point (circle) representation of the positions and a background basemap: -->
-<!-- ```{r} -->
-<!-- map <- leaflet(roe_gps_all) -->
-<!-- map <- addCircles(map, lat = ~Lat, lng = ~Lng) -->
-<!-- map <- addTiles(map)  -->
-<!-- map -->
-<!-- ``` -->
-<!-- ## Tips and suggestions -->
-<!-- ## Materials and Help -->
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(sf)
 
-</div>
+
+
+## Task 2 ####################
+
+
+<span class="co"># Data import ####</span>
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;../Geodata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)
+
+## Task 3 ####################
+
+
+<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(Lat,Long, <span class="dt">colour =</span> TierID)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +
+<span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dv">1</span>) +
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)
+
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">filter</span>(wildschwein_BE, Lat &lt;<span class="st"> </span><span class="dv">50</span>)
+
+## Task 4 ####################
+
+wildschwein_BE_sf =<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>, <span class="dt">agr =</span> <span class="st">&quot;constant&quot;</span>)
+
+## Task 4 (Continued) ########
+
+wildschwein_BE_sf &lt;-<span class="st"> </span><span class="kw">st_transform</span>(wildschwein_BE_sf, <span class="dv">2056</span>)
+
+coordinates &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(wildschwein_BE_sf)
+
+<span class="kw">colnames</span>(coordinates) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;E&quot;</span>,<span class="st">&quot;N&quot;</span>)
+
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wildschwein_BE,coordinates)
+
+## NA</code></pre></div>
+
 </div>
 </div>
             </section>
@@ -226,8 +268,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lesson-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

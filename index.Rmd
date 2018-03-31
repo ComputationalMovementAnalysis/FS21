@@ -6,7 +6,20 @@ documentclass: book
 output:
   bookdown::gitbook: default
 ---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(collapse = TRUE)
+knitr::opts_chunk$set(include = F)
+```
 
 # Introduction Chapter
 
-This is a nice introduction
+
+<!-- Todo:  -->
+Introduce some basic concepts
+
+- RStudio
+- Tidyverse
+- Rstudio Server / Rstudio Connect
+- Links to GIS Ressources
+- GIT / CMAtools

@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="lesson-1.html">
 
-<link rel="next" href="lesson-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -105,24 +105,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3" data-path="lesson-1.html"><a href="lesson-1.html#tasks"><i class="fa fa-check"></i><b>2.3</b> Tasks</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="lesson-1.html"><a href="lesson-1.html#task-1-prepare-project"><i class="fa fa-check"></i><b>2.3.1</b> Task 1: Prepare project</a></li>
 <li class="chapter" data-level="2.3.2" data-path="lesson-1.html"><a href="lesson-1.html#task-2-import-data"><i class="fa fa-check"></i><b>2.3.2</b> Task 2: Import data</a></li>
-<li class="chapter" data-level="2.3.3" data-path="lesson-1.html"><a href="lesson-1.html#task-3-explore-data"><i class="fa fa-check"></i><b>2.3.3</b> Task 3 Explore Data</a></li>
-<li class="chapter" data-level="2.3.4" data-path="lesson-1.html"><a href="lesson-1.html#task-4-handling-spatial-data"><i class="fa fa-check"></i><b>2.3.4</b> Task 4: Handling spatial data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="lesson-1.html"><a href="lesson-1.html#task-2"><i class="fa fa-check"></i><b>2.3.3</b> Task 2</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="lesson-1.html"><a href="lesson-1.html#solutions-rcode"><i class="fa fa-check"></i><b>2.4</b> Solutions (RCode)</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="lesson-2.html"><a href="lesson-2.html"><i class="fa fa-check"></i><b>3</b> Lesson 2</a><ul>
-<li class="chapter" data-level="3.1" data-path="lesson-2.html"><a href="lesson-2.html#learning-outcomes"><i class="fa fa-check"></i><b>3.1</b> Learning Outcomes</a></li>
-<li class="chapter" data-level="3.2" data-path="lesson-2.html"><a href="lesson-2.html#prerequisites-1"><i class="fa fa-check"></i><b>3.2</b> Prerequisites</a></li>
-<li class="chapter" data-level="3.3" data-path="lesson-2.html"><a href="lesson-2.html#preperation"><i class="fa fa-check"></i><b>3.3</b> Preperation</a></li>
-<li class="chapter" data-level="3.4" data-path="lesson-2.html"><a href="lesson-2.html#tasks-1"><i class="fa fa-check"></i><b>3.4</b> Tasks</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="lesson-2.html"><a href="lesson-2.html#task-1"><i class="fa fa-check"></i><b>3.4.1</b> Task 1</a></li>
-<li class="chapter" data-level="3.4.2" data-path="lesson-2.html"><a href="lesson-2.html#task-2"><i class="fa fa-check"></i><b>3.4.2</b> Task 2</a></li>
-<li class="chapter" data-level="3.4.3" data-path="lesson-2.html"><a href="lesson-2.html#task-3"><i class="fa fa-check"></i><b>3.4.3</b> Task 3</a></li>
-<li class="chapter" data-level="3.4.4" data-path="lesson-2.html"><a href="lesson-2.html#task-4"><i class="fa fa-check"></i><b>3.4.4</b> Task 4</a></li>
-<li class="chapter" data-level="3.4.5" data-path="lesson-2.html"><a href="lesson-2.html#task-5"><i class="fa fa-check"></i><b>3.4.5</b> Task 5</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="lesson-2.html"><a href="lesson-2.html#solutions-rcode-1"><i class="fa fa-check"></i><b>3.5</b> Solutions (RCode)</a></li>
-</ul></li>
+<li class="chapter" data-level="3" data-path="task-4.html"><a href="task-4.html"><i class="fa fa-check"></i><b>3</b> Task 4</a></li>
 </ul>
 
       </nav>
@@ -140,21 +126,39 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">GEO880: Patterns and Trends in Environmental Data</h1>
-<h4 class="author"><em>Patrick Laube and Nils Ratnaweera</em></h4>
-</div>
-<div id="introduction-chapter" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction Chapter</h1>
-<!-- Todo:  -->
-<p>Introduce some basic concepts</p>
+<div id="task-4" class="section level1">
+<h1><span class="header-section-number">3</span> Task 4</h1>
+<p>Till now, we’ve handled spatial data within dataframes. This works well for many tasks, but sometimes we need special <em>spatial</em> classes to handle our trajectories. Projecting the WGS84 (Lat/Long) coordinates into CH1903_LV95 is such a case.</p>
+<p>Some of you might know the <code>sp</code> packge with the classes <code>SpatialPoints</code> and <code>SpatialPointsDataFrame</code>. Just recently the new and exiting package <code>sf</code>, was released on CRAN. <code>sf</code> has some huge advantages over sp:</p>
 <ul>
-<li>RStudio</li>
-<li>Tidyverse</li>
-<li>Rstudio Server / Rstudio Connect</li>
-<li>Links to GIS Ressources</li>
-<li>GIT / CMAtools</li>
+<li>simple featrues are essentially dataframes, which mean they interface with the tidyverse (and the dplyr SAC paradigm)</li>
+<li>are OGC (ISO 19125-1:2004) compliant and interface with GDAL, PostGIS, GeoJSON and so fourth</li>
+<li>are being rapidly implemented in visualisation tools such as ggplot2, gplotly and tmap</li>
 </ul>
+<p>A lot of reasons to learn sf and work with this library. The down side is however, that due to its youth not all packages have implemented sf. We have created a small package (CMAtools) to help you with such cases, so we will not have to switch back and fourth between classes during this course.</p>
+<p>Use the function st_as_sf() while correctly specifying your Lat/Long Coordinates. Set the coordinate reference system using the <a href="http://spatialreference.org/ref/epsg/4326/">EPSG Code</a> as an integer value. You can set the argument “agr” to “constant”. Save to output of this operation to a new variable wildschwein_BE_sf.</p>
+<p>Take a look at this sf object and try a few classical dataframe operations on it (subseting, filtering).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wildschwein_BE_sf =<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>, <span class="dt">agr =</span> <span class="st">&quot;constant&quot;</span>)</code></pre></div>
+<p>Now transform the coordinates into <a href="spatialreference.org/ref/epsg/2056/">CH1903_LV95</a> using the function st_transform(). Again, use the EPSG code as an integer. Extract the new Coorindates and attach them to your original dataframe. It is helpful to have both WGS84 and CH1903+ Coordinates stored in the dataframe:</p>
+<ul>
+<li>WGS84: this is our original data therefore we should not discard this information. Additionally, some visualization tools (eg. Leaflet and ggmap) need Lat/Long Coordinates - CH1903+ these cartesian coordinates are helpful when calculating euclidean distances between positions (this is much more compledated with WGS84 Data) and if we swisstopo backgroundmap and other context data</li>
+</ul>
+<!-- ### Task 4 -->
+<!-- Now we want to produce a nicer map with an OpenStreetMap basemap. This can be done with leaflet First, you load the library within your "Loading enironment / libraries" section -->
+<!-- ```{r} -->
+<!-- # Loading enironment / libraries #### -->
+<!-- library(tidyverse) -->
+<!-- library(leaflet) -->
+<!-- ``` -->
+<!-- Then, create a leaflet object with leaflet() and subsequently add the neccessary layers. Our Layers at the moment are simply a point (circle) representation of the positions and a background basemap: -->
+<!-- ```{r} -->
+<!-- map <- leaflet(roe_gps_all) -->
+<!-- map <- addCircles(map, lat = ~Lat, lng = ~Lng) -->
+<!-- map <- addTiles(map)  -->
+<!-- map -->
+<!-- ``` -->
+<!-- ## Tips and suggestions -->
+<!-- ## Materials and Help -->
 
 </div>
             </section>
@@ -162,8 +166,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
+<a href="lesson-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="lesson-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
