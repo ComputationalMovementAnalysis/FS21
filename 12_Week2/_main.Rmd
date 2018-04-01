@@ -54,25 +54,25 @@ To get an overview of the data, use the `dplyr` tools `group_by`, `summarise.` T
 ```{r, results=F}
 ## Task 1 ####################
 
-ggplot(wildschwein_BE_sf, aes(DatetimeUTC,TierID)) +
+ggplot(wildschwein_BE, aes(DatetimeUTC,TierID)) +
   geom_line()
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "mins"))
   )
 
 
-ggplot(wildschwein_BE_sf, aes(timelag)) +
+ggplot(wildschwein_BE, aes(timelag)) +
   geom_histogram(binwidth = 50)
 
-ggplot(wildschwein_BE_sf, aes(timelag)) +
+ggplot(wildschwein_BE, aes(timelag)) +
   geom_histogram(binwidth = 1) +
   lims(x = c(0,100)) +
   scale_y_log10()
 
-wildschwein_BE_sf[1:50,] %>%
+wildschwein_BE[1:50,] %>%
   ggplot(aes(DatetimeUTC,timelag)) +
   geom_line() +
   geom_point()
@@ -98,19 +98,19 @@ Note:
 ```{r}
 ## Task 2 ####################
 
-ggplot(wildschwein_BE_sf, aes(timelag)) +
+ggplot(wildschwein_BE, aes(timelag)) +
   geom_histogram(binwidth = 0.1) +
   scale_x_continuous(breaks = seq(0,400,20),limits = c(0,400)) +
   # scale_x_continuous(breaks = seq(0,50,1),limits = c(0,50)) +
   scale_y_log10()
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     samplingInt = cut(timelag,breaks = c(0,5,seq(10,195,15)))
   ) 
 
-wildschwein_BE_sf %>%
+wildschwein_BE %>%
   group_by(samplingInt) %>%
   summarise(
     n = n()
@@ -135,14 +135,16 @@ Now that we've gotten the nifty job of specifying our intervals out of the way, 
 ```{r}
 ## Task 3 ####################
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID,samplingInt) %>%
   mutate(
     steplength = euclid(lead(E),lead(N),E,N),
     speed = steplength/timelag
   )
 
-
+ggplot(wildschwein_BE, aes(samplingInt,speed,group = samplingInt)) +
+  geom_boxplot() +
+  scale_y_continuous(limits = c(0,100))
 
 ```
 ### Task 4
@@ -162,7 +164,7 @@ Visualize the output from your moving windows and compare different window sizes
 ## Task 4 ####################
 
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     speed2 = rollmean(speed,3,NA,align = "left"),
@@ -170,7 +172,7 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
     speed4 = rollmean(speed,10,NA,align = "left")
   )
 
-wildschwein_BE_sf[1:30,] %>%
+wildschwein_BE[1:30,] %>%
   gather(key,val,c(speed,speed2,speed3,speed4)) %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
   geom_point() +
@@ -179,7 +181,7 @@ wildschwein_BE_sf[1:30,] %>%
 
 ### Task 5
 
-You've read @laube2011 about segementing trajectories. In the paper, they define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window *v* is less than some threshold *d**". This sounds more complicated than it is, the figure illustrates the method nicely.
+You've read @laube2011 about segementing trajectories. In the paper, they define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window *v* is less than some threshold *d**".
 
 ![](02_Images/laube_2011.jpg)
 
@@ -193,7 +195,7 @@ Y = cumsum(rnorm(20))
 plot(X,Y, type = "l")
 ```
 
-Assume the sampling interval is 5 minutes. If we take a temporal window of 20 minutes, that would mean we include 5 fixes into the calculation. We need to calculate the following Eucledian distances (pos representing a `X`,`Y`-position):
+We'll assume they have a sampling interval of 5 minutes. If we take a temporal window of 20 minutes, that would mean we include 5 fixes into the calculation. We need to calculate the following Eucledian distances (pos representing a `X`,`Y`-position):
 
 1. pos[n-2] to pos[n]
 2. pos[n-1] to pos[n]
@@ -202,7 +204,7 @@ Assume the sampling interval is 5 minutes. If we take a temporal window of 20 mi
 
 You can use the function `euclid()` to calculate the distances and `dplyr` functions `lead()/``lag()` to create the necessary offsets. On our dummy data, we want to calculate the mean of the following distances (red, dotted lines).
 
-```{r, purl = F, echo = F, include = T}
+```{r, include = T, purl = F}
 library(ggrepel)
 
 df <- data.frame(X = X, Y = Y)
@@ -231,10 +233,10 @@ ggplot(df, aes(X,Y)) +
     geom_segment(data = df[n,], aes(x = Xp2,y = Yp2,xend = X,yend = Y),
                  alpha = 0.8,lty = "twodash", lwd = 1, colour = "red", inherit.aes = FALSE ) +
   # coord_fixed(1) +
-  geom_label_repel(data = df[n,], aes(x = X, y = Y),label = "pos n", nudge_x = 1) +
-  geom_label_repel(data = df[n,], aes(x = Xp1, y = Yp1),label = "pos n+1",nudge_x = -1) +
+  geom_label_repel(data = df[n,], aes(x = X, y = Y),label = "pos n") +
+  geom_label_repel(data = df[n,], aes(x = Xp1, y = Yp1),label = "pos n+1") +
   geom_label_repel(data = df[n,], aes(x = Xp2, y = Yp2),label = "pos n+2") +
-  geom_label_repel(data = df[n,], aes(x = Xm2, y = Ym2),label = "pos n-2",nudge_y = 1) +
+  geom_label_repel(data = df[n,], aes(x = Xm2, y = Ym2),label = "pos n-2") +
   geom_label_repel(data = df[n,], aes(x = Xm1, y = Ym1),label = "pos n-1") +
   theme_classic() +
   theme_classic(base_size = 16)
@@ -281,3 +283,6 @@ rowMeans(
 
 ```{r code=readLines('12_Week2/RFiles/W02_01_Exercise.R'), results='asis', echo = T, include=T, eval=F}
 ```
+
+<!--chapter:end:W02_01_Exercise.Rmd-->
+

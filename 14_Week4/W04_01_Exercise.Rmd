@@ -1,0 +1,22 @@
+# Lesson 4
+
+## Learning Outcomes
+
+
+## Prerequisites
+
+
+## Preperation
+
+## Tasks
+
+### Task 1
+
+
+```{r}
+## Task 1 ####################
+
+```
+
+
+## Solution (R Code)

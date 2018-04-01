@@ -28,7 +28,10 @@ wildschwein_BE <- filter(wildschwein_BE, Lat < 50)
 
 ## Task 4 ####################
 
-wildschwein_BE_sf = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326, agr = "constant")
+wildschwein_BE_sf = st_as_sf(wildschwein_BE, 
+                             coords = c("Long", "Lat"), 
+                             crs = 4326, 
+                             agr = "constant")
 
 ## Task 4 (Continued) ########
 

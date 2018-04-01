@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>GEO880: Patterns and Trends in Environmental Data</title>
   <meta name="description" content="GEO880: Patterns and Trends in Environmental Data">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="GEO880: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="lesson-1.html">
-
+<link rel="next" href="lesson-3.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -46,6 +46,13 @@
 
 
 
+<script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.0/leaflet.js"></script>
 
 
 <style type="text/css">
@@ -107,6 +114,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3.2" data-path="lesson-1.html"><a href="lesson-1.html#task-2-import-data"><i class="fa fa-check"></i><b>2.3.2</b> Task 2: Import data</a></li>
 <li class="chapter" data-level="2.3.3" data-path="lesson-1.html"><a href="lesson-1.html#task-3-explore-data"><i class="fa fa-check"></i><b>2.3.3</b> Task 3 Explore Data</a></li>
 <li class="chapter" data-level="2.3.4" data-path="lesson-1.html"><a href="lesson-1.html#task-4-handling-spatial-data"><i class="fa fa-check"></i><b>2.3.4</b> Task 4: Handling spatial data</a></li>
+<li class="chapter" data-level="2.3.5" data-path="lesson-1.html"><a href="lesson-1.html#task-5"><i class="fa fa-check"></i><b>2.3.5</b> Task 5</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="lesson-1.html"><a href="lesson-1.html#solutions-rcode"><i class="fa fa-check"></i><b>2.4</b> Solutions (RCode)</a></li>
 </ul></li>
@@ -119,10 +127,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.4.2" data-path="lesson-2.html"><a href="lesson-2.html#task-2"><i class="fa fa-check"></i><b>3.4.2</b> Task 2</a></li>
 <li class="chapter" data-level="3.4.3" data-path="lesson-2.html"><a href="lesson-2.html#task-3"><i class="fa fa-check"></i><b>3.4.3</b> Task 3</a></li>
 <li class="chapter" data-level="3.4.4" data-path="lesson-2.html"><a href="lesson-2.html#task-4"><i class="fa fa-check"></i><b>3.4.4</b> Task 4</a></li>
-<li class="chapter" data-level="3.4.5" data-path="lesson-2.html"><a href="lesson-2.html#task-5"><i class="fa fa-check"></i><b>3.4.5</b> Task 5</a></li>
+<li class="chapter" data-level="3.4.5" data-path="lesson-2.html"><a href="lesson-2.html#task-5-1"><i class="fa fa-check"></i><b>3.4.5</b> Task 5</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="lesson-2.html"><a href="lesson-2.html#solutions-rcode-1"><i class="fa fa-check"></i><b>3.5</b> Solutions (RCode)</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="lesson-3.html"><a href="lesson-3.html"><i class="fa fa-check"></i><b>4</b> Lesson 3</a><ul>
+<li class="chapter" data-level="4.1" data-path="lesson-3.html"><a href="lesson-3.html#learning-outcomes-1"><i class="fa fa-check"></i><b>4.1</b> Learning Outcomes</a></li>
+<li class="chapter" data-level="4.2" data-path="lesson-3.html"><a href="lesson-3.html#prerequisites-2"><i class="fa fa-check"></i><b>4.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="4.3" data-path="lesson-3.html"><a href="lesson-3.html#preperation-1"><i class="fa fa-check"></i><b>4.3</b> Preperation</a></li>
+<li class="chapter" data-level="4.4" data-path="lesson-3.html"><a href="lesson-3.html#tasks-2"><i class="fa fa-check"></i><b>4.4</b> Tasks</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="lesson-3.html"><a href="lesson-3.html#task-1-1"><i class="fa fa-check"></i><b>4.4.1</b> Task 1</a></li>
+<li class="chapter" data-level="4.4.2" data-path="lesson-3.html"><a href="lesson-3.html#task-2-1"><i class="fa fa-check"></i><b>4.4.2</b> Task 2</a></li>
+<li class="chapter" data-level="4.4.3" data-path="lesson-3.html"><a href="lesson-3.html#task-3-optional"><i class="fa fa-check"></i><b>4.4.3</b> Task 3 (Optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="lesson-3.html"><a href="lesson-3.html#task-3-1"><i class="fa fa-check"></i><b>4.5</b> Task 3</a></li>
+<li class="chapter" data-level="4.6" data-path="lesson-3.html"><a href="lesson-3.html#solution-r-code"><i class="fa fa-check"></i><b>4.6</b> Solution (R Code)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="individual-project.html"><a href="individual-project.html"><i class="fa fa-check"></i><b>5</b> Individual Project</a></li>
+<li class="chapter" data-level="6" data-path="possible-topics.html"><a href="possible-topics.html"><i class="fa fa-check"></i><b>6</b> Possible topics</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
       </nav>
@@ -151,13 +174,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="prerequisites-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Prerequisites</h2>
-<p>Readings Skills from “R for Data Science” (Wickam, 2017): <!-- Todo add bibtext --></p>
+<p>Readings Skills from “R for Data Science” <span class="citation">(Wickham and Grolemund 2017)</span>:</p>
 <ul>
-<li>RS2.1 Chap3 Data Transformation with dplyr (31p, 43-76)</li>
-<li>RS2.2 Chap10 Relational data with dplyr (21p, 171-193)</li>
-<li>RS2.3 Chap14 Pipes with magrittr (6p, 261-268)</li>
-<li>R2.1 Laube, P., &amp; Purves, R. S. (2011). How fast is a cow? cross‐scale analysis of movement data. Transactions in GIS, 15(3), 401-418.</li>
+<li>RS2.1 Chap3 Data Transformation with <code>dplyr</code> (31p, 43-76)</li>
+<li>RS2.2 Chap10 Relational data with <code>dplyr</code> (21p, 171-193)</li>
+<li>RS2.3 Chap14 Pipes with <code>magrittr</code> (6p, 261-268)</li>
 </ul>
+<p>Readings Theory - R2.1 <span class="citation">Laube and Purves (2011)</span>: How fast is a cow? cross - scale analysis of movement data.</p>
 </div>
 <div id="preperation" class="section level2">
 <h2><span class="header-section-number">3.3</span> Preperation</h2>
@@ -168,8 +191,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">3.4</span> Tasks</h2>
 <div id="task-1" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Task 1</h3>
-<p>Depending on your knowledge of R, getting an overview of the data we imported last week might have been quite a challange. Quite surprisingly, importing, cleaning and exploring your data can be the most challanging, time consuming part of a project. RStudio and the tidyverse offer many extremely helpful tools to make this part easier, and more fun.</p>
-<p>To get an overview of the data, use the dplyr tools group_by, summarise. Try to answer the following questions:</p>
+<p>Depending on your knowledge of <code>R</code>, getting an overview of the data we imported last week might have been quite a challange. Quite surprisingly, importing, cleaning and exploring your data can be the most challanging, time consuming part of a project. RStudio and the tidyverse offer many extremely helpful tools to make this part easier, and more fun.</p>
+<p>To get an overview of the data, use the <code>dplyr</code> tools <code>group_by</code>, <code>summarise.</code> Try to answer the following questions:</p>
 <ul>
 <li>How many individuals were tracked?</li>
 <li>How long were the individual tracked? Are there gaps?</li>
@@ -181,108 +204,55 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">3.4.2</span> Task 2</h3>
 <!-- Todo: this task is not much fun, pretty difficult and maybe not even that important. remove?  -->
 <p>Now that we’ve established that we have different sampling intervals, we have to segement our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale we are performing this analysis.</p>
-<p>We therefore have to define threshold to group segments with a similar sampling interval. Explore the dataset in more detail (e.g. using histograms at different scales), and choose reasonable threshold values to group the trajectories into different sampling intervals. Use the function cut() to apply the thresholds on the column timelag.</p>
+<p>We therefore have to define threshold to group segments with a similar sampling interval. Explore the dataset in more detail (e.g. using histograms at different scales), and choose reasonable threshold values to group the trajectories into different sampling intervals. Use the function <code>cut()</code> to apply the thresholds on the column <code>timelag.</code></p>
 <p>Note:</p>
 <ul>
 <li>It might make more sense to choose narrow group intervals at smaller timelags and wider groups intervals at higher timelags.</li>
-<li>The function cut splits a vector into segements according to the values specified in breaks = . The default lables can be a bit puzzling at first, but ( and ] are <a href="https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals">a standard form of notating intervals in mathematics</a>.</li>
+<li>The function <code>cut</code> splits a vector into segements according to the values specified in breaks = . The default lables can be a bit puzzling at first, but <code>(</code> and <code>]</code> are <a href="https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals">a standard form of notating intervals in mathematics</a>.</li>
+<li>Store the groupnames in a new column named <code>samplingInt</code></li>
 </ul>
 </div>
 <div id="task-3" class="section level3">
 <h3><span class="header-section-number">3.4.3</span> Task 3</h3>
 <p>Now that we’ve gotten the nifty job of specifying our intervals out of the way, let’s get to a more fun part and calculate the speed of the animals movements.</p>
 <ul>
-<li>If you’re working with dplyr, you can add samplingInt to group_by() (in addition to TierID) and so make sure your’re not calculating speed across different sampling intervals.</li>
-<li>You can use the function euclid() from the CMAtools package to calculate euclidean distances between subsequent rows. Use ?euclid to see what the function expects and returns.</li>
-<li>use lead(E,1) to address the the row n+1</li>
+<li>If you’re working with dplyr, you can add <code>samplingInt</code> to <code>group_by()</code> (in addition to TierID) and so make sure your’re not calculating speed across different sampling intervals.</li>
+<li>You can use the function <code>euclid()</code> from the <code>CMAtools</code> package to calculate Euclidean distances between subsequent rows. Use ?euclid to see what the function expects and returns.</li>
+<li>use <code>lead(E,1)</code> to address the the row <code>n+1</code></li>
 <li>make sure you’re clear in what unit you are measuring speed. Meters per second is a SI base unit, but might be unhandy for the speeds travelled by wild boar.</li>
 </ul>
 </div>
 <div id="task-4" class="section level3">
 <h3><span class="header-section-number">3.4.4</span> Task 4</h3>
-<p>Measuring speed between subsequent samples is great, but especially for short sampling intervals they can be missleading due to measurment error. It might be desireble to “smoothen” these erros using a <a href="https://docs.wavefront.com/images/5sec_moving_window.png">moving window function</a>. The zoo package offeres a variaty of moving window functions (roll*). Use roll_mean to smoothen the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:</p>
+<p>Measuring speed between subsequent samples is great, but especially for short sampling intervals they can be missleading due to measurment error. It might be desireble to <em>smoothen</em> these erros using a <a href="https://docs.wavefront.com/images/5sec_moving_window.png">moving window function</a>. The <code>zoo</code> package offeres a variaty of moving window functions (<code>roll*</code>). Use <code>roll_mean()</code> to smoothen the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">3</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">4</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)</code></pre></div>
-<p>Visualize the output from your moving windows and compare different window sizes (k = ).</p>
+<p>Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 </div>
-<div id="task-5" class="section level3">
+<div id="task-5-1" class="section level3">
 <h3><span class="header-section-number">3.4.5</span> Task 5</h3>
-<p>You’ve read Laube &amp; Purves (2011) about segementing trajectories Let’s use this same method on our wild boar data. Laube &amp; Purves (2011) define “static” fixes as “those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d”. <!-- todo: add bibtext --></p>
-<p><img src="../02_Images/laube_2011.gif" /> <!-- Todo, add bibtex --></p>
-<p>We can nicely implement this method with the tools we’ve used so far. Let me illustrate on some dummy data:</p>
+<p>You’ve read <span class="citation">Laube and Purves (2011)</span> about segementing trajectories. In the paper, they define “<em>static</em>” fixes as “<em>those whose average Euclidean distance to other fixes inside a temporal window </em>v* is less than some threshold *d**“. This sounds more complicated than it is, the figure illustrates the method nicely.</p>
+<div class="figure">
+<img src="02_Images/laube_2011.jpg" />
+
+</div>
+<p>Try to implement this method on some dummy data. Once you’ve solved the problem on this simple data, we will implement it on the wild boar data next week.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">10</span>)
 X =<span class="st"> </span><span class="kw">cumsum</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>))
 Y =<span class="st"> </span><span class="kw">cumsum</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>))
 
 <span class="kw">plot</span>(X,Y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>We’ll assume they have a sampling interval of 5 minutes. If we take a temporal window of 20 minutes, that would mean we include 5 fixes into the calculation. We need to calculate the following Eucledian distances (pos representing a X,Y-position):</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Assume the sampling interval is 5 minutes. If we take a temporal window of 20 minutes, that would mean we include 5 fixes into the calculation. We need to calculate the following Eucledian distances (pos representing a <code>X</code>,<code>Y</code>-position):</p>
 <ol style="list-style-type: decimal">
 <li>pos[n-2] to pos[n]</li>
 <li>pos[n-1] to pos[n]</li>
 <li>pos[n] to pos[n+1]</li>
 <li>pos[n] to pos[n+2]</li>
 </ol>
-<p>We can use the function euclid() to calculate the distances and dplyr functions lead()/lag() to create the necessary offsets.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nMinus2 &lt;-<span class="st"> </span><span class="kw">euclid</span>(<span class="kw">lag</span>(X, <span class="dv">2</span>),<span class="kw">lag</span>(Y, <span class="dv">2</span>),X,Y)  <span class="co"># distance to pos. -10 minutes</span>
-nMinus1 &lt;-<span class="st"> </span><span class="kw">euclid</span>(<span class="kw">lag</span>(X, <span class="dv">1</span>),<span class="kw">lag</span>(Y, <span class="dv">1</span>),X,Y)  <span class="co"># distance to pos.  -5 minutes</span>
-nPlus1 &lt;-<span class="st"> </span><span class="kw">euclid</span>(X,Y,<span class="kw">lead</span>(X, <span class="dv">1</span>),<span class="kw">lead</span>(Y, <span class="dv">1</span>)) <span class="co"># distance to pos   +5 mintues</span>
-nPlus2 &lt;-<span class="st"> </span><span class="kw">euclid</span>(X,Y,<span class="kw">lead</span>(X, <span class="dv">2</span>),<span class="kw">lead</span>(Y, <span class="dv">2</span>)) <span class="co"># distance to pos  +10 minutes</span></code></pre></div>
-<p>We can now bind all these values to a matrix:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distances &lt;-<span class="st"> </span><span class="kw">cbind</span>(nMinus2,nMinus1,nPlus1,nPlus2)
-distances
-##        nMinus2   nMinus1    nPlus1   nPlus2
-##  [1,]       NA        NA 2.1930407 3.255812
-##  [2,]       NA 2.1930407 1.5283951 3.418902
-##  [3,] 3.255812 1.5283951 2.2021404 3.397941
-##  [4,] 3.418902 2.2021404 1.2990315 1.776001
-##  [5,] 3.397941 1.2990315 0.5399653 1.340062
-##  [6,] 1.776001 0.5399653 1.3900290 2.214298
-##  [7,] 1.340062 1.3900290 0.9449451 2.215854
-##  [8,] 2.214298 0.9449451 1.6298525 1.916421
-##  [9,] 2.215854 1.6298525 0.3608126 2.270722
-## [10,] 1.916421 0.3608126 2.1564489 2.679915
-## [11,] 2.270722 2.1564489 0.7597903 1.030078
-## [12,] 2.679915 0.7597903 0.9974347 1.375450
-## [13,] 1.030078 0.9974347 1.0046117 2.101651
-## [14,] 1.375450 1.0046117 1.5664940 2.935460
-## [15,] 2.101651 1.5664940 1.4382922 1.378950
-## [16,] 2.935460 1.4382922 1.0212859 1.809509
-## [17,] 1.378950 1.0212859 1.7698785 2.207931
-## [18,] 1.809509 1.7698785 0.9807744 1.713668
-## [19,] 2.207931 0.9807744 0.8110503       NA
-## [20,] 1.713668 0.8110503        NA       NA</code></pre></div>
-<p>We now need to find the mean value <em>per row</em>. mean() just gives us the overall mean</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(distances, <span class="dt">na.rm =</span> T)
-## [1] 1.719808</code></pre></div>
-<p>We therefore need the function rowMeans()</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-rowmeans &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(distances)
-<span class="kw">cbind</span>(distances,rowmeans)
-##        nMinus2   nMinus1    nPlus1   nPlus2 rowmeans
-##  [1,]       NA        NA 2.1930407 3.255812       NA
-##  [2,]       NA 2.1930407 1.5283951 3.418902       NA
-##  [3,] 3.255812 1.5283951 2.2021404 3.397941 2.596072
-##  [4,] 3.418902 2.2021404 1.2990315 1.776001 2.174019
-##  [5,] 3.397941 1.2990315 0.5399653 1.340062 1.644250
-##  [6,] 1.776001 0.5399653 1.3900290 2.214298 1.480073
-##  [7,] 1.340062 1.3900290 0.9449451 2.215854 1.472723
-##  [8,] 2.214298 0.9449451 1.6298525 1.916421 1.676379
-##  [9,] 2.215854 1.6298525 0.3608126 2.270722 1.619310
-## [10,] 1.916421 0.3608126 2.1564489 2.679915 1.778399
-## [11,] 2.270722 2.1564489 0.7597903 1.030078 1.554260
-## [12,] 2.679915 0.7597903 0.9974347 1.375450 1.453147
-## [13,] 1.030078 0.9974347 1.0046117 2.101651 1.283444
-## [14,] 1.375450 1.0046117 1.5664940 2.935460 1.720504
-## [15,] 2.101651 1.5664940 1.4382922 1.378950 1.621347
-## [16,] 2.935460 1.4382922 1.0212859 1.809509 1.801137
-## [17,] 1.378950 1.0212859 1.7698785 2.207931 1.594511
-## [18,] 1.809509 1.7698785 0.9807744 1.713668 1.568457
-## [19,] 2.207931 0.9807744 0.8110503       NA       NA
-## [20,] 1.713668 0.8110503        NA       NA       NA</code></pre></div>
-<p>You can now combine these steps to calculate the values for the wild boars. If you do it with dplyr::summarise(), you can make sure that the dataframe is grouped per animal and sampling interval via group_by().</p>
-<!-- Todo: explore values, set threshold and explore segementation with tmap or similar -->
+<p>You can use the function <code>euclid()</code> to calculate the distances and <code>dplyr</code> functions <code>lead()/``lag()</code> to create the necessary offsets. On our dummy data, we want to calculate the mean of the following distances (red, dotted lines).</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 </div>
 <div id="solutions-rcode-1" class="section level2">
@@ -295,66 +265,66 @@ rowmeans &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(distance
 <span class="kw">library</span>(zoo)
 ## Task 1 ####################
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(DatetimeUTC,TierID)) +
+<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(DatetimeUTC,TierID)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>()
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
+wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;mins&quot;</span>))
   )
 
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) +
+<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>)
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) +
-<span class="st">  </span><span class="kw">lims</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) +
+<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">lims</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_y_log10</span>()
 
-wildschwein_BE[<span class="dv">1</span>:<span class="dv">50</span>,] %&gt;%
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(DatetimeUTC,timelag)) +
-<span class="st">  </span><span class="kw">geom_line</span>() +
+wildschwein_BE[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>,] <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(DatetimeUTC,timelag)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()
 
 
 ## Task 2 ####################
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.1</span>) +
-<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">400</span>,<span class="dv">20</span>),<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">400</span>)) +
+<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">400</span>,<span class="dv">20</span>),<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">400</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="co"># scale_x_continuous(breaks = seq(0,50,1),limits = c(0,50)) +</span>
 <span class="st">  </span><span class="kw">scale_y_log10</span>()
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
+wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">samplingInt =</span> <span class="kw">cut</span>(timelag,<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="kw">seq</span>(<span class="dv">10</span>,<span class="dv">195</span>,<span class="dv">15</span>)))
   ) 
 
-wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(samplingInt) %&gt;%
+wildschwein_BE <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(samplingInt) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(
     <span class="dt">n =</span> <span class="kw">n</span>()
-  ) %&gt;%
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(samplingInt,n)) +
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) +
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) +
+  ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(samplingInt,n)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_y_log10</span>()
 
 
 ## Task 3 ####################
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(TierID,samplingInt) %&gt;%
+wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(TierID,samplingInt) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">steplength =</span> <span class="kw">euclid</span>(<span class="kw">lead</span>(E),<span class="kw">lead</span>(N),E,N),
-    <span class="dt">speed =</span> steplength/timelag
+    <span class="dt">speed =</span> steplength<span class="op">/</span>timelag
   )
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(samplingInt,speed,<span class="dt">group =</span> samplingInt)) +
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +
+<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(samplingInt,speed,<span class="dt">group =</span> samplingInt)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>))
 
 example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
@@ -364,24 +334,24 @@ example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 ## Task 4 ####################
 
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
+wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">speed2 =</span> <span class="kw">rollmean</span>(speed,<span class="dv">3</span>,<span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>),
     <span class="dt">speed3 =</span> <span class="kw">rollmean</span>(speed,<span class="dv">5</span>,<span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>),
     <span class="dt">speed4 =</span> <span class="kw">rollmean</span>(speed,<span class="dv">10</span>,<span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
   )
 
-wildschwein_BE[<span class="dv">1</span>:<span class="dv">30</span>,] %&gt;%
-<span class="st">  </span><span class="kw">gather</span>(key,val,<span class="kw">c</span>(speed,speed2,speed3,speed4)) %&gt;%
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(DatetimeUTC,val,<span class="dt">colour =</span> key,<span class="dt">group =</span> key)) +
-<span class="st">  </span><span class="kw">geom_point</span>() +
+wildschwein_BE[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>,] <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(key,val,<span class="kw">c</span>(speed,speed2,speed3,speed4)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(DatetimeUTC,val,<span class="dt">colour =</span> key,<span class="dt">group =</span> key)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>() 
 
 ## Task 5 ####################
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
+wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">stepMean =</span> <span class="kw">rowMeans</span>(
       <span class="kw">cbind</span>(
@@ -401,8 +371,8 @@ wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
           </div>
         </div>
       </div>
-<a href="lesson-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="lesson-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lesson-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -420,10 +390,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -434,9 +405,9 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });
