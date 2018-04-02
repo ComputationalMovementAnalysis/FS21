@@ -33,7 +33,7 @@ library(recurse)
 
 ### Task 1
 
-Picking up at Task 4 from last week: we can now implement this algorhithm using the `dplyr` / `mutate()` method. This might seem a little challanging at first, but if you have completed Task 4 or at least looked at the sample solution, it is quite easys. You can pass anything to a new column within `mutate()` as long as it is a vector of the same length as the original dataframe. 
+Picking up at Task 4 from last week: we can now implement this algorithm using the `dplyr` / `mutate()` method. This might seem a little challenging at first, but if you have completed Task 4 or at least looked at the sample solution, it is quite easy. You can pass anything to a new column within `mutate()` as long as it is a vector of the same length as the original dataframe. 
 
 ```{r}
 
@@ -109,7 +109,7 @@ wildschwein_BE_sf[20:50,] %>%
 
 To be honest, exploring segmentation with `ggplot` (and even `plotly`) is not very satisfying. Another great tool to visualize spatial data is leaflet. It's not all that hard to create a leaflet plot, just take a look at the documentation and try it with our segmented wild boar data. 
 
-```{r, echo = F, include = T}
+```{r, purl = F, echo = F, include = T}
 
 if (knitr::is_html_output()){
   library(leaflet)
@@ -125,10 +125,24 @@ if (knitr::is_html_output()){
     addTiles() %>%
     addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
 } else{"map only available in the online version of this document"}
-
-
-
 ```
+
+
+```{r, eval=F}
+library(leaflet)
+library(scales)
+factpal <- colorFactor(hue_pal()(2), wildschwein_BE_sf$moving)
+
+# checking to see if this all makes sense in leaflet: (or better ggplot?)
+wildschwein_BE_sf[0:200,] %>%
+  filter(!is.na(moving)) %>%
+  leaflet() %>%
+  addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(moving)) %>%
+  addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
+  addTiles() %>%
+  addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
+```
+
 
 ### Task 4
 
@@ -174,9 +188,7 @@ wildschwein_BE_sf %>%
 
 
 
-
-
-
-
-
 ## Solution (R Code)
+
+```{r code=readLines('13_Week3/RFiles/W03_01_Exercise.R'), results='asis', echo = T, include=T, eval=F}
+```

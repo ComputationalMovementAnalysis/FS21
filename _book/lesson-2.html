@@ -139,12 +139,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4.1" data-path="lesson-3.html"><a href="lesson-3.html#task-1-1"><i class="fa fa-check"></i><b>4.4.1</b> Task 1</a></li>
 <li class="chapter" data-level="4.4.2" data-path="lesson-3.html"><a href="lesson-3.html#task-2-1"><i class="fa fa-check"></i><b>4.4.2</b> Task 2</a></li>
 <li class="chapter" data-level="4.4.3" data-path="lesson-3.html"><a href="lesson-3.html#task-3-optional"><i class="fa fa-check"></i><b>4.4.3</b> Task 3 (Optional)</a></li>
+<li class="chapter" data-level="4.4.4" data-path="lesson-3.html"><a href="lesson-3.html#task-4-1"><i class="fa fa-check"></i><b>4.4.4</b> Task 4</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="lesson-3.html"><a href="lesson-3.html#task-3-1"><i class="fa fa-check"></i><b>4.5</b> Task 3</a></li>
-<li class="chapter" data-level="4.6" data-path="lesson-3.html"><a href="lesson-3.html#solution-r-code"><i class="fa fa-check"></i><b>4.6</b> Solution (R Code)</a></li>
+<li class="chapter" data-level="4.5" data-path="lesson-3.html"><a href="lesson-3.html#solution-r-code"><i class="fa fa-check"></i><b>4.5</b> Solution (R Code)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="individual-project.html"><a href="individual-project.html"><i class="fa fa-check"></i><b>5</b> Individual Project</a></li>
-<li class="chapter" data-level="6" data-path="possible-topics.html"><a href="possible-topics.html"><i class="fa fa-check"></i><b>6</b> Possible topics</a></li>
+<li class="chapter" data-level="5" data-path="lesson-4.html"><a href="lesson-4.html"><i class="fa fa-check"></i><b>5</b> Lesson 4</a><ul>
+<li class="chapter" data-level="5.1" data-path="lesson-4.html"><a href="lesson-4.html#learning-outcomes-2"><i class="fa fa-check"></i><b>5.1</b> Learning Outcomes</a></li>
+<li class="chapter" data-level="5.2" data-path="lesson-4.html"><a href="lesson-4.html#prerequisites-3"><i class="fa fa-check"></i><b>5.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="5.3" data-path="lesson-4.html"><a href="lesson-4.html#preperation-2"><i class="fa fa-check"></i><b>5.3</b> Preperation</a></li>
+<li class="chapter" data-level="5.4" data-path="lesson-4.html"><a href="lesson-4.html#tasks-3"><i class="fa fa-check"></i><b>5.4</b> Tasks</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lesson-4.html"><a href="lesson-4.html#task-1-2"><i class="fa fa-check"></i><b>5.4.1</b> Task 1</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lesson-4.html"><a href="lesson-4.html#task-2-2"><i class="fa fa-check"></i><b>5.4.2</b> Task 2</a></li>
+<li class="chapter" data-level="5.4.3" data-path="lesson-4.html"><a href="lesson-4.html#task-3-1"><i class="fa fa-check"></i><b>5.4.3</b> Task 3</a></li>
+<li class="chapter" data-level="5.4.4" data-path="lesson-4.html"><a href="lesson-4.html#task-4-2"><i class="fa fa-check"></i><b>5.4.4</b> Task 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="lesson-4.html"><a href="lesson-4.html#solutions-rcode-2"><i class="fa fa-check"></i><b>5.5</b> Solutions (RCode)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="individual-project.html"><a href="individual-project.html"><i class="fa fa-check"></i><b>6</b> Individual Project</a><ul>
+<li class="chapter" data-level="6.1" data-path="individual-project.html"><a href="individual-project.html#possible-topics"><i class="fa fa-check"></i><b>6.1</b> Possible topics</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -265,25 +278,25 @@ Y =<span class="st"> </span><span class="kw">cumsum</span>(<span class="kw">rnor
 <span class="kw">library</span>(zoo)
 ## Task 1 ####################
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(DatetimeUTC,TierID)) <span class="op">+</span>
+<span class="kw">ggplot</span>(wildschwein_BE_sf, <span class="kw">aes</span>(DatetimeUTC,TierID)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>()
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+wildschwein_BE_sf &lt;-<span class="st"> </span>wildschwein_BE_sf <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;mins&quot;</span>))
   )
 
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) <span class="op">+</span>
+<span class="kw">ggplot</span>(wildschwein_BE_sf, <span class="kw">aes</span>(timelag)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>)
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) <span class="op">+</span>
+<span class="kw">ggplot</span>(wildschwein_BE_sf, <span class="kw">aes</span>(timelag)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">lims</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_y_log10</span>()
 
-wildschwein_BE[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>,] <span class="op">%&gt;%</span>
+wildschwein_BE_sf[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>,] <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(DatetimeUTC,timelag)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()
@@ -291,19 +304,19 @@ wildschwein_BE[<span class="dv">1</span><span class="op">:</span><span class="dv
 
 ## Task 2 ####################
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) <span class="op">+</span>
+<span class="kw">ggplot</span>(wildschwein_BE_sf, <span class="kw">aes</span>(timelag)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.1</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">400</span>,<span class="dv">20</span>),<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">400</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="co"># scale_x_continuous(breaks = seq(0,50,1),limits = c(0,50)) +</span>
 <span class="st">  </span><span class="kw">scale_y_log10</span>()
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+wildschwein_BE_sf &lt;-<span class="st"> </span>wildschwein_BE_sf <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">samplingInt =</span> <span class="kw">cut</span>(timelag,<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="kw">seq</span>(<span class="dv">10</span>,<span class="dv">195</span>,<span class="dv">15</span>)))
   ) 
 
-wildschwein_BE <span class="op">%&gt;%</span>
+wildschwein_BE_sf <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(samplingInt) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(
     <span class="dt">n =</span> <span class="kw">n</span>()
@@ -316,16 +329,14 @@ wildschwein_BE <span class="op">%&gt;%</span>
 
 ## Task 3 ####################
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+wildschwein_BE_sf &lt;-<span class="st"> </span>wildschwein_BE_sf <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(TierID,samplingInt) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">steplength =</span> <span class="kw">euclid</span>(<span class="kw">lead</span>(E),<span class="kw">lead</span>(N),E,N),
     <span class="dt">speed =</span> steplength<span class="op">/</span>timelag
   )
 
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(samplingInt,speed,<span class="dt">group =</span> samplingInt)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>))
+
 
 example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">3</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
@@ -334,7 +345,7 @@ example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 ## Task 4 ####################
 
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+wildschwein_BE_sf &lt;-<span class="st"> </span>wildschwein_BE_sf <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">speed2 =</span> <span class="kw">rollmean</span>(speed,<span class="dv">3</span>,<span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>),
@@ -342,7 +353,7 @@ wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&g
     <span class="dt">speed4 =</span> <span class="kw">rollmean</span>(speed,<span class="dv">10</span>,<span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
   )
 
-wildschwein_BE[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>,] <span class="op">%&gt;%</span>
+wildschwein_BE_sf[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>,] <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(key,val,<span class="kw">c</span>(speed,speed2,speed3,speed4)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(DatetimeUTC,val,<span class="dt">colour =</span> key,<span class="dt">group =</span> key)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
@@ -350,18 +361,31 @@ wildschwein_BE[<span class="dv">1</span><span class="op">:</span><span class="dv
 
 ## Task 5 ####################
 
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">stepMean =</span> <span class="kw">rowMeans</span>(
-      <span class="kw">cbind</span>(
-        <span class="kw">euclid</span>(<span class="kw">lag</span>(E, <span class="dv">2</span>),<span class="kw">lag</span>(N, <span class="dv">2</span>),E,N),
-        <span class="kw">euclid</span>(<span class="kw">lag</span>(E, <span class="dv">1</span>),<span class="kw">lag</span>(N, <span class="dv">1</span>),E,N),
-        <span class="kw">euclid</span>(E,N,<span class="kw">lead</span>(E, <span class="dv">1</span>),<span class="kw">lead</span>(N, <span class="dv">1</span>)),
-        <span class="kw">euclid</span>(E,N,<span class="kw">lead</span>(E, <span class="dv">2</span>),<span class="kw">lead</span>(N, <span class="dv">2</span>))
-        )
-      )
+nMinus2 &lt;-<span class="st"> </span><span class="kw">euclid</span>(<span class="kw">lag</span>(X, <span class="dv">2</span>),<span class="kw">lag</span>(Y, <span class="dv">2</span>),X,Y)  <span class="co"># distance to pos. -10 minutes</span>
+nMinus1 &lt;-<span class="st"> </span><span class="kw">euclid</span>(<span class="kw">lag</span>(X, <span class="dv">1</span>),<span class="kw">lag</span>(Y, <span class="dv">1</span>),X,Y)  <span class="co"># distance to pos.  -5 minutes</span>
+nPlus1  &lt;-<span class="st"> </span><span class="kw">euclid</span>(X,Y,<span class="kw">lead</span>(X, <span class="dv">1</span>),<span class="kw">lead</span>(Y, <span class="dv">1</span>)) <span class="co"># distance to pos   +5 mintues</span>
+nPlus2  &lt;-<span class="st"> </span><span class="kw">euclid</span>(X,Y,<span class="kw">lead</span>(X, <span class="dv">2</span>),<span class="kw">lead</span>(Y, <span class="dv">2</span>)) <span class="co"># distance to pos  +10 minutes</span>
+
+<span class="co"># Use cbind to bind all rows to a matrix</span>
+distances &lt;-<span class="st"> </span><span class="kw">cbind</span>(nMinus2,nMinus1,nPlus1,nPlus2)
+distances
+
+<span class="co"># This just gives us the overall mean</span>
+<span class="kw">mean</span>(distances, <span class="dt">na.rm =</span> T)
+
+<span class="co"># We therefore need the function `rowMeans()`</span>
+rowmeans &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(distances)
+<span class="kw">cbind</span>(distances,rowmeans)
+
+<span class="co"># and if we put it all together:</span>
+<span class="kw">rowMeans</span>(
+  <span class="kw">cbind</span>(
+    <span class="kw">euclid</span>(<span class="kw">lag</span>(X, <span class="dv">2</span>),<span class="kw">lag</span>(Y, <span class="dv">2</span>),X,Y),
+    <span class="kw">euclid</span>(<span class="kw">lag</span>(X, <span class="dv">1</span>),<span class="kw">lag</span>(Y, <span class="dv">1</span>),X,Y),  
+    <span class="kw">euclid</span>(X,Y,<span class="kw">lead</span>(X, <span class="dv">1</span>),<span class="kw">lead</span>(Y, <span class="dv">1</span>)), 
+    <span class="kw">euclid</span>(X,Y,<span class="kw">lead</span>(X, <span class="dv">2</span>),<span class="kw">lead</span>(Y, <span class="dv">2</span>))
   )
+)
 ## NA</code></pre></div>
 
 </div>

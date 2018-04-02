@@ -1,0 +1,12 @@
+name: unterrichtsunterlagen
+title: Unterrichtsunterlagen
+username: rata
+account: rata
+server: oyster.zhaw.ch
+hostUrl: http://oyster.zhaw.ch:3939/__api__
+appId: 66
+bundleId: 90
+url: http://oyster.zhaw.ch:3939/content/66/
+when: 1522597498.19615
+asMultiple: FALSE
+asStatic: FALSE

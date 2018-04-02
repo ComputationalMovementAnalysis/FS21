@@ -8,7 +8,7 @@ library(stringr)
 
 rmds <- list.files(pattern = ".Rmd",recursive = T)
 
-exclude <- c("_Rcode","99_","index","Archive","Admin","_main")
+exclude <- c("_Rcode","99_","index","Archive","Admin","_main","project_ideas")
 
 rmds <- rmds[-grep(paste(exclude,collapse="|"), rmds, value=F)]
 

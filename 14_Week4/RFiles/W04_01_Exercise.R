@@ -1,24 +1,3 @@
-# Lesson 4
-<!-- Operationalize and find meet patterns  -->
-<!-- Visualize spatial distribution of meet -->
-<!-- Define functions -->
-
-
-## Learning Outcomes
-
-
-## Prerequisites
-
-
-## Preperation
-
-## Tasks
-
-### Task 1
-
-Find spatial overlap
-
-```{r}
 ## Task 1 ####################
 
 
@@ -30,13 +9,6 @@ mcp <- wildschwein_BE_sf %>%
 
 overlap_spatial_mat <- overlap_spatial(mcp,"TierID")
 
-```
-
-### Task 2
-
-Find temporal overlap
-
-```{r}
 ## Task 2 ####################
 library(lubridate)
 
@@ -54,12 +26,6 @@ wildschwein_intervals <- wildschwein_BE_sf %>%
 overlap_temporal_mat <- overlap_temporal(wildschwein_intervals,"interval","TierID")
 
 
-```
-
-### Task 3
-
-Combine spatial and temporal overlap and generate datframe with "pairs"
-```{r}
 
 ## Task 3 ####################
 
@@ -71,15 +37,6 @@ overlap_spat_temp <- overlap_spat_temp %>%
   gather(id2,bool,-id1) %>%
   filter(bool == TRUE) %>%
   select(-bool)
-```
-
-
-### Task 4
-
-Temprally join data and visualize.
-
-<!-- Todo: remove errors -->
-```{r}
 ## Task 4 ####################
 
 
@@ -95,11 +52,3 @@ Temprally join data and visualize.
 #   addCircles(lng = ~Long1,lat = ~Lat1) %>%
 #   addTiles()
 
-```
-
-
-
-## Solutions (RCode)
-
-```{r code=readLines('14_Week4/RFiles/W04_01_Exercise.R'), results='asis', echo = T, include=T, eval=F}
-```

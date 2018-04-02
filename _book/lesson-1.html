@@ -139,12 +139,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4.1" data-path="lesson-3.html"><a href="lesson-3.html#task-1-1"><i class="fa fa-check"></i><b>4.4.1</b> Task 1</a></li>
 <li class="chapter" data-level="4.4.2" data-path="lesson-3.html"><a href="lesson-3.html#task-2-1"><i class="fa fa-check"></i><b>4.4.2</b> Task 2</a></li>
 <li class="chapter" data-level="4.4.3" data-path="lesson-3.html"><a href="lesson-3.html#task-3-optional"><i class="fa fa-check"></i><b>4.4.3</b> Task 3 (Optional)</a></li>
+<li class="chapter" data-level="4.4.4" data-path="lesson-3.html"><a href="lesson-3.html#task-4-1"><i class="fa fa-check"></i><b>4.4.4</b> Task 4</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="lesson-3.html"><a href="lesson-3.html#task-3-1"><i class="fa fa-check"></i><b>4.5</b> Task 3</a></li>
-<li class="chapter" data-level="4.6" data-path="lesson-3.html"><a href="lesson-3.html#solution-r-code"><i class="fa fa-check"></i><b>4.6</b> Solution (R Code)</a></li>
+<li class="chapter" data-level="4.5" data-path="lesson-3.html"><a href="lesson-3.html#solution-r-code"><i class="fa fa-check"></i><b>4.5</b> Solution (R Code)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="individual-project.html"><a href="individual-project.html"><i class="fa fa-check"></i><b>5</b> Individual Project</a></li>
-<li class="chapter" data-level="6" data-path="possible-topics.html"><a href="possible-topics.html"><i class="fa fa-check"></i><b>6</b> Possible topics</a></li>
+<li class="chapter" data-level="5" data-path="lesson-4.html"><a href="lesson-4.html"><i class="fa fa-check"></i><b>5</b> Lesson 4</a><ul>
+<li class="chapter" data-level="5.1" data-path="lesson-4.html"><a href="lesson-4.html#learning-outcomes-2"><i class="fa fa-check"></i><b>5.1</b> Learning Outcomes</a></li>
+<li class="chapter" data-level="5.2" data-path="lesson-4.html"><a href="lesson-4.html#prerequisites-3"><i class="fa fa-check"></i><b>5.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="5.3" data-path="lesson-4.html"><a href="lesson-4.html#preperation-2"><i class="fa fa-check"></i><b>5.3</b> Preperation</a></li>
+<li class="chapter" data-level="5.4" data-path="lesson-4.html"><a href="lesson-4.html#tasks-3"><i class="fa fa-check"></i><b>5.4</b> Tasks</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lesson-4.html"><a href="lesson-4.html#task-1-2"><i class="fa fa-check"></i><b>5.4.1</b> Task 1</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lesson-4.html"><a href="lesson-4.html#task-2-2"><i class="fa fa-check"></i><b>5.4.2</b> Task 2</a></li>
+<li class="chapter" data-level="5.4.3" data-path="lesson-4.html"><a href="lesson-4.html#task-3-1"><i class="fa fa-check"></i><b>5.4.3</b> Task 3</a></li>
+<li class="chapter" data-level="5.4.4" data-path="lesson-4.html"><a href="lesson-4.html#task-4-2"><i class="fa fa-check"></i><b>5.4.4</b> Task 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="lesson-4.html"><a href="lesson-4.html#solutions-rcode-2"><i class="fa fa-check"></i><b>5.5</b> Solutions (RCode)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="individual-project.html"><a href="individual-project.html"><i class="fa fa-check"></i><b>6</b> Individual Project</a><ul>
+<li class="chapter" data-level="6.1" data-path="individual-project.html"><a href="individual-project.html#possible-topics"><i class="fa fa-check"></i><b>6.1</b> Possible topics</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -273,20 +286,33 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">filter</span>(wild
 
 ## Task 4 ####################
 
-wildschwein_BE_sf =<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, 
-                             <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), 
-                             <span class="dt">crs =</span> <span class="dv">4326</span>, 
-                             <span class="dt">agr =</span> <span class="st">&quot;constant&quot;</span>)
+wildschwein_BE_sf =<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>, <span class="dt">agr =</span> <span class="st">&quot;constant&quot;</span>, <span class="dt">remove =</span> F)
 
-## Task 4 (Continued) ########
 
 wildschwein_BE_sf &lt;-<span class="st"> </span><span class="kw">st_transform</span>(wildschwein_BE_sf, <span class="dv">2056</span>)
+
+
+mcp &lt;-<span class="st"> </span>wildschwein_BE_sf <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">st_convex_hull</span>()
+
+<span class="kw">ggplot</span>(mcp,<span class="kw">aes</span>(<span class="dt">fill =</span> TierID)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">datum =</span> <span class="dv">2056</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(
+    <span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,
+    <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;transparent&quot;</span>),
+    <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;transparent&quot;</span>)
+    )
+
+
 
 coordinates &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(wildschwein_BE_sf)
 
 <span class="kw">colnames</span>(coordinates) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;E&quot;</span>,<span class="st">&quot;N&quot;</span>)
 
-wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wildschwein_BE,coordinates)
+wildschwein_BE_sf &lt;-<span class="st"> </span><span class="kw">cbind</span>(wildschwein_BE_sf,coordinates)
 
 ## NA</code></pre></div>
 
