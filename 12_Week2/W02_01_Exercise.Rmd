@@ -41,13 +41,13 @@ library(zoo)
 
 ### Task 1
 
-Depending on your knowledge of `R`, getting an overview of the data we imported last week might have been quite a challange. Quite surprisingly, importing, cleaning and exploring your data can be the most challanging, time consuming part of a project. RStudio and the tidyverse offer many extremely helpful tools to make this part easier, and more fun. 
+Depending on your knowledge of `R`, getting an overview of the data we imported last week might have been quite a challenge. Quite surprisingly, importing, cleaning and exploring your data can be the most challenging, time consuming part of a project. RStudio and the tidyverse offer many extremely helpful tools to make this part easier, and more fun. 
 
 To get an overview of the data, use the `dplyr` tools `group_by`, `summarise.` Try to answer the following questions:
 
 - How many individuals were tracked? 
 - How long were the individual tracked? Are there gaps?
-- Were all individuals tracked cuncurrently or sequentially? 
+- Were all individuals tracked concurrently or sequentially? 
 - What is the temporal sampling interval between the locations?
 
 
@@ -84,15 +84,15 @@ wildschwein_BE_sf[1:50,] %>%
 
 <!-- Todo: this task is not much fun, pretty difficult and maybe not even that important. remove?  -->
 
-Now that we've established that we have different sampling intervals, we have to segement our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale we are performing this analysis. 
+Now that we've established that we have different sampling intervals, we have to segment our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale we are performing this analysis. 
 
 We therefore have to define threshold to group segments with a similar sampling interval. Explore the dataset in more detail (e.g. using histograms at different scales), and choose reasonable threshold values to group the trajectories into different sampling intervals. Use the function `cut()` to apply the thresholds on the column `timelag.` 
 
 Note: 
 
-- It might make more sense to choose narrow group intervals at smaller timelags and wider groups intervals at higher timelags.
-- The function `cut` splits a vector into segements according to the values specified in breaks = . The default lables can be a bit puzzling at first, but `(` and `]` are [a standard form of notating intervals in mathematics](https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals).
-- Store the groupnames in a new column named `samplingInt`
+- It might make more sense to choose narrow group intervals at smaller time lags and wider groups intervals at higher time lags.
+- The function `cut` splits a vector into segments according to the values specified in breaks = . The default labels can be a bit puzzling at first, but `(` and `]` are [a standard form of notating intervals in mathematics](https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals).
+- Store the group names in a new column named `samplingInt`
 
 
 ```{r}
@@ -127,7 +127,7 @@ wildschwein_BE_sf %>%
 
 Now that we've gotten the nifty job of specifying our intervals out of the way, let's get to a more fun part and calculate the speed of the animals movements. 
 
-- If you're working with dplyr, you can add `samplingInt` to `group_by()` (in addition to TierID) and so make sure your're not calculating speed across different sampling intervals. 
+- If you're working with dplyr, you can add `samplingInt` to `group_by()` (in addition to TierID) and so make sure you're not calculating speed across different sampling intervals. 
 - You can use the function `euclid()` from the `CMAtools` package to calculate Euclidean distances between subsequent rows. Use ?euclid to see what the function expects and returns. 
 - use `lead(E,1)` to address the the row `n+1`
 - make sure you're clear in what unit you are measuring speed. Meters per second is a SI base unit, but might be unhandy for the speeds travelled by wild boar.
@@ -147,7 +147,7 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
 ```
 ### Task 4
 
-Measuring speed between subsequent samples is great, but especially for short sampling intervals they can be missleading due to measurment error. It might be desireble to *smoothen* these erros using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offeres a variaty of moving window functions (`roll*`). Use `roll_mean()` to smoothen the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
+Measuring speed between subsequent samples is great, but especially for short sampling intervals they can be misleading due to measurement error. It might be desirable to *smoothen* these errors using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offers a variate of moving window functions (`roll*`). Use `roll_mean()` to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
 
 ```{r, include=T, results=F}
 example <- rnorm(10)
@@ -179,7 +179,7 @@ wildschwein_BE_sf[1:30,] %>%
 
 ### Task 5
 
-You've read @laube2011 about segementing trajectories. In the paper, they define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window *v* is less than some threshold *d**". This sounds more complicated than it is, the figure illustrates the method nicely.
+You've read @laube2011 about segmenting trajectories. In the paper, they define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window *v* is less than some threshold *d**". This sounds more complicated than it is, the figure illustrates the method nicely.
 
 ![](02_Images/laube_2011.jpg)
 
@@ -193,7 +193,7 @@ Y = cumsum(rnorm(20))
 plot(X,Y, type = "l")
 ```
 
-Assume the sampling interval is 5 minutes. If we take a temporal window of 20 minutes, that would mean we include 5 fixes into the calculation. We need to calculate the following Eucledian distances (pos representing a `X`,`Y`-position):
+Assume the sampling interval is 5 minutes. If we take a temporal window of 20 minutes, that would mean we include 5 fixes into the calculation. We need to calculate the following Euclidean distances (pos representing a `X`,`Y`-position):
 
 1. pos[n-2] to pos[n]
 2. pos[n-1] to pos[n]

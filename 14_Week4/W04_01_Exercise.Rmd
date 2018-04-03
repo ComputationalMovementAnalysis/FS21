@@ -76,7 +76,7 @@ overlap_spat_temp <- overlap_spat_temp %>%
 
 ### Task 4
 
-Temprally join data and visualize.
+Temporally join data and visualize.
 
 <!-- Todo: remove errors -->
 ```{r}

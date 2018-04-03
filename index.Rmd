@@ -9,9 +9,8 @@ output:
     config:
       toc:
         collapse: section
-      download: ["pdf","epub"]
+      download: ["pdf"]
   bookdown::pdf_book: default
-  bookdown::epub_book: default
 ---
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

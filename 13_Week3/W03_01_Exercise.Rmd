@@ -56,7 +56,7 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
 
 ### Task 2
 
-We can now explore the newly created Values `stepMean` using summary statistics (histogramms, boxplot, `summary()`) and define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on the question that needs to be answered. 
+We can now explore the newly created Values `stepMean` using summary statistics (histograms, boxplot, `summary()`) and define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on the question that needs to be answered. 
 
 ```{r, echo = F, include = T}
 ## Task 2 ####################
@@ -84,7 +84,7 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
 ```
 
 Plot a *subset* of data to verify if the arbitrary threshold was a reasonable choice. 
-- subsetting the first ten rows can be done with `[1:10,]` (dont forget the comma!)
+- sub-setting the first ten rows can be done with `[1:10,]` (don't forget the comma!)
 - we have a couple of NA values in the beginning and end of each trajectory. Use `filter(!is.na(moving))` to remove these values from the plot
 - if you add the layer `geom_sf()` `ggplot` will only plot points. To add the lines in between you'll have to specify the x and y values (E and N)
 - add the layer `coord_sf(datum = 2056)`
@@ -129,24 +129,24 @@ if (knitr::is_html_output()){
 
 
 ```{r, eval=F}
-library(leaflet)
-library(scales)
-factpal <- colorFactor(hue_pal()(2), wildschwein_BE_sf$moving)
-
-# checking to see if this all makes sense in leaflet: (or better ggplot?)
-wildschwein_BE_sf[0:200,] %>%
-  filter(!is.na(moving)) %>%
-  leaflet() %>%
-  addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(moving)) %>%
-  addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
-  addTiles() %>%
-  addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
+# library(leaflet)
+# library(scales)
+# factpal <- colorFactor(hue_pal()(2), wildschwein_BE_sf$moving)
+# 
+# # checking to see if this all makes sense in leaflet: (or better ggplot?)
+# wildschwein_BE_sf[0:200,] %>%
+#   filter(!is.na(moving)) %>%
+#   leaflet() %>%
+#   addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(moving)) %>%
+#   addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
+#   addTiles() %>%
+#   addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
 ```
 
 
 ### Task 4
 
-Use the package `recurse` (function `getRecursions`) to determin sites which are often visited. 
+Use the package `recurse` (function `getRecursions`) to determine sites which are often visited. 
 <!-- Todo: either extend this task or use this as a possible challange for the individual topics and replace this with similarity measures  -->
 
 

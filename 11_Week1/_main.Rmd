@@ -33,7 +33,7 @@ Create a new *RStudio Project*. As recommended in @wickham2017, remove the optio
 
 <!-- ![](http://r4ds.had.co.nz/screenshots/rstudio-workspace.png) -->
 
-Create a new R-File and divide it into the sections necessary in a classical Data Science Workflow. "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 Trailing dashes (`-`), equal signs (`=`), or pound signs (`#`) (see below).  Sections allow code folding (try click on the small triangle next to the line number) and provides and navigation (try the shortcut: `Shift`+`Alt`+`J`).
+Create a new R-File and divide it into the sections neccessary in a classical Data Science Workflow. "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 Trailing dashes (`-`), equal signs (`=`), or pound signs (`#`) (see below).  Sections allow code folding (try click on the small triangle next to the line number) and provides and navigation (try the shortcut: `Shift`+`Alt`+`J`).
 
 ```{r purl=F}
 
@@ -74,10 +74,10 @@ one level *above* your home folder. You will have to move "up" one or two levels
 
 Note: 
 
-- If your are using [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your workflow is documented without gaps.
-- I recommend using one of the `tidyverse` functions (`read_*`) to import your data. These functions are less error prone than the base `R` functions (`read.*`). Specifically to the wild boar data, I recommend `read_delim`.
-- if you receive warnings during import, have a look at these warnings by using the function `problems()`. Resolve these problems until import runs without warnings.
-- Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
+- If your are using [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your worflow is documented without gaps.
+- I recommend using one of the `tidyverse` functions (`read_*`) to import your data. These functions are less error prone than the base `R` functions (`read.*`). Specifically to the wildboar data, I recomment `read_delim`.
+- if you recieve warnings during import, have a look at these warnings by using the funciton `problems()`. Resolve these problems until import runs without warnings.
+- Assign correct data types as neccessary and make sure the timezone is set correctly for the date/time columnm.
 
 ```{r}
 
@@ -86,7 +86,7 @@ Note:
 
 
 # Data import ####
-wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+wildschwein_BE <- read_delim("../Geodata/wildschwein_BE.csv",",")
 ```
 
 
@@ -95,9 +95,9 @@ wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
 
 
 ### Task 3 Explore Data
-We will use a variate of different plotting techniques in this course, several have emerged in recent years, each with their specific strengths and weaknesses. While `base::plot() `is quick and simple, it not very scalable with growing complexity. ggplot offers solution for most use cases and has a elegant syntax that is easy to get accustomed to. `plotly()` offers great interactive and linked view facilities while `tmap()` was designed specifically for spatial data. 
+We will use a variaty of different plotting techniques in this course, several have emerged in recent years, each with their specific strenghts and weaknesses. While `base::plot() `is quick and simple, it not very scaleable with growing complexity. ggplto offers solution for most use cases and has a elegant syntax that is easy to get accustomed to. `plotly()` offers great interactive and linked view facilites while `tmap()` was designed specifically for spatial data. 
 
-Get an overview of your data by creating a first "map-like" plot of your data producing a simple scatter plot with ggplot2. Assign every individual animal its own colour (using the ggplot2 argument colour). Do you spot outliers? If so, get rid of the outliers. Plot your data again, this time without outliers. Save your plot using `ggsave()`. Save your code in the appropriate section.
+Get an overview of your data by creating a first "map-like" plot of your data producing a simple scatter plot with ggplot2. Assign every individual animal its own colour (using the ggplot2 argument colour). Do you spot outliers? If so, get rid of the outliers. Plot your data again, this time without outliers. Save your plot using `ggsave()`. Save your code in the appropirate section.
 
 Setting up a `ggplot` with our data is done using the command `ggplot(roe_gps_all, aes(X, Y, colour = TierID))`. Creating a map is done via the basic scatter plot command `geom_point()`, using a fixed aspect ratio of 1.
 
@@ -120,11 +120,11 @@ wildschwein_BE <- filter(wildschwein_BE, Lat < 50)
 
 
 ### Task 4: Handling spatial data
-Till now, we've handled spatial data within data frames. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. Projecting the WGS84 (Lat/Long) coordinates into CH1903_LV95 is such a case. 
+Till now, we've handled spatial data within dataframes. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. Projecting the WGS84 (Lat/Long) coordinates into CH1903_LV95 is such a case. 
 
-Some of you might know the `sp` package with the classes `SpatialPoints` and `SpatialPointsDataFrame`. Just recently the new and exiting package `sf`, was released on CRAN. `sf` has some huge advantages over sp:
+Some of you might know the `sp` packge with the classes `SpatialPoints` and `SpatialPointsDataFrame`. Just recently the new and exiting package `sf`, was released on CRAN. `sf` has some huge advantages over sp:
 
-- simple features are essentially data frames, which mean they interface with the `tidyverse` (and the `dplyr` SAC paradigm) 
+- simple featrues are essentially dataframes, which mean they interface with the `tidyverse` (and the `dplyr` SAC paradigm) 
 - are OGC (ISO 19125-1:2004) compliant and interface with GDAL, PostGIS, GeoJSON and so fourth
 - are being rapidly implemented in visualisation tools such as `ggplot2`, `gplotly` and `tmap`
 
@@ -132,7 +132,7 @@ A lot of reasons to learn `sf` and work with this library. The down side is howe
 
 Use the function `st_as_sf()` while correctly specifying your Lat/Long Coordinates. Set the coordinate reference system using the [EPSG Code](http://spatialreference.org/ref/epsg/4326/) as an integer value. You can set the argument `agr` to `constant`. Save to output of this operation to a new variable `wildschwein_BE_sf.`
 
-Take a look at this sf object (`head()`, `str()`,`View()`) and try a few classical dataframe operations on it (subsetting, filtering). Now transform the coordinates into [CH1903_LV95](spatialreference.org/ref/epsg/2056/) using the function st_transform(). Again, use the EPSG code as an integer. 
+Take a look at this sf object (`head()`, s`tr()`,`View()`) and try a few classical dataframe operations on it (subseting, filtering). Now transform the coordinates into [CH1903_LV95](spatialreference.org/ref/epsg/2056/) using the function st_transform(). Again, use the EPSG code as an integer. 
 
 
 
@@ -173,14 +173,14 @@ ggplot(mcp,aes(fill = TierID)) +
 
 
 
-Extract the new Coordinates using `st_coordinates()` and attach them (`cbind()`) to your original `dataframe.` 
+Extract the new Coorindates using `st_coordinates()` and attach them (`cbind()`) to your original `dataframe.` 
 
 Note that `st_transform()` names the coordinates `X` and `Y`, but [CH1903 LV03](https://www.swisstopo.admin.ch/de/wissen-fakten/geodaesie-vermessung/neue-koordinaten.html) names the Axes `E` and `N`. Rename the axes accordingly (before or after attaching them to your dataframe).
 
 Keep your Long / Lat coordinates, since it is helpful to have both WGS84 and CH1903+ Coordinates stored in the dataframe: 
 
-- WGS84: this is our original data therefore we should not discard this information. Additionally, some visualization tools (e.g.. `Leaflet` and `ggmap`) need Lat/Long Coordinates
-- CH1903+ these Cartesian coordinates are helpful when calculating euclidean distances between positions (this is much more complicated with WGS84 Data) and if we use swisstopo background- and other context data
+- WGS84: this is our original data therefore we should not discard this information. Additionally, some visualization tools (eg. `Leaflet` and `ggmap`) need Lat/Long Coordinates
+- CH1903+ these cartesian coordinates are helpful when calculating euclidean distances between positions (this is much more complicated with WGS84 Data) and if we use swisstopo background- and other context data
 
 
 ```{r}
@@ -203,3 +203,6 @@ wildschwein_BE_sf <- cbind(wildschwein_BE_sf,coordinates)
 
 ```{r code=readLines('11_Week1/RFiles/W01_01_Exercise.R'), results='asis', echo = T, include=T, eval=F}
 ```
+
+<!--chapter:end:W01_01_Exercise.Rmd-->
+
