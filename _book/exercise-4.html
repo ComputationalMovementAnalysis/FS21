@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>GEO880: Patterns and Trends in Environmental Data</title>
+  <meta name="description" content="GEO880: Patterns and Trends in Environmental Data">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="GEO880: Patterns and Trends in Environmental Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="GEO880: Patterns and Trends in Environmental Data" />
+  
+  
+  
+
+<meta name="author" content="Patrick Laube and Nils Ratnaweera">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="exercise-3.html">
+<link rel="next" href="individual-project.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
+<link href="libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="libs/leaflet-binding-1.1.0/leaflet.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction Chapter</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html"><i class="fa fa-check"></i>Exercise 1</a><ul>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#leaning-outcomes"><i class="fa fa-check"></i>Leaning outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#preperation"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#tasks"><i class="fa fa-check"></i>Tasks</a><ul>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-1-initialize-project"><i class="fa fa-check"></i>Task 1: Initialize project</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-2-import-data"><i class="fa fa-check"></i>Task 2: Import data</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-3-explore-data"><i class="fa fa-check"></i>Task 3: Explore Data</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-4-handling-spatial-data"><i class="fa fa-check"></i>Task 4: Handling spatial data</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5"><i class="fa fa-check"></i>Task 5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#solutions-rcode"><i class="fa fa-check"></i>Solutions (RCode)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i>Exercise 2</a><ul>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#prerequisites-1"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#preperation-1"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#tasks-1"><i class="fa fa-check"></i>Tasks</a><ul>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-1"><i class="fa fa-check"></i>Task 1</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-1"><i class="fa fa-check"></i>Task 5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#solutions-rcode-1"><i class="fa fa-check"></i>Solutions (RCode)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html"><i class="fa fa-check"></i>Exercise 3</a><ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#learning-outcomes-1"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#preperation-2"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#tasks-2"><i class="fa fa-check"></i>Tasks</a><ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-1-1"><i class="fa fa-check"></i>Task 1</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-2-1"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-3-optional"><i class="fa fa-check"></i>Task 3 (Optional)</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-1"><i class="fa fa-check"></i>Task 4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#solution-r-code"><i class="fa fa-check"></i>Solution (R Code)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html"><i class="fa fa-check"></i>Exercise 4</a><ul>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#learning-outcomes-2"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#prerequisites-3"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#preperation-3"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#tasks-3"><i class="fa fa-check"></i>Tasks</a><ul>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-1-2"><i class="fa fa-check"></i>Task 1</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-2-2"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-3-1"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-4-2"><i class="fa fa-check"></i>Task 4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#solutions-rcode-2"><i class="fa fa-check"></i>Solutions (RCode)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="individual-project.html"><a href="individual-project.html"><i class="fa fa-check"></i>Individual Project</a><ul>
+<li class="chapter" data-level="" data-path="individual-project.html"><a href="individual-project.html#possible-topics"><i class="fa fa-check"></i>Possible topics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO880: Patterns and Trends in Environmental Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercise-4" class="section level1">
+<h1>Exercise 4</h1>
+<!-- Operationalize and find meet patterns  -->
+<!-- Visualize spatial distribution of meet -->
+<!-- Define functions -->
+<div id="learning-outcomes-2" class="section level2">
+<h2>Learning Outcomes</h2>
+</div>
+<div id="prerequisites-3" class="section level2">
+<h2>Prerequisites</h2>
+</div>
+<div id="preperation-3" class="section level2">
+<h2>Preperation</h2>
+</div>
+<div id="tasks-3" class="section level2">
+<h2>Tasks</h2>
+<div id="task-1-2" class="section level3">
+<h3>Task 1</h3>
+<p>Find spatial overlap</p>
+</div>
+<div id="task-2-2" class="section level3">
+<h3>Task 2</h3>
+<p>Find temporal overlap</p>
+</div>
+<div id="task-3-1" class="section level3">
+<h3>Task 3</h3>
+<p>Combine spatial and temporal overlap and generate datframe with “pairs”</p>
+</div>
+<div id="task-4-2" class="section level3">
+<h3>Task 4</h3>
+<p>Temporally join data and visualize.</p>
+<!-- Todo: remove errors -->
+</div>
+</div>
+<div id="solutions-rcode-2" class="section level2">
+<h2>Solutions (RCode)</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Task 1 ####################
+
+
+mcp &lt;-<span class="st"> </span>wildschwein_BE_sf %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>() %&gt;%
+<span class="st">  </span><span class="kw">st_convex_hull</span>()
+
+
+overlap_spatial_mat &lt;-<span class="st"> </span><span class="kw">overlap_spatial</span>(mcp,<span class="st">&quot;TierID&quot;</span>)
+
+## Task 2 ####################
+<span class="kw">library</span>(lubridate)
+
+wildschwein_intervals &lt;-<span class="st"> </span>wildschwein_BE_sf %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">min =</span> <span class="kw">min</span>(DatetimeUTC,<span class="dt">na.rm =</span> T),
+    <span class="dt">max =</span> <span class="kw">max</span>(DatetimeUTC,<span class="dt">na.rm =</span> T)
+  ) %&gt;%
+<span class="st">  </span><span class="kw">ungroup</span>() %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">interval =</span> <span class="kw">interval</span>(min,max)
+  )
+
+overlap_temporal_mat &lt;-<span class="st"> </span><span class="kw">overlap_temporal</span>(wildschwein_intervals,<span class="st">&quot;interval&quot;</span>,<span class="st">&quot;TierID&quot;</span>)
+
+
+
+## Task 3 ####################
+
+overlap_spat_temp &lt;-<span class="st"> </span>overlap_temporal_mat &amp;<span class="st"> </span>overlap_spatial_mat
+
+overlap_spat_temp &lt;-<span class="st"> </span>overlap_spat_temp %&gt;%
+<span class="st">  </span><span class="kw">as.data.frame</span>() %&gt;%
+<span class="st">  </span><span class="kw">rownames_to_column</span>(<span class="st">&quot;id1&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">gather</span>(id2,bool,-id1) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(bool ==<span class="st"> </span><span class="ot">TRUE</span>) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(-bool)
+## Task 4 ####################
+
+
+<span class="co"># temporal_join(wildschwein_BE_sf,TierID,overlap_spat_temp$id1[1],overlap_spat_temp$id2[1],DatetimeUTC,mult = &quot;first&quot;,0)</span>
+<span class="co"># </span>
+<span class="co"># </span>
+<span class="co"># ggplot(temporal_join) +</span>
+<span class="co">#   geom_point(aes(E2,N2), colour = &quot;blue&quot;) +</span>
+<span class="co">#   geom_point(aes(E1,N1), colour = &quot;red&quot;)</span>
+<span class="co"># </span>
+<span class="co"># </span>
+<span class="co"># leaflet(temporal_join) %&gt;%</span>
+<span class="co">#   addCircles(lng = ~Long1,lat = ~Lat1) %&gt;%</span>
+<span class="co">#   addTiles()</span>
+
+## NA</code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exercise-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="individual-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

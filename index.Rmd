@@ -6,11 +6,13 @@ documentclass: book
 bibliography: ["00_Admin/bibliography.bib"]
 output:
   bookdown::gitbook:
+    number_sections: false
     config:
       toc:
         collapse: section
       download: ["pdf"]
-  bookdown::pdf_book: default
+  bookdown::pdf_book:
+    number_sections: true
 ---
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -34,7 +36,7 @@ knitr::opts_chunk$set(message = F)
 # https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf
 ```
 
-# Introduction Chapter
+# Introduction Chapter {-}
 
 For our practical `R` course building-up skills for analyzing movement data in the software environment `R`, you'll be using data from the ZHAW project ["Prävention von Wildschweinschäden in der Landwirtschaft"](https://www.zhaw.ch/de/lsfm/institute-zentren/iunr/integrative-oekologie/wildtiermanagement/referenzprojekte/).
 
@@ -53,6 +55,6 @@ Introduce some basic concepts
 - Rstudio Server / Rstudio Connect
 - Links to GIS Ressources
   - Animove Cheet sheets
-  - GIT In R
+  - GIS in R
 - GIT / CMAtools
 

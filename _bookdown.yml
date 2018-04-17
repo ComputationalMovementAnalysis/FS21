@@ -2,9 +2,9 @@ rmd_files: [
   "index.Rmd", 
   "11_Week1/W01_01_Exercise.Rmd",
   "12_Week2/W02_01_Exercise.Rmd",
-  "13_Week3/W03_01_Exercise.Rmd",
-  "14_Week4/W04_01_Exercise.Rmd",
-  "16_individual_project/project_ideas.Rmd",
+#  "13_Week3/W03_01_Exercise.Rmd",
+#  "14_Week4/W04_01_Exercise.Rmd",
+#  "16_individual_project/project_ideas.Rmd",
   "00_Admin/references.Rmd"
   ]
 delete_merged_file: true

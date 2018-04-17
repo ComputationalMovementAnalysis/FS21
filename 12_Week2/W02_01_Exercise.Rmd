@@ -1,4 +1,5 @@
-# Lesson 2
+
+# Exercise 2
 <!-- Enrich trajectories (step length, speed, 5min/3hrs) -->
 <!-- Simple multi-scale analysis (with dplyr summarize for 5min and 3hrs) -->
 <!-- Moving windows -->
@@ -16,34 +17,57 @@ Readings Skills from "R for Data Science" [@wickham2017]:
 - RS2.3 Chap14 Pipes with `magrittr` (6p, 261-268)
 
 Readings Theory
+
 - R2.1 @laube2011: How fast is a cow? cross - scale analysis of movement data.
 
 ## Preperation
 
-Open your R Project from last week. Load all libraries and run the scrip to import and clean your data. Install and load the following additional libraries.
+Open your R Project from last week. Load all libraries and run the script to import and clean your data.
+<!-- Todo: I still fill as this makes sense, in light of reproducible research.  -->
 
 <!-- Todo: add some comments as to what devtools does, and what CMAtools is -->
-```{r, eval=F}
-install.packages("devtools")
-install.packages("zoo")
-
-devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
+```{r, echo = F, eval=T, include=F}
+# install.packages("zoo")
+# 
+# devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
 ```
+
+## Tasks and Inputs
+
+### Input 1: Using dpyr for data wrangling
+
+Depending on your knowledge of `R`, getting an overview of the data we imported last week might have been quite a challenge. Quite surprisingly, importing, cleaning and exploring your data can be the most challenging, time consuming part of a project. RStudio and the tidyverse offer many helpful tools to make this part easier (and more fun). You have read chapters on `dplyr` and `magrittr` as preparation for this Exercise. In the next task, we will use these tools (`dplyr`, `group_by`, `summarise`) to get an overview of the data. Let's start with an example to illustrate the concept:
+
+To calculate the timelag in between subsequent positions, we can use the function `difftime()` combined with `lead()` from `dplyr`. Wihout `muatate()`, the code looks something like this:
+
+```{r, echo = T, eval = F, include= T}
+wildschwein_BE$timelag  <- difftime(lead(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC)
+```
+
+We mention `wildschwein_BE` three times in this function, which is why we can use `summarise()`:
+```{r, echo = T, eval = F, include= T}
+wildschwein_BE  <- wildschwein_BE %>% 
+  mutate(
+    timelag = difftime(lead(DatetimeUTC),DatetimeUTC)
+  )
+                                            
+```
+With the code above, we did not consider that `timelag` should just be calculated between subsequent rows *of the same individual*. We can implement this by using `group_by()`. In addition, we can specify `units =` to ensure we're getting the time difference in the units we prefer, and `as.numeric()` to turn the `difftime()` object into a numeric value (which is easier to plot etc.).
 
 ```{r}
-library(CMAtools)
-library(zoo)
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
+    timelag = difftime(lead(DatetimeUTC),DatetimeUTC,units = "mins"),
+    timelag = as.numeric(timelag)
+  )
 ```
 
 
+### Task 1: Getting an Overview
 
-## Tasks
 
-### Task 1
-
-Depending on your knowledge of `R`, getting an overview of the data we imported last week might have been quite a challenge. Quite surprisingly, importing, cleaning and exploring your data can be the most challenging, time consuming part of a project. RStudio and the tidyverse offer many extremely helpful tools to make this part easier, and more fun. 
-
-To get an overview of the data, use the `dplyr` tools `group_by`, `summarise.` Try to answer the following questions:
+Try to answer the following questions:
 
 - How many individuals were tracked? 
 - How long were the individual tracked? Are there gaps?
@@ -51,28 +75,24 @@ To get an overview of the data, use the `dplyr` tools `group_by`, `summarise.` T
 - What is the temporal sampling interval between the locations?
 
 
-```{r, results=F}
+
+
+Here are some sample visualisation that help answer these questions:
+```{r, echo = F, eval = T, include=T}
 ## Task 1 ####################
 
-ggplot(wildschwein_BE_sf, aes(DatetimeUTC,TierID)) +
+ggplot(wildschwein_BE, aes(DatetimeUTC,TierID)) +
   geom_line()
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
-  group_by(TierID) %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "mins"))
-  )
-
-
-ggplot(wildschwein_BE_sf, aes(timelag)) +
+ggplot(wildschwein_BE, aes(timelag)) +
   geom_histogram(binwidth = 50)
 
-ggplot(wildschwein_BE_sf, aes(timelag)) +
+ggplot(wildschwein_BE, aes(timelag)) +
   geom_histogram(binwidth = 1) +
   lims(x = c(0,100)) +
   scale_y_log10()
 
-wildschwein_BE_sf[1:50,] %>%
+wildschwein_BE[1:50,] %>%
   ggplot(aes(DatetimeUTC,timelag)) +
   geom_line() +
   geom_point()
@@ -80,37 +100,62 @@ wildschwein_BE_sf[1:50,] %>%
 
 ```
 
-### Task 2
+### Input 2: Grouping by intervals
 
-<!-- Todo: this task is not much fun, pretty difficult and maybe not even that important. remove?  -->
+For the next Task, we will need a function to split a continuous variable into specific intervals. For this, the function `cut()`is very handy. Let's introduce this function with a quick example. Take an a series of number that represent the age of ten different people.
 
-Now that we've established that we have different sampling intervals, we have to segment our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale we are performing this analysis. 
+```{r, echo = T, eval = T, include = T}
+ages <- c(20,25,18,13,53,50,23,43,68,40)
+```
+Let's say we want to split this into equal intervals of 10
 
-We therefore have to define threshold to group segments with a similar sampling interval. Explore the dataset in more detail (e.g. using histograms at different scales), and choose reasonable threshold values to group the trajectories into different sampling intervals. Use the function `cut()` to apply the thresholds on the column `timelag.` 
+```{r, echo = T, eval = T, include = T}
+breaks <- seq(0,50,10)
+
+cut(ages,breaks = breaks)
+```
+Note:
+
+- If a number does not fit within an interval defined by `breaks =`, `cut()` will return `NA`.
+- The default `labels` with `(` and `]` might seem a little ugly and puzzling at first, but in fact they are [a standard form of notating intervals in mathematics](https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals)
+- If you don't like `(` and `]`, you can specify your own labels with the argument `labels =` (see below)
+
+
+
+```{r, echo = T, eval = T, include = T}
+cut(ages, breaks = c(0,30,60,100), labels = c("young","middle aged","old"))
+```
+
+
+
+### Task 2: Making groups by sampling Interval
+
+Now that we've established that we have different sampling intervals (Task 1), we have to segment our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale we are performing this analysis. 
+
+We therefore have to define threshold to group segments with a similar sampling interval. Explore the dataset in more detail (e.g. using histograms at different scales), and choose reasonable threshold values to group the trajectories into different sampling intervals. 
 
 Note: 
 
 - It might make more sense to choose narrow group intervals at smaller time lags and wider groups intervals at higher time lags.
-- The function `cut` splits a vector into segments according to the values specified in breaks = . The default labels can be a bit puzzling at first, but `(` and `]` are [a standard form of notating intervals in mathematics](https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals).
 - Store the group names in a new column named `samplingInt`
 
 
 ```{r}
 ## Task 2 ####################
 
-ggplot(wildschwein_BE_sf, aes(timelag)) +
+ggplot(wildschwein_BE, aes(timelag)) +
   geom_histogram(binwidth = 0.1) +
   scale_x_continuous(breaks = seq(0,400,20),limits = c(0,400)) +
   # scale_x_continuous(breaks = seq(0,50,1),limits = c(0,50)) +
   scale_y_log10()
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     samplingInt = cut(timelag,breaks = c(0,5,seq(10,195,15)))
   ) 
 
-wildschwein_BE_sf %>%
+wildschwein_BE %>%
   group_by(samplingInt) %>%
   summarise(
     n = n()
@@ -123,9 +168,38 @@ wildschwein_BE_sf %>%
 
 ```
 
-### Task 3
 
-Now that we've gotten the nifty job of specifying our intervals out of the way, let's get to a more fun part and calculate the speed of the animals movements. 
+### Input 3: Geometry as columns
+
+Last week, we transformed our data from a `data.frame` to an `sf` object. This turned our `Lat`/`Long` Columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore advised storing the information twice, once as a geometry and once as a numeric value. We did this for the values in `WGS84`, but yet for the `CH1903+ LV95`. 
+
+```{r, echo = T, eval = T, include=T}
+
+wildschwein_BE
+
+```
+
+Let's do the same for the `CH1903+ LV95`-Value, we will need the values in columns for our next task. First, we have to extract the Coordinates using `st_coordinates()`. We can store these values in a new variable and display them:
+
+```{r, echo = T, eval = T, include=T}
+# Store coordinates in a new variable
+coordinates <- st_coordinates(wildschwein_BE)
+
+head(coordinates)
+```
+
+Note that that the column are named `X` and `Y`, while [CH1903+ LV95](https://www.swisstopo.admin.ch/de/wissen-fakten/geodaesie-vermessung/neue-koordinaten.html) names the Axes `E` and `N`: let's rename the columns appropriately. After this, we can use `cbind()` to "glue" the columns to our original `sf`-object.
+
+```{r, echo = T, eval = T, include=T}
+colnames(coordinates) <- c("E","N")
+
+wildschwein_BE <- cbind(wildschwein_BE,coordinates)
+```
+
+
+### Task 3: Euclidean Distance and Speed
+
+In this task we will calculate the animal's speed based on the distance and timelag in between locations. Since we have 
 
 - If you're working with dplyr, you can add `samplingInt` to `group_by()` (in addition to TierID) and so make sure you're not calculating speed across different sampling intervals. 
 - You can use the function `euclid()` from the `CMAtools` package to calculate Euclidean distances between subsequent rows. Use ?euclid to see what the function expects and returns. 
@@ -135,7 +209,9 @@ Now that we've gotten the nifty job of specifying our intervals out of the way, 
 ```{r}
 ## Task 3 ####################
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+library(CMAtools)
+
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID,samplingInt) %>%
   mutate(
     steplength = euclid(lead(E),lead(N),E,N),
@@ -145,11 +221,14 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
 
 
 ```
-### Task 4
+### Task 4: Rolling window functions
 
 Measuring speed between subsequent samples is great, but especially for short sampling intervals they can be misleading due to measurement error. It might be desirable to *smoothen* these errors using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offers a variate of moving window functions (`roll*`). Use `roll_mean()` to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
 
 ```{r, include=T, results=F}
+
+library(zoo)
+
 example <- rnorm(10)
 rollmean(example,k = 3,fill = NA,align = "left")
 rollmean(example,k = 4,fill = NA,align = "left")
@@ -162,7 +241,7 @@ Visualize the output from your moving windows and compare different window sizes
 ## Task 4 ####################
 
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     speed2 = rollmean(speed,3,NA,align = "left"),
@@ -170,14 +249,14 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
     speed4 = rollmean(speed,10,NA,align = "left")
   )
 
-wildschwein_BE_sf[1:30,] %>%
+wildschwein_BE[1:30,] %>%
   gather(key,val,c(speed,speed2,speed3,speed4)) %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
   geom_point() +
   geom_line() 
 ```
 
-### Task 5
+### Task 5: Segmenting methods
 
 You've read @laube2011 about segmenting trajectories. In the paper, they define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window *v* is less than some threshold *d**". This sounds more complicated than it is, the figure illustrates the method nicely.
 

@@ -1,4 +1,4 @@
-# Lesson 4
+# Exercise 4
 <!-- Operationalize and find meet patterns  -->
 <!-- Visualize spatial distribution of meet -->
 <!-- Define functions -->

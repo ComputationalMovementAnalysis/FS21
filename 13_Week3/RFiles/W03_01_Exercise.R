@@ -44,18 +44,18 @@ wildschwein_BE_sf[20:50,] %>%
     panel.background = element_rect(fill = "transparent")
     ) 
 
-## library(leaflet)
-## library(scales)
-## factpal <- colorFactor(hue_pal()(2), wildschwein_BE_sf$moving)
-## 
-## # checking to see if this all makes sense in leaflet: (or better ggplot?)
-## wildschwein_BE_sf[0:200,] %>%
-##   filter(!is.na(moving)) %>%
-##   leaflet() %>%
-##   addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(moving)) %>%
-##   addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
-##   addTiles() %>%
-##   addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
+## # library(leaflet)
+## # library(scales)
+## # factpal <- colorFactor(hue_pal()(2), wildschwein_BE_sf$moving)
+## #
+## # # checking to see if this all makes sense in leaflet: (or better ggplot?)
+## # wildschwein_BE_sf[0:200,] %>%
+## #   filter(!is.na(moving)) %>%
+## #   leaflet() %>%
+## #   addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(moving)) %>%
+## #   addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
+## #   addTiles() %>%
+## #   addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
 
 library(recurse)
 library(ggforce)

@@ -1,50 +1,57 @@
-## install.packages("devtools")
-## install.packages("zoo")
+# install.packages("zoo")
+# 
+# devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
+## wildschwein_BE$timelag  <- difftime(lead(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC)
+## wildschwein_BE  <- wildschwein_BE %>%
+##   mutate(
+##     timelag = difftime(lead(DatetimeUTC),DatetimeUTC)
+##   )
 ## 
-## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
-library(CMAtools)
-library(zoo)
-## Task 1 ####################
-
-ggplot(wildschwein_BE_sf, aes(DatetimeUTC,TierID)) +
-  geom_line()
-
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "mins"))
+    timelag = difftime(lead(DatetimeUTC),DatetimeUTC,units = "mins"),
+    timelag = as.numeric(timelag)
   )
+## Task 1 ####################
 
+ggplot(wildschwein_BE, aes(DatetimeUTC,TierID)) +
+  geom_line()
 
-ggplot(wildschwein_BE_sf, aes(timelag)) +
+ggplot(wildschwein_BE, aes(timelag)) +
   geom_histogram(binwidth = 50)
 
-ggplot(wildschwein_BE_sf, aes(timelag)) +
+ggplot(wildschwein_BE, aes(timelag)) +
   geom_histogram(binwidth = 1) +
   lims(x = c(0,100)) +
   scale_y_log10()
 
-wildschwein_BE_sf[1:50,] %>%
+wildschwein_BE[1:50,] %>%
   ggplot(aes(DatetimeUTC,timelag)) +
   geom_line() +
   geom_point()
 
 
+ages <- c(20,25,18,13,53,50,23,43,68,40)
+breaks <- seq(0,50,10)
+
+cut(ages,breaks = breaks)
+cut(ages, breaks = c(0,30,60,100), labels = c("young","middle aged","old"))
 ## Task 2 ####################
 
-ggplot(wildschwein_BE_sf, aes(timelag)) +
+ggplot(wildschwein_BE, aes(timelag)) +
   geom_histogram(binwidth = 0.1) +
   scale_x_continuous(breaks = seq(0,400,20),limits = c(0,400)) +
   # scale_x_continuous(breaks = seq(0,50,1),limits = c(0,50)) +
   scale_y_log10()
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     samplingInt = cut(timelag,breaks = c(0,5,seq(10,195,15)))
   ) 
 
-wildschwein_BE_sf %>%
+wildschwein_BE %>%
   group_by(samplingInt) %>%
   summarise(
     n = n()
@@ -55,9 +62,21 @@ wildschwein_BE_sf %>%
   scale_y_log10()
 
 
+
+wildschwein_BE
+
+# Store coordinates in a new variable
+coordinates <- st_coordinates(wildschwein_BE)
+
+head(coordinates)
+colnames(coordinates) <- c("E","N")
+
+wildschwein_BE <- cbind(wildschwein_BE,coordinates)
 ## Task 3 ####################
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+library(CMAtools)
+
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID,samplingInt) %>%
   mutate(
     steplength = euclid(lead(E),lead(N),E,N),
@@ -66,6 +85,9 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
 
 
 
+
+library(zoo)
+
 example <- rnorm(10)
 rollmean(example,k = 3,fill = NA,align = "left")
 rollmean(example,k = 4,fill = NA,align = "left")
@@ -73,7 +95,7 @@ rollmean(example,k = 4,fill = NA,align = "left")
 ## Task 4 ####################
 
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     speed2 = rollmean(speed,3,NA,align = "left"),
@@ -81,7 +103,7 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
     speed4 = rollmean(speed,10,NA,align = "left")
   )
 
-wildschwein_BE_sf[1:30,] %>%
+wildschwein_BE[1:30,] %>%
   gather(key,val,c(speed,speed2,speed3,speed4)) %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
   geom_point() +
