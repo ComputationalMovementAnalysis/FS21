@@ -2,8 +2,35 @@ library(tidyverse)
 library(plotly)
 library(CMAtools)
 library(recurse)
+## Task 5 ####################
 
-## Task 1 ####################
+nMinus2 <- euclid(lag(X, 2),lag(Y, 2),X,Y)  # distance to pos. -10 minutes
+nMinus1 <- euclid(lag(X, 1),lag(Y, 1),X,Y)  # distance to pos.  -5 minutes
+nPlus1  <- euclid(X,Y,lead(X, 1),lead(Y, 1)) # distance to pos   +5 mintues
+nPlus2  <- euclid(X,Y,lead(X, 2),lead(Y, 2)) # distance to pos  +10 minutes
+
+# Use cbind to bind all rows to a matrix
+distances <- cbind(nMinus2,nMinus1,nPlus1,nPlus2)
+distances
+
+# This just gives us the overall mean
+mean(distances, na.rm = T)
+
+# We therefore need the function `rowMeans()`
+rowmeans <- rowMeans(distances)
+cbind(distances,rowmeans)
+
+# and if we put it all together:
+rowMeans(
+  cbind(
+    euclid(lag(X, 2),lag(Y, 2),X,Y),
+    euclid(lag(X, 1),lag(Y, 1),X,Y),  
+    euclid(X,Y,lead(X, 1),lead(Y, 1)), 
+    euclid(X,Y,lead(X, 2),lead(Y, 2))
+  )
+)
+
+## Task 2 ####################
 
 wildschwein_BE_sf <- wildschwein_BE_sf %>%
   group_by(TierID) %>%
@@ -17,7 +44,7 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
         )
       )
   )
-## Task 2 ####################
+## Task 3 ####################
 
 
 summary(wildschwein_BE_sf$stepMean)
@@ -56,6 +83,8 @@ wildschwein_BE_sf[20:50,] %>%
 ## #   addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
 ## #   addTiles() %>%
 ## #   addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
+
+## Task 5 #######################
 
 library(recurse)
 library(ggforce)

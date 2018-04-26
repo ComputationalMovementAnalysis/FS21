@@ -9,7 +9,10 @@ str_remove_trailing <- function(string,trailing_char){
   ifelse(str_sub(string,-1,-1) == trailing_char,str_sub(string,1,-2),string)
 }
 
-wildschwein <- read_delim("../Geodata/wildschwein.csv",";",col_types = cols(timelag = col_double()))
+wildschwein <- read_delim("../CMA_FS2018_Filestorage/wildschwein.csv",";",col_types = cols(timelag = col_double()))
+
+# mit diesem Halsband (091) wurde rumgespielt (vermutlich transportiert und nochmal verwendet)
+wildschwein <- filter(wildschwein, Tier != "091_Marg_12272")
 
 wildschwein <- wildschwein %>%
   rowid_to_column("fixNr") %>%
@@ -24,8 +27,6 @@ wildschwein <- wildschwein %>%
   mutate(TierID = paste0(TierID,CollarIDfac)) %>%
   dplyr::select(-CollarIDfac)
 
-# mit diesem Halsband (091A) wurde rumgespielt (vermutlich transportiert und nochmal verwendet)
-wildschwein <- filter(wildschwein, TierID != "091A")
 
 wildschwein_sf = st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326, agr = "constant")
 wildschwein_sf2056 <- st_transform(wildschwein_sf, 2056)

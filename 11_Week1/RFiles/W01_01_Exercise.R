@@ -3,10 +3,8 @@
 ## devtools::install_github("tidyverse/ggplot2")
 ## 
 ## # run the following line only if you are working on RStudio Server
-## install.packages('udunits2',
-##                  type = "source",
-##                  repo = "cran.rstudio.com",
-##                  configure.args="--with-udunits2-include=/usr/include/udunits2")
+## install.packages('udunits2', type = "source", repo = "cran.rstudio.com", configure.args="--with-udunits2-include=/usr/include/udunits2")
+## 
 ## install.packages("sf")
 ## 
 ## 
@@ -33,17 +31,21 @@ library(tidyverse)
 # Data import ####
 wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
 
-## Task 3 ####################
-ggplot(wildschwein_BE, aes(Lat,Long, colour = TierID)) +
-  geom_point() +
-  coord_fixed(1) +
-  theme(legend.position = "none")
 
+# Check Timezone
+attr(wildschwein_BE$DatetimeUTC,"tzone") # or
+wildschwein_BE$DatetimeUTC[1]
+
+## Task 3 ####################
+ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
+  geom_point() +
+  coord_map() +
+  theme(legend.position = "none")
 ## Input: Handling spatial data ####################
 
 library(sf)
 
-wildschwein_BE_sf = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
+wildschwein_BE_sf <- st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
 
 wildschwein_BE
 
@@ -77,14 +79,14 @@ mcp <- st_convex_hull(summarise(wildschwein_BE))
 plot(mcp)
 ggplot(mcp,aes(fill = TierID)) +
   geom_sf(alpha = 0.4)
-theme(
-  legend.position = "none",
-  panel.grid.major = element_line(colour = "transparent"),
-  panel.background = element_rect(fill = "transparent"),
-  axis.title = element_blank(),
-  axis.text = element_blank(),
-  axis.ticks = element_blank()
-  )
+## theme(
+##   legend.position = "none",
+##   panel.grid.major = element_line(colour = "transparent"),
+##   panel.background = element_rect(fill = "transparent"),
+##   axis.title = element_blank(),
+##   axis.text = element_blank(),
+##   axis.ticks = element_blank()
+##   )
 ggplot(mcp,aes(fill = TierID)) +
   geom_sf(alpha = 0.4) +
   coord_sf(datum = 2056) +
@@ -118,4 +120,3 @@ ggplot(mcp,aes(fill = TierID)) +
     axis.ticks = element_blank()
     )
 
-## NA

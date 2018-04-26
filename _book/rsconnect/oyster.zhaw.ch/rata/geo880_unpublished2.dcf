@@ -1,0 +1,12 @@
+name: geo880_unpublished2
+title: GEO880_unpublished
+username: rata
+account: rata
+server: oyster.zhaw.ch
+hostUrl: http://oyster.zhaw.ch:3939/__api__
+appId: 83
+bundleId: 111
+url: http://oyster.zhaw.ch:3939/content/83/
+when: 1524606036.57063
+asMultiple: FALSE
+asStatic: TRUE

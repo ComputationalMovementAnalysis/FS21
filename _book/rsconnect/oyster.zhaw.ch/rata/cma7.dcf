@@ -1,0 +1,12 @@
+name: cma7
+title: CMA
+username: rata
+account: rata
+server: oyster.zhaw.ch
+hostUrl: http://oyster.zhaw.ch:3939/__api__
+appId: 76
+bundleId: 104
+url: http://oyster.zhaw.ch:3939/content/76/
+when: 1524148078.39075
+asMultiple: FALSE
+asStatic: TRUE

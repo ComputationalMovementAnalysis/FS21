@@ -15,9 +15,13 @@ output:
     number_sections: true
 ---
 ```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(collapse = TRUE)
+knitr::opts_chunk$set(echo = F)
 knitr::opts_chunk$set(include = F)
+knitr::opts_chunk$set(eval = T)
+
+knitr::opts_chunk$set(purl = T)
+
+knitr::opts_chunk$set(collapse = T)
 knitr::opts_chunk$set(warning = F)
 knitr::opts_chunk$set(message = F)
 
@@ -40,21 +44,22 @@ knitr::opts_chunk$set(message = F)
 
 For our practical `R` course building-up skills for analyzing movement data in the software environment `R`, you'll be using data from the ZHAW project ["Prävention von Wildschweinschäden in der Landwirtschaft"](https://www.zhaw.ch/de/lsfm/institute-zentren/iunr/integrative-oekologie/wildtiermanagement/referenzprojekte/).
 
-The project investigates the spatiotemporal movement patterns of wild boar (*Sus scrofa*) in agricultural landscapes. For more information you can ask [Beni Sigrist](https://www.zhaw.ch/de/ueber-uns/person/sigb/), one of the course participants involved in this project. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA). 
+The project investigates the spatiotemporal movement patterns of wild boar (*Sus scrofa*) in agricultural landscapes. 
+For more information you can ask [Beni Sigrist](https://www.zhaw.ch/de/ueber-uns/person/sigb/), one of the course participants involved in this project. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA). 
 
-**Please note** we are given this data under the condition of signing a non-disclosure agreement. Why? This is data coming out of an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected.
+**Please note** we are given application data from an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected. So, please do not pass on this data, for any use beyond this module contact Patrick Laube or the data owner Stefan Suter (suts@zhaw.ch).
 
 
 
-<!-- Todo:  -->
-Introduce some basic concepts
+<!-- todo -->
+<!-- Introduce some basic concepts -->
 
-- RStudio
-- Tidyverse
-- datacamp
-- Rstudio Server / Rstudio Connect
-- Links to GIS Ressources
-  - Animove Cheet sheets
-  - GIS in R
-- GIT / CMAtools
+<!-- - RStudio -->
+<!-- - Tidyverse -->
+<!-- - datacamp -->
+<!-- - Rstudio Server / Rstudio Connect -->
+<!-- - Links to GIS Ressources -->
+<!--   - Animove Cheet sheets -->
+<!--   - GIS in R -->
+<!-- - GIT / CMAtools -->
 
