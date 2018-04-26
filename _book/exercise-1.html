@@ -129,9 +129,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-making-groups-by-sampling-interval"><i class="fa fa-check"></i>Task 2: Making groups by sampling Interval</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input-geometry-as-columns"><i class="fa fa-check"></i>Input: Geometry as columns</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-deriving-movement-parameters-i-euclidean-distance-and-speed"><i class="fa fa-check"></i>Task 3: Deriving movement parameters I: Euclidean Distance and Speed</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input"><i class="fa fa-check"></i>Input</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4-1"><i class="fa fa-check"></i>Task 4</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-optional-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 5 (Optional): Deriving movement parameters II: Rolling window functions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#solutions-rcode"><i class="fa fa-check"></i>Solutions (RCode)</a></li>
@@ -475,6 +473,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -6,7 +6,10 @@
 
 
 ## Learning Outcomes
-
+- You understand the SAC approach in the context of tidyverse tools and can apply it to `sf` objects
+- You can derive attributes from your data based on changes in the observed variables
+- You can resample your data for multi scaled analyses 
+<!-- TODO laup: learning outcomes so ok?  -->
 
 ## Prerequisites
 Readings Skills from "R for Data Science" [@wickham2017]:
@@ -21,12 +24,14 @@ Readings Theory
 
 ## Preperation
 
-Open your R Project from last week. Load all libraries and run the script to import and clean your data.
-<!-- Todo: I still feel as this makes sense, in light of reproducible research.  -->
+Open your R Project from last week. Load all libraries and run the script to import and clean your data. Install the package `zoo` to get access to the rolling window functions for last (optional) exercise. Also, install the package `CMAtools` where we have put together some helper functions so simplify some tasks in this course. The package `CMAtools` is not on CRAN, and we need to install it similar to how we installed the newest version of `ggplot` last week. Since it is not on the official GIThub page either, but on the ZHAW owned GIThub server, the syntax for installation is slightly different (see code below).
+<!-- todo nils: prepare and upload sf object to moodle. Edit this text appropriately  -->
 
-<!-- Todo: What is package zoo and why do we install it?  -->
+Note: 
 
-<!-- Todo: add some comments as to what devtools does, and what CMAtools is -->
+- If you want to understand what the functions in CMAtools do, you can either check the package documentation (`help(package = "CMAtools")`) or look at the functions [GIThub site](https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools). 
+- We will be extending this package regularly within this course. Reinstall the package with the code below to update your local version of the package.
+
 ```{r, echo = T, include=T, eval=F}
 install.packages("zoo")
 
@@ -59,23 +64,30 @@ now <- Sys.time()
 
 later <- now + 10000
 
-difftime(later,now)
+time_difference <- difftime(later,now)
+```
+
+
+```{r}
+time_difference
 ```
 
 You can also specify the unit of the output
 
 ```{r, echo = T, eval = T, include= T}
 time_difference <- difftime(later,now,units = "mins")
-
+```
+```{r}
 time_difference
 ```
 
-`difftime` returns an object of the Class `difftime`
+
+`difftime` returns an object of the Class `difftime`. However in our case, numeric values would be more handy than the Class `difftime`. So we'll wrap the command in `as.numeric()`:
 ```{r, echo = T, eval = T, include= T}
 str(time_difference)
 ```
 
-In our case, numeric values would be more handy than the Class `difftime`. So we'll wrap the command in `as.numeric()`:
+
 
 ```{r, echo = T, eval = T, include= T}
 time_difference <- as.numeric(difftime(later,now,units = "mins"))
@@ -153,16 +165,13 @@ summary(wildschwein_BE$timelag)
 Summary returned the metrics over all individuals. If we want to summarise our data and get metrics *per animal*, we can use the `dplyr` function `summarise()`. In contrast to `mutate()`, which just adds a new column to the dataset, `summarise()` "collapses" the data to one row per individual (specified by `group_by`).
 
 ```{r,, echo = T, eval = F, include= T}
-
 summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
-
 ```
 
 The above operation works fine on normal `data.frames`, but since `wildschwein_BE` is also an `sf` object, `summarise` actually merges all the points to a multipoint geometry, which takes a long time to calculate. In order to prevent this, we can wrap the `sf` object in `as.data.frame` which removes the spatial attribute. Regrettably, it also removes the `group_by` variable, which we need to set again. The command therefore goes like: 
 
 ```{r, echo = T, eval = T, include= T}
 summarise(group_by(as.data.frame(wildschwein_BE),TierID), mean_timelag = mean(timelag, na.rm = T))
-
 ```
 
 
@@ -172,8 +181,8 @@ This code is hard to read, since it has so many nested functions which need to b
 wildschwein_BE %>%                     # Take wildschwein_BE...
   as.data.frame() %>%                  # ...convert it to a data.frame...
   group_by(TierID) %>%                 # ...group it by TierID
-  summarise(                           # Summarise the data..
-    mean_timelag = mean(timelag,na.rm = T) # ... by calculating the mean timelag
+  summarise(                           # Summarise the data...
+    mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
   )
 ```
 
@@ -196,7 +205,7 @@ First, inspect your data in more detail. Try to answer the following questions:
 - What is the temporal sampling interval between the locations?
 
 
-
+<!-- TODO: diese Grafiken werden nicht mit den Werkzeugen gelöst, die im Demo illustriert werden -->
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
 ```{r, echo = F, include=T, eval = T}
@@ -244,11 +253,20 @@ Note:
 
 - If a number does not fit within an interval defined by `breaks =`, `cut()` will return `NA` (as for example for the fifth element `53`).
 - The default `labels` with `(` and `]` might seem a little ugly and puzzling at first, but in fact they are [a standard form of notating intervals in mathematics](https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals).
-- If you don't like `(` and `]`, you can specify your own labels with the argument `labels =`. 
+- If you don't like `(` and `]`, you can:
+  + specify your own labels with the argument `labels =` *or*
+  + use the the function `labels_nice` we provide with the `CMAtools`-package
 - Four thresholds (i.e. `breaks`) return three intervals (i.e. `lables`), as shown below.
 
 ```{r, echo = T, eval = T, include = T}
-cut(ages, breaks = c(0,30,60,100), labels = c("young","middle aged","old"))
+
+breaks <- c(0,30,60,100)
+
+cut(ages, breaks = breaks, labels = c("young","middle aged","old"))
+
+cut(ages, breaks = breaks, labels = CMAtools::labels_nice(breaks))
+
+
 ```
 
 
@@ -263,6 +281,8 @@ Note:
 
 - It might make more sense to choose narrow intervals at shorter time lags and wider intervals at longer time lags.
 - Store the interval names in a new column named `samplingInt`
+- explore the dataset by using a logarithmic `y-axis` (`scale_y_log10()`) and looking at the different parts of the `x-axis` seperately
+- We will later filter the data by the sampling interval. We therefore recommend the use of `labels_nice()` from the package `CMAtools` for nicer, more intuitive labels.
 
 
 ```{r, echo = F, include = T, eval = T}
@@ -290,31 +310,25 @@ ggplot(wildschwein_BE, aes(timelag)) +
   scale_y_log10() +
   geom_vline(xintercept = breaks, col = "red")
 
-labels_nice <- function(breaks){
-  return(paste(lag(breaks,default = NULL),lead(breaks,default = NULL),sep="-"))
-}
-
-# todo: noch in CMA Tools integrieren
-
 
 wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
-    samplingInt = cut(timelag,breaks = breaks,labels = labels_nice(breaks))
+    samplingInt = cut(timelag,breaks = breaks,labels = CMAtools::labels_nice(breaks))
   ) 
 
-wildschwein_BE %>%
-  as.data.frame() %>%
-  group_by(samplingInt) %>%
-  summarise(
-    n = n()
-  ) %>%
-  ggplot(aes(samplingInt,n)) +
-  geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_y_log10()
+# wildschwein_BE %>%
+#   as.data.frame() %>%
+#   group_by(samplingInt) %>%
+#   summarise(
+#     n = n()
+#   ) %>%
+#   ggplot(aes(samplingInt,n)) +
+#   geom_bar(stat = "identity") +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+#   scale_y_log10()
 
-
+# Todo: diesen Plot entfernen?
 ```
 
 
@@ -350,10 +364,12 @@ wildschwein_BE <- cbind(wildschwein_BE,coordinates)
 
 In this task we will derive some additional movement parameters from our trajectories. Note, so far our trajectories only consist of a list of time-stamped spatial locations. So let's calculate the animal's speed based on the distance and timelag in between two subsequent locations. 
 
-- If you're working with dplyr, you can add `samplingInt` to `group_by()` (in addition to `TierID`) and so make sure you're not calculating speed across different sampling intervals. 
-- You can use the function `euclid()` from the `CMAtools` package to calculate Euclidean distances between subsequent rows. Use ?euclid to see what the function expects and returns. 
+- If you're working with `dplyr`, you can add `samplingInt` to `group_by()` (in addition to `TierID`) and so make sure you're not calculating speed across different sampling intervals. 
+- You can use the function `euclid()` from the `CMAtools` package to calculate Euclidean distances between subsequent rows. Use `?euclid` to see what the function expects and returns. 
 - use `lead(E,1)` to address the the row `n+1`
 - make sure you're clear in what unit you are measuring speed. Meters per second is a SI base unit, but might be unhandy for the speeds travelled by wild boar. Perhaps make two speed columns, one in meters per second and one in km per hour?
+
+<!-- Todo laup: ich denke km pro stunde macht wenig sinn. bleiben wir einfach bei m/s? -->
 
 ```{r}
 ## Task 3 ####################
@@ -378,39 +394,46 @@ wildschwein_BE <- wildschwein_BE %>%
 
 @laube2011 analyse animal movement across different scales (see below).
 
-![](02_Images/laube_2011_2.jpg)
+![@laube2011: *Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale.*](02_Images/laube_2011_2.jpg)
 
 
-We will do the same for our data and will be working on a subset of our dataset. We will only need trajectories with a sampling interval of around 60 seconds. Filter your data accordingly and save it to a new variable (`wildschwein_BE_short`). From this subset, take just one segment from the groups we created in the preceeding task.
+We will do the same for our data and will be working on a *subset* of our dataset. We will only need trajectories with a sampling interval of around 60 seconds ($$\pm$$20 seconds). Filter your data accordingly and save it to a new variable (we will use `wildschwein_BE_1`). From this subset, take the first 100 positions for the following task. 
 
 
-Now, we will artificially reduce the granularity of our sampling interval by selecting every 3rd, 6th and 9th rows. You can use `slice()` for this task and use a sequence (`seq()`) to select rows by rownumber. Calculate the timelag, distance (`euclid()`) and speed for every resampled dataset. Compare the speeds in a line plot and viualize the trajectories in a map. Interpret the line plot, what do the different lines for the different temporal granularities tell you?
+#### Filter
+If you like to stick to the `tidyverse` approach, you can use `slice()` to subset the dataset by row number. Slice takes an integer vector. Eg: `slice(dataset, 1:10)`, returns the first 10 rows of a dataset, `slice(dataset, c(1,5,10))` returns the 1^st^, 5^th^ and 10^th^ value of a dataset.
 
-<!-- TODO: das ist eine etwas knappe formulierung, aber es ist schon spät. mache das noch am donnerstag weiter -->
+```{r}
+wildschwein_BE_1 <- wildschwein_BE %>%
+  filter(samplingInt == "40-80") %>%
+  slice(2:100)
+```
+
+#### Resample 
+Now manually reduce the granularity of our sampling interval by selecting samples every 3^rd^, 6^th^ and 9^th^ minute. 
+
+- You can use `slice()` again for this task by providing an integer vector (with `seq()`) in the desired frequency
+- Save each resampled dataset in a new variable. We will use (`wildschwein_BE_3`, `wildschwein_BE_6` and `wildschwein_BE_9`)
 
 
-<!-- TODO: die karte noch etwas schöner plotten -->
+```{r}
+wildschwein_BE_3 <- wildschwein_BE_1 %>%
+  slice(seq(1,nrow(.),3)) # the dot (".") represents the piped dataset
 
-```{r, echo = F, include = T,eval = T}
-
-wildschwein_BE_short <- wildschwein_BE %>%
-  filter(samplingInt == "40-80")
-
-wildschwein_BE_short <- wildschwein_BE_short %>%
-  filter(group == 9) %>%
-  slice(1:100)
-
-
-wildschwein_BE_3 <- wildschwein_BE_short %>%
-  slice(seq(1,nrow(.),3))
-
-wildschwein_BE_6 <- wildschwein_BE_short %>%
+wildschwein_BE_6 <- wildschwein_BE_1 %>%
   slice(seq(1,nrow(.),6))
 
 
-wildschwein_BE_9 <- wildschwein_BE_short %>%
+wildschwein_BE_9 <- wildschwein_BE_1 %>%
   slice(seq(1,nrow(.),9))
+```
 
+#### Update derived parameters
+
+`timelag`, `steplength` and `speed` now have to be recalculated on the basis of the resampled data. Do so as we illustrated in the Chapter *Demo*. 
+
+
+```{r}
 wildschwein_BE_3 <- wildschwein_BE_3 %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
@@ -433,25 +456,56 @@ wildschwein_BE_9 <- wildschwein_BE_9 %>%
     speed = steplength/timelag
   )
 
+```
+
+
+#### Visualize 
+Compare the speeds in a line plot and viualize the trajectories in a map (see examples below). Interpret the line plot, what do the different lines for the different temporal granularities tell you?
+
+We've stored our location data in three different form in our dataset. Once as a `geometry`, once as `E`/`N` and once as `lat`/`long`. In our view, it is most practical to use the `E`/`N` (integer) columns of our data to map them in this task
+
+- `geom_sf()` does not plot lines, just points
+- Therefore, use `geom_path()` *and* `geom_point()` rather than `geom_sf()` within `ggplot`
+- In contrast to `geom_sf()`, you have to explicitly specify  the `x`/`y` columns (in our case `E`/`N`) with `geom_path()`/`geom_point()`
+- `geom_line()` does not work when mapping trajectory data, since it connects the observations *in order of the variable on the x axis*. `geom_path()` connects the observations in the order in which they appear in the data
+
+
+```{r, echo = F, include = T,eval = T}
+
+
 
 ggplot() +
-  geom_point(data = wildschwein_BE_short, aes(E,N), colour = "red", alpha = 0.2) +
-  geom_path(data = wildschwein_BE_short, aes(E,N), colour = "red", alpha = 0.2) +
-  geom_point(data = wildschwein_BE_9, aes(E,N), colour = "red") +
-  geom_path(data = wildschwein_BE_9, aes(E,N), colour = "red") +
-  geom_point(data = wildschwein_BE_6, aes(E,N), colour = "blue") +
-  geom_path(data = wildschwein_BE_6, aes(E,N), colour = "blue") +
-  geom_point(data = wildschwein_BE_3, aes(E,N), colour = "green") +
-  geom_path(data = wildschwein_BE_3, aes(E,N), colour = "green")
+  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = wildschwein_BE_3, aes(E,N, colour = "3 minutes")) +
+  geom_path(data = wildschwein_BE_3, aes(E,N, colour = "3 minutes")) +
+  labs(color="Trajecotry", title = "Compare original with 3 minutes-resampled data")  +
+  theme_minimal()
 
 ggplot() +
-  geom_point(data = wildschwein_BE_9, aes(DatetimeUTC,speed), colour = "red") +
-  geom_line(data = wildschwein_BE_9, aes(DatetimeUTC,speed), colour = "red") +
-  geom_point(data = wildschwein_BE_6, aes(DatetimeUTC,speed), colour = "blue") +
-  geom_line(data = wildschwein_BE_6, aes(DatetimeUTC,speed), colour = "blue") +
-  geom_point(data = wildschwein_BE_3, aes(DatetimeUTC,speed), colour = "green") +
-  geom_line(data = wildschwein_BE_3, aes(DatetimeUTC,speed), colour = "green") +
-  labs(x = "Time",y = "Speed (m/s)")
+  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = wildschwein_BE_6, aes(E,N, colour = "6 minutes")) +
+  geom_path(data = wildschwein_BE_6, aes(E,N, colour = "6 minutes")) +
+  labs(color="Trajecotry", title = "Compare original with 6 minutes-resampled data") +
+  theme_minimal()
+
+ggplot() +
+  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = wildschwein_BE_9, aes(E,N, colour = "9 minutes")) +
+  geom_path(data = wildschwein_BE_9, aes(E,N, colour = "9 minutes"))+
+  labs(color="Trajecotry", title = "Compare original with 9 minutes-resampled data") +
+  theme_minimal()
+
+
+ggplot() +
+  geom_line(data = wildschwein_BE_1, aes(DatetimeUTC,speed, colour = "1 minute")) +
+  geom_line(data = wildschwein_BE_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
+  geom_line(data = wildschwein_BE_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
+  geom_line(data = wildschwein_BE_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
+  labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
+  theme_minimal()
 
 ``` 
 
@@ -464,14 +518,16 @@ ggplot() +
 
 ### Task 5 (Optional): Deriving movement parameters II: Rolling window functions
 
-Measuring speed between subsequent samples is great, but especially for short sampling intervals this can be misleading due to measurement error. It might be desirable to *smoothen* these errors using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offers a variate of moving window functions (`roll*`). Use `roll_mean()` to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
+<!-- Todo laup: passt dieser Titel noch?  -->
+
+A different approach would be to *smoothen* the derived parameters using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offers a variate of moving window functions (`roll*`). Use `roll_mean()` to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
 
 ```{r}
-## Task 4 ####################
+## Task 5 (Optional) ####################
 ```
 
 
-```{r, include=T, results=F}
+```{r, echo = T, eval = T, include= T}
 
 library(zoo)
 
@@ -480,22 +536,23 @@ rollmean(example,k = 3,fill = NA,align = "left")
 rollmean(example,k = 4,fill = NA,align = "left")
 
 ```
-Visualize the output from your moving windows and compare different window sizes (`k = `). 
+
+Now run `rollmean`on the `speed` variable of your original data (`wildschwein_BE`). Visualize the output from your moving windows and compare different window sizes (`k = `). It will probabbly make sense to just visualize a subset of your data.
 
 
 ```{r}
 
 
 wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
+  group_by(TierID,samplingInt) %>%
   mutate(
-    speed2 = rollmean(speed,3,NA,align = "left"),
-    speed3 = rollmean(speed,5,NA,align = "left"),
-    speed4 = rollmean(speed,10,NA,align = "left")
+    speed3 = rollmean(speed,3,NA,align = "left"),
+    speed6 = rollmean(speed,6,NA,align = "left"),
+    speed9 = rollmean(speed,9,NA,align = "left")
   )
 
 wildschwein_BE[1:30,] %>%
-  gather(key,val,c(speed,speed2,speed3,speed4)) %>%
+  gather(key,val,c(speed,speed3,speed6,speed9)) %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
   geom_point() +
   geom_line() 
