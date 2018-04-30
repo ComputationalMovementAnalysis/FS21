@@ -48,8 +48,8 @@ wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
 wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
-
 ```
+
 
 
 ```{r, purl = F}
@@ -552,7 +552,8 @@ lapply(packages, detach, character.only = TRUE, unload = TRUE)
 # clear environment
 rm(list = ls())
 ```
-<!-- Todo nils: call R-File here rather than explicitly writing the script -->
+
+
 
 
 

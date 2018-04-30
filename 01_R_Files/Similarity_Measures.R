@@ -1,5 +1,10 @@
+devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
 
 library(lubridate)
+library(tidyverse) 
+library(sf)
+library(CMAtools)
+
 
 wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE_all.csv",",")
 
@@ -71,11 +76,6 @@ venu_evel <- temporal_join(as.data.frame(wildschwein_BE),TierName,"Venu","Evel",
 
 
 venu_evel <- venu_evel %>%
-  mutate(
-  )
-
-
-venu_evel <- venu_evel %>%
   ungroup() %>%
   mutate(
     timediff = abs(as.integer(difftime(DatetimeUTC1,DatetimeUTC2,units = "secs"))),
@@ -84,27 +84,34 @@ venu_evel <- venu_evel %>%
     distance_small = distance < 100,
     near = timediff_small & distance_small,
     near_nr = number_groups(near)
-  ) %>%
-  rowwise() %>%
-  mutate(
-    Emean = mean(E1,E2),
-    Nmean = mean(N1,N2)
   )
 
 
 venu_evel$Emean <- rowMeans(venu_evel[,c("E1","E2")])
 venu_evel$Nmean <- rowMeans(venu_evel[,c("N1","N2")])
-
+max(venu_evel$n)
 venu_evel <- venu_evel %>%
   filter(near) %>%
   group_by(near_nr) %>%
-  mutate(gr_dist = mean(distance))
+  mutate(
+    gr_dist = mean(distance),
+    n = n()
+    ) %>%
+  filter(n > 10)
 
-venu_evel %>%
-    filter(near_nr == "6")%>%
+hist(venu_evel$n)
+
+for(nr in unique(venu_evel$near_nr)){
+  venu_evel %>%
+    filter(near_nr == nr)%>%
     ggplot() +
     geom_segment(aes(x = E1,y = N1,xend = E2,yend = N2), colour = "grey",alpha = 0.2) +
     geom_path(aes(E1,N1), colour = "red")+
     geom_path(aes(E2,N2), colour = "blue") +
-    geom_label(aes(x = Emean,y = Nmean,label = as.integer(distance)))
+    geom_label(aes(x = Emean,y = Nmean,label = as.integer(distance))) 
+  filename = paste0("../_temp/",nr,".png")
+  ggsave(filename)
+}
+
+
 
