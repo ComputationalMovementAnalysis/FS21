@@ -95,13 +95,13 @@ venu_evel <- venu_evel %>%
 venu_evel$Emean <- rowMeans(venu_evel[,c("E1","E2")])
 venu_evel$Nmean <- rowMeans(venu_evel[,c("N1","N2")])
 
-venu_evel %>%
+venu_evel <- venu_evel %>%
+  filter(near) %>%
   group_by(near_nr) %>%
-  mutate(mean(distance))
+  mutate(gr_dist = mean(distance))
 
 venu_evel %>%
-    filter(near) %>%
-    filter(near_nr == "5")%>%
+    filter(near_nr == "6")%>%
     ggplot() +
     geom_segment(aes(x = E1,y = N1,xend = E2,yend = N2), colour = "grey",alpha = 0.2) +
     geom_path(aes(E1,N1), colour = "red")+
