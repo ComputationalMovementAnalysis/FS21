@@ -36,7 +36,7 @@ overlap_spat_temp <- overlap_spat_temp %>%
   rownames_to_column("id1") %>%
   gather(id2,bool,-id1) %>%
   filter(bool == TRUE) %>%
-  select(-bool)
+  dplyr::select(-bool)
 ## Task 4 ####################
 
 
@@ -52,6 +52,44 @@ overlap_spat_temp <- overlap_spat_temp %>%
 #   addCircles(lng = ~Long1,lat = ~Lat1) %>%
 #   addTiles()
 
-## wildschwein_BE
+
+## Task 5 #######################
+
+library(recurse)
+library(ggforce)
+
+recurs <- wildschwein_BE_sf %>%
+  filter(TierID == "001A") %>%
+  dplyr::select(E,N,DatetimeUTC,TierID) %>%
+  st_set_geometry(NULL) %>%
+  as.data.frame() %>%
+  getRecursions(100)
+
+recurStats <- recurs$revisitStats
+
+recurStats <- recurStats %>%
+  group_by(coordIdx) %>%
+  summarise(
+    number_of_visits = max(visitIdx),
+    x = unique(x),
+    y = unique(y),
+    total_time = sum(timeInside),
+    max_time = max(timeInside),
+    mean_time = mean(timeInside)
+  )
+
+data1 = filter(recurStats, number_of_visits > 30)
+wildschwein_BE_sf %>%
+  ungroup() %>%
+  filter(TierID == "001A") %>%
+  ggplot(aes(E,N)) +
+  geom_point(alpha = 0.4, colour = "grey") +
+  geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) +
+  coord_fixed(1)
+
+## # subset rows
+## wildschwein_BE_sf[1:10,]
+## wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Ueli",]
 ## 
-## wildschwein_BE_sf
+## # subset colums
+## wildschwein_BE_sf[,2:3]

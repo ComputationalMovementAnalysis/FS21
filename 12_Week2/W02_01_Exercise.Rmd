@@ -290,7 +290,7 @@ Last week, we transformed our data from a `data.frame` to an `sf` object. This t
 ```{r, echo = F, include=T, eval = T}
 
 wildschwein_BE %>%
-  select(-CollarID,-TierName) %>%
+  dplyr::select(-CollarID,-TierName) %>%
   as.data.frame() %>%
   slice(1:10)
 
@@ -349,9 +349,9 @@ wildschwein_BE <- wildschwein_BE %>%
 ![@laube2011: *Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale.*](02_Images/laube_2011_2.jpg)
 
 #### Filter
-To do so, filter your data to positions with a sampling interval between 40 and 60 seconds and save it to a new variable (we will use `wildschwein_BE_1`). From this subset, take the first 100 positions[^1] for the following task. 
+To do so, filter your data to positions with a sampling interval between 40 and 60 seconds and save it to a new variable (we will use `wildschwein_BE_1`). From this subset, take the first 100 positions[^201] for the following task. 
 
-[^1]: In the solution (and the graphics), we actually use locations 2-100 for aesthetical reasons
+[^201]: In the solution (and the graphics), we actually use locations 2-100 for aesthetical reasons
 
 If you like to stick to the `tidyverse` approach, you can use `slice()` to subset the dataset by row number. Slice takes an integer vector. Eg: `slice(dataset, 1:10)`, returns the first 10 rows of a dataset, `slice(dataset, c(1,5,10))` returns the 1^st^, 5^th^ and 10^th^ value of a dataset.
 
@@ -543,16 +543,8 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
 
 
 
-```{r, purl = F}
-# detach packages
-packages = sapply(sessionInfo()$otherPkgs, function(x) x$Package)
-packages = packages[packages != "bookdown"]
-packages = sapply(packages, function(p) paste0("package:", p))
-lapply(packages, detach, character.only = TRUE, unload = TRUE)
-# clear environment
-rm(list = ls())
+```{r code=readLines('01_R_Files/purl_all_rmd.R'), echo = F, include=F, eval=T}
 ```
-
 
 
 

@@ -79,25 +79,9 @@ mcp <- st_convex_hull(summarise(wildschwein_BE))
 plot(mcp)
 ggplot(mcp,aes(fill = TierID)) +
   geom_sf(alpha = 0.4)
-## theme(
-##   legend.position = "none",
-##   panel.grid.major = element_line(colour = "transparent"),
-##   panel.background = element_rect(fill = "transparent"),
-##   axis.title = element_blank(),
-##   axis.text = element_blank(),
-##   axis.ticks = element_blank()
-##   )
 ggplot(mcp,aes(fill = TierID)) +
   geom_sf(alpha = 0.4) +
-  coord_sf(datum = 2056) +
-  theme(
-    legend.position = "none",
-    panel.grid.major = element_line(colour = "transparent"),
-    panel.background = element_rect(fill = "transparent"),
-    axis.title = element_blank(),
-    axis.text = element_blank(),
-    axis.ticks = element_blank()
-    )
+  coord_sf(datum = 2056)
 
 ## Task 6 ####################
 
@@ -120,3 +104,7 @@ ggplot(mcp,aes(fill = TierID)) +
     axis.ticks = element_blank()
     )
 
+wildschwein_BE <- group_by(wildschwein_BE,TierID)
+## wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+## 
+## summary(wildschwein_BE$timelag)

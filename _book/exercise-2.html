@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="exercise-1.html">
-<link rel="next" href="references.html">
+<link rel="next" href="exercise-3.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -46,6 +46,15 @@
 
 
 
+<script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
+<link href="libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="libs/leaflet-binding-1.1.0/leaflet.js"></script>
 
 
 <style type="text/css">
@@ -113,6 +122,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5-ploting-spatial-objects"><i class="fa fa-check"></i>Task 5: Ploting spatial objects</a></li>
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6-adding-a-background-map"><i class="fa fa-check"></i>Task 6: Adding a background map</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#solutions-rcode"><i class="fa fa-check"></i>Solutions (RCode)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i>Exercise 2</a><ul>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -134,6 +144,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-optional-calculate-turning-angles"><i class="fa fa-check"></i>Task 5 (optional): Calculate turning angles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html"><i class="fa fa-check"></i>Exercise 3</a><ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#learning-outcomes-1"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#preperation-2"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#demo-tools-for-generic-segmentation"><i class="fa fa-check"></i>Demo: Tools for generic segmentation</a><ul>
+<li><a href="exercise-3.html#introducing-cut-on-dummy-data">Introducing <code>cut()</code> on dummy data</a></li>
+<li><a href="exercise-3.html#using-cut-on-timelag">Using <code>cut()</code> on <code>timelag</code></a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#generating-unique-id-on-segments"><i class="fa fa-check"></i>Generating unique ID on segments</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#segmentation-as-in-laube-purves-2011"><i class="fa fa-check"></i>Segmentation as in Laube &amp; Purves (2011)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#tasks"><i class="fa fa-check"></i>Tasks</a><ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-2-explore-and-visualize-segementation"><i class="fa fa-check"></i>Task 2: Explore and visualize segementation</a></li>
+<li><a href="exercise-3.html#task-3-optional-plotting-with-leaflet">Task 3 (Optional): Plotting with <code>leaflet</code></a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-similarity-measures"><i class="fa fa-check"></i>Task 4: Similarity measures</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-5-calculate-similarity"><i class="fa fa-check"></i>Task 5: Calculate similarity</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -183,6 +211,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="preperation-1" class="section level2">
 <h2>Preperation</h2>
+<p>Install the package <code>zoo</code> to get access to the rolling window functions for last exercise. Also, install the package <code>CMAtools</code> where we have put together some helper functions that simplify some tasks in this course. The package <code>CMAtools</code> is not on CRAN, and we need to install it similar to how we installed the newest version of <code>ggplot</code> last week. Since it is not on the official Git hub page either, but on the ZHAW owned Git hub server, the syntax for installation is slightly different (see code below).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;zoo&quot;</span>)
+
+devtools::<span class="kw">install_git</span>(<span class="st">&quot;https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git&quot;</span>)</code></pre></div>
+<p>Note:</p>
+<ul>
+<li>If you want to understand what the functions in CMAtools do, you can either check the package documentation (<code>help(package = &quot;CMAtools&quot;)</code>) or look at the functions <a href="https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools">GIThub site</a>.</li>
+<li>We will be extending this package regularly throughout this course. Note: You will have to regularly reinstall the package with the code below in order to update your local version of the package.</li>
+</ul>
 <p>Open your R Project from last week. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(sf)
@@ -192,15 +229,6 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">read_delim</span>(
 wildschwein_BE =<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>,<span class="dt">remove =</span> <span class="ot">FALSE</span>)
 
 wildschwein_BE &lt;-<span class="st"> </span><span class="kw">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</code></pre></div>
-<p>Install the package <code>zoo</code> to get access to the rolling window functions for last exercise. Also, install the package <code>CMAtools</code> where we have put together some helper functions that simplify some tasks in this course. The package <code>CMAtools</code> is not on CRAN, and we need to install it similar to how we installed the newest version of <code>ggplot</code> last week. Since it is not on the official Git hub page either, but on the ZHAW owned Git hub server, the syntax for installation is slightly different (see code below).</p>
-<p>Note:</p>
-<ul>
-<li>If you want to understand what the functions in CMAtools do, you can either check the package documentation (<code>help(package = &quot;CMAtools&quot;)</code>) or look at the functions <a href="https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools">GIThub site</a>.</li>
-<li>We will be extending this package regularly throughout this course. Note: You will have to regularly reinstall the package with the code below in order to update your local version of the package.</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;zoo&quot;</span>)
-
-devtools::<span class="kw">install_git</span>(<span class="st">&quot;https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git&quot;</span>)</code></pre></div>
 </div>
 <div id="demo-tidyverse" class="section level2">
 <h2>Demo Tidyverse</h2>
@@ -383,7 +411,7 @@ pigs %&gt;%
 <li>Were all individuals tracked concurrently or sequentially?</li>
 <li>What is the temporal sampling interval between the locations?</li>
 </ul>
-<p>Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions? <img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-48-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-48-3.png" width="672" /></p>
+<p>Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions? <img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-49-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-49-3.png" width="672" /></p>
 </div>
 <div id="input-geometry-as-columns" class="section level3">
 <h3>Input: Geometry as columns</h3>
@@ -471,7 +499,7 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wilds
 <li>In contrast to <code>geom_sf()</code>, you have to explicitly specify the <code>x</code>/<code>y</code> columns (in our case <code>E</code>/<code>N</code>) with <code>geom_path()</code>/<code>geom_point()</code></li>
 <li><code>geom_line()</code> does not work when mapping trajectory data, since it connects the observations <em>in order of the variable on the x axis</em>. <code>geom_path()</code> connects the observations in the order in which they appear in the data</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-57-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-57-3.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-57-4.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-58-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-58-3.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-58-4.png" width="672" /></p>
 </div>
 </div>
 <div id="task-4-deriving-movement-parameters-ii-rolling-window-functions" class="section level3">
@@ -482,18 +510,26 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wilds
 
 example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">3</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1]  0.9001342159 -0.0898657812 -0.2741531181 -1.1057778973 -0.5030673430
-##  [6] -0.2181475103  0.1987898837 -0.0007413742            NA            NA
+##  [1]  0.897931803  0.584155903  0.858075812  0.723173420  0.409346406
+##  [6] -0.006693937  0.248962216  0.676170425           NA           NA
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">4</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1]  0.3465063 -0.2320381 -0.5417152 -0.7058949 -0.3282494 -0.1870079
-##  [7]  0.1228825         NA         NA         NA</code></pre></div>
+##  [1] 0.8020673 0.8190780 0.6763574 0.4356282 0.3759406 0.2195222 0.4003760
+##  [8]        NA        NA        NA</code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>wildschwein_BE_1</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 </div>
 <div id="task-5-optional-calculate-turning-angles" class="section level3">
 <h3>Task 5 (optional): Calculate turning angles</h3>
 <p>Just like we did with <code>speed</code> in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! <code>CMAtools</code> has the function <code>turning_angle()</code><a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. Here is an example on some dummy data. We represent the turning angle as the clockwise, angular offset from moving straight ahead.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
-<!-- Todo nils: call R-File here rather than explicitly writing the script -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw">library</span>(grid) <span class="co"># just for the arrows</span>
+<span class="kw">set.seed</span>(<span class="dv">20</span>)
+<span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">cumsum</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>)),<span class="dt">y =</span> <span class="kw">cumsum</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">angle =</span> <span class="kw">as.integer</span>(<span class="kw">turning_angle</span>(x,y))) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x,y)) +
+<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">lag</span>(x), <span class="dt">y =</span> <span class="kw">lag</span>(y), <span class="dt">xend =</span> x,<span class="dt">yend =</span> y),<span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.5</span>,<span class="st">&quot;cm&quot;</span>))) +
+<span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">paste0</span>(angle,<span class="st">&quot;°&quot;</span>)),<span class="dt">alpha =</span> <span class="fl">0.4</span>,<span class="dt">nudge_x =</span> <span class="fl">0.2</span>, <span class="dt">nudge_y =</span> <span class="fl">0.2</span>) +
+<span class="st">  </span><span class="kw">coord_equal</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <!-- ## Solutions (RCode) -->
 <!-- ```{r code=readLines('12_Week2/RFiles/W02_01_Exercise.R'), results='asis', echo = T, include=T, eval=F} -->
 <!-- ``` -->
@@ -514,7 +550,7 @@ example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
         </div>
       </div>
 <a href="exercise-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercise-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

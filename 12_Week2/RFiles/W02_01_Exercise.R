@@ -1,3 +1,6 @@
+## install.packages("zoo")
+## 
+## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
 library(tidyverse)
 library(sf)
 
@@ -6,10 +9,6 @@ wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
 wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
-
-## install.packages("zoo")
-## 
-## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
 ## Demo Tidyverse ################
 now <- Sys.time()
 
@@ -36,21 +35,23 @@ lag(numbers)
 lag(numbers,n = 5)
 
 lag(numbers,n = 5, default = 0)
-
 lead(numbers)-numbers
-
 wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC,units = "secs"))
 
 wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
-
 summary(wildschwein_BE$timelag)
-
 wildschwein_BE <- group_by(wildschwein_BE,TierID)
-
 wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
 
 summary(wildschwein_BE$timelag)
-
+## summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
+summarise(group_by(as.data.frame(wildschwein_BE),TierID), mean_timelag = mean(timelag, na.rm = T))
+wildschwein_BE %>%                     # Take wildschwein_BE...
+  as.data.frame() %>%                  # ...convert it to a data.frame...
+  group_by(TierID) %>%                 # ...group it by TierID
+  summarise(                           # Summarise the data...
+    mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
+  )
 pigs = data.frame(
   TierID=c(8001,8003,8004,8005,8800,8820,3000,3001,3002,3003,8330,7222),
   sex=c("M","M","M","F","M","M","F","F","M","F","M","F"),
@@ -61,7 +62,7 @@ pigs = data.frame(
 pigs
 
 pigs %>%
-  summarise(         
+    summarise(         
     mean_weight = mean(weight)
   )
 
@@ -76,17 +77,6 @@ pigs %>%
   summarise(         
     mean_weight = mean(weight)
   )
-
-## summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
-summarise(group_by(as.data.frame(wildschwein_BE),TierID), mean_timelag = mean(timelag, na.rm = T))
-
-wildschwein_BE %>%                     # Take wildschwein_BE...
-  as.data.frame() %>%                  # ...convert it to a data.frame...
-  group_by(TierID) %>%                 # ...group it by TierID
-  summarise(                           # Summarise the data...
-    mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
-  )
-
 
 ## Task 1 ####################
 
@@ -110,7 +100,7 @@ wildschwein_BE[1:50,] %>%
 
 
 wildschwein_BE %>%
-  select(-CollarID,-TierName) %>%
+  dplyr::select(-CollarID,-TierName) %>%
   as.data.frame() %>%
   slice(1:10)
 
@@ -233,12 +223,42 @@ wildschwein_BE_1 %>%
   # geom_point() +
   geom_line() 
 
-
-set.seed(10)
+library(grid) # just for the arrows
+set.seed(20)
 data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
   mutate(angle = as.integer(turning_angle(x,y))) %>%
-  ggplot(aes(x,y,label = paste0(angle,"°"))) +
-  geom_path() +
-  geom_label() +
+  ggplot(aes(x,y)) +
+  geom_segment(aes(x = lag(x), y = lag(y), xend = x,yend = y),arrow = arrow(length = unit(0.5,"cm"))) +
+  geom_label(aes(label = paste0(angle,"°")),alpha = 0.4,nudge_x = 0.2, nudge_y = 0.2) +
   coord_equal()
+
+
+breaks <- c(0,40,80,300,600,1200,2500,3000,4000,7500,110000)
+
+
+ggplot(wildschwein_BE, aes(timelag)) +
+  geom_histogram(binwidth = 10) +
+  lims(x = c(0,600)) +
+  scale_y_log10() +
+  geom_vline(xintercept = breaks, col = "red")
+
+ggplot(wildschwein_BE, aes(timelag)) +
+  geom_histogram(binwidth = 10) +
+  lims(x = c(600,1200)) +
+  scale_y_log10() +
+  geom_vline(xintercept = breaks, col = "red")
+
+
+ggplot(wildschwein_BE, aes(timelag)) +
+  geom_histogram(binwidth = 10) +
+  lims(x = c(1200,10000)) +
+  scale_y_log10() +
+  geom_vline(xintercept = breaks, col = "red")
+
+
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
+    samplingInt = cut(timelag,breaks = breaks,labels = labels_nice(breaks))
+  ) 
 

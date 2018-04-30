@@ -14,6 +14,11 @@ peds <- peds %>%
   )
 
 peds %>%
+  as.data.frame() %>%
+  dplyr::select(-geometry) %>%
+  rename(E = POINT_X) %>%
+  rename(N = POINT_Y) %>%
+  rename(DatetimeUTC = datetime) %>%
   write_csv("../CMA_FS2018_Filestorage/pedestrian.csv")
 
 peds_mat <- 1:6 %>%

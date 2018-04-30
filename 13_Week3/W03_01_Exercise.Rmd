@@ -22,19 +22,17 @@ Readings Theory:
 
 ## Preperation
 
-Install and load the following libraries:
+Install the following libraries:
 
 ```{r, echo = T, include = T, eval = F}
 install.packages("scales")
 install.packages("leaflet")
-
-library(scales)
-library(leaflet)
+install.packages("SimilarityMeasures")
 ```
 
 Open your R Project from last week. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
 
-```{r}
+```{r, echo = T, include = T, eval = T}
 library(tidyverse)
 library(CMAtools)
 library(sf)
@@ -51,7 +49,7 @@ wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,
 # transform to CH1903 LV95
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 
-## Add geometry as E/N integer Columns
+# Add geometry as E/N integer Columns
 wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
   cbind(wildschwein_BE,.) %>%
   rename(E = X) %>%
@@ -72,7 +70,9 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ## Demo: Tools for generic segmentation
 
-### Introcuding `cut()` on dummy data
+<!-- Todo laup: dieses demo ist noch etwas überfüllt. ich denke wir müssen hier noch ausdünnen. Vorschlag? -->
+
+### Introducing `cut()` on dummy data
 
 We often need to split a continuous variable into specific intervals. For this, the function `cut()`is very handy. We will introduce this function with a quick example. Assume we have a series of number that represent the ages of ten different people.
 
@@ -96,8 +96,8 @@ Note:
 - If a number does not fit within an interval defined by `breaks =`, `cut()` will return `NA` (as for example for the fifth element `53`).
 - The default `labels` with `(` and `]` might seem a little ugly and puzzling at first, but in fact they are [a standard form of notating intervals in mathematics](https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals).
 - If you don't like `(` and `]`, you can:
-  + specify your own labels with the argument `labels =` *or*
-  + use the the function `labels_nice` we provide with the `CMAtools`-package
+    + specify your own labels with the argument `labels =` *or*
+    + use the the function `labels_nice` we provide with the `CMAtools`-package
 - Four thresholds (i.e. `breaks`) return three intervals (i.e. `lables`), as shown below.
 
 ```{r, echo = T, eval = T, include = T}
@@ -116,7 +116,7 @@ cut(ages, breaks = breaks, labels = labels_nice(breaks))
 
 ### Using `cut()` on `timelag`
 
-Last week you will have noticed that we have different sampling intervals within our wildboar data (this can be represented with the `timelag` column). We have to segment our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale or granularity we are performing this analysis. 
+Last week you will have noticed that we have different sampling intervals within our wild boar data (this can be represented with the `timelag` column). We have to segment our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale or granularity we are performing this analysis. 
 
 We therefore have to define thresholds to group segments with a similar sampling interval. If we explore the dataset in more detail (e.g. using histograms at different scales), we can choose reasonable threshold values to group the trajectories into different sampling intervals. 
 
@@ -163,7 +163,7 @@ wildschwein_BE <- wildschwein_BE %>%
 ### Generating unique ID on segments
 
 
-For the next task, it would be pretty handy if each sequence of positions with the *same* sampling interval had a unique ID. In this way, we could use this ID to filter the dataset for uninterrupted, "clean", trajectories without varying sampling intervals and could also use the ID as a grouping variable. 
+Often it would be pretty handy if each sequence of positions with the *same* sampling interval had a unique ID. In this way, we could use this ID to filter the dataset for uninterrupted, "clean", trajectories without varying sampling intervals and could also use the ID as a grouping variable. 
 
 This type of "grouping" similar values is a pretty common task that we often come across. So far, we've not found a good solution from available packages. We have therefore created our own function that we provide with the `CMAtools` package called `number_groups()`. This function takes a logical vector as an input and assigns subsequent `TRUE` values to the same group. Consider following example:
 
@@ -192,26 +192,15 @@ Use `?number_groups` to get more information.
 
 
 
+### Segmentation as in Laube & Purves (2011)
 
+You've read @laube2011 about segmenting trajectories. In the paper, they define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d*". This sounds more complicated than it is, the figure illustrates the method nicely.
 
-## Tasks
+![@laube2011: (a) Temporal representation of constant sample interval with associated temporal window v for three exemplary points; (b) Measurement of average distance in temporal window v to sample points in spatial representation; (c) Removal of all points where average distance is less than a given threshold, i.e. removal of static points; and (d) Removal of subtrajectories with less than a threshold temporal length ](02_Images/laube_2011.jpg)
 
+We will implement this method on some dummy data. Once you've grasped the idea on this simple data, you will implement it on the wild boar data. 
 
-
-### Task 1: Segmenting methods
-
-```{r}
-## Task 1 ####################
-```
-
-
-You've read @laube2011 about segmenting trajectories. In the paper, they define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window *v* is less than some threshold *d**". This sounds more complicated than it is, the figure illustrates the method nicely.
-
-![](02_Images/laube_2011.jpg)
-
-Try to implement this method on some dummy data. Once you've solved the problem on this simple data, we will implement it on the wild boar data next week. 
-
-```{r, include = T, purl = F}
+```{r, echo = T, include = T, eval = T}
 set.seed(10)
 X = cumsum(rnorm(20))
 Y = cumsum(rnorm(20))
@@ -226,7 +215,7 @@ Assume the sampling interval is 5 minutes. If we take a temporal window of 20 mi
 3. pos[n] to pos[n+1]
 4. pos[n] to pos[n+2]
 
-You can use the function `euclid()` to calculate the distances and `dplyr` functions `lead()/``lag()` to create the necessary offsets. On our dummy data, we want to calculate the mean of the following distances (red, dotted lines).
+You can use the function `euclid()` to calculate the distances and `dplyr` functions `lead()`/`lag()` to create the necessary offsets. On our dummy data, we want to calculate the mean of the following distances (red, dotted lines).
 
 ```{r, purl = F, echo = F, include = T, eval = T}
 library(ggrepel)
@@ -257,11 +246,11 @@ ggplot(df, aes(X,Y)) +
     geom_segment(data = df[n,], aes(x = Xp2,y = Yp2,xend = X,yend = Y),
                  alpha = 0.8,lty = "twodash", lwd = 1, colour = "red", inherit.aes = FALSE ) +
   # coord_fixed(1) +
-  geom_label_repel(data = df[n,], aes(x = X, y = Y),label = "pos n", nudge_x = 1) +
-  geom_label_repel(data = df[n,], aes(x = Xp1, y = Yp1),label = "pos n+1",nudge_x = -1) +
-  geom_label_repel(data = df[n,], aes(x = Xp2, y = Yp2),label = "pos n+2") +
-  geom_label_repel(data = df[n,], aes(x = Xm2, y = Ym2),label = "pos n-2",nudge_y = 1) +
-  geom_label_repel(data = df[n,], aes(x = Xm1, y = Ym1),label = "pos n-1") +
+  geom_text_repel(data = df[n,], aes(x = X, y = Y),label = "pos n", nudge_x = 1) +
+  geom_text_repel(data = df[n,], aes(x = Xp1, y = Yp1),label = "pos n+1",nudge_x = -1) +
+  geom_text_repel(data = df[n,], aes(x = Xp2, y = Yp2),label = "pos n+2") +
+  geom_text_repel(data = df[n,], aes(x = Xm2, y = Ym2),label = "pos n-2",nudge_y = 1) +
+  geom_text_repel(data = df[n,], aes(x = Xm1, y = Ym1),label = "pos n-1") +
   theme_classic() +
   theme_classic(base_size = 16)
 
@@ -297,9 +286,12 @@ rowMeans(
 )
 ```
 
-### Task 1
 
-Picking up from the previous input: we can now implement this algorithm using the `dplyr` / `mutate()` method. This might seem a little challenging at first, but if you have completed Task 2 from laast week, it is quite easy. You can pass *anything* to a new column within `mutate()` as long as it is a vector of the same length as the original dataframe. 
+## Tasks
+
+### Task 1: Segmentation
+
+Picking up from the previous input: we can now implement this algorithm using the `dplyr` / `mutate()` method. This might seem a little challenging at first, but if you have completed Task 2 from last week, it is quite easy. You can pass *anything* to a new column within `mutate()` as long as it is a vector of the same length as the original dataframe. 
 
 ```{r}
 
@@ -319,10 +311,9 @@ wildschwein_BE <- wildschwein_BE %>%
   )
 ```
 
+### Task 2: Explore and visualize segementation
 
-### Task 2
-
-We can now explore the newly created Values `stepMean` using summary statistics (histograms, boxplot, `summary()`) and define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on the question that needs to be answered. 
+After calculating `stepMean`, you can explore the newly created Values `stepMean` using summary statistics (histograms, boxplot, `summary()`) and define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on the question that needs to be answered. 
 
 ```{r, echo = F, include = T}
 ## Task 3 ####################
@@ -338,9 +329,10 @@ ggplot(wildschwein_BE, aes(stepMean)) +
 ```
 
 
+
 Based on this data, I will go with a threshold value of 15. Apply your threshold on you data, then plot a *subset* of data to verify if the arbitrary threshold was a reasonable choice. 
 
-- You can apply the threshold with an `ifelse()`statement withthe condition (`stepMean > 15`), and two keywords when this condition is met (e.g. "move") and when it's not (e.g. "stop").
+- You can apply the threshold with an `ifelse()`statement with the condition (`stepMean > 15`), and two keywords when this condition is met (e.g. "move") and when it's not (e.g. "stop").
 - sub-setting the first ten rows can be done with `[1:10,]` (don't forget the comma!)
 - we have a couple of NA values in the beginning and end of each trajectory. Use `filter(!is.na(movement))` to remove these values from the plot
 - like last week, add the trajectory using `geom_path()` and `geom_point`
@@ -367,18 +359,21 @@ wildschwein_BE[20:50,] %>%
 
 
 
-### Task 3 (Optional)
+### Task 3 (Optional): Plotting with `leaflet`
 
-To be honest, exploring segmentation with `ggplot` (and even `plotly`) is not very satisfying. Another great tool to visualize spatial data is leaflet. It's not all that hard to create a leaflet plot, just take a look at the documentation and try it with our segmented wild boar data. 
+To be honest, exploring segmentation with `ggplot` is not very satisfying when exploring the data. Another great tool to visualize spatial data is leaflet. It's not all that hard to create a leaflet plot, just take a look at [the documentation](https://rstudio.github.io/leaflet/) and try it with our segmented wild boar data. Note: You can only pass the `Lat`/`Long` coordinates to leaflet, it cannot handle our `E`/`N`-data. This is one of the reasons we've held on to this column in the first place.
 
 ```{r, echo = F, include = T, eval = T}
 
 ## Task 3 (Optional) #########################
 
+library(scales)
+library(leaflet)
+
 if (knitr::is_html_output()){
   library(leaflet)
   library(scales)
-  factpal <- colorFactor(hue_pal()(2), wildschwein_BE$moving)
+  factpal <- colorFactor(hue_pal()(2), wildschwein_BE$segment)
 
 # checking to see if this all makes sense in leaflet: (or better ggplot?)
   wildschwein_BE[0:200,] %>%
@@ -387,62 +382,119 @@ if (knitr::is_html_output()){
     addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(segment)) %>%
     addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
     addTiles() %>%
-    addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
-} else{"map only available in the online version of this document"}
+    addLegend(pal = factpal, values = ~segment, title = "Animal moving?")
+} else{print("Interactive map only available in the online version of this document")}
 ```
 
-### Task 4
+### Task 4: Similarity measures 
+
+
+Import the dataset `pedestrian.csv` (available on moodle). It it a set of six similar, but varying trajectories from pedestrians walking on a path. We will analyse these trajectories with the package `SimilarityMeasures`, comparing trajectory 1 to the trajectories 2-6. In this task, explore these trajectories first and understand how the pedestrians moved. 
+
+<!-- Todo Nils: Traj 5 should acutally be exactly like traj 6, except for the outlier. In this way, the effect of the outlier is clearly visible. -->
+
+```{r, echo = F, include = T, eval = T}
+pedestrians <- read_delim("../CMA_FS2018_Filestorage/pedestrian.csv",",")
+
+pedestrians <- pedestrians %>%
+  group_by(TrajID) %>%
+  mutate(index = row_number())
+
+
+plotraj <- function(idx,lab = F){
+  dat <- pedestrians %>%
+    filter(TrajID %in% c(1,idx))
+  
+  p <- ggplot(dat, aes(E,N, colour = as.factor(TrajID), label = index)) +
+    geom_path(colour = "grey", alpha = 0.5) + 
+    geom_point() + 
+    scale_color_discrete(guide = "none") +
+    labs(title = paste("Trajectories 1 and",idx)) +
+    theme_minimal()
+  
+  if(lab == T) p <- p + geom_text_repel(data = filter(dat,index == 1 | index %% 2 == 0),aes(E,N,label = index,colour = as.factor(TrajID)),inherit.aes = FALSE) + labs(subtitle = "Every second position labeled with index")
+  
+  p
+}
+
+
+plotraj(2)
+
+plotraj(3,T) 
+
+plotraj(4)
+plotraj(5)
+
+plotraj(6)
+
+
+```
+
+### Task 5: Calculate similarity
+
+Calculate the similarity between trajectory 1 and trajectories 2-6. Visualize your results. Note: All functions in the package needs matrices as input, with one trajectory per matrix. Therefore, split the dataframe into 6 matrices with just two columns each, `E` and `N`. You can do this with the following code:
+
+```{r, echo = T, include = T, eval = F}
+
+
+traj1 <- pedestrians %>%
+      filter(TrajID == 1) %>% # Change value 1 to 2,3 etc to  
+      as.data.frame() %>%     # filter for the other trajectories
+      dplyr::select(E,N) %>%
+      as.matrix()
+```
+
+
+```{r}
+
+# instead of repeating the same step 6 times, we use purrr::map() 
+# which creates a list of dataframes. Feel free to use a method
+# with which you feel comfortable.
+pedestrians_l <- unique(pedestrians$TrajID) %>%
+  map(function(x){
+    pedestrians %>%
+      filter(TrajID == x) %>%
+      as.data.frame() %>%
+      dplyr::select(E,N) %>%
+      as.matrix()
+  })
+```
+
+
+```{r, echo = F, include=T, eval = T}
+library(SimilarityMeasures)
+
+# Again, we use one of the purrr::map_* family of functions
+# to calculate three indicies over all 5 pairs in one go.
+# As before: feel free to use a different method you feel 
+# more comfortable in.
+pedest_measures <- map_df(pedestrians_l, ~data_frame(
+  DTW = DTW(.x,pedestrians_l[[1]]),
+  EditDist = EditDist(.x,pedestrians_l[[1]]),
+  Frechet = Frechet(.x,pedestrians_l[[1]])
+  ))
+
+pedest_measures %>%
+  rownames_to_column("traj") %>%
+  slice(2:nrow(.)) %>%
+  gather(key,val,-traj) %>%
+  ggplot(aes(traj,val))+ 
+  geom_bar(stat = "identity") +
+  facet_wrap(~key,scales = "free") +
+  labs(title = "Comparing Trajectory 1 to trajectories 2 to 6", x = "Trajectory", y = "Value")
+
+```
 
 
 
-<!-- TODO: remove task 5? -->
-<!-- ### Task 5 -->
-
-<!-- Use the package `recurse` (function `getRecursions`) to determine sites which are often visited.  -->
-<!-- <!-- Todo: either extend this task or use this as a possible challange for the individual topics and replace this with similarity measures  --> -->
 
 
-<!-- ```{r,, echo = F, include = T} -->
+```{r code=readLines('01_R_Files/purl_all_rmd.R'), echo = F, include=F, eval=T}
+```
 
-<!-- ## Task 5 ####################### -->
 
-<!-- library(recurse) -->
-<!-- library(ggforce) -->
 
-<!-- recurs <- wildschwein_BE_sf %>%  -->
-<!--   filter(TierID == "001A") %>% -->
-<!--   select(E,N,DatetimeUTC,TierID) %>% -->
-<!--   st_set_geometry(NULL) %>% -->
-<!--   as.data.frame() %>% -->
-<!--   getRecursions(100) -->
+<!-- ## Solution (R Code) -->
 
-<!-- recurStats <- recurs$revisitStats -->
-
-<!-- recurStats <- recurStats %>% -->
-<!--   group_by(coordIdx) %>% -->
-<!--   summarise( -->
-<!--     number_of_visits = max(visitIdx), -->
-<!--     x = unique(x), -->
-<!--     y = unique(y), -->
-<!--     total_time = sum(timeInside), -->
-<!--     max_time = max(timeInside), -->
-<!--     mean_time = mean(timeInside) -->
-<!--   ) -->
-
-<!-- data1 = filter(recurStats, number_of_visits > 30) -->
-<!-- wildschwein_BE_sf %>% -->
-<!--   ungroup() %>% -->
-<!--   filter(TierID == "001A") %>% -->
-<!--   ggplot(aes(E,N)) + -->
-<!--   geom_point(alpha = 0.4, colour = "grey") + -->
-<!--   geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) + -->
-<!--   coord_fixed(1) -->
-
+<!-- ```{r code=readLines('13_Week3/RFiles/W03_01_Exercise.R'), results='asis', echo = T, include=T, eval=F} -->
 <!-- ``` -->
-
-
-
-## Solution (R Code)
-
-```{r code=readLines('13_Week3/RFiles/W03_01_Exercise.R'), results='asis', echo = T, include=T, eval=F}
-```

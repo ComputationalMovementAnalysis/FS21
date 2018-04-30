@@ -335,20 +335,12 @@ ggplot(mcp,aes(fill = TierID)) +
 ```
 
 
-```{r, purl = F}
-# detach packages
-packages = sapply(sessionInfo()$otherPkgs, function(x) x$Package)
-packages = packages[packages != "bookdown"]
-packages = sapply(packages, function(p) paste0("package:", p))
-lapply(packages, detach, character.only = TRUE, unload = TRUE)
-# clear environment
-rm(list = ls())
+```{r code=readLines('01_R_Files/purl_all_rmd.R'), echo = F, include=F, eval=T}
 ```
 
+## Solutions (RCode)
 
-<!-- ## Solutions (RCode) -->
-
-<!-- ```{r code=readLines('11_Week1/RFiles/W01_01_Exercise.R'), results='asis', echo = T, include=T, eval=F} -->
-<!-- ``` -->
+```{r code=readLines('11_Week1/RFiles/W01_01_Exercise.R'), results='asis', echo = T, include=T, eval=F}
+```
 
 

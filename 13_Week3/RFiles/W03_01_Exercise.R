@@ -1,7 +1,37 @@
+## install.packages("scales")
+## install.packages("leaflet")
+## install.packages("SimilarityMeasures")
 library(tidyverse)
-library(plotly)
 library(CMAtools)
-library(recurse)
+library(sf)
+
+
+
+
+# Import as tibble
+wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+
+# Convert to sf-object
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
+
+# transform to CH1903 LV95
+wildschwein_BE <- st_transform(wildschwein_BE, 2056)
+
+# Add geometry as E/N integer Columns
+wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
+  cbind(wildschwein_BE,.) %>%
+  rename(E = X) %>%
+  rename(N = Y)
+
+# Compute timelag, steplength and speed
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
+    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
+    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    speed = steplength/timelag
+  )
+
 ## Input: cut vecotrs by intervals ####################
 ages <- c(20,25,18,13,53,50,23,43,68,40)
 breaks <- seq(0,50,10)
@@ -17,7 +47,6 @@ cut(ages, breaks = breaks, labels = c("young","middle aged","old"))
 cut(ages, breaks = breaks, labels = labels_nice(breaks))
 
 
-## Task 2 ####################
 
 breaks <- c(0,40,80,300,600,1200,2500,3000,4000,7500,110000)
 
@@ -48,22 +77,23 @@ wildschwein_BE <- wildschwein_BE %>%
     samplingInt = cut(timelag,breaks = breaks,labels = labels_nice(breaks))
   ) 
 
-# wildschwein_BE %>%
-#   as.data.frame() %>%
-#   group_by(samplingInt) %>%
-#   summarise(
-#     n = n()
-#   ) %>%
-#   ggplot(aes(samplingInt,n)) +
-#   geom_bar(stat = "identity") +
-#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-#   scale_y_log10()
+sample <- data.frame(position = paste0("pos",1:6),samplingInt=c(rep(60,3),rep(120,3)))
+sample
+sample <- sample %>%
+  mutate(
+    samplingInt_control = samplingInt == lead(samplingInt,1),
+    samplingInt_group = number_groups(samplingInt_control,include_first_false = T)
+  )
 
-# Todo: diesen Plot entfernen?
-## Task 1 ####################
+sample
+set.seed(10)
+X = cumsum(rnorm(20))
+Y = cumsum(rnorm(20))
 
-nMinus2 <- euclid(lag(X, 2),lag(Y, 2),X,Y)  # distance to pos. -10 minutes
-nMinus1 <- euclid(lag(X, 1),lag(Y, 1),X,Y)  # distance to pos.  -5 minutes
+plot(X,Y, type = "l")
+
+nMinus2 <- euclid(lag(X, 2),lag(Y, 2),X,Y)   # distance to pos. -10 minutes
+nMinus1 <- euclid(lag(X, 1),lag(Y, 1),X,Y)   # distance to pos.  -5 minutes
 nPlus1  <- euclid(X,Y,lead(X, 1),lead(Y, 1)) # distance to pos   +5 mintues
 nPlus2  <- euclid(X,Y,lead(X, 2),lead(Y, 2)) # distance to pos  +10 minutes
 
@@ -90,7 +120,7 @@ rowMeans(
 
 ## Task 2 ####################
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     stepMean = rowMeans(
@@ -105,93 +135,119 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
 ## Task 3 ####################
 
 
-summary(wildschwein_BE_sf$stepMean)
+summary(wildschwein_BE$stepMean)
 
-ggplot(wildschwein_BE_sf, aes(stepMean)) +
+ggplot(wildschwein_BE, aes(stepMean)) +
   geom_histogram(binwidth = 1) +
   lims(x = c(0,100)) +
   geom_vline(xintercept = 15)
 
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
-  mutate(
-    moving = stepMean > 15
-  )
-
-wildschwein_BE_sf[20:50,] %>%
-  filter(!is.na(moving)) %>%
-  ggplot() +
-  geom_sf(aes(colour = moving)) +
-  geom_path(aes(E,N)) +
-  coord_sf(datum = 2056) +
-  theme(
-    panel.grid.major = element_line(colour = "transparent"),
-    panel.background = element_rect(fill = "transparent")
-    ) 
-
-sample <- data.frame(position = paste0("pos",1:6),samplingInt=c(rep(60,3),rep(120,3)))
-sample
-sample <- sample %>%
-  mutate(
-    samplingInt_control = samplingInt == lead(samplingInt,1),
-    samplingInt_group = number_groups(samplingInt_control,include_first_false = T)
-  )
-
-sample
 wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
   mutate(
-    samplingInt_T = samplingInt == lead(samplingInt),
-    group = number_groups(samplingInt_T,include_first_false = T)
-  ) %>%
-  dplyr::select(-samplingInt_T)
-## # library(leaflet)
-## # library(scales)
-## # factpal <- colorFactor(hue_pal()(2), wildschwein_BE_sf$moving)
-## #
-## # # checking to see if this all makes sense in leaflet: (or better ggplot?)
-## # wildschwein_BE_sf[0:200,] %>%
-## #   filter(!is.na(moving)) %>%
-## #   leaflet() %>%
-## #   addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(moving)) %>%
-## #   addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
-## #   addTiles() %>%
-## #   addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
-
-## Task 5 #######################
-
-library(recurse)
-library(ggforce)
-
-recurs <- wildschwein_BE_sf %>% 
-  filter(TierID == "001A") %>%
-  select(E,N,DatetimeUTC,TierID) %>%
-  st_set_geometry(NULL) %>%
-  as.data.frame() %>%
-  getRecursions(100)
-
-recurStats <- recurs$revisitStats
-
-recurStats <- recurStats %>%
-  group_by(coordIdx) %>%
-  summarise(
-    number_of_visits = max(visitIdx),
-    x = unique(x),
-    y = unique(y),
-    total_time = sum(timeInside),
-    max_time = max(timeInside),
-    mean_time = mean(timeInside)
+    segment = ifelse(stepMean > 15,"move","stop")
   )
 
-data1 = filter(recurStats, number_of_visits > 30)
-wildschwein_BE_sf %>%
-  ungroup() %>%
-  filter(TierID == "001A") %>%
-  ggplot(aes(E,N)) +
-  geom_point(alpha = 0.4, colour = "grey") +
-  geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) +
-  coord_fixed(1)
+wildschwein_BE[20:50,] %>%
+  filter(!is.na(segment)) %>%
+  ggplot() +
+  geom_path(aes(E,N)) +
+  geom_point(aes(E,N,colour = segment)) +
+  theme_minimal() +
+  coord_equal()
 
-## wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+
+## Task 3 (Optional) #########################
+
+library(scales)
+library(leaflet)
+
+if (knitr::is_html_output()){
+  library(leaflet)
+  library(scales)
+  factpal <- colorFactor(hue_pal()(2), wildschwein_BE$segment)
+
+# checking to see if this all makes sense in leaflet: (or better ggplot?)
+  wildschwein_BE[0:200,] %>%
+    filter(!is.na(segment)) %>%
+    leaflet() %>%
+    addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(segment)) %>%
+    addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
+    addTiles() %>%
+    addLegend(pal = factpal, values = ~segment, title = "Animal moving?")
+} else{print("Interactive map only available in the online version of this document")}
+pedestrians <- read_delim("../CMA_FS2018_Filestorage/pedestrian.csv",",")
+
+pedestrians <- pedestrians %>%
+  group_by(TrajID) %>%
+  mutate(index = row_number())
+
+
+plotraj <- function(idx,lab = F){
+  dat <- pedestrians %>%
+    filter(TrajID %in% c(1,idx))
+  
+  p <- ggplot(dat, aes(E,N, colour = as.factor(TrajID), label = index)) +
+    geom_path(colour = "grey", alpha = 0.5) + 
+    geom_point() + 
+    scale_color_discrete(guide = "none") +
+    labs(title = paste("Trajectories 1 and",idx)) +
+    theme_minimal()
+  
+  if(lab == T) p <- p + geom_text_repel(data = filter(dat,index == 1 | index %% 2 == 0),aes(E,N,label = index,colour = as.factor(TrajID)),inherit.aes = FALSE) + labs(subtitle = "Every second position labeled with index")
+  
+  p
+}
+
+
+plotraj(2)
+
+plotraj(3,T) 
+
+plotraj(4)
+plotraj(5)
+
+plotraj(6)
+
+
 ## 
-## summary(wildschwein_BE$timelag)
+## 
+## traj1 <- pedestrians %>%
+##       filter(TrajID == 1) %>% # Change value 1 to 2,3 etc to
+##       as.data.frame() %>%     # filter for the other trajectories
+##       dplyr::select(E,N) %>%
+##       as.matrix()
+
+# instead of repeating the same step 6 times, we use purrr::map() 
+# which creates a list of dataframes. Feel free to use a method
+# with which you feel comfortable.
+pedestrians_l <- unique(pedestrians$TrajID) %>%
+  map(function(x){
+    pedestrians %>%
+      filter(TrajID == x) %>%
+      as.data.frame() %>%
+      dplyr::select(E,N) %>%
+      as.matrix()
+  })
+library(SimilarityMeasures)
+
+# Again, we use one of the purrr::map_* family of functions
+# to calculate three indicies over all 5 pairs in one go.
+# As before: feel free to use a different method you feel 
+# more comfortable in.
+pedest_measures <- map_df(pedestrians_l, ~data_frame(
+  DTW = DTW(.x,pedestrians_l[[1]]),
+  EditDist = EditDist(.x,pedestrians_l[[1]]),
+  Frechet = Frechet(.x,pedestrians_l[[1]])
+  ))
+
+pedest_measures %>%
+  rownames_to_column("traj") %>%
+  slice(2:nrow(.)) %>%
+  gather(key,val,-traj) %>%
+  ggplot(aes(traj,val))+ 
+  geom_bar(stat = "identity") +
+  facet_wrap(~key,scales = "free") +
+  labs(title = "Comparing Trajectory 1 to trajectories 2 to 6", x = "Trajectory", y = "Value")
+
+wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
