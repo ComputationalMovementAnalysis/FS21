@@ -22,21 +22,59 @@ Readings Theory:
 
 ## Preperation
 
+Install and load the following libraries:
+
+```{r, echo = T, include = T, eval = F}
+install.packages("scales")
+install.packages("leaflet")
+
+library(scales)
+library(leaflet)
+```
+
+Open your R Project from last week. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
+
 ```{r}
 library(tidyverse)
-library(plotly)
 library(CMAtools)
-library(recurse)
+library(sf)
+
+
+
+
+# Import as tibble
+wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+
+# Convert to sf-object
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
+
+# transform to CH1903 LV95
+wildschwein_BE <- st_transform(wildschwein_BE, 2056)
+
+## Add geometry as E/N integer Columns
+wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
+  cbind(wildschwein_BE,.) %>%
+  rename(E = X) %>%
+  rename(N = Y)
+
+# Compute timelag, steplength and speed
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
+    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
+    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    speed = steplength/timelag
+  )
+
 ```
 
 
-## Tasks
 
-### Input: `cut()` vector by intervals
+## Demo: Tools for generic segmentation
 
-<!-- TODO: kommt noch von E2, anpassen auf E3 -->
+### Introcuding `cut()` on dummy data
 
-For the next Task, we will need a function to split a continuous variable into specific intervals. For this, the function `cut()`is very handy. Let's introduce this function with a quick example. Assume we have a series of number that represent the ages of ten different people.
+We often need to split a continuous variable into specific intervals. For this, the function `cut()`is very handy. We will introduce this function with a quick example. Assume we have a series of number that represent the ages of ten different people.
 
 ```{r}
 ## Input: cut vecotrs by intervals ####################
@@ -76,25 +114,19 @@ cut(ages, breaks = breaks, labels = labels_nice(breaks))
 ```
 
 
+### Using `cut()` on `timelag`
 
-### Task 2: Making groups by sampling Interval
+Last week you will have noticed that we have different sampling intervals within our wildboar data (this can be represented with the `timelag` column). We have to segment our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale or granularity we are performing this analysis. 
 
-<!-- TODO: kommt noch von E2, anpassen auf E3 -->
+We therefore have to define thresholds to group segments with a similar sampling interval. If we explore the dataset in more detail (e.g. using histograms at different scales), we can choose reasonable threshold values to group the trajectories into different sampling intervals. 
 
-Now that we've established that we have different sampling intervals (Task 1), we have to segment our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale or granularity we are performing this analysis. 
-
-We therefore have to define thresholds to group segments with a similar sampling interval. Explore the dataset in more detail (e.g. using histograms at different scales), and choose reasonable threshold values to group the trajectories into different sampling intervals. 
-
-Note: 
-
-- It might make more sense to choose narrow intervals at shorter time lags and wider intervals at longer time lags.
-- Store the interval names in a new column named `samplingInt`
-- explore the dataset by using a logarithmic `y-axis` (`scale_y_log10()`) and looking at the different parts of the `x-axis` seperately
-- We will later filter the data by the sampling interval. We therefore recommend the use of `labels_nice()` from the package `CMAtools` for nicer, more intuitive labels.
+<!-- - It might make more sense to choose narrow intervals at shorter time lags and wider intervals at longer time lags. -->
+<!-- - Store the interval names in a new column named `samplingInt` -->
+<!-- - explore the dataset by using a logarithmic `y-axis` (`scale_y_log10()`) and looking at the different parts of the `x-axis` seperately -->
+<!-- - We will later filter the data by the sampling interval. We therefore recommend the use of `labels_nice()` from the package `CMAtools` for nicer, more intuitive labels. -->
 
 
-```{r, echo = F, include = T, eval = T}
-## Task 2 ####################
+```{r, echo = T, include = T, eval = T}
 
 breaks <- c(0,40,80,300,600,1200,2500,3000,4000,7500,110000)
 
@@ -125,19 +157,45 @@ wildschwein_BE <- wildschwein_BE %>%
     samplingInt = cut(timelag,breaks = breaks,labels = labels_nice(breaks))
   ) 
 
-# wildschwein_BE %>%
-#   as.data.frame() %>%
-#   group_by(samplingInt) %>%
-#   summarise(
-#     n = n()
-#   ) %>%
-#   ggplot(aes(samplingInt,n)) +
-#   geom_bar(stat = "identity") +
-#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-#   scale_y_log10()
-
-# Todo: diesen Plot entfernen?
 ```
+
+
+### Generating unique ID on segments
+
+
+For the next task, it would be pretty handy if each sequence of positions with the *same* sampling interval had a unique ID. In this way, we could use this ID to filter the dataset for uninterrupted, "clean", trajectories without varying sampling intervals and could also use the ID as a grouping variable. 
+
+This type of "grouping" similar values is a pretty common task that we often come across. So far, we've not found a good solution from available packages. We have therefore created our own function that we provide with the `CMAtools` package called `number_groups()`. This function takes a logical vector as an input and assigns subsequent `TRUE` values to the same group. Consider following example:
+
+```{r}
+sample <- data.frame(position = paste0("pos",1:6),samplingInt=c(rep(60,3),rep(120,3)))
+```
+
+```{r, echo=T, include=T,eval=T}
+sample
+```
+
+In this example, the first three positions belong to one group and the next three belong to a second group. `number_groups()` takes a logical vector which answers the following question for each value `i`: "Does the next value (`i+1`) belong to the same group as *this* value `i`?". We first have to provide the answer to this question by using `lead()` again:
+
+
+```{r, echo = T, include = T,eval = T}
+sample <- sample %>%
+  mutate(
+    samplingInt_control = samplingInt == lead(samplingInt,1),
+    samplingInt_group = number_groups(samplingInt_control,include_first_false = T)
+  )
+
+sample
+```
+
+Use `?number_groups` to get more information.
+
+
+
+
+
+## Tasks
+
 
 
 ### Task 1: Segmenting methods
@@ -170,7 +228,7 @@ Assume the sampling interval is 5 minutes. If we take a temporal window of 20 mi
 
 You can use the function `euclid()` to calculate the distances and `dplyr` functions `lead()/``lag()` to create the necessary offsets. On our dummy data, we want to calculate the mean of the following distances (red, dotted lines).
 
-```{r, purl = F, echo = F, include = T}
+```{r, purl = F, echo = F, include = T, eval = T}
 library(ggrepel)
 
 df <- data.frame(X = X, Y = Y)
@@ -210,10 +268,10 @@ ggplot(df, aes(X,Y)) +
 
 ```
 
-```{r}
+```{r, echo = T, include = T, eval = T}
 
-nMinus2 <- euclid(lag(X, 2),lag(Y, 2),X,Y)  # distance to pos. -10 minutes
-nMinus1 <- euclid(lag(X, 1),lag(Y, 1),X,Y)  # distance to pos.  -5 minutes
+nMinus2 <- euclid(lag(X, 2),lag(Y, 2),X,Y)   # distance to pos. -10 minutes
+nMinus1 <- euclid(lag(X, 1),lag(Y, 1),X,Y)   # distance to pos.  -5 minutes
 nPlus1  <- euclid(X,Y,lead(X, 1),lead(Y, 1)) # distance to pos   +5 mintues
 nPlus2  <- euclid(X,Y,lead(X, 2),lead(Y, 2)) # distance to pos  +10 minutes
 
@@ -239,15 +297,15 @@ rowMeans(
 )
 ```
 
-### Task 2
+### Task 1
 
-Picking up from the previous task: we can now implement this algorithm using the `dplyr` / `mutate()` method. This might seem a little challenging at first, but if you have completed Task 4 or at least looked at the sample solution, it is quite easy. You can pass anything to a new column within `mutate()` as long as it is a vector of the same length as the original dataframe. 
+Picking up from the previous input: we can now implement this algorithm using the `dplyr` / `mutate()` method. This might seem a little challenging at first, but if you have completed Task 2 from laast week, it is quite easy. You can pass *anything* to a new column within `mutate()` as long as it is a vector of the same length as the original dataframe. 
 
 ```{r}
 
 ## Task 2 ####################
 
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     stepMean = rowMeans(
@@ -262,7 +320,7 @@ wildschwein_BE_sf <- wildschwein_BE_sf %>%
 ```
 
 
-### Task 3
+### Task 2
 
 We can now explore the newly created Values `stepMean` using summary statistics (histograms, boxplot, `summary()`) and define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on the question that needs to be answered. 
 
@@ -270,9 +328,9 @@ We can now explore the newly created Values `stepMean` using summary statistics 
 ## Task 3 ####################
 
 
-summary(wildschwein_BE_sf$stepMean)
+summary(wildschwein_BE$stepMean)
 
-ggplot(wildschwein_BE_sf, aes(stepMean)) +
+ggplot(wildschwein_BE, aes(stepMean)) +
   geom_histogram(binwidth = 1) +
   lims(x = c(0,100)) +
   geom_vline(xintercept = 15)
@@ -280,173 +338,107 @@ ggplot(wildschwein_BE_sf, aes(stepMean)) +
 ```
 
 
-Based on this data, I will go with a threshold value of 15. Apply your threshold on you data (condition: `stepMean > 15`).
+Based on this data, I will go with a threshold value of 15. Apply your threshold on you data, then plot a *subset* of data to verify if the arbitrary threshold was a reasonable choice. 
 
-```{r}
-
-wildschwein_BE_sf <- wildschwein_BE_sf %>%
-  mutate(
-    moving = stepMean > 15
-  )
-
-```
-
-Plot a *subset* of data to verify if the arbitrary threshold was a reasonable choice. 
-
+- You can apply the threshold with an `ifelse()`statement withthe condition (`stepMean > 15`), and two keywords when this condition is met (e.g. "move") and when it's not (e.g. "stop").
 - sub-setting the first ten rows can be done with `[1:10,]` (don't forget the comma!)
-- we have a couple of NA values in the beginning and end of each trajectory. Use `filter(!is.na(moving))` to remove these values from the plot
-- if you add the layer `geom_sf()` `ggplot` will only plot points. To add the lines in between you'll have to specify the x and y values (E and N)
-- add the layer `coord_sf(datum = 2056)`
-- wrap the whole plot function in `ggplotly()` if you want to enable zooming / panning
-
-```{r, echo = F, include = T}
-wildschwein_BE_sf[20:50,] %>%
-  filter(!is.na(moving)) %>%
-  ggplot() +
-  geom_sf(aes(colour = moving)) +
-  geom_path(aes(E,N)) +
-  coord_sf(datum = 2056) +
-  theme(
-    panel.grid.major = element_line(colour = "transparent"),
-    panel.background = element_rect(fill = "transparent")
-    ) 
-
-```
+- we have a couple of NA values in the beginning and end of each trajectory. Use `filter(!is.na(movement))` to remove these values from the plot
+- like last week, add the trajectory using `geom_path()` and `geom_point`
+- add `coord_equal()`
 
 
-### Input
+```{r, echo = F, include = T, eval = T}
 
-<!-- TODO: dieser Input und der nächste Task sind Copy+Paste aus der letzten Woche. Die noch richtig anpassen -->
-
-For the next task, it would be pretty handy if each sequence of positions with the *same* sampling interval had a unique ID. In this way, we could use this ID to filter the dataset for uninterrupted, "clean", trajectories without varying sampling intervals and could also use the ID as a grouping variable. 
-
-This type of "grouping" similar values is a pretty common task that we often come across. So far, we've not found a good solution from available packages. We have therefore created our own function that we provide with the `CMAtools` package called `number_groups()`. This function takes a logical vector as an input and assigns subsequent `TRUE` values to the same group. Consider following example:
-
-```{r}
-sample <- data.frame(position = paste0("pos",1:6),samplingInt=c(rep(60,3),rep(120,3)))
-```
-
-```{r, echo=T, include=T,eval=T}
-sample
-```
-
-In this example, the first three positions belong to one group and the next three belong to a second group. `number_groups()` takes a logical vector which answers the following question for each value `i`: "Does the next value (`i+1`) belong to the same group as *this* value `i`?". We first have to provide the answer to this question by using `lead()` again:
-
-
-```{r, echo = T, include = T,eval = T}
-sample <- sample %>%
+wildschwein_BE <- wildschwein_BE %>%
   mutate(
-    samplingInt_control = samplingInt == lead(samplingInt,1),
-    samplingInt_group = number_groups(samplingInt_control,include_first_false = T)
+    segment = ifelse(stepMean > 15,"move","stop")
   )
 
-sample
+wildschwein_BE[20:50,] %>%
+  filter(!is.na(segment)) %>%
+  ggplot() +
+  geom_path(aes(E,N)) +
+  geom_point(aes(E,N,colour = segment)) +
+  theme_minimal() +
+  coord_equal()
+
 ```
 
-Use `?number_groups` to get more information.
-
-### Task 4
-
-Use the function `number_groups()` (or any other method) to assign unique ID's to subsequent rows of the *same* sampling interval (`samplingInt`). Make sure unique ID's are not assigned *across* different individuals.
-
-```{r}
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
-  mutate(
-    samplingInt_T = samplingInt == lead(samplingInt),
-    group = number_groups(samplingInt_T,include_first_false = T)
-  ) %>%
-  dplyr::select(-samplingInt_T)
-```
-
-<!-- TODO: see what the warnings are for. also update function doc -->
 
 
 
-### Task 4 (Optional)
+### Task 3 (Optional)
 
 To be honest, exploring segmentation with `ggplot` (and even `plotly`) is not very satisfying. Another great tool to visualize spatial data is leaflet. It's not all that hard to create a leaflet plot, just take a look at the documentation and try it with our segmented wild boar data. 
 
-```{r, purl = F, echo = F, include = T}
+```{r, echo = F, include = T, eval = T}
 
-## Task 4 ############################
+## Task 3 (Optional) #########################
 
 if (knitr::is_html_output()){
   library(leaflet)
   library(scales)
-  factpal <- colorFactor(hue_pal()(2), wildschwein_BE_sf$moving)
+  factpal <- colorFactor(hue_pal()(2), wildschwein_BE$moving)
 
 # checking to see if this all makes sense in leaflet: (or better ggplot?)
-  wildschwein_BE_sf[0:200,] %>%
-    filter(!is.na(moving)) %>%
+  wildschwein_BE[0:200,] %>%
+    filter(!is.na(segment)) %>%
     leaflet() %>%
-    addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(moving)) %>%
+    addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(segment)) %>%
     addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
     addTiles() %>%
     addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
 } else{"map only available in the online version of this document"}
 ```
 
-
-```{r, eval=F}
-# library(leaflet)
-# library(scales)
-# factpal <- colorFactor(hue_pal()(2), wildschwein_BE_sf$moving)
-# 
-# # checking to see if this all makes sense in leaflet: (or better ggplot?)
-# wildschwein_BE_sf[0:200,] %>%
-#   filter(!is.na(moving)) %>%
-#   leaflet() %>%
-#   addCircles(radius = 1,lng = ~Long, lat = ~Lat, color = ~factpal(moving)) %>%
-#   addPolylines(opacity = 0.1,lng = ~Long, lat = ~Lat) %>%
-#   addTiles() %>%
-#   addLegend(pal = factpal, values = ~moving, title = "Animal moving?")
-```
+### Task 4
 
 
-### Task 5
 
-Use the package `recurse` (function `getRecursions`) to determine sites which are often visited. 
-<!-- Todo: either extend this task or use this as a possible challange for the individual topics and replace this with similarity measures  -->
+<!-- TODO: remove task 5? -->
+<!-- ### Task 5 -->
+
+<!-- Use the package `recurse` (function `getRecursions`) to determine sites which are often visited.  -->
+<!-- <!-- Todo: either extend this task or use this as a possible challange for the individual topics and replace this with similarity measures  --> -->
 
 
-```{r,, echo = F, include = T}
+<!-- ```{r,, echo = F, include = T} -->
 
-## Task 5 #######################
+<!-- ## Task 5 ####################### -->
 
-library(recurse)
-library(ggforce)
+<!-- library(recurse) -->
+<!-- library(ggforce) -->
 
-recurs <- wildschwein_BE_sf %>% 
-  filter(TierID == "001A") %>%
-  select(E,N,DatetimeUTC,TierID) %>%
-  st_set_geometry(NULL) %>%
-  as.data.frame() %>%
-  getRecursions(100)
+<!-- recurs <- wildschwein_BE_sf %>%  -->
+<!--   filter(TierID == "001A") %>% -->
+<!--   select(E,N,DatetimeUTC,TierID) %>% -->
+<!--   st_set_geometry(NULL) %>% -->
+<!--   as.data.frame() %>% -->
+<!--   getRecursions(100) -->
 
-recurStats <- recurs$revisitStats
+<!-- recurStats <- recurs$revisitStats -->
 
-recurStats <- recurStats %>%
-  group_by(coordIdx) %>%
-  summarise(
-    number_of_visits = max(visitIdx),
-    x = unique(x),
-    y = unique(y),
-    total_time = sum(timeInside),
-    max_time = max(timeInside),
-    mean_time = mean(timeInside)
-  )
+<!-- recurStats <- recurStats %>% -->
+<!--   group_by(coordIdx) %>% -->
+<!--   summarise( -->
+<!--     number_of_visits = max(visitIdx), -->
+<!--     x = unique(x), -->
+<!--     y = unique(y), -->
+<!--     total_time = sum(timeInside), -->
+<!--     max_time = max(timeInside), -->
+<!--     mean_time = mean(timeInside) -->
+<!--   ) -->
 
-data1 = filter(recurStats, number_of_visits > 30)
-wildschwein_BE_sf %>%
-  ungroup() %>%
-  filter(TierID == "001A") %>%
-  ggplot(aes(E,N)) +
-  geom_point(alpha = 0.4, colour = "grey") +
-  geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) +
-  coord_fixed(1)
+<!-- data1 = filter(recurStats, number_of_visits > 30) -->
+<!-- wildschwein_BE_sf %>% -->
+<!--   ungroup() %>% -->
+<!--   filter(TierID == "001A") %>% -->
+<!--   ggplot(aes(E,N)) + -->
+<!--   geom_point(alpha = 0.4, colour = "grey") + -->
+<!--   geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) + -->
+<!--   coord_fixed(1) -->
 
-```
+<!-- ``` -->
 
 
 
