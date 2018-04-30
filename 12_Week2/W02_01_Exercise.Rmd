@@ -34,8 +34,8 @@ wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
 wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
-
 ```
+
 
 Install the package `zoo` to get access to the rolling window functions for last exercise. Also, install the package `CMAtools` where we have put together some helper functions that simplify some tasks in this course. The package `CMAtools` is not on CRAN, and we need to install it similar to how we installed the newest version of `ggplot` last week. Since it is not on the official Git hub page either, but on the ZHAW owned Git hub server, the syntax for installation is slightly different (see code below).
 
@@ -43,6 +43,17 @@ Note:
 
 - If you want to understand what the functions in CMAtools do, you can either check the package documentation (`help(package = "CMAtools")`) or look at the functions [GIThub site](https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools). 
 - We will be extending this package regularly throughout this course. Note: You will have to regularly reinstall the package with the code below in order to update your local version of the package.
+
+
+
+
+
+
+
+
+
+
+
 
 ```{r, echo = T, include = T, eval = F}
 install.packages("zoo")
@@ -550,7 +561,8 @@ lapply(packages, detach, character.only = TRUE, unload = TRUE)
 # clear environment
 rm(list = ls())
 ```
-<!-- Todo nils: call R-File here rather than explicitly writing the script -->
+
+
 
 
 
