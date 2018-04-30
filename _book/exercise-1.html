@@ -122,17 +122,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="exercise-2.html#difftime"><code>difftime</code></a></li>
 <li><a href="exercise-2.html#lead-lag"><code>lead()</code> / <code>lag()</code></a></li>
 <li><a href="exercise-2.html#mutate"><code>mutate()</code></a></li>
+<li><a href="exercise-2.html#group_by"><code>group_by()</code></a></li>
+<li><a href="exercise-2.html#summarise"><code>summarise()</code></a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#bring-it-all-together"><i class="fa fa-check"></i>Bring it all together…</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#tasks-and-inputs-1"><i class="fa fa-check"></i>Tasks and Inputs</a><ul>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an Overview</a></li>
-<li><a href="exercise-2.html#input-cut-vector-by-intervals">Input: <code>cut()</code> vector by intervals</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-making-groups-by-sampling-interval"><i class="fa fa-check"></i>Task 2: Making groups by sampling Interval</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an overview</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input-geometry-as-columns"><i class="fa fa-check"></i>Input: Geometry as columns</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-deriving-movement-parameters-i-euclidean-distance-and-speed"><i class="fa fa-check"></i>Task 3: Deriving movement parameters I: Euclidean Distance and Speed</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-optional-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 5 (Optional): Deriving movement parameters II: Rolling window functions</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-deriving-movement-parameters-i-euclidean-distance-and-speed"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Euclidean Distance and Speed</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-optional-calculate-turning-angles"><i class="fa fa-check"></i>Task 5 (optional): Calculate turning angles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#solutions-rcode"><i class="fa fa-check"></i>Solutions (RCode)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -231,7 +233,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">&quot;tidyvers
 <p>Get an overview of your data by creating a first “map-like” plot of your data producing a simple scatter plot with <code>ggplot</code>. Do you spot outliers? If so, get rid of the outliers and plot your data again without outliers.</p>
 <p>Setting up a <code>ggplot</code> with our data is done using the command <code>ggplot(wildschwein_BE, aes(Long, Lat, colour = TierID))</code>. Creating a map is done via the basic scatter plot command <code>geom_point()</code>. Use <code>coord_map()</code> to get a reasonable aspect ratio of <code>Lat</code> and <code>Long</code>. Assigning every individual its own colour is done using the <code>ggplot</code> argument <code>colour =</code>.</p>
 <p>Save your code in the appropriate section.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="input-handling-spatial-data" class="section level3">
 <h3>Input: Handling spatial data</h3>
@@ -387,9 +389,9 @@ wildschwein_BE <span class="co"># note how the Lat/Long information is stored tw
 <h3>Task 5: Ploting spatial objects</h3>
 <p>Using base plot to visualize <code>sf</code> objects is easy enough, just try the following code.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mcp)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p>But since we use <code>ggplot</code> extensively, try and plot the object <code>mcp</code> with <code>ggplot</code>. Hint: Since you installed the newest version from github, you now use the function <code>geom_sf()</code> to add an <code>sf</code> object.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>But since we use <code>ggplot</code> extensively, try and plot the object <code>mcp</code> with <code>ggplot</code>. Hint: Since you installed the newest version from github, you now use the function <code>geom_sf()</code> to add an <code>sf</code> object.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Note:</p>
 <ul>
 <li><code>ggplot</code> refuses to use our specified CRS, so we need to force this by specifying <code>coord_sf()</code></li>
@@ -404,12 +406,12 @@ wildschwein_BE <span class="co"># note how the Lat/Long information is stored tw
   <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),
   <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()
   )</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="task-6-adding-a-background-map" class="section level3">
 <h3>Task 6: Adding a background map</h3>
 <p>In order to add a background map to our plot, we will need to load two additional libraries: <code>raster</code> to load raster files and <code>ggspatial</code> to plot raster files in <code>ggplot</code>. Load these libraries now, and import the file <code>pk100_BE_2056.tif</code> (available on moodle) using the function <code>brick()</code>. Add the newly created <code>RasterBrick</code> object to ggplot using the function <code>geom_spraster_rgb()</code>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <!-- ## Solutions (RCode) -->
 <!-- ```{r code=readLines('11_Week1/RFiles/W01_01_Exercise.R'), results='asis', echo = T, include=T, eval=F} -->
 <!-- ``` -->
@@ -421,7 +423,7 @@ wildschwein_BE <span class="co"># note how the Lat/Long information is stored tw
 <hr />
 <ol start="1">
 <li id="fn1"><p>We will need the newest version of <code>ggplot2</code> to plot spatial <code>sf</code> objects.<a href="exercise-1.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>If you are working on RStudio Server, you will need to install <code>udunits2</code> with some additional parameters (see code example).<a href="exercise-1.html#fnref2">↩</a></p></li>
+<li id="fn2"><p>In the solution (and the graphics), we actually use locations 2-100 for aesthetical reasons<a href="exercise-1.html#fnref2">↩</a></p></li>
 <li id="fn3"><p>At this point, we assume you know what a Coordinate Reference Systems is. Check out <a href="https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/">this link</a> if this is not the case.<a href="exercise-1.html#fnref3">↩</a></p></li>
 <li id="fn4"><p>As we’ve mentioned in the first Input, you can look up the EPSG codes under <a href="http://spatialreference.org/ref/epsg/2056/">spatialreference.org</a> or <a href="http://epsg.io" class="uri">http://epsg.io</a>. For information specific to switzerland switzerland, check the <a href="https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html">swisstopo website</a><a href="exercise-1.html#fnref4">↩</a></p></li>
 </ol>
@@ -473,19 +475,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

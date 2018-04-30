@@ -137,7 +137,7 @@ ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
 
 ### Input: Handling spatial data
 
-Until now, we've handled spatial data within data frames. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. We will get to now such cases in our next tasks, but first we need to convert our `data.frame` into a spatial object.
+Until now, we've handled spatial data within data frames. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our `data.frame` into a spatial object.
 Some of you might be familiar with the `sp` package with the classes `SpatialPoints`, `SpatialPointsDataFrame` and so on. Just recently the new and exiting package `sf`, was released on CRAN. `sf` has some huge advantages over sp:
 
 - simple features are essentially data frames, which mean they interface with the `tidyverse`  
@@ -205,7 +205,7 @@ rm(wildschwein_BE_sf) # we can remove this sf object, since it just eats up our 
 
 So what can we do with our new `sf` object that we couldn't before? One example is projecting the WGS84 (`Lat`/`Long`) coordinates into the new Swiss CRS `CH1903+ LV95`[^50]. Do this by using the function `st_transform`. By the way, do you notice a pattern here? The package `sf` names most functions for spatial operations with the prefix `st_*`.
 
-[^50]: As we've mentioned in the first Input, you can look up the EPSG codes under [spatialreference.org](http://spatialreference.org/ref/epsg/2056/) or http://epsg.io. For information specific to switzerland switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
+[^50]: As we've mentioned in the first Input, you can look up the EPSG codes under [spatialreference.org](http://spatialreference.org/ref/epsg/2056/) or http://epsg.io. For information specific to switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
 
 ```{r}
 
@@ -248,7 +248,7 @@ You can see the grouping variable in the metadata of our `sf` object:
 wildschwein_BE
 ```
 
-In order for `sf_convex_hull()` to respect the grouping variable, we need to warp the `sf` object within `summarise()`
+In order for `st_convex_hull()` to respect the grouping variable, we need to warp the `sf` object within `summarise()`
 
 ```{r, echo = T,include = T,eval = T}
 mcp <- st_convex_hull(summarise(wildschwein_BE))
@@ -280,10 +280,24 @@ Note:
 
 - `ggplot` refuses to use our specified CRS, so we need to force this by specifying `coord_sf()`
 - Oddly, it is not sufficient to specify the `crs = ` wit hin `coord_sf()`, we need to pass our EPSG code to `datum =`. 
+
+
+```{r, echo = F,include = T,eval = T}
+ggplot(mcp,aes(fill = TierID)) +
+  geom_sf(alpha = 0.4) +
+  coord_sf(datum = 2056)
+```
+
+
+### Task 6: Adding a background map
+
+
+In order to add a background map to our plot, we will need to load two additional libraries: `raster` to load raster files and `ggspatial` to plot raster files in `ggplot`. Load these libraries now, and import the file `pk100_BE_2056.tif` (available on moodle) using the function `brick()`. Add the newly created `RasterBrick` object to ggplot using the function `geom_spraster_rgb()`. Note: 
+
+- `ggplot` layers are added in the order they are called. If you call `geom_spraster_rgb()` last, it will plot over (and thus cover) the `geom_sf()` layer.
 - You can change the plot style by making adjustments within `theme()` I recommend the following adjustments:
 
-
-```{r, echo = T,include = T,eval = F}
+```{r, echo = T,include = T,eval = F, purl = F}
 theme(
   legend.position = "none",
   panel.grid.major = element_line(colour = "transparent"),
@@ -293,27 +307,6 @@ theme(
   axis.ticks = element_blank()
   )
 ```
-
-
-```{r, echo = F,include = T,eval = T}
-ggplot(mcp,aes(fill = TierID)) +
-  geom_sf(alpha = 0.4) +
-  coord_sf(datum = 2056) +
-  theme(
-    legend.position = "none",
-    panel.grid.major = element_line(colour = "transparent"),
-    panel.background = element_rect(fill = "transparent"),
-    axis.title = element_blank(),
-    axis.text = element_blank(),
-    axis.ticks = element_blank()
-    )
-```
-
-
-### Task 6: Adding a background map
-
-
-In order to add a background map to our plot, we will need to load two additional libraries: `raster` to load raster files and `ggspatial` to plot raster files in `ggplot`. Load these libraries now, and import the file `pk100_BE_2056.tif` (available on moodle) using the function `brick()`. Add the newly created `RasterBrick` object to ggplot using the function `geom_spraster_rgb()`.
  
 
 ```{r, echo = F, include = T, eval = T}
@@ -342,7 +335,20 @@ ggplot(mcp,aes(fill = TierID)) +
 ```
 
 
+```{r, purl = F}
+# detach packages
+packages = sapply(sessionInfo()$otherPkgs, function(x) x$Package)
+packages = packages[packages != "bookdown"]
+packages = sapply(packages, function(p) paste0("package:", p))
+lapply(packages, detach, character.only = TRUE, unload = TRUE)
+# clear environment
+rm(list = ls())
+```
+
+
 <!-- ## Solutions (RCode) -->
 
 <!-- ```{r code=readLines('11_Week1/RFiles/W01_01_Exercise.R'), results='asis', echo = T, include=T, eval=F} -->
 <!-- ``` -->
+
+

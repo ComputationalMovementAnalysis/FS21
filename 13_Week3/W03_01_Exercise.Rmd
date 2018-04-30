@@ -32,6 +32,114 @@ library(recurse)
 
 ## Tasks
 
+### Input: `cut()` vector by intervals
+
+<!-- TODO: kommt noch von E2, anpassen auf E3 -->
+
+For the next Task, we will need a function to split a continuous variable into specific intervals. For this, the function `cut()`is very handy. Let's introduce this function with a quick example. Assume we have a series of number that represent the ages of ten different people.
+
+```{r}
+## Input: cut vecotrs by intervals ####################
+```
+
+
+```{r, echo = T, eval = T, include = T}
+ages <- c(20,25,18,13,53,50,23,43,68,40)
+```
+Let's say we want to split this into equal intervals of 10 years.
+
+```{r, echo = T, eval = T, include = T}
+breaks <- seq(0,50,10)
+
+cut(ages,breaks = breaks)
+```
+Note:
+
+- If a number does not fit within an interval defined by `breaks =`, `cut()` will return `NA` (as for example for the fifth element `53`).
+- The default `labels` with `(` and `]` might seem a little ugly and puzzling at first, but in fact they are [a standard form of notating intervals in mathematics](https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals).
+- If you don't like `(` and `]`, you can:
+  + specify your own labels with the argument `labels =` *or*
+  + use the the function `labels_nice` we provide with the `CMAtools`-package
+- Four thresholds (i.e. `breaks`) return three intervals (i.e. `lables`), as shown below.
+
+```{r, echo = T, eval = T, include = T}
+
+library(CMAtools)
+
+breaks <- c(0,30,60,100)
+
+cut(ages, breaks = breaks, labels = c("young","middle aged","old"))
+
+cut(ages, breaks = breaks, labels = labels_nice(breaks))
+
+
+```
+
+
+
+### Task 2: Making groups by sampling Interval
+
+<!-- TODO: kommt noch von E2, anpassen auf E3 -->
+
+Now that we've established that we have different sampling intervals (Task 1), we have to segment our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale or granularity we are performing this analysis. 
+
+We therefore have to define thresholds to group segments with a similar sampling interval. Explore the dataset in more detail (e.g. using histograms at different scales), and choose reasonable threshold values to group the trajectories into different sampling intervals. 
+
+Note: 
+
+- It might make more sense to choose narrow intervals at shorter time lags and wider intervals at longer time lags.
+- Store the interval names in a new column named `samplingInt`
+- explore the dataset by using a logarithmic `y-axis` (`scale_y_log10()`) and looking at the different parts of the `x-axis` seperately
+- We will later filter the data by the sampling interval. We therefore recommend the use of `labels_nice()` from the package `CMAtools` for nicer, more intuitive labels.
+
+
+```{r, echo = F, include = T, eval = T}
+## Task 2 ####################
+
+breaks <- c(0,40,80,300,600,1200,2500,3000,4000,7500,110000)
+
+
+ggplot(wildschwein_BE, aes(timelag)) +
+  geom_histogram(binwidth = 10) +
+  lims(x = c(0,600)) +
+  scale_y_log10() +
+  geom_vline(xintercept = breaks, col = "red")
+
+ggplot(wildschwein_BE, aes(timelag)) +
+  geom_histogram(binwidth = 10) +
+  lims(x = c(600,1200)) +
+  scale_y_log10() +
+  geom_vline(xintercept = breaks, col = "red")
+
+
+ggplot(wildschwein_BE, aes(timelag)) +
+  geom_histogram(binwidth = 10) +
+  lims(x = c(1200,10000)) +
+  scale_y_log10() +
+  geom_vline(xintercept = breaks, col = "red")
+
+
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
+    samplingInt = cut(timelag,breaks = breaks,labels = labels_nice(breaks))
+  ) 
+
+# wildschwein_BE %>%
+#   as.data.frame() %>%
+#   group_by(samplingInt) %>%
+#   summarise(
+#     n = n()
+#   ) %>%
+#   ggplot(aes(samplingInt,n)) +
+#   geom_bar(stat = "identity") +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+#   scale_y_log10()
+
+# Todo: diesen Plot entfernen?
+```
+
+
 ### Task 1: Segmenting methods
 
 ```{r}

@@ -122,17 +122,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="exercise-2.html#difftime"><code>difftime</code></a></li>
 <li><a href="exercise-2.html#lead-lag"><code>lead()</code> / <code>lag()</code></a></li>
 <li><a href="exercise-2.html#mutate"><code>mutate()</code></a></li>
+<li><a href="exercise-2.html#group_by"><code>group_by()</code></a></li>
+<li><a href="exercise-2.html#summarise"><code>summarise()</code></a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#bring-it-all-together"><i class="fa fa-check"></i>Bring it all together…</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#tasks-and-inputs-1"><i class="fa fa-check"></i>Tasks and Inputs</a><ul>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an Overview</a></li>
-<li><a href="exercise-2.html#input-cut-vector-by-intervals">Input: <code>cut()</code> vector by intervals</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-making-groups-by-sampling-interval"><i class="fa fa-check"></i>Task 2: Making groups by sampling Interval</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an overview</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input-geometry-as-columns"><i class="fa fa-check"></i>Input: Geometry as columns</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-deriving-movement-parameters-i-euclidean-distance-and-speed"><i class="fa fa-check"></i>Task 3: Deriving movement parameters I: Euclidean Distance and Speed</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-optional-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 5 (Optional): Deriving movement parameters II: Rolling window functions</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-deriving-movement-parameters-i-euclidean-distance-and-speed"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Euclidean Distance and Speed</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-optional-calculate-turning-angles"><i class="fa fa-check"></i>Task 5 (optional): Calculate turning angles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#solutions-rcode"><i class="fa fa-check"></i>Solutions (RCode)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -161,9 +163,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="learning-outcomes" class="section level2">
 <h2>Learning Outcomes</h2>
 <ul>
-<li>You understand the SAC approach in the context of tidyverse tools and can apply it to <code>sf</code> objects</li>
-<li>You can derive attributes from your data based on changes in the observed variables</li>
-<li>You can resample your data for multi scaled analyses <!-- TODO laup: learning outcomes so ok?  --></li>
+<li>You understand the dplyr functions <code>mutate</code>, <code>summarise</code> and <code>group_by</code> and can apply them to <code>sf</code> objects</li>
+<li>You can derive movement parameters (<code>timelag</code>, <code>steplength</code>, <code>speed</code>) from trajectory data.</li>
+<li>You can re-sample your trajectory data for cross scale movement analysis.</li>
 </ul>
 </div>
 <div id="prerequisites-1" class="section level2">
@@ -181,11 +183,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="preperation-1" class="section level2">
 <h2>Preperation</h2>
-<p>Open your R Project from last week. Load all libraries and run the script to import and clean your data. Install the package <code>zoo</code> to get access to the rolling window functions for last (optional) exercise. Also, install the package <code>CMAtools</code> where we have put together some helper functions so simplify some tasks in this course. The package <code>CMAtools</code> is not on CRAN, and we need to install it similar to how we installed the newest version of <code>ggplot</code> last week. Since it is not on the official GIThub page either, but on the ZHAW owned GIThub server, the syntax for installation is slightly different (see code below). <!-- todo nils: prepare and upload sf object to moodle. Edit this text appropriately  --></p>
+<p>Open your R Project from last week. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(sf)
+
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;../CMA_FS2018_Filestorage/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)
+
+wildschwein_BE =<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>,<span class="dt">remove =</span> <span class="ot">FALSE</span>)
+
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</code></pre></div>
+<p>Install the package <code>zoo</code> to get access to the rolling window functions for last exercise. Also, install the package <code>CMAtools</code> where we have put together some helper functions that simplify some tasks in this course. The package <code>CMAtools</code> is not on CRAN, and we need to install it similar to how we installed the newest version of <code>ggplot</code> last week. Since it is not on the official Git hub page either, but on the ZHAW owned Git hub server, the syntax for installation is slightly different (see code below).</p>
 <p>Note:</p>
 <ul>
 <li>If you want to understand what the functions in CMAtools do, you can either check the package documentation (<code>help(package = &quot;CMAtools&quot;)</code>) or look at the functions <a href="https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools">GIThub site</a>.</li>
-<li>We will be extending this package regularly within this course. Reinstall the package with the code below to update your local version of the package.</li>
+<li>We will be extending this package regularly throughout this course. Note: You will have to regularly reinstall the package with the code below in order to update your local version of the package.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;zoo&quot;</span>)
 
@@ -203,7 +214,7 @@ devtools::<span class="kw">install_git</span>(<span class="st">&quot;https://git
 later &lt;-<span class="st"> </span>now +<span class="st"> </span><span class="dv">10000</span>
 
 time_difference &lt;-<span class="st"> </span><span class="kw">difftime</span>(later,now)</code></pre></div>
-<p>You can also specify the unit of the output</p>
+<p>You can also specify the unit of the output.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">time_difference &lt;-<span class="st"> </span><span class="kw">difftime</span>(later,now,<span class="dt">units =</span> <span class="st">&quot;mins&quot;</span>)</code></pre></div>
 <p><code>difftime</code> returns an object of the Class <code>difftime</code>. However in our case, numeric values would be more handy than the Class <code>difftime</code>. So we’ll wrap the command in <code>as.numeric()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(time_difference)
@@ -221,7 +232,7 @@ time_difference &lt;-<span class="st"> </span><span class="kw">difftime</span>(l
 
 numbers
 ##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre></div>
-<p>We can now run <code>lead()</code> and <code>lag()</code> on this sequence to illustrate the output. <code>n =</code> specifies the offset, <code>default =</code> specifies the default value used to “fill” the vector.</p>
+<p>We can now run <code>lead()</code> and <code>lag()</code> on this sequence to illustrate the output. <code>n =</code> specifies the offset, <code>default =</code> specifies the default value used to “fill” the emerging “empty spaces” of the vector.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lead</span>(numbers)
 ##  [1]  2  3  4  5  6  7  8  9 10 NA
 
@@ -236,15 +247,18 @@ numbers
 
 <span class="kw">lag</span>(numbers,<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">default =</span> <span class="dv">0</span>)
 ##  [1] 0 0 0 0 0 1 2 3 4 5</code></pre></div>
-<p>This helps us performing operations on subsequent values in a vector (or rows in a table)</p>
+<p>This helps us performing operations on subsequent values in a vector (or rows in a table). You can think of this a little bit like a moving temporal window that moves along the trajectory, or down the rows of a table respectively.</p>
 </div>
 <div id="mutate" class="section level3">
 <h3><code>mutate()</code></h3>
-<p>Using the above functions (<code>difftime()</code> and <code>lead()</code>), we can calculate the time difference between subsequent positions:</p>
+<p>Using the above functions (<code>difftime()</code> and <code>lead()</code>), we can calculate the time lag, that is, the time difference between subsequent positions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wildschwein_BE$timelag  &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>))</code></pre></div>
-<p>We mention <code>wildschwein_BE</code> three times in this function, which is why we can use <code>mutate()</code>:</p>
+<p>We mention <code>wildschwein_BE</code> three times in this function, which is complicated. Instead, we can use <code>mutate()</code> to simplify the syntax:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wildschwein_BE &lt;-<span class="st"> </span><span class="kw">mutate</span>(wildschwein_BE,<span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>)))</code></pre></div>
-<p>Now let’s have a look at this vector:</p>
+</div>
+<div id="group_by" class="section level3">
+<h3><code>group_by()</code></h3>
+<p>Now let’s have a look at the vector created before:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(wildschwein_BE$timelag)
 ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max.      NA&#39;s 
 ## -65155503       895       900       259       907  49579199         1</code></pre></div>
@@ -256,9 +270,12 @@ numbers
 <span class="kw">summary</span>(wildschwein_BE$timelag)
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##      12     895     900    1203     907  108023      10</code></pre></div>
-<p>Summary returned the metrics over all individuals. If we want to summarise our data and get metrics <em>per animal</em>, we can use the <code>dplyr</code> function <code>summarise()</code>. In contrast to <code>mutate()</code>, which just adds a new column to the dataset, <code>summarise()</code> “collapses” the data to one row per individual (specified by <code>group_by</code>).</p>
+</div>
+<div id="summarise" class="section level3">
+<h3><code>summarise()</code></h3>
+<p><code>summary()</code> returned the metrics over all individuals. If we want to summarise our data and get metrics <em>per animal</em>, we can use the <code>dplyr</code> function <code>summarise()</code>. In contrast to <code>mutate()</code>, which just adds a new column to the dataset, <code>summarise()</code> “collapses” the data to one row per individual (specified by <code>group_by</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(wildschwein_BE, <span class="dt">mean =</span> <span class="kw">mean</span>(timelag, <span class="dt">na.rm =</span> T))</code></pre></div>
-<p>The above operation works fine on normal <code>data.frames</code>, but since <code>wildschwein_BE</code> is also an <code>sf</code> object, <code>summarise</code> actually merges all the points to a multipoint geometry, which takes a long time to calculate. In order to prevent this, we can wrap the <code>sf</code> object in <code>as.data.frame</code> which removes the spatial attribute. Regrettably, it also removes the <code>group_by</code> variable, which we need to set again. The command therefore goes like:</p>
+<p>The above operation works fine on normal <code>data.frames</code>, but since <code>wildschwein_BE</code> is also an <code>sf</code> object, <code>summarise</code> actually merges all the points to a multipoint geometry, which takes a long time to calculate. In order to prevent this, we can wrap the <code>sf</code> object in <code>as.data.frame</code> which removes the spatial attribute. Regrettably, it also removes the <code>group_by</code> variable, which we need to set again. The command therefore now reads:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(<span class="kw">group_by</span>(<span class="kw">as.data.frame</span>(wildschwein_BE),TierID), <span class="dt">mean_timelag =</span> <span class="kw">mean</span>(timelag, <span class="dt">na.rm =</span> T))
 ## # A tibble: 10 x 2
 ##    TierID mean_timelag
@@ -273,7 +290,10 @@ numbers
 ##  8 011A          2736.
 ##  9 016A          1412.
 ## 10 018A          1599.</code></pre></div>
-<p>This code is hard to read, since it has so many nested functions which need to be read from the inside out. In order to make code readable in a more human-friendly way, we can use the piping command <code>%&gt;%</code> from <code>magrittr</code>, which is included in <code>dplyr</code> and the <code>tidyverse</code>. The above code then looks like this:</p>
+</div>
+<div id="piping" class="section level3">
+<h3>Piping</h3>
+<p>The code above hard to read, since it has so many nested functions which need to be read from the inside out. In order to make code readable in a more human-friendly way, we can use the piping command <code>%&gt;%</code> from <code>magrittr</code>, which is included in <code>dplyr</code> and the <code>tidyverse</code>. The above code then looks like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wildschwein_BE %&gt;%<span class="st">                     </span><span class="co"># Take wildschwein_BE...</span>
 <span class="st">  </span><span class="kw">as.data.frame</span>() %&gt;%<span class="st">                  </span><span class="co"># ...convert it to a data.frame...</span>
 <span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%<span class="st">                 </span><span class="co"># ...group it by TierID</span>
@@ -294,94 +314,94 @@ numbers
 ##  9 016A          1412.
 ## 10 018A          1599.</code></pre></div>
 </div>
+<div id="bring-it-all-together" class="section level3">
+<h3>Bring it all together…</h3>
+<p>Here is the same approach with a different, smaller dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pigs =<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">TierID=</span><span class="kw">c</span>(<span class="dv">8001</span>,<span class="dv">8003</span>,<span class="dv">8004</span>,<span class="dv">8005</span>,<span class="dv">8800</span>,<span class="dv">8820</span>,<span class="dv">3000</span>,<span class="dv">3001</span>,<span class="dv">3002</span>,<span class="dv">3003</span>,<span class="dv">8330</span>,<span class="dv">7222</span>),
+  <span class="dt">sex=</span><span class="kw">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>),
+  <span class="dt">age=</span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>),
+  <span class="dt">weight=</span><span class="kw">c</span>(<span class="fl">50.755</span>,<span class="fl">43.409</span>,<span class="fl">12.000</span>,<span class="fl">16.787</span>,<span class="fl">20.987</span>,<span class="fl">25.765</span>,<span class="fl">22.0122</span>,<span class="fl">21.343</span>,<span class="fl">12.532</span>,<span class="fl">54.32</span>,<span class="fl">11.027</span>,<span class="fl">88.08</span>)
+)
+
+pigs
+##    TierID sex age  weight
+## 1    8001   M   A 50.7550
+## 2    8003   M   A 43.4090
+## 3    8004   M   J 12.0000
+## 4    8005   F   A 16.7870
+## 5    8800   M   J 20.9870
+## 6    8820   M   J 25.7650
+## 7    3000   F   J 22.0122
+## 8    3001   F   A 21.3430
+## 9    3002   M   J 12.5320
+## 10   3003   F   J 54.3200
+## 11   8330   M   A 11.0270
+## 12   7222   F   A 88.0800
+
+pigs %&gt;%
+<span class="st">    </span><span class="kw">summarise</span>(         
+    <span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight)
+  )
+##   mean_weight
+## 1    31.58477
+
+pigs %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(         
+    <span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight)
+  )
+## # A tibble: 2 x 2
+##   sex   mean_weight
+##   &lt;fct&gt;       &lt;dbl&gt;
+## 1 F            40.5
+## 2 M            25.2
+
+pigs %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(sex,age) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(         
+    <span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight)
+  )
+## # A tibble: 4 x 3
+## # Groups:   sex [?]
+##   sex   age   mean_weight
+##   &lt;fct&gt; &lt;fct&gt;       &lt;dbl&gt;
+## 1 F     A            42.1
+## 2 F     J            38.2
+## 3 M     A            35.1
+## 4 M     J            17.8</code></pre></div>
+</div>
 </div>
 <div id="tasks-and-inputs-1" class="section level2">
 <h2>Tasks and Inputs</h2>
-<!-- Todo: Der Begriff Input in diesem Kontext verwirrt micht, bitte aendern (auch rückwirkend in Exercise 1) in 'Skills section'. Ich würd dann auch den Untertitel von 'Tasks and inputs' nur noch in 'tasks' ändern.  -->
 <div id="task-1-getting-an-overview" class="section level3">
-<h3>Task 1: Getting an Overview</h3>
-<p>First, inspect your data in more detail. Try to answer the following questions:</p>
+<h3>Task 1: Getting an overview</h3>
+<p>Calculate the time difference between subsequent rows as described in the demo (column <code>timelag</code>) First, inspect your data in more detail. Try to answer the following questions:</p>
 <ul>
 <li>How many individuals were tracked?</li>
 <li>How long were the individual tracked? Are there gaps?</li>
 <li>Were all individuals tracked concurrently or sequentially?</li>
 <li>What is the temporal sampling interval between the locations?</li>
 </ul>
-<!-- TODO: diese Grafiken werden nicht mit den Werkzeugen gelöst, die im Demo illustriert werden -->
-<p>Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions? <img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-44-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-44-3.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-44-4.png" width="672" /></p>
-</div>
-<div id="input-cut-vector-by-intervals" class="section level3">
-<h3>Input: <code>cut()</code> vector by intervals</h3>
-<p>For the next Task, we will need a function to split a continuous variable into specific intervals. For this, the function <code>cut()</code>is very handy. Let’s introduce this function with a quick example. Assume we have a series of number that represent the ages of ten different people.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">18</span>,<span class="dv">13</span>,<span class="dv">53</span>,<span class="dv">50</span>,<span class="dv">23</span>,<span class="dv">43</span>,<span class="dv">68</span>,<span class="dv">40</span>)</code></pre></div>
-<p>Let’s say we want to split this into equal intervals of 10 years.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">breaks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">10</span>)
-
-<span class="kw">cut</span>(ages,<span class="dt">breaks =</span> breaks)
-##  [1] (10,20] (20,30] (10,20] (10,20] &lt;NA&gt;    (40,50] (20,30] (40,50]
-##  [9] &lt;NA&gt;    (30,40]
-## Levels: (0,10] (10,20] (20,30] (30,40] (40,50]</code></pre></div>
-<p>Note:</p>
-<ul>
-<li>If a number does not fit within an interval defined by <code>breaks =</code>, <code>cut()</code> will return <code>NA</code> (as for example for the fifth element <code>53</code>).</li>
-<li>The default <code>labels</code> with <code>(</code> and <code>]</code> might seem a little ugly and puzzling at first, but in fact they are <a href="https://en.wikipedia.org/wiki/Interval_%28mathematics%29#Notations_for_intervals">a standard form of notating intervals in mathematics</a>.</li>
-<li>If you don’t like <code>(</code> and <code>]</code>, you can:</li>
-<li>specify your own labels with the argument <code>labels =</code> <em>or</em></li>
-<li>use the the function <code>labels_nice</code> we provide with the <code>CMAtools</code>-package</li>
-<li>Four thresholds (i.e. <code>breaks</code>) return three intervals (i.e. <code>lables</code>), as shown below.</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">60</span>,<span class="dv">100</span>)
-
-<span class="kw">cut</span>(ages, <span class="dt">breaks =</span> breaks, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;young&quot;</span>,<span class="st">&quot;middle aged&quot;</span>,<span class="st">&quot;old&quot;</span>))
-##  [1] young       young       young       young       middle aged
-##  [6] middle aged young       middle aged old         middle aged
-## Levels: young middle aged old
-
-<span class="kw">cut</span>(ages, <span class="dt">breaks =</span> breaks, <span class="dt">labels =</span> CMAtools::<span class="kw">labels_nice</span>(breaks))
-##  [1] 0-30   0-30   0-30   0-30   30-60  30-60  0-30   30-60  60-100 30-60 
-## Levels: 0-30 30-60 60-100</code></pre></div>
-</div>
-<div id="task-2-making-groups-by-sampling-interval" class="section level3">
-<h3>Task 2: Making groups by sampling Interval</h3>
-<p>Now that we’ve established that we have different sampling intervals (Task 1), we have to segment our trajectories in such a way, that we can perform further analysis during specific sampling intervals only. If we measure speed, or turning angles, we have to be very clear on what temporal (an thus spatial) scale or granularity we are performing this analysis.</p>
-<p>We therefore have to define thresholds to group segments with a similar sampling interval. Explore the dataset in more detail (e.g. using histograms at different scales), and choose reasonable threshold values to group the trajectories into different sampling intervals.</p>
-<p>Note:</p>
-<ul>
-<li>It might make more sense to choose narrow intervals at shorter time lags and wider intervals at longer time lags.</li>
-<li>Store the interval names in a new column named <code>samplingInt</code></li>
-<li>explore the dataset by using a logarithmic <code>y-axis</code> (<code>scale_y_log10()</code>) and looking at the different parts of the <code>x-axis</code> seperately</li>
-<li>We will later filter the data by the sampling interval. We therefore recommend the use of <code>labels_nice()</code> from the package <code>CMAtools</code> for nicer, more intuitive labels.</li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-49-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-49-3.png" width="672" /></p>
+<p>Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions? <img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-48-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-48-3.png" width="672" /></p>
 </div>
 <div id="input-geometry-as-columns" class="section level3">
 <h3>Input: Geometry as columns</h3>
-<p>Last week, we transformed our data from a <code>data.frame</code> to an <code>sf</code> object. This turned our <code>Lat</code>/<code>Long</code> Columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. We did this for the values in <code>WGS84</code>, but not yet for <code>CH1903+ LV95</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-wildschwein_BE
-## Simple feature collection with 141763 features and 8 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 2568153 ymin: 1201483 xmax: 2577023 ymax: 1207609
-## epsg (SRID):    2056
-## proj4string:    +proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs
-## # A tibble: 141,763 x 9
-## # Groups:   TierID [10]
-##    TierID TierName CollarID DatetimeUTC           Lat  Long timelag
-##    &lt;chr&gt;  &lt;chr&gt;       &lt;int&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-##  1 001A   Ueli        12272 2014-05-28 21:01:14  47.0  7.05    844.
-##  2 001A   Ueli        12272 2014-05-28 21:15:18  47.0  7.05    895.
-##  3 001A   Ueli        12272 2014-05-28 21:30:13  47.0  7.05    898.
-##  4 001A   Ueli        12272 2014-05-28 21:45:11  47.0  7.05    922.
-##  5 001A   Ueli        12272 2014-05-28 22:00:33  47.0  7.05    883.
-##  6 001A   Ueli        12272 2014-05-28 22:15:16  47.0  7.05    898.
-##  7 001A   Ueli        12272 2014-05-28 22:30:14  47.0  7.05    895.
-##  8 001A   Ueli        12272 2014-05-28 22:45:09  47.0  7.05    903.
-##  9 001A   Ueli        12272 2014-05-28 23:00:12  47.0  7.05    896.
-## 10 001A   Ueli        12272 2014-05-28 23:15:08  47.0  7.05    908.
-## # ... with 141,753 more rows, and 2 more variables: samplingInt &lt;fct&gt;,
-## #   geometry &lt;POINT [m]&gt;</code></pre></div>
+<p>Last week, we transformed our data from a <code>data.frame</code> to an <code>sf</code> object. This turned our <code>Lat</code>/<code>Long</code> Columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. We already have <code>WGS84</code> as numeric columns, but not yet the <code>CH1903+ LV95</code> coordinates.</p>
+<pre><code>## # A tibble: 10 x 6
+##    TierID DatetimeUTC           Lat  Long timelag
+##    &lt;chr&gt;  &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 001A   2014-05-28 21:01:14  47.0  7.05     844
+##  2 001A   2014-05-28 21:15:18  47.0  7.05     895
+##  3 001A   2014-05-28 21:30:13  47.0  7.05     898
+##  4 001A   2014-05-28 21:45:11  47.0  7.05     922
+##  5 001A   2014-05-28 22:00:33  47.0  7.05     883
+##  6 001A   2014-05-28 22:15:16  47.0  7.05     898
+##  7 001A   2014-05-28 22:30:14  47.0  7.05     895
+##  8 001A   2014-05-28 22:45:09  47.0  7.05     903
+##  9 001A   2014-05-28 23:00:12  47.0  7.05     896
+## 10 001A   2014-05-28 23:15:08  47.0  7.05     908
+## # ... with 1 more variable: geometry &lt;POINT [m]&gt;</code></pre>
 <p>Let’s do the same for the <code>CH1903+ LV95</code>-values, as we will need the values in columns for our next task. First, we have to extract the Coordinates using <code>st_coordinates()</code>. We can store these values in a new variable and display them:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store coordinates in a new variable</span>
 coordinates &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(wildschwein_BE)
@@ -399,27 +419,25 @@ coordinates &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>
 
 wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wildschwein_BE,coordinates)</code></pre></div>
 </div>
-<div id="task-3-deriving-movement-parameters-i-euclidean-distance-and-speed" class="section level3">
-<h3>Task 3: Deriving movement parameters I: Euclidean Distance and Speed</h3>
+<div id="task-2-deriving-movement-parameters-i-euclidean-distance-and-speed" class="section level3">
+<h3>Task 2: Deriving movement parameters I: Euclidean Distance and Speed</h3>
 <p>In this task we will derive some additional movement parameters from our trajectories. Note, so far our trajectories only consist of a list of time-stamped spatial locations. So let’s calculate the animal’s speed based on the distance and timelag in between two subsequent locations.</p>
 <ul>
-<li>If you’re working with <code>dplyr</code>, you can add <code>samplingInt</code> to <code>group_by()</code> (in addition to <code>TierID</code>) and so make sure you’re not calculating speed across different sampling intervals.</li>
 <li>You can use the function <code>euclid()</code> from the <code>CMAtools</code> package to calculate Euclidean distances between subsequent rows. Use <code>?euclid</code> to see what the function expects and returns.</li>
 <li>use <code>lead(E,1)</code> to address the the row <code>n+1</code></li>
-<li>make sure you’re clear in what unit you are measuring speed. Meters per second is a SI base unit, but might be unhandy for the speeds travelled by wild boar. Perhaps make two speed columns, one in meters per second and one in km per hour?</li>
+<li>make sure you’re clear in what unit you are measuring speed. Meters per second is a SI base unit, but might be unhandy for the speeds travelled by wild boar.</li>
 </ul>
-<!-- Todo laup: ich denke km pro stunde macht wenig sinn. bleiben wir einfach bei m/s? -->
 </div>
-<div id="task-4" class="section level3">
-<h3>Task 4</h3>
-<p><span class="citation">Laube and Purves (2011)</span> analyse animal movement across different scales (see below).</p>
+<div id="task-3-cross-scale-movement-analysis" class="section level3">
+<h3>Task 3: Cross-scale movement analysis</h3>
+<p><span class="citation">Laube and Purves (2011)</span> analyse animal movement across different scales (see below). We will do the same on a <em>subset</em> of our data.</p>
 <div class="figure">
 <img src="02_Images/laube_2011_2.jpg" alt="Laube and Purves (2011): Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale." />
 <p class="caption"><span class="citation">Laube and Purves (2011)</span>: <em>Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale.</em></p>
 </div>
-<p>We will do the same for our data and will be working on a <em>subset</em> of our dataset. We will only need trajectories with a sampling interval of around 60 seconds (<span class="math display">\[\pm\]</span>20 seconds). Filter your data accordingly and save it to a new variable (we will use <code>wildschwein_BE_1</code>). From this subset, take the first 100 positions for the following task.</p>
 <div id="filter" class="section level4">
 <h4>Filter</h4>
+<p>To do so, filter your data to positions with a sampling interval between 40 and 60 seconds and save it to a new variable (we will use <code>wildschwein_BE_1</code>). From this subset, take the first 100 positions<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> for the following task.</p>
 <p>If you like to stick to the <code>tidyverse</code> approach, you can use <code>slice()</code> to subset the dataset by row number. Slice takes an integer vector. Eg: <code>slice(dataset, 1:10)</code>, returns the first 10 rows of a dataset, <code>slice(dataset, c(1,5,10))</code> returns the 1<sup>st</sup>, 5<sup>th</sup> and 10<sup>th</sup> value of a dataset.</p>
 </div>
 <div id="resample" class="section level4">
@@ -427,17 +445,26 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wilds
 <p>Now manually reduce the granularity of our sampling interval by selecting samples every 3<sup>rd</sup>, 6<sup>th</sup> and 9<sup>th</sup> minute.</p>
 <ul>
 <li>You can use <code>slice()</code> again for this task by providing an integer vector (with <code>seq()</code>) in the desired frequency</li>
-<li>Save each resampled dataset in a new variable. We will use (<code>wildschwein_BE_3</code>, <code>wildschwein_BE_6</code> and <code>wildschwein_BE_9</code>)</li>
+<li>Save each re-sampled dataset in a new variable. We will use <code>wildschwein_BE_3</code>, <code>wildschwein_BE_6</code> and <code>wildschwein_BE_9</code>.</li>
 </ul>
+<p>You should now have 4 datasets with different number of rows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(wildschwein_BE_1)
+## [1] 99
+<span class="kw">nrow</span>(wildschwein_BE_3)
+## [1] 33
+<span class="kw">nrow</span>(wildschwein_BE_6)
+## [1] 17
+<span class="kw">nrow</span>(wildschwein_BE_9)
+## [1] 11</code></pre></div>
 </div>
 <div id="update-derived-parameters" class="section level4">
 <h4>Update derived parameters</h4>
-<p><code>timelag</code>, <code>steplength</code> and <code>speed</code> now have to be recalculated on the basis of the resampled data. Do so as we illustrated in the Chapter <em>Demo</em>.</p>
+<p><code>timelag</code>, <code>steplength</code> and <code>speed</code> now have to be recalculated for the three re-sampled datasets. Do so as we illustrated in the Chapter <em>Demo</em>.</p>
 </div>
 <div id="visualize" class="section level4">
 <h4>Visualize</h4>
-<p>Compare the speeds in a line plot and viualize the trajectories in a map (see examples below). Interpret the line plot, what do the different lines for the different temporal granularities tell you?</p>
-<p>We’ve stored our location data in three different form in our dataset. Once as a <code>geometry</code>, once as <code>E</code>/<code>N</code> and once as <code>lat</code>/<code>long</code>. In our view, it is most practical to use the <code>E</code>/<code>N</code> (integer) columns of our data to map them in this task</p>
+<p>Compare the speeds in a line plot and visualize the trajectories in a map (see examples below). Interpret the line plot, what do the different lines for the different temporal granularities tell you?</p>
+<p>We’ve stored the geographic location of our point in the trajectory in three different forms in our dataset. Once as a <code>geometry</code>, once as <code>E</code>/<code>N</code> and once as <code>lat</code>/<code>long</code>. In our view, it is most practical to use the <code>E</code>/<code>N</code> (integer) columns of our data to map them in this task</p>
 <ul>
 <li><code>geom_sf()</code> does not plot lines, just points</li>
 <li>Therefore, use <code>geom_path()</code> <em>and</em> <code>geom_point()</code> rather than <code>geom_sf()</code> within <code>ggplot</code></li>
@@ -447,279 +474,39 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wilds
 <p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-57-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-57-3.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-57-4.png" width="672" /></p>
 </div>
 </div>
-<div id="task-5-optional-deriving-movement-parameters-ii-rolling-window-functions" class="section level3">
-<h3>Task 5 (Optional): Deriving movement parameters II: Rolling window functions</h3>
-<!-- Todo laup: passt dieser Titel noch?  -->
-<p>A different approach would be to <em>smoothen</em> the derived parameters using a <a href="https://docs.wavefront.com/images/5sec_moving_window.png">moving window function</a>. The <code>zoo</code> package offers a variate of moving window functions (<code>roll*</code>). Use <code>roll_mean()</code> to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:</p>
+<div id="task-4-deriving-movement-parameters-ii-rolling-window-functions" class="section level3">
+<h3>Task 4: Deriving movement parameters II: Rolling window functions</h3>
+<p>A different approach would be to <em>smoothen</em> the derived parameters using a <a href="https://docs.wavefront.com/images/5sec_moving_window.png">moving window function</a>. The <code>zoo</code> package offers a variate of moving window functions (<code>roll_*</code>). Use <code>roll_mean()</code> to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">library</span>(zoo)
 
 example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">3</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1]  0.11945985  0.75836040  0.25909870  0.16355833 -0.34173997
-##  [6]  0.15561816  0.01068451  0.39684910          NA          NA
+##  [1]  0.9001342159 -0.0898657812 -0.2741531181 -1.1057778973 -0.5030673430
+##  [6] -0.2181475103  0.1987898837 -0.0007413742            NA            NA
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">4</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1]  0.56372256  0.27006486  0.14157053  0.21782269 -0.18199181
-##  [6] -0.04474011  0.39279077          NA          NA          NA</code></pre></div>
-<p>Now run <code>rollmean</code>on the <code>speed</code> variable of your original data (<code>wildschwein_BE</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>). It will probabbly make sense to just visualize a subset of your data.</p>
+##  [1]  0.3465063 -0.2320381 -0.5417152 -0.7058949 -0.3282494 -0.1870079
+##  [7]  0.1228825         NA         NA         NA</code></pre></div>
+<p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>wildschwein_BE_1</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
+</div>
+<div id="task-5-optional-calculate-turning-angles" class="section level3">
+<h3>Task 5 (optional): Calculate turning angles</h3>
+<p>Just like we did with <code>speed</code> in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! <code>CMAtools</code> has the function <code>turning_angle()</code><a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. Here is an example on some dummy data. We represent the turning angle as the clockwise, angular offset from moving straight ahead.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<!-- Todo nils: call R-File here rather than explicitly writing the script -->
+<!-- ## Solutions (RCode) -->
+<!-- ```{r code=readLines('12_Week2/RFiles/W02_01_Exercise.R'), results='asis', echo = T, include=T, eval=F} -->
+<!-- ``` -->
+
 </div>
 </div>
-<div id="solutions-rcode" class="section level2">
-<h2>Solutions (RCode)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## install.packages(&quot;zoo&quot;)
-## 
-## devtools::install_git(&quot;https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git&quot;)
-wildschwein_BE &lt;-<span class="st"> </span><span class="kw">ungroup</span>(wildschwein_BE)
-## Demo Tidyverse ################
-now &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
-
-later &lt;-<span class="st"> </span>now +<span class="st"> </span><span class="dv">10000</span>
-
-<span class="kw">difftime</span>(later,now)
-time_difference &lt;-<span class="st"> </span><span class="kw">difftime</span>(later,now,<span class="dt">units =</span> <span class="st">&quot;mins&quot;</span>)
-
-time_difference
-<span class="kw">str</span>(time_difference)
-time_difference &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">difftime</span>(later,now,<span class="dt">units =</span> <span class="st">&quot;mins&quot;</span>))
-
-<span class="kw">str</span>(time_difference)
-
-numbers &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
-
-numbers
-<span class="kw">lead</span>(numbers)
-
-<span class="kw">lead</span>(numbers,<span class="dt">n =</span> <span class="dv">2</span>)
-
-<span class="kw">lag</span>(numbers)
-
-<span class="kw">lag</span>(numbers,<span class="dt">n =</span> <span class="dv">5</span>)
-
-<span class="kw">lag</span>(numbers,<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">default =</span> <span class="dv">0</span>)
-<span class="kw">lead</span>(numbers)-numbers
-wildschwein_BE$timelag  &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>))
-
-wildschwein_BE &lt;-<span class="st"> </span><span class="kw">mutate</span>(wildschwein_BE,<span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>)))
-<span class="kw">summary</span>(wildschwein_BE$timelag)
-wildschwein_BE &lt;-<span class="st"> </span><span class="kw">group_by</span>(wildschwein_BE,TierID)
-wildschwein_BE &lt;-<span class="st"> </span><span class="kw">mutate</span>(wildschwein_BE,<span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>)))
-
-<span class="kw">summary</span>(wildschwein_BE$timelag)
-## 
-## summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
-## 
-<span class="kw">summarise</span>(<span class="kw">group_by</span>(<span class="kw">as.data.frame</span>(wildschwein_BE),TierID), <span class="dt">mean_timelag =</span> <span class="kw">mean</span>(timelag, <span class="dt">na.rm =</span> T))
-
-wildschwein_BE %&gt;%<span class="st">                     </span><span class="co"># Take wildschwein_BE...</span>
-<span class="st">  </span><span class="kw">as.data.frame</span>() %&gt;%<span class="st">                  </span><span class="co"># ...convert it to a data.frame...</span>
-<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%<span class="st">                 </span><span class="co"># ...group it by TierID</span>
-<span class="st">  </span><span class="kw">summarise</span>(                           <span class="co"># Summarise the data..</span>
-    <span class="dt">mean_timelag =</span> <span class="kw">mean</span>(timelag,<span class="dt">na.rm =</span> T) <span class="co"># ... by calculating the mean timelag</span>
-  )
-## Task 1 ####################
-
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(DatetimeUTC,TierID)) +
-<span class="st">  </span><span class="kw">geom_line</span>()
-
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>)
-
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) +
-<span class="st">  </span><span class="kw">lims</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) +
-<span class="st">  </span><span class="kw">scale_y_log10</span>()
-
-wildschwein_BE[<span class="dv">1</span>:<span class="dv">50</span>,] %&gt;%
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(DatetimeUTC,timelag)) +
-<span class="st">  </span><span class="kw">geom_line</span>() +
-<span class="st">  </span><span class="kw">geom_point</span>()
-
-
-## Input: cut vecotrs by intervals ####################
-ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">18</span>,<span class="dv">13</span>,<span class="dv">53</span>,<span class="dv">50</span>,<span class="dv">23</span>,<span class="dv">43</span>,<span class="dv">68</span>,<span class="dv">40</span>)
-breaks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">10</span>)
-
-<span class="kw">cut</span>(ages,<span class="dt">breaks =</span> breaks)
-<span class="kw">cut</span>(ages, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">60</span>,<span class="dv">100</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;young&quot;</span>,<span class="st">&quot;middle aged&quot;</span>,<span class="st">&quot;old&quot;</span>))
-## Task 2 ####################
-
-breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">40</span>,<span class="dv">80</span>,<span class="dv">300</span>,<span class="dv">600</span>,<span class="dv">1200</span>,<span class="dv">2500</span>,<span class="dv">3000</span>,<span class="dv">4000</span>,<span class="dv">7500</span>,<span class="dv">110000</span>)
-
-
-
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>) +
-<span class="st">  </span><span class="kw">lims</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">600</span>)) +
-<span class="st">  </span><span class="kw">scale_y_log10</span>() +
-<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> breaks, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
-
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>) +
-<span class="st">  </span><span class="kw">lims</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">600</span>,<span class="dv">1200</span>)) +
-<span class="st">  </span><span class="kw">scale_y_log10</span>() +
-<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> breaks, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
-
-
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(timelag)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>) +
-<span class="st">  </span><span class="kw">lims</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1200</span>,<span class="dv">10000</span>)) +
-<span class="st">  </span><span class="kw">scale_y_log10</span>() +
-<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> breaks, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
-
-labels_nice &lt;-<span class="st"> </span>function(breaks){
-  <span class="kw">return</span>(<span class="kw">paste</span>(<span class="kw">lag</span>(breaks,<span class="dt">default =</span> <span class="ot">NULL</span>),<span class="kw">lead</span>(breaks,<span class="dt">default =</span> <span class="ot">NULL</span>),<span class="dt">sep=</span><span class="st">&quot;-&quot;</span>))
-}
-
-<span class="co"># todo: noch in CMA Tools integrieren</span>
-
-
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">samplingInt =</span> <span class="kw">cut</span>(timelag,<span class="dt">breaks =</span> breaks,<span class="dt">labels =</span> <span class="kw">labels_nice</span>(breaks))
-  ) 
-
-wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">as.data.frame</span>() %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(samplingInt) %&gt;%
-<span class="st">  </span><span class="kw">summarise</span>(
-    <span class="dt">n =</span> <span class="kw">n</span>()
-  ) %&gt;%
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(samplingInt,n)) +
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) +
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) +
-<span class="st">  </span><span class="kw">scale_y_log10</span>()
-
-
-
-wildschwein_BE
-
-<span class="co"># Store coordinates in a new variable</span>
-coordinates &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(wildschwein_BE)
-
-<span class="kw">head</span>(coordinates)
-<span class="kw">colnames</span>(coordinates) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;E&quot;</span>,<span class="st">&quot;N&quot;</span>)
-
-wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wildschwein_BE,coordinates)
-## Task 3 ####################
-
-<span class="kw">library</span>(CMAtools)
-
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(TierID,samplingInt) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">steplength =</span> <span class="kw">euclid</span>(<span class="kw">lead</span>(E, <span class="dv">1</span>),<span class="kw">lead</span>(N, <span class="dv">1</span>),E,N),
-    <span class="dt">speed =</span> steplength/timelag
-  )
-
-
-
-sample &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">position =</span> <span class="kw">paste0</span>(<span class="st">&quot;pos&quot;</span>,<span class="dv">1</span>:<span class="dv">6</span>),<span class="dt">samplingInt=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">60</span>,<span class="dv">3</span>),<span class="kw">rep</span>(<span class="dv">120</span>,<span class="dv">3</span>)))
-sample
-sample &lt;-<span class="st"> </span>sample %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">samplingInt_control =</span> samplingInt ==<span class="st"> </span><span class="kw">lead</span>(samplingInt,<span class="dv">1</span>),
-    <span class="dt">samplingInt_group =</span> <span class="kw">number_groups</span>(samplingInt_control,<span class="dt">include_first_false =</span> T)
-  )
-
-sample
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">samplingInt_T =</span> samplingInt ==<span class="st"> </span><span class="kw">lead</span>(samplingInt),
-    <span class="dt">group =</span> <span class="kw">number_groups</span>(samplingInt_T,<span class="dt">include_first_false =</span> T)
-  ) %&gt;%
-<span class="st">  </span>dplyr::<span class="kw">select</span>(-samplingInt_T)
-
-wildschwein_BE_short &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(samplingInt ==<span class="st"> &quot;40-80&quot;</span>)
-
-wildschwein_BE_short &lt;-<span class="st"> </span>wildschwein_BE_short %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(group ==<span class="st"> </span><span class="dv">9</span>) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">100</span>)
-
-
-wildschwein_BE_3 &lt;-<span class="st"> </span>wildschwein_BE_short %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">nrow</span>(.),<span class="dv">3</span>))
-
-wildschwein_BE_6 &lt;-<span class="st"> </span>wildschwein_BE_short %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">nrow</span>(.),<span class="dv">6</span>))
-
-
-wildschwein_BE_9 &lt;-<span class="st"> </span>wildschwein_BE_short %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">nrow</span>(.),<span class="dv">9</span>))
-
-wildschwein_BE_3 &lt;-<span class="st"> </span>wildschwein_BE_3 %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>)),
-    <span class="dt">steplength =</span> <span class="kw">euclid</span>(<span class="kw">lead</span>(E, <span class="dv">1</span>),<span class="kw">lead</span>(N, <span class="dv">1</span>),E,N),
-    <span class="dt">speed =</span> steplength/timelag
-  )
-
-wildschwein_BE_6 &lt;-<span class="st"> </span>wildschwein_BE_6 %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>)),
-    <span class="dt">steplength =</span> <span class="kw">euclid</span>(<span class="kw">lead</span>(E, <span class="dv">1</span>),<span class="kw">lead</span>(N, <span class="dv">1</span>),E,N),
-    <span class="dt">speed =</span> steplength/timelag
-  )
-
-
-wildschwein_BE_9 &lt;-<span class="st"> </span>wildschwein_BE_9 %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>)),
-    <span class="dt">steplength =</span> <span class="kw">euclid</span>(<span class="kw">lead</span>(E, <span class="dv">1</span>),<span class="kw">lead</span>(N, <span class="dv">1</span>),E,N),
-    <span class="dt">speed =</span> steplength/timelag
-  )
-
-
-<span class="kw">ggplot</span>() +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wildschwein_BE_9, <span class="kw">aes</span>(E,N), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> wildschwein_BE_9, <span class="kw">aes</span>(E,N), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wildschwein_BE_6, <span class="kw">aes</span>(E,N), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> wildschwein_BE_6, <span class="kw">aes</span>(E,N), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wildschwein_BE_3, <span class="kw">aes</span>(E,N), <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> wildschwein_BE_3, <span class="kw">aes</span>(E,N), <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wildschwein_BE_short, <span class="kw">aes</span>(E,N), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> wildschwein_BE_short, <span class="kw">aes</span>(E,N), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)
-
-
-<span class="kw">ggplot</span>() +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wildschwein_BE_9, <span class="kw">aes</span>(DatetimeUTC,speed), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> wildschwein_BE_9, <span class="kw">aes</span>(DatetimeUTC,speed), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wildschwein_BE_6, <span class="kw">aes</span>(DatetimeUTC,speed), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> wildschwein_BE_6, <span class="kw">aes</span>(DatetimeUTC,speed), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wildschwein_BE_3, <span class="kw">aes</span>(DatetimeUTC,speed), <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> wildschwein_BE_3, <span class="kw">aes</span>(DatetimeUTC,speed), <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wildschwein_BE_short, <span class="kw">aes</span>(DatetimeUTC,speed), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) +
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> wildschwein_BE_short, <span class="kw">aes</span>(DatetimeUTC,speed), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) +
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Time&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Speed (m/s)&quot;</span>)
-
-## Task 4 ####################
-
-<span class="kw">library</span>(zoo)
-
-example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
-<span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">3</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-<span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">4</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-
-
-
-wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">speed2 =</span> <span class="kw">rollmean</span>(speed,<span class="dv">3</span>,<span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>),
-    <span class="dt">speed3 =</span> <span class="kw">rollmean</span>(speed,<span class="dv">5</span>,<span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>),
-    <span class="dt">speed4 =</span> <span class="kw">rollmean</span>(speed,<span class="dv">10</span>,<span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-  )
-
-wildschwein_BE[<span class="dv">1</span>:<span class="dv">30</span>,] %&gt;%
-<span class="st">  </span><span class="kw">gather</span>(key,val,<span class="kw">c</span>(speed,speed2,speed3,speed4)) %&gt;%
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(DatetimeUTC,val,<span class="dt">colour =</span> key,<span class="dt">group =</span> key)) +
-<span class="st">  </span><span class="kw">geom_point</span>() +
-<span class="st">  </span><span class="kw">geom_line</span>() 
-## NA</code></pre></div>
-
 </div>
+<div class="footnotes">
+<hr />
+<ol start="5">
+<li id="fn5"><p>In the solution (and the graphics), we actually use locations 2-100 for aesthetical reasons<a href="exercise-2.html#fnref5">↩</a></p></li>
+<li id="fn6"><p>We haven’t tested the function extensively yet and are happy for feedback. If you want to have a look at the function, check our <a href="https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools/blob/master/R/spatial.R">Git hub site</a><a href="exercise-2.html#fnref6">↩</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -768,19 +555,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

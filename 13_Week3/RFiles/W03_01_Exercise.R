@@ -2,7 +2,65 @@ library(tidyverse)
 library(plotly)
 library(CMAtools)
 library(recurse)
-## Task 5 ####################
+## Input: cut vecotrs by intervals ####################
+ages <- c(20,25,18,13,53,50,23,43,68,40)
+breaks <- seq(0,50,10)
+
+cut(ages,breaks = breaks)
+
+library(CMAtools)
+
+breaks <- c(0,30,60,100)
+
+cut(ages, breaks = breaks, labels = c("young","middle aged","old"))
+
+cut(ages, breaks = breaks, labels = labels_nice(breaks))
+
+
+## Task 2 ####################
+
+breaks <- c(0,40,80,300,600,1200,2500,3000,4000,7500,110000)
+
+
+ggplot(wildschwein_BE, aes(timelag)) +
+  geom_histogram(binwidth = 10) +
+  lims(x = c(0,600)) +
+  scale_y_log10() +
+  geom_vline(xintercept = breaks, col = "red")
+
+ggplot(wildschwein_BE, aes(timelag)) +
+  geom_histogram(binwidth = 10) +
+  lims(x = c(600,1200)) +
+  scale_y_log10() +
+  geom_vline(xintercept = breaks, col = "red")
+
+
+ggplot(wildschwein_BE, aes(timelag)) +
+  geom_histogram(binwidth = 10) +
+  lims(x = c(1200,10000)) +
+  scale_y_log10() +
+  geom_vline(xintercept = breaks, col = "red")
+
+
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
+    samplingInt = cut(timelag,breaks = breaks,labels = labels_nice(breaks))
+  ) 
+
+# wildschwein_BE %>%
+#   as.data.frame() %>%
+#   group_by(samplingInt) %>%
+#   summarise(
+#     n = n()
+#   ) %>%
+#   ggplot(aes(samplingInt,n)) +
+#   geom_bar(stat = "identity") +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+#   scale_y_log10()
+
+# Todo: diesen Plot entfernen?
+## Task 1 ####################
 
 nMinus2 <- euclid(lag(X, 2),lag(Y, 2),X,Y)  # distance to pos. -10 minutes
 nMinus1 <- euclid(lag(X, 1),lag(Y, 1),X,Y)  # distance to pos.  -5 minutes
@@ -71,6 +129,22 @@ wildschwein_BE_sf[20:50,] %>%
     panel.background = element_rect(fill = "transparent")
     ) 
 
+sample <- data.frame(position = paste0("pos",1:6),samplingInt=c(rep(60,3),rep(120,3)))
+sample
+sample <- sample %>%
+  mutate(
+    samplingInt_control = samplingInt == lead(samplingInt,1),
+    samplingInt_group = number_groups(samplingInt_control,include_first_false = T)
+  )
+
+sample
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
+    samplingInt_T = samplingInt == lead(samplingInt),
+    group = number_groups(samplingInt_T,include_first_false = T)
+  ) %>%
+  dplyr::select(-samplingInt_T)
 ## # library(leaflet)
 ## # library(scales)
 ## # factpal <- colorFactor(hue_pal()(2), wildschwein_BE_sf$moving)
@@ -118,4 +192,6 @@ wildschwein_BE_sf %>%
   geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) +
   coord_fixed(1)
 
-## NA
+## wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+## 
+## summary(wildschwein_BE$timelag)

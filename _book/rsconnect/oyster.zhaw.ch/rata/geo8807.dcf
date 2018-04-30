@@ -1,0 +1,12 @@
+name: geo8807
+title: GEO880
+username: rata
+account: rata
+server: oyster.zhaw.ch
+hostUrl: http://oyster.zhaw.ch:3939/__api__
+appId: 86
+bundleId: 115
+url: http://oyster.zhaw.ch:3939/content/86/
+when: 1524815710.10022
+asMultiple: FALSE
+asStatic: TRUE

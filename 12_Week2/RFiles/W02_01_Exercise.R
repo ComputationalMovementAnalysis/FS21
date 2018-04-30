@@ -1,15 +1,23 @@
+library(tidyverse)
+library(sf)
+
+wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
+
+wildschwein_BE <- st_transform(wildschwein_BE, 2056)
+
 ## install.packages("zoo")
 ## 
 ## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
-wildschwein_BE <- ungroup(wildschwein_BE)
 ## Demo Tidyverse ################
 now <- Sys.time()
 
 later <- now + 10000
 
-difftime(later,now)
+time_difference <- difftime(later,now)
+time_difference
 time_difference <- difftime(later,now,units = "mins")
-
 time_difference
 str(time_difference)
 time_difference <- as.numeric(difftime(later,now,units = "mins"))
@@ -28,38 +36,71 @@ lag(numbers)
 lag(numbers,n = 5)
 
 lag(numbers,n = 5, default = 0)
+
 lead(numbers)-numbers
+
 wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC,units = "secs"))
 
 wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+
 summary(wildschwein_BE$timelag)
+
 wildschwein_BE <- group_by(wildschwein_BE,TierID)
+
 wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
 
 summary(wildschwein_BE$timelag)
-## 
+
+pigs = data.frame(
+  TierID=c(8001,8003,8004,8005,8800,8820,3000,3001,3002,3003,8330,7222),
+  sex=c("M","M","M","F","M","M","F","F","M","F","M","F"),
+  age=c("A","A","J","A","J","J","J","A","J","J","A","A"),
+  weight=c(50.755,43.409,12.000,16.787,20.987,25.765,22.0122,21.343,12.532,54.32,11.027,88.08)
+)
+
+pigs
+
+pigs %>%
+  summarise(         
+    mean_weight = mean(weight)
+  )
+
+pigs %>%
+  group_by(sex) %>%
+  summarise(         
+    mean_weight = mean(weight)
+  )
+
+pigs %>%
+  group_by(sex,age) %>%
+  summarise(         
+    mean_weight = mean(weight)
+  )
+
 ## summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
-## 
 summarise(group_by(as.data.frame(wildschwein_BE),TierID), mean_timelag = mean(timelag, na.rm = T))
 
 wildschwein_BE %>%                     # Take wildschwein_BE...
   as.data.frame() %>%                  # ...convert it to a data.frame...
   group_by(TierID) %>%                 # ...group it by TierID
-  summarise(                           # Summarise the data..
-    mean_timelag = mean(timelag,na.rm = T) # ... by calculating the mean timelag
+  summarise(                           # Summarise the data...
+    mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
   )
+
+
 ## Task 1 ####################
+
+wildschwein_BE <- wildschwein_BE %>%
+  mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
 
 ggplot(wildschwein_BE, aes(DatetimeUTC,TierID)) +
   geom_line()
 
 ggplot(wildschwein_BE, aes(timelag)) +
-  geom_histogram(binwidth = 50)
-
-ggplot(wildschwein_BE, aes(timelag)) +
-  geom_histogram(binwidth = 1) +
-  lims(x = c(0,100)) +
+  geom_histogram(binwidth = 50) +
+  lims(x = c(0,15000)) +
   scale_y_log10()
+  
 
 wildschwein_BE[1:50,] %>%
   ggplot(aes(DatetimeUTC,timelag)) +
@@ -67,64 +108,11 @@ wildschwein_BE[1:50,] %>%
   geom_point()
 
 
-## Input: cut vecotrs by intervals ####################
-ages <- c(20,25,18,13,53,50,23,43,68,40)
-breaks <- seq(0,50,10)
-
-cut(ages,breaks = breaks)
-cut(ages, breaks = c(0,30,60,100), labels = c("young","middle aged","old"))
-## Task 2 ####################
-
-breaks <- c(0,40,80,300,600,1200,2500,3000,4000,7500,110000)
-
-
-
-ggplot(wildschwein_BE, aes(timelag)) +
-  geom_histogram(binwidth = 10) +
-  lims(x = c(0,600)) +
-  scale_y_log10() +
-  geom_vline(xintercept = breaks, col = "red")
-
-ggplot(wildschwein_BE, aes(timelag)) +
-  geom_histogram(binwidth = 10) +
-  lims(x = c(600,1200)) +
-  scale_y_log10() +
-  geom_vline(xintercept = breaks, col = "red")
-
-
-ggplot(wildschwein_BE, aes(timelag)) +
-  geom_histogram(binwidth = 10) +
-  lims(x = c(1200,10000)) +
-  scale_y_log10() +
-  geom_vline(xintercept = breaks, col = "red")
-
-labels_nice <- function(breaks){
-  return(paste(lag(breaks,default = NULL),lead(breaks,default = NULL),sep="-"))
-}
-
-# todo: noch in CMA Tools integrieren
-
-
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
-  mutate(
-    samplingInt = cut(timelag,breaks = breaks,labels = labels_nice(breaks))
-  ) 
 
 wildschwein_BE %>%
+  select(-CollarID,-TierName) %>%
   as.data.frame() %>%
-  group_by(samplingInt) %>%
-  summarise(
-    n = n()
-  ) %>%
-  ggplot(aes(samplingInt,n)) +
-  geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_y_log10()
-
-
-
-wildschwein_BE
+  slice(1:10)
 
 # Store coordinates in a new variable
 coordinates <- st_coordinates(wildschwein_BE)
@@ -133,12 +121,13 @@ head(coordinates)
 colnames(coordinates) <- c("E","N")
 
 wildschwein_BE <- cbind(wildschwein_BE,coordinates)
-## Task 3 ####################
+## Task 2 ####################
+
 
 library(CMAtools)
 
 wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID,samplingInt) %>%
+  group_by(TierID) %>%
   mutate(
     steplength = euclid(lead(E, 1),lead(N, 1),E,N),
     speed = steplength/timelag
@@ -146,41 +135,25 @@ wildschwein_BE <- wildschwein_BE %>%
 
 
 
-sample <- data.frame(position = paste0("pos",1:6),samplingInt=c(rep(60,3),rep(120,3)))
-sample
-sample <- sample %>%
-  mutate(
-    samplingInt_control = samplingInt == lead(samplingInt,1),
-    samplingInt_group = number_groups(samplingInt_control,include_first_false = T)
-  )
 
-sample
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
-  mutate(
-    samplingInt_T = samplingInt == lead(samplingInt),
-    group = number_groups(samplingInt_T,include_first_false = T)
-  ) %>%
-  dplyr::select(-samplingInt_T)
+## Task 3 ####################################
 
-wildschwein_BE_short <- wildschwein_BE %>%
-  filter(samplingInt == "40-80")
+wildschwein_BE_1 <- wildschwein_BE%>%
+  filter(timelag > 40 & timelag < 80) %>%
+  slice(2:100)
+wildschwein_BE_3 <- wildschwein_BE_1 %>%
+  slice(seq(1,nrow(.),3)) # the dot (".") represents the piped dataset
 
-wildschwein_BE_short <- wildschwein_BE_short %>%
-  filter(group == 9) %>%
-  slice(1:100)
-
-
-wildschwein_BE_3 <- wildschwein_BE_short %>%
-  slice(seq(1,nrow(.),3))
-
-wildschwein_BE_6 <- wildschwein_BE_short %>%
+wildschwein_BE_6 <- wildschwein_BE_1 %>%
   slice(seq(1,nrow(.),6))
 
 
-wildschwein_BE_9 <- wildschwein_BE_short %>%
+wildschwein_BE_9 <- wildschwein_BE_1 %>%
   slice(seq(1,nrow(.),9))
-
+nrow(wildschwein_BE_1)
+nrow(wildschwein_BE_3)
+nrow(wildschwein_BE_6)
+nrow(wildschwein_BE_9)
 wildschwein_BE_3 <- wildschwein_BE_3 %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
@@ -204,27 +177,40 @@ wildschwein_BE_9 <- wildschwein_BE_9 %>%
   )
 
 
-ggplot() +
-  geom_point(data = wildschwein_BE_9, aes(E,N), colour = "red") +
-  geom_path(data = wildschwein_BE_9, aes(E,N), colour = "red") +
-  geom_point(data = wildschwein_BE_6, aes(E,N), colour = "blue") +
-  geom_path(data = wildschwein_BE_6, aes(E,N), colour = "blue") +
-  geom_point(data = wildschwein_BE_3, aes(E,N), colour = "green") +
-  geom_path(data = wildschwein_BE_3, aes(E,N), colour = "green") +
-  geom_point(data = wildschwein_BE_short, aes(E,N), colour = "black") +
-  geom_path(data = wildschwein_BE_short, aes(E,N), colour = "black")
 
 
 ggplot() +
-  geom_point(data = wildschwein_BE_9, aes(DatetimeUTC,speed), colour = "red") +
-  geom_path(data = wildschwein_BE_9, aes(DatetimeUTC,speed), colour = "red") +
-  geom_point(data = wildschwein_BE_6, aes(DatetimeUTC,speed), colour = "blue") +
-  geom_path(data = wildschwein_BE_6, aes(DatetimeUTC,speed), colour = "blue") +
-  geom_point(data = wildschwein_BE_3, aes(DatetimeUTC,speed), colour = "green") +
-  geom_path(data = wildschwein_BE_3, aes(DatetimeUTC,speed), colour = "green") +
-  geom_point(data = wildschwein_BE_short, aes(DatetimeUTC,speed), colour = "black") +
-  geom_path(data = wildschwein_BE_short, aes(DatetimeUTC,speed), colour = "black") +
-  labs(x = "Time",y = "Speed (m/s)")
+  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = wildschwein_BE_3, aes(E,N, colour = "3 minutes")) +
+  geom_path(data = wildschwein_BE_3, aes(E,N, colour = "3 minutes")) +
+  labs(color="Trajectory", title = "Comparing original- with 3 minutes-resampled data")  +
+  theme_minimal()
+
+ggplot() +
+  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = wildschwein_BE_6, aes(E,N, colour = "6 minutes")) +
+  geom_path(data = wildschwein_BE_6, aes(E,N, colour = "6 minutes")) +
+  labs(color="Trajectory", title = "Comparing original- with 6 minutes-resampled data") +
+  theme_minimal()
+
+ggplot() +
+  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = wildschwein_BE_9, aes(E,N, colour = "9 minutes")) +
+  geom_path(data = wildschwein_BE_9, aes(E,N, colour = "9 minutes"))+
+  labs(color="Trajectory", title = "Comparing original- with 9 minutes-resampled data") +
+  theme_minimal()
+
+
+ggplot() +
+  geom_line(data = wildschwein_BE_1, aes(DatetimeUTC,speed, colour = "1 minute")) +
+  geom_line(data = wildschwein_BE_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
+  geom_line(data = wildschwein_BE_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
+  geom_line(data = wildschwein_BE_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
+  labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
+  theme_minimal()
 
 ## Task 4 ####################
 
@@ -234,19 +220,25 @@ example <- rnorm(10)
 rollmean(example,k = 3,fill = NA,align = "left")
 rollmean(example,k = 4,fill = NA,align = "left")
 
-
-
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
+wildschwein_BE_1 <- wildschwein_BE_1 %>%
   mutate(
-    speed2 = rollmean(speed,3,NA,align = "left"),
-    speed3 = rollmean(speed,5,NA,align = "left"),
-    speed4 = rollmean(speed,10,NA,align = "left")
+    speed3 = rollmean(speed,3,NA,align = "left"),
+    speed6 = rollmean(speed,6,NA,align = "left"),
+    speed9 = rollmean(speed,9,NA,align = "left")
   )
 
-wildschwein_BE[1:30,] %>%
-  gather(key,val,c(speed,speed2,speed3,speed4)) %>%
+wildschwein_BE_1 %>%
+  gather(key,val,c(speed,speed3,speed6,speed9)) %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
-  geom_point() +
+  # geom_point() +
   geom_line() 
-## NA
+
+
+set.seed(10)
+data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
+  mutate(angle = as.integer(turning_angle(x,y))) %>%
+  ggplot(aes(x,y,label = paste0(angle,"°"))) +
+  geom_path() +
+  geom_label() +
+  coord_equal()
+
