@@ -47,6 +47,12 @@
 
 
 <script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.7.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotlyjs-1.29.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.29.2/plotly-latest.min.js"></script>
 <link href="libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-0.7.7/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -122,7 +128,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5-ploting-spatial-objects"><i class="fa fa-check"></i>Task 5: Ploting spatial objects</a></li>
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6-adding-a-background-map"><i class="fa fa-check"></i>Task 6: Adding a background map</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#solutions-rcode"><i class="fa fa-check"></i>Solutions (RCode)</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#solutions"><i class="fa fa-check"></i>Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task1"><i class="fa fa-check"></i>Task1</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-2"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-3"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-1"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5"><i class="fa fa-check"></i>Task 5</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6"><i class="fa fa-check"></i>Task 6</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i>Exercise 2</a><ul>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -150,18 +165,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#learning-outcomes-1"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#preperation-2"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#demo-tools-for-generic-segmentation"><i class="fa fa-check"></i>Demo: Tools for generic segmentation</a><ul>
-<li><a href="exercise-3.html#introducing-cut-on-dummy-data">Introducing <code>cut()</code> on dummy data</a></li>
-<li><a href="exercise-3.html#using-cut-on-timelag">Using <code>cut()</code> on <code>timelag</code></a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#generating-unique-id-on-segments"><i class="fa fa-check"></i>Generating unique ID on segments</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#segmentation-as-in-laube-purves-2011"><i class="fa fa-check"></i>Segmentation as in Laube &amp; Purves (2011)</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#tasks"><i class="fa fa-check"></i>Tasks</a><ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#tasks-and-inputs-2"><i class="fa fa-check"></i>Tasks and Inputs</a><ul>
+<li><a href="exercise-3.html#input-segmentation-a-la-laube2011">Input: Segmentation à la <span class="citation">Laube and Purves (2011)</span></a></li>
 <li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-2-explore-and-visualize-segementation"><i class="fa fa-check"></i>Task 2: Explore and visualize segementation</a></li>
-<li><a href="exercise-3.html#task-3-optional-plotting-with-leaflet">Task 3 (Optional): Plotting with <code>leaflet</code></a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-similarity-measures"><i class="fa fa-check"></i>Task 4: Similarity measures</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-5-calculate-similarity"><i class="fa fa-check"></i>Task 5: Calculate similarity</a></li>
+<li><a href="exercise-3.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
+<li><a href="exercise-3.html#task-4-optional-plotting-with-leaflet">Task 4 (Optional): Plotting with <code>leaflet</code></a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -411,7 +423,7 @@ pigs %&gt;%
 <li>Were all individuals tracked concurrently or sequentially?</li>
 <li>What is the temporal sampling interval between the locations?</li>
 </ul>
-<p>Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions? <img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-49-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-49-3.png" width="672" /></p>
+<p>Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions? <img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-62-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-62-3.png" width="672" /></p>
 </div>
 <div id="input-geometry-as-columns" class="section level3">
 <h3>Input: Geometry as columns</h3>
@@ -499,7 +511,7 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wilds
 <li>In contrast to <code>geom_sf()</code>, you have to explicitly specify the <code>x</code>/<code>y</code> columns (in our case <code>E</code>/<code>N</code>) with <code>geom_path()</code>/<code>geom_point()</code></li>
 <li><code>geom_line()</code> does not work when mapping trajectory data, since it connects the observations <em>in order of the variable on the x axis</em>. <code>geom_path()</code> connects the observations in the order in which they appear in the data</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-58-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-58-3.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-58-4.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-71-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-71-3.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-71-4.png" width="672" /></p>
 </div>
 </div>
 <div id="task-4-deriving-movement-parameters-ii-rolling-window-functions" class="section level3">
@@ -510,26 +522,17 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wilds
 
 example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">3</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1]  0.897931803  0.584155903  0.858075812  0.723173420  0.409346406
-##  [6] -0.006693937  0.248962216  0.676170425           NA           NA
+##  [1]  0.15999583  0.45217861  0.30311925  0.31759298 -0.18721670
+##  [6] -0.39140023  0.04313639 -0.26485797          NA          NA
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">4</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1] 0.8020673 0.8190780 0.6763574 0.4356282 0.3759406 0.2195222 0.4003760
-##  [8]        NA        NA        NA</code></pre></div>
+##  [1]  0.19397427  0.39144298  0.33924776 -0.06643513 -0.24124116
+##  [6]  0.14426062 -0.50327335          NA          NA          NA</code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>wildschwein_BE_1</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 </div>
 <div id="task-5-optional-calculate-turning-angles" class="section level3">
 <h3>Task 5 (optional): Calculate turning angles</h3>
 <p>Just like we did with <code>speed</code> in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! <code>CMAtools</code> has the function <code>turning_angle()</code><a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. Here is an example on some dummy data. We represent the turning angle as the clockwise, angular offset from moving straight ahead.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-<span class="kw">library</span>(grid) <span class="co"># just for the arrows</span>
-<span class="kw">set.seed</span>(<span class="dv">20</span>)
-<span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">cumsum</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>)),<span class="dt">y =</span> <span class="kw">cumsum</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">angle =</span> <span class="kw">as.integer</span>(<span class="kw">turning_angle</span>(x,y))) %&gt;%
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x,y)) +
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">lag</span>(x), <span class="dt">y =</span> <span class="kw">lag</span>(y), <span class="dt">xend =</span> x,<span class="dt">yend =</span> y),<span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.5</span>,<span class="st">&quot;cm&quot;</span>))) +
-<span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">paste0</span>(angle,<span class="st">&quot;°&quot;</span>)),<span class="dt">alpha =</span> <span class="fl">0.4</span>,<span class="dt">nudge_x =</span> <span class="fl">0.2</span>, <span class="dt">nudge_y =</span> <span class="fl">0.2</span>) +
-<span class="st">  </span><span class="kw">coord_equal</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <!-- ## Solutions (RCode) -->
 <!-- ```{r code=readLines('12_Week2/RFiles/W02_01_Exercise.R'), results='asis', echo = T, include=T, eval=F} -->
 <!-- ``` -->

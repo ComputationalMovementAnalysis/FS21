@@ -47,6 +47,12 @@
 
 
 <script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.7.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotlyjs-1.29.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.29.2/plotly-latest.min.js"></script>
 <link href="libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-0.7.7/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -122,7 +128,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5-ploting-spatial-objects"><i class="fa fa-check"></i>Task 5: Ploting spatial objects</a></li>
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6-adding-a-background-map"><i class="fa fa-check"></i>Task 6: Adding a background map</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#solutions-rcode"><i class="fa fa-check"></i>Solutions (RCode)</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#solutions"><i class="fa fa-check"></i>Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task1"><i class="fa fa-check"></i>Task1</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-2"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-3"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-1"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5"><i class="fa fa-check"></i>Task 5</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6"><i class="fa fa-check"></i>Task 6</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i>Exercise 2</a><ul>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -150,18 +165,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#learning-outcomes-1"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#preperation-2"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#demo-tools-for-generic-segmentation"><i class="fa fa-check"></i>Demo: Tools for generic segmentation</a><ul>
-<li><a href="exercise-3.html#introducing-cut-on-dummy-data">Introducing <code>cut()</code> on dummy data</a></li>
-<li><a href="exercise-3.html#using-cut-on-timelag">Using <code>cut()</code> on <code>timelag</code></a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#generating-unique-id-on-segments"><i class="fa fa-check"></i>Generating unique ID on segments</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#segmentation-as-in-laube-purves-2011"><i class="fa fa-check"></i>Segmentation as in Laube &amp; Purves (2011)</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#tasks"><i class="fa fa-check"></i>Tasks</a><ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#tasks-and-inputs-2"><i class="fa fa-check"></i>Tasks and Inputs</a><ul>
+<li><a href="exercise-3.html#input-segmentation-a-la-laube2011">Input: Segmentation à la <span class="citation">Laube and Purves (2011)</span></a></li>
 <li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-2-explore-and-visualize-segementation"><i class="fa fa-check"></i>Task 2: Explore and visualize segementation</a></li>
-<li><a href="exercise-3.html#task-3-optional-plotting-with-leaflet">Task 3 (Optional): Plotting with <code>leaflet</code></a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-similarity-measures"><i class="fa fa-check"></i>Task 4: Similarity measures</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-5-calculate-similarity"><i class="fa fa-check"></i>Task 5: Calculate similarity</a></li>
+<li><a href="exercise-3.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
+<li><a href="exercise-3.html#task-4-optional-plotting-with-leaflet">Task 4 (Optional): Plotting with <code>leaflet</code></a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -261,7 +273,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">&quot;tidyvers
 <p>Get an overview of your data by creating a first “map-like” plot of your data producing a simple scatter plot with <code>ggplot</code>. Do you spot outliers? If so, get rid of the outliers and plot your data again without outliers.</p>
 <p>Setting up a <code>ggplot</code> with our data is done using the command <code>ggplot(wildschwein_BE, aes(Long, Lat, colour = TierID))</code>. Creating a map is done via the basic scatter plot command <code>geom_point()</code>. Use <code>coord_map()</code> to get a reasonable aspect ratio of <code>Lat</code> and <code>Long</code>. Assigning every individual its own colour is done using the <code>ggplot</code> argument <code>colour =</code>.</p>
 <p>Save your code in the appropriate section.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 <div id="input-handling-spatial-data" class="section level3">
 <h3>Input: Handling spatial data</h3>
@@ -417,15 +429,15 @@ wildschwein_BE <span class="co"># note how the Lat/Long information is stored tw
 <h3>Task 5: Ploting spatial objects</h3>
 <p>Using base plot to visualize <code>sf</code> objects is easy enough, just try the following code.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mcp)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>But since we use <code>ggplot</code> extensively, try and plot the object <code>mcp</code> with <code>ggplot</code>. Hint: Since you installed the newest version from github, you now use the function <code>geom_sf()</code> to add an <code>sf</code> object.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>Note:</p>
 <ul>
 <li><code>ggplot</code> refuses to use our specified CRS, so we need to force this by specifying <code>coord_sf()</code></li>
 <li>Oddly, it is not sufficient to specify the <code>crs =</code> wit hin <code>coord_sf()</code>, we need to pass our EPSG code to <code>datum =</code>.</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 </div>
 <div id="task-6-adding-a-background-map" class="section level3">
 <h3>Task 6: Adding a background map</h3>
@@ -442,25 +454,14 @@ wildschwein_BE <span class="co"># note how the Lat/Long information is stored tw
   <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),
   <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()
   )</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 </div>
 </div>
-<div id="solutions-rcode" class="section level2">
-<h2>Solutions (RCode)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## install.packages(&quot;tidyverse&quot;)
-## install.packages(&quot;devtools&quot;)
-## devtools::install_github(&quot;tidyverse/ggplot2&quot;)
-## 
-## # run the following line only if you are working on RStudio Server
-## install.packages(&#39;udunits2&#39;, type = &quot;source&quot;, repo = &quot;cran.rstudio.com&quot;, configure.args=&quot;--with-udunits2-include=/usr/include/udunits2&quot;)
-## 
-## install.packages(&quot;sf&quot;)
-## 
-## 
-## 
-## install.packages(&quot;raster&quot;)
-## install.packages(&quot;ggspatial&quot;)
-
+<div id="solutions" class="section level2">
+<h2>Solutions</h2>
+<div id="task1" class="section level3">
+<h3>Task1</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># Loading enironment / libraries ####</span>
 <span class="kw">library</span>(tidyverse)
 
@@ -470,28 +471,29 @@ wildschwein_BE <span class="co"># note how the Lat/Long information is stored tw
 
 <span class="co"># Data clensing ####</span>
 
-<span class="co"># Data analysis and visualization ####</span>
-
-
-
-## Task 2 ####################
-
-
+<span class="co"># Data analysis and visualization ####</span></code></pre></div>
+</div>
+<div id="task-2" class="section level3">
+<h3>Task 2</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># Data import ####</span>
 wildschwein_BE &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;../CMA_FS2018_Filestorage/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)
 
 
 <span class="co"># Check Timezone</span>
 <span class="kw">attr</span>(wildschwein_BE$DatetimeUTC,<span class="st">&quot;tzone&quot;</span>) <span class="co"># or</span>
-wildschwein_BE$DatetimeUTC[<span class="dv">1</span>]
-
-## Task 3 ####################
-<span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(Long,Lat, <span class="dt">colour =</span> TierID)) +
+wildschwein_BE$DatetimeUTC[<span class="dv">1</span>]</code></pre></div>
+</div>
+<div id="task-3" class="section level3">
+<h3>Task 3</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(wildschwein_BE, <span class="kw">aes</span>(Long,Lat, <span class="dt">colour =</span> TierID)) +
 <span class="st">  </span><span class="kw">geom_point</span>() +
 <span class="st">  </span><span class="kw">coord_map</span>() +
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)
-## Input: Handling spatial data ####################
-
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre></div>
+</div>
+<div id="input" class="section level3">
+<h3>Input</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">library</span>(sf)
 
 wildschwein_BE_sf &lt;-<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>)
@@ -499,42 +501,38 @@ wildschwein_BE_sf &lt;-<span class="st"> </span><span class="kw">st_as_sf</span>
 wildschwein_BE
 
 wildschwein_BE_sf
-<span class="kw">is.data.frame</span>(wildschwein_BE_sf)
-## # subset rows
-## wildschwein_BE_sf[1:10,]
-## wildschwein_BE_sf[wildschwein_BE_sf$TierName == &quot;Ueli&quot;,]
-## 
-## # subset colums
-## wildschwein_BE_sf[,2:3]
 wildschwein_BE =<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>,<span class="dt">remove =</span> <span class="ot">FALSE</span>)
 
 wildschwein_BE <span class="co"># note how the Lat/Long information is stored twice</span>
 
-<span class="kw">rm</span>(wildschwein_BE_sf) <span class="co"># we can remove this sf object, since it just eats up our memory</span>
-
-
-## Task 4 ####################
-
+<span class="kw">rm</span>(wildschwein_BE_sf) <span class="co"># we can remove this sf object, since it just eats up our memory</span></code></pre></div>
+</div>
+<div id="task-4" class="section level3">
+<h3>Task 4</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 wildschwein_BE &lt;-<span class="st"> </span><span class="kw">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)
 
 
+wildschwein_BE</code></pre></div>
+</div>
+<div id="input-1" class="section level3">
+<h3>Input</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wildschwein_BE &lt;-<span class="st"> </span><span class="kw">group_by</span>(wildschwein_BE,TierID)
 wildschwein_BE
-## Input: Convex Hull ####################
-wildschwein_BE &lt;-<span class="st"> </span><span class="kw">group_by</span>(wildschwein_BE,TierID)
-wildschwein_BE
-mcp &lt;-<span class="st"> </span><span class="kw">st_convex_hull</span>(<span class="kw">summarise</span>(wildschwein_BE))
-
-## Task 5 ####################
-<span class="kw">plot</span>(mcp)
+mcp &lt;-<span class="st"> </span><span class="kw">st_convex_hull</span>(<span class="kw">summarise</span>(wildschwein_BE))</code></pre></div>
+</div>
+<div id="task-5" class="section level3">
+<h3>Task 5</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mcp)
 <span class="kw">ggplot</span>(mcp,<span class="kw">aes</span>(<span class="dt">fill =</span> TierID)) +
 <span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>)
 <span class="kw">ggplot</span>(mcp,<span class="kw">aes</span>(<span class="dt">fill =</span> TierID)) +
 <span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) +
-<span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">datum =</span> <span class="dv">2056</span>)
-
-## Task 6 ####################
-
-
+<span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">datum =</span> <span class="dv">2056</span>)</code></pre></div>
+</div>
+<div id="task-6" class="section level3">
+<h3>Task 6</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">library</span>(raster)
 <span class="kw">library</span>(ggspatial)
 
@@ -551,13 +549,9 @@ pk100_BE &lt;-<span class="st"> </span><span class="kw">brick</span>(<span class
     <span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),
     <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),
     <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()
-    )
+    )</code></pre></div>
 
-wildschwein_BE &lt;-<span class="st"> </span><span class="kw">group_by</span>(wildschwein_BE,TierID)
-## wildschwein_BE &lt;- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = &quot;secs&quot;)))
-## 
-## summary(wildschwein_BE$timelag)</code></pre></div>
-
+</div>
 </div>
 </div>
 <div class="footnotes">

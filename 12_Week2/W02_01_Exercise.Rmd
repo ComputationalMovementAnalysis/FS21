@@ -26,7 +26,7 @@ Readings Theory
 Install the package `zoo` to get access to the rolling window functions for last exercise. Also, install the package `CMAtools` where we have put together some helper functions that simplify some tasks in this course. The package `CMAtools` is not on CRAN, and we need to install it similar to how we installed the newest version of `ggplot` last week. Since it is not on the official Git hub page either, but on the ZHAW owned Git hub server, the syntax for installation is slightly different (see code below).
 
 
-```{r, echo = T, include = T, eval = F}
+```{r, echo = T, include = T, eval = F, purl = F}
 install.packages("zoo")
 
 devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
@@ -38,6 +38,13 @@ Note:
 - We will be extending this package regularly throughout this course. Note: You will have to regularly reinstall the package with the code below in order to update your local version of the package.
 
 Open your R Project from last week. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
+
+```{r}
+#- header3 Preperation
+#- chunkstart
+```
+
+
 
 ```{r, echo = T, include = T, eval = T}
 library(tidyverse)
@@ -56,8 +63,14 @@ wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 wildschwein_BE <- ungroup(wildschwein_BE)
 ```
 
-
+```{r}
+#- chunkend
+```
 ## Demo Tidyverse
+```{r}
+#- header3 Demo Tidyverse
+#- chunkstart
+```
 
 Depending on your knowledge of `R`, getting an overview of the data we imported last week might have been quite a challenge. Surprisingly enough, importing, cleaning and exploring your data can be the most challenging, time consuming part of a project. RStudio and the tidyverse offer many helpful tools to make this part easier (and more fun). You have read chapters on `dplyr` and `magrittr` as a preparation for this Exercise. Before we start with the Exercise however, this demo illustrates a simple approach offered by tidyverse which is applicable to sf-objects.
 
@@ -66,11 +79,6 @@ Assume we want to calculate the timelag in between subsequent positions. To achi
 ### `difftime`
 
 `difftime` takes two `POSIXct` values.
-
-
-```{r}
-## Demo Tidyverse ################
-```
 
 
 ```{r, echo = T, include = T, eval = T}
@@ -243,10 +251,16 @@ pigs %>%
 ```
 
 
-
+```{r}
+#- chunkend
+```
 ## Tasks and Inputs
 
 ### Task 1: Getting an overview
+```{r}
+#- header3 Task 1
+#- chunkstart
+```
 
 Calculate the time difference between subsequent rows as described in the demo (column `timelag`)
 First, inspect your data in more detail. Try to answer the following questions:
@@ -282,8 +296,14 @@ wildschwein_BE[1:50,] %>%
 ```
 
 
-
+```{r}
+#- chunkend
+```
 ### Input: Geometry as columns
+```{r}
+#- header3 Input
+#- chunkstart
+```
 
 Last week, we transformed our data from a `data.frame` to an `sf` object. This turned our `Lat`/`Long` Columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. We already have `WGS84` as numeric columns, but not yet the `CH1903+ LV95` coordinates. 
 
@@ -313,7 +333,9 @@ colnames(coordinates) <- c("E","N")
 wildschwein_BE <- cbind(wildschwein_BE,coordinates)
 ```
 
-
+```{r}
+#- chunkend
+```
 ### Task 2: Deriving movement parameters I: Euclidean Distance and Speed
 
 In this task we will derive some additional movement parameters from our trajectories. Note, so far our trajectories only consist of a list of time-stamped spatial locations. So let's calculate the animal's speed based on the distance and timelag in between two subsequent locations. 
@@ -323,9 +345,6 @@ In this task we will derive some additional movement parameters from our traject
 - make sure you're clear in what unit you are measuring speed. Meters per second is a SI base unit, but might be unhandy for the speeds travelled by wild boar.
 
 ```{r}
-## Task 2 ####################
-
-
 library(CMAtools)
 
 wildschwein_BE <- wildschwein_BE %>%
@@ -341,24 +360,27 @@ wildschwein_BE <- wildschwein_BE %>%
 
 
 
-
+```{r}
+#- chunkend
+```
 ### Task 3: Cross-scale movement analysis
+```{r}
+#- header3 Task 3
+#- chunkstart
+```
 
 @laube2011 analyse animal movement across different scales (see below). We will do the same on a *subset* of our data.
 
 ![@laube2011: *Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale.*](02_Images/laube_2011_2.jpg)
 
 #### Filter
-To do so, filter your data to positions with a sampling interval between 40 and 60 seconds and save it to a new variable (we will use `wildschwein_BE_1`). From this subset, take the first 100 positions[^201] for the following task. 
+To do so, filter your data to positions with a sampling interval between 40 and 80 seconds and save it to a new variable (we will use `wildschwein_BE_1`). From this subset, take the first 100 positions[^201] for the following task. 
 
 [^201]: In the solution (and the graphics), we actually use locations 2-100 for aesthetical reasons
 
 If you like to stick to the `tidyverse` approach, you can use `slice()` to subset the dataset by row number. Slice takes an integer vector. Eg: `slice(dataset, 1:10)`, returns the first 10 rows of a dataset, `slice(dataset, c(1,5,10))` returns the 1^st^, 5^th^ and 10^th^ value of a dataset.
 
 ```{r}
-
-## Task 3 ####################################
-
 wildschwein_BE_1 <- wildschwein_BE%>%
   filter(timelag > 40 & timelag < 80) %>%
   slice(2:100)
@@ -480,16 +502,17 @@ ggplot() +
  
 
 
-
+```{r}
+#- chunkend
+```
 
 ### Task 4: Deriving movement parameters II: Rolling window functions
-
+```{r}
+#- header3 Task 4
+#- chunkstart
+```
 
 A different approach would be to *smoothen* the derived parameters using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offers a variate of moving window functions (`roll_*`). Use `roll_mean()` to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
-
-```{r}
-## Task 4 ####################
-```
 
 
 ```{r, echo = T, eval = T, include= T}
@@ -520,15 +543,20 @@ wildschwein_BE_1 %>%
   geom_line() 
 ```
 
-
+```{r}
+#- chunkend
+```
 ### Task 5 (optional): Calculate turning angles
-
+```{r}
+#- header3 Task 5
+#- chunkstart
+```
 Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! 
 `CMAtools` has the function `turning_angle()`[^20]. Here is an example on some dummy data. We represent the turning angle as the clockwise, angular offset from moving straight ahead. 
 
 [^20]: We haven't tested the function extensively yet and are happy for feedback. If you want to have a look at the function, check our [Git hub site](https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools/blob/master/R/spatial.R)
 
-```{r, echo = T, include=T, eval = T}
+```{r, echo = F, include=T, eval = T}
 
 library(grid) # just for the arrows
 set.seed(20)
@@ -541,9 +569,11 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
 
 ```
 
+```{r}
+#- chunkend
+```
 
-
-```{r code=readLines('01_R_Files/purl_all_rmd.R'), echo = F, include=F, eval=T}
+```{r code=readLines('01_R_Files/clear_workspace.R'), echo = F, include=F, eval=T}
 ```
 
 
