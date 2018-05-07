@@ -1,3 +1,8 @@
+### Task 1
+
+Find spatial overlap
+
+```{r}
 ## Task 1 ####################
 
 
@@ -9,6 +14,13 @@ mcp <- wildschwein_BE_sf %>%
 
 overlap_spatial_mat <- overlap_spatial(mcp,"TierID")
 
+```
+
+### Task 2
+
+Find temporal overlap
+
+```{r}
 ## Task 2 ####################
 library(lubridate)
 
@@ -26,6 +38,12 @@ wildschwein_intervals <- wildschwein_BE_sf %>%
 overlap_temporal_mat <- overlap_temporal(wildschwein_intervals,"interval","TierID")
 
 
+```
+
+### Task 3
+
+Combine spatial and temporal overlap and generate datframe with "pairs"
+```{r}
 
 ## Task 3 ####################
 
@@ -37,6 +55,15 @@ overlap_spat_temp <- overlap_spat_temp %>%
   gather(id2,bool,-id1) %>%
   filter(bool == TRUE) %>%
   dplyr::select(-bool)
+```
+
+
+### Task 4
+
+Temporally join data and visualize.
+
+<!-- Todo: remove errors -->
+```{r}
 ## Task 4 ####################
 
 
@@ -52,39 +79,4 @@ overlap_spat_temp <- overlap_spat_temp %>%
 #   addCircles(lng = ~Long1,lat = ~Lat1) %>%
 #   addTiles()
 
-
-## Task 5 #######################
-
-library(recurse)
-library(ggforce)
-
-recurs <- wildschwein_BE_sf %>%
-  filter(TierID == "001A") %>%
-  dplyr::select(E,N,DatetimeUTC,TierID) %>%
-  st_set_geometry(NULL) %>%
-  as.data.frame() %>%
-  getRecursions(100)
-
-recurStats <- recurs$revisitStats
-
-recurStats <- recurStats %>%
-  group_by(coordIdx) %>%
-  summarise(
-    number_of_visits = max(visitIdx),
-    x = unique(x),
-    y = unique(y),
-    total_time = sum(timeInside),
-    max_time = max(timeInside),
-    mean_time = mean(timeInside)
-  )
-
-data1 = filter(recurStats, number_of_visits > 30)
-wildschwein_BE_sf %>%
-  ungroup() %>%
-  filter(TierID == "001A") %>%
-  ggplot(aes(E,N)) +
-  geom_point(alpha = 0.4, colour = "grey") +
-  geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) +
-  coord_fixed(1)
-
-## NA
+```

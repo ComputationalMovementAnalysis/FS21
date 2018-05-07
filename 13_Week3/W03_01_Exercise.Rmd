@@ -40,9 +40,6 @@ library(tidyverse)
 library(CMAtools)
 library(sf)
 
-
-
-
 # Import as tibble
 wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
 
@@ -346,7 +343,6 @@ if (knitr::is_html_output()){                                                   
 
 Import the dataset `pedestrian.csv` (available on moodle). It it a set of six similar, but varying trajectories from pedestrians walking on a path. We will analyse these trajectories with the package `SimilarityMeasures`, always comparing trajectory 1 pairwise to the other trajectories 2-6. For this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
 
-<!-- Todo Nils: Traj 5 should acutally be exactly like traj 6, except for the outlier. In this way, the effect of the outlier is clearly visible. -->
 
 ```{r}
 

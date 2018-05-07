@@ -1,6 +1,5 @@
-## install.packages("zoo")
-## 
-## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
+#- header3 Preperation
+#- chunkstart
 library(tidyverse)
 library(sf)
 
@@ -9,7 +8,9 @@ wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
 wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
-## Demo Tidyverse ################
+#- chunkend
+#- header3 Demo Tidyverse
+#- chunkstart
 now <- Sys.time()
 
 later <- now + 10000
@@ -78,7 +79,9 @@ pigs %>%
     mean_weight = mean(weight)
   )
 
-## Task 1 ####################
+#- chunkend
+#- header3 Task 1
+#- chunkstart
 
 wildschwein_BE <- wildschwein_BE %>%
   mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
@@ -98,6 +101,9 @@ wildschwein_BE[1:50,] %>%
   geom_point()
 
 
+#- chunkend
+#- header3 Input
+#- chunkstart
 
 wildschwein_BE %>%
   dplyr::select(-CollarID,-TierName) %>%
@@ -111,9 +117,9 @@ head(coordinates)
 colnames(coordinates) <- c("E","N")
 
 wildschwein_BE <- cbind(wildschwein_BE,coordinates)
-## Task 2 ####################
-
-
+#- chunkend
+#- header3 Task 3
+#- chunkstart
 library(CMAtools)
 
 wildschwein_BE <- wildschwein_BE %>%
@@ -125,9 +131,9 @@ wildschwein_BE <- wildschwein_BE %>%
 
 
 
-
-## Task 3 ####################################
-
+#- chunkend
+#- header3 Task 3
+#- chunkstart
 wildschwein_BE_1 <- wildschwein_BE%>%
   filter(timelag > 40 & timelag < 80) %>%
   slice(2:100)
@@ -202,7 +208,9 @@ ggplot() +
   labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
   theme_minimal()
 
-## Task 4 ####################
+#- chunkend
+#- header3 Task 4
+#- chunkstart
 
 library(zoo)
 
@@ -222,6 +230,9 @@ wildschwein_BE_1 %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
   # geom_point() +
   geom_line() 
+#- chunkend
+#- header3 Task 5
+#- chunkstart
 
 library(grid) # just for the arrows
 set.seed(20)
@@ -232,4 +243,4 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
   geom_label(aes(label = paste0(angle,"°")),alpha = 0.4,nudge_x = 0.2, nudge_y = 0.2) +
   coord_equal()
 
-## Task 4 ####################
+#- chunkend

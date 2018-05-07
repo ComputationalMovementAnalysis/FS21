@@ -1,9 +1,14 @@
+## install.packages("SimilarityMeasures")
+## 
+## # The following packages are for optional tasks:
 ## install.packages("scales")
 ## install.packages("leaflet")
-## install.packages("SimilarityMeasures")
 ## install.packages("plotly")
 ## 
-## install.packages("cowplot") # You don't really need this package. We use it to plot subfigures
+## # You don't really need the following packages,
+## # we just use them in our figures
+## install.packages("cowplot")
+## install.packages("ggrepel")
 library(tidyverse)
 library(CMAtools)
 library(sf)
@@ -266,6 +271,3 @@ pedest_measures %>%
   facet_wrap(~key,scales = "free") +
   labs(x = "Trajectory", y = "Value")
 
-numbers <- 1:10
-
-numbers

@@ -1,101 +1,58 @@
 # Exercise 4
-<!-- Operationalize and find meet patterns  -->
-<!-- Visualize spatial distribution of meet -->
-<!-- Define functions -->
-
 
 ## Learning Outcomes
+- You are able to implement a simple movement pattern using R.
+- You understand the sensitivity of movement patterns to pattern parameter thresholds
 
 
 ## Prerequisites
+Readings Skills from "R for Data Science" [@wickham2017]:
 
+- RS4.1 Chap15 Functions (19p, 269-289)
+
+Readings Theory, @laube2014
+- R4.1 Chap.2, p. 29-58
 
 ## Preperation
 
-## Tasks
+Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
 
-### Task 1
+```{r, echo = T, include = T, eval = T}
+library(tidyverse)
+library(CMAtools)
+library(sf)
 
-Find spatial overlap
+library(tibble)
+library(readr)
+# Import as tibble
+wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
 
-```{r}
-## Task 1 ####################
+# Convert to sf-object
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
 
+# transform to CH1903 LV95
+wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 
-mcp <- wildschwein_BE_sf %>%
+# Add geometry as E/N integer Columns
+wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
+  cbind(wildschwein_BE,.) %>%
+  rename(E = X) %>%
+  rename(N = Y)
+
+# Compute timelag, steplength and speed
+wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
-  summarise() %>%
-  st_convex_hull()
-
-
-overlap_spatial_mat <- overlap_spatial(mcp,"TierID")
-
-```
-
-### Task 2
-
-Find temporal overlap
-
-```{r}
-## Task 2 ####################
-library(lubridate)
-
-wildschwein_intervals <- wildschwein_BE_sf %>%
-  group_by(TierID) %>%
-  summarise(
-    min = min(DatetimeUTC,na.rm = T),
-    max = max(DatetimeUTC,na.rm = T)
-  ) %>%
-  ungroup() %>%
   mutate(
-    interval = interval(min,max)
+    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
+    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    speed = steplength/timelag
   )
 
-overlap_temporal_mat <- overlap_temporal(wildschwein_intervals,"interval","TierID")
-
-
-```
-
-### Task 3
-
-Combine spatial and temporal overlap and generate datframe with "pairs"
-```{r}
-
-## Task 3 ####################
-
-overlap_spat_temp <- overlap_temporal_mat & overlap_spatial_mat
-
-overlap_spat_temp <- overlap_spat_temp %>%
-  as.data.frame() %>%
-  rownames_to_column("id1") %>%
-  gather(id2,bool,-id1) %>%
-  filter(bool == TRUE) %>%
-  dplyr::select(-bool)
 ```
 
 
-### Task 4
+## Tasks
 
-Temporally join data and visualize.
-
-<!-- Todo: remove errors -->
-```{r}
-## Task 4 ####################
-
-
-# temporal_join(wildschwein_BE_sf,TierID,overlap_spat_temp$id1[1],overlap_spat_temp$id2[1],DatetimeUTC,mult = "first",0)
-# 
-# 
-# ggplot(temporal_join) +
-#   geom_point(aes(E2,N2), colour = "blue") +
-#   geom_point(aes(E1,N1), colour = "red")
-# 
-# 
-# leaflet(temporal_join) %>%
-#   addCircles(lng = ~Long1,lat = ~Lat1) %>%
-#   addTiles()
-
-```
 
 
 

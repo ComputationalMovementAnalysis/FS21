@@ -87,7 +87,4 @@ wildschwein_BE_sf %>%
   geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) +
   coord_fixed(1)
 
-## ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
-##   geom_point() +
-##   coord_map() +
-##   theme(legend.position = "none")
+## NA

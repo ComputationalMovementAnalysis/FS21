@@ -273,7 +273,6 @@ First, inspect your data in more detail. Try to answer the following questions:
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
 ```{r, echo = F, include=T, eval = T}
-## Task 1 ####################
 
 wildschwein_BE <- wildschwein_BE %>%
   mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
@@ -336,8 +335,12 @@ wildschwein_BE <- cbind(wildschwein_BE,coordinates)
 ```{r}
 #- chunkend
 ```
-### Task 2: Deriving movement parameters I: Euclidean Distance and Speed
 
+### Task 2: Deriving movement parameters I: Euclidean Distance and Speed
+```{r}
+#- header3 Task 2
+#- chunkstart
+```
 In this task we will derive some additional movement parameters from our trajectories. Note, so far our trajectories only consist of a list of time-stamped spatial locations. So let's calculate the animal's speed based on the distance and timelag in between two subsequent locations. 
 
 - You can use the function `euclid()` from the `CMAtools` package to calculate Euclidean distances between subsequent rows. Use `?euclid` to see what the function expects and returns. 

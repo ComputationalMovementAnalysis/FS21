@@ -1,4 +1,4 @@
-
+library(tidyverse)
 
 test <- read_lines("W01_01_Exercise.R")
 

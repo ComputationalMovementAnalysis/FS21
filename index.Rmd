@@ -52,7 +52,7 @@ options(knitr.duplicate.label = 'allow')
 
 library(stringr)
 
-rmds <- list.files(pattern = ".Rmd",recursive = T)
+rmds <- list.files(pattern = "\\.Rmd",recursive = T)
 
 exclude <- c("_Rcode","99_","index","Archive","Admin","_main","project_ideas","RFiles")
 
