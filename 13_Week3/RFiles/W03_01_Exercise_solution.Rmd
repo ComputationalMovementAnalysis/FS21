@@ -1,3 +1,5 @@
+### Preperation
+```{r, echo = T,include = T,eval = F}
 ## install.packages("SimilarityMeasures")
 ## 
 ## # The following packages are for optional tasks:
@@ -12,9 +14,6 @@
 library(tidyverse)
 library(CMAtools)
 library(sf)
-
-
-
 
 # Import as tibble
 wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
@@ -40,6 +39,9 @@ wildschwein_BE <- wildschwein_BE %>%
     speed = steplength/timelag
   )
 
+```
+### Input
+```{r, echo = T,include = T,eval = F}
 set.seed(10)
 
 df <- data.frame(X = cumsum(rnorm(10)), Y = cumsum(rnorm(10)))
@@ -76,13 +78,14 @@ df <- df %>%
   )
 
 df
+```
+### Task1
+```{r, echo = T,include = T,eval = F}
 
 
 wildschwein_BE_1 <- wildschwein_BE%>%
   filter(timelag > 40 & timelag < 80) %>%
   slice(2:100)
-
-## Task 2 ####################
 
 wildschwein_BE_1 <- wildschwein_BE_1 %>%
   group_by(TierID) %>%
@@ -96,8 +99,9 @@ wildschwein_BE_1 <- wildschwein_BE_1 %>%
         )
       )
   )
-## Task 2 ####################
-
+```
+### Task 2
+```{r, echo = T,include = T,eval = F}
 
 summary(wildschwein_BE_1$stepMean)
 
@@ -113,6 +117,9 @@ wildschwein_BE_1 <- wildschwein_BE_1 %>%
 
 
 wildschwein_BE_1 %>%  select(DatetimeUTC,E,N,stepMean,movement)
+```
+### Task 3
+```{r, echo = T,include = T,eval = F}
 
 p1 <- wildschwein_BE_1 %>%
   ggplot() +
@@ -123,13 +130,14 @@ p1 <- wildschwein_BE_1 %>%
 
 p1
 
-
-
-if (knitr::is_html_output()){                                                           # uncomment this line...
-  library(plotly)
-  ggplotly(p1)
-} else{print("Interactive map only available in the online version of this document")}  # ... and this line
-
+## 
+## 
+## library(plotly)
+## ggplotly(p1)
+## 
+```
+### Task 4
+```{r, echo = T,include = T,eval = F}
 
 wildschwein_BE_1 <- wildschwein_BE_1 %>%
   ungroup() %>%
@@ -144,31 +152,34 @@ wildschwein_BE_1 <- wildschwein_BE_1 %>%
 
 library(cowplot)
 
+p1
+
 p2 <- wildschwein_BE_1 %>%
   filter(!is.na(segment_ID)) %>%
   ggplot(aes(E,N, colour = segment_ID, group = segment_ID)) +
   geom_path() +
   geom_point() +
-  geom_point(data = filter(wildschwein_BE_1, is.na(segment_ID)),alpha = 0.2) +
   scale_alpha_discrete(range = c(0.1,1)) +
   theme_minimal() +
   coord_equal()
+
 p3 <- wildschwein_BE_1 %>%
   filter(!is.na(segment_ID)) %>%
   filter(segment_length > 300) %>%
   ggplot(aes(E,N, colour = segment_ID, group = segment_ID)) +
   geom_path() +
   geom_point() +
-  geom_point(data = filter(wildschwein_BE_1, is.na(segment_ID)),alpha = 0.2) +
   scale_alpha_discrete(range = c(0.1,1)) +
   theme_minimal() +
   coord_equal()
 
-  plot_grid(p1,p2,p3, labels = "auto", ncol = 1)
+plot_grid(p1,p2,p3, labels = "auto", ncol = 1)
 
 
+```
+### Task 5
+```{r, echo = T,include = T,eval = F}
 
-## Task 4 (Optional) #########################
 
 library(scales)
 library(leaflet)
@@ -183,8 +194,9 @@ if (knitr::is_html_output()){                                                   
     addTiles() %>%
     addLegend(pal = factpal, values = ~movement, title = "Segment")
 } else{print("Interactive map only available in the online version of this document")}  # ... and this line
-
-## Task 5 ##################################
+```
+### Task 6
+```{r, echo = T,include = T,eval = F}
 
 library(ggrepel)
 pedestrians <- read_delim("../CMA_FS2018_Filestorage/pedestrian.csv",",")
@@ -223,6 +235,9 @@ plotraj(5)
 
 
 plotraj(6)
+```
+### Task 7
+```{r, echo = T,include = T,eval = F}
 traj1 <- pedestrians %>%
       filter(TrajID == 1) %>% # Change value 1 to 2,3 etc to  
       as.data.frame() %>%     # filter for the other trajectories
@@ -271,3 +286,4 @@ pedest_measures %>%
   facet_wrap(~key,scales = "free") +
   labs(x = "Trajectory", y = "Value")
 
+```

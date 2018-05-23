@@ -4,6 +4,7 @@ author: "Patrick Laube and Nils Ratnaweera"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: ["00_Admin/bibliography.bib"]
+link-citations: true
 output:
   bookdown::gitbook:
     number_sections: false
@@ -58,9 +59,8 @@ exclude <- c("_Rcode","99_","index","Archive","Admin","_main","project_ideas","R
 
 rmds <- rmds[-grep(paste(exclude,collapse="|"), rmds, value=F)]
 
-
 for (file in rmds){
-  file_r <- paste0(str_split_fixed(file,"\\.",2)[1],".R",collapse = "")
+  file_r <- paste0(str_split_fixed(file,"\\.",2)[1],"_code.R",collapse = "")
   file_r <- str_split_fixed(file_r,"/",Inf)   # split path at /
   file_r <- append(file_r, "RFiles",length(file_r)-1)# append Foldername
   file_r <- paste(file_r,collapse = "/")    # collapse vector to string
@@ -69,7 +69,10 @@ for (file in rmds){
   }
   knitr::purl(file,documentation = 0,output = file_r)
   
-  file_rmd <- paste0(str_split_fixed(file_r,"\\.",2)[1],".Rmd",collapse = "")
+  file_rmd <- file_r %>%
+    str_split_fixed("_code.R",2) %>%
+    .[1] %>%
+    paste0("_solution.Rmd",collapse = "")
   
   if(file.exists(file_rmd)){
     file.remove(file_rmd)
@@ -93,7 +96,7 @@ For our practical `R` course building-up skills for analyzing movement data in t
 The project investigates the spatiotemporal movement patterns of wild boar (*Sus scrofa*) in agricultural landscapes. 
 For more information you can ask [Beni Sigrist](https://www.zhaw.ch/de/ueber-uns/person/sigb/), one of the course participants involved in this project. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA). 
 
-**Please note** we are given application data from an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected. So, please do not pass on this data, for any use beyond this module contact Patrick Laube or the data owner Stefan Suter (suts@zhaw.ch).
+**Please note:** we are given application data from an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected. So, please do not pass on this data, for any use beyond this module contact Patrick Laube or the data owner Stefan Suter (suts@zhaw.ch).
 
 
 

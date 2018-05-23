@@ -118,7 +118,7 @@ colnames(coordinates) <- c("E","N")
 
 wildschwein_BE <- cbind(wildschwein_BE,coordinates)
 #- chunkend
-#- header3 Task 3
+#- header3 Task 2
 #- chunkstart
 library(CMAtools)
 
@@ -244,3 +244,12 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
   coord_equal()
 
 #- chunkend
+
+df <- df %>%
+  mutate(
+    nMinus2 = euclid(lag(X, 2),lag(Y, 2),X,Y),   # distance to pos -10 minutes
+    nMinus1 = euclid(lag(X, 1),lag(Y, 1),X,Y),   # distance to pos - 5 minutes
+    nPlus1  = euclid(X,Y,lead(X, 1),lead(Y, 1)), # distance to pos + 5 mintues
+    nPlus2  = euclid(X,Y,lead(X, 2),lead(Y, 2))  # distance to pos +10 minutes
+  ) 
+

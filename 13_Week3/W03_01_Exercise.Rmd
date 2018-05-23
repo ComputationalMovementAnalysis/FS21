@@ -19,6 +19,12 @@ Readings Theory:
 
 Install the following libraries:
 
+```{r}
+#- header3 Preperation
+#- chunkstart
+```
+
+
 ```{r, echo = T, include = T, eval = F}
 install.packages("SimilarityMeasures")
 
@@ -32,6 +38,9 @@ install.packages("plotly")
 install.packages("cowplot") 
 install.packages("ggrepel")
 ```
+
+
+
 
 Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
 
@@ -66,6 +75,10 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ```
 
+```{r}
+#- chunkend
+```
+
 
 ## Tasks and Inputs
 
@@ -90,6 +103,11 @@ The first step is calculating the distances to samples within the temporal windo
 2. `pos[n-1]` to `pos[n]`
 3. `pos[n]` to `pos[n+1]`
 4. `pos[n]` to `pos[n+2]`
+
+```{r}
+#- header3 Input
+#- chunkstart
+```
 
 ```{r, echo = T, include = T, eval = T}
 set.seed(10)
@@ -139,9 +157,11 @@ df
 ```
 
 
+
 #### Unique IDs *per segment*
 
 When segmenting trajectories, we often want to compute metrics on the basis of *each segment*. Within the tidyverse logic, we need a unique ID per segment that we can pass to `group_by()`.  So far, we've not found a good solution from available packages. We have therefore created our own function that we provide with the `CMAtools` package called `number_groups()`. This function takes a logical vector as an input and assigns subsequent `TRUE` values to the same group. Take the sample trajectory from before:
+
 
 ```{r, echo = T, include = T, eval = T}
 df
@@ -158,8 +178,16 @@ df <- df %>%
 df
 ```
 
+```{r}
+#- chunkend
+```
 
 ### Task 1: Segmentation
+
+```{r}
+#- header3 Task1
+#- chunkstart
+```
 
 With the skills from the inout above we can now implement the segmentation algorithm described in @laube2011. The desribed method depends on a regular sampling interval. Therefore you have to subset your data to a trajectory of the same sampling intervals. Do so by subsetting the data the same way as we did in Task 3 last week: 
 
@@ -176,8 +204,6 @@ wildschwein_BE_1 <- wildschwein_BE%>%
   filter(timelag > 40 & timelag < 80) %>%
   slice(2:100)
 
-## Task 2 ####################
-
 wildschwein_BE_1 <- wildschwein_BE_1 %>%
   group_by(TierID) %>%
   mutate(
@@ -192,15 +218,23 @@ wildschwein_BE_1 <- wildschwein_BE_1 %>%
   )
 ```
 
+
+```{r}
+#- chunkend
+```
+
 ### Task 2: Specify and apply threshold *d*
+
+```{r}
+#- header3 Task 2
+#- chunkstart
+```
 
 After calculating the Euclidean distances to positions with the temporal window *v* in task 1, you can explore these values (we stored them in the column `stepMean`) using summary statistics (histograms, boxplot, `summary()`): This way we can define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on data as well as the question that needs to be answered. 
 
 
 
 ```{r, echo = F, include = T, eval = T}
-## Task 2 ####################
-
 
 summary(wildschwein_BE_1$stepMean)
 
@@ -222,9 +256,15 @@ wildschwein_BE_1 %>%  select(DatetimeUTC,E,N,stepMean,movement)
 
 
 
+```{r}
+#- chunkend
+```
 
 ### Task 3: Visualize segmented trajectories
-
+```{r}
+#- header3 Task 3
+#- chunkstart
+```
 
 Now visualize the segmented trajectories spatially. Just like last week, you can use ggplot with `geom_path()`, `geom_point()` and `coord_equal()`. Assign `colour = movement` within `aes()` to distinguish between segements *with* "movement" and *without*.
 
@@ -244,18 +284,28 @@ p1
 ```
 Tipp: if you want to get a `ggplot()` with Zoom capability, just load the library `plotly` and wrap the `ggplot()` function with `ggplotly()`
 
-```{r, echo = F, include = T, eval = T, fig.cap="This is the same plot as above, wrapped in the function `ggplotly()` from the library `plotly`. With this function, the plot becomes interactive. Try it out!"}
+```{r, echo = F, include = T, eval = knitr::is_html_output(), fig.cap="This is the same plot as above, wrapped in the function `ggplotly()` from the library `plotly`. With this function, the plot becomes interactive. Try it out!"}
 
 
-if (knitr::is_html_output()){                                                           # uncomment this line...
-  library(plotly)
-  ggplotly(p1)
-} else{print("Interactive map only available in the online version of this document")}  # ... and this line
+library(plotly)
+ggplotly(p1)
 
 ```
 
+```{r, echo = F, include=T, eval = knitr::is_latex_output(), results = "asis", purl = F}
+pander::pandoc.image("02_Images/batman-ipsum.png","The interactive map/plot is only available in the online version of this document.")
+```
 
+
+```{r}
+#- chunkend
+```
 ### Task 4: Segment-based analysis
+
+```{r}
+#- header3 Task 4
+#- chunkstart
+```
 
 In applying @laube2011, we've come as far as steps (b)/(c) in [Figure 1](02_Images/laube_2011.jpg). In order to complete step (d) (*Removal of subtrajectories with less than a threshold temporal length*), we first should be able to perform calculations per *segment*. This is currently not the case. 
 
@@ -284,27 +334,28 @@ wildschwein_BE_1 <- wildschwein_BE_1 %>%
 
 library(cowplot)
 
+p1
+
 p2 <- wildschwein_BE_1 %>%
   filter(!is.na(segment_ID)) %>%
   ggplot(aes(E,N, colour = segment_ID, group = segment_ID)) +
   geom_path() +
   geom_point() +
-  geom_point(data = filter(wildschwein_BE_1, is.na(segment_ID)),alpha = 0.2) +
   scale_alpha_discrete(range = c(0.1,1)) +
   theme_minimal() +
   coord_equal()
+
 p3 <- wildschwein_BE_1 %>%
   filter(!is.na(segment_ID)) %>%
   filter(segment_length > 300) %>%
   ggplot(aes(E,N, colour = segment_ID, group = segment_ID)) +
   geom_path() +
   geom_point() +
-  geom_point(data = filter(wildschwein_BE_1, is.na(segment_ID)),alpha = 0.2) +
   scale_alpha_discrete(range = c(0.1,1)) +
   theme_minimal() +
   coord_equal()
 
-  plot_grid(p1,p2,p3, labels = "auto", ncol = 1)
+plot_grid(p1,p2,p3, labels = "auto", ncol = 1)
 
 
 ```
@@ -313,14 +364,20 @@ p3 <- wildschwein_BE_1 %>%
 
 ```
 
+```{r}
+#- chunkend
+```
+### Task 5 (Optional): Plotting with `leaflet`
 
-### Task 4 (Optional): Plotting with `leaflet`
+```{r}
+#- header3 Task 5
+#- chunkstart
+```
 
 Exploring segmentation with `ggplot` is not very satisfying. Another great tool to visualize spatial data is leaflet. It's not all that hard to create an interactive leaflet plot, just take a look at [the documentation](https://rstudio.github.io/leaflet/) and try it with your segmented wild boar data. Note: You can only pass the `Lat`/`Long` coordinates to leaflet, it cannot handle our `E`/`N`-data. This is one of the reasons we've held on to this column in the first place.
 
 ```{r, echo = F, include = T, eval = T, fig.cap="Visualizing 'stops' and 'moves' with a threshold of 50 m"}
 
-## Task 4 (Optional) #########################
 
 library(scales)
 library(leaflet)
@@ -337,16 +394,21 @@ if (knitr::is_html_output()){                                                   
 } else{print("Interactive map only available in the online version of this document")}  # ... and this line
 ```
 
+```{r}
+#- chunkend
+```
+### Task 6: Similarity measures 
 
-### Task 5: Similarity measures 
+```{r}
+#- header3 Task 6
+#- chunkstart
+```
 
 
 Import the dataset `pedestrian.csv` (available on moodle). It it a set of six similar, but varying trajectories from pedestrians walking on a path. We will analyse these trajectories with the package `SimilarityMeasures`, always comparing trajectory 1 pairwise to the other trajectories 2-6. For this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
 
 
 ```{r}
-
-## Task 5 ##################################
 
 library(ggrepel)
 pedestrians <- read_delim("../CMA_FS2018_Filestorage/pedestrian.csv",",")
@@ -403,8 +465,16 @@ plotraj(5)
 plotraj(6)
 ```
 
+```{r}
+#- chunkend
+```
 
-### Task 6: Calculate similarity
+### Task 7: Calculate similarity
+
+```{r}
+#- header3 Task 7
+#- chunkstart
+```
 
 Calculate the similarity between trajectory 1 and trajectories 2-6. Use the different similarity measures in the package `SimilarityMeasures`.Visualize your results and try to understand the different results with respect to your reading of @both2018. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?
 
@@ -474,5 +544,15 @@ pedest_measures %>%
 ```
 
 
+
 ```{r code=readLines('01_R_Files/clear_workspace.R'), echo = F, include=F, eval=T}
+```
+
+
+
+
+## Solutions
+
+
+```{r child='13_Week3/RFiles/W03_01_Exercise_solution.Rmd', purl = F}
 ```

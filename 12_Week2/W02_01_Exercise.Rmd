@@ -582,7 +582,8 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
 
 
 
-<!-- ## Solutions (RCode) -->
+## Solutions
 
-<!-- ```{r code=readLines('12_Week2/RFiles/W02_01_Exercise.R'), results='asis', echo = T, include=T, eval=F} -->
-<!-- ``` -->
+
+```{r child='12_Week2/RFiles/W02_01_Exercise_solution.Rmd', purl = F}
+```
