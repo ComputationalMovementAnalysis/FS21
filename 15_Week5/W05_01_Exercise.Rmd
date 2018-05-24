@@ -94,7 +94,7 @@ ggplot(fanel2016, aes(fill = Frucht)) +
 ```
 
 
-### Task 2: Extract spatial information
+### Task 2: Annotate Trajectories from vector data
 
 Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use `st_join()` to attach the attributes from `fanel2016` to your trajectory data `wildschwein_BE_2016` (semantic annotation). Visualize the number of sample points in each category of `Frucht` over the course of the filtered time period.
 
@@ -122,7 +122,7 @@ wildschwein_BE_2016 %>%
 ```
 
 
-### Task 3
+### Task 3: Explore annotated trajectories
 
 TODO Nils: Dieser Task scheint mir sehr wenig ausgeführt. Ich selber habe kaum verstanden, was ich wie machen könnte. Liegt wohl aber auch daran, dass ich das shp nicht anschauen konnte.
 
@@ -132,7 +132,8 @@ Think of other ways you could visually explore the spatio-temporal patterns of w
 - Normalized usage (e.g. 1 equalling to the temporal maximum of each crop)
 
 
-### Task 4
+### Task 4: Annotate Trajectories from raster data
+
 
 In terms of raster data, we have prepared a [Normalised Digital Surface Model (nDSM)](https://gisgeography.com/lidar-light-detection-and-ranging/)[^501], which provides information on the height of topological features on the ground. Since our wild boar usually use natural landscapes, the nDSM is a good approximation of vegitation height. This nDSM is available on moodle (`DOD.tif`). Import this data with `raster()`and attach the respective raster values to the point data in your `sf` object (`wildschwein_BE_2016`). Explore the dataset similar to the crop data in task 2/3. Explore again spatio-temporal relations!
 
