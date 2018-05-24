@@ -57,12 +57,12 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ### Tasks 1: Import and visualize spatial data
 
-- Import the dataset `Feldaufnahmen_Fanel_2016.shp` from moodle with `read_sf()` and save it to the variable `fanel2016`.
-- Transform the coordinates to `CH1903+ LV95`
-- Filter the dataset `wildschwein_BE` to the period 01.04.2016 to 30.09.2016 and store the data in a new variable (`wildschwein_BE_2016`)
-- create a minimum convex polygon for each individual in `wildschwein_BE_2016` and store it in a new variable (`mcp2016`)
-- import the file `pk100_BE_2056.tif`
-- Create a map with the layers `pk100_BE_2056.tif`, `fanel2016` and `mcp2016`
+- Import the vector dataset `Feldaufnahmen_Fanel_2016.shp` from moodle with `read_sf()` and save it to the variable `fanel2016`. The file .shp stands for Shapefile, which is a simple format for spatial vector data (points, line, or polygons).
+- Transform the coordinates to `CH1903+ LV95`.
+- Filter the dataset `wildschwein_BE` to the period 01.04.2016 to 30.09.2016 and store the data in a new variable (`wildschwein_BE_2016`).
+- Create a minimum convex polygon for each individual in `wildschwein_BE_2016` and store it in a new variable (`mcp2016`)
+- Import the raster data file `pk100_BE_2056.tif`. PK stands for Pixel-Karte.
+- Create a map with the layers `pk100_BE_2056.tif`, `fanel2016` and `mcp2016`.
 
 ```{r, echo = F, include=T, eval = T}
 
