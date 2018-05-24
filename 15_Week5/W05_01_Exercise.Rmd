@@ -96,7 +96,7 @@ ggplot(fanel2016, aes(fill = Frucht)) +
 
 ### Task 2: Extract spatial information
 
-We would like to know what crop was most used during what time. Use `st_join()` to extract the attributes from `fanel2016` with `wildschwein_BE_2016`. Visualize the number of samples in each category of `Frucht` over the course of the filtered time period.
+Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use `st_join()` to attach the attributes from `fanel2016` to your trajectory data `wildschwein_BE_2016` (semantic annotation). Visualize the number of sample points in each category of `Frucht` over the course of the filtered time period.
 
 ```{r, echo = F, include=T, eval = T, fig.cap="The number of samples per category *per week* from April to September 2014."}
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
