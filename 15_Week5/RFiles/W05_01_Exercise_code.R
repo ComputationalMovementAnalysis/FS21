@@ -1,11 +1,16 @@
 ## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git") # Reinstall this package, since we have a few updates
 ## 
+## 
+## 
 library(tidyverse)
 library(CMAtools)
 library(sf)
+library(ggspatial)
+library(raster)
 
 # Import as tibble
 wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+
 
 # Convert to sf-object
 wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
@@ -34,9 +39,18 @@ library(lubridate)
 fanel2016 <- read_sf("../CMA_FS2018_Filestorage/Kulturen/Feldaufnahmen_Fanel_2016.shp") %>%
   st_transform(2056)
 
+pk100_BE <- brick("../CMA_FS2018_Filestorage/pk100_BE_2056.tif")
+
+
 wildschwein_BE_2016 <- wildschwein_BE %>%
   filter(DatetimeUTC >= as.Date("2016-04-01")) %>%
   filter(DatetimeUTC <= as.Date("2016-09-30"))
+
+
+mcp2016 <- wildschwein_BE_2016 %>%
+  group_by(TierID) %>%
+  summarise() %>%
+  st_convex_hull()
 
 
 ggplot(fanel2016, aes(fill = Frucht)) + 
@@ -46,7 +60,7 @@ ggplot(fanel2016, aes(fill = Frucht)) +
   theme(legend.position = "bottom")
   
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
-  st_join(select(fanel2016,Frucht))
+  st_join(dplyr::select(fanel2016,Frucht))
 
 
 frucht_remove <- c("0","Flugplatz","Rhabarber","Zucchetti")
@@ -61,43 +75,36 @@ wildschwein_BE_2016 %>%
   ggplot(aes(week,n, group = Frucht)) + 
   geom_line() +
   labs(x = "Time",y = "Number of Samples") +
-  facet_wrap(~Frucht)
+  facet_wrap(~Frucht) +
+  theme_minimal()
 
 
+dod <- raster("../CMA_FS2018_Filestorage/DOD.tif")
+
+plot(dod)
+
+wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
+  mutate(dod = raster::extract(dod,.))
 
 
-
-## Task 5 #######################
-
-library(recurse)
-library(ggforce)
-
-recurs <- wildschwein_BE %>%
-  filter(TierID == "001A") %>%
-  dplyr::select(E,N,DatetimeUTC,TierID) %>%
-  st_set_geometry(NULL) %>%
+wildschwein_BE_2016 %>%
   as.data.frame() %>%
-  getRecursions(100)
-
-recurStats <- recurs$revisitStats
-
-recurStats <- recurStats %>%
-  group_by(coordIdx) %>%
+  mutate(
+    hour = hour(round_date(DatetimeUTC,"6 hours")),
+    month = month(DatetimeUTC,T, T)
+    ) %>%
+  group_by(TierID,month,hour) %>%
   summarise(
-    number_of_visits = max(visitIdx),
-    x = unique(x),
-    y = unique(y),
-    total_time = sum(timeInside),
-    max_time = max(timeInside),
-    mean_time = mean(timeInside)
-  )
-
-data1 = filter(recurStats, number_of_visits > 30)
-wildschwein_BE %>%
-  ungroup() %>%
-  filter(TierID == "001A") %>%
-  ggplot(aes(E,N)) +
-  geom_point(alpha = 0.4, colour = "grey") +
-  geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) +
-  coord_fixed(1)
+    mean = mean(dod,na.rm = T),
+    sd = sd(dod,na.rm = T),
+    up = mean+sd,
+    do = mean-sd
+    ) %>%
+  ggplot(aes(x = hour,y = mean,ymin = do, ymax = up, colour = TierID,fill = TierID)) +
+  geom_ribbon(alpha = 0.4) +
+  geom_line() +
+  facet_wrap(~month) +
+  theme_minimal()
+    
+  
 

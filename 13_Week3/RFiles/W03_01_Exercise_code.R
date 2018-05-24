@@ -130,11 +130,11 @@ p1 <- wildschwein_BE_1 %>%
 
 p1
 
-## 
-## 
-## library(plotly)
-## ggplotly(p1)
-## 
+
+
+library(plotly)
+ggplotly(p1)
+
 #- chunkend
 #- header3 Task 4
 #- chunkstart
@@ -286,4 +286,3 @@ pedest_measures %>%
   facet_wrap(~key,scales = "free") +
   labs(x = "Trajectory", y = "Value")
 
-#- chunkend

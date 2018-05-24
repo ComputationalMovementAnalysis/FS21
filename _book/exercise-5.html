@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>GEO880: Patterns and Trends in Environmental Data</title>
+  <meta name="description" content="GEO880: Patterns and Trends in Environmental Data">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="GEO880: Patterns and Trends in Environmental Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="GEO880: Patterns and Trends in Environmental Data" />
+  
+  
+  
+
+<meta name="author" content="Patrick Laube and Nils Ratnaweera">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction Chapter</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html"><i class="fa fa-check"></i>Exercise 5</a><ul>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#preperation"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#tasks"><i class="fa fa-check"></i>Tasks</a><ul>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-2-extract-spatial-information"><i class="fa fa-check"></i>Task 2: Extract spatial information</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-3"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-5-determine-revisited-sites"><i class="fa fa-check"></i>Task 5: Determine revisited sites</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO880: Patterns and Trends in Environmental Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercise-5" class="section level1">
+<h1>Exercise 5</h1>
+<div id="learning-outcomes" class="section level2">
+<h2>Learning Outcomes</h2>
+<ul>
+<li>You are able to access state-of-the-art spatial data within R and know basic operations for annotating your trajectories with geographic context.</li>
+</ul>
+</div>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+</div>
+<div id="preperation" class="section level2">
+<h2>Preperation</h2>
+<p>Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today’s exercise. <em>Important: Reinstall the package <code>CMAtools</code> since we have a few updates.</em></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">install_git</span>(<span class="st">&quot;https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git&quot;</span>) <span class="co"># Reinstall this package, since we have a few updates</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(CMAtools)
+<span class="kw">library</span>(sf)
+<span class="kw">library</span>(ggspatial)
+<span class="kw">library</span>(raster)
+
+<span class="co"># Import as tibble</span>
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;../CMA_FS2018_Filestorage/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)
+
+
+<span class="co"># Convert to sf-object</span>
+wildschwein_BE =<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>,<span class="dt">remove =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># transform to CH1903 LV95</span>
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)
+
+<span class="co"># Add geometry as E/N integer Columns</span>
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(wildschwein_BE) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">cbind</span>(wildschwein_BE,.) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">E =</span> X) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">N =</span> Y)
+
+<span class="co"># Compute timelag, steplength and speed</span>
+wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(TierID) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>)),
+    <span class="dt">steplength =</span> <span class="kw">euclid</span>(<span class="kw">lead</span>(E, <span class="dv">1</span>),<span class="kw">lead</span>(N, <span class="dv">1</span>),E,N),
+    <span class="dt">speed =</span> steplength<span class="op">/</span>timelag
+  )</code></pre></div>
+</div>
+<div id="tasks" class="section level2">
+<h2>Tasks</h2>
+<div id="tasks-1-import-and-visualize-spatial-data" class="section level3">
+<h3>Tasks 1: Import and visualize spatial data</h3>
+<ul>
+<li>Import the dataset <code>Feldaufnahmen_Fanel_2016.shp</code> (<code>read_sf()</code>) and save it to the variable <code>fanel2016</code>.</li>
+<li>Transform the coordinates to <code>CH1903+ LV95</code></li>
+<li>Filter the dataset <code>wildschwein_BE</code> to the period 01.04.2016 to 30.09.2016 and store the data in a new variable (<code>wildschwein_BE_2016</code>)</li>
+<li>create a minimum convex polygon for each individual in <code>wildschwein_BE_2016</code> and store it in a new variable (<code>mcp2016</code>)</li>
+<li>import the file <code>pk100_BE_2056.tif</code></li>
+<li>Create a map with the layers <code>pk100_BE_2056.tif</code>, <code>fanel2016</code> and <code>mcp2016</code></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="task-2-extract-spatial-information" class="section level3">
+<h3>Task 2: Extract spatial information</h3>
+<p>We would like to know what crop was most used during what time. Use <code>st_join()</code> to extract the attributes from <code>fanel2016</code> with <code>wildschwein_BE_2016</code>. Visualize the number of samples in each category of <code>Frucht</code> over the course of the filtered time period.</p>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="_main_files/figure-html/unnamed-chunk-6-1.png" alt="The number of samples per category *per week* from April to September 2014." width="672" />
+<p class="caption">
+Figure 1: The number of samples per category <em>per week</em> from April to September 2014.
+</p>
+</div>
+</div>
+<div id="task-3" class="section level3">
+<h3>Task 3</h3>
+<p>Think of other ways you could visually explore the spatio temporal pattern of wild boar in relation to the crops. For example;</p>
+<ul>
+<li>Visits in relation to availability</li>
+<li>Normalized usage (e.g. 1 equalling to the temporal maximum of each crop)</li>
+</ul>
+</div>
+<div id="task-4" class="section level3">
+<h3>Task 4</h3>
+<p>We have prepared a Normalised Digital Surface Model (nDSM) by calculating the difference between the <a href="https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&amp;guid=094ce943-6ad7-4f07-aa9f-d8eb17c5cb38&amp;catalog=geocatalog&amp;type=complete&amp;preview=search_list">digital surface models (DSM)</a> and the <a href="https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&amp;guid=490de97b-8932-4ef7-9d13-e89ef41eeb4b&amp;catalog=geocatalog&amp;type=complete&amp;preview=search_list">digital terrain model (DTM)</a> obtained from the <a href="https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html">geoportal from the canton bern</a>. This nDSM is available on moodle (<code>DOD.tif</code>). Import this data with <code>raster()</code>and extract the data to your <code>sf</code> object (<code>wildschwein_BE_2016</code>). Explore the dataset spatiotemporally similar to the crop data in task 2/3.</p>
+</div>
+<div id="task-5-determine-revisited-sites" class="section level3">
+<h3>Task 5: Determine revisited sites</h3>
+<p>Use the package <code>recurse</code> (function <code>getRecursions</code>) to determine sites which are often visited.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

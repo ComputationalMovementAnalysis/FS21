@@ -1,8 +1,3 @@
 [
-[" ", " ", " "],
-[" ", " ", " "],
-[" ", " ", " "],
-[" ", " ", " "],
-[" ", " ", " "],
-[" ", " ", " "]
+["index.html", "GEO880: Patterns and Trends in Environmental Data Introduction Chapter", " GEO880: Patterns and Trends in Environmental Data Patrick Laube and Nils Ratnaweera Introduction Chapter For our practical R course building-up skills for analyzing movement data in the software environment R, you’ll be using data from the ZHAW project “Prävention von Wildschweinschäden in der Landwirtschaft”. The project investigates the spatiotemporal movement patterns of wild boar (Sus scrofa) in agricultural landscapes. For more information you can ask Beni Sigrist, one of the course participants involved in this project. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA). Please note: we are given application data from an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected. So, please do not pass on this data, for any use beyond this module contact Patrick Laube or the data owner Stefan Suter (suts@zhaw.ch). "]
 ]

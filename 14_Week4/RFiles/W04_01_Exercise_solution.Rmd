@@ -168,38 +168,38 @@ append_layers(p4, annotation_spraster(pk25), position = "bottom")
 
 append_layers(p4, annotation_spraster(swissimage), position = "bottom")
 
-## 
-## library(leaflet)
-## library(scales)
-## 
-## factpal <- colorFactor(hue_pal()(3), wildschwein_fil$TierID)
-## 
-## wildschwein_fil_line <- wildschwein_fil %>%
-##   summarise(do_union = FALSE) %>%
-##   st_cast("LINESTRING") %>%
-##   st_transform(4326)
-## 
-## leaflet(wildschwein_fil) %>%
-##   addProviderTiles(providers$Esri.WorldImagery) %>%
-##   addPolylines(data = wildschwein_fil_line,color = ~factpal(TierID)) %>%
-##   addCircles(data = meets,radius = 8,lng = ~Long_2, lat = ~Lat_2,opacity = 0,fillOpacity = 1,fillColor = "blue") %>%
-##   addCircles(data = meets,radius = 8,lng = ~Long_3, lat = ~Lat_3,opacity = 0,fillOpacity = 1,fillColor = "red") %>%
-##   addLegend(pal = factpal, values = ~TierID, title = "TierID")
-## 
-## 
-## 
-## 
-## library(scales)
-## pal <- hue_pal()(5)
-## pal <- c("red","yellow","green")
-## 
-## library(plotly)
-## plot_ly(wildschwein_join, x = ~E_1,y = ~N_1, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
-##   add_trace(wildschwein_join, x = ~E_2,y = ~N_2, z = ~DatetimeRound) %>%
-##   add_trace(wildschwein_join, x = ~E_3,y = ~N_3, z = ~DatetimeRound) %>%
-##   add_markers(data = meets, x = ~E_2,y = ~N_2, z = ~DatetimeRound) %>%
-##   add_markers(data = meets, x = ~E_3,y = ~N_3, z = ~DatetimeRound) %>%
-##   layout(scene = list(xaxis = list(title = 'E'),
-##                       yaxis = list(title = 'N'),
-##                       zaxis = list(title = 'Time')))
-## 
+
+library(leaflet)
+library(scales)
+
+factpal <- colorFactor(hue_pal()(3), wildschwein_fil$TierID)
+
+wildschwein_fil_line <- wildschwein_fil %>%
+  summarise(do_union = FALSE) %>% 
+  st_cast("LINESTRING") %>%
+  st_transform(4326)
+
+leaflet(wildschwein_fil) %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  addPolylines(data = wildschwein_fil_line,color = ~factpal(TierID)) %>%
+  addCircles(data = meets,radius = 8,lng = ~Long_2, lat = ~Lat_2,opacity = 0,fillOpacity = 1,fillColor = "blue") %>%
+  addCircles(data = meets,radius = 8,lng = ~Long_3, lat = ~Lat_3,opacity = 0,fillOpacity = 1,fillColor = "red") %>%
+  addLegend(pal = factpal, values = ~TierID, title = "TierID")
+
+
+  
+
+library(scales)
+pal <- hue_pal()(5)
+pal <- c("red","yellow","green")
+
+library(plotly)
+plot_ly(wildschwein_join, x = ~E_1,y = ~N_1, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
+  add_trace(wildschwein_join, x = ~E_2,y = ~N_2, z = ~DatetimeRound) %>%
+  add_trace(wildschwein_join, x = ~E_3,y = ~N_3, z = ~DatetimeRound) %>%
+  add_markers(data = meets, x = ~E_2,y = ~N_2, z = ~DatetimeRound) %>%
+  add_markers(data = meets, x = ~E_3,y = ~N_3, z = ~DatetimeRound) %>%
+  layout(scene = list(xaxis = list(title = 'E'),
+                      yaxis = list(title = 'N'),
+                      zaxis = list(title = 'Time')))
+

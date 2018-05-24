@@ -13,6 +13,8 @@ Open your R Project from last week. Either run your own script from last week or
 ```{r, echo = T, include=T, eval = F}
 devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git") # Reinstall this package, since we have a few updates
 
+
+
 ```
 
 
@@ -54,7 +56,7 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ### Tasks 1: Import and visualize spatial data
 
-- Import the dataset `Feldaufnahmen_Fanel_2016.shp` (`read_sf()`) and save it to the variable `fanel2016`.
+- Import the dataset `Feldaufnahmen_Fanel_2016.shp` from moodle with `read_sf()` and save it to the variable `fanel2016`.
 - Transform the coordinates to `CH1903+ LV95`
 - Filter the dataset `wildschwein_BE` to the period 01.04.2016 to 30.09.2016 and store the data in a new variable (`wildschwein_BE_2016`)
 - create a minimum convex polygon for each individual in `wildschwein_BE_2016` and store it in a new variable (`mcp2016`)
@@ -80,9 +82,6 @@ mcp2016 <- wildschwein_BE_2016 %>%
   group_by(TierID) %>%
   summarise() %>%
   st_convex_hull()
-
-
-write_sf(mcp2016,"mcp2016.shp")
 
 
 ggplot(fanel2016, aes(fill = Frucht)) + 
@@ -118,6 +117,7 @@ wildschwein_BE_2016 %>%
   facet_wrap(~Frucht) +
   theme_minimal()
 
+
 ```
 
 
@@ -131,7 +131,13 @@ Think of other ways you could visually explore the spatio temporal pattern of wi
 
 ### Task 4
 
-```{r}
+We have prepared a [Normalised Digital Surface Model (nDSM)](https://gisgeography.com/lidar-light-detection-and-ranging/)[^501], which provides information on height of topological features on the ground. Since our wild boar usually use natural landscapes, the nDSM is a good approximation of vegitation height. This nDSM is available on moodle (`DOD.tif`). Import this data with `raster()`and extract the data to your `sf` object (`wildschwein_BE_2016`). Explore the dataset spatiotemporally similar to the crop data in task 2/3.
+
+
+[^501] The nDSM was created by calculating the difference between the [digital surface models (DSM)](https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&guid=094ce943-6ad7-4f07-aa9f-d8eb17c5cb38&catalog=geocatalog&type=complete&preview=search_list) and the [digital terrain model (DTM)](https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&guid=490de97b-8932-4ef7-9d13-e89ef41eeb4b&catalog=geocatalog&type=complete&preview=search_list) obtained from the [geoportal from the canton bern](https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html). 
+
+
+```{r,fig.cap="An example of a temporal exploration of the data obtained from the nDSM."}
 dod <- raster("../CMA_FS2018_Filestorage/DOD.tif")
 
 plot(dod)
@@ -143,13 +149,21 @@ wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
 wildschwein_BE_2016 %>%
   as.data.frame() %>%
   mutate(
-    hour = hour(round_date(DatetimeUTC,"1 hours")),
-    month = month(DatetimeUTC)
+    hour = hour(round_date(DatetimeUTC,"6 hours")),
+    month = month(DatetimeUTC,T, T)
     ) %>%
-  group_by(TierID,hour) %>%
-  summarise(mean_dod = mean(dod,na.rm = T)) %>%
-  ggplot(aes(hour,mean_dod,colour = TierID)) +
-  geom_line()
+  group_by(TierID,month,hour) %>%
+  summarise(
+    mean = mean(dod,na.rm = T),
+    sd = sd(dod,na.rm = T),
+    up = mean+sd,
+    do = mean-sd
+    ) %>%
+  ggplot(aes(x = hour,y = mean,ymin = do, ymax = up, colour = TierID,fill = TierID)) +
+  geom_ribbon(alpha = 0.4) +
+  geom_line() +
+  facet_wrap(~month) +
+  theme_minimal()
     
   
 
@@ -157,45 +171,43 @@ wildschwein_BE_2016 %>%
 
 
 
-### Task 8: Determine revisited sites
+<!-- ### Task 5 (Optional): Determine revisited sites -->
 
-Use the package `recurse` (function `getRecursions`) to determine sites which are often visited.
+<!-- The package `recurse` helps find areas which are re-visited by the same indiviual. This gives us interesting insights into the ecology of our animals.  -->
 
 
-```{r,, echo = F, include = T}
+<!-- ```{r,, echo = F, include = T} -->
 
-## Task 5 #######################
+<!-- library(recurse) -->
+<!-- library(ggforce) -->
 
-library(recurse)
-library(ggforce)
+<!-- recurs <- wildschwein_BE %>% -->
+<!--   filter(TierID == "001A") %>% -->
+<!--   dplyr::select(E,N,DatetimeUTC,TierID) %>% -->
+<!--   st_set_geometry(NULL) %>% -->
+<!--   as.data.frame() %>% -->
+<!--   getRecursions(100) -->
 
-recurs <- wildschwein_BE %>%
-  filter(TierID == "001A") %>%
-  dplyr::select(E,N,DatetimeUTC,TierID) %>%
-  st_set_geometry(NULL) %>%
-  as.data.frame() %>%
-  getRecursions(100)
+<!-- recurStats <- recurs$revisitStats -->
 
-recurStats <- recurs$revisitStats
+<!-- recurStats <- recurStats %>% -->
+<!--   group_by(coordIdx) %>% -->
+<!--   summarise( -->
+<!--     number_of_visits = max(visitIdx), -->
+<!--     x = unique(x), -->
+<!--     y = unique(y), -->
+<!--     total_time = sum(timeInside), -->
+<!--     max_time = max(timeInside), -->
+<!--     mean_time = mean(timeInside) -->
+<!--   ) -->
 
-recurStats <- recurStats %>%
-  group_by(coordIdx) %>%
-  summarise(
-    number_of_visits = max(visitIdx),
-    x = unique(x),
-    y = unique(y),
-    total_time = sum(timeInside),
-    max_time = max(timeInside),
-    mean_time = mean(timeInside)
-  )
+<!-- data1 = filter(recurStats, number_of_visits > 30) -->
+<!-- wildschwein_BE %>% -->
+<!--   ungroup() %>% -->
+<!--   filter(TierID == "001A") %>% -->
+<!--   ggplot(aes(E,N)) + -->
+<!--   geom_point(alpha = 0.4, colour = "grey") + -->
+<!--   geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) + -->
+<!--   coord_fixed(1) -->
 
-data1 = filter(recurStats, number_of_visits > 30)
-wildschwein_BE %>%
-  ungroup() %>%
-  filter(TierID == "001A") %>%
-  ggplot(aes(E,N)) +
-  geom_point(alpha = 0.4, colour = "grey") +
-  geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) +
-  coord_fixed(1)
-
-```
+<!-- ``` -->
