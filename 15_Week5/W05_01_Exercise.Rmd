@@ -124,9 +124,11 @@ wildschwein_BE_2016 %>%
 
 ### Task 3
 
-Think of other ways you could visually explore the spatio temporal pattern of wild boar in relation to the crops. For example;
+TODO Nils: Dieser Task scheint mir sehr wenig ausgeführt. Ich selber habe kaum verstanden, was ich wie machen könnte. Liegt wohl aber auch daran, dass ich das shp nicht anschauen konnte.
 
-- Visits in relation to availability
+Think of other ways you could visually explore the spatio-temporal patterns of wild boar in relation to the crops. For example;
+
+- Visits in relation to availability (TODO Nils: Variiert denn die Availabilty? Hat der Layer crops eine zeitliche Komponente?)
 - Normalized usage (e.g. 1 equalling to the temporal maximum of each crop)
 
 
