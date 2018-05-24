@@ -1,7 +1,7 @@
 # Exercise 5
 
 ## Learning Outcomes
-- You are able to access state-of-the-art spatial data within R and  know basic operations for annotating your trajectories with geographic context.
+- You are able to process spatial data (vector and raster) within R and know basic operations for semantically annotating your trajectories with geographic context.
 
 ## Prerequisites
 
