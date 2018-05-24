@@ -7,7 +7,7 @@
 
 ## Preperation
 
-Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise. *Important: Reinstall the package `CMAtools` since we have a few updates.* 
+Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise. *Important: Reinstall the package `CMAtools` since we have made a few updates.* 
 
 
 ```{r, echo = T, include=T, eval = F}
