@@ -20,9 +20,12 @@ devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironm
 library(tidyverse)
 library(CMAtools)
 library(sf)
+library(ggspatial)
+library(raster)
 
 # Import as tibble
 wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+
 
 # Convert to sf-object
 wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
@@ -49,9 +52,14 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ## Tasks
 
-### Tasks 1: Import and visualize shapefiles
+### Tasks 1: Import and visualize spatial data
 
-Import the dataset `Feldaufnahmen_Fanel_2016.shp` (`read_sf()`) and save it to the variable `fanel2016`. Transform the coordinates to `CH1903+ LV95`. Filter the dataset `wildschwein_BE` to the period 01.04.2016 to 30.09.2016 and store the data in a new variable (`wildschwein_BE_2016`). Visualize the dataset to get an overview. 
+- Import the dataset `Feldaufnahmen_Fanel_2016.shp` (`read_sf()`) and save it to the variable `fanel2016`.
+- Transform the coordinates to `CH1903+ LV95`
+- Filter the dataset `wildschwein_BE` to the period 01.04.2016 to 30.09.2016 and store the data in a new variable (`wildschwein_BE_2016`)
+- create a minimum convex polygon for each individual in `wildschwein_BE_2016` and store it in a new variable (`mcp2016`)
+- import the file `pk100_BE_2056.tif`
+- Create a map with the layers `pk100_BE_2056.tif`, `fanel2016` and `mcp2016`
 
 ```{r, echo = F, include=T, eval = T}
 
@@ -60,9 +68,21 @@ library(lubridate)
 fanel2016 <- read_sf("../CMA_FS2018_Filestorage/Kulturen/Feldaufnahmen_Fanel_2016.shp") %>%
   st_transform(2056)
 
+pk100_BE <- brick("../CMA_FS2018_Filestorage/pk100_BE_2056.tif")
+
+
 wildschwein_BE_2016 <- wildschwein_BE %>%
   filter(DatetimeUTC >= as.Date("2016-04-01")) %>%
   filter(DatetimeUTC <= as.Date("2016-09-30"))
+
+
+mcp2016 <- wildschwein_BE_2016 %>%
+  group_by(TierID) %>%
+  summarise() %>%
+  st_convex_hull()
+
+
+write_sf(mcp2016,"mcp2016.shp")
 
 
 ggplot(fanel2016, aes(fill = Frucht)) + 
@@ -76,11 +96,11 @@ ggplot(fanel2016, aes(fill = Frucht)) +
 
 ### Task 2: Extract spatial information
 
-Use `st_join()` to extract the attributes from `fanel2016`. Visualize the number of samples in each category of `Frucht` in a manner of your choice.
+We would like to know what crop was most used during what time. Use `st_join()` to extract the attributes from `fanel2016` with `wildschwein_BE_2016`. Visualize the number of samples in each category of `Frucht` over the course of the filtered time period.
 
 ```{r, echo = F, include=T, eval = T, fig.cap="The number of samples per category *per week* from April to September 2014."}
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
-  st_join(select(fanel2016,Frucht))
+  st_join(dplyr::select(fanel2016,Frucht))
 
 
 frucht_remove <- c("0","Flugplatz","Rhabarber","Zucchetti")
@@ -95,17 +115,31 @@ wildschwein_BE_2016 %>%
   ggplot(aes(week,n, group = Frucht)) + 
   geom_line() +
   labs(x = "Time",y = "Number of Samples") +
-  facet_wrap(~Frucht)
-
-
-
+  facet_wrap(~Frucht) +
+  theme_minimal()
 
 ```
 
 
 ### Task 3
 
+Think of other ways you could visually explore the spatio temporal pattern of wild boar in relation to the crops. For example;
+
+- Visits in relation to availability
+- Normalized usage (e.g. 1 equalling to the temporal maximum of each crop)
+
+
 <!-- Rasterdatensatz importieren, ggf. DHM oder DTM-DHM um Veg.Höhe zu ermitteln -->
+
+
+### Task 4
+
+```{r}
+
+raster
+
+```
+
 
 
 
