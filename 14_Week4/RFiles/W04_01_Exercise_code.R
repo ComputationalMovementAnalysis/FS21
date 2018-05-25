@@ -1,3 +1,5 @@
+#- header3 Preperation
+#- chunkstart
 ## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git") # Reinstall this package, since we have a few updates
 ## 
 ## install.packages("ggpmisc") # you   dont really need this package. We just use it to add layers at specific positions
@@ -29,6 +31,9 @@ wildschwein_BE <- wildschwein_BE %>%
     speed = steplength/timelag
   )
 
+#- chunkend
+#- header3 Task 1
+#- chunkstart
 
 library(raster)
 library(ggspatial)
@@ -49,12 +54,18 @@ ggplot(wildschwein_fil, aes(colour = TierID)) +
 wildschwein_fil <- wildschwein_fil %>%
   filter(TierID != "005A")
 
+#- chunkend
+#- header3 Input
+#- chunkstart
 
 euclid <- function(x1,y1,x2,y2){
   distance <- sqrt((x1-x2)^2+(y1-y2)^2)
   return(distance)
 }
 
+#- chunkend
+#- header3 Task 2
+#- chunkstart
 
 # round a number to a multiple of another number
 
@@ -86,6 +97,9 @@ round_minutes_to <- function(datetime, multiple){
   return(datetime2)
 }
 
+#- chunkend
+#- header3 Task 3
+#- chunkstart
 ggplot(wildschwein_fil, aes(DatetimeUTC,timelag/60, colour = TierID)) + 
   geom_line() + 
   expand_limits(y = 0)
@@ -113,6 +127,9 @@ wildschwein_fil %>%
 
 
 
+#- chunkend
+#- header3 Task 4
+#- chunkstart
 # get unique IDs for my filtered dataframe
 ids <- wildschwein_fil %>%
   as.data.frame() %>%
@@ -131,6 +148,9 @@ wildschwein_fil_L <- ids %>%
       dplyr::select(-c(geometry,TierName,CollarID,timelag)) %>%
       rename_at(vars(-matches("DatetimeRound")),paste0,"_",which(ids== x))
     })
+#- chunkend
+#- header3 Task 5
+#- chunkstart
 
 wildschwein_join <- wildschwein_fil_L %>%
   Reduce(function(dtf1,dtf2) full_join(dtf1,dtf2,by="DatetimeRound"), .) %>%
@@ -149,6 +169,9 @@ meets <- wildschwein_join %>%
   spread(key,val)
 
 meets
+#- chunkend
+#- header3 Task 6
+#- chunkstart
 
 library(ggpmisc)
 
@@ -168,6 +191,9 @@ append_layers(p4, annotation_spraster(pk25), position = "bottom")
 
 append_layers(p4, annotation_spraster(swissimage), position = "bottom")
 
+#- chunkend
+#- header3 Task 7 (Optional)
+#- chunkstart
 ## 
 ## library(leaflet)
 ## library(scales)
@@ -188,6 +214,9 @@ append_layers(p4, annotation_spraster(swissimage), position = "bottom")
 ## 
 ## 
 ## 
+#- chunkend
+#- header3 Task 8
+#- chunkstart
 ## 
 ## library(scales)
 ## pal <- hue_pal()(5)
@@ -203,3 +232,4 @@ append_layers(p4, annotation_spraster(swissimage), position = "bottom")
 ##                       yaxis = list(title = 'N'),
 ##                       zaxis = list(title = 'Time')))
 ## 
+#- chunkend

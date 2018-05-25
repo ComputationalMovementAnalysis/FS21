@@ -15,6 +15,11 @@ Readings Theory, @laube2014
 
 ## Preperation
 
+```{r}
+#- header3 Preperation
+#- chunkstart
+```
+
 Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise. *Important: Reinstall the package `CMAtools` since we have a few updates.* 
 
 
@@ -56,11 +61,16 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ```
 
-
+```{r}
+#- chunkend
+```
 ## Tasks
 
 ### Task 1: Filter and visualize trajectories
-
+```{r}
+#- header3 Task 1
+#- chunkstart
+```
 Create a subset of your data (`wildschwein_BE`) by filtering it to 26-27 October 2014 and save the data to a new variable (name the new variable `wildschwein_fil`). Visualize your data spatially to see potential meeting sites. You can add `pk100_BE` as a background map like we did in task 6 of exercise 1. 
 
 Tip: If you do _not_ want `pk100_BE` to change the extent (xmin-xmax, ymin-ymax) of the plot, use `annotation_spraster()` rather than `geom_spraster_rgb()`. See `?annotation_spraster()` for more information.
@@ -89,9 +99,17 @@ wildschwein_fil <- wildschwein_fil %>%
 
 ```
 
-
+```{r}
+#- chunkend
+```
 
 ### Input: Creating functions
+
+
+```{r}
+#- header3 Input
+#- chunkstart
+```
 
 We have used a variaty of different functions designed by other developers. Sometimes we need to do an operation multiple times, and most often it is reasonable to write a function in this case. You should consider writing a function whenever you’ve copied and pasted a block of code more than twice [@wickham2017]. 
 
@@ -109,8 +127,15 @@ euclid <- function(x1,y1,x2,y2){
 First, you must pick a name for your function (here: `euclid`). The values within `function()` are placeholders for arguments that you want to use within your function (here: `x1`,`y1`,`x2`,`y2`). Within the curly brackets `{}` you can place your R script. Finally, use `return()` to make sure the function returns the desired output.
 
 All you need to do now is run these few lines of code at the beginning of your script, and you can use the function for your entire R session. After starting a new session, you will simply have to re-run the lines. So it might be a good idea to place this function within the section `Loading environment / libraries` of your project.
-
+```{r}
+#- chunkend
+```
 ### Task 2 (Optional): Create custom function
+
+```{r}
+#- header3 Task 2
+#- chunkstart
+```
 
 In the next task, we will need a function which enables us to round the attribute "Time" in our `Datetime` Object to the nearest quarter hour. To our knowledge, there is no function that does this for us, so we will have to create our own function. Create a function that takes a `Datetime` object and rounds minutes to the multiple of any given value (in our case we propose 15 min). Some help is given in the code below:
 
@@ -152,10 +177,17 @@ round_minutes_to <- function(datetime, multiple){
 
 ```
 
-
+```{r}
+#- chunkend
+```
 
 
 ### Task 3: Resample data
+
+```{r}
+#- header3 Task 3
+#- chunkstart
+```
 
 We propose conceptualizing the pattern "meet" as "being close in space *and* time", with the notion "close" to be defined for the spatial and the temporal case. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose resampling the temporal granularity in such a way, that all observations are sampled at identical times. This allows us using the data science concept *join* for detecting the temporal expression of meet - using `DateTimeUTC` as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on `euclid()`.
 
@@ -200,9 +232,15 @@ wildschwein_fil %>%
 
 ```
 
-
+```{r}
+#- chunkend
+```
 ### Task 4: Seperate into multiple data.frames
 
+```{r}
+#- header3 Task 4
+#- chunkstart
+```
 
 Now Divide the `wildschwein_fil` object (with `filter()`?) into one `data.frame` per animal available for these dates.
 
@@ -231,8 +269,15 @@ wildschwein_fil_L <- ids %>%
 ```
 
 
-
+```{r}
+#- chunkend
+```
 ### Task 5: Join data by time
+
+```{r}
+#- header3 Task 5
+#- chunkstart
+```
 
 Now that you have different `data.frames` (either stored in separate variables or in a list), use `full_join()` (or any appropriate join function) to join the `data.frames` pairwise by the key `DatetimeRound`. Use a join type such that the resulting table contains observations at the same (resampled) time. After that, use `euclid()` to calculate distances between individuals at temporally corresponding observations. Use a reasonable threshold on the calculated distance to determine *meets*. We will use 150 meters in our example. Your result should be a short list of meet patterns (pairs of individuals that are at the same time (joins) at the same space (`euclid()`)).
 
@@ -257,8 +302,15 @@ meets <- wildschwein_join %>%
 meets
 ```
 
-
+```{r}
+#- chunkend
+```
 ### Task 6: Visualize data with `ggplot`
+
+```{r}
+#- header3 Task 6
+#- chunkstart
+```
 
 For pairs that *do* meet, produce a plot with the trajectories of the the two days (26/27 October 2014, stored in `wildschwein_fil`) and join the points where the two individuals met (you can use `geom_segment()` for this). There are two additional `.tif` files on moodle, `pk25.tif` and `swissimage_250cm.tif`.
 
@@ -284,8 +336,16 @@ append_layers(p4, annotation_spraster(swissimage), position = "bottom")
 
 ```
 
+```{r}
+#- chunkend
+```
 
 ### Task 7 (Optional): Visualize data with `leaflet`
+
+```{r}
+#- header3 Task 7 (Optional)
+#- chunkstart
+```
 
 As already mentioned last week (Task 3) `ggplot` makes nice static graphics, but they can be somewhat cumbersome when attempting to explore the data. For example, the zooming functionality of an interactive plot is an especially powerful exploratory tool. If you've managed to create the `leaflet` plot last week, you can now use this library again to explore the `meet`-patterns. Note:
 
@@ -323,21 +383,22 @@ leaflet(wildschwein_fil) %>%
 pander::pandoc.image("02_Images/batman-ipsum.png","The interactive map/plot is only available in the online version of this document.")
 ```
 
+```{r}
+#- chunkend
+```
 
 ### Task 8 (optional): Visualize data as timecube with `plotly`
 
-<!--TODO Nils: Kannst Du noch die Farben der dots so machen, dass Orange linie orangen Dot, grüne Linie grüne dots hat?---->
+```{r}
+#- header3 Task 8
+#- chunkstart
+```
 
 Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube [@hagerstraand1970] with the package `plotly`. There are some [nice ressources](https://plot.ly/r/3d-line-plots/) available online.
-
-<!--TODO Nils: Die Referenz sagt Torsten, statt Hagerstrand...?   ----> 
 
 
 ```{r, echo = F, include=T, eval = knitr::is_html_output(), fig.cap="Trace 0, 1 and 2 show the trajectories of the three individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other."}
 
-library(scales)
-pal <- hue_pal()(5)
-pal <- c("red","yellow","green")
 
 library(plotly)
 plot_ly(wildschwein_join, x = ~E_1,y = ~N_1, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
@@ -356,11 +417,15 @@ plot_ly(wildschwein_join, x = ~E_1,y = ~N_1, z = ~DatetimeRound,type = "scatter3
 pander::pandoc.image("02_Images/batman-ipsum.png","The interactive map/plot is only available in the online version of this document.")
 ```
 
+```{r}
+#- chunkend
+```
 
 
 
 
-<!-- ## Solutions (RCode) -->
+## Solutions
 
-<!-- ```{r code=readLines('14_Week4/RFiles/W04_01_Exercise.R'), results='asis', echo = T, include=T, eval=F} -->
-<!-- ``` -->
+
+```{r child='14_Week4/RFiles/W04_01_Exercise_solution.Rmd', purl = F}
+```

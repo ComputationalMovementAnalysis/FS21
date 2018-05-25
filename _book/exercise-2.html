@@ -214,6 +214,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="exercise-4.html#task-7-optional-visualize-data-with-leaflet">Task 7 (Optional): Visualize data with <code>leaflet</code></a></li>
 <li><a href="exercise-4.html#task-8-optional-visualize-data-as-timecube-with-plotly">Task 8 (optional): Visualize data as timecube with <code>plotly</code></a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#solutions-3"><i class="fa fa-check"></i>Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#preperation-6"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-1-1"><i class="fa fa-check"></i>Task 1</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#input-4"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-2-3"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-3-3"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-4-3"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-5-3"><i class="fa fa-check"></i>Task 5</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-6-2"><i class="fa fa-check"></i>Task 6</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-7-optional"><i class="fa fa-check"></i>Task 7 (Optional)</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-8"><i class="fa fa-check"></i>Task 8</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html"><i class="fa fa-check"></i>Exercise 5</a><ul>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#learning-outcomes-3"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#preperation-7"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#tasks-1"><i class="fa fa-check"></i>Tasks</a><ul>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -561,11 +583,11 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wilds
 
 example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">3</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1] 0.9982053 0.9249307 0.4364415 0.7154381 0.7959768 0.3172438 0.1918768
-##  [8] 0.1354903        NA        NA
+##  [1] -0.1772767 -0.5443912 -0.6438929 -0.6339761 -0.1463655  0.2187269
+##  [7]  0.7299656  0.5359389         NA         NA
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">4</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1]  0.54079507  1.20887189  0.55659469  0.38912369  0.75310672
-##  [6]  0.37317116 -0.04583716          NA          NA          NA</code></pre></div>
+##  [1] -0.4898570 -0.4189430 -0.5908527 -0.4666736  0.1533956  0.4395412
+##  [7]  0.4107626         NA         NA         NA</code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>wildschwein_BE_1</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 </div>
 <div id="task-5-optional-calculate-turning-angles" class="section level3">
