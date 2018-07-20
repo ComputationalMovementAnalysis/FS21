@@ -71,7 +71,7 @@ wildschwein %>%
   filter(ug == "BE") %>%
   dplyr::select(-ug) %>%
   filter(TierID %in% tiere_BE[1:10]) %>%
-  write_csv("../Geodata/wildschwein_BE.csv")
+  write_csv("../CMA_FS2018_Filestorage/wildschwein_BE_all_raw.csv")
 
 
 

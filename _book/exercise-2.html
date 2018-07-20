@@ -236,6 +236,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
 <li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#solutions-4"><i class="fa fa-check"></i>Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#preperation-8"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-1-2"><i class="fa fa-check"></i>Task 1</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-2-4"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-4-4"><i class="fa fa-check"></i>Task 4</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -489,20 +495,28 @@ pigs %&gt;%
 <div id="input-geometry-as-columns" class="section level3">
 <h3>Input: Geometry as columns</h3>
 <p>Last week, we transformed our data from a <code>data.frame</code> to an <code>sf</code> object. This turned our <code>Lat</code>/<code>Long</code> Columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. We already have <code>WGS84</code> as numeric columns, but not yet the <code>CH1903+ LV95</code> coordinates.</p>
-<pre><code>## # A tibble: 10 x 6
-##    TierID DatetimeUTC           Lat  Long timelag
-##    &lt;chr&gt;  &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-##  1 001A   2014-05-28 21:01:14  47.0  7.05     844
-##  2 001A   2014-05-28 21:15:18  47.0  7.05     895
-##  3 001A   2014-05-28 21:30:13  47.0  7.05     898
-##  4 001A   2014-05-28 21:45:11  47.0  7.05     922
-##  5 001A   2014-05-28 22:00:33  47.0  7.05     883
-##  6 001A   2014-05-28 22:15:16  47.0  7.05     898
-##  7 001A   2014-05-28 22:30:14  47.0  7.05     895
-##  8 001A   2014-05-28 22:45:09  47.0  7.05     903
-##  9 001A   2014-05-28 23:00:12  47.0  7.05     896
-## 10 001A   2014-05-28 23:15:08  47.0  7.05     908
-## # ... with 1 more variable: geometry &lt;POINT [m]&gt;</code></pre>
+<pre><code>##    TierID         DatetimeUTC      Lat     Long timelag
+## 1    001A 2014-05-28 21:01:14 46.99378 7.049359     844
+## 2    001A 2014-05-28 21:15:18 46.99383 7.049342     895
+## 3    001A 2014-05-28 21:30:13 46.99379 7.049367     898
+## 4    001A 2014-05-28 21:45:11 46.99383 7.049329     922
+## 5    001A 2014-05-28 22:00:33 46.99376 7.049336     883
+## 6    001A 2014-05-28 22:15:16 46.99385 7.049282     898
+## 7    001A 2014-05-28 22:30:14 46.99381 7.049401     895
+## 8    001A 2014-05-28 22:45:09 46.99580 7.051912     903
+## 9    001A 2014-05-28 23:00:12 46.99580 7.051797     896
+## 10   001A 2014-05-28 23:15:08 46.99582 7.051658     908
+##                   geometry
+## 1  POINT (2570390 1204820)
+## 2  POINT (2570389 1204826)
+## 3  POINT (2570391 1204821)
+## 4  POINT (2570388 1204826)
+## 5  POINT (2570388 1204819)
+## 6  POINT (2570384 1204828)
+## 7  POINT (2570393 1204824)
+## 8  POINT (2570585 1205044)
+## 9  POINT (2570576 1205044)
+## 10 POINT (2570566 1205047)</code></pre>
 <p>Let’s do the same for the <code>CH1903+ LV95</code>-values, as we will need the values in columns for our next task. First, we have to extract the Coordinates using <code>st_coordinates()</code>. We can store these values in a new variable and display them:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store coordinates in a new variable</span>
 coordinates &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(wildschwein_BE)
@@ -583,11 +597,11 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wilds
 
 example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">3</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1] -0.1772767 -0.5443912 -0.6438929 -0.6339761 -0.1463655  0.2187269
-##  [7]  0.7299656  0.5359389         NA         NA
+##  [1] 0.03887394 0.51854712 0.79089923 1.00310327 1.11474930 0.60674956
+##  [7] 0.81039286 1.02750981         NA         NA
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">4</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1] -0.4898570 -0.4189430 -0.5908527 -0.4666736  0.1533956  0.4395412
-##  [7]  0.4107626         NA         NA         NA</code></pre></div>
+##  [1] 0.2547733 0.7484965 0.7602979 1.0616798 0.8146483 0.7749181 1.0799847
+##  [8]        NA        NA        NA</code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>wildschwein_BE_1</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 </div>
 <div id="task-5-optional-calculate-turning-angles" class="section level3">

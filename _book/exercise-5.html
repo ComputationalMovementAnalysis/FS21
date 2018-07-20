@@ -236,6 +236,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
 <li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#solutions-4"><i class="fa fa-check"></i>Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#preperation-8"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-1-2"><i class="fa fa-check"></i>Task 1</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-2-4"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-4-4"><i class="fa fa-check"></i>Task 4</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -311,13 +317,13 @@ wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
 <li>Import the raster data file <code>pk100_BE_2056.tif</code>. PK stands for Pixel-Karte.</li>
 <li>Create a map with the layers <code>pk100_BE_2056.tif</code>, <code>fanel2016</code> and <code>mcp2016</code>.</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 </div>
 <div id="task-2-annotate-trajectories-from-vector-data" class="section level3">
 <h3>Task 2: Annotate Trajectories from vector data</h3>
 <p>Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use <code>st_join()</code> to attach the attributes from <code>fanel2016</code> to your trajectory data <code>wildschwein_BE_2016</code> (semantic annotation). Visualize the number of sample points in each category of <code>Frucht</code> over the course of the filtered time period.</p>
-<div class="figure"><span id="fig:unnamed-chunk-176"></span>
-<img src="_main_files/figure-html/unnamed-chunk-176-1.png" alt="The number of samples per category *per week* from April to September 2014." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-181"></span>
+<img src="_main_files/figure-html/unnamed-chunk-181-1.png" alt="The number of samples per category *per week* from April to September 2014." width="672" />
 <p class="caption">
 Figure 14: The number of samples per category <em>per week</em> from April to September 2014.
 </p>
@@ -334,8 +340,128 @@ Figure 14: The number of samples per category <em>per week</em> from April to Se
 </div>
 <div id="task-4-annotate-trajectories-from-raster-data" class="section level3">
 <h3>Task 4: Annotate Trajectories from raster data</h3>
-<p>In terms of raster data, we have prepared a <a href="https://gisgeography.com/lidar-light-detection-and-ranging/">Normalised Digital Surface Model (nDSM)</a>[^501], which provides information on the height of topological features on the ground. Since our wild boar usually use natural landscapes, the nDSM is a good approximation of vegitation height. This nDSM is available on moodle (<code>nDSM.tif</code>). Import this data with <code>raster()</code>and attach the respective raster values to the point data in your <code>sf</code> object (<code>wildschwein_BE_2016</code>). Explore the dataset similar to the crop data in task 2/3. Explore again spatio-temporal relations!</p>
-<p>[^501] The nDSM was created by calculating the difference between the <a href="https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&amp;guid=094ce943-6ad7-4f07-aa9f-d8eb17c5cb38&amp;catalog=geocatalog&amp;type=complete&amp;preview=search_list">digital surface models (DSM)</a> and the <a href="https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&amp;guid=490de97b-8932-4ef7-9d13-e89ef41eeb4b&amp;catalog=geocatalog&amp;type=complete&amp;preview=search_list">digital terrain model (DTM)</a> obtained from the <a href="https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html">geoportal from the canton Bern</a>.</p>
+<p>In terms of raster data, we have prepared a <a href="https://gisgeography.com/lidar-light-detection-and-ranging/">Normalised Digital Surface Model (nDSM)</a><a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>, which provides information on the height of topological features on the ground. Since our wild boar usually use natural landscapes, the nDSM is a good approximation of vegitation height. This nDSM is available on moodle (<code>nDSM.tif</code>). Import this data with <code>raster()</code>and attach the respective raster values to the point data in your <code>sf</code> object (<code>wildschwein_BE_2016</code>). Explore the dataset similar to the crop data in task 2/3. Explore again spatio-temporal relations!</p>
+<div class="figure"><span id="fig:unnamed-chunk-184"></span>
+<img src="_main_files/figure-html/unnamed-chunk-184-1.png" alt="An example of a temporal exploration of the data obtained from the nDSM." width="672" />
+<p class="caption">
+Figure 15: An example of a temporal exploration of the data obtained from the nDSM.
+</p>
+</div>
+</div>
+</div>
+<div id="solutions-4" class="section level2">
+<h2>Solutions</h2>
+<div id="preperation-8" class="section level3">
+<h3>Preperation</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## devtools::install_git(&quot;https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git&quot;) # Reinstall this package, since we have a few updates
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(CMAtools)
+<span class="kw">library</span>(sf)
+<span class="kw">library</span>(ggspatial)
+<span class="kw">library</span>(raster)
+
+<span class="co"># Import as tibble</span>
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;../CMA_FS2018_Filestorage/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)
+
+
+<span class="co"># Convert to sf-object</span>
+wildschwein_BE =<span class="st"> </span><span class="kw">st_as_sf</span>(wildschwein_BE, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>,<span class="dt">remove =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># transform to CH1903 LV95</span>
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)
+
+<span class="co"># Add geometry as E/N integer Columns</span>
+wildschwein_BE &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(wildschwein_BE) %&gt;%
+<span class="st">  </span><span class="kw">cbind</span>(wildschwein_BE,.) %&gt;%
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">E =</span> X) %&gt;%
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">N =</span> Y)
+
+<span class="co"># Compute timelag, steplength and speed</span>
+wildschwein_BE &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">timelag =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">lead</span>(DatetimeUTC),DatetimeUTC,<span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>)),
+    <span class="dt">steplength =</span> <span class="kw">euclid</span>(<span class="kw">lead</span>(E, <span class="dv">1</span>),<span class="kw">lead</span>(N, <span class="dv">1</span>),E,N),
+    <span class="dt">speed =</span> steplength/timelag
+  )</code></pre></div>
+</div>
+<div id="task-1-2" class="section level3">
+<h3>Task 1</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw">library</span>(lubridate)
+
+fanel2016 &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;../CMA_FS2018_Filestorage/Kulturen/Feldaufnahmen_Fanel_2016.shp&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">st_transform</span>(<span class="dv">2056</span>)
+
+pk100_BE &lt;-<span class="st"> </span><span class="kw">brick</span>(<span class="st">&quot;../CMA_FS2018_Filestorage/pk100_BE_2056.tif&quot;</span>)
+
+
+wildschwein_BE_2016 &lt;-<span class="st"> </span>wildschwein_BE %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(DatetimeUTC &gt;=<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2016-04-01&quot;</span>)) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(DatetimeUTC &lt;=<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2016-09-30&quot;</span>))
+
+
+mcp2016 &lt;-<span class="st"> </span>wildschwein_BE_2016 %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(TierID) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>() %&gt;%
+<span class="st">  </span><span class="kw">st_convex_hull</span>()
+
+
+<span class="kw">ggplot</span>(fanel2016, <span class="kw">aes</span>(<span class="dt">fill =</span> Frucht)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">annotation_spraster</span>(pk100_BE) +
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) +
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> mcp2016, <span class="kw">aes</span>(<span class="dt">colour =</span> TierID), <span class="dt">inherit.aes =</span> F, <span class="dt">alpha =</span> <span class="fl">0.1</span>,<span class="dt">lwd =</span> <span class="dv">2</span>) +
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)
+  </code></pre></div>
+</div>
+<div id="task-2-4" class="section level3">
+<h3>Task 2</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wildschwein_BE_2016 &lt;-<span class="st"> </span>wildschwein_BE_2016 %&gt;%
+<span class="st">  </span><span class="kw">st_join</span>(dplyr::<span class="kw">select</span>(fanel2016,Frucht))
+
+
+frucht_remove &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;Flugplatz&quot;</span>,<span class="st">&quot;Rhabarber&quot;</span>,<span class="st">&quot;Zucchetti&quot;</span>)
+
+wildschwein_BE_2016 %&gt;%
+<span class="st">  </span><span class="kw">as.data.frame</span>() %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">week =</span> <span class="kw">floor_date</span>(DatetimeUTC,<span class="st">&quot;weeks&quot;</span>)) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(week,Frucht) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(!Frucht %in%<span class="st"> </span>frucht_remove) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(Frucht !=<span class="st"> &quot;NA&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(week,n, <span class="dt">group =</span> Frucht)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() +
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Time&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Number of Samples&quot;</span>) +
+<span class="st">  </span><span class="kw">facet_wrap</span>(~Frucht) +
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+</div>
+<div id="task-4-4" class="section level3">
+<h3>Task 4</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ndsm &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;../CMA_FS2018_Filestorage/nDSM.tif&quot;</span>)
+
+wildschwein_BE_2016 &lt;-<span class="st"> </span>wildschwein_BE_2016 %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dod =</span> raster::<span class="kw">extract</span>(ndsm,.))
+
+
+wildschwein_BE_2016 %&gt;%
+<span class="st">  </span><span class="kw">as.data.frame</span>() %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">hour =</span> <span class="kw">hour</span>(<span class="kw">round_date</span>(DatetimeUTC,<span class="st">&quot;1 hours&quot;</span>))
+    ) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(TierID,hour) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">mean =</span> <span class="kw">mean</span>(dod,<span class="dt">na.rm =</span> T),
+    <span class="dt">sd =</span> <span class="kw">sd</span>(dod,<span class="dt">na.rm =</span> T),
+    <span class="dt">up =</span> mean+sd,
+    <span class="dt">do =</span> mean-sd
+    ) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour,<span class="dt">y =</span> mean,<span class="dt">ymin =</span> do, <span class="dt">ymax =</span> up, <span class="dt">colour =</span> TierID,<span class="dt">fill =</span> TierID)) +
+<span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) +
+<span class="st">  </span><span class="kw">geom_line</span>() +
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;nDSM&quot;</span>,<span class="dt">title =</span> <span class="st">&quot;nDSM values as an approximation for vegitation hight&quot;</span>,<span class="dt">subtitle =</span> <span class="st">&quot;The line represents the mean nDSM value and the ribbon one standard deviation&quot;</span>) +
+<span class="st">  </span><span class="kw">theme_minimal</span>()
+    
+  </code></pre></div>
 <!-- ### Task 5 (Optional): Determine revisited sites -->
 <!-- The package `recurse` helps find areas which are re-visited by the same indiviual. This gives us interesting insights into the ecology of our animals.  -->
 <!-- ```{r,, echo = F, include = T} -->
@@ -370,6 +496,12 @@ Figure 14: The number of samples per category <em>per week</em> from April to Se
 
 </div>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="7">
+<li id="fn7"><p>The nDSM was created by calculating the difference between the <a href="https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&amp;guid=094ce943-6ad7-4f07-aa9f-d8eb17c5cb38&amp;catalog=geocatalog&amp;type=complete&amp;preview=search_list">digital surface models (DSM)</a> and the <a href="https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&amp;guid=490de97b-8932-4ef7-9d13-e89ef41eeb4b&amp;catalog=geocatalog&amp;type=complete&amp;preview=search_list">digital terrain model (DTM)</a> obtained from the <a href="https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html">geoportal from the canton Bern</a>.<a href="exercise-5.html#fnref7">↩</a></p></li>
+</ol>
 </div>
             </section>
 

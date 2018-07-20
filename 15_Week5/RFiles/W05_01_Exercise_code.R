@@ -1,3 +1,5 @@
+#- header3 Preperation
+#- chunkstart
 ## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git") # Reinstall this package, since we have a few updates
 library(tidyverse)
 library(CMAtools)
@@ -30,6 +32,9 @@ wildschwein_BE <- wildschwein_BE %>%
     speed = steplength/timelag
   )
 
+#- chunkend
+#- header3 Task 1
+#- chunkstart
 
 library(lubridate)
 
@@ -56,6 +61,9 @@ ggplot(fanel2016, aes(fill = Frucht)) +
   geom_sf(data = mcp2016, aes(colour = TierID), inherit.aes = F, alpha = 0.1,lwd = 2) +
   theme(legend.position = "bottom")
   
+#- chunkend
+#- header3 Task 2
+#- chunkstart
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
   st_join(dplyr::select(fanel2016,Frucht))
 
@@ -75,6 +83,9 @@ wildschwein_BE_2016 %>%
   facet_wrap(~Frucht) +
   theme_minimal()
 
+#- chunkend
+#- header3 Task 4
+#- chunkstart
 ndsm <- raster("../CMA_FS2018_Filestorage/nDSM.tif")
 
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
@@ -96,8 +107,9 @@ wildschwein_BE_2016 %>%
   ggplot(aes(x = hour,y = mean,ymin = do, ymax = up, colour = TierID,fill = TierID)) +
   geom_ribbon(alpha = 0.4) +
   geom_line() +
-  labs(x = "nDSM",title = "nDSM values as an approximation for vegitation hight",subtitle = "The line represents the mean nDSM value and the ribbon one standard deviation")
+  labs(x = "nDSM",title = "nDSM values as an approximation for vegitation hight",subtitle = "The line represents the mean nDSM value and the ribbon one standard deviation") +
   theme_minimal()
     
   
 
+#- chunkend

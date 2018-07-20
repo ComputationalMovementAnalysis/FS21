@@ -218,9 +218,6 @@ append_layers(p4, annotation_spraster(swissimage), position = "bottom")
 #- header3 Task 8
 #- chunkstart
 ## 
-## library(scales)
-## pal <- hue_pal()(5)
-## pal <- c("red","yellow","green")
 ## 
 ## library(plotly)
 ## plot_ly(wildschwein_join, x = ~E_1,y = ~N_1, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
