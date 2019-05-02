@@ -1,6 +1,8 @@
 ---
-title: "GEO880: Patterns and Trends in Environmental Data"
+title: "Patterns and Trends in Environmental Data"
+subtitle: "Master ENR, Spring Semester 2019"
 author: "Patrick Laube and Nils Ratnaweera"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: ["00_Admin/bibliography.bib"]
@@ -14,6 +16,7 @@ output:
       download: ["pdf"]
   bookdown::pdf_book:
     number_sections: true
+    keep_tex: yes
 ---
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = F)
@@ -55,7 +58,7 @@ library(stringr)
 
 rmds <- list.files(pattern = "\\.Rmd",recursive = T)
 
-exclude <- c("_Rcode","99_","index","Archive","Admin","_main","project_ideas","RFiles")
+exclude <- c("_Rcode","99_","index","Archive","Admin","_main","project_ideas","RFiles","patterns-and-trends")
 
 rmds <- rmds[-grep(paste(exclude,collapse="|"), rmds, value=F)]
 
@@ -93,22 +96,9 @@ for (file in rmds){
 
 For our practical `R` course building-up skills for analyzing movement data in the software environment `R`, you'll be using data from the ZHAW project ["Prävention von Wildschweinschäden in der Landwirtschaft"](https://www.zhaw.ch/de/lsfm/institute-zentren/iunr/integrative-oekologie/wildtiermanagement/referenzprojekte/).
 
-The project investigates the spatiotemporal movement patterns of wild boar (*Sus scrofa*) in agricultural landscapes. 
-For more information you can ask [Beni Sigrist](https://www.zhaw.ch/de/ueber-uns/person/sigb/), one of the course participants involved in this project. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA). 
+The project investigates the spatiotemporal movement patterns of wild boar (*Sus scrofa*) in agricultural landscapes. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA). 
 
 **Please note:** we are given application data from an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected. So, please do not pass on this data, for any use beyond this module contact Patrick Laube or the data owner Stefan Suter (suts@zhaw.ch).
 
 
-
-<!-- todo -->
-<!-- Introduce some basic concepts -->
-
-<!-- - RStudio -->
-<!-- - Tidyverse -->
-<!-- - datacamp -->
-<!-- - Rstudio Server / Rstudio Connect -->
-<!-- - Links to GIS Ressources -->
-<!--   - Animove Cheet sheets -->
-<!--   - GIS in R -->
-<!-- - GIT / CMAtools -->
 

@@ -286,4 +286,5 @@ pedest_measures %>%
   facet_wrap(~key,scales = "free") +
   labs(x = "Trajectory", y = "Value")
 
-#- chunkend
+#- header3 Task 4
+#- chunkstart

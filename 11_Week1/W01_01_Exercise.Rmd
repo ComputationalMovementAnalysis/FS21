@@ -13,6 +13,7 @@ Exercise 1 covers the necessary steps for getting ready in `R` and some basic co
 - You can convert spatial point data from a `data.frame` to a spatial object `sf`
 - You can perform basic spatial operations on spatial objects in `R`
 - You can produce simple maps of your spatial data using `ggplot2`
+- You can produce simple maps of your spatial data using `tmap`
 
 
 ## Prerequisites
@@ -27,27 +28,12 @@ Readings Skills from "R for Data Science" [@wickham2017]:
 
 
 ## Preperation
-If you haven't already, install the packages `tidyverse`, and `devtools` (using `install.packages()`). Use `devtools` to install the newest version of `ggplot`[^2] from github (see code below). Additionally, install the packages `sf`[^1], `raster` and `ggspatial`. **Restart your `R` session after installing all these packages.**
-
-[^1]: If you are working on RStudio Server, you will need to install `udunits2` with some additional parameters (see code example). 
-[^2]: We will need the newest version of `ggplot2` to plot spatial `sf` objects.
-
-
+If you haven't already, install the packages `tidyverse`, and `devtools` (using `install.packages()`). Additionally, install the packages `sf`, `raster` and `ggspatial`. **Restart your `R` session after installing all these packages.**
 
 ```{r, echo = T, include=T,eval = F, purl = F}
 install.packages("tidyverse")
-install.packages("devtools")
-devtools::install_github("tidyverse/ggplot2")
-
-# run the following line only if you are working on RStudio Server
-install.packages('udunits2', type = "source", repo = "cran.rstudio.com", configure.args="--with-udunits2-include=/usr/include/udunits2")
-
 install.packages("sf")
-
-
-
 install.packages("raster")
-install.packages("ggspatial")
 ```
 
 ## Tasks and inputs
@@ -61,16 +47,15 @@ install.packages("ggspatial")
 
 Create a new *RStudio Project*. As recommended in @wickham2017, remove the option "*Restore .RData into workspace at startup*" and set the option "*save workspace to .RData on exit*" to "*Never*".
 
-Create a new R-File and divide it into the sections necessary in a classical Data Science Workflow. We recommend following sections:
+Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science Workflow. In .R Files, "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes, equal, or pound signs ( `-`, `=`,`#`). In .Rmd Files, their are created with leading pound signs (`#`).
+
+Sections allow code folding (try clicking on the small triangle next to the line number) and facilitate navigation (try the shortcut: `Shift`+`Alt`+`J`). We recommend following sections:
 
 - Loading environment / libraries
 - Data import
 - Data cleansing
 - Data analysis and visualization
 
-"Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes (`-`), equal signs (`=`), or pound signs (`#`).  Sections allow code folding (try clicking on the small triangle next to the line number) and facilitate navigation (try the shortcut: `Shift`+`Alt`+`J`).
-
-Load the package `tidyverse` in the appropriate section. 
 
 ```{r}
 
@@ -97,12 +82,12 @@ library(tidyverse)
 #- chunkstart
 ```
 
-In section "data import", import the file `wildschwein_BE.csv`. 
+In section "data import", import the file `wildschwein_BE.csv`. Obtain this file from moodle.
 
 Note: 
 
 - If your are using [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your workflow is documented without gaps. We'd rather recommend to move away from using graphical tools and focus on using code. 
-- We recommend using one of the `tidyverse` functions (`read_*`) to import your data. These functions are less error prone than the base `R` functions (`read.*`). Specifically for the wild boar data, we recommend `read_delim()`.
+- We recommend using one of the `tidyverse` functions from the `readr` package to import your data (they all begin with "`read_*`, note the underscore). These functions are less error prone than the base `R` functions (`read.*`). Specifically for the wild boar data, we recommend `read_delim()`.
 - If you use `read_delim()` and receive warnings during import, have a look at these warnings by using the function `problems()`. Resolve these problems until import runs without warnings.
 - Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
 - For everyone working on the RStudio Server: You will first need to upload this data to the server using the "*upload*"-button in the "*Files*" tab.
@@ -111,7 +96,7 @@ Note:
 ```{r}
 
 # Data import ####
-wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
 
 # Check Timezone
@@ -128,10 +113,9 @@ wildschwein_BE$DatetimeUTC[1]
 #- header3 Task 3
 #- chunkstart
 ```
-We will use a range of different plotting techniques in this course. Several plotting techniques have emerged in recent years, each with their specific strengths and weaknesses. While `base::plot() `is quick and simple, it not very scalable with growing complexity. `ggplot` offers solutions for most use cases and has a elegant syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
+We will use a range of different visualization tools (i.e. R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While `base::plot() `is quick and simple, it not very scalable with growing complexity. `ggplot2` offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
 
-Get an overview of your data by creating a first "map-like" plot of your data producing a simple scatter plot with `ggplot`. Do you spot outliers? If so, get rid of the outliers and plot your data again without outliers. 
-
+Get an overview of your data by creating a first "map-like" plot of your data producing a simple scatter plot with `ggplot2`. 
 Setting up a `ggplot` with our data is done using the command `ggplot(wildschwein_BE, aes(Long, Lat, colour = TierID))`. Creating a map is done via the basic scatter plot command `geom_point()`. Use `coord_map()` to get a reasonable aspect ratio of `Lat` and `Long`.  Assigning every individual its own colour is done using the `ggplot` argument `colour =`.
 
 Save your code in the appropriate section.
@@ -154,10 +138,12 @@ ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
 #- header3 Input
 #- chunkstart
 ```
-Until now, we've handled spatial data within data frames. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our `data.frame` into a spatial object.
-Some of you might be familiar with the `sp` package with the classes `SpatialPoints`, `SpatialPointsDataFrame` and so on. Just recently the new and exiting package `sf`, was released on CRAN. `sf` has some huge advantages over sp:
 
-- simple features are essentially data frames, which mean they interface with the `tidyverse`  
+Until now, we've stored our location data within data frames as Lat/Long columns. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our `data.frame` into a spatial object.
+Some of you might be familiar with the `sp` package with the classes `SpatialPoints`, `SpatialPointsDataFrame` and so on. These packages are mostly replaced by the fairly new package `sf`. This packages has some huge advantages over `sp`:
+
+- simple features are essentially data frames with minor extensions and thus are easily integratable in standard workflows
+- they are programmed to cleanly interface with the `tidyverse` methods (specifically `dplyr`'s `mutate` and `summarise`)
 - comply with the common Open Geospatial Consortium (OGC) standards (ISO 19125-1:2004) and interface with other important spatial tools such as GDAL, PostGIS, GeoJSON and so fourth
 - are being rapidly implemented in visualisation tools such as `ggplot2`, `plotly` and `tmap`
 
@@ -169,7 +155,6 @@ We will largely rely on `sf`when working with vector data in `R`. In order to tr
 
 
 ```{r, echo = T, include = T, eval = T}
-
 library(sf)
 
 wildschwein_BE_sf <- st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
@@ -196,18 +181,16 @@ All operations we know from handling `data.frames` can be used on the `sf` objec
 ```{r,  echo = T, include = T, eval = F, purl = F}
 # subset rows
 wildschwein_BE_sf[1:10,]
-wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Ueli",]
+wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Sabi",]
 
 # subset colums
 wildschwein_BE_sf[,2:3]
 ```
 
-Instead of keeping the same data twice (once as a `data.frame`, and once as an `sf` object), we will overwrite the `data.frame` and continue working with the `sf` object from now on. This saves some memory space in `R` and avoids confusion. It is however, unideal that the `st_as_sf()` operation *replaced* the `Lat` and `Long` columns with the `geometry` column. It would be helpful to retain the `Lat`/`Long` columns and have the `geometry` column *in addition*. We can enforce this by using the argument `remove = FALSE`.
+Instead of keeping the same data twice (once as a `data.frame`, and once as an `sf` object), we will overwrite the `data.frame` and continue working with the `sf` object from now on. This saves some memory space in `R` and avoids confusion. 
 
 ```{r,  echo = T, include = T, eval = T}
-wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
-
-wildschwein_BE # note how the Lat/Long information is stored twice
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
 
 rm(wildschwein_BE_sf) # we can remove this sf object, since it just eats up our memory
 
@@ -221,9 +204,9 @@ rm(wildschwein_BE_sf) # we can remove this sf object, since it just eats up our 
 #- header3 Task 4
 #- chunkstart
 ```
-So what can we do with our new `sf` object that we couldn't before? One example is projecting the WGS84 (`Lat`/`Long`) coordinates into the new Swiss CRS `CH1903+ LV95`[^50]. Do this by using the function `st_transform`. By the way, do you notice a pattern here? The package `sf` names most functions for spatial operations with the prefix `st_*`.
+So what can we do with our new `sf` object that we couldn't before? One example is projecting the WGS84 (`Lat`/`Long`) coordinates into the new Swiss CRS `CH1903+ LV95`[^50]. Do this by using the function `st_transform`. By the way, do you notice a pattern here? The package `sf` names most functions for spatial operations with the prefix `st_*`, just as in PostGIS.
 
-[^50]: As we've mentioned in the first Input, you can look up the EPSG codes under [spatialreference.org](http://spatialreference.org/ref/epsg/2056/) or http://epsg.io. For information specific to switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
+[^50]: As we've mentioned in the first Input, you can look up the EPSG codes under [spatialreference.org](http://spatialreference.org/ref/epsg/2056/) or http://epsg.io. For information specific to Switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
 
 ```{r}
 
@@ -246,28 +229,34 @@ wildschwein_BE
 #- header3 Input
 #- chunkstart
 ```
-Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a [convex hull](https://en.wikipedia.org/wiki/Convex_hull) per Wild boar. And guess what the function for calculating a convex hull is called in `sf`? If you fuessed `st_convex_hull()`, you were right!
+Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a [convex hull](https://en.wikipedia.org/wiki/Convex_hull) per Wild boar. And guess what the function for calculating a convex hull is called in `sf`? If you guessed `st_convex_hull()`, you were right! 
 
-Before we can ferform `st_convex_hull()`, we need to add a grouping variable to our `sf` object, so that the convex hull is calculated *per animal*. Note:
+By default `st_convex_hull()` calculates the convex hull *per feature*, i.e. *per point* in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:
 
-- Grouping (via `group_by()`) has no effect on our original data frame
-- Effects of `group_by()` only take effect when manipulations are performed on the data.frame via `summarise()` or `mutate()`
-- If you know `summarise()` and `mutate()` operations from `dplyr`; `sf` understands this language which facilitates handling spatial data 
+First: add a grouping variable to the `sf` object. Note the new grouping variable in the metadata of the `sf` object. Other than that, `group_by` has no effect on our `sf` object.
 
 ```{r, echo = T,include = T,eval = T}
-wildschwein_BE <- group_by(wildschwein_BE,TierID)
+wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
+
+wildschwein_BE_grouped
+
 ```
 
-You can see the grouping variable in the metadata of our `sf` object:
+
+Second: use `summarise()` to "dissolve" all points into a mulipoint object. 
 
 ```{r, echo = T,include = T,eval = T}
-wildschwein_BE
+wildschwein_BE_smry <- summarise(wildschwein_BE_grouped)
+
+wildschwein_BE_smry
+
 ```
 
-In order for `st_convex_hull()` to respect the grouping variable, we need to warp the `sf` object within `summarise()`
+
+Now we can run `st_convex_hull` on the new `sf` object. 
 
 ```{r, echo = T,include = T,eval = T}
-mcp <- st_convex_hull(summarise(wildschwein_BE))
+mcp <- st_convex_hull(wildschwein_BE_smry)
 
 ```
 
@@ -287,17 +276,14 @@ Using base plot to visualize `sf` objects is easy enough, just try the following
 plot(mcp)
 ```
 
-But since we use `ggplot` extensively, try and plot the object `mcp` with `ggplot`. Hint: Since you installed the newest version from github, you now use the function `geom_sf()` to add an `sf` object.
+But since we use `ggplot` extensively, try and plot the object `mcp` with `ggplot`. Hint: Use the layer `geom_sf()` to add an `sf` object.
 
 ```{r, echo = F,include = T,eval = T}
 ggplot(mcp,aes(fill = TierID)) +
   geom_sf(alpha = 0.4)
 ```
 
-Note: 
-
-- `ggplot` refuses to use our specified CRS, so we need to force this by specifying `coord_sf()`
-- Oddly, it is not sufficient to specify the `crs = ` wit hin `coord_sf()`, we need to pass our EPSG code to `datum =`. 
+Note: `ggplot` refuses to use our specified CRS, so we need to force this by specifying `datum = ` in `coord_sf()`. Try it out.
 
 
 ```{r, echo = F,include = T,eval = T}
@@ -309,50 +295,90 @@ ggplot(mcp,aes(fill = TierID)) +
 ```{r}
 #- chunkend
 ```
+
+
+```{r}
+#- header3 Input
+#- chunkstart
+```
+### Input: Importing raster data
+
+In the next task, we would like to add a background map to our `mcp` object. To do this, we have to the raster data into `R` first. For this, we use the package `raster` with the function `brick`.
+
+
+```{r, echo = T,include = T,eval = T}
+
+library(raster)
+
+pk100_BE <- brick("00_Rawdata/pk100_BE_2056.tif")
+
+pk100_BE
+```
+
+
+`pk100_BE_2056.tif` is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (`pk100_BE_2056.1`, `pk100_BE_2056.2`etc). For some reason, `RasterBrick` imported a fourth layer (`pk100_BE_2056.4`). `plot()` shows that the fourth layer is empty. We will remove this layer using `subset()`. 
+
+```{r, echo = T,include = T,eval = T}
+
+plot(pk100_BE)
+
+pk100_BE <- subset(pk100_BE,1:3)
+
+plot(pk100_BE)
+
+```
+
+```{r}
+#- chunkend
+```
+
+
 ### Task 6: Adding a background map
 ```{r}
 #- header3 Task 6
 #- chunkstart
 ```
 
-In order to add a background map to our plot, we will need to load two additional libraries: `raster` to load raster files and `ggspatial` to plot raster files in `ggplot`. Load these libraries now, and import the file `pk100_BE_2056.tif` (available on moodle) using the function `brick()`. Add the newly created `RasterBrick` object to ggplot using the function `geom_spraster_rgb()`. Note: 
+There are multiple ways to add a background map in `ggplot`, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: `tmap` ("thematic map"). This package was developed with a syntax very similar to `ggplot2`, which makes it easy to learn.
 
-- `ggplot` layers are added in the order they are called. If you call `geom_spraster_rgb()` last, it will plot over (and thus cover) the `geom_sf()` layer.
-- You can change the plot style by making adjustments within `theme()` I recommend the following adjustments:
 
-```{r, echo = T,include = T,eval = F, purl = F}
-theme(
-  legend.position = "none",
-  panel.grid.major = element_line(colour = "transparent"),
-  panel.background = element_rect(fill = "transparent"),
-  axis.title = element_blank(),
-  axis.text = element_blank(),
-  axis.ticks = element_blank()
-  )
-```
- 
+```{r, echo = T,include = T,eval = T}
+library(tmap)
 
-```{r, echo = F, include = T, eval = T}
 
-library(raster)
-library(ggspatial)
-
-pk100_BE <- brick("../CMA_FS2018_Filestorage/pk100_BE_2056.tif")
-
-ggplot(mcp,aes(fill = TierID)) +
-  geom_spraster_rgb(pk100_BE, interpolate = TRUE) +
-  geom_sf(alpha = 0.4) +
-  coord_sf(datum = 2056) +
-  theme(
-    legend.position = "none",
-    panel.grid.major = element_line(colour = "transparent"),
-    panel.background = element_rect(fill = "transparent"),
-    axis.title = element_blank(),
-    axis.text = element_blank(),
-    axis.ticks = element_blank()
-    )
+tm_shape(pk100_BE) + 
+  tm_rgb() 
 
 ```
+
+As you can see, plotting layers in `tmap` is combined with the `+` sign, just as in `ggplot2`. In `tmap` however, each layer consists of two objects: a `tm_shape()` in which the data is called, and a `tm_*` object in which we define how the data is visualized (`tm_rgb()` states that it is plotted as an RGB Raster Layer). Add the object `mcp` to the plot in this manner. Read [the vignette](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html) if you are having trouble.
+
+```{r, echo = F,include = T,eval = T}
+tm_shape(pk100_BE) + 
+  tm_rgb() +
+  tm_shape(mcp) +
+  tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
+  tm_legend(bg.color = "white")
+```
+
+
+
+### Task 7: Create an interactive map
+
+
+Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand.
+
+```{r, echo = F,include = T,eval = F}
+
+tmap_mode("view")
+
+tm_shape(pk100_BE) + 
+  tm_rgb() +
+  tm_shape(mcp) +
+  tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
+  tm_legend(bg.color = "white")
+```
+
 
 ```{r}
 #- chunkend
@@ -363,10 +389,9 @@ ggplot(mcp,aes(fill = TierID)) +
 ```
 
 
-## Solutions
+<!-- ## Solutions -->
 
-
-```{r child='11_Week1/RFiles/W01_01_Exercise_solution.Rmd', purl = F}
-```
+<!-- ```{r child='11_Week1/RFiles/W01_01_Exercise_solution.Rmd', purl = F} -->
+<!-- ``` -->
 
 

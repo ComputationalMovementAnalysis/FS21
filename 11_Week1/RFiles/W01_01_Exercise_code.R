@@ -17,7 +17,7 @@ library(tidyverse)
 #- chunkstart
 
 # Data import ####
-wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
 
 # Check Timezone
@@ -33,7 +33,6 @@ ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
 #- chunkend
 #- header3 Input
 #- chunkstart
-
 library(sf)
 
 wildschwein_BE_sf <- st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
@@ -41,9 +40,7 @@ wildschwein_BE_sf <- st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4
 wildschwein_BE
 
 wildschwein_BE_sf
-wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
-
-wildschwein_BE # note how the Lat/Long information is stored twice
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
 
 rm(wildschwein_BE_sf) # we can remove this sf object, since it just eats up our memory
 
@@ -58,9 +55,15 @@ wildschwein_BE
 #- chunkend
 #- header3 Input
 #- chunkstart
-wildschwein_BE <- group_by(wildschwein_BE,TierID)
-wildschwein_BE
-mcp <- st_convex_hull(summarise(wildschwein_BE))
+wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
+
+wildschwein_BE_grouped
+
+wildschwein_BE_smry <- summarise(wildschwein_BE_grouped)
+
+wildschwein_BE_smry
+
+mcp <- st_convex_hull(wildschwein_BE_smry)
 
 #- chunkend
 #- header3 Task 5
@@ -72,25 +75,41 @@ ggplot(mcp,aes(fill = TierID)) +
   geom_sf(alpha = 0.4) +
   coord_sf(datum = 2056)
 #- chunkend
-#- header3 Task 6
+#- header3 Input
 #- chunkstart
 
 library(raster)
-library(ggspatial)
 
-pk100_BE <- brick("../CMA_FS2018_Filestorage/pk100_BE_2056.tif")
+pk100_BE <- brick("00_Rawdata/pk100_BE_2056.tif")
 
-ggplot(mcp,aes(fill = TierID)) +
-  geom_spraster_rgb(pk100_BE, interpolate = TRUE) +
-  geom_sf(alpha = 0.4) +
-  coord_sf(datum = 2056) +
-  theme(
-    legend.position = "none",
-    panel.grid.major = element_line(colour = "transparent"),
-    panel.background = element_rect(fill = "transparent"),
-    axis.title = element_blank(),
-    axis.text = element_blank(),
-    axis.ticks = element_blank()
-    )
+pk100_BE
 
+plot(pk100_BE)
+
+pk100_BE <- subset(pk100_BE,1:3)
+
+plot(pk100_BE)
+
+#- chunkend
+#- header3 Task 6
+#- chunkstart
+library(tmap)
+
+
+tm_shape(pk100_BE) + 
+  tm_rgb() 
+
+tm_shape(pk100_BE) + 
+  tm_rgb() +
+  tm_shape(mcp) +
+  tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
+  tm_legend(bg.color = "white")
+## 
+## tmap_mode("view")
+## 
+## tm_shape(pk100_BE) +
+##   tm_rgb() +
+##   tm_shape(mcp) +
+##   tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
+##   tm_legend(bg.color = "white")
 #- chunkend

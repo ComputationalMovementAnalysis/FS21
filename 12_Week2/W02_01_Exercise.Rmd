@@ -1,14 +1,9 @@
 # Exercise 2
-<!-- Enrich trajectories (step length, speed, 5min/3hrs) -->
-<!-- Simple multi-scale analysis (with dplyr summarize for 5min and 3hrs) -->
-<!-- Moving windows -->
-<!-- Map back in space -->
-
 
 ## Learning Outcomes
 - You understand the dplyr functions `mutate`, `summarise` and `group_by` and can apply them to `sf` objects
 - You can derive movement parameters (`timelag`, `steplength`, `speed`) from trajectory data.
-- You can re-sample your trajectory data for cross scale movement analysis. 
+- You can re-sample your trajectory data for cross-scale movement analysis. 
 
 ## Prerequisites
 Readings Skills from "R for Data Science" [@wickham2017]:
@@ -23,21 +18,16 @@ Readings Theory
 
 ## Preperation
 
-Install the package `zoo` to get access to the rolling window functions for last exercise. Also, install the package `CMAtools` where we have put together some helper functions that simplify some tasks in this course. The package `CMAtools` is not on CRAN, and we need to install it similar to how we installed the newest version of `ggplot` last week. Since it is not on the official Git hub page either, but on the ZHAW owned Git hub server, the syntax for installation is slightly different (see code below).
+Install the package `zoo` to get access to the rolling window functions for last exercise. 
 
 
 ```{r, echo = T, include = T, eval = F, purl = F}
 install.packages("zoo")
 
-devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
 ```
 
-Note: 
 
-- If you want to understand what the functions in CMAtools do, you can either check the package documentation (`help(package = "CMAtools")`) or look at the functions [GIThub site](https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools). 
-- We will be extending this package regularly throughout this course. Note: You will have to regularly reinstall the package with the code below in order to update your local version of the package.
-
-Open your R Project from last week. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
+Import the wild boar data and convert it to an `sf` object with CH1903+ LV95 Coordinates. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
 
 ```{r}
 #- header3 Preperation
@@ -49,19 +39,15 @@ Open your R Project from last week. Either run your own script from last week or
 ```{r, echo = T, include = T, eval = T}
 library(tidyverse)
 library(sf)
+library(lubridate)
 
-wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
-wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 ```
 
-
-
-```{r, purl = F}
-wildschwein_BE <- ungroup(wildschwein_BE)
-```
 
 ```{r}
 #- chunkend
@@ -72,9 +58,9 @@ wildschwein_BE <- ungroup(wildschwein_BE)
 #- chunkstart
 ```
 
-Depending on your knowledge of `R`, getting an overview of the data we imported last week might have been quite a challenge. Surprisingly enough, importing, cleaning and exploring your data can be the most challenging, time consuming part of a project. RStudio and the tidyverse offer many helpful tools to make this part easier (and more fun). You have read chapters on `dplyr` and `magrittr` as a preparation for this Exercise. Before we start with the Exercise however, this demo illustrates a simple approach offered by tidyverse which is applicable to sf-objects.
+Depending on your knowledge of `R`, getting an overview of the data we imported last week might have been quite a challenge. Surprisingly enough, importing, cleaning and exploring your data can be the most challenging, time consuming part of a project. RStudio and the tidyverse offer many helpful tools to make this part easier (and more fun). You have read chapters on `dplyr` and `magrittr` as a preparation for this exercise. Before we start with the exercise however, this demo illustrates a simple approach offered by tidyverse which is applicable to sf-objects.
 
-Assume we want to calculate the timelag in between subsequent positions. To achieve this we can use the function `difftime()` combined with `lead()` from `dplyr`. Let's look at these functions one by one.
+Assume we want to calculate the timelag between subsequent positions. To achieve this we can use the function `difftime()` combined with `lead()` from `dplyr`. Let's look at these functions one by one.
 
 ### `difftime`
 
@@ -99,6 +85,7 @@ You can also specify the unit of the output.
 ```{r, echo = T, include = T, eval = T}
 time_difference <- difftime(later,now,units = "mins")
 ```
+
 ```{r}
 time_difference
 ```
@@ -154,6 +141,7 @@ lead(numbers)-numbers
 Using the above functions (`difftime()` and `lead()`), we can calculate the time lag, that is, the time difference between subsequent positions:
 
 ```{r, echo = T, include = T, eval = T}
+
 wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC,units = "secs"))
 
 ```
@@ -196,20 +184,21 @@ summary(wildschwein_BE$timelag)
 summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
 ```
 
-The above operation works fine on normal `data.frames`, but since `wildschwein_BE` is also an `sf` object, `summarise` actually merges all the points to a multipoint geometry, which takes a long time to calculate. In order to prevent this, we can wrap the `sf` object in `as.data.frame` which removes the spatial attribute. Regrettably, it also removes the `group_by` variable, which we need to set again. The command therefore now reads: 
-
+The above operation works fine on normal `data.frames`, but since `wildschwein_BE` is also an `sf` object, `summarise` actually merges all the points to a multipoint geometry, which takes a long time to calculate. In order to prevent this, we can set the objects geometry to `NULL`, which removes the spatial attribute.
 ```{r, echo = T, include = T, eval = T}
-summarise(group_by(as.data.frame(wildschwein_BE),TierID), mean_timelag = mean(timelag, na.rm = T))
+
+summarise(st_set_geometry(wildschwein_BE,NULL), mean_timelag = mean(timelag, na.rm = T))
 ```
 
 
 
 ### Piping 
-The code above hard to read, since it has so many nested functions which need to be read from the inside out. In order to make code readable in a more human-friendly way, we can use the piping command `%>%` from `magrittr`, which is included in `dplyr` and the `tidyverse`. The above code then looks like this:
+The code above may be a bit hard to read, since it has so many nested functions which need to be read from the inside out. In order to make code readable in a more human-friendly way, we can use the piping command `%>%` from `magrittr`, which is included in `dplyr` and the `tidyverse`. The above code then looks like this:
 
 ```{r, echo = T, include = T, eval = T}
+
 wildschwein_BE %>%                     # Take wildschwein_BE...
-  as.data.frame() %>%                  # ...convert it to a data.frame...
+  st_set_geometry(NULL) %>%            # ...remove the geometry column...
   group_by(TierID) %>%                 # ...group it by TierID
   summarise(                           # Summarise the data...
     mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
@@ -262,11 +251,11 @@ pigs %>%
 #- chunkstart
 ```
 
-Calculate the time difference between subsequent rows as described in the demo (column `timelag`)
+Calculate the time difference between subsequent rows as described in the demo (column `timelag`).
 First, inspect your data in more detail. Try to answer the following questions:
 
 - How many individuals were tracked? 
-- How long were the individual tracked? Are there gaps?
+- For how long were the individual tracked? Are there gaps?
 - Were all individuals tracked concurrently or sequentially? 
 - What is the temporal sampling interval between the locations?
 
@@ -286,10 +275,12 @@ ggplot(wildschwein_BE, aes(timelag)) +
   scale_y_log10()
   
 
-wildschwein_BE[1:50,] %>%
-  ggplot(aes(DatetimeUTC,timelag)) +
+wildschwein_BE %>%
+  filter(year(DatetimeUTC)  == 2014) %>%
+  ggplot(aes(DatetimeUTC,timelag, colour = TierID)) +
   geom_line() +
   geom_point()
+  
 
 
 ```
@@ -304,21 +295,11 @@ wildschwein_BE[1:50,] %>%
 #- chunkstart
 ```
 
-Last week, we transformed our data from a `data.frame` to an `sf` object. This turned our `Lat`/`Long` Columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. We already have `WGS84` as numeric columns, but not yet the `CH1903+ LV95` coordinates. 
-
-```{r, echo = F, include=T, eval = T}
-
-wildschwein_BE %>%
-  dplyr::select(-CollarID,-TierName) %>%
-  as.data.frame() %>%
-  slice(1:10)
-
-```
-
-Let's do the same for the `CH1903+ LV95`-values, as we will need the values in columns for our next task. First, we have to extract the Coordinates using `st_coordinates()`. We can store these values in a new variable and display them:
+Last week, we transformed our data from a `data.frame` to an `sf` object. This turned our `Lat`/`Long` columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. To do this, we have to extract the Coordinates using `st_coordinates()`. We can store these values in a new variable and display them:
 
 ```{r, echo = T, eval = T, include=T}
 # Store coordinates in a new variable
+
 coordinates <- st_coordinates(wildschwein_BE)
 
 head(coordinates)
@@ -330,37 +311,42 @@ Note that that the column are named `X` and `Y`, while [`CH1903+ LV95`](https://
 colnames(coordinates) <- c("E","N")
 
 wildschwein_BE <- cbind(wildschwein_BE,coordinates)
+
+head(wildschwein_BE)
 ```
 
 ```{r}
 #- chunkend
 ```
 
-### Task 2: Deriving movement parameters I: Euclidean Distance and Speed
+### Task 2: Deriving movement parameters I: Speed
 ```{r}
 #- header3 Task 2
 #- chunkstart
 ```
-In this task we will derive some additional movement parameters from our trajectories. Note, so far our trajectories only consist of a list of time-stamped spatial locations. So let's calculate the animal's speed based on the distance and timelag in between two subsequent locations. 
+In this task we will derive some additional movement parameters from our trajectories. So far our trajectories only consist of a list of time-stamped spatial locations. So let's calculate the animal's steplength based on the Euclidean distance between two subsequent locations. 
 
-- You can use the function `euclid()` from the `CMAtools` package to calculate Euclidean distances between subsequent rows. Use `?euclid` to see what the function expects and returns. 
-- use `lead(E,1)` to address the the row `n+1`
-- make sure you're clear in what unit you are measuring speed. Meters per second is a SI base unit, but might be unhandy for the speeds travelled by wild boar.
+- You can calculate the Euclidean distance with the following formula: `sqrt((E1-E2)^2+(N1-N2)^2)`
+- use `lead(E,1)` to address the the row `n+1` (i.e. E2)
 
 ```{r}
-library(CMAtools)
 
 wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
-    speed = steplength/timelag
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2)
   )
-
-
-
 ```
 
+Why do we use `E` and `N` when calculating the Euclidean distance, and not `Lat`/`Long`? Now calculate the animals' speed between subsequent locations based on the steplength as calculated in the previous task and the timelag between the locations. What speed unit do you get?
+
+```{r}
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
+    speed = steplength/timelag
+  )
+```
 
 
 ```{r}
@@ -376,73 +362,78 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ![@laube2011: *Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale.*](02_Images/laube_2011_2.jpg)
 
-#### Filter
-To do so, filter your data to positions with a sampling interval between 40 and 80 seconds and save it to a new variable (we will use `wildschwein_BE_1`). From this subset, take the first 100 positions[^201] for the following task. 
+#### Import "Caro60"
 
-[^201]: In the solution (and the graphics), we actually use locations 2-100 for aesthetical reasons
-
-If you like to stick to the `tidyverse` approach, you can use `slice()` to subset the dataset by row number. Slice takes an integer vector. Eg: `slice(dataset, 1:10)`, returns the first 10 rows of a dataset, `slice(dataset, c(1,5,10))` returns the 1^st^, 5^th^ and 10^th^ value of a dataset.
+In the first task, we saw that the animals are sampled at different frequencies. To simplify the task, we've prepared a dataset that includes 200 locations of a single wild boar with a constant sampling interval of 60 seconds. Import this dataset named "caro60.csv" (available on moodle) just like you imported the other wild boar data. **NOTE:** We've converted the positions to CH1903+ LV95 for your convenience. Consider this when transforming to `sf`!
+Save this data to a new variable (we will use `caro60`). 
 
 ```{r}
-wildschwein_BE_1 <- wildschwein_BE%>%
-  filter(timelag > 40 & timelag < 80) %>%
-  slice(2:100)
+caro60 <- read_delim("00_Rawdata/caro60.csv",",") %>%
+  st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)
+  
 ```
 
 #### Resample 
-Now manually reduce the granularity of our sampling interval by selecting samples every 3^rd^, 6^th^ and 9^th^ minute. 
 
-- You can use `slice()` again for this task by providing an integer vector (with `seq()`) in the desired frequency
-- Save each re-sampled dataset in a new variable. We will use `wildschwein_BE_3`, `wildschwein_BE_6` and `wildschwein_BE_9`.
+Now manually reduce the granularity of our sampling interval by selecting every 3^rd^, 6^th^ and 9^th^ position. 
+
+If you like to stick to the `tidyverse` approach, you can use `slice()` to subset the dataset by row number. Slice takes an integer vector. Eg: `slice(dataset, 1:10)`, returns the first 10 rows of a dataset, `slice(dataset, c(1,5,10))` returns the 1^st^, 5^th^ and 10^th^ value of a dataset. Save each re-sampled dataset in a new variable. We will use `wildschwein_BE_3`, `wildschwein_BE_6` and `wildschwein_BE_9`.
 
 
 ```{r}
-wildschwein_BE_3 <- wildschwein_BE_1 %>%
+caro60_3 <- caro60 %>%
   slice(seq(1,nrow(.),3)) # the dot (".") represents the piped dataset
 
-wildschwein_BE_6 <- wildschwein_BE_1 %>%
+caro60_6 <- caro60 %>%
   slice(seq(1,nrow(.),6))
 
-
-wildschwein_BE_9 <- wildschwein_BE_1 %>%
+caro60_9 <- caro60 %>%
   slice(seq(1,nrow(.),9))
 ```
 
-You should now have  4 datasets with different number of rows:
+You should now have  4 data sets with different number of rows:
 
 ```{r, echo = T, include = T, eval = T}
-nrow(wildschwein_BE_1)
-nrow(wildschwein_BE_3)
-nrow(wildschwein_BE_6)
-nrow(wildschwein_BE_9)
+nrow(caro60)
+nrow(caro60_3)
+nrow(caro60_6)
+nrow(caro60_9)
 ```
 
 
 #### Update derived parameters
 
-`timelag`, `steplength` and `speed` now have to be recalculated for the three re-sampled datasets. Do so as we illustrated in the Chapter *Demo*. 
+`timelag`, `steplength` and `speed` now have to be recalculated for the three re-sampled data sets. Do so as we illustrated in the Chapter *Demo*. 
 
 
 ```{r}
-wildschwein_BE_3 <- wildschwein_BE_3 %>%
+
+caro60 <- caro60 %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
     speed = steplength/timelag
   )
 
-wildschwein_BE_6 <- wildschwein_BE_6 %>%
+caro60_3 <- caro60_3 %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
+    speed = steplength/timelag
+  )
+
+caro60_6 <- caro60_6 %>%
+  mutate(
+    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
     speed = steplength/timelag
   )
 
 
-wildschwein_BE_9 <- wildschwein_BE_9 %>%
+caro60_9 <- caro60_9 %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
     speed = steplength/timelag
   )
 
@@ -466,35 +457,35 @@ We've stored the geographic location of our point in the trajectory in three dif
 
 
 ggplot() +
-  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = wildschwein_BE_3, aes(E,N, colour = "3 minutes")) +
-  geom_path(data = wildschwein_BE_3, aes(E,N, colour = "3 minutes")) +
+  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = caro60_3, aes(E,N, colour = "3 minutes")) +
+  geom_path(data = caro60_3, aes(E,N, colour = "3 minutes")) +
   labs(color="Trajectory", title = "Comparing original- with 3 minutes-resampled data")  +
   theme_minimal()
 
 ggplot() +
-  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = wildschwein_BE_6, aes(E,N, colour = "6 minutes")) +
-  geom_path(data = wildschwein_BE_6, aes(E,N, colour = "6 minutes")) +
+  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = caro60_6, aes(E,N, colour = "6 minutes")) +
+  geom_path(data = caro60_6, aes(E,N, colour = "6 minutes")) +
   labs(color="Trajectory", title = "Comparing original- with 6 minutes-resampled data") +
   theme_minimal()
 
 ggplot() +
-  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = wildschwein_BE_9, aes(E,N, colour = "9 minutes")) +
-  geom_path(data = wildschwein_BE_9, aes(E,N, colour = "9 minutes"))+
+  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = caro60_9, aes(E,N, colour = "9 minutes")) +
+  geom_path(data = caro60_9, aes(E,N, colour = "9 minutes"))+
   labs(color="Trajectory", title = "Comparing original- with 9 minutes-resampled data") +
   theme_minimal()
 
 
 ggplot() +
-  geom_line(data = wildschwein_BE_1, aes(DatetimeUTC,speed, colour = "1 minute")) +
-  geom_line(data = wildschwein_BE_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
-  geom_line(data = wildschwein_BE_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
-  geom_line(data = wildschwein_BE_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
+  geom_line(data = caro60, aes(DatetimeUTC,speed, colour = "1 minute")) +
+  geom_line(data = caro60_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
+  geom_line(data = caro60_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
+  geom_line(data = caro60_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
   labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
   theme_minimal()
 
@@ -526,20 +517,21 @@ example <- rnorm(10)
 rollmean(example,k = 3,fill = NA,align = "left")
 rollmean(example,k = 4,fill = NA,align = "left")
 
+
 ```
 
 Now run `rollmean`on the `speed` variable of the subset (`wildschwein_BE_1`). Visualize the output from your moving windows and compare different window sizes (`k = `).
 
 
 ```{r}
-wildschwein_BE_1 <- wildschwein_BE_1 %>%
+caro60 <- caro60 %>%
   mutate(
     speed3 = rollmean(speed,3,NA,align = "left"),
     speed6 = rollmean(speed,6,NA,align = "left"),
     speed9 = rollmean(speed,9,NA,align = "left")
   )
 
-wildschwein_BE_1 %>%
+caro60 %>%
   gather(key,val,c(speed,speed3,speed6,speed9)) %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
   # geom_point() +
@@ -552,29 +544,10 @@ wildschwein_BE_1 %>%
 ### Task 5 (optional): Calculate turning angles
 ```{r}
 #- header3 Task 5
-#- chunkstart
 ```
-Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! 
-`CMAtools` has the function `turning_angle()`[^20]. Here is an example on some dummy data. We represent the turning angle as the clockwise, angular offset from moving straight ahead. 
+Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2!
 
-[^20]: We haven't tested the function extensively yet and are happy for feedback. If you want to have a look at the function, check our [Git hub site](https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools/blob/master/R/spatial.R)
 
-```{r, echo = F, include=T, eval = T}
-
-library(grid) # just for the arrows
-set.seed(20)
-data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
-  mutate(angle = as.integer(turning_angle(x,y))) %>%
-  ggplot(aes(x,y)) +
-  geom_segment(aes(x = lag(x), y = lag(y), xend = x,yend = y),arrow = arrow(length = unit(0.5,"cm"))) +
-  geom_label(aes(label = paste0(angle,"°")),alpha = 0.4,nudge_x = 0.2, nudge_y = 0.2) +
-  coord_equal()
-
-```
-
-```{r}
-#- chunkend
-```
 
 ```{r code=readLines('01_R_Files/clear_workspace.R'), echo = F, include=F, eval=T}
 ```

@@ -2,10 +2,11 @@
 ```{r, echo = T,include = T,eval = F}
 library(tidyverse)
 library(sf)
+library(lubridate)
 
-wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
-wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 ```
@@ -37,6 +38,7 @@ lag(numbers,n = 5)
 
 lag(numbers,n = 5, default = 0)
 lead(numbers)-numbers
+
 wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC,units = "secs"))
 
 wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
@@ -46,9 +48,11 @@ wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(Datet
 
 summary(wildschwein_BE$timelag)
 ## summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
-summarise(group_by(as.data.frame(wildschwein_BE),TierID), mean_timelag = mean(timelag, na.rm = T))
+
+summarise(st_set_geometry(wildschwein_BE,NULL), mean_timelag = mean(timelag, na.rm = T))
+
 wildschwein_BE %>%                     # Take wildschwein_BE...
-  as.data.frame() %>%                  # ...convert it to a data.frame...
+  st_set_geometry(NULL) %>%            # ...remove the geometry column...
   group_by(TierID) %>%                 # ...group it by TierID
   summarise(                           # Summarise the data...
     mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
@@ -95,80 +99,86 @@ ggplot(wildschwein_BE, aes(timelag)) +
   scale_y_log10()
   
 
-wildschwein_BE[1:50,] %>%
-  ggplot(aes(DatetimeUTC,timelag)) +
+wildschwein_BE %>%
+  filter(year(DatetimeUTC)  == 2014) %>%
+  ggplot(aes(DatetimeUTC,timelag, colour = TierID)) +
   geom_line() +
   geom_point()
+  
 
 
 ```
 ### Input
 ```{r, echo = T,include = T,eval = F}
-
-wildschwein_BE %>%
-  dplyr::select(-CollarID,-TierName) %>%
-  as.data.frame() %>%
-  slice(1:10)
-
 # Store coordinates in a new variable
+
 coordinates <- st_coordinates(wildschwein_BE)
 
 head(coordinates)
 colnames(coordinates) <- c("E","N")
 
 wildschwein_BE <- cbind(wildschwein_BE,coordinates)
+
+head(wildschwein_BE)
 ```
 ### Task 2
 ```{r, echo = T,include = T,eval = F}
-library(CMAtools)
 
 wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2)
+  )
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
     speed = steplength/timelag
   )
-
-
-
 ```
 ### Task 3
 ```{r, echo = T,include = T,eval = F}
-wildschwein_BE_1 <- wildschwein_BE%>%
-  filter(timelag > 40 & timelag < 80) %>%
-  slice(2:100)
-wildschwein_BE_3 <- wildschwein_BE_1 %>%
+caro60 <- read_delim("00_Rawdata/caro60.csv",",") %>%
+  st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)
+  
+caro60_3 <- caro60 %>%
   slice(seq(1,nrow(.),3)) # the dot (".") represents the piped dataset
 
-wildschwein_BE_6 <- wildschwein_BE_1 %>%
+caro60_6 <- caro60 %>%
   slice(seq(1,nrow(.),6))
 
-
-wildschwein_BE_9 <- wildschwein_BE_1 %>%
+caro60_9 <- caro60 %>%
   slice(seq(1,nrow(.),9))
-nrow(wildschwein_BE_1)
-nrow(wildschwein_BE_3)
-nrow(wildschwein_BE_6)
-nrow(wildschwein_BE_9)
-wildschwein_BE_3 <- wildschwein_BE_3 %>%
+nrow(caro60)
+nrow(caro60_3)
+nrow(caro60_6)
+nrow(caro60_9)
+
+caro60 <- caro60 %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
     speed = steplength/timelag
   )
 
-wildschwein_BE_6 <- wildschwein_BE_6 %>%
+caro60_3 <- caro60_3 %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
+    speed = steplength/timelag
+  )
+
+caro60_6 <- caro60_6 %>%
+  mutate(
+    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
     speed = steplength/timelag
   )
 
 
-wildschwein_BE_9 <- wildschwein_BE_9 %>%
+caro60_9 <- caro60_9 %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
     speed = steplength/timelag
   )
 
@@ -176,35 +186,35 @@ wildschwein_BE_9 <- wildschwein_BE_9 %>%
 
 
 ggplot() +
-  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = wildschwein_BE_3, aes(E,N, colour = "3 minutes")) +
-  geom_path(data = wildschwein_BE_3, aes(E,N, colour = "3 minutes")) +
+  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = caro60_3, aes(E,N, colour = "3 minutes")) +
+  geom_path(data = caro60_3, aes(E,N, colour = "3 minutes")) +
   labs(color="Trajectory", title = "Comparing original- with 3 minutes-resampled data")  +
   theme_minimal()
 
 ggplot() +
-  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = wildschwein_BE_6, aes(E,N, colour = "6 minutes")) +
-  geom_path(data = wildschwein_BE_6, aes(E,N, colour = "6 minutes")) +
+  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = caro60_6, aes(E,N, colour = "6 minutes")) +
+  geom_path(data = caro60_6, aes(E,N, colour = "6 minutes")) +
   labs(color="Trajectory", title = "Comparing original- with 6 minutes-resampled data") +
   theme_minimal()
 
 ggplot() +
-  geom_point(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = wildschwein_BE_1, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = wildschwein_BE_9, aes(E,N, colour = "9 minutes")) +
-  geom_path(data = wildschwein_BE_9, aes(E,N, colour = "9 minutes"))+
+  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = caro60_9, aes(E,N, colour = "9 minutes")) +
+  geom_path(data = caro60_9, aes(E,N, colour = "9 minutes"))+
   labs(color="Trajectory", title = "Comparing original- with 9 minutes-resampled data") +
   theme_minimal()
 
 
 ggplot() +
-  geom_line(data = wildschwein_BE_1, aes(DatetimeUTC,speed, colour = "1 minute")) +
-  geom_line(data = wildschwein_BE_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
-  geom_line(data = wildschwein_BE_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
-  geom_line(data = wildschwein_BE_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
+  geom_line(data = caro60, aes(DatetimeUTC,speed, colour = "1 minute")) +
+  geom_line(data = caro60_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
+  geom_line(data = caro60_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
+  geom_line(data = caro60_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
   labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
   theme_minimal()
 
@@ -218,38 +228,18 @@ example <- rnorm(10)
 rollmean(example,k = 3,fill = NA,align = "left")
 rollmean(example,k = 4,fill = NA,align = "left")
 
-wildschwein_BE_1 <- wildschwein_BE_1 %>%
+
+caro60 <- caro60 %>%
   mutate(
     speed3 = rollmean(speed,3,NA,align = "left"),
     speed6 = rollmean(speed,6,NA,align = "left"),
     speed9 = rollmean(speed,9,NA,align = "left")
   )
 
-wildschwein_BE_1 %>%
+caro60 %>%
   gather(key,val,c(speed,speed3,speed6,speed9)) %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
   # geom_point() +
   geom_line() 
 ```
 ### Task 5
-```{r, echo = T,include = T,eval = F}
-
-library(grid) # just for the arrows
-set.seed(20)
-data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
-  mutate(angle = as.integer(turning_angle(x,y))) %>%
-  ggplot(aes(x,y)) +
-  geom_segment(aes(x = lag(x), y = lag(y), xend = x,yend = y),arrow = arrow(length = unit(0.5,"cm"))) +
-  geom_label(aes(label = paste0(angle,"°")),alpha = 0.4,nudge_x = 0.2, nudge_y = 0.2) +
-  coord_equal()
-
-```
-
-df <- df %>%
-  mutate(
-    nMinus2 = euclid(lag(X, 2),lag(Y, 2),X,Y),   # distance to pos -10 minutes
-    nMinus1 = euclid(lag(X, 1),lag(Y, 1),X,Y),   # distance to pos - 5 minutes
-    nPlus1  = euclid(X,Y,lead(X, 1),lead(Y, 1)), # distance to pos + 5 mintues
-    nPlus2  = euclid(X,Y,lead(X, 2),lead(Y, 2))  # distance to pos +10 minutes
-  ) 
-

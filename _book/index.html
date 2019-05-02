@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>GEO880: Patterns and Trends in Environmental Data</title>
-  <meta name="description" content="GEO880: Patterns and Trends in Environmental Data">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <title>Patterns and Trends in Environmental Data</title>
+  <meta name="description" content="Patterns and Trends in Environmental Data">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="GEO880: Patterns and Trends in Environmental Data" />
+  <meta property="og:title" content="Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="GEO880: Patterns and Trends in Environmental Data" />
+  <meta name="twitter:title" content="Patterns and Trends in Environmental Data" />
   
   
   
@@ -35,6 +35,7 @@
 <link rel="next" href="exercise-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -46,23 +47,6 @@
 
 
 
-<script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.7.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotlyjs-1.29.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotlyjs-1.29.2/plotly-latest.min.js"></script>
-<link href="libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-0.7.7/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<link href="libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
-<script src="libs/leaflet-label-0.2.2/leaflet.label.js"></script>
-<script src="libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
-<script src="libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
-<script src="libs/leaflet-binding-1.1.0/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.0.27/leaflet-providers.js"></script>
-<script src="libs/leaflet-providers-plugin-1.1.0/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -128,17 +112,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-4-project-data-from-wgs84"><i class="fa fa-check"></i>Task 4: Project data from WGS84</a></li>
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-calculate-convex-hull"><i class="fa fa-check"></i>Input: Calculate Convex Hull</a></li>
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5-ploting-spatial-objects"><i class="fa fa-check"></i>Task 5: Ploting spatial objects</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-importing-raster-data"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6-adding-a-background-map"><i class="fa fa-check"></i>Task 6: Adding a background map</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#solutions"><i class="fa fa-check"></i>Solutions</a><ul>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task1"><i class="fa fa-check"></i>Task1</a></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-2"><i class="fa fa-check"></i>Task 2</a></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-3"><i class="fa fa-check"></i>Task 3</a></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input"><i class="fa fa-check"></i>Input</a></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-1"><i class="fa fa-check"></i>Input</a></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5"><i class="fa fa-check"></i>Task 5</a></li>
-<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6"><i class="fa fa-check"></i>Task 6</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-7-create-an-interactive-map"><i class="fa fa-check"></i>Task 7: Create an interactive map</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i>Exercise 2</a><ul>
@@ -157,90 +133,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#tasks-and-inputs-1"><i class="fa fa-check"></i>Tasks and Inputs</a><ul>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an overview</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input-geometry-as-columns"><i class="fa fa-check"></i>Input: Geometry as columns</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-deriving-movement-parameters-i-euclidean-distance-and-speed"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Euclidean Distance and Speed</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-deriving-movement-parameters-i-speed"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Speed</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-optional-calculate-turning-angles"><i class="fa fa-check"></i>Task 5 (optional): Calculate turning angles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#solutions-1"><i class="fa fa-check"></i>Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#solutions"><i class="fa fa-check"></i>Solutions</a><ul>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#preperation-2"><i class="fa fa-check"></i>Preperation</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#demo-tidyverse-1"><i class="fa fa-check"></i>Demo Tidyverse</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-1"><i class="fa fa-check"></i>Task 1</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input-2"><i class="fa fa-check"></i>Input</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-1"><i class="fa fa-check"></i>Task 2</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-1"><i class="fa fa-check"></i>Task 3</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4-1"><i class="fa fa-check"></i>Task 4</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-1"><i class="fa fa-check"></i>Task 5</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html"><i class="fa fa-check"></i>Exercise 3</a><ul>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#learning-outcomes-1"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#preperation-3"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#tasks-and-inputs-2"><i class="fa fa-check"></i>Tasks and Inputs</a><ul>
-<li><a href="exercise-3.html#input-segmentation-a-la-laube2011">Input: Segmentation à la <span class="citation">Laube and Purves (<a href="#ref-laube2011">2011</a>)</span></a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
-<li><a href="exercise-3.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
-<li><a href="exercise-3.html#task-5-optional-plotting-with-leaflet">Task 5 (Optional): Plotting with <code>leaflet</code></a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-6-similarity-measures"><i class="fa fa-check"></i>Task 6: Similarity measures</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-7-calculate-similarity"><i class="fa fa-check"></i>Task 7: Calculate similarity</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#solutions-2"><i class="fa fa-check"></i>Solutions</a><ul>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#preperation-4"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#input-3"><i class="fa fa-check"></i>Input</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task1-1"><i class="fa fa-check"></i>Task1</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-2-2"><i class="fa fa-check"></i>Task 2</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-3-2"><i class="fa fa-check"></i>Task 3</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-2"><i class="fa fa-check"></i>Task 4</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-5-2"><i class="fa fa-check"></i>Task 5</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-6-1"><i class="fa fa-check"></i>Task 6</a></li>
-<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-7"><i class="fa fa-check"></i>Task 7</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html"><i class="fa fa-check"></i>Exercise 4</a><ul>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#learning-outcomes-2"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#prerequisites-3"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#preperation-5"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#tasks"><i class="fa fa-check"></i>Tasks</a><ul>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-1-filter-and-visualize-trajectories"><i class="fa fa-check"></i>Task 1: Filter and visualize trajectories</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-2-optional-create-custom-function"><i class="fa fa-check"></i>Task 2 (Optional): Create custom function</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-3-resample-data"><i class="fa fa-check"></i>Task 3: Resample data</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-4-seperate-into-multiple-data.frames"><i class="fa fa-check"></i>Task 4: Seperate into multiple data.frames</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-5-join-data-by-time"><i class="fa fa-check"></i>Task 5: Join data by time</a></li>
-<li><a href="exercise-4.html#task-6-visualize-data-with-ggplot">Task 6: Visualize data with <code>ggplot</code></a></li>
-<li><a href="exercise-4.html#task-7-optional-visualize-data-with-leaflet">Task 7 (Optional): Visualize data with <code>leaflet</code></a></li>
-<li><a href="exercise-4.html#task-8-optional-visualize-data-as-timecube-with-plotly">Task 8 (optional): Visualize data as timecube with <code>plotly</code></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#solutions-3"><i class="fa fa-check"></i>Solutions</a><ul>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#preperation-6"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-1-1"><i class="fa fa-check"></i>Task 1</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#input-4"><i class="fa fa-check"></i>Input</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-2-3"><i class="fa fa-check"></i>Task 2</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-3-3"><i class="fa fa-check"></i>Task 3</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-4-3"><i class="fa fa-check"></i>Task 4</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-5-3"><i class="fa fa-check"></i>Task 5</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-6-2"><i class="fa fa-check"></i>Task 6</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-7-optional"><i class="fa fa-check"></i>Task 7 (Optional)</a></li>
-<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-8"><i class="fa fa-check"></i>Task 8</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html"><i class="fa fa-check"></i>Exercise 5</a><ul>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#learning-outcomes-3"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#preperation-7"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#tasks-1"><i class="fa fa-check"></i>Tasks</a><ul>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#solutions-4"><i class="fa fa-check"></i>Solutions</a><ul>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#preperation-8"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-1-2"><i class="fa fa-check"></i>Task 1</a></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-2-4"><i class="fa fa-check"></i>Task 2</a></li>
-<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-4-4"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5"><i class="fa fa-check"></i>Task 5</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -253,7 +159,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO880: Patterns and Trends in Environmental Data</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Patterns and Trends in Environmental Data</a>
           </h1>
         </div>
 
@@ -262,24 +168,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">GEO880: Patterns and Trends in Environmental Data</h1>
-<h4 class="author"><em>Patrick Laube and Nils Ratnaweera</em></h4>
+<h1 class="title">Patterns and Trends in Environmental Data</h1>
+<h2 class="subtitle"><em>Master ENR, Spring Semester 2019</em></h2>
+<p class="author"><em>Patrick Laube and Nils Ratnaweera</em></p>
+<p class="date"><em>02 May, 2019</em></p>
 </div>
 <div id="introduction-chapter" class="section level1 unnumbered">
 <h1>Introduction Chapter</h1>
 <p>For our practical <code>R</code> course building-up skills for analyzing movement data in the software environment <code>R</code>, you’ll be using data from the ZHAW project <a href="https://www.zhaw.ch/de/lsfm/institute-zentren/iunr/integrative-oekologie/wildtiermanagement/referenzprojekte/">“Prävention von Wildschweinschäden in der Landwirtschaft”</a>.</p>
-<p>The project investigates the spatiotemporal movement patterns of wild boar (<em>Sus scrofa</em>) in agricultural landscapes. For more information you can ask <a href="https://www.zhaw.ch/de/ueber-uns/person/sigb/">Beni Sigrist</a>, one of the course participants involved in this project. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA).</p>
+<p>The project investigates the spatiotemporal movement patterns of wild boar (<em>Sus scrofa</em>) in agricultural landscapes. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA).</p>
 <p><strong>Please note:</strong> we are given application data from an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected. So, please do not pass on this data, for any use beyond this module contact Patrick Laube or the data owner Stefan Suter (<a href="mailto:suts@zhaw.ch">suts@zhaw.ch</a>).</p>
-<!-- todo -->
-<!-- Introduce some basic concepts -->
-<!-- - RStudio -->
-<!-- - Tidyverse -->
-<!-- - datacamp -->
-<!-- - Rstudio Server / Rstudio Connect -->
-<!-- - Links to GIS Ressources -->
-<!--   - Animove Cheet sheets -->
-<!--   - GIS in R -->
-<!-- - GIT / CMAtools -->
 
 </div>
             </section>
@@ -308,7 +206,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -321,7 +219,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf"],
+"history": {
+"link": null,
+"text": null
+},
+"download": ["patterns-and-trends.pdf"],
 "toc": {
 "collapse": "section"
 }

@@ -286,4 +286,5 @@ pedest_measures %>%
   facet_wrap(~key,scales = "free") +
   labs(x = "Trajectory", y = "Value")
 
-```
+### Task 4
+```{r, echo = T,include = T,eval = F}
