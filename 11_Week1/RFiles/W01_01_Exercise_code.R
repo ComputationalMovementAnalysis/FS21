@@ -104,12 +104,12 @@ tm_shape(pk100_BE) +
   tm_shape(mcp) +
   tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
   tm_legend(bg.color = "white")
+
+
 ## 
 ## tmap_mode("view")
 ## 
-## tm_shape(pk100_BE) +
-##   tm_rgb() +
-##   tm_shape(mcp) +
+## tm_shape(mcp) +
 ##   tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
 ##   tm_legend(bg.color = "white")
 #- chunkend

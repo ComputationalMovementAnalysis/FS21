@@ -359,6 +359,8 @@ tm_shape(pk100_BE) +
   tm_shape(mcp) +
   tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
   tm_legend(bg.color = "white")
+
+
 ```
 
 
@@ -366,15 +368,13 @@ tm_shape(pk100_BE) +
 ### Task 7: Create an interactive map
 
 
-Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand.
+Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand. Omit the raster layer (`pk100_BE`), you won't be needing it.
 
 ```{r, echo = F,include = T,eval = F}
 
 tmap_mode("view")
 
-tm_shape(pk100_BE) + 
-  tm_rgb() +
-  tm_shape(mcp) +
+tm_shape(mcp) +
   tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
   tm_legend(bg.color = "white")
 ```
@@ -389,9 +389,5 @@ tm_shape(pk100_BE) +
 ```
 
 
-<!-- ## Solutions -->
-
-<!-- ```{r child='11_Week1/RFiles/W01_01_Exercise_solution.Rmd', purl = F} -->
-<!-- ``` -->
 
 

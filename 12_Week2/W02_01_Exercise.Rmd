@@ -377,7 +377,7 @@ caro60 <- read_delim("00_Rawdata/caro60.csv",",") %>%
 
 Now manually reduce the granularity of our sampling interval by selecting every 3^rd^, 6^th^ and 9^th^ position. 
 
-If you like to stick to the `tidyverse` approach, you can use `slice()` to subset the dataset by row number. Slice takes an integer vector. Eg: `slice(dataset, 1:10)`, returns the first 10 rows of a dataset, `slice(dataset, c(1,5,10))` returns the 1^st^, 5^th^ and 10^th^ value of a dataset. Save each re-sampled dataset in a new variable. We will use `wildschwein_BE_3`, `wildschwein_BE_6` and `wildschwein_BE_9`.
+If you like to stick to the `tidyverse` approach, you can use `slice()` to subset the dataset by row number. Slice takes an integer vector. Eg: `slice(dataset, 1:10)`, returns the first 10 rows of a dataset, `slice(dataset, c(1,5,10))` returns the 1^st^, 5^th^ and 10^th^ value of a dataset. Save each re-sampled dataset in a new variable. We will use `caro60_3`, `caro60_6` and `caro60_9`.
 
 
 ```{r}
@@ -520,7 +520,7 @@ rollmean(example,k = 4,fill = NA,align = "left")
 
 ```
 
-Now run `rollmean`on the `speed` variable of the subset (`wildschwein_BE_1`). Visualize the output from your moving windows and compare different window sizes (`k = `).
+Now run `rollmean`on the `speed` variable of the subset (`caro60`). Visualize the output from your moving windows and compare different window sizes (`k = `).
 
 
 ```{r}
@@ -542,11 +542,61 @@ caro60 %>%
 #- chunkend
 ```
 ### Task 5 (optional): Calculate turning angles
-```{r}
-#- header3 Task 5
-```
+
 Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2!
 
+
+```{r}
+#- header3 Task 5
+#- chunkstart
+```
+
+```{r}
+library(grid) # just for the arrows
+
+
+# Advanced solution including the building of functions. Only for very motivated students!
+
+euclid <- function(x1,y1,x2,y2){
+  return(sqrt((x1-x2)^2+(y1-y2)^2))
+}
+turning_angle <- function(x,y,lead_lag = 1){
+  if(length(x) < 3){stop("Minimum length of x and y is 3")}
+  if(length(x) != length(y)){stop("x and y must be of the same length")}
+  p1x <- lag(x,lead_lag)
+  p1y <- lag(y,lead_lag)
+  p2x <- x
+  p2y <- y
+  p3x <- lead(x,lead_lag)
+  p3y <- lead(y,lead_lag)
+  p12 <- euclid(p1x,p1y,p2x,p2y)
+  p13 <- euclid(p1x,p1y,p3x,p3y)
+  p23 <- euclid(p2x,p2y,p3x,p3y)
+  rad <- acos((p12^2+p23^2-p13^2)/(2*p12*p23))
+  grad <- (rad*180)/pi
+  grad[p12 == 0 | p23 == 0] <- NA
+  d <-  (p3x-p1x)*(p2y-p1y)-(p3y-p1y)*(p2x-p1x)
+  d <- ifelse(d == 0,1,d)
+  d[d>0] <- 1
+  d[d<0] <- -1
+  d[d==0] <- 1
+  turning <- grad*d*-1+180
+  return(turning)
+}
+
+# Running the functions on some dummy data:
+set.seed(20)
+data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
+  mutate(angle = as.integer(turning_angle(x,y))) %>%
+  ggplot(aes(x,y)) +
+  geom_segment(aes(x = lag(x), y = lag(y), xend = x,yend = y),arrow = arrow(length = unit(0.5,"cm"))) +
+  geom_label(aes(label = paste0(angle,"°")),alpha = 0.4,nudge_x = 0.2, nudge_y = 0.2) +
+  coord_equal()
+```
+
+```{r}
+#- chunkend
+```
 
 
 ```{r code=readLines('01_R_Files/clear_workspace.R'), echo = F, include=F, eval=T}
@@ -555,8 +605,8 @@ Just like we did with `speed` in tasks 2 - 4, we could do the same with turning 
 
 
 
-## Solutions
+<!-- ## Solutions -->
 
 
-```{r child='12_Week2/RFiles/W02_01_Exercise_solution.Rmd', purl = F}
-```
+<!-- ```{r child='12_Week2/RFiles/W02_01_Exercise_solution.Rmd', purl = F} -->
+<!-- ``` -->

@@ -47,6 +47,13 @@
 
 
 
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -116,6 +123,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6-adding-a-background-map"><i class="fa fa-check"></i>Task 6: Adding a background map</a></li>
 <li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-7-create-an-interactive-map"><i class="fa fa-check"></i>Task 7: Create an interactive map</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#solutions"><i class="fa fa-check"></i>Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task1"><i class="fa fa-check"></i>Task1</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-2"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-3"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-1"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5"><i class="fa fa-check"></i>Task 5</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-2"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6"><i class="fa fa-check"></i>Task 6</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i>Exercise 2</a><ul>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -138,15 +156,54 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-optional-calculate-turning-angles"><i class="fa fa-check"></i>Task 5 (optional): Calculate turning angles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#solutions"><i class="fa fa-check"></i>Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#solutions-1"><i class="fa fa-check"></i>Solutions</a><ul>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#preperation-2"><i class="fa fa-check"></i>Preperation</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#demo-tidyverse-1"><i class="fa fa-check"></i>Demo Tidyverse</a></li>
 <li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-1"><i class="fa fa-check"></i>Task 1</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input"><i class="fa fa-check"></i>Input</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2"><i class="fa fa-check"></i>Task 2</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3"><i class="fa fa-check"></i>Task 3</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4"><i class="fa fa-check"></i>Task 4</a></li>
-<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5"><i class="fa fa-check"></i>Task 5</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input-3"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-1"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-1"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4-1"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-1"><i class="fa fa-check"></i>Task 5</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#preperation-3"><i class="fa fa-check"></i>Preperation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html"><i class="fa fa-check"></i>Exercise 3</a><ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#learning-outcomes-1"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#preperation-4"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#tasks-and-inputs-2"><i class="fa fa-check"></i>Tasks and Inputs</a><ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#input-segmentation-as-in-laube-and-purves-2011"><i class="fa fa-check"></i>Input: Segmentation as in Laube and Purves (2011)</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
+<li><a href="exercise-3.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#solutions-2"><i class="fa fa-check"></i>Solutions</a><ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#preperation-5"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#input-4"><i class="fa fa-check"></i>Input</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task1-1"><i class="fa fa-check"></i>Task1</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-2-2"><i class="fa fa-check"></i>Task 2</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-3-2"><i class="fa fa-check"></i>Task 3</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-2"><i class="fa fa-check"></i>Task 4</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-5-2"><i class="fa fa-check"></i>Task 5</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-6-1"><i class="fa fa-check"></i>Task 6</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html"><i class="fa fa-check"></i>Exercise 4</a><ul>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#learning-outcomes-2"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#prerequisites-3"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#preperation-6"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#tasks-and-inputs-3"><i class="fa fa-check"></i>Tasks and inputs</a><ul>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-4-measuring-distance-at-concurrent-locations"><i class="fa fa-check"></i>Task 4: Measuring distance at concurrent locations</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-5-visualize-data"><i class="fa fa-check"></i>Task 5: Visualize data</a></li>
+<li><a href="exercise-4.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -171,7 +228,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1 class="title">Patterns and Trends in Environmental Data</h1>
 <h2 class="subtitle"><em>Master ENR, Spring Semester 2019</em></h2>
 <p class="author"><em>Patrick Laube and Nils Ratnaweera</em></p>
-<p class="date"><em>02 May, 2019</em></p>
+<p class="date"><em>16 May, 2019</em></p>
 </div>
 <div id="introduction-chapter" class="section level1 unnumbered">
 <h1>Introduction Chapter</h1>
@@ -231,6 +288,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

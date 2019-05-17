@@ -1,8 +1,8 @@
 # Exercise 4
 
 ## Learning Outcomes
-- You are able to conceptualize a simple movement pattern and implement data structures and corresponding procedures for detecting it using R.
-- You understand the sensitivity of movement patterns to pattern parameter thresholds
+- You are able to conceptualize a simple movement pattern and implement data structures and corresponding procedures (let's call them algorithms...) for detecting it using R.
+- You understand the sensitivity of movement patterns to pattern parameter thresholds.
 
 
 ## Prerequisites
@@ -20,23 +20,15 @@ Readings Theory, @laube2014
 #- chunkstart
 ```
 
-Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise. *Important: Reinstall the package `CMAtools` since we have a few updates.* 
-
-
-```{r, echo = T, include=T, eval = F}
-devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git") # Reinstall this package, since we have a few updates
-
-install.packages("ggpmisc") # you   dont really need this package. We just use it to add layers at specific positions
-```
-
+Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
 
 ```{r, echo = T, include = T, eval = T}
 library(tidyverse)
-library(CMAtools)
 library(sf)
+library(lubridate)
 
 # Import as tibble
-wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
 # Convert to sf-object
 wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
@@ -55,7 +47,7 @@ wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
+    steplength = sqrt((E-lead(E,1))^2+(N-lead(N,1))^2),
     speed = steplength/timelag
   )
 
@@ -64,44 +56,7 @@ wildschwein_BE <- wildschwein_BE %>%
 ```{r}
 #- chunkend
 ```
-## Tasks
-
-### Task 1: Filter and visualize trajectories
-```{r}
-#- header3 Task 1
-#- chunkstart
-```
-Create a subset of your data (`wildschwein_BE`) by filtering it to 26-27 October 2014 and save the data to a new variable (name the new variable `wildschwein_fil`). Visualize your data spatially to see potential meeting sites. You can add `pk100_BE` as a background map like we did in task 6 of exercise 1. 
-
-Tip: If you do _not_ want `pk100_BE` to change the extent (xmin-xmax, ymin-ymax) of the plot, use `annotation_spraster()` rather than `geom_spraster_rgb()`. See `?annotation_spraster()` for more information.
-
-
-```{r, echo = F, include = T, eval = T, fig.cap="Animal 005A is never near the other three individuals. You can exlude this animal from futher analysis."}
-
-library(raster)
-library(ggspatial)
-
-
-pk100_BE <- brick("../CMA_FS2018_Filestorage/pk100_BE_2056.tif")
-
-wildschwein_fil <- wildschwein_BE %>%
-  filter(as.Date(DatetimeUTC) >= as.Date("2014-10-26")) %>%
-  filter(as.Date(DatetimeUTC) <= as.Date("2014-10-27"))
-
-
-ggplot(wildschwein_fil, aes(colour = TierID)) +
-  annotation_spraster(pk100_BE) +
-  geom_sf(size = 4) +
-  coord_sf(datum = 2056)
-
-wildschwein_fil <- wildschwein_fil %>%
-  filter(TierID != "005A")
-
-```
-
-```{r}
-#- chunkend
-```
+## Tasks and inputs
 
 ### Input: Creating functions
 
@@ -111,69 +66,136 @@ wildschwein_fil <- wildschwein_fil %>%
 #- chunkstart
 ```
 
-We have used a variaty of different functions designed by other developers. Sometimes we need to do an operation multiple times, and most often it is reasonable to write a function in this case. You should consider writing a function whenever you’ve copied and pasted a block of code more than twice [@wickham2017]. 
+Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you’ve copied and pasted a block of code more than twice, you should consider writing a function [@wickham2017]. 
 
-You have all used the function `euclid()` multiple times. We've written this function ourselves, and the code is very simple:
+We have violated this rule multiple times when calculating the Euclidean distances between points. Writing and rewriting the code `sqrt((x-lead(x,1))^2+(y-lead(y,1))^2)` over and over again is not only cumbersome, it is also error prone. We can easily wrap this operation into a function. This input on writing functions should bring you up to speed to do this in your first task.
+
+The first step in writing a function, is picking a name and assigning `<- function(){}` to it.
+
 
 ```{r, echo = T, include = T, eval = T}
-
-euclid <- function(x1,y1,x2,y2){
-  distance <- sqrt((x1-x2)^2+(y1-y2)^2)
-  return(distance)
-}
+testfun <- function(){}
 
 ```
 
-First, you must pick a name for your function (here: `euclid`). The values within `function()` are placeholders for arguments that you want to use within your function (here: `x1`,`y1`,`x2`,`y2`). Within the curly brackets `{}` you can place your R script. Finally, use `return()` to make sure the function returns the desired output.
+To run the function, we have to call the assigned name with the brackets. This function gives no output, which is why we get `NULL` back. 
+```{r, echo = T, include = T, eval = T}
+testfun()
+
+class(testfun)
+
+```
+
+To make the function actually *do* something, we need to specify *what* should be done within the curly brackets `{}`. The following function always prints the same statement and accepts no input values:
+
+```{r, echo = T, include = T, eval = T}
+testfun <- function(){print("this function does nothing")}
+
+testfun()
+
+```
+
+If we want the function to accept some input values, we have to define them within the round brackets. For example, I specify a variable named `sometext` and can call this variable within the execution.
+
+
+```{r, echo = T, include = T, eval = T}
+testfun <- function(sometext){print(sometext)}
+
+testfun(sometext = "this function does slightly more, but still not much")
+```
+
+Let's take a more practical example. Say we want a function that calculates the n^th^ root of a value, since the base function `sqrt()` just returns the 2^nd^ root. To do this, we need to know two things:
+
+- taking the n^th^ rooth of x is the same as raising `x` by the the reciprocal value ("Kehrwert") of n $$\sqrt[n]{x}=\ x^{\frac{1}{n}}$$
+- We can raise a value `x` to the power of a value `n` in R with the following code: `x^n`
+
+To create a function that simplifies taking the n^th^ root, we just need one line of code:
+
+
+```{r, echo = T, include = T, eval = T}
+# specify two parameters:
+# x: the value  with want to take the root from
+# n: the root we want to take (2 for 2nd root)
+
+nthroot <- function(x,n){x^(1/n)}
+
+# Test function by taking the second root of 4. 
+# Expecting the result to be 2:
+nthroot(x = 4,n = 2)
+
+```
+
+As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of `x = `and `n = `).
+```{r, echo = T, include = T, eval = T}
+nthroot(27,3)
+nthroot(3,3)
+```
+
+
+If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.
+```{r, echo = T, include = T, eval = T}
+nthroot <- function(x,n = 2){x^(1/n)}
+
+# if not stated otherwise, our function takes the square root
+nthroot(10)
+# We can still overwrite n
+nthroot(10,3)
+
+```
 
 All you need to do now is run these few lines of code at the beginning of your script, and you can use the function for your entire R session. After starting a new session, you will simply have to re-run the lines. So it might be a good idea to place this function within the section `Loading environment / libraries` of your project.
+
+### Task 1: Write your own functions
+
+Create a function for our Euclidean distance calculation. Optionally, write another function to number successive `TRUE` values with the `cumsum()` approach from last week. 
+
+Note: if you treat your input variables as vectors, they will work in most use cases (in particular in `dplyr`s `mutate()` and `summarise()` functions). 
+
+
+```{r}
+#- header3 Task 1
+#- chunkstart
+```
+
+```{r}
+euclid <- function(x,y,leadval = 1){
+  sqrt((x-lead(x,leadval))^2+(y-lead(y,leadval))^2)
+}
+```
+
 ```{r}
 #- chunkend
 ```
-### Task 2 (Optional): Create custom function
+
+
+### Task 2: Filter data
 
 ```{r}
 #- header3 Task 2
 #- chunkstart
 ```
 
-In the next task, we will need a function which enables us to round the attribute "Time" in our `Datetime` Object to the nearest quarter hour. To our knowledge, there is no function that does this for us, so we will have to create our own function. Create a function that takes a `Datetime` object and rounds minutes to the multiple of any given value (in our case we propose 15 min). Some help is given in the code below:
+We propose conceptualizing the pattern "meet" as "being close in space *and* time", with the notion "close" to be defined for the spatial and the temporal case separately. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose manipulating the timestamps in such a way, that all observations are sampled concurrently, synchronously. This allows us using the data science concept *join* for detecting the temporal expression of meet - using `DateTimeUTC` as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on the Euclidean distances between concurrent positions.
+
+Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g. `wildschwein_filter`). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns. 
+
+
+```{r}
+wildschwein_filter <- wildschwein_BE %>%
+  filter(DatetimeUTC > "2015-04-01",
+         DatetimeUTC < "2015-04-15") 
+```
 
 
 ```{r, echo = T, include = T, eval = T}
+wildschwein_filter %>%
+  group_by(TierID) %>%
+  summarise() %>%
+  st_convex_hull() %>%
+  ggplot() + geom_sf(aes(fill = TierID),alpha = 0.3)
 
-# round a number to a multiple of another number
-
-minutes <- 1:60
-multiple <- 15
-round(minutes/multiple)*multiple
-
-
-y <- Sys.time()
-y
-class(y)
-
-x <- as.POSIXlt(y) # Turns a POSIXct into POSIXlt
-x
-x[["min"]]                  # retrieves minutes of POSIXlt
-x[["min"]] <- 40            # sets minutes of POSIXlt
-x
-
-# Gets minutes as a decimal value
-min_decimal <- x[["min"]] + x[["sec"]]/60
-
-```
-
-```{r}
-round_minutes_to <- function(datetime, multiple){
-  datetime2 <- as.POSIXlt(datetime)
-  min_decimal <- datetime2[["min"]] + datetime2[["sec"]]/60
-  min_round <- round(min_decimal/multiple)*multiple
-  datetime2[["min"]] <- min_round
-  datetime2[["sec"]] <- 0
-  datetime2 <- as.POSIXct(datetime2)
-  return(datetime2)
-}
+wildschwein_filter <- wildschwein_filter %>%
+  filter(TierID != "018A")
 
 ```
 
@@ -181,231 +203,208 @@ round_minutes_to <- function(datetime, multiple){
 #- chunkend
 ```
 
-
-### Task 3: Resample data
+### Task 3: Create Join Key
 
 ```{r}
 #- header3 Task 3
 #- chunkstart
 ```
 
-We propose conceptualizing the pattern "meet" as "being close in space *and* time", with the notion "close" to be defined for the spatial and the temporal case. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose resampling the temporal granularity in such a way, that all observations are sampled at identical times. This allows us using the data science concept *join* for detecting the temporal expression of meet - using `DateTimeUTC` as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on `euclid()`.
 
-Let's see if we can find a suitable sampling interval. Since we established that the sampling interval varies over time (see Task 1 from Exercise 2), let's see whether the sampling interval is similar between the different animals:
 
-```{r, echo = F, include = T, eval = T, fig.cap="With a few exceptions, the sampling interval is around minutes (this visualization is not part of the task)."}
-ggplot(wildschwein_fil, aes(DatetimeUTC,timelag/60, colour = TierID)) + 
-  geom_line() + 
-  expand_limits(y = 0)
+
+```{r, echo = T, include = T, eval = T}
+head(wildschwein_filter)
 ```
 
-With a few exceptions, the sampling interval is *around* minutes. For basically all join methods, we need *identical* values to serve as a join key. We therefore need to resample our data to a common interval. **Your task**: 
+Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. Verify if we have the same sampling interval (`timelag`) throughout our filtered dataset. 
+```{r, echo = F, include = T, eval = T, fig.cap=""}
+ggplot(wildschwein_filter, aes(DatetimeUTC,timelag/60, colour = TierID)) + 
+  geom_line() + 
+  geom_point()+ 
+  expand_limits(y = 0) +
+  facet_grid(TierID~.)
+```
 
-1. Use the function `round_minutes_to` (created in the previous task) to round "minutes" to a multiple of 15. If you haven't created this function, you can use `round_Datetime_to()` from `CMAtools`.
-2. Linearly interpolate the `E`/`N` values to the new sampling interval. Use the function `linear_interpol` from `CMAtools` to solve this step. The function takes 3 arguments: The first is your original `Datetime` column. The second is the rounded `Datetime` column from step 1. The third is the value you want to interpolate, so `E`/`N` (you will have to call the function twice). 
+
+With a few exceptions, the sampling interval is *around* 15 minutes. In order to join the data, however, we need *identical* time stamps to serve as a join key. We therefore need to slightly adjust our time stamps to a common, concurrent interval. 
+
+Round the minutes of `DatetimeUTC` to a multiple of 15 (00, 15, 30,45) and store the values in a new column. You can use the  `lubridate` function `round_date()` for this. See the examples [here](https://lubridate.tidyverse.org/reference/round_date.html) to see how this goes.
+
+*Please note:* We are manipulating our time stamps without adjusting the x,y-coordinates. This is fine for our simple example, but we would advice against this in a more serious research endeavour, e.g. in your semester projects. One simple approach would be to linearly interpolate the positions to the new timestamps. If you choose Option A the wild boar projects as your semester projects, you should aim for a linear interpolation. Get in touch if you need help with this.
 
 
-```{r, echo = F, include=T, eval = T, fig.cap="After resampling, the movement data is slightly modified (this visualization is not part of the task)."}
+```{r, echo = F, include=T, eval = T, fig.cap="After resampling, the movement data is slightly manipulated (this visualization is not part of the task) since we changed the original timestamp. We are usually off from the 'true' value around 10 to 15 seconds, some are off by as much as 2 minutes. "}
 
-
-
-wildschwein_fil <- wildschwein_fil %>%
+wildschwein_filter <- wildschwein_filter %>%
   group_by(TierID) %>%
   mutate(
-    DatetimeRound = round_minutes_to(DatetimeUTC,15),
-    E_interpol = linear_interpol(DatetimeUTC,DatetimeRound,E),
-    N_interpol = linear_interpol(DatetimeUTC,DatetimeRound,N)
+    DatetimeRound = round_date(DatetimeUTC,"15 minutes")
   )
 
-wildschwein_fil %>%
-  as.data.frame() %>%
-  slice(30:40) %>%
-  ggplot() +
-  geom_point(aes(E,N,colour = "original")) +
-  geom_path(aes(E,N,colour = "original")) +
-  geom_point(aes(E_interpol, N_interpol,colour = "interpolated"),lty = 2) +
-  geom_path(aes(E_interpol, N_interpol,colour = "interpolated"),lty = 2) +
-  coord_equal() +
-  theme(legend.position = "bottom",legend.direction = "horizontal",legend.title = element_blank())
-
-
-
+wildschwein_filter %>%
+  mutate(delta = abs(as.integer(difftime(DatetimeUTC,DatetimeRound, units = "secs")))) %>%
+  ggplot(aes(delta)) +
+  geom_histogram(binwidth = 1) +
+  labs(x = "Absolute time difference between original- and rounded Timestamp",
+       y = "Number of values")
 ```
 
 ```{r}
 #- chunkend
 ```
-### Task 4: Seperate into multiple data.frames
+### Task 4: Measuring distance at concurrent locations
 
 ```{r}
 #- header3 Task 4
 #- chunkstart
 ```
 
-Now Divide the `wildschwein_fil` object (with `filter()`?) into one `data.frame` per animal available for these dates.
+To measure the distance between concurrent locations, we need to follow the following steps.
 
-Note: If you code the same lines multiple times and/or if you create multiple variables named `var_1`, `var_2`, `var_3` or similar, there are usually more elegant ways to do this. If you are an intermediate to advanced programmer (or want to be), you can use `map()` specifically for this task (dividing `wildschwein_fil` into one `data.frame` object per animal).
+1. First, split the `wildschwein_filter` object into one `data.frame` per animal.[^1]
+2. Next, join these datasets by the new, manipulated `Datetime` column and save it to the variable `wildschwein_join`. Which join-type is appropriate? The joined observations are *temporally close*.
+3. On `wildschwein_join`, calculate Euclidean distances between concurrent observations. Store the values in a new column `distance`. 
+4. Use a reasonable threshold on `distance` to determine if the animals are also *spatially close* enough to constitute a *meet* (we use 50 meters). Store this Boolean information (`TRUE`/`FALSE`) in a new column named `meet`.
+
+[^1]: This is a perfect opportunity to learn functional programming if you are an intermediate to advanced programmer (or want to be). You can use `purrr::map()` specifically for these tasks. Ask us if you want to learn this but are struggling
 
 
 ```{r}
-# get unique IDs for my filtered dataframe
-ids <- wildschwein_fil %>%
-  as.data.frame() %>%
-  group_by(TierID) %>%
-  summarise() %>%
-  pull()                  # pull() turns my single column dataframe into a vector
+wildschwein_join <- wildschwein_filter %>%
+  ungroup() %>%
+  select(TierID,DatetimeRound,E,N) %>%
+  st_set_geometry(NULL) %>%
+  split(.$TierID) %>%
+  accumulate(~full_join(.x,.y, by = "DatetimeRound")) %>%
+  pluck(length(.))
 
 
+euclid2 <- function(x1,y1,x2,y2){
+  sqrt((x1-x2)^2+(y2-y2)^2)
+}
 
-# map() creates a list of dataframes
-wildschwein_fil_L <- ids %>%
-  map(function(x){
-    wildschwein_fil %>%
-      as.data.frame() %>%
-      filter(TierID == x) %>%
-      dplyr::select(-c(geometry,TierName,CollarID,timelag)) %>%
-      rename_at(vars(-matches("DatetimeRound")),paste0,"_",which(ids== x))
-    })
+
+wildschwein_join <- wildschwein_join %>%
+  mutate(
+    distance = euclid2(E.x,N.x,E.y,N.y),
+    meet = distance < 100
+  )
+
 ```
+
+```{r, echo = F, include=T, eval = T}
+wildschwein_join
+```
+
 
 
 ```{r}
 #- chunkend
 ```
-### Task 5: Join data by time
+### Task 5: Visualize data
 
 ```{r}
 #- header3 Task 5
 #- chunkstart
 ```
 
-Now that you have different `data.frames` (either stored in separate variables or in a list), use `full_join()` (or any appropriate join function) to join the `data.frames` pairwise by the key `DatetimeRound`. Use a join type such that the resulting table contains observations at the same (resampled) time. After that, use `euclid()` to calculate distances between individuals at temporally corresponding observations. Use a reasonable threshold on the calculated distance to determine *meets*. We will use 150 meters in our example. Your result should be a short list of meet patterns (pairs of individuals that are at the same time (joins) at the same space (`euclid()`)).
 
-```{r}
+Now, visualize the *meets* spatially. You can attempt to recreate the plot below, but this is not trivial. If you want to try it, these are the steps to take:
 
-wildschwein_join <- wildschwein_fil_L %>%
-  Reduce(function(dtf1,dtf2) full_join(dtf1,dtf2,by="DatetimeRound"), .) %>%
-  arrange(DatetimeRound)
+1. number the meet events with the `cumsum()` approach (saved as a column `meet_seq`)
+2. use `gather`, `seperate()` and `spread()` (in that order) reshapingour wide `wildschwein_join` dataframe to long (with only single `E`/`N` columns)
+3. turn the long table to `sf` with `st_as_sf()` and specifying our coordinate columns
+4. Store steps 1 - 4 in a new variable (eg. `wildschwein_spread`)
 
-wildschwein_join <- wildschwein_join %>%
-  mutate(
-    dist12 = euclid(E_1,N_1,E_2,N_2),
-    dist13 = euclid(E_1,N_1,E_3,N_3),
-    dist23 = euclid(E_2,N_2,E_3,N_3)
-  )
+Use this dataset to create circles at meet events. 
 
-meets <- wildschwein_join %>%
-  gather(key,val,c(dist12,dist13,dist23)) %>%
-  filter(val < 150) %>%
-  spread(key,val)
+1. group by the `meet_seq`
+2. Using `summarise()` to create multipoint features and extracting the start date and end time. 
+3. `paste()` `meet_seq`, start date and end time into a new column (eg `name`)
+4. use the function `st_minimum_bounding_circle()` from the library `liblwgeom` to create minimum bounding circles around each meet event.
+5. Store these circles in a new variable (e.g. `meets`)
 
-meets
+Add trajectories (`wildschwein_spread`) and the circles (`meets`) to gggplot and facet by `name`.
+
+```{r, echo = F, include=T, eval = T, fig.height=12}
+
+# library(ggpmisc)
+# 
+# pk25 <- brick("../CMA_FS2018_Filestorage/pk25.tif")
+# swissimage <- brick("../CMA_FS2018_Filestorage/swissimage_250cm.tif")
+
+number_seq = function(bool){
+  fac <- as.factor(ifelse(bool,1+cumsum(!bool),NA))
+  levels(fac) <- 1:length(levels(fac))
+  return(fac)
+}
+
+
+library(lwgeom)
+
+wildschwein_spread <- wildschwein_join %>%
+  mutate(meet_seq = number_seq(meet)) %>% 
+  gather(key,val, contains(".")) %>%
+  separate(key,into = c("key","animal")) %>%
+  spread(key,val,convert = T) %>%
+  arrange(TierID,DatetimeRound) %>%
+  st_as_sf(coords = c("E","N"),remove = F) %>%
+  st_set_crs(2056) 
+
+meets <- wildschwein_spread %>%
+  filter(meet) %>%
+  group_by(meet_seq) %>%
+  summarise(
+    start = min(DatetimeRound),
+    end = max(DatetimeRound)
+  ) %>%
+  mutate(name = paste(meet_seq,":",start,"-",strftime(end,format = "%H:%M:%S"))) %>%
+  st_minimum_bounding_circle()
+
+ggplot(wildschwein_spread) +
+  geom_point(aes(E,N,colour = TierID),alpha = 0.2) +
+  geom_path(aes(E,N,colour = TierID),alpha = 0.2) +
+  geom_sf(data = meets, alpha = 0.3, fill = "green") +
+  facet_wrap(~name, ncol = 2) +
+  coord_sf(datum = 2056) +
+  theme_light() +
+  theme(axis.title = element_blank()) +
+  labs(title = paste("The",nrow(meets),"meet events of the two animals"), subtitle = "Using a threshold of 100 meters")
+
+
+
 ```
 
 ```{r}
 #- chunkend
 ```
-### Task 6: Visualize data with `ggplot`
+
+
+### Task 6 (optional): Visualize data as timecube with `plotly`
 
 ```{r}
 #- header3 Task 6
 #- chunkstart
 ```
 
-For pairs that *do* meet, produce a plot with the trajectories of the the two days (26/27 October 2014, stored in `wildschwein_fil`) and join the points where the two individuals met (you can use `geom_segment()` for this). There are two additional `.tif` files on moodle, `pk25.tif` and `swissimage_250cm.tif`.
-
-```{r, echo = F, include=T, eval = T}
-
-library(ggpmisc)
-
-pk25 <- brick("../CMA_FS2018_Filestorage/pk25.tif")
-swissimage <- brick("../CMA_FS2018_Filestorage/swissimage_250cm.tif")
-
-p4 <- wildschwein_fil %>%
-  filter(TierID %in% c("010B","011A")) %>%
-  ggplot(aes(colour = TierID)) +
-  geom_point(aes(E,N),alpha = 0.2) +
-  geom_path(aes(E,N),alpha = 0.2) +
-  geom_segment(data = meets, aes(x = E_2,y = N_2,xend = E_3,yend = N_3, colour = "Meet"),inherit.aes = F,lwd = 3,alpha = 0.4) +
-  coord_sf(datum = 2056,ylim = c(1204000,1205000))
-
-append_layers(p4, annotation_spraster(pk25), position = "bottom")
-
-
-append_layers(p4, annotation_spraster(swissimage), position = "bottom")
-
-```
-
-```{r}
-#- chunkend
-```
-
-### Task 7 (Optional): Visualize data with `leaflet`
-
-```{r}
-#- header3 Task 7 (Optional)
-#- chunkstart
-```
-
-As already mentioned last week (Task 3) `ggplot` makes nice static graphics, but they can be somewhat cumbersome when attempting to explore the data. For example, the zooming functionality of an interactive plot is an especially powerful exploratory tool. If you've managed to create the `leaflet` plot last week, you can now use this library again to explore the `meet`-patterns. Note:
-
-- `leaflet` does not seem to respect the animals IDs when adding the trajectories as a `data.frame`
-- To solve this, I cast the `sf POINT` object to `LINESTRING`. Casting `POINT` to `LINESTRING` seems to rearrange the order of the trajectory. I used [this post](https://github.com/r-spatial/sf/issues/331#issuecomment-300998624) to solve this issue 
-- remember to transform (`st_transform()`) the `sf LINESTRING` object into `WGS84` (`4326`), since `leaflet` cannot handle `CH1903+ LV95`
-    
-
-
-```{r, echo = F, include=T, eval = knitr::is_html_output()}
-
-library(leaflet)
-library(scales)
-
-factpal <- colorFactor(hue_pal()(3), wildschwein_fil$TierID)
-
-wildschwein_fil_line <- wildschwein_fil %>%
-  summarise(do_union = FALSE) %>% 
-  st_cast("LINESTRING") %>%
-  st_transform(4326)
-
-leaflet(wildschwein_fil) %>%
-  addProviderTiles(providers$Esri.WorldImagery) %>%
-  addPolylines(data = wildschwein_fil_line,color = ~factpal(TierID)) %>%
-  addCircles(data = meets,radius = 8,lng = ~Long_2, lat = ~Lat_2,opacity = 0,fillOpacity = 1,fillColor = "blue") %>%
-  addCircles(data = meets,radius = 8,lng = ~Long_3, lat = ~Lat_3,opacity = 0,fillOpacity = 1,fillColor = "red") %>%
-  addLegend(pal = factpal, values = ~TierID, title = "TierID")
-
-
-  
-```
-
-
-```{r, echo = F, include=T, eval = knitr::is_latex_output(), results = "asis", purl = F}
-pander::pandoc.image("02_Images/batman-ipsum.png","The interactive map/plot is only available in the online version of this document.")
-```
-
-```{r}
-#- chunkend
-```
-
-### Task 8 (optional): Visualize data as timecube with `plotly`
-
-```{r}
-#- header3 Task 8
-#- chunkstart
-```
-
 Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube [@hagerstraand1970] with the package `plotly`. There are some [nice ressources](https://plot.ly/r/3d-line-plots/) available online.
 
 
-```{r, echo = F, include=T, eval = knitr::is_html_output(), fig.cap="Trace 0, 1 and 2 show the trajectories of the three individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other."}
+```{r, echo = F, include=T, eval = knitr::is_html_output(), fig.cap="Trace 0 and 1 show the trajectories of the two individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other. This representation nicely shows that animal '0' is not very mobile and has large periodes where the animal seems to rest in the same place."}
 
+meanmeetpoints <- wildschwein_join %>%
+  filter(meet) %>%
+  mutate(
+    E.mean = (E.x+E.y)/2,
+    N.mean = (N.x+N.y)/2
+
+  )
 
 library(plotly)
-plot_ly(wildschwein_join, x = ~E_1,y = ~N_1, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
-  add_trace(wildschwein_join, x = ~E_2,y = ~N_2, z = ~DatetimeRound) %>%
-  add_trace(wildschwein_join, x = ~E_3,y = ~N_3, z = ~DatetimeRound) %>%
-  add_markers(data = meets, x = ~E_2,y = ~N_2, z = ~DatetimeRound) %>%
-  add_markers(data = meets, x = ~E_3,y = ~N_3, z = ~DatetimeRound) %>%
+plot_ly(wildschwein_join, x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
+  add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%
+  add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%
   layout(scene = list(xaxis = list(title = 'E'),
                       yaxis = list(title = 'N'),
                       zaxis = list(title = 'Time')))
@@ -413,9 +412,26 @@ plot_ly(wildschwein_join, x = ~E_1,y = ~N_1, z = ~DatetimeRound,type = "scatter3
 ```
 
 
+```{r, echo = F, include=T, eval = knitr::is_html_output(), fig.cap="The same visualization as above, just with data filtered to the time of the meet events. In some instances, the events took place in stationary phases, indicating that the animlas might have interacted. In other events, the animlas simply seem to pass by each other, indicating that they might not have interacted."}
+wildschwein_join %>%
+  filter(DatetimeRound<"2015-04-04") %>%
+  plot_ly(x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
+  add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%
+  add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%
+  layout(scene = list(xaxis = list(title = 'E'),
+                      yaxis = list(title = 'N'),
+                      zaxis = list(title = 'Time')))
+```
+
+
+
 ```{r, echo = F, include=T, eval = knitr::is_latex_output(), results = "asis", purl = F}
 pander::pandoc.image("02_Images/batman-ipsum.png","The interactive map/plot is only available in the online version of this document.")
 ```
+
+
+
+
 
 ```{r}
 #- chunkend
@@ -424,8 +440,4 @@ pander::pandoc.image("02_Images/batman-ipsum.png","The interactive map/plot is o
 
 
 
-## Solutions
 
-
-```{r child='14_Week4/RFiles/W04_01_Exercise_solution.Rmd', purl = F}
-```
