@@ -535,11 +535,11 @@ wildschwein_BE &lt;-<span class="st"> </span><span class="kw">cbind</span>(wilds
 
 example &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">3</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1]  0.7934086  0.4676409  0.2087255  0.4627862 -0.1184342  0.3296300
-##  [7]  0.4098533  0.6195606         NA         NA
+##  [1] -0.103918162 -0.445582766 -0.998593254 -0.924493320  0.492115764
+##  [6]  1.255960427  0.752342974  0.005910501           NA           NA
 <span class="kw">rollmean</span>(example,<span class="dt">k =</span> <span class="dv">4</span>,<span class="dt">fill =</span> <span class="ot">NA</span>,<span class="dt">align =</span> <span class="st">&quot;left&quot;</span>)
-##  [1] 0.8032689 0.2611461 0.3850058 0.1193869 0.1576379 0.5358516 0.2369677
-##  [8]        NA        NA        NA</code></pre></div>
+##  [1] -0.52905268 -0.77705903 -0.54832892 -0.08202723  0.49909837
+##  [6]  0.76487325  0.61577564          NA          NA          NA</code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>caro60</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 </div>
 <div id="task-5-optional-calculate-turning-angles" class="section level3">

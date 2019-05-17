@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{16 May, 2019}
+    \date{17 May, 2019}
 
 
 \begin{document}
@@ -1461,11 +1461,11 @@ on some dummy data, for example:
 
 \NormalTok{example <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{3}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\NormalTok{##  [1] 0.9078296 0.3766121 0.4007276 0.4015671 0.7666689 1.1570474 0.9372432}
-\NormalTok{##  [8] 0.6502795        NA        NA}
+\NormalTok{##  [1]  0.04231321  0.05972527 -0.59950086 -0.62501983 -1.21401680}
+\NormalTok{##  [6] -0.23428972 -0.50021156 -0.74072849          NA          NA}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{4}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\NormalTok{##  [1] 0.5120605 0.5014606 0.5515312 0.4061900 1.0867871 0.9539178 0.5927243}
-\NormalTok{##  [8]        NA        NA        NA}
+\NormalTok{##  [1]  0.1233358 -0.4121202 -0.5530773 -0.8189117 -0.6326314 -0.4786103}
+\NormalTok{##  [7] -0.9056932         NA         NA         NA}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2743,10 +2743,11 @@ Note:
 \tightlist
 \item
   You are able to conceptualize a simple movement pattern and implement
-  data structures and corresponding procedures for detecting it using R.
+  data structures and corresponding procedures (let's call them
+  algorithms\ldots{}) for detecting it using R.
 \item
   You understand the sensitivity of movement patterns to pattern
-  parameter thresholds
+  parameter thresholds.
 \end{itemize}
 
 \section{Prerequisites}\label{prerequisites-3}
@@ -2805,18 +2806,18 @@ for today's exercise.
 
 \subsection{Input: Creating functions}\label{input-creating-functions}
 
-We have used a variety of different functions designed by other
-developers. Sometimes we need to do an operation multiple times, and
-most often it is reasonable to write a function in this case. You should
-consider writing a function whenever you've copied and pasted a block of
-code more than twice (Wickham and Grolemund
+Up to now, we have used a variety of different functions designed by
+other developers. Sometimes we need to execute an operation multiple
+times, and most often it is reasonable to write a function to do so.
+Whenever you've copied and pasted a block of code more than twice, you
+should consider writing a function (Wickham and Grolemund
 \protect\hyperlink{ref-wickham2017}{2017}).
 
-We have violated this rule multiple times when calculating the euclidean
+We have violated this rule multiple times when calculating the Euclidean
 distances between points. Writing and rewriting the code
 \texttt{sqrt((x-lead(x,1))\^{}2+(y-lead(y,1))\^{}2)} over and over again
-is not only cumbersome, it is also error prone. We can easily write this
-operation into a function, this input on writing functions should bring
+is not only cumbersome, it is also error prone. We can easily wrap this
+operation into a function. This input on writing functions should bring
 you up to speed to do this in your first task.
 
 The first step in writing a function, is picking a name and assigning
@@ -2843,8 +2844,9 @@ brackets. This function gives no output, which is why we get
 \end{Shaded}
 
 To make the function actually \emph{do} something, we need to specify
-\emph{what} within the curly brackets \texttt{\{\}}. The following
-function always prints the same statement and accepts no input values:
+\emph{what} should be done within the curly brackets \texttt{\{\}}. The
+following function always prints the same statement and accepts no input
+values:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2881,7 +2883,7 @@ do this, we need to know two things:
   \[\sqrt[n]{x}=\ x^{\frac{1}{n}}\]
 \item
   We can raise a value \texttt{x} to the power of a value \texttt{n} in
-  R like so: \texttt{x\^{}n}
+  R with the following code: \texttt{x\^{}n}
 \end{itemize}
 
 To create a function that simplifies taking the n\textsuperscript{th}
@@ -2902,9 +2904,9 @@ root, we just need one line of code:
 \end{Highlighting}
 \end{Shaded}
 
-If we declare our variables in the order that we initially listed them,
-we do not need to specify the parameters (no need of \texttt{x\ =}and
-\texttt{n\ =}).
+As we already know from using other functions, if we declare our
+variables in the order that we initially listed them, we do not need to
+specify the parameters (no need of \texttt{x\ =}and \texttt{n\ =}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2953,24 +2955,25 @@ most use cases (in particular in \texttt{dplyr}s \texttt{mutate()} and
 
 We propose conceptualizing the pattern ``meet'' as ``being close in
 space \emph{and} time'', with the notion ``close'' to be defined for the
-spatial and the temporal case. We will simplify the problem slightly so
-that we can use a number of R tools and data structures you now have
-learned to use by now. As a first simplification we propose manipulating
-the timestamps in such a way, that all observations are sampled at
-identical times. This allows us using the data science concept
-\emph{join} for detecting the temporal expression of meet - using
-\texttt{DateTimeUTC} as the key variable in a join statement:
-Observations with an identical time stamp will match. Once we have
-identified the temporal matches, we check if the concurrent observations
-are also close in space based on the euclidean distances between
-concurrent positions.
+spatial and the temporal case separately. We will simplify the problem
+slightly so that we can use a number of R tools and data structures you
+now have learned to use by now. As a first simplification we propose
+manipulating the timestamps in such a way, that all observations are
+sampled concurrently, synchronously. This allows us using the data
+science concept \emph{join} for detecting the temporal expression of
+meet - using \texttt{DateTimeUTC} as the key variable in a join
+statement: Observations with an identical time stamp will match. Once we
+have identified the temporal matches, we check if the concurrent
+observations are also close in space based on the Euclidean distances
+between concurrent positions.
 
-To simplify the task, we will focus on an interval where we have a
-continuous, small sampling interval over all of our animals. Filter your
-dataset to the time period 1.04. - 15.04.2015) and save it to a new
-variable (e.g. \texttt{wildschwein\_filter}). After filtering, visualize
-your data spatially. Just consider animals with a spatial overlap and
-remove animals where we cannot expect to find meet patterns.
+Simplifying the task even further, we will focus on an interval where we
+have a continuous, small sampling interval over all our animals. So,
+filter your dataset to the time period 01.04.2015 - 15.04.2015) and save
+it to a new variable (e.g. \texttt{wildschwein\_filter}). After
+filtering, visualize your data spatially. Just consider animals with a
+spatial overlap and remove animals where we cannot expect to find any
+meet patterns.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3019,15 +3022,15 @@ remove animals where we cannot expect to find meet patterns.
 \end{Shaded}
 
 Have a look at your dataset. You will notice that samples are taken at
-ever full hour, quarter past, half past and quarter to. The sampling
+every full hour, quarter past, half past and quarter to. The sampling
 time is usually off by a couple of seconds. Verify if we have the same
 sampling interval (\texttt{timelag}) throughout our filtered dataset.
 \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-160-1.pdf}
 
 With a few exceptions, the sampling interval is \emph{around} 15
-minutes. In order to join the data however, we need \emph{identical}
+minutes. In order to join the data, however, we need \emph{identical}
 time stamps to serve as a join key. We therefore need to slightly adjust
-our time stamps to a common interval.
+our time stamps to a common, concurrent interval.
 
 Round the minutes of \texttt{DatetimeUTC} to a multiple of 15 (00, 15,
 30,45) and store the values in a new column. You can use the
@@ -3038,9 +3041,11 @@ to see how this goes.
 
 \emph{Please note:} We are manipulating our time stamps without
 adjusting the x,y-coordinates. This is fine for our simple example, but
-we would advice against this in a more serious research endeavour. One
-simple approach would be to linearly interpolate the positions to the
-new timestamps: feel free to do this and contact us if you need help.
+we would advice against this in a more serious research endeavour,
+e.g.~in your semester projects. One simple approach would be to linearly
+interpolate the positions to the new timestamps. If you choose Option A
+the wild boar projects as your semester projects, you should aim for a
+linear interpolation. Get in touch if you need help with this.
 
 \begin{figure}
 \centering
@@ -3070,16 +3075,17 @@ the following steps.
 \item
   Next, join these datasets by the new, manipulated \texttt{Datetime}
   column and save it to the variable \texttt{wildschwein\_join}. Which
-  join-type is appropriate?
+  join-type is appropriate? The joined observations are \emph{temporally
+  close}.
 \item
   On \texttt{wildschwein\_join}, calculate Euclidean distances between
   concurrent observations. Store the values in a new column
   \texttt{distance}.
 \item
   Use a reasonable threshold on \texttt{distance} to determine if the
-  animals are close enough to constitute a \emph{meet} (we use 50
-  meters). Store this Boolean information (\texttt{TRUE}/\texttt{FALSE})
-  in a new column named \texttt{meet}.
+  animals are also \emph{spatially close} enough to constitute a
+  \emph{meet} (we use 50 meters). Store this Boolean information
+  (\texttt{TRUE}/\texttt{FALSE}) in a new column named \texttt{meet}.
 \end{enumerate}
 
 \begin{verbatim}
@@ -3103,8 +3109,8 @@ the following steps.
 \subsection{Task 5: Visualize data}\label{task-5-visualize-data}
 
 Now, visualize the \emph{meets} spatially. You can attempt to recreate
-the plot below, but it is not very trivial. If you want to try it, these
-are the steps we took:
+the plot below, but this is not trivial. If you want to try it, these
+are the steps to take:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3114,8 +3120,8 @@ are the steps we took:
   column \texttt{meet\_seq})
 \item
   use \texttt{gather}, \texttt{seperate()} and \texttt{spread()} (in
-  that order) turn our wide \texttt{wildschwein\_join} dataframe to long
-  (with only single \texttt{E}/\texttt{N} columns)
+  that order) reshapingour wide \texttt{wildschwein\_join} dataframe to
+  long (with only single \texttt{E}/\texttt{N} columns)
 \item
   turn the long table to \texttt{sf} with \texttt{st\_as\_sf()} and
   specifying our coordinate columns

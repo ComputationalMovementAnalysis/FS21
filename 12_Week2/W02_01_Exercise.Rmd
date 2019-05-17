@@ -601,12 +601,3 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
 
 ```{r code=readLines('01_R_Files/clear_workspace.R'), echo = F, include=F, eval=T}
 ```
-
-
-
-
-<!-- ## Solutions -->
-
-
-<!-- ```{r child='12_Week2/RFiles/W02_01_Exercise_solution.Rmd', purl = F} -->
-<!-- ``` -->
