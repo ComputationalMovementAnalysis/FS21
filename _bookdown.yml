@@ -7,6 +7,8 @@ rmd_files: [
   "13_Week3/W03_01_Exercise.Rmd",
   "13_Week3/W03_02_Solutions.Rmd",
   "14_Week4/W04_01_Exercise.Rmd",
+  "14_Week4/W04_01_Solutions.Rmd",
+  "15_Week5/W05_01_Exercise.Rmd",
   "00_Admin/references.Rmd"
   ]
 delete_merged_file: true

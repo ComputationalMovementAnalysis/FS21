@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{17 May, 2019}
+    \date{21 May, 2019}
 
 
 \begin{document}
@@ -1461,11 +1461,11 @@ on some dummy data, for example:
 
 \NormalTok{example <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{3}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\NormalTok{##  [1]  0.04231321  0.05972527 -0.59950086 -0.62501983 -1.21401680}
-\NormalTok{##  [6] -0.23428972 -0.50021156 -0.74072849          NA          NA}
+\NormalTok{##  [1]  0.73219883  0.78226099  0.07751122 -0.22145724 -0.45202334}
+\NormalTok{##  [6] -0.05291512 -0.36967533 -0.22622021          NA          NA}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{4}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\NormalTok{##  [1]  0.1233358 -0.4121202 -0.5530773 -0.8189117 -0.6326314 -0.4786103}
-\NormalTok{##  [7] -0.9056932         NA         NA         NA}
+\NormalTok{##  [1]  0.6141088  0.2386660  0.1751106 -0.2740578 -0.3877161 -0.1602794}
+\NormalTok{##  [7] -0.2776301         NA         NA         NA}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2985,7 +2985,7 @@ meet patterns.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-156-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-157-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3025,7 +3025,7 @@ Have a look at your dataset. You will notice that samples are taken at
 every full hour, quarter past, half past and quarter to. The sampling
 time is usually off by a couple of seconds. Verify if we have the same
 sampling interval (\texttt{timelag}) throughout our filtered dataset.
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-160-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-161-1.pdf}
 
 With a few exceptions, the sampling interval is \emph{around} 15
 minutes. In order to join the data, however, we need \emph{identical}
@@ -3049,8 +3049,8 @@ linear interpolation. Get in touch if you need help with this.
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-161-1.pdf}
-\caption{\label{fig:unnamed-chunk-161}After resampling, the movement data is
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-162-1.pdf}
+\caption{\label{fig:unnamed-chunk-162}After resampling, the movement data is
 slightly manipulated (this visualization is not part of the task) since
 we changed the original timestamp. We are usually off from the `true'
 value around 10 to 15 seconds, some are off by as much as 2 minutes.}
@@ -3153,7 +3153,7 @@ Use this dataset to create circles at meet events.
 Add trajectories (\texttt{wildschwein\_spread}) and the circles
 (\texttt{meets}) to gggplot and facet by \texttt{name}.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-168-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-169-1.pdf}
 
 \subsection{\texorpdfstring{Task 6 (optional): Visualize data as
 timecube with
@@ -3171,6 +3171,390 @@ online.
 \includegraphics{02_Images/batman-ipsum.png}
 \caption{The interactive map/plot is only available in the online
 version of this document.}
+\end{figure}
+
+\section{Solutions}\label{solutions-3}
+
+\subsection{Preperation}\label{preperation-7}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(sf)}
+\KeywordTok{library}\NormalTok{(lubridate)}
+
+\CommentTok{# Import as tibble}
+\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"00_Rawdata/wildschwein_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+
+\CommentTok{# Convert to sf-object}
+\NormalTok{wildschwein_BE =}\StringTok{ }\KeywordTok{st_as_sf}\NormalTok{(wildschwein_BE, }\DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\DataTypeTok{crs =} \DecValTok{4326}\NormalTok{,}\DataTypeTok{remove =} \OtherTok{FALSE}\NormalTok{)}
+
+\CommentTok{# transform to CH1903 LV95}
+\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{st_transform}\NormalTok{(wildschwein_BE, }\DecValTok{2056}\NormalTok{)}
+
+\CommentTok{# Add geometry as E/N integer Columns}
+\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{st_coordinates}\NormalTok{(wildschwein_BE) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{cbind}\NormalTok{(wildschwein_BE,.) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{E =}\NormalTok{ X) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{N =}\NormalTok{ Y)}
+
+\CommentTok{# Compute timelag, steplength and speed}
+\NormalTok{wildschwein_BE <-}\StringTok{ }\NormalTok{wildschwein_BE }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(TierID) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{timelag =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{difftime}\NormalTok{(}\KeywordTok{lead}\NormalTok{(DatetimeUTC),DatetimeUTC,}\DataTypeTok{units =} \StringTok{"secs"}\NormalTok{)),}
+    \DataTypeTok{steplength =} \KeywordTok{sqrt}\NormalTok{((E}\OperatorTok{-}\KeywordTok{lead}\NormalTok{(E,}\DecValTok{1}\NormalTok{))}\OperatorTok{^}\DecValTok{2}\OperatorTok{+}\NormalTok{(N}\OperatorTok{-}\KeywordTok{lead}\NormalTok{(N,}\DecValTok{1}\NormalTok{))}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
+    \DataTypeTok{speed =}\NormalTok{ steplength}\OperatorTok{/}\NormalTok{timelag}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Input}\label{input-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testfun <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{()\{\}}
+
+\KeywordTok{testfun}\NormalTok{()}
+
+\KeywordTok{class}\NormalTok{(testfun)}
+
+\NormalTok{testfun <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{()\{}\KeywordTok{print}\NormalTok{(}\StringTok{"this function does nothing"}\NormalTok{)\}}
+
+\KeywordTok{testfun}\NormalTok{()}
+
+\NormalTok{testfun <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(sometext)\{}\KeywordTok{print}\NormalTok{(sometext)\}}
+
+\KeywordTok{testfun}\NormalTok{(}\DataTypeTok{sometext =} \StringTok{"this function does slightly more, but still not much"}\NormalTok{)}
+\CommentTok{# specify two parameters:}
+\CommentTok{# x: the value  with want to take the root from}
+\CommentTok{# n: the root we want to take (2 for 2nd root)}
+
+\NormalTok{nthroot <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,n)\{x}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{n)\}}
+
+\CommentTok{# Test function by taking the second root of 4. }
+\CommentTok{# Expecting the result to be 2:}
+\KeywordTok{nthroot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{4}\NormalTok{,}\DataTypeTok{n =} \DecValTok{2}\NormalTok{)}
+
+\KeywordTok{nthroot}\NormalTok{(}\DecValTok{27}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\KeywordTok{nthroot}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{nthroot <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,}\DataTypeTok{n =} \DecValTok{2}\NormalTok{)\{x}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{n)\}}
+
+\CommentTok{# if not stated otherwise, our function takes the square root}
+\KeywordTok{nthroot}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\CommentTok{# We can still overwrite n}
+\KeywordTok{nthroot}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Task 1}\label{task-1-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{euclid <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,y,}\DataTypeTok{leadval =} \DecValTok{1}\NormalTok{)\{}
+  \KeywordTok{sqrt}\NormalTok{((x}\OperatorTok{-}\KeywordTok{lead}\NormalTok{(x,leadval))}\OperatorTok{^}\DecValTok{2}\OperatorTok{+}\NormalTok{(y}\OperatorTok{-}\KeywordTok{lead}\NormalTok{(y,leadval))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Task 2}\label{task-2-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein_filter <-}\StringTok{ }\NormalTok{wildschwein_BE }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(DatetimeUTC }\OperatorTok{>}\StringTok{ "2015-04-01"}\NormalTok{,}
+\NormalTok{         DatetimeUTC }\OperatorTok{<}\StringTok{ "2015-04-15"}\NormalTok{) }
+\NormalTok{wildschwein_filter }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(TierID) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{st_convex_hull}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_sf}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ TierID),}\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{wildschwein_filter <-}\StringTok{ }\NormalTok{wildschwein_filter }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(TierID }\OperatorTok{!=}\StringTok{ "018A"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Task 3}\label{task-3-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(wildschwein_filter)}
+\KeywordTok{ggplot}\NormalTok{(wildschwein_filter, }\KeywordTok{aes}\NormalTok{(DatetimeUTC,timelag}\OperatorTok{/}\DecValTok{60}\NormalTok{, }\DataTypeTok{colour =}\NormalTok{ TierID)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{expand_limits}\NormalTok{(}\DataTypeTok{y =} \DecValTok{0}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(TierID}\OperatorTok{~}\NormalTok{.)}
+
+\NormalTok{wildschwein_filter <-}\StringTok{ }\NormalTok{wildschwein_filter }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(TierID) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{DatetimeRound =} \KeywordTok{round_date}\NormalTok{(DatetimeUTC,}\StringTok{"15 minutes"}\NormalTok{)}
+\NormalTok{  )}
+
+\NormalTok{wildschwein_filter }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delta =} \KeywordTok{abs}\NormalTok{(}\KeywordTok{as.integer}\NormalTok{(}\KeywordTok{difftime}\NormalTok{(DatetimeUTC,DatetimeRound, }\DataTypeTok{units =} \StringTok{"secs"}\NormalTok{)))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(delta)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Absolute time difference between original- and rounded Timestamp"}\NormalTok{,}
+       \DataTypeTok{y =} \StringTok{"Number of values"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Task 4}\label{task-4-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein_join <-}\StringTok{ }\NormalTok{wildschwein_filter }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(TierID,DatetimeRound,E,N) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{st_set_geometry}\NormalTok{(}\OtherTok{NULL}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{split}\NormalTok{(.}\OperatorTok{$}\NormalTok{TierID) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{accumulate}\NormalTok{(}\OperatorTok{~}\KeywordTok{full_join}\NormalTok{(.x,.y, }\DataTypeTok{by =} \StringTok{"DatetimeRound"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pluck}\NormalTok{(}\KeywordTok{length}\NormalTok{(.))}
+
+
+\NormalTok{euclid2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x1,y1,x2,y2)\{}
+  \KeywordTok{sqrt}\NormalTok{((x1}\OperatorTok{-}\NormalTok{x2)}\OperatorTok{^}\DecValTok{2}\OperatorTok{+}\NormalTok{(y2}\OperatorTok{-}\NormalTok{y2)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+
+
+\NormalTok{wildschwein_join <-}\StringTok{ }\NormalTok{wildschwein_join }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{distance =} \KeywordTok{euclid2}\NormalTok{(E.x,N.x,E.y,N.y),}
+    \DataTypeTok{meet =}\NormalTok{ distance }\OperatorTok{<}\StringTok{ }\DecValTok{100}
+\NormalTok{  )}
+
+\NormalTok{wildschwein_join}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Task 5}\label{task-5-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{# library(ggpmisc)}
+\CommentTok{# }
+\CommentTok{# pk25 <- brick("../CMA_FS2018_Filestorage/pk25.tif")}
+\CommentTok{# swissimage <- brick("../CMA_FS2018_Filestorage/swissimage_250cm.tif")}
+
+\NormalTok{number_seq =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(bool)\{}
+\NormalTok{  fac <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{ifelse}\NormalTok{(bool,}\DecValTok{1}\OperatorTok{+}\KeywordTok{cumsum}\NormalTok{(}\OperatorTok{!}\NormalTok{bool),}\OtherTok{NA}\NormalTok{))}
+  \KeywordTok{levels}\NormalTok{(fac) <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(}\KeywordTok{levels}\NormalTok{(fac))}
+  \KeywordTok{return}\NormalTok{(fac)}
+\NormalTok{\}}
+
+
+\KeywordTok{library}\NormalTok{(lwgeom)}
+
+\NormalTok{wildschwein_spread <-}\StringTok{ }\NormalTok{wildschwein_join }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{meet_seq =} \KeywordTok{number_seq}\NormalTok{(meet)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{gather}\NormalTok{(key,val, }\KeywordTok{contains}\NormalTok{(}\StringTok{"."}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{separate}\NormalTok{(key,}\DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"key"}\NormalTok{,}\StringTok{"animal"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{spread}\NormalTok{(key,val,}\DataTypeTok{convert =}\NormalTok{ T) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(TierID,DatetimeRound) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{st_as_sf}\NormalTok{(}\DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"E"}\NormalTok{,}\StringTok{"N"}\NormalTok{),}\DataTypeTok{remove =}\NormalTok{ F) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{st_set_crs}\NormalTok{(}\DecValTok{2056}\NormalTok{) }
+
+\NormalTok{meets <-}\StringTok{ }\NormalTok{wildschwein_spread }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(meet) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(meet_seq) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}
+    \DataTypeTok{start =} \KeywordTok{min}\NormalTok{(DatetimeRound),}
+    \DataTypeTok{end =} \KeywordTok{max}\NormalTok{(DatetimeRound)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{name =} \KeywordTok{paste}\NormalTok{(meet_seq,}\StringTok{":"}\NormalTok{,start,}\StringTok{"-"}\NormalTok{,}\KeywordTok{strftime}\NormalTok{(end,}\DataTypeTok{format =} \StringTok{"%H:%M:%S"}\NormalTok{))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{st_minimum_bounding_circle}\NormalTok{()}
+
+\KeywordTok{ggplot}\NormalTok{(wildschwein_spread) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(E,N,}\DataTypeTok{colour =}\NormalTok{ TierID),}\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_path}\NormalTok{(}\KeywordTok{aes}\NormalTok{(E,N,}\DataTypeTok{colour =}\NormalTok{ TierID),}\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_sf}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ meets, }\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{, }\DataTypeTok{fill =} \StringTok{"green"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{name, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{coord_sf}\NormalTok{(}\DataTypeTok{datum =} \DecValTok{2056}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_light}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.title =} \KeywordTok{element_blank}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \KeywordTok{paste}\NormalTok{(}\StringTok{"The"}\NormalTok{,}\KeywordTok{nrow}\NormalTok{(meets),}\StringTok{"meet events of the two animals"}\NormalTok{), }\DataTypeTok{subtitle =} \StringTok{"Using a threshold of 100 meters"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Task 6}\label{task-6-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## }
+\NormalTok{## meanmeetpoints <- wildschwein_join %>%}
+\NormalTok{##   filter(meet) %>%}
+\NormalTok{##   mutate(}
+\NormalTok{##     E.mean = (E.x+E.y)/2,}
+\NormalTok{##     N.mean = (N.x+N.y)/2}
+\NormalTok{## }
+\NormalTok{##   )}
+\NormalTok{## }
+\NormalTok{## library(plotly)}
+\NormalTok{## plot_ly(wildschwein_join, x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%}
+\NormalTok{##   add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%}
+\NormalTok{##   add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%}
+\NormalTok{##   layout(scene = list(xaxis = list(title = 'E'),}
+\NormalTok{##                       yaxis = list(title = 'N'),}
+\NormalTok{##                       zaxis = list(title = 'Time')))}
+\NormalTok{## }
+\NormalTok{## wildschwein_join %>%}
+\NormalTok{##   filter(DatetimeRound<"2015-04-04") %>%}
+\NormalTok{##   plot_ly(x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%}
+\NormalTok{##   add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%}
+\NormalTok{##   add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%}
+\NormalTok{##   layout(scene = list(xaxis = list(title = 'E'),}
+\NormalTok{##                       yaxis = list(title = 'N'),}
+\NormalTok{##                       zaxis = list(title = 'Time')))}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter{Exercise 5}\label{exercise-5}
+
+\section{Learning Outcomes}\label{learning-outcomes-3}
+
+\begin{itemize}
+\tightlist
+\item
+  You are able to process spatial data (vector and raster) within R,
+  including creating simple maps within R.
+\item
+  You know basic operations for semantically annotating your
+  trajectories with geographic context.
+\end{itemize}
+
+\section{Preperation}\label{preperation-8}
+
+Open your R Project from last week. Either run your own script from last
+week or the following lines to transform the data into the form we need
+for today's exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(sf)}
+\KeywordTok{library}\NormalTok{(ggspatial)}
+\KeywordTok{library}\NormalTok{(raster)}
+
+\CommentTok{# Import as tibble}
+\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"00_Rawdata/wildschwein_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+
+
+\CommentTok{# Convert to sf-object}
+\NormalTok{wildschwein_BE =}\StringTok{ }\KeywordTok{st_as_sf}\NormalTok{(wildschwein_BE, }\DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\DataTypeTok{crs =} \DecValTok{4326}\NormalTok{,}\DataTypeTok{remove =} \OtherTok{FALSE}\NormalTok{)}
+
+\CommentTok{# transform to CH1903 LV95}
+\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{st_transform}\NormalTok{(wildschwein_BE, }\DecValTok{2056}\NormalTok{)}
+
+\CommentTok{# Add geometry as E/N integer Columns}
+\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{st_coordinates}\NormalTok{(wildschwein_BE) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{cbind}\NormalTok{(wildschwein_BE,.) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{E =}\NormalTok{ X) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{N =}\NormalTok{ Y)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Tasks}\label{tasks}
+
+\subsection{Tasks 1: Import and visualize spatial
+data}\label{tasks-1-import-and-visualize-spatial-data}
+
+\begin{itemize}
+\tightlist
+\item
+  Import the vector dataset \texttt{Feldaufnahmen\_Fanel\_2016.shp} from
+  moodle with \texttt{read\_sf()} and save it to the variable
+  \texttt{fanel2016}. The file .shp stands for Shapefile, which is a
+  simple format for spatial vector data (points, lines, or polygons).
+  This shapefile contains vector data about cultivated crops in the
+  study area.
+\item
+  Transform the coordinates to \texttt{CH1903+\ LV95}.
+\item
+  Filter the dataset \texttt{wildschwein\_BE} to the months May, June
+  and July of 2016 and store the data in a new variable
+  (\texttt{wildschwein\_BE\_2016}).
+\item
+  Create a minimum convex polygon for each individual in
+  \texttt{wildschwein\_BE\_2016} and store it in a new variable
+  (\texttt{mcp2016})
+\item
+  Create a map with the layers \texttt{fanel2016} and \texttt{mcp2016}.
+\end{itemize}
+
+\begin{verbatim}
+## [1] "2015-07-27 11:00:14 UTC"
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-181-1.pdf}
+
+\subsection{Task 2: Annotate Trajectories from vector
+data}\label{task-2-annotate-trajectories-from-vector-data}
+
+Now we would like to know what crop was most visited by our wild boar,
+and at what time. To this end, use \texttt{st\_join()} to attach the
+attributes from \texttt{fanel2016} to your trajectory data
+\texttt{wildschwein\_BE} (semantic annotation). Visualize the number of
+sample points in each category of \texttt{Frucht} over the course of the
+filtered time period.
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-184-1.pdf}
+\caption{\label{fig:unnamed-chunk-184}The number of samples per category
+\emph{per week} from May to July 2015.}
+\end{figure}
+
+\subsection{Task 3: Explore annotated
+trajectories}\label{task-3-explore-annotated-trajectories}
+
+Think of other ways you could visually explore the spatio-temporal
+patterns of wild boar in relation to the crops.
+
+Ideas:
+
+\begin{itemize}
+\tightlist
+\item
+  For example, in the visualisation above, we did not account for the
+  different availability of the different crops. Potatoes
+  (``Kartoffeln'') are seemingly not visited at all, while rapeseed
+  (``Raps'') has high visitation from May to June. Maybe this is due to
+  the fact that there are mostly rapeseed fields and basically no
+  potatoe fields. How could you consider availability in the
+  visulisation?
+\item
+  Exlpore the circadian rhythm / daily patterns of crop visitations.
+\end{itemize}
+
+\subsection{Task 4: Annotate Trajectories from raster
+data}\label{task-4-annotate-trajectories-from-raster-data}
+
+In terms of raster data, we have prepared a
+\href{https://gisgeography.com/lidar-light-detection-and-ranging/}{Normalised
+Digital Surface Model (nDSM)}\footnote{The nDSM was created by
+  calculating the difference between the
+  \href{https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet\&guid=094ce943-6ad7-4f07-aa9f-d8eb17c5cb38\&catalog=geocatalog\&type=complete\&preview=search_list}{digital
+  surface models (DSM)} and the
+  \href{https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet\&guid=490de97b-8932-4ef7-9d13-e89ef41eeb4b\&catalog=geocatalog\&type=complete\&preview=search_list}{digital
+  terrain model (DTM)} obtained from the
+  \href{https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html}{geoportal
+  from the canton Bern}.}, which provides information on the height of
+topological features on the ground. Since our wild boar usually use
+natural landscapes, the nDSM is a good approximation of vegitation
+height. This nDSM is available on moodle (\texttt{nDSM.tif}). Import
+this data with \texttt{raster()}and attach the respective raster values
+to the point data in your \texttt{sf} object
+(\texttt{wildschwein\_BE\_2016}). Explore the dataset similar to the
+crop data in task 2/3. Explore again spatio-temporal relations!
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-187-1.pdf}
+\caption{\label{fig:unnamed-chunk-187}An example of a temporal exploration
+of the data obtained from the nDSM.}
 \end{figure}
 
 \chapter*{References}\label{references}

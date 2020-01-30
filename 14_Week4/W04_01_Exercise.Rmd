@@ -145,6 +145,11 @@ nthroot(10,3)
 
 All you need to do now is run these few lines of code at the beginning of your script, and you can use the function for your entire R session. After starting a new session, you will simply have to re-run the lines. So it might be a good idea to place this function within the section `Loading environment / libraries` of your project.
 
+```{r}
+#- chunkend
+```
+
+
 ### Task 1: Write your own functions
 
 Create a function for our Euclidean distance calculation. Optionally, write another function to number successive `TRUE` values with the `cumsum()` approach from last week. 

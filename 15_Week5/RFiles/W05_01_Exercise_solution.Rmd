@@ -1,14 +1,12 @@
 ### Preperation
 ```{r, echo = T,include = T,eval = F}
-## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git") # Reinstall this package, since we have a few updates
 library(tidyverse)
-library(CMAtools)
 library(sf)
 library(ggspatial)
 library(raster)
 
 # Import as tibble
-wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
 
 # Convert to sf-object
@@ -23,31 +21,25 @@ wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
   rename(E = X) %>%
   rename(N = Y)
 
-# Compute timelag, steplength and speed
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
-    speed = steplength/timelag
-  )
+
 
 ```
 ### Task 1
 ```{r, echo = T,include = T,eval = F}
 
 library(lubridate)
+library(tmap)
 
-fanel2016 <- read_sf("../CMA_FS2018_Filestorage/Kulturen/Feldaufnahmen_Fanel_2016.shp") %>%
+fanel2016 <- read_sf("00_Rawdata/Feldaufnahmen_Fanel_2016.shp") %>%
   st_transform(2056)
 
-pk100_BE <- brick("../CMA_FS2018_Filestorage/pk100_BE_2056.tif")
+
+
+max(wildschwein_BE$DatetimeUTC)
 
 
 wildschwein_BE_2016 <- wildschwein_BE %>%
-  filter(DatetimeUTC >= as.Date("2016-04-01")) %>%
-  filter(DatetimeUTC <= as.Date("2016-09-30"))
-
+  filter(DatetimeUTC > "2015-01-05",DatetimeUTC < "2015-07-31")
 
 mcp2016 <- wildschwein_BE_2016 %>%
   group_by(TierID) %>%
@@ -55,12 +47,11 @@ mcp2016 <- wildschwein_BE_2016 %>%
   st_convex_hull()
 
 
-ggplot(fanel2016, aes(fill = Frucht)) + 
-  annotation_spraster(pk100_BE) +
-  geom_sf(alpha = 0.3) +
-  geom_sf(data = mcp2016, aes(colour = TierID), inherit.aes = F, alpha = 0.1,lwd = 2) +
-  theme(legend.position = "bottom")
-  
+tm_shape(fanel2016) + 
+  tm_polygons(col = "Frucht") +
+  tm_shape(mcp2016) +
+  tm_borders(lwd = 3,lty = 2)
+
 ```
 ### Task 2
 ```{r, echo = T,include = T,eval = F}
@@ -68,16 +59,13 @@ wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
   st_join(dplyr::select(fanel2016,Frucht))
 
 
-frucht_remove <- c("0","Flugplatz","Rhabarber","Zucchetti")
-
 wildschwein_BE_2016 %>%
-  as.data.frame() %>%
+  st_set_geometry(NULL) %>%
   mutate(week = floor_date(DatetimeUTC,"weeks")) %>%
-  group_by(week,Frucht) %>%
+  group_by(TierID,week,Frucht) %>%
   summarise(n = n()) %>%
-  filter(!Frucht %in% frucht_remove) %>%
-  filter(Frucht != "NA") %>%
-  ggplot(aes(week,n, group = Frucht)) + 
+  filter(!Frucht %in% c("0","Flugplatz","Rhabarber","Zucchetti","NA")) %>%
+  ggplot(aes(week,n, colour = TierID)) + 
   geom_line() +
   labs(x = "Time",y = "Number of Samples") +
   facet_wrap(~Frucht) +
@@ -86,14 +74,14 @@ wildschwein_BE_2016 %>%
 ```
 ### Task 4
 ```{r, echo = T,include = T,eval = F}
-ndsm <- raster("../CMA_FS2018_Filestorage/nDSM.tif")
+ndsm <- raster("00_Rawdata/nDSM.tif")
 
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
   mutate(dod = raster::extract(ndsm,.))
 
 
 wildschwein_BE_2016 %>%
-  as.data.frame() %>%
+  st_set_geometry(NULL) %>%
   mutate(
     hour = hour(round_date(DatetimeUTC,"1 hours"))
     ) %>%
@@ -107,7 +95,10 @@ wildschwein_BE_2016 %>%
   ggplot(aes(x = hour,y = mean,ymin = do, ymax = up, colour = TierID,fill = TierID)) +
   geom_ribbon(alpha = 0.4) +
   geom_line() +
-  labs(x = "nDSM",title = "nDSM values as an approximation for vegitation hight",subtitle = "The line represents the mean nDSM value and the ribbon one standard deviation") +
+  labs(x = "nDSM",
+    title = "nDSM values as an approximation for vegitation hight",
+    subtitle = "The line represents the mean nDSM value and the ribbon one standard deviation") +
+  facet_wrap(~TierID) +
   theme_minimal()
     
   

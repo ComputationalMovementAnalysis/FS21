@@ -1,7 +1,7 @@
 # Exercise 5
 
 ## Learning Outcomes
-- You are able to process spatial data (vector and raster) within R, including creating simple maps within R
+- You are able to process spatial data (vector and raster) within R, including creating simple maps within R.
 - You know basic operations for semantically annotating your trajectories with geographic context.
 
 ## Preperation
@@ -11,23 +11,17 @@
 #- chunkstart
 ```
 
-Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise. *Important: Reinstall the package `CMAtools` since we have made a few updates.* 
-
-
-```{r, echo = T, include=T, eval = F}
-devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git") # Reinstall this package, since we have a few updates
-```
+Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
 
 
 ```{r, echo = T, include = T, eval = T}
 library(tidyverse)
-library(CMAtools)
 library(sf)
 library(ggspatial)
 library(raster)
 
 # Import as tibble
-wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE.csv",",")
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
 
 # Convert to sf-object
@@ -42,14 +36,7 @@ wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
   rename(E = X) %>%
   rename(N = Y)
 
-# Compute timelag, steplength and speed
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = euclid(lead(E, 1),lead(N, 1),E,N),
-    speed = steplength/timelag
-  )
+
 
 ```
 
@@ -65,27 +52,27 @@ wildschwein_BE <- wildschwein_BE %>%
 #- chunkstart
 ```
 
-- Import the vector dataset `Feldaufnahmen_Fanel_2016.shp` from moodle with `read_sf()` and save it to the variable `fanel2016`. The file .shp stands for Shapefile, which is a simple format for spatial vector data (points, line, or polygons). This shapefile contains vector data about cultivated crops in the study area.
+- Import the vector dataset `Feldaufnahmen_Fanel_2016.shp` from moodle with `read_sf()` and save it to the variable `fanel2016`. The file .shp stands for Shapefile, which is a simple format for spatial vector data (points, lines, or polygons). This shapefile contains vector data about cultivated crops in the study area.
 - Transform the coordinates to `CH1903+ LV95`.
-- Filter the dataset `wildschwein_BE` to the period 01.04.2016 to 30.09.2016 and store the data in a new variable (`wildschwein_BE_2016`).
+- Filter the dataset `wildschwein_BE` to the months May, June and July of 2016 and store the data in a new variable (`wildschwein_BE_2016`).
 - Create a minimum convex polygon for each individual in `wildschwein_BE_2016` and store it in a new variable (`mcp2016`)
-- Import the raster data file `pk100_BE_2056.tif`. PK stands for Pixel-Karte.
-- Create a map with the layers `pk100_BE_2056.tif`, `fanel2016` and `mcp2016`.
+- Create a map with the layers `fanel2016` and `mcp2016`.
 
 ```{r, echo = F, include=T, eval = T,fig.height=9}
 
 library(lubridate)
+library(tmap)
 
-fanel2016 <- read_sf("../CMA_FS2018_Filestorage/Kulturen/Feldaufnahmen_Fanel_2016.shp") %>%
+fanel2016 <- read_sf("00_Rawdata/Feldaufnahmen_Fanel_2016.shp") %>%
   st_transform(2056)
 
-pk100_BE <- brick("../CMA_FS2018_Filestorage/pk100_BE_2056.tif")
+
+
+max(wildschwein_BE$DatetimeUTC)
 
 
 wildschwein_BE_2016 <- wildschwein_BE %>%
-  filter(DatetimeUTC >= as.Date("2016-04-01")) %>%
-  filter(DatetimeUTC <= as.Date("2016-09-30"))
-
+  filter(DatetimeUTC > "2015-01-05",DatetimeUTC < "2015-07-31")
 
 mcp2016 <- wildschwein_BE_2016 %>%
   group_by(TierID) %>%
@@ -93,12 +80,11 @@ mcp2016 <- wildschwein_BE_2016 %>%
   st_convex_hull()
 
 
-ggplot(fanel2016, aes(fill = Frucht)) + 
-  annotation_spraster(pk100_BE) +
-  geom_sf(alpha = 0.3) +
-  geom_sf(data = mcp2016, aes(colour = TierID), inherit.aes = F, alpha = 0.1,lwd = 2) +
-  theme(legend.position = "bottom")
-  
+tm_shape(fanel2016) + 
+  tm_polygons(col = "Frucht") +
+  tm_shape(mcp2016) +
+  tm_borders(lwd = 3,lty = 2)
+
 ```
 
 ```{r}
@@ -112,23 +98,20 @@ ggplot(fanel2016, aes(fill = Frucht)) +
 #- header3 Task 2
 #- chunkstart
 ```
-Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use `st_join()` to attach the attributes from `fanel2016` to your trajectory data `wildschwein_BE_2016` (semantic annotation). Visualize the number of sample points in each category of `Frucht` over the course of the filtered time period.
+Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use `st_join()` to attach the attributes from `fanel2016` to your trajectory data `wildschwein_BE` (semantic annotation). Visualize the number of sample points in each category of `Frucht` over the course of the filtered time period.
 
-```{r, echo = F, include=T, eval = T, fig.cap="The number of samples per category *per week* from April to September 2014."}
+```{r, echo = F, include=T, eval = T, fig.cap="The number of samples per category *per week* from May to July 2015."}
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
   st_join(dplyr::select(fanel2016,Frucht))
 
 
-frucht_remove <- c("0","Flugplatz","Rhabarber","Zucchetti")
-
 wildschwein_BE_2016 %>%
-  as.data.frame() %>%
+  st_set_geometry(NULL) %>%
   mutate(week = floor_date(DatetimeUTC,"weeks")) %>%
-  group_by(week,Frucht) %>%
+  group_by(TierID,week,Frucht) %>%
   summarise(n = n()) %>%
-  filter(!Frucht %in% frucht_remove) %>%
-  filter(Frucht != "NA") %>%
-  ggplot(aes(week,n, group = Frucht)) + 
+  filter(!Frucht %in% c("0","Flugplatz","Rhabarber","Zucchetti","NA")) %>%
+  ggplot(aes(week,n, colour = TierID)) + 
   geom_line() +
   labs(x = "Time",y = "Number of Samples") +
   facet_wrap(~Frucht) +
@@ -144,8 +127,8 @@ Think of other ways you could visually explore the spatio-temporal patterns of w
 
 Ideas:
 
-- For example, in the visualisation above, we did not account for the different availability of the different crops. Potatoes ("Kartoffeln") are seemingly not visited at all, while Rapeseed ("Raps") has high visitation from Mai to June. Maybe this is due to the fact that there are mostly Rapeseed fields and basically no Potatoe Fields. How could you consider availability in the visulisation?
-- Expore Circadian rhythm / daily patterns of crop visitations 
+- For example, in the visualisation above, we did not account for the different availability of the different crops. Potatoes ("Kartoffeln") are seemingly not visited at all, while rapeseed ("Raps") has high visitation from May to June. Maybe this is due to the fact that there are mostly rapeseed fields and basically no potatoe fields. How could you consider availability in the visulisation?
+- Exlpore the circadian rhythm / daily patterns of crop visitations. 
 
 
 ### Task 4: Annotate Trajectories from raster data
@@ -157,14 +140,14 @@ In terms of raster data, we have prepared a [Normalised Digital Surface Model (n
 
 
 ```{r, echo = F, include=T, eval = T, fig.cap="An example of a temporal exploration of the data obtained from the nDSM."}
-ndsm <- raster("../CMA_FS2018_Filestorage/nDSM.tif")
+ndsm <- raster("00_Rawdata/nDSM.tif")
 
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
   mutate(dod = raster::extract(ndsm,.))
 
 
 wildschwein_BE_2016 %>%
-  as.data.frame() %>%
+  st_set_geometry(NULL) %>%
   mutate(
     hour = hour(round_date(DatetimeUTC,"1 hours"))
     ) %>%
@@ -178,7 +161,10 @@ wildschwein_BE_2016 %>%
   ggplot(aes(x = hour,y = mean,ymin = do, ymax = up, colour = TierID,fill = TierID)) +
   geom_ribbon(alpha = 0.4) +
   geom_line() +
-  labs(x = "nDSM",title = "nDSM values as an approximation for vegitation hight",subtitle = "The line represents the mean nDSM value and the ribbon one standard deviation") +
+  labs(x = "nDSM",
+    title = "nDSM values as an approximation for vegitation hight",
+    subtitle = "The line represents the mean nDSM value and the ribbon one standard deviation") +
+  facet_wrap(~TierID) +
   theme_minimal()
     
   
@@ -188,52 +174,3 @@ wildschwein_BE_2016 %>%
 ```{r}
 #- chunkend
 ```
-
-
-
-## Solutions
-
-
-```{r child='15_Week5/RFiles/W05_01_Exercise_solution.Rmd', purl = F}
-```
-
-<!-- ### Task 5 (Optional): Determine revisited sites -->
-
-<!-- The package `recurse` helps find areas which are re-visited by the same indiviual. This gives us interesting insights into the ecology of our animals.  -->
-
-
-<!-- ```{r,, echo = F, include = T} -->
-
-<!-- library(recurse) -->
-<!-- library(ggforce) -->
-
-<!-- recurs <- wildschwein_BE %>% -->
-<!--   filter(TierID == "001A") %>% -->
-<!--   dplyr::select(E,N,DatetimeUTC,TierID) %>% -->
-<!--   st_set_geometry(NULL) %>% -->
-<!--   as.data.frame() %>% -->
-<!--   getRecursions(100) -->
-
-<!-- recurStats <- recurs$revisitStats -->
-
-<!-- recurStats <- recurStats %>% -->
-<!--   group_by(coordIdx) %>% -->
-<!--   summarise( -->
-<!--     number_of_visits = max(visitIdx), -->
-<!--     x = unique(x), -->
-<!--     y = unique(y), -->
-<!--     total_time = sum(timeInside), -->
-<!--     max_time = max(timeInside), -->
-<!--     mean_time = mean(timeInside) -->
-<!--   ) -->
-
-<!-- data1 = filter(recurStats, number_of_visits > 30) -->
-<!-- wildschwein_BE %>% -->
-<!--   ungroup() %>% -->
-<!--   filter(TierID == "001A") %>% -->
-<!--   ggplot(aes(E,N)) + -->
-<!--   geom_point(alpha = 0.4, colour = "grey") + -->
-<!--   geom_circle(data = data1, alpha = 0.5, aes(x0 = x,y0 = y,fill = mean_time,r = 100),inherit.aes = F) + -->
-<!--   coord_fixed(1) -->
-
-<!-- ``` -->
