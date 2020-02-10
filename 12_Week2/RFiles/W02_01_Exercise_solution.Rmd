@@ -1,5 +1,6 @@
 ### Preperation
 ```{r, echo = T,include = T,eval = F}
+
 library(tidyverse)
 library(sf)
 library(lubridate)
@@ -9,25 +10,35 @@ wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
+
 ```
+
 ### Demo Tidyverse
 ```{r, echo = T,include = T,eval = F}
+
 now <- Sys.time()
 
 later <- now + 10000
 
 time_difference <- difftime(later,now)
+
 time_difference
+
 time_difference <- difftime(later,now,units = "mins")
+
 time_difference
+
 str(time_difference)
+
 time_difference <- as.numeric(difftime(later,now,units = "mins"))
 
 str(time_difference)
 
+
 numbers <- 1:10
 
 numbers
+
 lead(numbers)
 
 lead(numbers,n = 2)
@@ -37,19 +48,28 @@ lag(numbers)
 lag(numbers,n = 5)
 
 lag(numbers,n = 5, default = 0)
+
 lead(numbers)-numbers
+
 
 wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC,units = "secs"))
 
-wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
-summary(wildschwein_BE$timelag)
-wildschwein_BE <- group_by(wildschwein_BE,TierID)
+
 wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
 
 summary(wildschwein_BE$timelag)
+
+wildschwein_BE <- group_by(wildschwein_BE,TierID)
+
+wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+
+summary(wildschwein_BE$timelag)
+
 ## summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
 
+
 summarise(st_set_geometry(wildschwein_BE,NULL), mean_timelag = mean(timelag, na.rm = T))
+
 
 wildschwein_BE %>%                     # Take wildschwein_BE...
   st_set_geometry(NULL) %>%            # ...remove the geometry column...
@@ -57,6 +77,7 @@ wildschwein_BE %>%                     # Take wildschwein_BE...
   summarise(                           # Summarise the data...
     mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
   )
+
 pigs = data.frame(
   TierID=c(8001,8003,8004,8005,8800,8820,3000,3001,3002,3003,8330,7222),
   sex=c("M","M","M","F","M","M","F","F","M","F","M","F"),
@@ -83,9 +104,12 @@ pigs %>%
     mean_weight = mean(weight)
   )
 
+
 ```
+
 ### Task 1
 ```{r, echo = T,include = T,eval = F}
+
 
 wildschwein_BE <- wildschwein_BE %>%
   mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
@@ -107,39 +131,51 @@ wildschwein_BE %>%
   
 
 
+
 ```
+
 ### Input
 ```{r, echo = T,include = T,eval = F}
+
 # Store coordinates in a new variable
 
 coordinates <- st_coordinates(wildschwein_BE)
 
 head(coordinates)
+
 colnames(coordinates) <- c("E","N")
 
 wildschwein_BE <- cbind(wildschwein_BE,coordinates)
 
 head(wildschwein_BE)
+
 ```
+
 ### Task 2
 ```{r, echo = T,include = T,eval = F}
+
 
 wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     steplength = sqrt((E-lead(E))^2+(N-lead(N))^2)
   )
+
 wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
     speed = steplength/timelag
   )
+
 ```
+
 ### Task 3
 ```{r, echo = T,include = T,eval = F}
+
 caro60 <- read_delim("00_Rawdata/caro60.csv",",") %>%
   st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)
   
+
 caro60_3 <- caro60 %>%
   slice(seq(1,nrow(.),3)) # the dot (".") represents the piped dataset
 
@@ -148,10 +184,12 @@ caro60_6 <- caro60 %>%
 
 caro60_9 <- caro60 %>%
   slice(seq(1,nrow(.),9))
+
 nrow(caro60)
 nrow(caro60_3)
 nrow(caro60_6)
 nrow(caro60_9)
+
 
 caro60 <- caro60 %>%
   mutate(
@@ -181,6 +219,7 @@ caro60_9 <- caro60_9 %>%
     steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
     speed = steplength/timelag
   )
+
 
 
 
@@ -218,15 +257,19 @@ ggplot() +
   labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
   theme_minimal()
 
+
 ```
+
 ### Task 4
 ```{r, echo = T,include = T,eval = F}
+
 
 library(zoo)
 
 example <- rnorm(10)
 rollmean(example,k = 3,fill = NA,align = "left")
 rollmean(example,k = 4,fill = NA,align = "left")
+
 
 
 caro60 <- caro60 %>%
@@ -241,9 +284,12 @@ caro60 %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
   # geom_point() +
   geom_line() 
+
 ```
+
 ### Task 5
 ```{r, echo = T,include = T,eval = F}
+
 library(grid) # just for the arrows
 
 
@@ -284,6 +330,8 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
   geom_segment(aes(x = lag(x), y = lag(y), xend = x,yend = y),arrow = arrow(length = unit(0.5,"cm"))) +
   geom_label(aes(label = paste0(angle,"°")),alpha = 0.4,nudge_x = 0.2, nudge_y = 0.2) +
   coord_equal()
+
 ```
+
 ### Preperation
 ```{r, echo = T,include = T,eval = F}
