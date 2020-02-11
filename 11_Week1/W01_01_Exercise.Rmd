@@ -116,14 +116,15 @@ wildschwein_BE$DatetimeUTC[1]
 We will use a range of different visualization tools (i.e. R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While `base::plot() `is quick and simple, it not very scalable with growing complexity. `ggplot2` offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
 
 Get an overview of your data by creating a first "map-like" plot of your data producing a simple scatter plot with `ggplot2`. 
-Setting up a `ggplot` with our data is done using the command `ggplot(wildschwein_BE, aes(Long, Lat, colour = TierID))`. Creating a map is done via the basic scatter plot command `geom_point()`. Use `coord_map()` to get a reasonable aspect ratio of `Lat` and `Long`.  Assigning every individual its own colour is done using the `ggplot` argument `colour =`.
+Setting up a `ggplot` with our data is done using the command `ggplot(wildschwein_BE, aes(Long, Lat, colour = TierID))`. Creating a map is done via the basic scatter plot command `geom_point()`.
+<!-- Use `coord_map()` to get a reasonable aspect ratio of `Lat` and `Long`. -->
+Assigning every individual its own colour is done using the `ggplot` argument `colour =`.
 
 Save your code in the appropriate section.
 
 ```{r, echo = F, include=T, eval = T, }
 ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
   geom_point() +
-  coord_map() +
   theme(legend.position = "none")
 ```
 

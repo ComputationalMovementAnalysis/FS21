@@ -1,5 +1,6 @@
 #- header3 Preperation
 #- chunkstart
+
 ## install.packages("SimilarityMeasures")
 ## 
 ## # The following packages are for optional tasks:
@@ -8,6 +9,7 @@
 ## # You don't really need the following packages,
 ## # we just use them in our figures
 ## install.packages("ggrepel")
+
 library(tidyverse)
 library(sf)
 
@@ -35,9 +37,12 @@ wildschwein_BE <- wildschwein_BE %>%
     speed = steplength/timelag
   )
 
+
 #- chunkend
+
 #- header3 Input
 #- chunkstart
+
 set.seed(10)
 n = 20
 df <- tibble(X = cumsum(rnorm(n)), Y = cumsum(rnorm(n)))
@@ -47,6 +52,7 @@ ggplot(df, aes(X,Y)) +
   geom_point() +
   coord_equal()
 
+
 df <- df %>%
   mutate(
     nMinus2 = sqrt((lag(X,2)-X)^2+(lag(Y,2)-Y)^2),   # distance to pos -10 minutes
@@ -55,10 +61,12 @@ df <- df %>%
     nPlus2  = sqrt((X-lead(X,2))^2+(Y-lead(Y,2))^2)  # distance to pos +10 minutes
   )
 
+
 df %>%
   mutate(
     stepMean = mean(c(nMinus2, nMinus1,nPlus1,nPlus2), na.rm = T)
   )
+
 df <- df %>%
   rowwise() %>%
   mutate(
@@ -66,6 +74,7 @@ df <- df %>%
   )
 
 df
+
 
 df <- df %>% 
   mutate(
@@ -78,19 +87,23 @@ ggplot(df, aes(X,Y)) +
   geom_path() + 
   geom_point(aes(colour = moving)) +
   coord_equal()
+
 one_to_ten <- 1:10
 one_to_ten
 cumsum(one_to_ten)
+
 as.integer(TRUE)
 as.integer(FALSE)
 
 TRUE+TRUE
+
 
 boolvec <- c(FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,TRUE)
 
 df_cumsum <- tibble(boolvec = boolvec,cumsum = cumsum(boolvec))
 
 df_cumsum
+
 
 df_cumsum %>%
   mutate(
@@ -99,14 +112,18 @@ df_cumsum %>%
   )
 
 
+
 df_cumsum %>%
   mutate(
     cumsum2 = cumsum(!boolvec)
   )
   
+
 #- chunkend
+
 #- header3 Task1
 #- chunkstart
+
 
 
 caro60 <- read_delim("00_Rawdata/caro60.csv",",")
@@ -122,23 +139,30 @@ caro60 <- caro60 %>%
         )                                      # of rows as the original dataframe)
       )
   )
+
 #- chunkend
+
 #- header3 Task 2
 #- chunkstart
+
 
 summary(caro60$stepMean)
 
 ggplot(caro60, aes(stepMean)) +
   geom_histogram(binwidth = 1) +
   geom_vline(xintercept = 5)
+
 caro60 <- caro60 %>%
   mutate(
     moving = stepMean > 5
   ) 
 
+
 #- chunkend
+
 #- header3 Task 3
 #- chunkstart
+
 
 p1 <- caro60 %>%
   ggplot() +
@@ -149,13 +173,19 @@ p1 <- caro60 %>%
 
 p1
 
+
 ## 
 ## library(plotly)
 ## ggplotly(p1)
 ## 
+
+
+
 #- chunkend
+
 #- header3 Task 4
 #- chunkstart
+
 
 caro60_moveseg <-caro60 %>%
   filter(!is.na(moving)) %>%
@@ -183,9 +213,12 @@ bind_rows(mutate(caro60, lab = "before"),mutate(caro60_moveseg,lab = "after")) %
 
 
 
+
 #- chunkend
+
 #- header3 Task 5
 #- chunkstart
+
 
 library(ggrepel)
 pedestrians <- read_delim("00_Rawdata/pedestrian.csv",",")
@@ -219,21 +252,29 @@ plotraj <- function(idx,lab = F){
   p
 }
 
+
 plotraj(2)
+
 
 
 plotraj(3,T) 
 
 
+
 plotraj(4)
+
 
 plotraj(5)
 
 
+
 plotraj(6)
+
 #- chunkend
+
 #- header3 Task 6
 #- chunkstart
+
 
 # instead of repeating the same step 6 times, I use purrr::map() 
 # which creates a list of dataframes. Feel free to use a method
@@ -246,6 +287,7 @@ pedestrians_matrix <- pedestrians %>%
       select(E,N) %>%
       as.matrix()
   })
+
 
 library(SimilarityMeasures)
 
@@ -273,7 +315,3 @@ pedest_measures %>%
   theme(legend.position = "none") +
   labs(x = "Comparison trajectory", y = "Value", title = "Computed similarities using different measures \nbetween trajectory 1 to all other trajectories ")
 
-nrow(caro60)
-nrow(caro60_3)
-nrow(caro60_6)
-nrow(caro60_9)

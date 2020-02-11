@@ -1,15 +1,16 @@
 rmd_files: [
   "index.Rmd", 
   "11_Week1/W01_01_Exercise.Rmd",
-  "11_Week1/W01_02_Solutions.Rmd",
-  "12_Week2/W02_01_Exercise.Rmd",
-  "12_Week2/W02_02_Solutions.Rmd",
-  "13_Week3/W03_01_Exercise.Rmd",
-  "13_Week3/W03_02_Solutions.Rmd",
-  "14_Week4/W04_01_Exercise.Rmd",
-  "14_Week4/W04_01_Solutions.Rmd",
-  "15_Week5/W05_01_Exercise.Rmd",
+  #"11_Week1/W01_02_Solutions.Rmd",
+  #"12_Week2/W02_01_Exercise.Rmd",
+  #"12_Week2/W02_02_Solutions.Rmd",
+  #"13_Week3/W03_01_Exercise.Rmd",
+  #"13_Week3/W03_02_Solutions.Rmd",
+  #"14_Week4/W04_01_Exercise.Rmd",
+  #"14_Week4/W04_01_Solutions.Rmd",
+  #"15_Week5/W05_01_Exercise.Rmd",
   "00_Admin/references.Rmd"
+  
   ]
 delete_merged_file: true
 book_filename: "patterns-and-trends.Rmd"

@@ -1,5 +1,6 @@
 #- header3 Preperation
 #- chunkstart
+
 library(tidyverse)
 library(sf)
 library(lubridate)
@@ -28,22 +29,29 @@ wildschwein_BE <- wildschwein_BE %>%
     speed = steplength/timelag
   )
 
+
 #- chunkend
+
 #- header3 Input
 #- chunkstart
+
 testfun <- function(){}
+
 
 testfun()
 
 class(testfun)
 
+
 testfun <- function(){print("this function does nothing")}
 
 testfun()
 
+
 testfun <- function(sometext){print(sometext)}
 
 testfun(sometext = "this function does slightly more, but still not much")
+
 # specify two parameters:
 # x: the value  with want to take the root from
 # n: the root we want to take (2 for 2nd root)
@@ -54,8 +62,10 @@ nthroot <- function(x,n){x^(1/n)}
 # Expecting the result to be 2:
 nthroot(x = 4,n = 2)
 
+
 nthroot(27,3)
 nthroot(3,3)
+
 nthroot <- function(x,n = 2){x^(1/n)}
 
 # if not stated otherwise, our function takes the square root
@@ -63,18 +73,25 @@ nthroot(10)
 # We can still overwrite n
 nthroot(10,3)
 
+
 #- chunkend
+
 #- header3 Task 1
 #- chunkstart
+
 euclid <- function(x,y,leadval = 1){
   sqrt((x-lead(x,leadval))^2+(y-lead(y,leadval))^2)
 }
+
 #- chunkend
+
 #- header3 Task 2
 #- chunkstart
+
 wildschwein_filter <- wildschwein_BE %>%
   filter(DatetimeUTC > "2015-04-01",
          DatetimeUTC < "2015-04-15") 
+
 wildschwein_filter %>%
   group_by(TierID) %>%
   summarise() %>%
@@ -84,15 +101,20 @@ wildschwein_filter %>%
 wildschwein_filter <- wildschwein_filter %>%
   filter(TierID != "018A")
 
+
 #- chunkend
+
 #- header3 Task 3
 #- chunkstart
+
 head(wildschwein_filter)
+
 ggplot(wildschwein_filter, aes(DatetimeUTC,timelag/60, colour = TierID)) + 
   geom_line() + 
   geom_point()+ 
   expand_limits(y = 0) +
   facet_grid(TierID~.)
+
 
 wildschwein_filter <- wildschwein_filter %>%
   group_by(TierID) %>%
@@ -106,9 +128,12 @@ wildschwein_filter %>%
   geom_histogram(binwidth = 1) +
   labs(x = "Absolute time difference between original- and rounded Timestamp",
        y = "Number of values")
+
 #- chunkend
+
 #- header3 Task 4
 #- chunkstart
+
 wildschwein_join <- wildschwein_filter %>%
   ungroup() %>%
   select(TierID,DatetimeRound,E,N) %>%
@@ -129,10 +154,14 @@ wildschwein_join <- wildschwein_join %>%
     meet = distance < 100
   )
 
+
 wildschwein_join
+
 #- chunkend
+
 #- header3 Task 5
 #- chunkstart
+
 
 # library(ggpmisc)
 # 
@@ -179,9 +208,12 @@ ggplot(wildschwein_spread) +
 
 
 
+
 #- chunkend
+
 #- header3 Task 6
 #- chunkstart
+
 ## 
 ## meanmeetpoints <- wildschwein_join %>%
 ##   filter(meet) %>%
@@ -199,6 +231,7 @@ ggplot(wildschwein_spread) +
 ##                       yaxis = list(title = 'N'),
 ##                       zaxis = list(title = 'Time')))
 ## 
+
 ## wildschwein_join %>%
 ##   filter(DatetimeRound<"2015-04-04") %>%
 ##   plot_ly(x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
@@ -207,4 +240,7 @@ ggplot(wildschwein_spread) +
 ##   layout(scene = list(xaxis = list(title = 'E'),
 ##                       yaxis = list(title = 'N'),
 ##                       zaxis = list(title = 'Time')))
+
+
+
 #- chunkend

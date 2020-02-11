@@ -1,5 +1,6 @@
 #- header3 Preperation
 #- chunkstart
+
 library(tidyverse)
 library(sf)
 library(ggspatial)
@@ -23,9 +24,12 @@ wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
 
 
 
+
 #- chunkend
+
 #- header3 Task 1
 #- chunkstart
+
 
 library(lubridate)
 library(tmap)
@@ -52,9 +56,12 @@ tm_shape(fanel2016) +
   tm_shape(mcp2016) +
   tm_borders(lwd = 3,lty = 2)
 
+
 #- chunkend
+
 #- header3 Task 2
 #- chunkstart
+
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
   st_join(dplyr::select(fanel2016,Frucht))
 
@@ -71,9 +78,12 @@ wildschwein_BE_2016 %>%
   facet_wrap(~Frucht) +
   theme_minimal()
 
+
 #- chunkend
+
 #- header3 Task 4
 #- chunkstart
+
 ndsm <- raster("00_Rawdata/nDSM.tif")
 
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
@@ -102,5 +112,6 @@ wildschwein_BE_2016 %>%
   theme_minimal()
     
   
+
 
 #- chunkend
