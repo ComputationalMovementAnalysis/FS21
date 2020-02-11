@@ -21,6 +21,7 @@
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={Patterns and Trends in Environmental Data},
@@ -106,7 +107,7 @@
 \usepackage{titling}
 
 % Create subtitle command for use in maketitle
-\providecommand{\subtitle}[1]{
+\newcommand{\subtitle}[1]{
   \posttitle{
     \begin{center}\large#1\end{center}
     }
@@ -118,7 +119,11 @@
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
   \subtitle{Master ENR, Spring Semester 2020}
+<<<<<<< HEAD
   \author{Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannisg}
+=======
+  \author{Patrick Laube and Nils Ratnaweera}
+>>>>>>> 3b3d96ad020b4872d8062c184c83657bc397cc5d
     \preauthor{\centering\large\emph}
   \postauthor{\par}
       \predate{\centering\large\emph}
@@ -512,7 +517,11 @@ In the next task, we would like to add a background map to our \texttt{mcp} obje
 \CommentTok{## resolution : 5, 5  (x, y)}
 \CommentTok{## extent     : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)}
 \CommentTok{## crs        : +proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs }
+<<<<<<< HEAD
 \CommentTok{## source     : /home/staff/rata/unix/Master/PatternsAndTrends/2020_FS/Unterrichtsunterlagen_FS2020/00_Rawdata/pk100_BE_2056.tif }
+=======
+\CommentTok{## source     : /home/staff/bako/unix/Lehre/Master/Pattends_and_Trends/Unterrichtsunterlagen_FS2020/00_Rawdata/pk100_BE_2056.tif }
+>>>>>>> 3b3d96ad020b4872d8062c184c83657bc397cc5d
 \CommentTok{## names      : pk100_BE_2056.1, pk100_BE_2056.2, pk100_BE_2056.3, pk100_BE_2056.4 }
 \CommentTok{## min values :               0,               0,               0,               0 }
 \CommentTok{## max values :             255,             255,             255,             255}
@@ -567,6 +576,7 @@ As you can see, plotting layers in \texttt{tmap} is combined with the \texttt{+}
 
 Rerun the \texttt{tmap()...} command from the previous task, but switch the plotting mode to ``view''" (\texttt{tmap\_mode("view")}) beforehand. Omit the raster layer (\texttt{pk100\_BE}), you won't be needing it.
 
+<<<<<<< HEAD
 \hypertarget{exercise-2}{%
 \chapter{Exercise 2}\label{exercise-2}}
 
@@ -2013,26 +2023,13 @@ In terms of raster data, we have prepared a \href{https://gisgeography.com/lidar
 \caption{\label{fig:unnamed-chunk-183}An example of a temporal exploration of the data obtained from the nDSM.}
 \end{figure}
 
+=======
+>>>>>>> 3b3d96ad020b4872d8062c184c83657bc397cc5d
 \hypertarget{references}{%
 \chapter*{References}\label{references}}
 \addcontentsline{toc}{chapter}{References}
 
 \hypertarget{refs}{}
-\leavevmode\hypertarget{ref-both2018}{}%
-Alan Both, Matt Duckham, Kevin Buchin. 2018. ``A Comparative Analysis of Trajectory Similarity Measures: Recommendations for Selection and Use.''
-
-\leavevmode\hypertarget{ref-hagerstraand1970}{}%
-Hägerstraand, Torsten. 1970. ``What About People in Regional Science?'' \emph{Papers in Regional Science} 24 (1): 7--24.
-
-\leavevmode\hypertarget{ref-laube2014}{}%
-Laube, Patrick. 2014. \emph{Computational Movement Analysis}. SpringerBriefs in Computer Science. Springer International Publishing. \url{https://books.google.ch/books?id=xMRpBAAAQBAJ}.
-
-\leavevmode\hypertarget{ref-laube2011}{}%
-Laube, Patrick, and Ross S. Purves. 2011. ``How Fast Is a Cow? Cross - Scale Analysis of Movement Data.'' \emph{Transactions in GIS} 15 (3): 401--18. \url{https://doi.org/10.1111/j.1467-9671.2011.01256.x}.
-
-\leavevmode\hypertarget{ref-vlachos2002}{}%
-Vlachos, Michail, Dimitrios Gunopoulos, and George Kollios. 2002. ``Discovering Similar Multidimensional Trajectories.'' In \emph{Proceedings of the 18th International Conference on Data Engineering}, 673. ICDE '02. Washington, DC, USA: IEEE Computer Society. \url{http://dl.acm.org/citation.cfm?id=876875.878994}.
-
 \leavevmode\hypertarget{ref-wickham2017}{}%
 Wickham, Hadley, and Garrett Grolemund. 2017. \emph{R for Data Science: Import, Tidy, Transform, Visualize, and Model Data}. 1st ed. O'Reilly Media, Inc.
 

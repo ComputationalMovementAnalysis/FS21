@@ -332,6 +332,3 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
   coord_equal()
 
 ```
-
-### Input
-```{r, echo = T,include = T,eval = F}
