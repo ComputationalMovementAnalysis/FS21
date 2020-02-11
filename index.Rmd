@@ -1,6 +1,6 @@
 ---
 title: "Patterns and Trends in Environmental Data"
-subtitle: "Master ENR, Spring Semester 2019"
+subtitle: "Master ENR, Spring Semester 2020"
 author: "Patrick Laube and Nils Ratnaweera"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 site: bookdown::bookdown_site

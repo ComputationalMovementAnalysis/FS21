@@ -332,6 +332,3 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
   coord_equal()
 
 #- chunkend
-
-#- header3 Preperation
-#- chunkstart

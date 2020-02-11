@@ -315,8 +315,3 @@ pedest_measures %>%
   theme(legend.position = "none") +
   labs(x = "Comparison trajectory", y = "Value", title = "Computed similarities using different measures \nbetween trajectory 1 to all other trajectories ")
 
-
-nrow(caro60)
-nrow(caro60_3)
-nrow(caro60_6)
-nrow(caro60_9)
