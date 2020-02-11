@@ -315,3 +315,17 @@ pedest_measures %>%
   theme(legend.position = "none") +
   labs(x = "Comparison trajectory", y = "Value", title = "Computed similarities using different measures \nbetween trajectory 1 to all other trajectories ")
 
+
+
+# instead of repeating the same step 6 times, I use purrr::map() 
+# which creates a list of dataframes. Feel free to use a method
+# with which you feel comfortable.
+
+pedestrians_matrix <- pedestrians %>%
+  split(.$TrajID) %>%
+  map(function(x){
+    x %>%
+      select(E,N) %>%
+      as.matrix()
+  })
+
