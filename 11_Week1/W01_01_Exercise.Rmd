@@ -158,7 +158,9 @@ We will largely rely on `sf`when working with vector data in `R`. In order to tr
 ```{r, echo = T, include = T, eval = T}
 library(sf)
 
-wildschwein_BE_sf <- st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
+wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
+                              coords = c("Long", "Lat"), 
+                              crs = 4326)
 
 ```
 
@@ -191,9 +193,12 @@ wildschwein_BE_sf[,2:3]
 Instead of keeping the same data twice (once as a `data.frame`, and once as an `sf` object), we will overwrite the `data.frame` and continue working with the `sf` object from now on. This saves some memory space in `R` and avoids confusion. 
 
 ```{r,  echo = T, include = T, eval = T}
-wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
+wildschwein_BE = st_as_sf(wildschwein_BE, 
+                          coords = c("Long", "Lat"), 
+                          crs = 4326)
 
-rm(wildschwein_BE_sf) # we can remove this sf object, since it just eats up our memory
+rm(wildschwein_BE_sf) 
+# we can remove this sf object, since it just eats up our memory
 
 ```
 

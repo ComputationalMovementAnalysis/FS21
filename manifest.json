@@ -6,7 +6,7 @@
     "appmode": "rmd-static",
     "primary_rmd": "index.Rmd",
     "primary_html": null,
-    "content_category": "site",
+    "content_category": null,
     "has_parameters": false
   },
   "packages": {
@@ -3833,29 +3833,26 @@
     }
   },
   "files": {
-    "_book/02_Images/laube_2011_2.jpg": {
-      "checksum": "e8761b13de8a052b21d982637adc3361"
-    },
     "_book/02_Images/laube_2011.jpg": {
       "checksum": "4c7ae668d11c9b36378b84b46b3bcae7"
     },
     "_book/exercise-1.html": {
-      "checksum": "2310c05079d272b73b84d57aee9bf432"
+      "checksum": "98da67b72af760c61ebaffbe8702033d"
     },
     "_book/exercise-2.html": {
-      "checksum": "ceb893c50d97f28883dc5353c32e5bc1"
+      "checksum": "868a71353762fc702eac5dde860f3ac7"
     },
     "_book/exercise-3.html": {
-      "checksum": "0b76518e9241540ecf95bee322d8ba64"
+      "checksum": "2cdf6f8818011b3f5237c34b4ebef5d9"
     },
     "_book/exercise-4.html": {
-      "checksum": "9bbfc8bd703cec83137801a639a1c0b6"
+      "checksum": "9b886e7b8ec5cc820a24d1b3318ae01e"
     },
     "_book/exercise-5.html": {
-      "checksum": "1f9331ecddfd7e31911e028e224715f5"
+      "checksum": "3b0c0901bd1ae4c8f47d63ea18b12586"
     },
     "_book/index.html": {
-      "checksum": "dcd9789b35175546c62ff8a2434476b8"
+      "checksum": "d95091af0ce5a9c55cad97195c9c7b3e"
     },
     "_book/libs/crosstalk-1.0.0/css/crosstalk.css": {
       "checksum": "a03b8a3a33eb8a69d37a03746ba92b4f"
@@ -3914,29 +3911,17 @@
     "_book/libs/gitbook-2.6.7/js/plugin-sharing.js": {
       "checksum": "723416fb0154ce96e35ce1ec56992afa"
     },
-    "_book/libs/htmlwidgets-1.3/htmlwidgets.js": {
-      "checksum": "193480eabc430b96e276ba6db78a6013"
-    },
     "_book/libs/htmlwidgets-1.5.1/htmlwidgets.js": {
       "checksum": "4ea5c55cd0143175643435a640086c16"
     },
     "_book/libs/jquery-2.2.3/jquery.min.js": {
       "checksum": "33cabfa15c1060aaa3d207c653afb1ee"
     },
-    "_book/libs/plotly-binding-4.8.0/plotly.js": {
-      "checksum": "c49bb41d6d85bb5a885827762b3cac64"
-    },
     "_book/libs/plotly-binding-4.9.0/plotly.js": {
       "checksum": "bc36eda575b6729150598879c7e4f81f"
     },
-    "_book/libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css": {
-      "checksum": "150e4929cfd53a8a39835d40a108a54e"
-    },
     "_book/libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css": {
       "checksum": "150e4929cfd53a8a39835d40a108a54e"
-    },
-    "_book/libs/plotly-main-1.39.2/plotly-latest.min.js": {
-      "checksum": "f12745b4970bca41dc8582a20afb5bd2"
     },
     "_book/libs/plotly-main-1.46.1/plotly-latest.min.js": {
       "checksum": "2466dd4131dbec3356fc7bf69d6385ee"
@@ -3944,50 +3929,23 @@
     "_book/libs/typedarray-0.1/typedarray.min.js": {
       "checksum": "4db25a9ed5c5fcf2dd1746f27be2ef39"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-101-1.png": {
-      "checksum": "254daf802df32e88547f49fbd97c2f77"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-102-1.png": {
-      "checksum": "5583f25bbcc8656b56847062497705e7"
-    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-103-1.png": {
-      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-105-1.png": {
       "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-11-1.png": {
       "checksum": "46c5b2414efd396f17c87a8cba966b45"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-113-1.png": {
-      "checksum": "49db85b377a233c939a63b319f0d616f"
-    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-114-1.png": {
       "checksum": "40fa516926593e2382c54bd307fae128"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-116-1.png": {
-      "checksum": "40fa516926593e2382c54bd307fae128"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-117-1.png": {
-      "checksum": "9009f8bf0e5a266f00711d471ebae378"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-118-1.png": {
       "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-120-1.png": {
-      "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-122-1.png": {
-      "checksum": "9c3cbc7cc306dc3a999499d9a8ce01a2"
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-12-1.png": {
+      "checksum": "46c5b2414efd396f17c87a8cba966b45"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-123-1.png": {
       "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-125-1.png": {
-      "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-126-1.png": {
-      "checksum": "59a6a6fc2612e7df3e1e1ce4d8f90143"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-127-1.png": {
       "checksum": "02dce3370b184872720dbf46ee9f0d40"
@@ -3998,61 +3956,49 @@
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-129-1.png": {
       "checksum": "9481b044e021a909e6992a94a95fe606"
     },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-13-1.png": {
+      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
+    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-130-1.png": {
       "checksum": "199e188b4890175da06bf82c66988307"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-131-1.png": {
       "checksum": "ab04d7af985c6eebb956af544ada03e8"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-132-1.png": {
-      "checksum": "199e188b4890175da06bf82c66988307"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-133-1.png": {
-      "checksum": "ab04d7af985c6eebb956af544ada03e8"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-134-1.png": {
-      "checksum": "4115f9be046fba2c6c7fceccb459b33c"
-    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-135-1.png": {
       "checksum": "5939b0ff504624460a5289e16dd39025"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-137-1.png": {
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-138-1.png": {
+      "checksum": "5939b0ff504624460a5289e16dd39025"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-139-1.png": {
       "checksum": "5939b0ff504624460a5289e16dd39025"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-154-1.png": {
       "checksum": "5700da2781aad1e5089f227489334f01"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-156-1.png": {
-      "checksum": "6bee7f2f895194a52c516e9ca5e7c1b9"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-157-1.png": {
-      "checksum": "5700da2781aad1e5089f227489334f01"
-    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-158-1.png": {
+      "checksum": "f52b0ef79db9287988f619fc17b6c3c7"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-158-1.png~HEAD": {
       "checksum": "f52b0ef79db9287988f619fc17b6c3c7"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-159-1.png": {
       "checksum": "2d9bb0136449283c1751e7184be5ee70"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-160-1.png": {
-      "checksum": "0f930c7b10cb35b82d084175e4e6ea75"
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-163-1.png": {
+      "checksum": "2d9bb0136449283c1751e7184be5ee70"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-161-1.png": {
-      "checksum": "f52b0ef79db9287988f619fc17b6c3c7"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-162-1.png": {
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-164-1.png": {
       "checksum": "2d9bb0136449283c1751e7184be5ee70"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-166-1.png": {
       "checksum": "27ca8f5c11241a803872e10433b0a260"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-167-1.png": {
-      "checksum": "b9896bfb9a84730e1e65671ea5bd76fe"
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-170-1.png": {
+      "checksum": "27ca8f5c11241a803872e10433b0a260"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-168-1.png": {
-      "checksum": "c81d534e14b4f0869f2755c28b0e28a5"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-169-1.png": {
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-171-1.png": {
       "checksum": "27ca8f5c11241a803872e10433b0a260"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-177-1.png": {
@@ -4061,17 +4007,26 @@
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-180-1.png": {
       "checksum": "1737ace638825bf97b1239a3bf46d301"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-181-1.png": {
-      "checksum": "ff5e34111340b834b79367bc52533a47"
-    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-183-1.png": {
       "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-184-1.png": {
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-183-1.png~HEAD": {
+      "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-186-1.png": {
       "checksum": "1737ace638825bf97b1239a3bf46d301"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-187-1.png": {
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-189-1.png": {
       "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-190-1.png": {
+      "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-24-1.png": {
+      "checksum": "40fa516926593e2382c54bd307fae128"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-28-1.png": {
+      "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-30-1.png": {
       "checksum": "4e9a8b06f5978fb77c0a9b6814df452a"
@@ -4082,17 +4037,50 @@
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-32-1.png": {
       "checksum": "875ae90c5fae35ded9a23170cef9b530"
     },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-33-1.png": {
+      "checksum": "875ae90c5fae35ded9a23170cef9b530"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-34-1.png": {
+      "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-35-1.png": {
+      "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
+    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-36-1.png": {
       "checksum": "cc07fce4566d98834cdacc910248531d"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-36-2.png": {
       "checksum": "cb82a3cebc3d1491600869cc67c9f723"
     },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-37-1.png": {
+      "checksum": "cc07fce4566d98834cdacc910248531d"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-37-2.png": {
+      "checksum": "cb82a3cebc3d1491600869cc67c9f723"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-38-1.png": {
+      "checksum": "9481b044e021a909e6992a94a95fe606"
+    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-39-1.png": {
       "checksum": "0a01ef6800eb4626188d71fc7db30ea3"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-40-1.png": {
       "checksum": "22e34e39913bd8a0bd502b70d819345f"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-41-1.png": {
+      "checksum": "22e34e39913bd8a0bd502b70d819345f"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-42-1.png": {
+      "checksum": "199e188b4890175da06bf82c66988307"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-43-1.png": {
+      "checksum": "ab04d7af985c6eebb956af544ada03e8"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-46-1.png": {
+      "checksum": "5939b0ff504624460a5289e16dd39025"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-47-1.png": {
+      "checksum": "5939b0ff504624460a5289e16dd39025"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-69-1.png": {
       "checksum": "848561a7649ef5844fe2f02ddc2f7784"
@@ -4101,15 +4089,6 @@
       "checksum": "501aec9894caebddea32ddc91c038e65"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-69-3.png": {
-      "checksum": "8f4fc6557986e559b6cd16c19572a017"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-70-1.png": {
-      "checksum": "848561a7649ef5844fe2f02ddc2f7784"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-70-2.png": {
-      "checksum": "501aec9894caebddea32ddc91c038e65"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-70-3.png": {
       "checksum": "8f4fc6557986e559b6cd16c19572a017"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-84-1.png": {
@@ -4124,86 +4103,26 @@
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-84-4.png": {
       "checksum": "21740ff6b92ba11180d22bb6eccb38f8"
     },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-85-1.png": {
-      "checksum": "d9680e0918a4139deffd5b9839eb53dc"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-85-2.png": {
-      "checksum": "cee34649c97eef6a022bd57310c09028"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-85-3.png": {
-      "checksum": "5fb729e89cf6760fcfb3045134096b02"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-85-4.png": {
-      "checksum": "21740ff6b92ba11180d22bb6eccb38f8"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-97-1.png": {
-      "checksum": "dc5783501d9011d3b0e474d941fc4b05"
-    },
-    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-98-1.png": {
-      "checksum": "dc5783501d9011d3b0e474d941fc4b05"
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-9-1.png": {
+      "checksum": "254daf802df32e88547f49fbd97c2f77"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-99-1.png": {
       "checksum": "254daf802df32e88547f49fbd97c2f77"
     },
     "_book/patterns-and-trends.pdf": {
-      "checksum": "add29f8567c0297056e7b38c52ae1329"
+      "checksum": "09cf48ac329eaaa9f558d97d5b14cd04"
     },
     "_book/patterns-and-trends.tex": {
-      "checksum": "f21a2586c699685bfb57cbf80df12e1f"
+      "checksum": "a93abae06873086274ed64c07ad55060"
     },
     "_book/references.html": {
-      "checksum": "a721e2c6facef48720b7398628616b3d"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtren.dcf": {
-      "checksum": "dbc77c04c8854ba4d4de91357f3b3496"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrend.dcf": {
-      "checksum": "9a9e84c6d3e3c0ad3f8799d2f133c588"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrends.dcf": {
-      "checksum": "8cff8a5e20fd5ca78fe4e106c5dd8e04"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrends2.dcf": {
-      "checksum": "c245dab6969854780a08dddbdeb969b5"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrends3.dcf": {
-      "checksum": "14bc75763fab11ddb5d125493492b2c0"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrends4.dcf": {
-      "checksum": "9aad4d90986aa9e1153e37b4abfcf01d"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrends5.dcf": {
-      "checksum": "1d7c3a2b93c993d1185599685da71433"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrends6.dcf": {
-      "checksum": "2851c1b21c27b99cdcac771e7681fe8c"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrends7.dcf": {
-      "checksum": "f642a33c47412acdaf87a92ae68d4233"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrendspreview.dcf": {
-      "checksum": "81d7e50db8266643efa1a1670f64420c"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrendspreview2.dcf": {
-      "checksum": "7abf35890c99d32a9048eecba48021c9"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrendspreview3.dcf": {
-      "checksum": "f02dedda62521b7b6971bfbb1806ca18"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrendspreview4.dcf": {
-      "checksum": "3e79974f118800996729c6f567ecee5a"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrendspreview5.dcf": {
-      "checksum": "e12084b595e411e9a188f65a7fd8ec6b"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrendspreview6.dcf": {
-      "checksum": "b84ec375a1d7968a9b26aeaabb2ca575"
-    },
-    "_book/rsconnect/rstudio-pubs.zhaw.ch/rata/patternsandtrendspreview7.dcf": {
-      "checksum": "b2c98269b2d7b1d83e1a99509f32edef"
+      "checksum": "1e14ca1f74cfdd955249ef6a2b15488d"
     },
     "_book/search_index.json": {
-      "checksum": "90a3e54eb9129006df22bb44dd886515"
+      "checksum": "66791f58fd2ba6796832fb74b5198b3e"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-100-1.png": {
+      "checksum": "254daf802df32e88547f49fbd97c2f77"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-101-1.png": {
       "checksum": "254daf802df32e88547f49fbd97c2f77"
@@ -4212,6 +4131,9 @@
       "checksum": "5583f25bbcc8656b56847062497705e7"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-103-1.png": {
+      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-104-1.png": {
       "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-105-1.png": {
@@ -4226,6 +4148,9 @@
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-114-1.png": {
       "checksum": "40fa516926593e2382c54bd307fae128"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-115-1.png": {
+      "checksum": "40fa516926593e2382c54bd307fae128"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-116-1.png": {
       "checksum": "40fa516926593e2382c54bd307fae128"
     },
@@ -4234,6 +4159,12 @@
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-118-1.png": {
       "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-119-1.png": {
+      "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-12-1.png": {
+      "checksum": "46c5b2414efd396f17c87a8cba966b45"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-120-1.png": {
       "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
@@ -4262,6 +4193,9 @@
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-129-1.png": {
       "checksum": "9481b044e021a909e6992a94a95fe606"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-13-1.png": {
+      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-130-1.png": {
       "checksum": "199e188b4890175da06bf82c66988307"
     },
@@ -4281,6 +4215,12 @@
       "checksum": "5939b0ff504624460a5289e16dd39025"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-137-1.png": {
+      "checksum": "5939b0ff504624460a5289e16dd39025"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-138-1.png": {
+      "checksum": "5939b0ff504624460a5289e16dd39025"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-139-1.png": {
       "checksum": "5939b0ff504624460a5289e16dd39025"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-154-1.png": {
@@ -4307,6 +4247,12 @@
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-162-1.png": {
       "checksum": "2d9bb0136449283c1751e7184be5ee70"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-163-1.png": {
+      "checksum": "2d9bb0136449283c1751e7184be5ee70"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-164-1.png": {
+      "checksum": "2d9bb0136449283c1751e7184be5ee70"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-166-1.png": {
       "checksum": "27ca8f5c11241a803872e10433b0a260"
     },
@@ -4318,6 +4264,15 @@
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-169-1.png": {
       "checksum": "27ca8f5c11241a803872e10433b0a260"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-170-1.png": {
+      "checksum": "27ca8f5c11241a803872e10433b0a260"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-171-1.png": {
+      "checksum": "27ca8f5c11241a803872e10433b0a260"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-176-1.png": {
+      "checksum": "1b850d74ef1fdb34d66eba98642ce38b"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-177-1.png": {
       "checksum": "ff5e34111340b834b79367bc52533a47"
@@ -4334,8 +4289,23 @@
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-184-1.png": {
       "checksum": "1737ace638825bf97b1239a3bf46d301"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-186-1.png": {
+      "checksum": "1737ace638825bf97b1239a3bf46d301"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-187-1.png": {
       "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-189-1.png": {
+      "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-190-1.png": {
+      "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-24-1.png": {
+      "checksum": "40fa516926593e2382c54bd307fae128"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-28-1.png": {
+      "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-30-1.png": {
       "checksum": "4e9a8b06f5978fb77c0a9b6814df452a"
@@ -4346,17 +4316,62 @@
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-32-1.png": {
       "checksum": "875ae90c5fae35ded9a23170cef9b530"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-33-1.png": {
+      "checksum": "875ae90c5fae35ded9a23170cef9b530"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-34-1.png": {
+      "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-35-1.png": {
+      "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-36-1.png": {
       "checksum": "cc07fce4566d98834cdacc910248531d"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-36-2.png": {
       "checksum": "cb82a3cebc3d1491600869cc67c9f723"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-37-1.png": {
+      "checksum": "cc07fce4566d98834cdacc910248531d"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-37-2.png": {
+      "checksum": "cb82a3cebc3d1491600869cc67c9f723"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-38-1.png": {
+      "checksum": "02dce3370b184872720dbf46ee9f0d40"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-39-1.png": {
       "checksum": "0a01ef6800eb4626188d71fc7db30ea3"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-40-1.png": {
       "checksum": "22e34e39913bd8a0bd502b70d819345f"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-41-1.png": {
+      "checksum": "22e34e39913bd8a0bd502b70d819345f"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-42-1.png": {
+      "checksum": "199e188b4890175da06bf82c66988307"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-43-1.png": {
+      "checksum": "ab04d7af985c6eebb956af544ada03e8"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-46-1.png": {
+      "checksum": "5939b0ff504624460a5289e16dd39025"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-47-1.png": {
+      "checksum": "5939b0ff504624460a5289e16dd39025"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-49-1.png": {
+      "checksum": "254daf802df32e88547f49fbd97c2f77"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-53-1.png": {
+      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-64-1.png": {
+      "checksum": "40fa516926593e2382c54bd307fae128"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-68-1.png": {
+      "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-69-1.png": {
       "checksum": "848561a7649ef5844fe2f02ddc2f7784"
@@ -4375,6 +4390,24 @@
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-70-3.png": {
       "checksum": "8f4fc6557986e559b6cd16c19572a017"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-73-1.png": {
+      "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-77-1.png": {
+      "checksum": "02dce3370b184872720dbf46ee9f0d40"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-78-1.png": {
+      "checksum": "199e188b4890175da06bf82c66988307"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-79-1.png": {
+      "checksum": "ab04d7af985c6eebb956af544ada03e8"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-80-1.png": {
+      "checksum": "199e188b4890175da06bf82c66988307"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-81-1.png": {
+      "checksum": "ab04d7af985c6eebb956af544ada03e8"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-84-1.png": {
       "checksum": "d9680e0918a4139deffd5b9839eb53dc"
@@ -4406,6 +4439,9 @@
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-89-1.png": {
       "checksum": "7d6ffd8923191a88d9138dbe627ee158"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-9-1.png": {
+      "checksum": "254daf802df32e88547f49fbd97c2f77"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-91-1.png": {
       "checksum": "a4b4cfc2ca8291749bb9aaa74bd0e434"
     },
@@ -4425,46 +4461,49 @@
       "checksum": "b52df6f960de6b7fa77c3f30cfa60c59"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-103-1.pdf": {
-      "checksum": "6d3b842ff9e52336d63477974424326b"
+      "checksum": "dcdbbc4ea360108131fc83ec3dd9766a"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-105-1.pdf": {
       "checksum": "16b93bbe39303a42cbe407de5a4a9868"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-11-1.pdf": {
-      "checksum": "7785826927cf61b7b789732819876f82"
+      "checksum": "accbe1af44bd54769c7c812a1abd43ba"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-114-1.pdf": {
-      "checksum": "5f85a3e781ad876b3a1b42726f886b82"
+      "checksum": "f10ea33eb9738e2c8ee5e4e39b30796d"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-116-1.pdf": {
       "checksum": "bf7b373e6e40e5fb5487881d039cb0d6"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-118-1.pdf": {
-      "checksum": "04af503be3dd65b340325acbf0ff45ee"
+      "checksum": "f3ccbaba6c76be6a15104ec5f548d083"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-120-1.pdf": {
       "checksum": "a11c630e0b141c02b2501571b5bda87e"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-123-1.pdf": {
-      "checksum": "c789110da1e6c63c1a52f32da6e986f8"
+      "checksum": "778774481ccdc0c0a8ff18a895a7a30d"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-123-1.png": {
+      "checksum": "8bc674ca3412b888bf97ddb9a7736245"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-125-1.pdf": {
       "checksum": "f954cff77c082acf5bbd2bb3f4ba6143"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-127-1.pdf": {
-      "checksum": "b3c68e4a87777014dc9fb6645669b5f1"
+      "checksum": "e1a8525761b65d27e6e3d8c8036f01d1"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-128-1.pdf": {
-      "checksum": "e52212f0aa5ca9dde33abd26fad7ec6e"
+      "checksum": "20b9f88fb30cb81d84aa64c04e23ae2a"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-129-1.pdf": {
-      "checksum": "83e64f40a6ac3194821115f06a53cc12"
+      "checksum": "19d80620cad939b8d90802a31300b79b"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-130-1.pdf": {
-      "checksum": "349bcd066601321150f6c499736e8fbd"
+      "checksum": "7433a347e6c363687cd9590c005ec8f8"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-131-1.pdf": {
-      "checksum": "df6ad244046bcf4f54ef86aa91813bad"
+      "checksum": "ac743250c7e7e24933b741a1ba2cbd55"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-132-1.pdf": {
       "checksum": "d34a069e8bbb6562ba39db0489588aa7"
@@ -4473,22 +4512,22 @@
       "checksum": "ecaf02b76e14c4c0248c7baf3e0ea8d0"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-135-1.pdf": {
-      "checksum": "fd3a4178ce439d16f0883da4200b574a"
+      "checksum": "3078a8cfb3185932ce3937157b2f0aa5"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-137-1.pdf": {
       "checksum": "2279a61a1fc25a42236faf8ac45649ea"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-154-1.pdf": {
-      "checksum": "3300eae9fb19bb091711a4fded637f50"
+      "checksum": "12145f845e8e768c4a2736d5cde765e4"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-157-1.pdf": {
       "checksum": "111dce3749c2c1540f705637a15b5eb3"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-158-1.pdf": {
-      "checksum": "8d1093937fce3d0d4ea82936dc86ecd6"
+      "checksum": "7d4fdfb55d81764b69fe2470870d5468"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-159-1.pdf": {
-      "checksum": "30a2a38c7a148a60de5a0e01a20bdfb7"
+      "checksum": "9d638ca1391ddc11f38ed3d4493289ee"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-161-1.pdf": {
       "checksum": "9d6e1f57cab653900251b9b87044fe09"
@@ -4497,22 +4536,28 @@
       "checksum": "b21ea3f8758419ae7094e4facca69c31"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-166-1.pdf": {
-      "checksum": "0ad0c8ff11bee7d14d7ba427a9ae5191"
+      "checksum": "3158f33beed568f4586e30454dca3543"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-169-1.pdf": {
       "checksum": "5a2a731bfbac8439337d59d413d94419"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-175-1.png": {
+      "checksum": "1b850d74ef1fdb34d66eba98642ce38b"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-177-1.pdf": {
-      "checksum": "950ce681ea6e0a892fd00cdb29534ca6"
+      "checksum": "51f168b24eaebfe0611fccaa34a5fa61"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-178-1.png": {
+      "checksum": "1b850d74ef1fdb34d66eba98642ce38b"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-180-1.pdf": {
-      "checksum": "2e0bec1f9887c6f5a5ccc9261fb07b78"
+      "checksum": "151bf725ae75b4fa4de9fd503e1159b4"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-181-1.pdf": {
       "checksum": "c554009187561f63ac84cc2e3bcba9fa"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-183-1.pdf": {
-      "checksum": "5992149d586ecc0c9db5f9592d4eca0f"
+      "checksum": "5d4f6c1563daadd581eabbecc4eabf15"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-184-1.pdf": {
       "checksum": "530e364fa743bf0136181a85b2d6102b"
@@ -4521,34 +4566,37 @@
       "checksum": "2c703cc7108741527005cb13fe1b602b"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-30-1.pdf": {
-      "checksum": "b497bedbc756a614a64ac330f1d25ea1"
+      "checksum": "847d47394663fe093d1f00d401281db6"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-31-1.pdf": {
-      "checksum": "dd81933084c04cc641007e7e9ba5c76d"
+      "checksum": "2b4c11738d9fdecd6f9404a73b22449b"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-31-1.png": {
+      "checksum": "8bc674ca3412b888bf97ddb9a7736245"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-32-1.pdf": {
-      "checksum": "f1667b40655c6a6192734a2e6cc8e495"
+      "checksum": "bef4bc0113468144559a885998f90e0d"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-36-1.pdf": {
-      "checksum": "fccb7699ac3f76af7bc3ed63099c6829"
+      "checksum": "1970cc43cf5e2a7857a7e25b0144b895"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-36-2.pdf": {
-      "checksum": "0b0f106d3c1fb7c41daca288b532cc48"
+      "checksum": "e52aeb66ad95b8eba53430620323e55d"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-39-1.pdf": {
-      "checksum": "8de8d871df0acaadc2bcfa935543df9e"
+      "checksum": "1ae4d5d5b2428ced4be6b516084fb6b4"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-40-1.pdf": {
-      "checksum": "12fdbfa358951f69f04331c73a566ca7"
+      "checksum": "a57dc752f2410e2c59817da9d6c911f8"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-69-1.pdf": {
-      "checksum": "20ced6c834e4c97f6e845a606d12c9eb"
+      "checksum": "3b6e4333da048b44e34e0f19849e6024"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-69-2.pdf": {
-      "checksum": "73e3f8aca03c25a8721c700a520c49ed"
+      "checksum": "c8049dba3156e012d2caf4b8d0f19078"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-69-3.pdf": {
-      "checksum": "88ca8471fcb9573a95c692fe5b8b3c57"
+      "checksum": "f316380800a9abeb90cdd87248d7091e"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-70-1.pdf": {
       "checksum": "f6d71f57d18468e4deab744c1570cc9a"
@@ -4560,16 +4608,16 @@
       "checksum": "d7e1b2b01238b540c816866bf0ee303e"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-84-1.pdf": {
-      "checksum": "48bd4260241f1e7186759bf7bf365afb"
+      "checksum": "8311010f50f67054fabc227b43cc8b73"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-84-2.pdf": {
-      "checksum": "d8b758823777e9fe1a742b781aa1b36c"
+      "checksum": "48f0230f2b646c83f32d1c908b1eb8e0"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-84-3.pdf": {
-      "checksum": "1163e0f97b47f1ea33fcdcfc4dd718ad"
+      "checksum": "72ede5c66c4e877cc2df7dc24203a5cd"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-84-4.pdf": {
-      "checksum": "40a73e7b6d894d5df95f8bac3145a613"
+      "checksum": "f4f452b01aead5a8788e08d2ea73e63f"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-85-1.pdf": {
       "checksum": "f2f45e03390c1767a88428bd31a85dc8"
@@ -4584,19 +4632,19 @@
       "checksum": "3af99bc6f5cc22a6d5fb3dd9fab53b14"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-88-1.pdf": {
-      "checksum": "1a2c54a1c9d7e069bba743c29cba0158"
+      "checksum": "8ac67c304d774b212108de1b175f560c"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-89-1.pdf": {
       "checksum": "a4e083a470550ef42dcb8b919e45b4ad"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-91-1.pdf": {
-      "checksum": "742cb916424b766b68ca3963586d9bd1"
+      "checksum": "e215ca6555e80ae210e0baed4150c97d"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-92-1.pdf": {
       "checksum": "0ad2da3a3ca0c20439b5a926f8ff1673"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-99-1.pdf": {
-      "checksum": "cc00cfb1c0829db9f51e03a5d5710320"
+      "checksum": "775c2675017690cfe6ea1b2af721a25c"
     },
     "_bookdown.yml": {
       "checksum": "201021a6fbfaeeb4e901767655a79488"
@@ -4760,6 +4808,9 @@
     "12_Week2/W02_02_Solutions.Rmd": {
       "checksum": "9e7a5c0ac108270d390dedf7b757a1ef"
     },
+    "13_Week3/p1.png": {
+      "checksum": "8bc674ca3412b888bf97ddb9a7736245"
+    },
     "13_Week3/RFiles/W03_01_Exercise_code.R": {
       "checksum": "f7feead612b86c1826fd58f13aac2822"
     },
@@ -4777,6 +4828,12 @@
     },
     "13_Week3/W03_02_Solutions.Rmd": {
       "checksum": "5bcfcaa0090c4c782c6137f4302b49d9"
+    },
+    "14_Week4/p1.png": {
+      "checksum": "1b850d74ef1fdb34d66eba98642ce38b"
+    },
+    "14_Week4/p2.png": {
+      "checksum": "1b850d74ef1fdb34d66eba98642ce38b"
     },
     "14_Week4/RFiles/W04_01_Exercise_code.R": {
       "checksum": "b9e558ffdb5533535166eeac7eef9e4e"
@@ -4824,10 +4881,10 @@
       "checksum": "ad4d2e33d58ebc69ef230ef08eb9149c"
     },
     "index.Rmd": {
-      "checksum": "a05a09bf3d76e805535917a4c5dd8e32"
+      "checksum": "0d68586ec825f5c85fa7cbeae9aa2090"
     },
     "introduction-chapter.html": {
-      "checksum": "ba5034780465b5989a0455472705f40c"
+      "checksum": "4f9253f63f51de99556ed6d142c080cc"
     },
     "libs/gitbook-2.6.7/css/fontawesome/fontawesome-webfont.ttf": {
       "checksum": "b06871f281fee6b241d60582ae9369b9"

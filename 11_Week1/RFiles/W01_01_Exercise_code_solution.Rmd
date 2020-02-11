@@ -36,7 +36,9 @@ ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
 
 library(sf)
 
-wildschwein_BE_sf <- st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
+wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
+                              coords = c("Long", "Lat"), 
+                              crs = 4326)
 
 wildschwein_BE
 

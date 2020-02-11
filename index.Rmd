@@ -7,6 +7,7 @@ site: bookdown::bookdown_site
 documentclass: book
 bibliography: ["00_Admin/bibliography.bib"]
 link-citations: true
+geometry: "left=2cm, right=2cm, top=2.5cm, bottom=2cm"
 output:
   bookdown::gitbook:
     number_sections: false

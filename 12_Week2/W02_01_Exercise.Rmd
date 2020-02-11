@@ -43,7 +43,9 @@ library(lubridate)
 
 wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
-wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
+wildschwein_BE = st_as_sf(wildschwein_BE, 
+                          coords = c("Long", "Lat"), 
+                          crs = 4326)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 ```
@@ -142,14 +144,18 @@ Using the above functions (`difftime()` and `lead()`), we can calculate the time
 
 ```{r, echo = T, include = T, eval = T}
 
-wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC,units = "secs"))
+wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),
+                                               wildschwein_BE$DatetimeUTC,
+                                               units = "secs"))
 
 ```
 
 We mention `wildschwein_BE` three times in this function, which is complicated. Instead, we can use `mutate()` to simplify the syntax:
 
 ```{r, echo = T, include = T, eval = T}
-wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),
+                                                                      DatetimeUTC,
+                                                                      units = "secs")))
 ```
 
 
@@ -169,7 +175,9 @@ wildschwein_BE <- group_by(wildschwein_BE,TierID)
 After adding this grouping variable, calculating the timelag automatically accounts for the individual trajectories.
 
 ```{r, echo = T, include = T, eval = T}
-wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),
+                                                                      DatetimeUTC,
+                                                                      units = "secs")))
 
 summary(wildschwein_BE$timelag)
 ```
@@ -261,10 +269,13 @@ First, inspect your data in more detail. Try to answer the following questions:
 
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
+
 ```{r, echo = F, include=T, eval = T}
 
 wildschwein_BE <- wildschwein_BE %>%
-  mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+  mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),
+                                       DatetimeUTC,
+                                       units = "secs")))
 
 ggplot(wildschwein_BE, aes(DatetimeUTC,TierID)) +
   geom_line()

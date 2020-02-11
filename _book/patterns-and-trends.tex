@@ -21,6 +21,7 @@
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\usepackage[left=2cm, right=2cm, top=2.5cm, bottom=2cm]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={Patterns and Trends in Environmental Data},
@@ -283,7 +284,9 @@ We will largely rely on \texttt{sf}when working with vector data in \texttt{R}. 
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(sf)}
 
-\NormalTok{wildschwein_BE_sf <-}\StringTok{ }\KeywordTok{st_as_sf}\NormalTok{(wildschwein_BE, }\DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\DataTypeTok{crs =} \DecValTok{4326}\NormalTok{)}
+\NormalTok{wildschwein_BE_sf <-}\StringTok{ }\KeywordTok{st_as_sf}\NormalTok{(wildschwein_BE, }
+                              \DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
+                              \DataTypeTok{crs =} \DecValTok{4326}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -369,9 +372,12 @@ Instead of keeping the same data twice (once as a \texttt{data.frame}, and once 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wildschwein_BE =}\StringTok{ }\KeywordTok{st_as_sf}\NormalTok{(wildschwein_BE, }\DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\DataTypeTok{crs =} \DecValTok{4326}\NormalTok{)}
+\NormalTok{wildschwein_BE =}\StringTok{ }\KeywordTok{st_as_sf}\NormalTok{(wildschwein_BE, }
+                          \DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
+                          \DataTypeTok{crs =} \DecValTok{4326}\NormalTok{)}
 
-\KeywordTok{rm}\NormalTok{(wildschwein_BE_sf) }\CommentTok{# we can remove this sf object, since it just eats up our memory}
+\KeywordTok{rm}\NormalTok{(wildschwein_BE_sf) }
+\CommentTok{# we can remove this sf object, since it just eats up our memory}
 \end{Highlighting}
 \end{Shaded}
 
@@ -627,7 +633,9 @@ Import the wild boar data and convert it to an \texttt{sf} object with CH1903+ L
 
 \NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"00_Rawdata/wildschwein_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
 
-\NormalTok{wildschwein_BE =}\StringTok{ }\KeywordTok{st_as_sf}\NormalTok{(wildschwein_BE, }\DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\DataTypeTok{crs =} \DecValTok{4326}\NormalTok{)}
+\NormalTok{wildschwein_BE =}\StringTok{ }\KeywordTok{st_as_sf}\NormalTok{(wildschwein_BE, }
+                          \DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
+                          \DataTypeTok{crs =} \DecValTok{4326}\NormalTok{)}
 
 \NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{st_transform}\NormalTok{(wildschwein_BE, }\DecValTok{2056}\NormalTok{)}
 \end{Highlighting}
@@ -727,7 +735,9 @@ Using the above functions (\texttt{difftime()} and \texttt{lead()}), we can calc
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\NormalTok{wildschwein_BE}\OperatorTok{$}\NormalTok{timelag  <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{difftime}\NormalTok{(}\KeywordTok{lead}\NormalTok{(wildschwein_BE}\OperatorTok{$}\NormalTok{DatetimeUTC),wildschwein_BE}\OperatorTok{$}\NormalTok{DatetimeUTC,}\DataTypeTok{units =} \StringTok{"secs"}\NormalTok{))}
+\NormalTok{wildschwein_BE}\OperatorTok{$}\NormalTok{timelag  <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{difftime}\NormalTok{(}\KeywordTok{lead}\NormalTok{(wildschwein_BE}\OperatorTok{$}\NormalTok{DatetimeUTC),}
+\NormalTok{                                               wildschwein_BE}\OperatorTok{$}\NormalTok{DatetimeUTC,}
+                                               \DataTypeTok{units =} \StringTok{"secs"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -735,7 +745,9 @@ We mention \texttt{wildschwein\_BE} three times in this function, which is compl
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(wildschwein_BE,}\DataTypeTok{timelag =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{difftime}\NormalTok{(}\KeywordTok{lead}\NormalTok{(DatetimeUTC),DatetimeUTC,}\DataTypeTok{units =} \StringTok{"secs"}\NormalTok{)))}
+\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(wildschwein_BE,}\DataTypeTok{timelag =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{difftime}\NormalTok{(}\KeywordTok{lead}\NormalTok{(DatetimeUTC),}
+\NormalTok{                                                                      DatetimeUTC,}
+                                                                      \DataTypeTok{units =} \StringTok{"secs"}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -764,7 +776,9 @@ After adding this grouping variable, calculating the timelag automatically accou
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(wildschwein_BE,}\DataTypeTok{timelag =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{difftime}\NormalTok{(}\KeywordTok{lead}\NormalTok{(DatetimeUTC),DatetimeUTC,}\DataTypeTok{units =} \StringTok{"secs"}\NormalTok{)))}
+\NormalTok{wildschwein_BE <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(wildschwein_BE,}\DataTypeTok{timelag =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{difftime}\NormalTok{(}\KeywordTok{lead}\NormalTok{(DatetimeUTC),}
+\NormalTok{                                                                      DatetimeUTC,}
+                                                                      \DataTypeTok{units =} \StringTok{"secs"}\NormalTok{)))}
 
 \KeywordTok{summary}\NormalTok{(wildschwein_BE}\OperatorTok{$}\NormalTok{timelag)}
 \CommentTok{##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's }
@@ -906,6 +920,7 @@ First, inspect your data in more detail. Try to answer the following questions:
 \end{itemize}
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
+
 \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-69-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-69-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-69-3.pdf}
 
 \hypertarget{input-geometry-as-columns}{%
@@ -1050,11 +1065,11 @@ A different approach would be to \emph{smoothen} the derived parameters using a 
 
 \NormalTok{example <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{3}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1] -0.08345786 -0.15736674 -0.79067041 -0.18597946 -0.24391775}
-\CommentTok{##  [6] -0.26591861 -0.89752003 -0.65138242          NA          NA}
+\CommentTok{##  [1]  0.5207240 -0.4483856 -0.4947788 -0.7854014 -0.2266324  0.2809463}
+\CommentTok{##  [7]  0.1305302 -0.1532332         NA         NA}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{4}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1] -0.2469013 -0.3991443 -0.2670603 -0.3672462 -0.4805582 -0.3471975}
-\CommentTok{##  [7] -0.7162984         NA         NA         NA}
+\CommentTok{##  [1] -0.0585104 -0.6587651 -0.1886058 -0.6190277 -0.1117662  0.2803759}
+\CommentTok{##  [7] -0.1449016         NA         NA         NA}
 \end{Highlighting}
 \end{Shaded}
 

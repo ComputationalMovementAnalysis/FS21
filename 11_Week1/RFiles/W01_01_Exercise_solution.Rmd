@@ -44,7 +44,9 @@ ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
 
 library(sf)
 
-wildschwein_BE_sf <- st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
+wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
+                              coords = c("Long", "Lat"), 
+                              crs = 4326)
 
 
 wildschwein_BE
@@ -55,9 +57,12 @@ wildschwein_BE_sf
 
 
 
-wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
+wildschwein_BE = st_as_sf(wildschwein_BE, 
+                          coords = c("Long", "Lat"), 
+                          crs = 4326)
 
-rm(wildschwein_BE_sf) # we can remove this sf object, since it just eats up our memory
+rm(wildschwein_BE_sf) 
+# we can remove this sf object, since it just eats up our memory
 
 
 ```
