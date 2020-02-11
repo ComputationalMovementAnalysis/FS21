@@ -352,4 +352,3 @@ ggplot() +
   labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
   theme_minimal()
 
-```

@@ -1,7 +1,6 @@
 rmd_files: [
   "index.Rmd", 
   "11_Week1/W01_01_Exercise.Rmd",
-<<<<<<< HEAD
 #  "11_Week1/W01_02_Solutions.Rmd",
   "12_Week2/W02_01_Exercise.Rmd",
 #  "12_Week2/W02_02_Solutions.Rmd",
