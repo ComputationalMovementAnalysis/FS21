@@ -1,12 +1,10 @@
 
 
 # install.packages("devtools")
-devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
 # install_github("rstudio/ggplot2")
 
 
 ## General purpose libraries
-library(CMAtools)
 library(zoo)
 
 library(tidyverse)

@@ -1,9 +1,7 @@
-devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
 
 library(lubridate)
 library(tidyverse) 
 library(sf)
-library(CMAtools)
 
 
 wildschwein_BE <- read_delim("../CMA_FS2018_Filestorage/wildschwein_BE_all.csv",",")

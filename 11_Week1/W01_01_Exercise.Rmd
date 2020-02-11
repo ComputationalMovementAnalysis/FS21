@@ -28,7 +28,7 @@ Readings Skills from "R for Data Science" [@wickham2017]:
 
 
 ## Preperation
-If you haven't already, install the packages `tidyverse`, and `devtools` (using `install.packages()`). Additionally, install the packages `sf`, `raster` and `ggspatial`. **Restart your `R` session after installing all these packages.**
+If you haven't already, install the packages `tidyverse`, `sf`, `raster` and `ggspatial`(using `install.packages()`). **Restart your `R` session after installing all these packages.**
 
 ```{r, echo = T, include=T,eval = F, purl = F}
 install.packages("tidyverse")

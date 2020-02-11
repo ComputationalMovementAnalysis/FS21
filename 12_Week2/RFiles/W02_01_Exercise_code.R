@@ -333,5 +333,5 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
 
 #- chunkend
 
-#- header3 Preperation
+#- header3 Input
 #- chunkstart
