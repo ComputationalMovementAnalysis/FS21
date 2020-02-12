@@ -315,3 +315,40 @@ pedest_measures %>%
   theme(legend.position = "none") +
   labs(x = "Comparison trajectory", y = "Value", title = "Computed similarities using different measures \nbetween trajectory 1 to all other trajectories ")
 
+
+
+
+
+ggplot() +
+  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = caro60_3, aes(E,N, colour = "3 minutes")) +
+  geom_path(data = caro60_3, aes(E,N, colour = "3 minutes")) +
+  labs(color="Trajectory", title = "Comparing original- with 3 minutes-resampled data")  +
+  theme_minimal()
+
+ggplot() +
+  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = caro60_6, aes(E,N, colour = "6 minutes")) +
+  geom_path(data = caro60_6, aes(E,N, colour = "6 minutes")) +
+  labs(color="Trajectory", title = "Comparing original- with 6 minutes-resampled data") +
+  theme_minimal()
+
+ggplot() +
+  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
+  geom_point(data = caro60_9, aes(E,N, colour = "9 minutes")) +
+  geom_path(data = caro60_9, aes(E,N, colour = "9 minutes"))+
+  labs(color="Trajectory", title = "Comparing original- with 9 minutes-resampled data") +
+  theme_minimal()
+
+
+ggplot() +
+  geom_line(data = caro60, aes(DatetimeUTC,speed, colour = "1 minute")) +
+  geom_line(data = caro60_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
+  geom_line(data = caro60_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
+  geom_line(data = caro60_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
+  labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
+  theme_minimal()
+

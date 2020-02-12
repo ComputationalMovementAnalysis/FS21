@@ -1,7 +1,5 @@
-## devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git") # Reinstall this package, since we have a few updates
 ## 
 library(tidyverse)
-library(CMAtools)
 library(sf)
 
 # Import as tibble

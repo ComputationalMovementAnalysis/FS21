@@ -431,7 +431,7 @@ wildschwein_join %>%
 
 
 ```{r, echo = F, include=T, eval = knitr::is_latex_output(), results = "asis", purl = F}
-pander::pandoc.image("02_Images/batman-ipsum.png","The interactive map/plot is only available in the online version of this document.")
+pander::pandoc.image("02_Images/w04_ex1_p1.jpg","Trace 0 and 1 show the trajectories of the two individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other. This representation nicely shows that animal '0' is not very mobile and has large periodes where the animal seems to rest in the same place. The interactive map/plot is only available in the online version of this document.")
 ```
 
 

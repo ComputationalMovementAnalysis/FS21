@@ -7,7 +7,9 @@ library(lubridate)
 
 wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
-wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326)
+wildschwein_BE = st_as_sf(wildschwein_BE, 
+                          coords = c("Long", "Lat"), 
+                          crs = 4326)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 
@@ -52,16 +54,22 @@ lag(numbers,n = 5, default = 0)
 lead(numbers)-numbers
 
 
-wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),wildschwein_BE$DatetimeUTC,units = "secs"))
+wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),
+                                               wildschwein_BE$DatetimeUTC,
+                                               units = "secs"))
 
 
-wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),
+                                                                      DatetimeUTC,
+                                                                      units = "secs")))
 
 summary(wildschwein_BE$timelag)
 
 wildschwein_BE <- group_by(wildschwein_BE,TierID)
 
-wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),
+                                                                      DatetimeUTC,
+                                                                      units = "secs")))
 
 summary(wildschwein_BE$timelag)
 
@@ -112,7 +120,9 @@ pigs %>%
 
 
 wildschwein_BE <- wildschwein_BE %>%
-  mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
+  mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),
+                                       DatetimeUTC,
+                                       units = "secs")))
 
 ggplot(wildschwein_BE, aes(DatetimeUTC,TierID)) +
   geom_line()
@@ -332,3 +342,6 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
   coord_equal()
 
 ```
+
+### Input
+```{r, echo = T,include = T,eval = F}

@@ -347,7 +347,7 @@ ggplotly(p1)
 
 
 ```{r, echo = F, include=T, eval = knitr::is_latex_output(), results = "asis", purl = F}
-pander::pandoc.image("_book/patterns-and-trends_files/figure-html/unnamed-chunk-68-1.png","Interactive map/plot is only a screenshot of the actual interactive map.")
+pander::pandoc.image("02_Images/w03_ex3_p1.jpg","This is the same plot as above, wrapped in the function `ggplotly()` from the library `plotly`. With this function, the plot becomes interactive. However, the interactive map/plot is only available in the online version of this document.")
 ```
 
 

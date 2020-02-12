@@ -1,9 +1,7 @@
-devtools::install_git("https://github.engineering.zhaw.ch/PatternsTrendsEnvironmentalData/CMAtools.git")
 
 library(tidyverse)
 library(sf)
 library(stringr)
-library(CMAtools)
 library(tmap)
 
 wildschwein <- read_delim("../CMA_FS2018_Filestorage/wildschwein.csv",";",col_types = cols(timelag = col_double()))
