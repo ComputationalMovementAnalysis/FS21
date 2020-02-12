@@ -238,34 +238,6 @@
         "Built": "R 3.6.1; x86_64-pc-linux-gnu; 2019-10-28 09:12:59 UTC; unix"
       }
     },
-    "RcppEigen": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "description": {
-        "Package": "RcppEigen",
-        "Type": "Package",
-        "Title": "'Rcpp' Integration for the 'Eigen' Templated Linear Algebra\nLibrary",
-        "Version": "0.3.3.5.0",
-        "Date": "2018-11-24",
-        "Author": "Douglas Bates, Dirk Eddelbuettel, Romain Francois, and Yixuan Qiu;\n the authors of Eigen for the included version of Eigen",
-        "Maintainer": "Dirk Eddelbuettel <edd@debian.org>",
-        "Copyright": "See the file COPYRIGHTS for various Eigen copyright details",
-        "Description": "R and 'Eigen' integration using 'Rcpp'.\n 'Eigen' is a C++ template library for linear algebra: matrices, vectors,\n numerical solvers and related algorithms.  It supports dense and sparse\n matrices on integer, floating point and complex numbers, decompositions of\n such matrices, and solutions of linear systems. Its performance on many\n algorithms is comparable with some of the best implementations based on\n 'Lapack' and level-3 'BLAS'. The 'RcppEigen' package includes the header\n files from the 'Eigen' C++ template library (currently version 3.3.4). Thus\n users do not need to install 'Eigen' itself in order to use 'RcppEigen'.\n Since version 3.1.1, 'Eigen' is licensed under the Mozilla Public License\n (version 2); earlier version were licensed under the GNU LGPL version 3 or\n later. 'RcppEigen' (the 'Rcpp' bindings/bridge to 'Eigen') is licensed under\n the GNU GPL version 2 or later, as is the rest of 'Rcpp'.",
-        "License": "GPL (>= 2) | file LICENSE",
-        "Depends": "R (>= 2.15.1)",
-        "LazyLoad": "yes",
-        "LinkingTo": "Rcpp",
-        "Imports": "Matrix (>= 1.1-0), Rcpp (>= 0.11.0), stats, utils",
-        "Suggests": "inline, RUnit, pkgKitten, microbenchmark",
-        "URL": "http://dirk.eddelbuettel.com/code/rcpp.eigen.html",
-        "BugReports": "https://github.com/RcppCore/RcppEigen/issues",
-        "NeedsCompilation": "yes",
-        "Packaged": "2018-11-24 14:31:53.68243 UTC; edd",
-        "Repository": "CRAN",
-        "Date/Publication": "2018-11-24 19:30:07 UTC",
-        "Built": "R 3.4.4; x86_64-pc-linux-gnu; 2018-12-20 12:56:40 UTC; unix"
-      }
-    },
     "SimilarityMeasures": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -1137,32 +1109,6 @@
         "Built": "R 3.6.1; x86_64-pc-linux-gnu; 2019-09-15 18:37:14 UTC; unix"
       }
     },
-    "farver": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "description": {
-        "Package": "farver",
-        "Type": "Package",
-        "Title": "High Performance Colour Space Manipulation",
-        "Version": "2.0.3",
-        "Authors@R": "\n    c(person(given = \"Thomas Lin\",\n             family = \"Pedersen\",\n             role = c(\"cre\", \"aut\"),\n             email = \"thomasp85@gmail.com\",\n             comment = c(ORCID = \"0000-0002-5147-4711\")),\n      person(given = \"Berendea\",\n             family = \"Nicolae\",\n             role = \"aut\",\n             comment = \"Author of the ColorSpace C++ library\"),\n      person(given = \"Romain\", \n             family = \"François\", \n             role = \"aut\", \n             email = \"romain@purrple.cat\",\n             comment = c(ORCID = \"0000-0002-2444-4226\")) \n      )",
-        "Maintainer": "Thomas Lin Pedersen <thomasp85@gmail.com>",
-        "Description": "The encoding of colour can be handled in many different ways, using\n    different colour spaces. As different colour spaces have different uses,\n    efficient conversion between these representations are important. The \n    'farver' package provides a set of functions that gives access to very fast\n    colour space conversion and comparisons implemented in C++, and offers \n    speed improvements over the 'convertColor' function in the 'grDevices' \n    package.",
-        "License": "MIT + file LICENSE",
-        "Encoding": "UTF-8",
-        "SystemRequirements": "C++11",
-        "RoxygenNote": "7.0.2",
-        "URL": "https://farver.data-imaginist.com,\nhttps://github.com/thomasp85/farver",
-        "BugReports": "https://github.com/thomasp85/farver/issues",
-        "Suggests": "testthat (>= 2.1.0), covr",
-        "NeedsCompilation": "yes",
-        "Packaged": "2020-01-16 10:42:44 UTC; thomas",
-        "Author": "Thomas Lin Pedersen [cre, aut]\n    (<https://orcid.org/0000-0002-5147-4711>),\n  Berendea Nicolae [aut] (Author of the ColorSpace C++ library),\n  Romain François [aut] (<https://orcid.org/0000-0002-2444-4226>)",
-        "Repository": "CRAN",
-        "Date/Publication": "2020-01-16 13:40:07 UTC",
-        "Built": "R 3.6.1; x86_64-pc-linux-gnu; 2020-02-11 14:02:48 UTC; unix"
-      }
-    },
     "fastmap": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -1295,36 +1241,6 @@
         "Repository": "RSPM",
         "Date/Publication": "2018-11-29 13:20:03 UTC",
         "Built": "R 3.4.4; ; 2019-01-15 09:59:09 UTC; unix"
-      }
-    },
-    "ggforce": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "description": {
-        "Package": "ggforce",
-        "Type": "Package",
-        "Title": "Accelerating 'ggplot2'",
-        "Version": "0.3.1",
-        "Authors@R": "\n    c(person(given = \"Thomas Lin\",\n             family = \"Pedersen\",\n             role = c(\"cre\", \"aut\"),\n             email = \"thomasp85@gmail.com\",\n             comment = c(ORCID = \"0000-0002-5147-4711\")),\n      person(\"RStudio\",\n             role = \"cph\"))",
-        "Maintainer": "Thomas Lin Pedersen <thomasp85@gmail.com>",
-        "Description": "The aim of 'ggplot2' is to aid in visual data investigations. This\n    focus has led to a lack of facilities for composing specialised plots.\n    'ggforce' aims to be a collection of mainly new stats and geoms that fills\n    this gap. All additional functionality is aimed to come through the official\n    extension system so using 'ggforce' should be a stable experience.",
-        "URL": "https://ggforce.data-imaginist.com",
-        "BugReports": "https://github.com/thomasp85/ggforce/issues",
-        "License": "MIT + file LICENSE",
-        "LazyData": "TRUE",
-        "Encoding": "UTF-8",
-        "Depends": "ggplot2 (>= 3.0.0), R (>= 3.3.0)",
-        "Imports": "Rcpp (>= 0.12.2), grid, scales, MASS, tweenr (>= 0.1.5),\ngtable, rlang, polyclip, stats, grDevices, tidyselect, withr,\nutils",
-        "LinkingTo": "Rcpp, RcppEigen",
-        "RoxygenNote": "6.1.1",
-        "Suggests": "sessioninfo, concaveman, deldir, reshape2, units (>= 0.4-6)",
-        "Collate": "'RcppExports.R' 'aaa.R' 'shape.R' 'arc_bar.R' 'arc.R'\n'autodensity.R' 'autohistogram.R' 'autopoint.R' 'bezier.R'\n'bspline.R' 'bspline_closed.R' 'circle.R' 'diagonal.R'\n'diagonal_wide.R' 'ellipse.R' 'facet_grid_paginate.R'\n'facet_matrix.R' 'facet_row.R' 'facet_stereo.R'\n'facet_wrap_paginate.R' 'facet_zoom.R' 'ggforce_package.R'\n'ggproto-classes.R' 'interpolate.R' 'link.R' 'mark_circle.R'\n'mark_ellipse.R' 'mark_hull.R' 'mark_label.R' 'mark_rect.R'\n'parallel_sets.R' 'position-jitternormal.R' 'position_auto.R'\n'position_floatstack.R' 'regon.R' 'scale-depth.R'\n'scale-unit.R' 'sina.R' 'spiro.R' 'themes.R' 'trans.R'\n'trans_linear.R' 'utilities.R' 'voronoi.R'",
-        "NeedsCompilation": "yes",
-        "Packaged": "2019-08-20 07:57:53 UTC; thomas",
-        "Author": "Thomas Lin Pedersen [cre, aut]\n    (<https://orcid.org/0000-0002-5147-4711>),\n  RStudio [cph]",
-        "Repository": "CRAN",
-        "Date/Publication": "2019-08-20 09:50:05 UTC",
-        "Built": "R 3.6.1; x86_64-pc-linux-gnu; 2020-02-11 14:03:33 UTC; unix"
       }
     },
     "ggplot2": {
@@ -2395,33 +2311,6 @@
         "Built": "R 3.6.1; x86_64-pc-linux-gnu; 2019-11-25 21:45:45 UTC; unix"
       }
     },
-    "polyclip": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "description": {
-        "Package": "polyclip",
-        "Version": "1.10-0",
-        "Date": "2019-03-13",
-        "Title": "Polygon Clipping",
-        "Authors@R": "c(person(\"Angus\", \"Johnson\", role = \"aut\", \n   \t    comment=\"C++ original, http://www.angusj.com/delphi/clipper.php\"),\n\t     person(\"Adrian\", \"Baddeley\", role = c(\"aut\", \"trl\", \"cre\"),\n\t\t     email = \"Adrian.Baddeley@curtin.edu.au\"),\n\t     person(\"Kurt\", \"Hornik\", role = \"ctb\"),\n\t     person(c(\"Brian\", \"D.\"), \"Ripley\", role = \"ctb\"),\n\t     person(\"Elliott\", \"Sales de Andrade\", role=\"ctb\"),\n\t     person(\"Paul\", \"Murrell\", role = \"ctb\"))",
-        "Maintainer": "Adrian Baddeley <Adrian.Baddeley@curtin.edu.au>",
-        "Depends": "R (>= 3.0.0)",
-        "Description": "R port of Angus Johnson's open source library Clipper. Performs polygon clipping operations (intersection, union, set minus, set difference) for polygonal regions of arbitrary complexity, including holes. Computes offset polygons (spatial buffer zones, morphological dilations, Minkowski dilations) for polygonal regions and polygonal lines. Computes Minkowski Sum of general polygons. There is a function for removing self-intersections from polygon data.",
-        "License": "BSL",
-        "URL": "http://www.angusj.com/delphi/clipper.php,\nhttps://sourceforge.net/projects/polyclipping,\nhttps://github.com/baddstats/polyclip",
-        "BugReports": "https://github.com/baddstats/polyclip/issues",
-        "LazyData": "true",
-        "LazyLoad": "true",
-        "ByteCompile": "true",
-        "Note": "built from Clipper C++ version 6.4.0",
-        "NeedsCompilation": "yes",
-        "Packaged": "2019-03-14 02:16:16 UTC; adrian",
-        "Author": "Angus Johnson [aut] (C++ original,\n    http://www.angusj.com/delphi/clipper.php),\n  Adrian Baddeley [aut, trl, cre],\n  Kurt Hornik [ctb],\n  Brian D. Ripley [ctb],\n  Elliott Sales de Andrade [ctb],\n  Paul Murrell [ctb]",
-        "Repository": "CRAN",
-        "Date/Publication": "2019-03-14 06:20:03 UTC",
-        "Built": "R 3.6.1; x86_64-pc-linux-gnu; 2019-11-21 08:12:04 UTC; unix"
-      }
-    },
     "prettymapr": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -3453,36 +3342,6 @@
         "Built": "R 3.6.1; ; 2019-11-28 12:29:48 UTC; unix"
       }
     },
-    "tweenr": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "description": {
-        "Package": "tweenr",
-        "Type": "Package",
-        "Title": "Interpolate Data for Smooth Animations",
-        "Version": "1.0.1",
-        "Date": "2018-12-14",
-        "Authors@R": "c(\n    person('Thomas Lin', 'Pedersen', , 'thomasp85@gmail.com', c('aut', 'cre'))\n    )",
-        "Maintainer": "Thomas Lin Pedersen <thomasp85@gmail.com>",
-        "Description": "In order to create smooth animation between states of data,\n    tweening is necessary. This package provides a range of functions for\n    creating tweened data that can be used as basis for animation. Furthermore \n    it adds a number of vectorized interpolaters for common R data \n    types such as numeric, date and colour.",
-        "URL": "https://github.com/thomasp85/tweenr",
-        "BugReports": "https://github.com/thomasp85/tweenr/issues",
-        "License": "MIT + file LICENSE",
-        "Encoding": "UTF-8",
-        "LazyData": "TRUE",
-        "Depends": "R (>= 3.2.0)",
-        "Imports": "Rcpp (>= 0.12.3), grDevices, farver, magrittr, rlang",
-        "LinkingTo": "Rcpp",
-        "RoxygenNote": "6.1.1",
-        "Suggests": "testthat, covr",
-        "NeedsCompilation": "yes",
-        "Packaged": "2018-12-14 13:16:06 UTC; thomas",
-        "Author": "Thomas Lin Pedersen [aut, cre]",
-        "Repository": "CRAN",
-        "Date/Publication": "2018-12-14 13:40:03 UTC",
-        "Built": "R 3.6.1; x86_64-pc-linux-gnu; 2020-02-11 14:03:10 UTC; unix"
-      }
-    },
     "units": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -3837,22 +3696,22 @@
       "checksum": "4c7ae668d11c9b36378b84b46b3bcae7"
     },
     "_book/exercise-1.html": {
-      "checksum": "98da67b72af760c61ebaffbe8702033d"
+      "checksum": "17edcc990fa7f3bcd8ff42a055bb913c"
     },
     "_book/exercise-2.html": {
-      "checksum": "868a71353762fc702eac5dde860f3ac7"
+      "checksum": "d3bbcdafa8d74688388c96ca805d666c"
     },
     "_book/exercise-3.html": {
-      "checksum": "2cdf6f8818011b3f5237c34b4ebef5d9"
+      "checksum": "21e6953361b0a1a93e5dd4aa5b7435a5"
     },
     "_book/exercise-4.html": {
-      "checksum": "9b886e7b8ec5cc820a24d1b3318ae01e"
+      "checksum": "57f3a4600e68af17c6c66cb03b3f8386"
     },
     "_book/exercise-5.html": {
-      "checksum": "3b0c0901bd1ae4c8f47d63ea18b12586"
+      "checksum": "4bb87128ba27fae60d5dbd0ea104d754"
     },
     "_book/index.html": {
-      "checksum": "d95091af0ce5a9c55cad97195c9c7b3e"
+      "checksum": "b5d843f286c405ec53875c3f72b65b0e"
     },
     "_book/libs/crosstalk-1.0.0/css/crosstalk.css": {
       "checksum": "a03b8a3a33eb8a69d37a03746ba92b4f"
@@ -3929,11 +3788,29 @@
     "_book/libs/typedarray-0.1/typedarray.min.js": {
       "checksum": "4db25a9ed5c5fcf2dd1746f27be2ef39"
     },
+    "_book/patterns-and-trends_files/figure-html/task6-1.png": {
+      "checksum": "0a01ef6800eb4626188d71fc7db30ea3"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-102-1.png": {
+      "checksum": "02dce3370b184872720dbf46ee9f0d40"
+    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-103-1.png": {
-      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
+      "checksum": "88773a9407590c3988b1b6e6e3f91fc3"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-104-1.png": {
+      "checksum": "9481b044e021a909e6992a94a95fe606"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-105-1.png": {
+      "checksum": "199e188b4890175da06bf82c66988307"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-106-1.png": {
+      "checksum": "ab04d7af985c6eebb956af544ada03e8"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-11-1.png": {
       "checksum": "46c5b2414efd396f17c87a8cba966b45"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-110-1.png": {
+      "checksum": "5939b0ff504624460a5289e16dd39025"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-114-1.png": {
       "checksum": "40fa516926593e2382c54bd307fae128"
@@ -3948,7 +3825,7 @@
       "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-127-1.png": {
-      "checksum": "02dce3370b184872720dbf46ee9f0d40"
+      "checksum": "5700da2781aad1e5089f227489334f01"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-128-1.png": {
       "checksum": "88773a9407590c3988b1b6e6e3f91fc3"
@@ -3963,16 +3840,31 @@
       "checksum": "199e188b4890175da06bf82c66988307"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-131-1.png": {
-      "checksum": "ab04d7af985c6eebb956af544ada03e8"
+      "checksum": "f52b0ef79db9287988f619fc17b6c3c7"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-132-1.png": {
+      "checksum": "2d9bb0136449283c1751e7184be5ee70"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-135-1.png": {
       "checksum": "5939b0ff504624460a5289e16dd39025"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-137-1.png": {
+      "checksum": "27ca8f5c11241a803872e10433b0a260"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-138-1.png": {
       "checksum": "5939b0ff504624460a5289e16dd39025"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-139-1.png": {
       "checksum": "5939b0ff504624460a5289e16dd39025"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-145-1.png": {
+      "checksum": "ff5e34111340b834b79367bc52533a47"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-148-1.png": {
+      "checksum": "1737ace638825bf97b1239a3bf46d301"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-150-1.png": {
+      "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-154-1.png": {
       "checksum": "5700da2781aad1e5089f227489334f01"
@@ -4022,11 +3914,26 @@
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-190-1.png": {
       "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
     },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-22-1.png": {
+      "checksum": "4e9a8b06f5978fb77c0a9b6814df452a"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-23-1.png": {
+      "checksum": "bca405da7d350e480e462f4620cf1ad3"
+    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-24-1.png": {
-      "checksum": "40fa516926593e2382c54bd307fae128"
+      "checksum": "875ae90c5fae35ded9a23170cef9b530"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-27-1.png": {
+      "checksum": "cc07fce4566d98834cdacc910248531d"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-27-2.png": {
+      "checksum": "cb82a3cebc3d1491600869cc67c9f723"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-28-1.png": {
       "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-29-1.png": {
+      "checksum": "22e34e39913bd8a0bd502b70d819345f"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-30-1.png": {
       "checksum": "4e9a8b06f5978fb77c0a9b6814df452a"
@@ -4082,6 +3989,27 @@
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-47-1.png": {
       "checksum": "5939b0ff504624460a5289e16dd39025"
     },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-55-1.png": {
+      "checksum": "848561a7649ef5844fe2f02ddc2f7784"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-55-2.png": {
+      "checksum": "501aec9894caebddea32ddc91c038e65"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-55-3.png": {
+      "checksum": "8f4fc6557986e559b6cd16c19572a017"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-68-1.png": {
+      "checksum": "d9680e0918a4139deffd5b9839eb53dc"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-68-2.png": {
+      "checksum": "cee34649c97eef6a022bd57310c09028"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-68-3.png": {
+      "checksum": "5fb729e89cf6760fcfb3045134096b02"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-68-4.png": {
+      "checksum": "21740ff6b92ba11180d22bb6eccb38f8"
+    },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-69-1.png": {
       "checksum": "848561a7649ef5844fe2f02ddc2f7784"
     },
@@ -4090,6 +4018,12 @@
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-69-3.png": {
       "checksum": "8f4fc6557986e559b6cd16c19572a017"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-77-1.png": {
+      "checksum": "254daf802df32e88547f49fbd97c2f77"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-81-1.png": {
+      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-84-1.png": {
       "checksum": "d9680e0918a4139deffd5b9839eb53dc"
@@ -4104,22 +4038,31 @@
       "checksum": "21740ff6b92ba11180d22bb6eccb38f8"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-9-1.png": {
-      "checksum": "254daf802df32e88547f49fbd97c2f77"
+      "checksum": "46c5b2414efd396f17c87a8cba966b45"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-92-1.png": {
+      "checksum": "40fa516926593e2382c54bd307fae128"
+    },
+    "_book/patterns-and-trends_files/figure-html/unnamed-chunk-95-1.png": {
+      "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
     },
     "_book/patterns-and-trends_files/figure-html/unnamed-chunk-99-1.png": {
-      "checksum": "254daf802df32e88547f49fbd97c2f77"
+      "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
     },
     "_book/patterns-and-trends.pdf": {
-      "checksum": "09cf48ac329eaaa9f558d97d5b14cd04"
+      "checksum": "1ddaab01e57845fe3b66b322748921d2"
     },
     "_book/patterns-and-trends.tex": {
-      "checksum": "a93abae06873086274ed64c07ad55060"
+      "checksum": "1adf0290b3ec3e142f77788ecbb77019"
     },
     "_book/references.html": {
       "checksum": "1e14ca1f74cfdd955249ef6a2b15488d"
     },
     "_book/search_index.json": {
-      "checksum": "66791f58fd2ba6796832fb74b5198b3e"
+      "checksum": "2db537484db8a6ae33e51b53aedb0f3c"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/task6-1.png": {
+      "checksum": "0a01ef6800eb4626188d71fc7db30ea3"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-100-1.png": {
       "checksum": "254daf802df32e88547f49fbd97c2f77"
@@ -4128,19 +4071,25 @@
       "checksum": "254daf802df32e88547f49fbd97c2f77"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-102-1.png": {
-      "checksum": "5583f25bbcc8656b56847062497705e7"
+      "checksum": "02dce3370b184872720dbf46ee9f0d40"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-103-1.png": {
-      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
+      "checksum": "88773a9407590c3988b1b6e6e3f91fc3"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-104-1.png": {
-      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
+      "checksum": "9481b044e021a909e6992a94a95fe606"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-105-1.png": {
-      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
+      "checksum": "199e188b4890175da06bf82c66988307"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-106-1.png": {
+      "checksum": "ab04d7af985c6eebb956af544ada03e8"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-11-1.png": {
       "checksum": "46c5b2414efd396f17c87a8cba966b45"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-110-1.png": {
+      "checksum": "5939b0ff504624460a5289e16dd39025"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-113-1.png": {
       "checksum": "49db85b377a233c939a63b319f0d616f"
@@ -4185,7 +4134,7 @@
       "checksum": "59a6a6fc2612e7df3e1e1ce4d8f90143"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-127-1.png": {
-      "checksum": "02dce3370b184872720dbf46ee9f0d40"
+      "checksum": "5700da2781aad1e5089f227489334f01"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-128-1.png": {
       "checksum": "88773a9407590c3988b1b6e6e3f91fc3"
@@ -4200,10 +4149,10 @@
       "checksum": "199e188b4890175da06bf82c66988307"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-131-1.png": {
-      "checksum": "ab04d7af985c6eebb956af544ada03e8"
+      "checksum": "f52b0ef79db9287988f619fc17b6c3c7"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-132-1.png": {
-      "checksum": "199e188b4890175da06bf82c66988307"
+      "checksum": "2d9bb0136449283c1751e7184be5ee70"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-133-1.png": {
       "checksum": "ab04d7af985c6eebb956af544ada03e8"
@@ -4215,13 +4164,22 @@
       "checksum": "5939b0ff504624460a5289e16dd39025"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-137-1.png": {
-      "checksum": "5939b0ff504624460a5289e16dd39025"
+      "checksum": "27ca8f5c11241a803872e10433b0a260"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-138-1.png": {
       "checksum": "5939b0ff504624460a5289e16dd39025"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-139-1.png": {
       "checksum": "5939b0ff504624460a5289e16dd39025"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-145-1.png": {
+      "checksum": "ff5e34111340b834b79367bc52533a47"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-148-1.png": {
+      "checksum": "1737ace638825bf97b1239a3bf46d301"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-150-1.png": {
+      "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-154-1.png": {
       "checksum": "5700da2781aad1e5089f227489334f01"
@@ -4301,11 +4259,26 @@
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-190-1.png": {
       "checksum": "2390d76c88a2dc0719b2acefd4148aa2"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-22-1.png": {
+      "checksum": "4e9a8b06f5978fb77c0a9b6814df452a"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-23-1.png": {
+      "checksum": "bca405da7d350e480e462f4620cf1ad3"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-24-1.png": {
-      "checksum": "40fa516926593e2382c54bd307fae128"
+      "checksum": "875ae90c5fae35ded9a23170cef9b530"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-27-1.png": {
+      "checksum": "cc07fce4566d98834cdacc910248531d"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-27-2.png": {
+      "checksum": "cb82a3cebc3d1491600869cc67c9f723"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-28-1.png": {
       "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-29-1.png": {
+      "checksum": "22e34e39913bd8a0bd502b70d819345f"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-30-1.png": {
       "checksum": "4e9a8b06f5978fb77c0a9b6814df452a"
@@ -4367,11 +4340,29 @@
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-53-1.png": {
       "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-55-1.png": {
+      "checksum": "848561a7649ef5844fe2f02ddc2f7784"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-55-2.png": {
+      "checksum": "501aec9894caebddea32ddc91c038e65"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-55-3.png": {
+      "checksum": "8f4fc6557986e559b6cd16c19572a017"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-64-1.png": {
       "checksum": "40fa516926593e2382c54bd307fae128"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-68-1.png": {
-      "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
+      "checksum": "d9680e0918a4139deffd5b9839eb53dc"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-68-2.png": {
+      "checksum": "cee34649c97eef6a022bd57310c09028"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-68-3.png": {
+      "checksum": "5fb729e89cf6760fcfb3045134096b02"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-68-4.png": {
+      "checksum": "21740ff6b92ba11180d22bb6eccb38f8"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-69-1.png": {
       "checksum": "848561a7649ef5844fe2f02ddc2f7784"
@@ -4391,11 +4382,14 @@
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-70-3.png": {
       "checksum": "8f4fc6557986e559b6cd16c19572a017"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-71-1.png": {
+      "checksum": "7d6ffd8923191a88d9138dbe627ee158"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-73-1.png": {
-      "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
+      "checksum": "a4b4cfc2ca8291749bb9aaa74bd0e434"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-77-1.png": {
-      "checksum": "02dce3370b184872720dbf46ee9f0d40"
+      "checksum": "254daf802df32e88547f49fbd97c2f77"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-78-1.png": {
       "checksum": "199e188b4890175da06bf82c66988307"
@@ -4407,7 +4401,7 @@
       "checksum": "199e188b4890175da06bf82c66988307"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-81-1.png": {
-      "checksum": "ab04d7af985c6eebb956af544ada03e8"
+      "checksum": "6740a56d49a52c72b6fbe4b3a397e459"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-84-1.png": {
       "checksum": "d9680e0918a4139deffd5b9839eb53dc"
@@ -4440,13 +4434,16 @@
       "checksum": "7d6ffd8923191a88d9138dbe627ee158"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-9-1.png": {
-      "checksum": "254daf802df32e88547f49fbd97c2f77"
+      "checksum": "46c5b2414efd396f17c87a8cba966b45"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-91-1.png": {
       "checksum": "a4b4cfc2ca8291749bb9aaa74bd0e434"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-92-1.png": {
-      "checksum": "a4b4cfc2ca8291749bb9aaa74bd0e434"
+      "checksum": "40fa516926593e2382c54bd307fae128"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-95-1.png": {
+      "checksum": "5febb638d2495c1f814d84fbc3fcdf3a"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-97-1.png": {
       "checksum": "dc5783501d9011d3b0e474d941fc4b05"
@@ -4455,34 +4452,49 @@
       "checksum": "dc5783501d9011d3b0e474d941fc4b05"
     },
     "_bookdown_files/patterns-and-trends_files/figure-html/unnamed-chunk-99-1.png": {
-      "checksum": "254daf802df32e88547f49fbd97c2f77"
+      "checksum": "478e61b5cf99ae9c2c4d5ac3a12a66bd"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/task6-1.pdf": {
+      "checksum": "62dc47c4b7b54a3b44797376274df894"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-101-1.pdf": {
       "checksum": "b52df6f960de6b7fa77c3f30cfa60c59"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-102-1.pdf": {
+      "checksum": "9a0fec735afa3be3ac51d63435f2ff9c"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-103-1.pdf": {
-      "checksum": "dcdbbc4ea360108131fc83ec3dd9766a"
+      "checksum": "aaca0197b6ab19632841aaeb86958250"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-104-1.pdf": {
+      "checksum": "581fe9d9729588ee39d88fab3a4bfc58"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-105-1.pdf": {
-      "checksum": "16b93bbe39303a42cbe407de5a4a9868"
+      "checksum": "408127591e97be9408248d2ca0d6bcd1"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-106-1.pdf": {
+      "checksum": "ac4d07f8120caf0056ea1b409e86f3cb"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-11-1.pdf": {
-      "checksum": "accbe1af44bd54769c7c812a1abd43ba"
+      "checksum": "3fcf13a83401d3662f462a72386ca015"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-110-1.pdf": {
+      "checksum": "389ad7bece51f6bc5133346810cdbda3"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-114-1.pdf": {
-      "checksum": "f10ea33eb9738e2c8ee5e4e39b30796d"
+      "checksum": "7bcdb6bb047639b3d37384e5c783230e"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-116-1.pdf": {
       "checksum": "bf7b373e6e40e5fb5487881d039cb0d6"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-118-1.pdf": {
-      "checksum": "f3ccbaba6c76be6a15104ec5f548d083"
+      "checksum": "83872edce8fc9908ed6d0f52f07b2065"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-120-1.pdf": {
       "checksum": "a11c630e0b141c02b2501571b5bda87e"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-123-1.pdf": {
-      "checksum": "778774481ccdc0c0a8ff18a895a7a30d"
+      "checksum": "7a09deb3b809d56669cbcf50c29db1d6"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-123-1.png": {
       "checksum": "8bc674ca3412b888bf97ddb9a7736245"
@@ -4491,43 +4503,52 @@
       "checksum": "f954cff77c082acf5bbd2bb3f4ba6143"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-127-1.pdf": {
-      "checksum": "e1a8525761b65d27e6e3d8c8036f01d1"
+      "checksum": "cb35ade257e65ff7d2e89627454729a2"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-128-1.pdf": {
-      "checksum": "20b9f88fb30cb81d84aa64c04e23ae2a"
+      "checksum": "f4362a770303d77ebdffdef3b1cf0b74"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-129-1.pdf": {
-      "checksum": "19d80620cad939b8d90802a31300b79b"
+      "checksum": "43537e2655572c286d28d45bbccc9d28"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-130-1.pdf": {
-      "checksum": "7433a347e6c363687cd9590c005ec8f8"
+      "checksum": "873d971825c91cada77829a54a58923e"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-131-1.pdf": {
-      "checksum": "ac743250c7e7e24933b741a1ba2cbd55"
+      "checksum": "6df5ba6f4f6edb1e40b40ef7b4525b6d"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-132-1.pdf": {
-      "checksum": "d34a069e8bbb6562ba39db0489588aa7"
+      "checksum": "d3a632f3ac4934cfc720361111df8396"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-133-1.pdf": {
       "checksum": "ecaf02b76e14c4c0248c7baf3e0ea8d0"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-135-1.pdf": {
-      "checksum": "3078a8cfb3185932ce3937157b2f0aa5"
+      "checksum": "c8777cc6db58f17ef14f2280830c397f"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-137-1.pdf": {
-      "checksum": "2279a61a1fc25a42236faf8ac45649ea"
+      "checksum": "8bd083c6a4f516ec9d7fd0fba6b3c083"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-145-1.pdf": {
+      "checksum": "c1bf1deb1d5e399bf3e9f9033a58fcf1"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-148-1.pdf": {
+      "checksum": "2376eb097f9e304008a7cd67a7f655d0"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-150-1.pdf": {
+      "checksum": "23a054a167cfeb50f0874b3a19cec005"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-154-1.pdf": {
-      "checksum": "12145f845e8e768c4a2736d5cde765e4"
+      "checksum": "8cf016f50eefbab46fe59d43eaf2daf0"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-157-1.pdf": {
       "checksum": "111dce3749c2c1540f705637a15b5eb3"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-158-1.pdf": {
-      "checksum": "7d4fdfb55d81764b69fe2470870d5468"
+      "checksum": "3c0a492db1a823defb5397984d79cb29"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-159-1.pdf": {
-      "checksum": "9d638ca1391ddc11f38ed3d4493289ee"
+      "checksum": "d8554028b7c203ddbcf6cacd217cffdd"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-161-1.pdf": {
       "checksum": "9d6e1f57cab653900251b9b87044fe09"
@@ -4536,7 +4557,7 @@
       "checksum": "b21ea3f8758419ae7094e4facca69c31"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-166-1.pdf": {
-      "checksum": "3158f33beed568f4586e30454dca3543"
+      "checksum": "396c9cb7a03fba4e46d31123318f572b"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-169-1.pdf": {
       "checksum": "5a2a731bfbac8439337d59d413d94419"
@@ -4545,19 +4566,19 @@
       "checksum": "1b850d74ef1fdb34d66eba98642ce38b"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-177-1.pdf": {
-      "checksum": "51f168b24eaebfe0611fccaa34a5fa61"
+      "checksum": "d4b16841247bc17118bdfe067a191e63"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-178-1.png": {
       "checksum": "1b850d74ef1fdb34d66eba98642ce38b"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-180-1.pdf": {
-      "checksum": "151bf725ae75b4fa4de9fd503e1159b4"
+      "checksum": "55062719a11c14b47963dd10a8e60bdc"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-181-1.pdf": {
       "checksum": "c554009187561f63ac84cc2e3bcba9fa"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-183-1.pdf": {
-      "checksum": "5d4f6c1563daadd581eabbecc4eabf15"
+      "checksum": "e35d31c3441a95ad194b55ce3b58f0c3"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-184-1.pdf": {
       "checksum": "530e364fa743bf0136181a85b2d6102b"
@@ -4565,38 +4586,77 @@
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-187-1.pdf": {
       "checksum": "2c703cc7108741527005cb13fe1b602b"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-22-1.pdf": {
+      "checksum": "309677db7b16dd84c29e94887276f48a"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-23-1.pdf": {
+      "checksum": "38eaadee370739061a4d83bb36fd3e57"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-24-1.pdf": {
+      "checksum": "e63d3c1c73c461c8490d11cbadc86111"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-27-1.pdf": {
+      "checksum": "1c338b3cc0aa5f829f8767a5515270eb"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-27-2.pdf": {
+      "checksum": "6476403e637744f28d11aa9d6d2e2244"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-29-1.pdf": {
+      "checksum": "69dde62e5101c31c7c7a7b6310cdf6bf"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-30-1.pdf": {
-      "checksum": "847d47394663fe093d1f00d401281db6"
+      "checksum": "96997ae971658a77f31d7d31ff21b2b9"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-31-1.pdf": {
-      "checksum": "2b4c11738d9fdecd6f9404a73b22449b"
+      "checksum": "0121235e4059911df643a33f4c140c08"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-31-1.png": {
       "checksum": "8bc674ca3412b888bf97ddb9a7736245"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-32-1.pdf": {
-      "checksum": "bef4bc0113468144559a885998f90e0d"
+      "checksum": "0ee42e5faf23ee1062fa16e22acd3e90"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-36-1.pdf": {
-      "checksum": "1970cc43cf5e2a7857a7e25b0144b895"
+      "checksum": "59b0039ffbcc3ceff96ea887a54d2d7e"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-36-2.pdf": {
-      "checksum": "e52aeb66ad95b8eba53430620323e55d"
+      "checksum": "4ed5f54b66a63bfb230f8b57eca14238"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-39-1.pdf": {
-      "checksum": "1ae4d5d5b2428ced4be6b516084fb6b4"
+      "checksum": "309828123201d50dae2141345213f69b"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-40-1.pdf": {
-      "checksum": "a57dc752f2410e2c59817da9d6c911f8"
+      "checksum": "e54fb0a6d5f6e51b9a8f9968b7bd669c"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-55-1.pdf": {
+      "checksum": "cb7fe8693d7204b329b40b47e8960da2"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-55-2.pdf": {
+      "checksum": "16a155a71cebf8a59b0da718f9b3b1ac"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-55-3.pdf": {
+      "checksum": "c66abd77faf88d626512bcfd9b38a741"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-68-1.pdf": {
+      "checksum": "3236441f4a16b45f18623a12e2bcc32a"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-68-2.pdf": {
+      "checksum": "e6ad96cade1fd5f9e7248fe1be17c45a"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-68-3.pdf": {
+      "checksum": "c2ad21c209eeeb53809c98a3dfa91e5f"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-68-4.pdf": {
+      "checksum": "ec6e23c97521dc8e8fa95cee928e2053"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-69-1.pdf": {
-      "checksum": "3b6e4333da048b44e34e0f19849e6024"
+      "checksum": "0d7c6f1bf8574070dcc364aea8cb7c77"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-69-2.pdf": {
-      "checksum": "c8049dba3156e012d2caf4b8d0f19078"
+      "checksum": "554898d007fe28a2a622525de146bc31"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-69-3.pdf": {
-      "checksum": "f316380800a9abeb90cdd87248d7091e"
+      "checksum": "beaccaa255e9e880fd0e4f2b655dfbf0"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-70-1.pdf": {
       "checksum": "f6d71f57d18468e4deab744c1570cc9a"
@@ -4607,17 +4667,29 @@
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-70-3.pdf": {
       "checksum": "d7e1b2b01238b540c816866bf0ee303e"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-71-1.pdf": {
+      "checksum": "684c633934d74ea7429d8d9f8c16a5d9"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-73-1.pdf": {
+      "checksum": "492336514584bd3e5e6976d0692865c7"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-77-1.pdf": {
+      "checksum": "f0b0373bdd89ee13e71330facc4a0c88"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-81-1.pdf": {
+      "checksum": "257aff81fbf98bde0c9b068dfee9daf1"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-84-1.pdf": {
-      "checksum": "8311010f50f67054fabc227b43cc8b73"
+      "checksum": "1b9edc918f6ea4a58b717386324824d6"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-84-2.pdf": {
-      "checksum": "48f0230f2b646c83f32d1c908b1eb8e0"
+      "checksum": "ee753a27ebc11ae3be7fcbb8d531b75a"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-84-3.pdf": {
-      "checksum": "72ede5c66c4e877cc2df7dc24203a5cd"
+      "checksum": "6e339f8e640326274097a73ee03a76a6"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-84-4.pdf": {
-      "checksum": "f4f452b01aead5a8788e08d2ea73e63f"
+      "checksum": "379928e3f16a840bc22e0f0bf1376888"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-85-1.pdf": {
       "checksum": "f2f45e03390c1767a88428bd31a85dc8"
@@ -4632,19 +4704,25 @@
       "checksum": "3af99bc6f5cc22a6d5fb3dd9fab53b14"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-88-1.pdf": {
-      "checksum": "8ac67c304d774b212108de1b175f560c"
+      "checksum": "0dba74cc72e36ef8346e9238d40cd06d"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-89-1.pdf": {
       "checksum": "a4e083a470550ef42dcb8b919e45b4ad"
     },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-9-1.pdf": {
+      "checksum": "51fed78673c15a17239f7a3093bee923"
+    },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-91-1.pdf": {
-      "checksum": "e215ca6555e80ae210e0baed4150c97d"
+      "checksum": "2b131b9d39d255f269f2484725f5d4f0"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-92-1.pdf": {
-      "checksum": "0ad2da3a3ca0c20439b5a926f8ff1673"
+      "checksum": "0552b4b7b48d05a44d1ed8b70be6b628"
+    },
+    "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-95-1.pdf": {
+      "checksum": "9eff8903ce38e2309580359fdf98e17b"
     },
     "_bookdown_files/patterns-and-trends_files/figure-latex/unnamed-chunk-99-1.pdf": {
-      "checksum": "775c2675017690cfe6ea1b2af721a25c"
+      "checksum": "06aeefedf1ffd9218d1d4141741c20dd"
     },
     "_bookdown.yml": {
       "checksum": "201021a6fbfaeeb4e901767655a79488"
@@ -4745,146 +4823,41 @@
     "02_Images/w04_ex1_p1.jpg": {
       "checksum": "0bd54ffa0a05d8ca5a85c93dd97f59d7"
     },
-    "11_Week1/RFiles/W01_01_Exercise_code_solution.Rmd": {
-      "checksum": "4ea006e762cc9783e548fbafb04624d0"
-    },
     "11_Week1/RFiles/W01_01_Exercise_code.R": {
-      "checksum": "eda4845eba844b656dd7e929e76525f9"
-    },
-    "11_Week1/RFiles/W01_01_Exercise_solution.Rmd": {
-      "checksum": "a3f9bb2f9a1a01a65e51700931e54701"
-    },
-    "11_Week1/RFiles/W01_02_Solutions_code.R": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
-    },
-    "11_Week1/RFiles/W01_02_Solutions_solution.Rmd": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
-    },
-    "11_Week1/W01_01_Exercise_files/figure-html/unnamed-chunk-28-1.png": {
-      "checksum": "23b36de13bf558e9dc3bcb2eea7e0632"
-    },
-    "11_Week1/W01_01_Exercise_files/figure-html/unnamed-chunk-29-1.png": {
-      "checksum": "67394535c079ee11b7715fe3b3ba909d"
-    },
-    "11_Week1/W01_01_Exercise_files/figure-html/unnamed-chunk-30-1.png": {
-      "checksum": "7ec98156a12b7cd37ae2d95f0bfd0a89"
-    },
-    "11_Week1/W01_01_Exercise_files/figure-html/unnamed-chunk-34-1.png": {
-      "checksum": "cc07fce4566d98834cdacc910248531d"
-    },
-    "11_Week1/W01_01_Exercise_files/figure-html/unnamed-chunk-34-2.png": {
-      "checksum": "cb82a3cebc3d1491600869cc67c9f723"
-    },
-    "11_Week1/W01_01_Exercise_files/figure-html/unnamed-chunk-37-1.png": {
-      "checksum": "05e9ff936f0a9dcdade83a374316e73d"
-    },
-    "11_Week1/W01_01_Exercise_files/figure-html/unnamed-chunk-38-1.png": {
-      "checksum": "f7ef29e407d57478ce0c8ba59c5075b9"
-    },
-    "11_Week1/W01_01_Exercise_files/figure-html/unnamed-chunk-9-1.png": {
-      "checksum": "e4800525930ac7c471a94dcb1cca9c13"
+      "checksum": "6130ed2939cceaf4bc9cf40343700d4e"
     },
     "11_Week1/W01_01_Exercise.Rmd": {
-      "checksum": "7fe9a5d2b73c33dea671c7fdafcc2be2"
-    },
-    "11_Week1/W01_02_Solutions.Rmd": {
-      "checksum": "6ce44124d9e10dc73aab141586e01c8d"
+      "checksum": "2a44695bfead53eed49e3f78b1258769"
     },
     "12_Week2/RFiles/W02_01_Exercise_code.R": {
-      "checksum": "c3e369b1df42c643f7b32a270840b1c2"
-    },
-    "12_Week2/RFiles/W02_01_Exercise_solution.Rmd": {
-      "checksum": "182c42bd502664b3fdf15eaa8618b588"
-    },
-    "12_Week2/RFiles/W02_02_Solutions_code.R": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
-    },
-    "12_Week2/RFiles/W02_02_Solutions_solution.Rmd": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
+      "checksum": "2f72f3debfa0f443ada0921fc86f814c"
     },
     "12_Week2/W02_01_Exercise.Rmd": {
-      "checksum": "3fb54ecb8a1c50cd282d080fe7ce7dcb"
-    },
-    "12_Week2/W02_02_Solutions.Rmd": {
-      "checksum": "9e7a5c0ac108270d390dedf7b757a1ef"
-    },
-    "13_Week3/p1.png": {
-      "checksum": "8bc674ca3412b888bf97ddb9a7736245"
+      "checksum": "ea37091d3b9993724a59b655f7732b1b"
     },
     "13_Week3/RFiles/W03_01_Exercise_code.R": {
-      "checksum": "f7feead612b86c1826fd58f13aac2822"
-    },
-    "13_Week3/RFiles/W03_01_Exercise_solution.Rmd": {
-      "checksum": "3823dfa5e1d87f63093ab89c10d4b13e"
-    },
-    "13_Week3/RFiles/W03_02_Solutions_code.R": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
-    },
-    "13_Week3/RFiles/W03_02_Solutions_solution.Rmd": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
+      "checksum": "1f15de49bc6e62169ef08d7e53375941"
     },
     "13_Week3/W03_01_Exercise.Rmd": {
-      "checksum": "a71840d8d0034808b885fefd3798fff2"
-    },
-    "13_Week3/W03_02_Solutions.Rmd": {
-      "checksum": "5bcfcaa0090c4c782c6137f4302b49d9"
-    },
-    "14_Week4/p1.png": {
-      "checksum": "1b850d74ef1fdb34d66eba98642ce38b"
-    },
-    "14_Week4/p2.png": {
-      "checksum": "1b850d74ef1fdb34d66eba98642ce38b"
+      "checksum": "f7aa0b1a1d7137c362ee053918a74738"
     },
     "14_Week4/RFiles/W04_01_Exercise_code.R": {
-      "checksum": "b9e558ffdb5533535166eeac7eef9e4e"
-    },
-    "14_Week4/RFiles/W04_01_Exercise_solution.Rmd": {
-      "checksum": "2c7f5b43f06c86c52396b61c37cb3ba3"
-    },
-    "14_Week4/RFiles/W04_01_Solutions_code.R": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
-    },
-    "14_Week4/RFiles/W04_01_Solutions_solution.Rmd": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
+      "checksum": "3e414f4bfc9327f7abe3d209f35c4789"
     },
     "14_Week4/W04_01_Exercise.Rmd": {
-      "checksum": "a4b835addbcf50e86e88a03b6dc2e24d"
-    },
-    "14_Week4/W04_01_Solutions.Rmd": {
-      "checksum": "fc7ea508dd3963ddccbfc49bc6a4cea6"
-    },
-    "15_Week5/RFiles/W05_01_Exercise_code_solution.Rmd": {
-      "checksum": "0228c87885795aee0d424906769511ad"
+      "checksum": "8e4d74739539376fcd405d6a3c2596e7"
     },
     "15_Week5/RFiles/W05_01_Exercise_code.R": {
-      "checksum": "8537bc161f903d4950e460aa5d5d7749"
-    },
-    "15_Week5/RFiles/W05_01_Exercise_solution.Rmd": {
-      "checksum": "ca3d05b3bb0a5f44546332bcca5b5275"
-    },
-    "15_Week5/RFiles/W05_01_Exercise.R": {
-      "checksum": "0228c87885795aee0d424906769511ad"
-    },
-    "15_Week5/RFiles/W05_01_Exercise.Rmd": {
-      "checksum": "0228c87885795aee0d424906769511ad"
-    },
-    "15_Week5/RFiles/W05_02_Solutions_code.R": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
-    },
-    "15_Week5/RFiles/W05_02_Solutions_solution.Rmd": {
-      "checksum": "68b329da9893e34099c7d8ad5cb9c940"
+      "checksum": "d1757d6dd24b3d742ac6b2334a8c747c"
     },
     "15_Week5/W05_01_Exercise.Rmd": {
-      "checksum": "b5e2f9234b1f4e4901b086d4efa1e1d1"
-    },
-    "15_Week5/W05_02_Solutions.Rmd": {
-      "checksum": "ad4d2e33d58ebc69ef230ef08eb9149c"
+      "checksum": "8866383edc4e43c2cbe5a3d010aa90b9"
     },
     "index.Rmd": {
-      "checksum": "0d68586ec825f5c85fa7cbeae9aa2090"
+      "checksum": "ac27f2b01f7777bb180117556914cdf6"
     },
     "introduction-chapter.html": {
-      "checksum": "4f9253f63f51de99556ed6d142c080cc"
+      "checksum": "cc0e1629fb0dc38a2272701fd555a9d3"
     },
     "libs/gitbook-2.6.7/css/fontawesome/fontawesome-webfont.ttf": {
       "checksum": "b06871f281fee6b241d60582ae9369b9"
@@ -5045,9 +5018,6 @@
     "packrat/desc/fansi": {
       "checksum": "58b6d44206e175b6d15b2d1b763d96fc"
     },
-    "packrat/desc/farver": {
-      "checksum": "1dafacd7d8a2ce8c5261b7ecacd1f49d"
-    },
     "packrat/desc/fastmap": {
       "checksum": "63fe1de3c61d6287f7f0981438f0a12b"
     },
@@ -5062,9 +5032,6 @@
     },
     "packrat/desc/generics": {
       "checksum": "b945b6d0b4953a6f7524d214f98d8a36"
-    },
-    "packrat/desc/ggforce": {
-      "checksum": "64055bb23572dea941991aab1a123d97"
     },
     "packrat/desc/ggplot2": {
       "checksum": "b08b79e4ac05659416e52bded8bee5e1"
@@ -5195,9 +5162,6 @@
     "packrat/desc/png": {
       "checksum": "4776e88a983d7dd1691793bb1ba43f6e"
     },
-    "packrat/desc/polyclip": {
-      "checksum": "d20889650bc3539232e51e3635a63b3f"
-    },
     "packrat/desc/prettymapr": {
       "checksum": "3af9627e247cbedb1ed71b4daf9b7f29"
     },
@@ -5230,9 +5194,6 @@
     },
     "packrat/desc/Rcpp": {
       "checksum": "f5f5417e36dc995b929a0dab7d4ce596"
-    },
-    "packrat/desc/RcppEigen": {
-      "checksum": "a83b104cf2af067b8332c5a718a1aac4"
     },
     "packrat/desc/readr": {
       "checksum": "53ffc06e7d9b7cdcee417133d38c0f2a"
@@ -5327,9 +5288,6 @@
     "packrat/desc/tmaptools": {
       "checksum": "5e8aae7895128b0b1c14c4bcc5c6294f"
     },
-    "packrat/desc/tweenr": {
-      "checksum": "c7298cd7816e7634701d39bfec7f0a41"
-    },
     "packrat/desc/units": {
       "checksum": "a981e8654def61ddb7e24e4e25e792b1"
     },
@@ -5373,7 +5331,10 @@
       "checksum": "c92227f9fc262f10cf7319b338fdbcab"
     },
     "packrat/packrat.lock": {
-      "checksum": "9def659399c5b35527c01a7a2f2f4813"
+      "checksum": "07ba5998e42102d26f23175a13928d11"
+    },
+    "W01_01_Exercise.R": {
+      "checksum": "ba29e8b43ff9db99e82858655f4bcf67"
     }
   },
   "users": null

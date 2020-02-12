@@ -363,11 +363,3 @@ tm_shape(mcp) +
   tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
   tm_legend(bg.color = "white")
 ```
-
-
-```{r code=readLines('01_R_Files/clear_workspace.R'), echo = F, include=F, eval=T, purl = F}
-```
-
-
-
-

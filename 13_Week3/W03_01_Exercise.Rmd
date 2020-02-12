@@ -528,8 +528,6 @@ pedest_measures %>%
 
 
 
-```{r code=readLines('01_R_Files/clear_workspace.R'), echo = F, include=F, eval=T}
-```
 
 
 
