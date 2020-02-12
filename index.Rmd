@@ -59,7 +59,7 @@ library(stringr)
 
 rmds <- list.files(pattern = "\\.Rmd",recursive = T)
 
-exclude <- c("_Rcode","99_","index","Archive","Admin","_main","project_ideas","RFiles","patterns-and-trends","solutions")
+exclude <- c("_Rcode","99_","index","Archive","Admin","_main","project_ideas","RFiles","patterns-and-trends")
 
 rmds <- rmds[-grep(paste(exclude,collapse="|"),ignore.case = TRUE, rmds, value=F)]
 
@@ -73,20 +73,7 @@ for (file in rmds){
   }
   knitr::purl(file,documentation = 0,output = file_r)
   
-  # file_rmd <- file_r %>%
-  #   str_split_fixed("_code.R",2) %>%
-  #   .[1] %>%
-  #   paste0("_solution.Rmd",collapse = "")
-  # 
-  # if(file.exists(file_rmd)){
-  #   file.remove(file_rmd)
-  # }
-  # 
-  # readLines(file_r) %>%
-  #   stringr::str_replace("#- chunkstart", "```{r, echo = T,include = T,eval = F}") %>%
-  #   stringr::str_replace("#- chunkend", "```") %>% 
-  #   stringr::str_replace("#- header3", "###") %>% 
-  #   writeLines(file_rmd)
+
 }
  
 ```
