@@ -169,10 +169,10 @@ p1 <- caro60 %>%
 p1
 
 
-## 
-## library(plotly)
-## ggplotly(p1)
-## 
+
+library(plotly)
+ggplotly(p1)
+
 
 
 
@@ -304,5 +304,3 @@ pedest_measures %>%
   theme(legend.position = "none") +
   labs(x = "Comparison trajectory", y = "Value", title = "Computed similarities using different measures \nbetween trajectory 1 to all other trajectories ")
 
-
-## Task 5 ######################################################################

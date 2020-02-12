@@ -322,8 +322,3 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
   geom_segment(aes(x = lag(x), y = lag(y), xend = x,yend = y),arrow = arrow(length = unit(0.5,"cm"))) +
   geom_label(aes(label = paste0(angle,"°")),alpha = 0.4,nudge_x = 0.2, nudge_y = 0.2) +
   coord_equal()
-
-as.integer(TRUE)
-as.integer(FALSE)
-
-TRUE+TRUE

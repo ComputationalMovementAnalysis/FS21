@@ -91,17 +91,14 @@ wildschwein_BE_2016 %>%
   group_by(TierID,hour) %>%
   summarise(
     mean = mean(dod,na.rm = T),
-    sd = sd(dod,na.rm = T),
-    up = mean+sd,
-    do = mean-sd
     ) %>%
-  ggplot(aes(x = hour,y = mean,ymin = do, ymax = up, colour = TierID,fill = TierID)) +
-  geom_ribbon(alpha = 0.4) +
+  ggplot(aes(x = hour,y = mean,colour = TierID)) +
   geom_line() +
-  labs(x = "nDSM",
-    title = "nDSM values as an approximation for vegitation hight",
-    subtitle = "The line represents the mean nDSM value and the ribbon one standard deviation") +
-  facet_wrap(~TierID) +
+  labs(
+    x = "Hour",
+    y = "Mean nDSM",
+    title = "Mean nDSM value per hour",
+    subtitle = "(nDSM serves as an approximation for vegitation hight")+
   theme_minimal()
     
   
