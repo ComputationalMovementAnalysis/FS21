@@ -1,5 +1,0 @@
-## Solutions
-
-
-```{r child='12_Week2/RFiles/W02_01_Exercise_solution.Rmd', purl = F}
-```

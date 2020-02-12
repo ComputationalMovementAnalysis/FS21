@@ -40,11 +40,6 @@ install.packages("raster")
 
 ### Task 1: Initialize project
 
-```{r}
-#- header3 Task1
-#- chunkstart
-```
-
 Create a new *RStudio Project*. As recommended in @wickham2017, remove the option "*Restore .RData into workspace at startup*" and set the option "*save workspace to .RData on exit*" to "*Never*".
 
 Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science Workflow. In .R Files, "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes, equal, or pound signs ( `-`, `=`,`#`). In .Rmd Files, their are created with leading pound signs (`#`).
@@ -59,6 +54,10 @@ Sections allow code folding (try clicking on the small triangle next to the line
 
 ```{r}
 
+## Task 1 ######################################################################
+```
+
+```{r}
 # Loading enironment / libraries ####
 library(tidyverse)
 
@@ -72,16 +71,12 @@ library(tidyverse)
 
 ```
 
-```{r}
-#- chunkend
-```
+
 
 ### Task 2: Import data
 ```{r}
-#- header3 Task 2
-#- chunkstart
+## Task 2 ######################################################################
 ```
-
 In section "data import", import the file `wildschwein_BE.csv`. Obtain this file from moodle.
 
 Note: 
@@ -93,8 +88,9 @@ Note:
 - For everyone working on the RStudio Server: You will first need to upload this data to the server using the "*upload*"-button in the "*Files*" tab.
 
 
-```{r}
 
+
+```{r}
 # Data import ####
 wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
@@ -105,13 +101,10 @@ wildschwein_BE$DatetimeUTC[1]
 ```
 
 
-```{r}
-#- chunkend
-```
+
 ### Task 3: Explore Data
 ```{r}
-#- header3 Task 3
-#- chunkstart
+## Task 3 ######################################################################
 ```
 We will use a range of different visualization tools (i.e. R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While `base::plot() `is quick and simple, it not very scalable with growing complexity. `ggplot2` offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
 
@@ -122,24 +115,19 @@ Assigning every individual its own colour is done using the `ggplot` argument `c
 
 Save your code in the appropriate section.
 
-```{r, echo = F, include=T, eval = T, }
+
+```{r echo = F, include=T, eval = T, }
+
 ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
   geom_point() +
   theme(legend.position = "none")
 ```
 
 
-
-
-```{r}
-#- chunkend
-```
 ### Input: Handling spatial data
 ```{r}
-#- header3 Input
-#- chunkstart
+## Input Handling Spatial Data #################################################
 ```
-
 Until now, we've stored our location data within data frames as Lat/Long columns. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our `data.frame` into a spatial object.
 Some of you might be familiar with the `sp` package with the classes `SpatialPoints`, `SpatialPointsDataFrame` and so on. These packages are mostly replaced by the fairly new package `sf`. This packages has some huge advantages over `sp`:
 
@@ -155,7 +143,10 @@ We will largely rely on `sf`when working with vector data in `R`. In order to tr
 
 
 
-```{r, echo = T, include = T, eval = T}
+
+
+```{r input_handlingSpatialData, echo = T, include = T, eval = T}
+
 library(sf)
 
 wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
@@ -202,17 +193,16 @@ rm(wildschwein_BE_sf)
 
 ```
 
-```{r}
-#- chunkend
-```
+
 ### Task 4: Project data from WGS84
 ```{r}
-#- header3 Task 4
-#- chunkstart
+## Task 4 ######################################################################
 ```
 So what can we do with our new `sf` object that we couldn't before? One example is projecting the WGS84 (`Lat`/`Long`) coordinates into the new Swiss CRS `CH1903+ LV95`[^50]. Do this by using the function `st_transform`. By the way, do you notice a pattern here? The package `sf` names most functions for spatial operations with the prefix `st_*`, just as in PostGIS.
 
 [^50]: As we've mentioned in the first Input, you can look up the EPSG codes under [spatialreference.org](http://spatialreference.org/ref/epsg/2056/) or http://epsg.io. For information specific to Switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
+
+
 
 ```{r}
 
@@ -227,13 +217,10 @@ wildschwein_BE
 ```
 
 
-```{r}
-#- chunkend
-```
+
 ### Input: Calculate Convex Hull
 ```{r}
-#- header3 Input
-#- chunkstart
+## Input: Calculate Convex Hull ################################################
 ```
 Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a [convex hull](https://en.wikipedia.org/wiki/Convex_hull) per Wild boar. And guess what the function for calculating a convex hull is called in `sf`? If you guessed `st_convex_hull()`, you were right! 
 
@@ -241,7 +228,10 @@ By default `st_convex_hull()` calculates the convex hull *per feature*, i.e. *pe
 
 First: add a grouping variable to the `sf` object. Note the new grouping variable in the metadata of the `sf` object. Other than that, `group_by` has no effect on our `sf` object.
 
-```{r, echo = T,include = T,eval = T}
+
+
+```{r input_calculateConvexHull, echo = T,include = T,eval = T}
+
 wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
 
 wildschwein_BE_grouped
@@ -266,19 +256,15 @@ mcp <- st_convex_hull(wildschwein_BE_smry)
 
 ```
 
-```{r}
-#- chunkend
-```
+
 ### Task 5: Ploting spatial objects
 ```{r}
-#- header3 Task 5
-#- chunkstart
+## Task 5 ######################################################################
 ```
 Using base plot to visualize `sf` objects is easy enough, just try the following code. 
 
 
-
-```{r, echo = T,include = T,eval = T}
+```{r echo = T,include = T,eval = T}
 plot(mcp)
 ```
 
@@ -298,21 +284,15 @@ ggplot(mcp,aes(fill = TierID)) +
   coord_sf(datum = 2056)
 ```
 
-```{r}
-#- chunkend
-```
 
-
-```{r}
-#- header3 Input
-#- chunkstart
-```
 ### Input: Importing raster data
-
+```{r}
+## Input: Importing Raster Data ################################################
+```
 In the next task, we would like to add a background map to our `mcp` object. To do this, we have to the raster data into `R` first. For this, we use the package `raster` with the function `brick`.
 
 
-```{r, echo = T,include = T,eval = T}
+```{r echo = T,include = T,eval = T}
 
 library(raster)
 
@@ -334,21 +314,16 @@ plot(pk100_BE)
 
 ```
 
-```{r}
-#- chunkend
-```
 
 
 ### Task 6: Adding a background map
 ```{r}
-#- header3 Task 6
-#- chunkstart
+## Task 6 ######################################################################
 ```
-
 There are multiple ways to add a background map in `ggplot`, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: `tmap` ("thematic map"). This package was developed with a syntax very similar to `ggplot2`, which makes it easy to learn.
 
 
-```{r, echo = T,include = T,eval = T}
+```{r task6, echo = T,include = T,eval = T}
 library(tmap)
 
 
@@ -373,21 +348,20 @@ tm_shape(pk100_BE) +
 
 ### Task 7: Create an interactive map
 
+```{r}
+## Task 7 ######################################################################
+```
 
 Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand. Omit the raster layer (`pk100_BE`), you won't be needing it.
 
-```{r, echo = F,include = T,eval = F}
+
+```{r task7, echo = F,include = T,eval = F}
 
 tmap_mode("view")
 
 tm_shape(mcp) +
   tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
   tm_legend(bg.color = "white")
-```
-
-
-```{r}
-#- chunkend
 ```
 
 

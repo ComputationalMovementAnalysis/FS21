@@ -1,5 +1,5 @@
-#- header3 Preperation
-#- chunkstart
+## Preperation #################################################################
+
 
 library(tidyverse)
 library(sf)
@@ -32,8 +32,7 @@ wildschwein_BE <- wildschwein_BE %>%
 
 #- chunkend
 
-#- header3 Input
-#- chunkstart
+## Input: Creating Functions ###################################################
 
 testfun <- function(){}
 
@@ -74,19 +73,13 @@ nthroot(10)
 nthroot(10,3)
 
 
-#- chunkend
-
-#- header3 Task 1
-#- chunkstart
+## Task 4 ######################################################################
 
 euclid <- function(x,y,leadval = 1){
   sqrt((x-lead(x,leadval))^2+(y-lead(y,leadval))^2)
 }
 
-#- chunkend
-
-#- header3 Task 2
-#- chunkstart
+## Task 2 ######################################################################
 
 wildschwein_filter <- wildschwein_BE %>%
   filter(DatetimeUTC > "2015-04-01",
@@ -104,8 +97,8 @@ wildschwein_filter <- wildschwein_filter %>%
 
 #- chunkend
 
-#- header3 Task 3
-#- chunkstart
+## Task 3 ######################################################################
+
 
 head(wildschwein_filter)
 
@@ -129,10 +122,7 @@ wildschwein_filter %>%
   labs(x = "Absolute time difference between original- and rounded Timestamp",
        y = "Number of values")
 
-#- chunkend
-
-#- header3 Task 4
-#- chunkstart
+## Task 4 ######################################################################
 
 wildschwein_join <- wildschwein_filter %>%
   ungroup() %>%
@@ -157,10 +147,7 @@ wildschwein_join <- wildschwein_join %>%
 
 wildschwein_join
 
-#- chunkend
-
-#- header3 Task 5
-#- chunkstart
+## Task 5 ######################################################################
 
 
 # library(ggpmisc)
@@ -209,10 +196,7 @@ ggplot(wildschwein_spread) +
 
 
 
-#- chunkend
-
-#- header3 Task 6
-#- chunkstart
+## Task 6 ######################################################################
 
 ## 
 ## meanmeetpoints <- wildschwein_join %>%
@@ -240,7 +224,3 @@ ggplot(wildschwein_spread) +
 ##   layout(scene = list(xaxis = list(title = 'E'),
 ##                       yaxis = list(title = 'N'),
 ##                       zaxis = list(title = 'Time')))
-
-
-
-#- chunkend

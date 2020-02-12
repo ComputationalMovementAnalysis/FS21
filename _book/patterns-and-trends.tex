@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{11 February, 2020}
+    \date{12 February, 2020}
 
 
 \begin{document}
@@ -258,7 +258,7 @@ Assigning every individual its own colour is done using the \texttt{ggplot} argu
 
 Save your code in the appropriate section.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-11-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-9-1.pdf}
 
 \hypertarget{input-handling-spatial-data}{%
 \subsection{Input: Handling spatial data}\label{input-handling-spatial-data}}
@@ -282,6 +282,7 @@ We will largely rely on \texttt{sf}when working with vector data in \texttt{R}. 
 
 \begin{Shaded}
 \begin{Highlighting}[]
+
 \KeywordTok{library}\NormalTok{(sf)}
 
 \NormalTok{wildschwein_BE_sf <-}\StringTok{ }\KeywordTok{st_as_sf}\NormalTok{(wildschwein_BE, }
@@ -422,6 +423,7 @@ First: add a grouping variable to the \texttt{sf} object. Note the new grouping 
 
 \begin{Shaded}
 \begin{Highlighting}[]
+
 \NormalTok{wildschwein_BE_grouped <-}\StringTok{ }\KeywordTok{group_by}\NormalTok{(wildschwein_BE,TierID)}
 
 \NormalTok{wildschwein_BE_grouped}
@@ -490,15 +492,15 @@ Using base plot to visualize \texttt{sf} objects is easy enough, just try the fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-30-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 But since we use \texttt{ggplot} extensively, try and plot the object \texttt{mcp} with \texttt{ggplot}. Hint: Use the layer \texttt{geom\_sf()} to add an \texttt{sf} object.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-31-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 Note: \texttt{ggplot} refuses to use our specified CRS, so we need to force this by specifying \texttt{datum\ =} in \texttt{coord\_sf()}. Try it out.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-32-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \hypertarget{input-importing-raster-data}{%
 \subsection{Input: Importing raster data}\label{input-importing-raster-data}}
@@ -534,7 +536,7 @@ In the next task, we would like to add a background map to our \texttt{mcp} obje
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-36-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-27-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -545,7 +547,7 @@ In the next task, we would like to add a background map to our \texttt{mcp} obje
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-36-2.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-27-2.pdf}
 
 \hypertarget{task-6-adding-a-background-map}{%
 \subsection{Task 6: Adding a background map}\label{task-6-adding-a-background-map}}
@@ -562,11 +564,11 @@ There are multiple ways to add a background map in \texttt{ggplot}, many require
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/task6-1.pdf}
 
 As you can see, plotting layers in \texttt{tmap} is combined with the \texttt{+} sign, just as in \texttt{ggplot2}. In \texttt{tmap} however, each layer consists of two objects: a \texttt{tm\_shape()} in which the data is called, and a \texttt{tm\_*} object in which we define how the data is visualized (\texttt{tm\_rgb()} states that it is plotted as an RGB Raster Layer). Add the object \texttt{mcp} to the plot in this manner. Read \href{https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html}{the vignette} if you are having trouble.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-40-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 \hypertarget{task-7-create-an-interactive-map}{%
 \subsection{Task 7: Create an interactive map}\label{task-7-create-an-interactive-map}}
@@ -921,7 +923,7 @@ First, inspect your data in more detail. Try to answer the following questions:
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-69-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-69-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-69-3.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-55-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-55-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-55-3.pdf}
 
 \hypertarget{input-geometry-as-columns}{%
 \subsection{Input: Geometry as columns}\label{input-geometry-as-columns}}
@@ -1051,7 +1053,7 @@ We've stored the geographic location of our point in the trajectory in three dif
   \texttt{geom\_line()} does not work when mapping trajectory data, since it connects the observations \emph{in order of the variable on the x axis}. \texttt{geom\_path()} connects the observations in the order in which they appear in the data
 \end{itemize}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-84-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-84-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-84-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-84-4.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-68-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-68-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-68-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-68-4.pdf}
 
 \hypertarget{task-4-deriving-movement-parameters-ii-rolling-window-functions}{%
 \subsection{Task 4: Deriving movement parameters II: Rolling window functions}\label{task-4-deriving-movement-parameters-ii-rolling-window-functions}}
@@ -1060,16 +1062,15 @@ A different approach would be to \emph{smoothen} the derived parameters using a 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-
 \KeywordTok{library}\NormalTok{(zoo)}
 
 \NormalTok{example <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{3}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1]  0.5207240 -0.4483856 -0.4947788 -0.7854014 -0.2266324  0.2809463}
-\CommentTok{##  [7]  0.1305302 -0.1532332         NA         NA}
+\CommentTok{##  [1]  0.38194275  0.32736322 -0.01757311 -0.16077027 -0.37827062}
+\CommentTok{##  [6] -0.48647146 -0.38000216  0.10239043          NA          NA}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{4}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1] -0.0585104 -0.6587651 -0.1886058 -0.6190277 -0.1117662  0.2803759}
-\CommentTok{##  [7] -0.1449016         NA         NA         NA}
+\CommentTok{##  [1]  0.48991113  0.01042579 -0.10211498 -0.08024889 -0.59995022}
+\CommentTok{##  [6] -0.37393677  0.11712163          NA          NA          NA}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1120,6 +1121,9 @@ Install the following libraries:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+
+\CommentTok{## Preperation #################################################################}
+
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"SimilarityMeasures"}\NormalTok{)}
 
 \CommentTok{# The following packages are for optional tasks:}
@@ -1195,6 +1199,10 @@ Note: I use \texttt{tibble()} instead of \texttt{data.frame()}. The two function
 
 \begin{Shaded}
 \begin{Highlighting}[]
+
+\CommentTok{## Input: Segmentation #########################################################}
+
+
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \NormalTok{n =}\StringTok{ }\DecValTok{20}
 \NormalTok{df <-}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{X =} \KeywordTok{cumsum}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(n)), }\DataTypeTok{Y =} \KeywordTok{cumsum}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(n)))}
@@ -1206,7 +1214,7 @@ Note: I use \texttt{tibble()} instead of \texttt{data.frame()}. The two function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-1.pdf}
 
 \hypertarget{segmenting}{%
 \subsubsection{Segmenting}\label{segmenting}}
@@ -1360,7 +1368,7 @@ We can now determin if an animal is moving or not by specifying a threshold on \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-103-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-81-1.pdf}
 
 \hypertarget{unique-ids-per-segment}{%
 \subsubsection{\texorpdfstring{Unique IDs \emph{per segment}}{Unique IDs per segment}}\label{unique-ids-per-segment}}
@@ -1484,8 +1492,8 @@ Store the new information (boolean to differentiate between stops (\texttt{TRUE}
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-114-1.pdf}
-\caption{\label{fig:unnamed-chunk-114}My summary statistics shows a mean of 5, the histogram shows that this might be a reasonable threshold.}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-92-1.pdf}
+\caption{\label{fig:unnamed-chunk-92}My summary statistics shows a mean of 5, the histogram shows that this might be a reasonable threshold.}
 \end{figure}
 
 \hypertarget{task-3-visualize-segmented-trajectories}{%
@@ -1493,7 +1501,7 @@ Store the new information (boolean to differentiate between stops (\texttt{TRUE}
 
 Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with \texttt{geom\_path()}, \texttt{geom\_point()} and \texttt{coord\_equal()}. Assign \texttt{colour\ =\ moving} within \texttt{aes()} to distinguish between segments \emph{with} ``movement'' and \emph{without}.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-118-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-95-1.pdf}
 
 Tip: if you want to get a \texttt{ggplot()} with Zoom capability, just load the library \texttt{plotly} and wrap the \texttt{ggplot()} function with \texttt{ggplotly()}
 
@@ -1527,7 +1535,7 @@ In order to do this, we need a \emph{unique} name for each segment that we can u
   inspect your data visually
 \end{enumerate}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-123-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-99-1.pdf}
 
 \hypertarget{task-5-similarity-measures}{%
 \subsection{Task 5: Similarity measures}\label{task-5-similarity-measures}}
@@ -1538,32 +1546,32 @@ We will analyse these trajectories with the package \texttt{SimilarityMeasures},
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-127-1.pdf}
-\caption{\label{fig:unnamed-chunk-127}Comparing Trajectories 1 and 2}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-102-1.pdf}
+\caption{\label{fig:unnamed-chunk-102}Comparing Trajectories 1 and 2}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-128-1.pdf}
-\caption{\label{fig:unnamed-chunk-128}Comparing Trajectories 1 and 3. Some positions are labelled with the position index to illustrate the direction of movement per trajectory.}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-103-1.pdf}
+\caption{\label{fig:unnamed-chunk-103}Comparing Trajectories 1 and 3. Some positions are labelled with the position index to illustrate the direction of movement per trajectory.}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-129-1.pdf}
-\caption{\label{fig:unnamed-chunk-129}Comparing Trajectories 1 and 4}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-104-1.pdf}
+\caption{\label{fig:unnamed-chunk-104}Comparing Trajectories 1 and 4}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-130-1.pdf}
-\caption{\label{fig:unnamed-chunk-130}Comparing Trajectories 1 and 5}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-105-1.pdf}
+\caption{\label{fig:unnamed-chunk-105}Comparing Trajectories 1 and 5}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-131-1.pdf}
-\caption{\label{fig:unnamed-chunk-131}Comparing Trajectories 1 and 6}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-106-1.pdf}
+\caption{\label{fig:unnamed-chunk-106}Comparing Trajectories 1 and 6}
 \end{figure}
 
 \hypertarget{task-6-calculate-similarity}{%
@@ -1583,8 +1591,8 @@ Note:
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-135-1.pdf}
-\caption{\label{fig:unnamed-chunk-135}Comparing Trajectory 1 to trajectories 2 to 6}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-110-1.pdf}
+\caption{\label{fig:unnamed-chunk-110}Comparing Trajectory 1 to trajectories 2 to 6}
 \end{figure}
 
 \hypertarget{exercise-4}{%
@@ -1783,7 +1791,7 @@ Simplifying the task even further, we will focus on an interval where we have a 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-154-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-127-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1821,7 +1829,7 @@ Simplifying the task even further, we will focus on an interval where we have a 
 \end{Shaded}
 
 Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. Verify if we have the same sampling interval (\texttt{timelag}) throughout our filtered dataset.
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-158-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-131-1.pdf}
 
 With a few exceptions, the sampling interval is \emph{around} 15 minutes. In order to join the data, however, we need \emph{identical} time stamps to serve as a join key. We therefore need to slightly adjust our time stamps to a common, concurrent interval.
 
@@ -1831,8 +1839,8 @@ Round the minutes of \texttt{DatetimeUTC} to a multiple of 15 (00, 15, 30,45) an
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-159-1.pdf}
-\caption{\label{fig:unnamed-chunk-159}After resampling, the movement data is slightly manipulated (this visualization is not part of the task) since we changed the original timestamp. We are usually off from the `true' value around 10 to 15 seconds, some are off by as much as 2 minutes.}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-132-1.pdf}
+\caption{\label{fig:unnamed-chunk-132}After resampling, the movement data is slightly manipulated (this visualization is not part of the task) since we changed the original timestamp. We are usually off from the `true' value around 10 to 15 seconds, some are off by as much as 2 minutes.}
 \end{figure}
 
 \hypertarget{task-4-measuring-distance-at-concurrent-locations}{%
@@ -1908,7 +1916,7 @@ Use this dataset to create circles at meet events.
 
 Add trajectories (\texttt{wildschwein\_spread}) and the circles (\texttt{meets}) to gggplot and facet by \texttt{name}.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-166-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-137-1.pdf}
 
 \hypertarget{task-6-optional-visualize-data-as-timecube-with-plotly}{%
 \subsection{\texorpdfstring{Task 6 (optional): Visualize data as timecube with \texttt{plotly}}{Task 6 (optional): Visualize data as timecube with plotly}}\label{task-6-optional-visualize-data-as-timecube-with-plotly}}
@@ -1989,7 +1997,7 @@ Open your R Project from last week. Either run your own script from last week or
 ## [1] "2015-07-27 11:00:14 UTC"
 \end{verbatim}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-177-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-145-1.pdf}
 
 \hypertarget{task-2-annotate-trajectories-from-vector-data}{%
 \subsection{Task 2: Annotate Trajectories from vector data}\label{task-2-annotate-trajectories-from-vector-data}}
@@ -1998,8 +2006,8 @@ Now we would like to know what crop was most visited by our wild boar, and at wh
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-180-1.pdf}
-\caption{\label{fig:unnamed-chunk-180}The number of samples per category \emph{per week} from May to July 2015.}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-148-1.pdf}
+\caption{\label{fig:unnamed-chunk-148}The number of samples per category \emph{per week} from May to July 2015.}
 \end{figure}
 
 \hypertarget{task-3-explore-annotated-trajectories}{%
@@ -2024,8 +2032,8 @@ In terms of raster data, we have prepared a \href{https://gisgeography.com/lidar
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-183-1.pdf}
-\caption{\label{fig:unnamed-chunk-183}An example of a temporal exploration of the data obtained from the nDSM.}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-150-1.pdf}
+\caption{\label{fig:unnamed-chunk-150}An example of a temporal exploration of the data obtained from the nDSM.}
 \end{figure}
 
 \hypertarget{references}{%

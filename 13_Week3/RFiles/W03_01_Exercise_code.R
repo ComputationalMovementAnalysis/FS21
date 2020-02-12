@@ -1,6 +1,6 @@
-#- header3 Preperation
-#- chunkstart
-
+## 
+## ## Preperation #################################################################
+## 
 ## install.packages("SimilarityMeasures")
 ## 
 ## # The following packages are for optional tasks:
@@ -38,10 +38,9 @@ wildschwein_BE <- wildschwein_BE %>%
   )
 
 
-#- chunkend
 
-#- header3 Input
-#- chunkstart
+## Input: Segmentation #########################################################
+
 
 set.seed(10)
 n = 20
@@ -121,8 +120,7 @@ df_cumsum %>%
 
 #- chunkend
 
-#- header3 Task1
-#- chunkstart
+## Task 1 ######################################################################
 
 
 
@@ -142,8 +140,8 @@ caro60 <- caro60 %>%
 
 #- chunkend
 
-#- header3 Task 2
-#- chunkstart
+## Task 2 ######################################################################
+
 
 
 summary(caro60$stepMean)
@@ -158,10 +156,7 @@ caro60 <- caro60 %>%
   ) 
 
 
-#- chunkend
-
-#- header3 Task 3
-#- chunkstart
+## Task 3 ######################################################################
 
 
 p1 <- caro60 %>%
@@ -181,10 +176,7 @@ p1
 
 
 
-#- chunkend
-
-#- header3 Task 4
-#- chunkstart
+## Task 4 ######################################################################
 
 
 caro60_moveseg <-caro60 %>%
@@ -214,10 +206,8 @@ bind_rows(mutate(caro60, lab = "before"),mutate(caro60_moveseg,lab = "after")) %
 
 
 
-#- chunkend
+## Task 5 ######################################################################
 
-#- header3 Task 5
-#- chunkstart
 
 
 library(ggrepel)
@@ -272,8 +262,7 @@ plotraj(6)
 
 #- chunkend
 
-#- header3 Task 6
-#- chunkstart
+## Task 6 ######################################################################
 
 
 # instead of repeating the same step 6 times, I use purrr::map() 
@@ -316,39 +305,4 @@ pedest_measures %>%
   labs(x = "Comparison trajectory", y = "Value", title = "Computed similarities using different measures \nbetween trajectory 1 to all other trajectories ")
 
 
-
-
-
-ggplot() +
-  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro60_3, aes(E,N, colour = "3 minutes")) +
-  geom_path(data = caro60_3, aes(E,N, colour = "3 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 3 minutes-resampled data")  +
-  theme_minimal()
-
-ggplot() +
-  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro60_6, aes(E,N, colour = "6 minutes")) +
-  geom_path(data = caro60_6, aes(E,N, colour = "6 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 6 minutes-resampled data") +
-  theme_minimal()
-
-ggplot() +
-  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro60_9, aes(E,N, colour = "9 minutes")) +
-  geom_path(data = caro60_9, aes(E,N, colour = "9 minutes"))+
-  labs(color="Trajectory", title = "Comparing original- with 9 minutes-resampled data") +
-  theme_minimal()
-
-
-ggplot() +
-  geom_line(data = caro60, aes(DatetimeUTC,speed, colour = "1 minute")) +
-  geom_line(data = caro60_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
-  geom_line(data = caro60_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
-  geom_line(data = caro60_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
-  labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
-  theme_minimal()
-
+## Task 5 ######################################################################

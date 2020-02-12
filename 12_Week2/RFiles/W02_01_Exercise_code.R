@@ -1,5 +1,6 @@
-#- header3 Preperation
-#- chunkstart
+## Preperation #################################################################
+
+
 
 library(tidyverse)
 library(sf)
@@ -13,10 +14,7 @@ wildschwein_BE = st_as_sf(wildschwein_BE,
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 
-#- chunkend
-
-#- header3 Demo Tidyverse
-#- chunkstart
+## Demo Tidyverse ##############################################################
 
 now <- Sys.time()
 
@@ -113,10 +111,9 @@ pigs %>%
   )
 
 
-#- chunkend
+## Task 1 ######################################################################
 
-#- header3 Task 1
-#- chunkstart
+
 
 
 wildschwein_BE <- wildschwein_BE %>%
@@ -142,10 +139,7 @@ wildschwein_BE %>%
 
 
 
-#- chunkend
-
-#- header3 Input
-#- chunkstart
+## Input: Geometry as Columns ##################################################
 
 # Store coordinates in a new variable
 
@@ -161,9 +155,7 @@ head(wildschwein_BE)
 
 #- chunkend
 
-#- header3 Task 2
-#- chunkstart
-
+## Task 2 ######################################################################
 
 wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
@@ -177,10 +169,7 @@ wildschwein_BE <- wildschwein_BE %>%
     speed = steplength/timelag
   )
 
-#- chunkend
-
-#- header3 Task 3
-#- chunkstart
+## Task 3 ######################################################################
 
 caro60 <- read_delim("00_Rawdata/caro60.csv",",") %>%
   st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)
@@ -268,11 +257,7 @@ ggplot() +
   theme_minimal()
 
 
-#- chunkend
-
-#- header3 Task 4
-#- chunkstart
-
+## Task 4 ######################################################################
 
 library(zoo)
 
@@ -295,10 +280,7 @@ caro60 %>%
   # geom_point() +
   geom_line() 
 
-#- chunkend
-
-#- header3 Task 5
-#- chunkstart
+## Task 5 ######################################################################
 
 library(grid) # just for the arrows
 
@@ -341,7 +323,7 @@ data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
   geom_label(aes(label = paste0(angle,"°")),alpha = 0.4,nudge_x = 0.2, nudge_y = 0.2) +
   coord_equal()
 
-#- chunkend
+as.integer(TRUE)
+as.integer(FALSE)
 
-#- header3 Input
-#- chunkstart
+TRUE+TRUE

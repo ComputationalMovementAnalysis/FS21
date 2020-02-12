@@ -1,5 +1,5 @@
-#- header3 Preperation
-#- chunkstart
+## Preperation ##################################################################
+
 
 library(tidyverse)
 library(sf)
@@ -25,10 +25,7 @@ wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
 
 
 
-#- chunkend
-
-#- header3 Task 1
-#- chunkstart
+## Task 1 ######################################################################
 
 
 library(lubridate)
@@ -59,8 +56,7 @@ tm_shape(fanel2016) +
 
 #- chunkend
 
-#- header3 Task 2
-#- chunkstart
+## Task 2 ######################################################################
 
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
   st_join(dplyr::select(fanel2016,Frucht))
@@ -79,10 +75,7 @@ wildschwein_BE_2016 %>%
   theme_minimal()
 
 
-#- chunkend
-
-#- header3 Task 4
-#- chunkstart
+## Task 4 ######################################################################
 
 ndsm <- raster("00_Rawdata/nDSM.tif")
 
@@ -113,5 +106,3 @@ wildschwein_BE_2016 %>%
     
   
 
-
-#- chunkend

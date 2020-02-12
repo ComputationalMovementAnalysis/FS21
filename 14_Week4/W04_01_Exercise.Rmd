@@ -16,8 +16,8 @@ Readings Theory, @laube2014
 ## Preperation
 
 ```{r}
-#- header3 Preperation
-#- chunkstart
+## Preperation #################################################################
+
 ```
 
 Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
@@ -62,8 +62,7 @@ wildschwein_BE <- wildschwein_BE %>%
 
 
 ```{r}
-#- header3 Input
-#- chunkstart
+## Input: Creating Functions ###################################################
 ```
 
 Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you’ve copied and pasted a block of code more than twice, you should consider writing a function [@wickham2017]. 
@@ -145,9 +144,6 @@ nthroot(10,3)
 
 All you need to do now is run these few lines of code at the beginning of your script, and you can use the function for your entire R session. After starting a new session, you will simply have to re-run the lines. So it might be a good idea to place this function within the section `Loading environment / libraries` of your project.
 
-```{r}
-#- chunkend
-```
 
 
 ### Task 1: Write your own functions
@@ -158,8 +154,7 @@ Note: if you treat your input variables as vectors, they will work in most use c
 
 
 ```{r}
-#- header3 Task 1
-#- chunkstart
+## Task 4 ######################################################################
 ```
 
 ```{r}
@@ -168,16 +163,13 @@ euclid <- function(x,y,leadval = 1){
 }
 ```
 
-```{r}
-#- chunkend
-```
+
 
 
 ### Task 2: Filter data
 
 ```{r}
-#- header3 Task 2
-#- chunkstart
+## Task 2 ######################################################################
 ```
 
 We propose conceptualizing the pattern "meet" as "being close in space *and* time", with the notion "close" to be defined for the spatial and the temporal case separately. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose manipulating the timestamps in such a way, that all observations are sampled concurrently, synchronously. This allows us using the data science concept *join* for detecting the temporal expression of meet - using `DateTimeUTC` as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on the Euclidean distances between concurrent positions.
@@ -211,8 +203,8 @@ wildschwein_filter <- wildschwein_filter %>%
 ### Task 3: Create Join Key
 
 ```{r}
-#- header3 Task 3
-#- chunkstart
+## Task 3 ######################################################################
+
 ```
 
 
@@ -255,14 +247,11 @@ wildschwein_filter %>%
        y = "Number of values")
 ```
 
-```{r}
-#- chunkend
-```
+
 ### Task 4: Measuring distance at concurrent locations
 
 ```{r}
-#- header3 Task 4
-#- chunkstart
+## Task 4 ######################################################################
 ```
 
 To measure the distance between concurrent locations, we need to follow the following steps.
@@ -303,15 +292,10 @@ wildschwein_join
 ```
 
 
-
-```{r}
-#- chunkend
-```
 ### Task 5: Visualize data
 
 ```{r}
-#- header3 Task 5
-#- chunkstart
+## Task 5 ######################################################################
 ```
 
 
@@ -381,16 +365,11 @@ ggplot(wildschwein_spread) +
 
 ```
 
-```{r}
-#- chunkend
-```
-
 
 ### Task 6 (optional): Visualize data as timecube with `plotly`
 
 ```{r}
-#- header3 Task 6
-#- chunkstart
+## Task 6 ######################################################################
 ```
 
 Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube [@hagerstraand1970] with the package `plotly`. There are some [nice ressources](https://plot.ly/r/3d-line-plots/) available online.
@@ -433,16 +412,5 @@ wildschwein_join %>%
 ```{r, echo = F, include=T, eval = knitr::is_latex_output(), results = "asis", purl = F}
 pander::pandoc.image("02_Images/w04_ex1_p1.jpg","Trace 0 and 1 show the trajectories of the two individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other. This representation nicely shows that animal '0' is not very mobile and has large periodes where the animal seems to rest in the same place. The interactive map/plot is only available in the online version of this document.")
 ```
-
-
-
-
-
-```{r}
-#- chunkend
-```
-
-
-
 
 

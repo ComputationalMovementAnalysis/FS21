@@ -19,13 +19,11 @@ Readings Theory:
 
 Install the following libraries:
 
-```{r}
-#- header3 Preperation
-#- chunkstart
-```
-
 
 ```{r, echo = T, include = T, eval = F}
+
+## Preperation #################################################################
+
 install.packages("SimilarityMeasures")
 
 # The following packages are for optional tasks:
@@ -71,20 +69,9 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ```
 
-```{r}
-#- chunkend
-```
-
-
 ## Tasks and Inputs
 
 ### Input: Segmentation as in Laube and Purves (2011)
-
-```{r}
-#- header3 Input
-#- chunkstart
-```
-
 
 You've read @laube2011 about segmenting trajectories. In the paper, the authors define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d*", as illustrated in the following figure:
 
@@ -103,6 +90,10 @@ Note: I use `tibble()` instead of `data.frame()`. The two functions are very sim
 
 
 ```{r, echo = T, include = T, eval = T}
+
+## Input: Segmentation #########################################################
+
+
 set.seed(10)
 n = 20
 df <- tibble(X = cumsum(rnorm(n)), Y = cumsum(rnorm(n)))
@@ -244,8 +235,7 @@ df_cumsum %>%
 ### Task 1: Segmentation
 
 ```{r}
-#- header3 Task1
-#- chunkstart
+## Task 1 ######################################################################
 ```
 
 With the skills from the input above we can now implement the segmentation algorithm described in @laube2011. The described method depends on a regular sampling interval. Therefore, take the dataset "caro60.csv" from task 3 of last week (available on moodle). Import it as a dataframe, we don't need an `sf`-object to for today's tasks.
@@ -278,8 +268,8 @@ caro60 <- caro60 %>%
 ### Task 2: Specify and apply threshold *d*
 
 ```{r}
-#- header3 Task 2
-#- chunkstart
+## Task 2 ######################################################################
+
 ```
 
 After calculating the Euclidean distances to positions within the temporal window *v* in task 1, you can explore these values (we stored them in the column `stepMean`) using summary statistics (histograms, boxplot, `summary()`): This way we can define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on data as well as the question that needs to be answered. In this exercise, find a threshold that matches your intuition. 
@@ -306,16 +296,9 @@ caro60 <- caro60 %>%
 ```
 
 
-
-
-```{r}
-#- chunkend
-```
-
 ### Task 3: Visualize segmented trajectories
 ```{r}
-#- header3 Task 3
-#- chunkstart
+## Task 3 ######################################################################
 ```
 
 Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with `geom_path()`, `geom_point()` and `coord_equal()`. Assign `colour = moving` within `aes()` to distinguish between segments *with* "movement" and *without*.
@@ -351,14 +334,11 @@ pander::pandoc.image("02_Images/w03_ex3_p1.jpg","This is the same plot as above,
 ```
 
 
-```{r}
-#- chunkend
-```
+
 ### Task 4: Segment-based analysis
 
 ```{r}
-#- header3 Task 4
-#- chunkstart
+## Task 4 ######################################################################
 ```
 
 In applying @laube2011, we've come as far as steps (b)/(c) in [Figure 1](02_Images/laube_2011.jpg). In order to complete step (d) (*Removal of subtrajectories with less than a threshold temporal length*), we have to calculate each segment's temporal duration. 
@@ -402,15 +382,13 @@ bind_rows(mutate(caro60, lab = "before"),mutate(caro60_moveseg,lab = "after")) %
 
 ```
 
-```{r}
-#- chunkend
-```
+
 
 ### Task 5: Similarity measures 
 
 ```{r}
-#- header3 Task 5
-#- chunkstart
+## Task 5 ######################################################################
+
 ```
 
 
@@ -490,8 +468,7 @@ plotraj(6)
 ### Task 6: Calculate similarity
 
 ```{r}
-#- header3 Task 6
-#- chunkstart
+## Task 6 ######################################################################
 ```
 
 Calculate the similarity between trajectory 1 and trajectories 2-6. Use the different similarity measures in the package `SimilarityMeasures`. Visualize your results and try to understand the different results with respect to your reading of @both2018. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?

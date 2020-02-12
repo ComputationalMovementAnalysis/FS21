@@ -1,6 +1,5 @@
-#- header3 Task1
-#- chunkstart
 
+## Task 1 ######################################################################
 
 # Loading enironment / libraries ####
 library(tidyverse)
@@ -14,11 +13,7 @@ library(tidyverse)
 # Data analysis and visualization ####
 
 
-#- chunkend
-
-#- header3 Task 2
-#- chunkstart
-
+## Task 2 ######################################################################
 
 # Data import ####
 wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
@@ -28,19 +23,15 @@ wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 attr(wildschwein_BE$DatetimeUTC,"tzone") # or
 wildschwein_BE$DatetimeUTC[1]
 
-#- chunkend
+## Task 3 ######################################################################
 
-#- header3 Task 3
-#- chunkstart
 
 ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
   geom_point() +
   theme(legend.position = "none")
 
-#- chunkend
+## Input Handling Spatial Data #################################################
 
-#- header3 Input
-#- chunkstart
 
 library(sf)
 
@@ -65,10 +56,7 @@ rm(wildschwein_BE_sf)
 # we can remove this sf object, since it just eats up our memory
 
 
-#- chunkend
-
-#- header3 Task 4
-#- chunkstart
+## Task 4 ######################################################################
 
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
@@ -77,10 +65,8 @@ wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 
 wildschwein_BE
 
-#- chunkend
+## Input: Calculate Convex Hull ################################################
 
-#- header3 Input
-#- chunkstart
 
 wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
 
@@ -95,10 +81,7 @@ wildschwein_BE_smry
 mcp <- st_convex_hull(wildschwein_BE_smry)
 
 
-#- chunkend
-
-#- header3 Task 5
-#- chunkstart
+## Task 5 ######################################################################
 
 plot(mcp)
 
@@ -109,10 +92,7 @@ ggplot(mcp,aes(fill = TierID)) +
   geom_sf(alpha = 0.4) +
   coord_sf(datum = 2056)
 
-#- chunkend
-
-#- header3 Input
-#- chunkstart
+## Input: Importing Raster Data ################################################
 
 
 library(raster)
@@ -129,10 +109,7 @@ pk100_BE <- subset(pk100_BE,1:3)
 plot(pk100_BE)
 
 
-#- chunkend
-
-#- header3 Task 6
-#- chunkstart
+## Task 6 ######################################################################
 
 library(tmap)
 
@@ -149,11 +126,12 @@ tm_shape(pk100_BE) +
 
 
 
+## ## Task 7 ######################################################################
+
+
 ## 
 ## tmap_mode("view")
 ## 
 ## tm_shape(mcp) +
 ##   tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
 ##   tm_legend(bg.color = "white")
-
-#- chunkend
