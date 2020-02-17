@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{12 February, 2020}
+    \date{17 February, 2020}
 
 
 \begin{document}
@@ -138,7 +138,7 @@
 \chapter*{Introduction Chapter}\label{introduction-chapter}}
 \addcontentsline{toc}{chapter}{Introduction Chapter}
 
-For our practical \texttt{R} course building-up skills for analyzing movement data in the software environment \texttt{R}, you'll be using data from the ZHAW project \href{https://www.zhaw.ch/de/lsfm/institute-zentren/iunr/integrative-oekologie/wildtiermanagement/referenzprojekte/}{``Prävention von Wildschweinschäden in der Landwirtschaft''}.
+For our practical \texttt{R} course building-up skills for analyzing movement data in the software environment \texttt{R}, you'll be using data from the ZHAW project \href{https://www.zhaw.ch/de/ueber-uns/aktuell/news/detailansicht-news/event-news/wildschweinschaeden-mit-akustischer-methode-verhindern/}{``Prävention von Wildschweinschäden in der Landwirtschaft''}. Watch \href{https://youtu.be/WYXnCQMfPiI}{this video on youtube} for a nice introduction into the project.
 
 The project investigates the spatiotemporal movement patterns of wild boar (\emph{Sus scrofa}) in agricultural landscapes. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA).
 
@@ -1066,11 +1066,11 @@ A different approach would be to \emph{smoothen} the derived parameters using a 
 
 \NormalTok{example <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{3}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1]  0.14468450 -0.05424313 -0.06390887  0.15944410  0.73275115}
-\CommentTok{##  [6]  0.92557401  0.50383373  0.67544462          NA          NA}
+\CommentTok{##  [1] -0.3189701  0.3206390  0.3254513  0.1423250 -0.2748234 -1.0965137}
+\CommentTok{##  [7] -0.6848777 -1.0747910         NA         NA}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{4}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1] -0.03595932 -0.20550832  0.38095009  0.40509067  0.52935453}
-\CommentTok{##  [6]  0.80675704  0.79209106          NA          NA          NA}
+\CommentTok{##  [1] -0.10640128  0.38760051  0.07088462 -0.07329124 -0.67526398}
+\CommentTok{##  [6] -0.68686206 -0.98612828          NA          NA          NA}
 \end{Highlighting}
 \end{Shaded}
 
