@@ -134,10 +134,10 @@ In terms of raster data, we have prepared the [Vegetation Height Model](https://
 
 
 ```{r, echo = F, include=T, eval = T, fig.cap="An example of a temporal exploration of the data obtained from the nDSM."}
-vegetation_hight <- raster("00_Rawdata/vegetationshoehe_LFI.tif")
+vegetation_height <- raster("00_Rawdata/vegetationshoehe_LFI.tif")
 
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
-  mutate(dod = raster::extract(vegetation_hight,.))
+  mutate(dod = raster::extract(vegetation_height,.))
 
 
 wildschwein_BE_2016 %>%
