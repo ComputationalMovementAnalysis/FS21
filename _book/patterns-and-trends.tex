@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{17 February, 2020}
+    \date{17 Februar, 2020}
 
 
 \begin{document}
@@ -417,7 +417,7 @@ Here's the resulting \texttt{sf} object from the operation:
 
 Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a \href{https://en.wikipedia.org/wiki/Convex_hull}{convex hull} per Wild boar. And guess what the function for calculating a convex hull is called in \texttt{sf}? If you guessed \texttt{st\_convex\_hull()}, you were right!
 
-By default \texttt{st\_convex\_hull()} calculates the convex hull \emph{per feature}, i.e. \emph{per point} in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:
+By default \texttt{st\_convex\_hull()} calculates the convex hull \emph{per feature}, i.e.~\emph{per point} in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:
 
 First: add a grouping variable to the \texttt{sf} object. Note the new grouping variable in the metadata of the \texttt{sf} object. Other than that, \texttt{group\_by} has no effect on our \texttt{sf} object.
 
@@ -520,7 +520,7 @@ In the next task, we would like to add a background map to our \texttt{mcp} obje
 \CommentTok{## resolution : 5, 5  (x, y)}
 \CommentTok{## extent     : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)}
 \CommentTok{## crs        : +proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs }
-\CommentTok{## source     : /home/staff/rata/unix/Master/PatternsAndTrends/2020_FS/Unterrichtsunterlagen_FS2020/00_Rawdata/pk100_BE_2056.tif }
+\CommentTok{## source     : C:/Users/rata/switchdrive/Lehre/Master/Pattern_and_Trends/2020_FS/Unterrichtsunterlagen_FS2020/00_Rawdata/pk100_BE_2056.tif }
 \CommentTok{## names      : pk100_BE_2056.1, pk100_BE_2056.2, pk100_BE_2056.3, pk100_BE_2056.4 }
 \CommentTok{## min values :               0,               0,               0,               0 }
 \CommentTok{## max values :             255,             255,             255,             255}
@@ -1066,11 +1066,11 @@ A different approach would be to \emph{smoothen} the derived parameters using a 
 
 \NormalTok{example <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{3}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1] -0.3189701  0.3206390  0.3254513  0.1423250 -0.2748234 -1.0965137}
-\CommentTok{##  [7] -0.6848777 -1.0747910         NA         NA}
+\CommentTok{##  [1]  0.9094593  0.6398241  0.6325041 -0.2623714 -0.5797849 -0.5983155}
+\CommentTok{##  [7] -0.1248996  0.1396310         NA         NA}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{4}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1] -0.10640128  0.38760051  0.07088462 -0.07329124 -0.67526398}
-\CommentTok{##  [6] -0.68686206 -0.98612828          NA          NA          NA}
+\CommentTok{##  [1]  0.72531783  0.46497549  0.24926877 -0.39161535 -0.46362919}
+\CommentTok{##  [6] -0.31878401 -0.09011358          NA          NA          NA}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1604,7 +1604,7 @@ Note:
 \begin{itemize}
 \tightlist
 \item
-  You are able to conceptualize a simple movement pattern and implement data structures and corresponding procedures (let's call them algorithms\ldots{}) for detecting it using R.
+  You are able to conceptualize a simple movement pattern and implement data structures and corresponding procedures (let's call them algorithms\ldots) for detecting it using R.
 \item
   You understand the sensitivity of movement patterns to pattern parameter thresholds.
 \end{itemize}
@@ -1779,7 +1779,7 @@ Note: if you treat your input variables as vectors, they will work in most use c
 
 We propose conceptualizing the pattern ``meet'' as ``being close in space \emph{and} time'', with the notion ``close'' to be defined for the spatial and the temporal case separately. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose manipulating the timestamps in such a way, that all observations are sampled concurrently, synchronously. This allows us using the data science concept \emph{join} for detecting the temporal expression of meet - using \texttt{DateTimeUTC} as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on the Euclidean distances between concurrent positions.
 
-Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g. \texttt{wildschwein\_filter}). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.
+Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g.~\texttt{wildschwein\_filter}). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1911,7 +1911,7 @@ Use this dataset to create circles at meet events.
 \item
   use the function \texttt{st\_minimum\_bounding\_circle()} from the library \texttt{liblwgeom} to create minimum bounding circles around each meet event.
 \item
-  Store these circles in a new variable (e.g. \texttt{meets})
+  Store these circles in a new variable (e.g.~\texttt{meets})
 \end{enumerate}
 
 Add trajectories (\texttt{wildschwein\_spread}) and the circles (\texttt{meets}) to gggplot and facet by \texttt{name}.
@@ -2028,7 +2028,7 @@ Ideas:
 \hypertarget{task-4-annotate-trajectories-from-raster-data}{%
 \subsection{Task 4: Annotate Trajectories from raster data}\label{task-4-annotate-trajectories-from-raster-data}}
 
-In terms of raster data, we have prepared a \href{https://gisgeography.com/lidar-light-detection-and-ranging/}{Normalised Digital Surface Model (nDSM)}\footnote{The nDSM was created by calculating the difference between the \href{https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet\&guid=094ce943-6ad7-4f07-aa9f-d8eb17c5cb38\&catalog=geocatalog\&type=complete\&preview=search_list}{digital surface models (DSM)} and the \href{https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet\&guid=490de97b-8932-4ef7-9d13-e89ef41eeb4b\&catalog=geocatalog\&type=complete\&preview=search_list}{digital terrain model (DTM)} obtained from the \href{https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html}{geoportal from the canton Bern}. }, which provides information on the height of topological features on the ground. Since our wild boar usually use natural landscapes, the nDSM is a good approximation of vegitation height. This nDSM is available on moodle (\texttt{nDSM.tif}). Import this data with \texttt{raster()}and attach the respective raster values to the point data in your \texttt{sf} object (\texttt{wildschwein\_BE\_2016}). Explore the dataset similar to the crop data in task 2/3. Explore again spatio-temporal relations!
+In terms of raster data, we have prepared the \href{https://map.geo.admin.ch/index.html?zoom=5\&lang=en\&topic=ech\&bgLayer=ch.swisstopo.pixelkarte-grau\&layers_opacity=0.5\&layers=ch.bafu.landesforstinventar-vegetationshoehenmodell\&E=2627157.14\&N=1122170.97}{Vegetation Height Model} provided by the Swiss National Forrest Inventory (NFI). This dataset contains high resolution information (1x1 Meter) on the vegetation height, which is determined from the difference between the digital surface models DSM and the digital terrain model by swisstopo (swissAlti3D). Buildings are eliminated using a combination of the ground areas of the swisstopo topographic landscape model (TLM) and spectral information from the stereo aerial photos.
 
 \begin{figure}
 \centering
