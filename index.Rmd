@@ -82,10 +82,8 @@ for (file in rmds){
 
 # Introduction Chapter {-}
 
-For our practical `R` course building-up skills for analyzing movement data in the software environment `R`, you'll be using data from the ZHAW project ["Prävention von Wildschweinschäden in der Landwirtschaft"](https://www.zhaw.ch/de/ueber-uns/aktuell/news/detailansicht-news/event-news/wildschweinschaeden-mit-akustischer-methode-verhindern/).
+For our practical `R` course building-up skills for analyzing movement data in the software environment `R`, you'll be using data from the ZHAW project ["Prävention von Wildschweinschäden in der Landwirtschaft"](https://www.zhaw.ch/de/ueber-uns/aktuell/news/detailansicht-news/event-news/wildschweinschaeden-mit-akustischer-methode-verhindern/). Watch (this youtube video)[https://youtu.be/WYXnCQMfPiI] for a nice introduction into the project.
 
-
-![](https://youtu.be/WYXnCQMfPiI)
 
 The project investigates the spatiotemporal movement patterns of wild boar (*Sus scrofa*) in agricultural landscapes. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA). 
 
