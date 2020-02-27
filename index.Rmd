@@ -72,7 +72,7 @@ for (file in rmds){
     file.remove(file_r)
   }
   knitr::purl(file,documentation = 0,output = file_r)
-  
+
 
 }
  

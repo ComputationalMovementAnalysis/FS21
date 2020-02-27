@@ -137,8 +137,6 @@ wildschwein_BE %>%
   geom_point()
   
 
-
-
 ## Input: Geometry as Columns ##################################################
 
 # Store coordinates in a new variable
@@ -170,6 +168,7 @@ wildschwein_BE <- wildschwein_BE %>%
   )
 
 ## Task 3 ######################################################################
+
 
 caro60 <- read_delim("00_Rawdata/caro60.csv",",") %>%
   st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)

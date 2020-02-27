@@ -283,8 +283,6 @@ wildschwein_BE %>%
   geom_line() +
   geom_point()
   
-
-
 ```
 
 
@@ -353,6 +351,7 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ```{r}
 ## Task 3 ######################################################################
+
 ```
 
 

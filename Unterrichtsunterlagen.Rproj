@@ -13,3 +13,4 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 BuildType: Website
+WebsitePath: /home/staff/bako/unix/Lehre/Master/Pattends_and_Trends/Unterrichtsunterlagen_FS2020
