@@ -51,9 +51,9 @@ wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
 
 - Import the vector dataset `Feldaufnahmen_Fanel_2016.shp` from moodle with `read_sf()` and save it to the variable `fanel2016`. The file .shp stands for Shapefile, which is a simple format for spatial vector data (points, lines, or polygons). This shapefile contains vector data about cultivated crops in the study area.
 - Transform the coordinates to `CH1903+ LV95`.
-- Filter the dataset `wildschwein_BE` to the months May, June and July of 2016 and store the data in a new variable (`wildschwein_BE_2016`).
-- Create a minimum convex polygon for each individual in `wildschwein_BE_2016` and store it in a new variable (`mcp2016`)
-- Create a map with the layers `fanel2016` and `mcp2016`.
+- Filter the dataset `wildschwein_BE` to the months May, June and July of 2016 and store the data in a new variable (`wildschwein_BE_2015`).
+- Create a minimum convex polygon for each individual in `wildschwein_BE_2015` and store it in a new variable (`mcp2015`)
+- Create a map with the layers `fanel2016` and `mcp2015`.
 
 ```{r, echo = F, include=T, eval = T,fig.height=9}
 
@@ -68,10 +68,10 @@ fanel2016 <- read_sf("00_Rawdata/Feldaufnahmen_Fanel_2016.shp") %>%
 max(wildschwein_BE$DatetimeUTC)
 
 
-wildschwein_BE_2016 <- wildschwein_BE %>%
+wildschwein_BE_2015 <- wildschwein_BE %>%
   filter(DatetimeUTC > "2015-01-05",DatetimeUTC < "2015-07-31")
 
-mcp2016 <- wildschwein_BE_2016 %>%
+mcp2015 <- wildschwein_BE_2015 %>%
   group_by(TierID) %>%
   summarise() %>%
   st_convex_hull()
@@ -79,7 +79,7 @@ mcp2016 <- wildschwein_BE_2016 %>%
 
 tm_shape(fanel2016) + 
   tm_polygons(col = "Frucht") +
-  tm_shape(mcp2016) +
+  tm_shape(mcp2015) +
   tm_borders(lwd = 3,lty = 2)
 
 ```
@@ -97,11 +97,11 @@ tm_shape(fanel2016) +
 Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use `st_join()` to attach the attributes from `fanel2016` to your trajectory data `wildschwein_BE` (semantic annotation). Visualize the number of sample points in each category of `Frucht` over the course of the filtered time period.
 
 ```{r, echo = F, include=T, eval = T, fig.cap="The number of samples per category *per week* from May to July 2015."}
-wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
+wildschwein_BE_2015 <- wildschwein_BE_2015 %>%
   st_join(dplyr::select(fanel2016,Frucht))
 
 
-wildschwein_BE_2016 %>%
+wildschwein_BE_2015 %>%
   st_set_geometry(NULL) %>%
   mutate(week = floor_date(DatetimeUTC,"weeks")) %>%
   group_by(TierID,week,Frucht) %>%
@@ -136,7 +136,7 @@ In terms of raster data, we have prepared the [Vegetation Height Model](https://
 ```{r, echo = F, include=T, eval = T, fig.cap="An example of a temporal exploration of the data obtained from the nDSM."}
 vegetation_height <- raster("00_Rawdata/vegetationshoehe_LFI.tif")
 
-wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
+wildschwein_BE_2015 <- wildschwein_BE_2015 %>%
   mutate(dod = raster::extract(vegetation_height,.))
 
 
