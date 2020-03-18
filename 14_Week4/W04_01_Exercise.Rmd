@@ -13,7 +13,7 @@ Readings Skills from "R for Data Science" [@wickham2017]:
 Readings Theory, @laube2014
 - R4.1 Chap.2, p. 29-58
 
-## Preperation
+## Preparation
 
 ```{r}
 ## Preperation #################################################################
@@ -299,69 +299,50 @@ wildschwein_join
 ```
 
 
-Now, visualize the *meets* spatially. You can attempt to recreate the plot below, but this is not trivial. If you want to try it, these are the steps to take:
+Now, visualize the *meets* spatially in a way that you think reasonable. You can attempt to recreate the plot below, but this is not trivial. If you want to try it, these are the steps to take:
 
-1. number the meet events with the `cumsum()` approach (saved as a column `meet_seq`)
-2. use `gather`, `seperate()` and `spread()` (in that order) reshapingour wide `wildschwein_join` dataframe to long (with only single `E`/`N` columns)
-3. turn the long table to `sf` with `st_as_sf()` and specifying our coordinate columns
-4. Store steps 1 - 4 in a new variable (eg. `wildschwein_spread`)
+Create a new dataset (e.g. `wildschwein_meet`) as follows:
 
-Use this dataset to create circles at meet events. 
+1. Using the `cumsum()`approach from last week, create a new column (e.g. `meet_seq`) enumerating the "meets" with individual ID (see proposed function below)
+2. Filter all rows where the animals _did_ meet. 
+3. Optional: create a column with the start- and endtime of each meet (e.g. `meet_time`)
 
-1. group by the `meet_seq`
-2. Using `summarise()` to create multipoint features and extracting the start date and end time. 
-3. `paste()` `meet_seq`, start date and end time into a new column (eg `name`)
-4. use the function `st_minimum_bounding_circle()` from the library `liblwgeom` to create minimum bounding circles around each meet event.
-5. Store these circles in a new variable (e.g. `meets`)
+To create a plot similar to the one below:
 
-Add trajectories (`wildschwein_spread`) and the circles (`meets`) to gggplot and facet by `name`.
+1. Initiate a `ggplot()` with the `wildschwein_join` dataset.
+2. Add two `geom_point`-layers (not `geom_sf`, since we haven't turned `wildschwein_join` into an `sf`object), one referring to E.x/N.x, the other to E.y/N.y
+3. Add two more `geom_point`-layers, this time with the dataset `wildschwein_meet`
+4. Facet the plot into small multiples either using `meet_seq` or `meet_time`
 
-```{r, echo = F, include=T, eval = T, fig.height=12}
 
-# library(ggpmisc)
-# 
-# pk25 <- brick("../CMA_FS2018_Filestorage/pk25.tif")
-# swissimage <- brick("../CMA_FS2018_Filestorage/swissimage_250cm.tif")
-
+```{r, echo = T, include = T, eval = T}
+# Cumsum appraoch from Exercise 3
 number_seq = function(bool){
   fac <- as.factor(ifelse(bool,1+cumsum(!bool),NA))
   levels(fac) <- 1:length(levels(fac))
   return(fac)
 }
+```
 
 
-library(lwgeom)
+```{r, echo = F, include=T, eval = T, fig.height=12}
+# library(lwgeom)
 
-wildschwein_spread <- wildschwein_join %>%
-  mutate(meet_seq = number_seq(meet)) %>% 
-  gather(key,val, contains(".")) %>%
-  separate(key,into = c("key","animal")) %>%
-  spread(key,val,convert = T) %>%
-  arrange(TierID,DatetimeRound) %>%
-  st_as_sf(coords = c("E","N"),remove = F) %>%
-  st_set_crs(2056) 
-
-meets <- wildschwein_spread %>%
+wildschwein_meet <- wildschwein_join %>%
+  mutate(meet_seq = number_seq(meet)) %>%
   filter(meet) %>%
   group_by(meet_seq) %>%
-  summarise(
-    start = min(DatetimeRound),
-    end = max(DatetimeRound)
-  ) %>%
-  mutate(name = paste(meet_seq,":",start,"-",strftime(end,format = "%H:%M:%S"))) %>%
-  st_minimum_bounding_circle()
+  mutate(meet_time = paste0(LETTERS[meet_seq],": ",strftime(min(DatetimeRound),format = "%d.%m.%Y %H:%M"),"-",strftime(max(DatetimeRound),format = "%H:%M")))
 
-ggplot(wildschwein_spread) +
-  geom_point(aes(E,N,colour = TierID),alpha = 0.2) +
-  geom_path(aes(E,N,colour = TierID),alpha = 0.2) +
-  geom_sf(data = meets, alpha = 0.3, fill = "green") +
-  facet_wrap(~name, ncol = 2) +
-  coord_sf(datum = 2056) +
+ggplot(wildschwein_join) + 
+  geom_point(aes(E.x, N.x),colour = "cornsilk",alpha = 0.2,shape = 4) +
+  geom_point(aes(E.y, N.y),colour = "cornsilk4",alpha = 0.2,shape = 4) +
+  geom_point(data = wildschwein_meet, aes(E.x,N.x), colour = "red") +
+  geom_point(data = wildschwein_meet, aes(E.y,N.y), colour = "blue") +
+  coord_equal() +
+  facet_wrap(~meet_time) +
   theme_light() +
-  theme(axis.title = element_blank()) +
-  labs(title = paste("The",nrow(meets),"meet events of the two animals"), subtitle = "Using a threshold of 100 meters")
-
-
+  theme(axis.title = element_blank(),axis.text = element_blank())
 
 ```
 
@@ -410,7 +391,7 @@ wildschwein_join %>%
 
 
 ```{r, echo = F, include=T, eval = knitr::is_latex_output(), results = "asis", purl = F}
-pander::pandoc.image("02_Images/w04_ex1_p1.jpg","Trace 0 and 1 show the trajectories of the two individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other. This representation nicely shows that animal '0' is not very mobile and has large periodes where the animal seems to rest in the same place. The interactive map/plot is only available in the online version of this document.")
+pander::pandoc.image("02_Images/w04_ex1_p1.jpg","Trace 0 and 1 show the trajectories of the two individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other. This representation nicely shows that animal '0' is not very mobile and has large periods where the animal seems to rest in the same place. The interactive map/plot is only available in the online version of this document.")
 ```
 
 

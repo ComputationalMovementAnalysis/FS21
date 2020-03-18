@@ -149,51 +149,30 @@ wildschwein_join
 
 ## Task 5 ######################################################################
 
-
-# library(ggpmisc)
-# 
-# pk25 <- brick("../CMA_FS2018_Filestorage/pk25.tif")
-# swissimage <- brick("../CMA_FS2018_Filestorage/swissimage_250cm.tif")
-
+# Cumsum appraoch from Exercise 3
 number_seq = function(bool){
   fac <- as.factor(ifelse(bool,1+cumsum(!bool),NA))
   levels(fac) <- 1:length(levels(fac))
   return(fac)
 }
 
+# library(lwgeom)
 
-library(lwgeom)
-
-wildschwein_spread <- wildschwein_join %>%
-  mutate(meet_seq = number_seq(meet)) %>% 
-  gather(key,val, contains(".")) %>%
-  separate(key,into = c("key","animal")) %>%
-  spread(key,val,convert = T) %>%
-  arrange(TierID,DatetimeRound) %>%
-  st_as_sf(coords = c("E","N"),remove = F) %>%
-  st_set_crs(2056) 
-
-meets <- wildschwein_spread %>%
+wildschwein_meet <- wildschwein_join %>%
+  mutate(meet_seq = number_seq(meet)) %>%
   filter(meet) %>%
   group_by(meet_seq) %>%
-  summarise(
-    start = min(DatetimeRound),
-    end = max(DatetimeRound)
-  ) %>%
-  mutate(name = paste(meet_seq,":",start,"-",strftime(end,format = "%H:%M:%S"))) %>%
-  st_minimum_bounding_circle()
+  mutate(meet_time = paste0(meet_seq,": ",strftime(min(DatetimeRound),format = "%d.%m.%Y %H:%M"),"-",strftime(max(DatetimeRound),format = "%H:%M")))
 
-ggplot(wildschwein_spread) +
-  geom_point(aes(E,N,colour = TierID),alpha = 0.2) +
-  geom_path(aes(E,N,colour = TierID),alpha = 0.2) +
-  geom_sf(data = meets, alpha = 0.3, fill = "green") +
-  facet_wrap(~name, ncol = 2) +
-  coord_sf(datum = 2056) +
+ggplot(wildschwein_join) + 
+  geom_point(aes(E.x, N.x),colour = "cornsilk",alpha = 0.2,shape = 4) +
+  geom_point(aes(E.y, N.y),colour = "cornsilk4",alpha = 0.2,shape = 4) +
+  geom_point(data = wildschwein_meet, aes(E.x,N.x), colour = "red") +
+  geom_point(data = wildschwein_meet, aes(E.y,N.y), colour = "blue") +
+  coord_equal() +
+  facet_wrap(~meet_time) +
   theme_light() +
-  theme(axis.title = element_blank()) +
-  labs(title = paste("The",nrow(meets),"meet events of the two animals"), subtitle = "Using a threshold of 100 meters")
-
-
+  theme(axis.title = element_blank(),axis.text = element_blank())
 
 
 ## Task 6 ######################################################################

@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{17 Februar, 2020}
+    \date{11 March, 2020}
 
 
 \begin{document}
@@ -417,7 +417,7 @@ Here's the resulting \texttt{sf} object from the operation:
 
 Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a \href{https://en.wikipedia.org/wiki/Convex_hull}{convex hull} per Wild boar. And guess what the function for calculating a convex hull is called in \texttt{sf}? If you guessed \texttt{st\_convex\_hull()}, you were right!
 
-By default \texttt{st\_convex\_hull()} calculates the convex hull \emph{per feature}, i.e.~\emph{per point} in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:
+By default \texttt{st\_convex\_hull()} calculates the convex hull \emph{per feature}, i.e. \emph{per point} in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:
 
 First: add a grouping variable to the \texttt{sf} object. Note the new grouping variable in the metadata of the \texttt{sf} object. Other than that, \texttt{group\_by} has no effect on our \texttt{sf} object.
 
@@ -520,7 +520,7 @@ In the next task, we would like to add a background map to our \texttt{mcp} obje
 \CommentTok{## resolution : 5, 5  (x, y)}
 \CommentTok{## extent     : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)}
 \CommentTok{## crs        : +proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs }
-\CommentTok{## source     : C:/Users/rata/switchdrive/Lehre/Master/Pattern_and_Trends/2020_FS/Unterrichtsunterlagen_FS2020/00_Rawdata/pk100_BE_2056.tif }
+\CommentTok{## source     : /home/staff/rata/unix/Master/PatternsAndTrends/2020_FS/Unterrichtsunterlagen_FS2020/00_Rawdata/pk100_BE_2056.tif }
 \CommentTok{## names      : pk100_BE_2056.1, pk100_BE_2056.2, pk100_BE_2056.3, pk100_BE_2056.4 }
 \CommentTok{## min values :               0,               0,               0,               0 }
 \CommentTok{## max values :             255,             255,             255,             255}
@@ -1066,11 +1066,11 @@ A different approach would be to \emph{smoothen} the derived parameters using a 
 
 \NormalTok{example <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{3}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1]  0.9094593  0.6398241  0.6325041 -0.2623714 -0.5797849 -0.5983155}
-\CommentTok{##  [7] -0.1248996  0.1396310         NA         NA}
+\CommentTok{##  [1]  0.16816436 -0.13255577 -1.02169415 -0.50986384 -0.34816351}
+\CommentTok{##  [6]  0.34603704  0.02234874  0.17094442          NA          NA}
 \KeywordTok{rollmean}\NormalTok{(example,}\DataTypeTok{k =} \DecValTok{4}\NormalTok{,}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{align =} \StringTok{"left"}\NormalTok{)}
-\CommentTok{##  [1]  0.72531783  0.46497549  0.24926877 -0.39161535 -0.46362919}
-\CommentTok{##  [6] -0.31878401 -0.09011358          NA          NA          NA}
+\CommentTok{##  [1] -0.17174684 -0.55154529 -0.39866992 -0.55899274 -0.19260069}
+\CommentTok{##  [6]  0.38436225 -0.04838654          NA          NA          NA}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1604,7 +1604,7 @@ Note:
 \begin{itemize}
 \tightlist
 \item
-  You are able to conceptualize a simple movement pattern and implement data structures and corresponding procedures (let's call them algorithms\ldots) for detecting it using R.
+  You are able to conceptualize a simple movement pattern and implement data structures and corresponding procedures (let's call them algorithms\ldots{}) for detecting it using R.
 \item
   You understand the sensitivity of movement patterns to pattern parameter thresholds.
 \end{itemize}
@@ -1623,8 +1623,8 @@ Readings Skills from ``R for Data Science'' (Wickham and Grolemund \protect\hype
 Readings Theory, Laube (\protect\hyperlink{ref-laube2014}{2014})
 - R4.1 Chap.2, p.~29-58
 
-\hypertarget{preperation-3}{%
-\section{Preperation}\label{preperation-3}}
+\hypertarget{preparation}{%
+\section{Preparation}\label{preparation}}
 
 Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
 
@@ -1779,7 +1779,7 @@ Note: if you treat your input variables as vectors, they will work in most use c
 
 We propose conceptualizing the pattern ``meet'' as ``being close in space \emph{and} time'', with the notion ``close'' to be defined for the spatial and the temporal case separately. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose manipulating the timestamps in such a way, that all observations are sampled concurrently, synchronously. This allows us using the data science concept \emph{join} for detecting the temporal expression of meet - using \texttt{DateTimeUTC} as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on the Euclidean distances between concurrent positions.
 
-Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g.~\texttt{wildschwein\_filter}). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.
+Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g. \texttt{wildschwein\_filter}). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1882,41 +1882,48 @@ To measure the distance between concurrent locations, we need to follow the foll
 \hypertarget{task-5-visualize-data}{%
 \subsection{Task 5: Visualize data}\label{task-5-visualize-data}}
 
-Now, visualize the \emph{meets} spatially. You can attempt to recreate the plot below, but this is not trivial. If you want to try it, these are the steps to take:
+Now, visualize the \emph{meets} spatially in a way that you think reasonable. You can attempt to recreate the plot below, but this is not trivial. If you want to try it, these are the steps to take:
+
+Create a new dataset (e.g. \texttt{wildschwein\_meet}) as follows:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  number the meet events with the \texttt{cumsum()} approach (saved as a column \texttt{meet\_seq})
+  Using the \texttt{cumsum()}approach from last week, create a new column (e.g. \texttt{meet\_seq}) enumerating the ``meets'' with individual ID (see proposed function below)
 \item
-  use \texttt{gather}, \texttt{seperate()} and \texttt{spread()} (in that order) reshapingour wide \texttt{wildschwein\_join} dataframe to long (with only single \texttt{E}/\texttt{N} columns)
+  Filter all rows where the animals \emph{did} meet.
 \item
-  turn the long table to \texttt{sf} with \texttt{st\_as\_sf()} and specifying our coordinate columns
-\item
-  Store steps 1 - 4 in a new variable (eg. \texttt{wildschwein\_spread})
+  Optional: create a column with the start- and endtime of each meet (e.g. \texttt{meet\_time})
 \end{enumerate}
 
-Use this dataset to create circles at meet events.
+To create a plot similar to the one below:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  group by the \texttt{meet\_seq}
+  Initiate a \texttt{ggplot()} with the \texttt{wildschwein\_join} dataset.
 \item
-  Using \texttt{summarise()} to create multipoint features and extracting the start date and end time.
+  Add two \texttt{geom\_point}-layers, one referring to E.x/N.x, the other to E.y/N.y
 \item
-  \texttt{paste()} \texttt{meet\_seq}, start date and end time into a new column (eg \texttt{name})
+  Add two more \texttt{geom\_point}-layers, this time with the dataset \texttt{wildschwein\_meet}
 \item
-  use the function \texttt{st\_minimum\_bounding\_circle()} from the library \texttt{liblwgeom} to create minimum bounding circles around each meet event.
-\item
-  Store these circles in a new variable (e.g.~\texttt{meets})
+  Facet the plot into small multiples either using \texttt{meet\_seq} or \texttt{meet\_time}
 \end{enumerate}
 
-Add trajectories (\texttt{wildschwein\_spread}) and the circles (\texttt{meets}) to gggplot and facet by \texttt{name}.
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Cumsum appraoch from Exercise 3}
+\NormalTok{number_seq =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(bool)\{}
+\NormalTok{  fac <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{ifelse}\NormalTok{(bool,}\DecValTok{1}\OperatorTok{+}\KeywordTok{cumsum}\NormalTok{(}\OperatorTok{!}\NormalTok{bool),}\OtherTok{NA}\NormalTok{))}
+  \KeywordTok{levels}\NormalTok{(fac) <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(}\KeywordTok{levels}\NormalTok{(fac))}
+  \KeywordTok{return}\NormalTok{(fac)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-134-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-135-1.pdf}
 
 \hypertarget{task-6-optional-visualize-data-as-timecube-with-plotly}{%
 \subsection{\texorpdfstring{Task 6 (optional): Visualize data as timecube with \texttt{plotly}}{Task 6 (optional): Visualize data as timecube with plotly}}\label{task-6-optional-visualize-data-as-timecube-with-plotly}}
@@ -1926,7 +1933,7 @@ Finally, you can nicely visualize the meeting patterns and trajectories in a Spa
 \begin{figure}
 \centering
 \includegraphics{02_Images/w04_ex1_p1.jpg}
-\caption{Trace 0 and 1 show the trajectories of the two individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other. This representation nicely shows that animal `0' is not very mobile and has large periodes where the animal seems to rest in the same place. The interactive map/plot is only available in the online version of this document.}
+\caption{Trace 0 and 1 show the trajectories of the two individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other. This representation nicely shows that animal `0' is not very mobile and has large periods where the animal seems to rest in the same place. The interactive map/plot is only available in the online version of this document.}
 \end{figure}
 
 \hypertarget{exercise-5}{%
@@ -1943,8 +1950,8 @@ Finally, you can nicely visualize the meeting patterns and trajectories in a Spa
   You know basic operations for semantically annotating your trajectories with geographic context.
 \end{itemize}
 
-\hypertarget{preperation-4}{%
-\section{Preperation}\label{preperation-4}}
+\hypertarget{preperation-3}{%
+\section{Preperation}\label{preperation-3}}
 
 Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
 
@@ -1997,7 +2004,7 @@ Open your R Project from last week. Either run your own script from last week or
 ## [1] "2015-07-27 11:00:14 UTC"
 \end{verbatim}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-142-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 \hypertarget{task-2-annotate-trajectories-from-vector-data}{%
 \subsection{Task 2: Annotate Trajectories from vector data}\label{task-2-annotate-trajectories-from-vector-data}}
@@ -2006,8 +2013,8 @@ Now we would like to know what crop was most visited by our wild boar, and at wh
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-145-1.pdf}
-\caption{\label{fig:unnamed-chunk-145}The number of samples per category \emph{per week} from May to July 2015.}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-146-1.pdf}
+\caption{\label{fig:unnamed-chunk-146}The number of samples per category \emph{per week} from May to July 2015.}
 \end{figure}
 
 \hypertarget{task-3-explore-annotated-trajectories}{%
@@ -2032,8 +2039,8 @@ In terms of raster data, we have prepared the \href{https://map.geo.admin.ch/ind
 
 \begin{figure}
 \centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-147-1.pdf}
-\caption{\label{fig:unnamed-chunk-147}An example of a temporal exploration of the data obtained from the nDSM.}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-148-1.pdf}
+\caption{\label{fig:unnamed-chunk-148}An example of a temporal exploration of the data obtained from the nDSM.}
 \end{figure}
 
 \hypertarget{references}{%
