@@ -162,7 +162,7 @@ wildschwein_meet <- wildschwein_join %>%
   mutate(meet_seq = number_seq(meet)) %>%
   filter(meet) %>%
   group_by(meet_seq) %>%
-  mutate(meet_time = paste0(meet_seq,": ",strftime(min(DatetimeRound),format = "%d.%m.%Y %H:%M"),"-",strftime(max(DatetimeRound),format = "%H:%M")))
+  mutate(meet_time = paste0(LETTERS[meet_seq],": ",strftime(min(DatetimeRound),format = "%d.%m.%Y %H:%M"),"-",strftime(max(DatetimeRound),format = "%H:%M")))
 
 ggplot(wildschwein_join) + 
   geom_point(aes(E.x, N.x),colour = "cornsilk",alpha = 0.2,shape = 4) +

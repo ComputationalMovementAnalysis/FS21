@@ -140,7 +140,7 @@ wildschwein_BE_2015 <- wildschwein_BE_2015 %>%
   mutate(dod = raster::extract(vegetation_height,.))
 
 
-wildschwein_BE_2016 %>%
+wildschwein_BE_2015 %>%
   st_set_geometry(NULL) %>%
   mutate(
     hour = hour(round_date(DatetimeUTC,"1 hours"))
