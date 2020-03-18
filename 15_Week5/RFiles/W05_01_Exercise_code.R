@@ -77,10 +77,10 @@ wildschwein_BE_2016 %>%
 
 ## Task 4 ######################################################################
 
-ndsm <- raster("00_Rawdata/nDSM.tif")
+vegetation_height <- raster("00_Rawdata/vegetationshoehe_LFI.tif")
 
 wildschwein_BE_2016 <- wildschwein_BE_2016 %>%
-  mutate(dod = raster::extract(ndsm,.))
+  mutate(dod = raster::extract(vegetation_height,.))
 
 
 wildschwein_BE_2016 %>%
@@ -96,9 +96,9 @@ wildschwein_BE_2016 %>%
   geom_line() +
   labs(
     x = "Hour",
-    y = "Mean nDSM",
-    title = "Mean nDSM value per hour",
-    subtitle = "(nDSM serves as an approximation for vegitation hight")+
+    y = "Vegetation Height (Meters)",
+    title = "Mean Vegetation Height per hour"
+    )+
   theme_minimal()
     
   
