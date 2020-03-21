@@ -40,7 +40,14 @@ max(wildschwein_BE$DatetimeUTC)
 
 
 wildschwein_BE_2015 <- wildschwein_BE %>%
-  filter(DatetimeUTC > "2015-01-05",DatetimeUTC < "2015-07-31")
+  filter(DatetimeUTC > "2015-05-01",DatetimeUTC < "2015-07-31")
+
+# I think this brings a better result -- without unnecessary entries
+# not comparing a POSIXct class to a character one
+wildschwein_BE_2015 <- wildschwein_BE %>%
+  filter(DatetimeUTC > as.POSIXct("2015-05-01 00:00:00", tz = "UTC"),
+         DatetimeUTC < as.POSIXct("2015-08-01 00:00:00", tz = "UTC"))
+
 
 mcp2015 <- wildschwein_BE_2015 %>%
   group_by(TierID) %>%
@@ -83,7 +90,7 @@ wildschwein_BE_2015 <- wildschwein_BE_2015 %>%
   mutate(dod = raster::extract(vegetation_height,.))
 
 
-wildschwein_BE_2016 %>%
+wildschwein_BE_2015 %>%
   st_set_geometry(NULL) %>%
   mutate(
     hour = hour(round_date(DatetimeUTC,"1 hours"))
@@ -101,5 +108,3 @@ wildschwein_BE_2016 %>%
     )+
   theme_minimal()
     
-  
-

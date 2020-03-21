@@ -158,6 +158,4 @@ wildschwein_BE_2015 %>%
     )+
   theme_minimal()
     
-  
-
 ```
