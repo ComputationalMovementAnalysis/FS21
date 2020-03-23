@@ -4,7 +4,7 @@ library(sf)
 library(stringr)
 library(tmap)
 
-wildschwein <- read_delim("../CMA_FS2018_Filestorage/wildschwein.csv",";",col_types = cols(timelag = col_double()))
+wildschwein <- read_delim("../../CMA_FS2018_Filestorage/wildschwein.csv",";",col_types = cols(timelag = col_double()))
 
 # mit diesem Halsband (091) wurde rumgespielt (vermutlich transportiert und nochmal verwendet)
 wildschwein <- filter(wildschwein, Tier != "091_Marg_12272")
