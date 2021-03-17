@@ -559,11 +559,11 @@ Save this data to a new variable (we will use <code>caro60</code>).</p>
 <span id="cb39-2"><a href="exercise-2.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="exercise-2.html#cb39-3" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
 <span id="cb39-4"><a href="exercise-2.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">3</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb39-5"><a href="exercise-2.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] -0.76190928 -0.11173652 -0.26642230  0.41035863  0.49131449  0.70030380</span></span>
-<span id="cb39-6"><a href="exercise-2.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7]  0.75844183  0.04319858          NA          NA</span></span>
+<span id="cb39-5"><a href="exercise-2.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] -0.4274889 -0.2885408 -0.3880966  0.3556317  0.8621043  0.7375428</span></span>
+<span id="cb39-6"><a href="exercise-2.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7]  0.7138661 -0.1544565         NA         NA</span></span>
 <span id="cb39-7"><a href="exercise-2.html#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">4</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb39-8"><a href="exercise-2.html#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] -0.30996293 -0.08181191 -0.15550726  0.62995490  0.52721833  0.61314084</span></span>
-<span id="cb39-9"><a href="exercise-2.html#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7]  0.35458486          NA          NA          NA</span></span></code></pre></div>
+<span id="cb39-8"><a href="exercise-2.html#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] -0.35809805  0.09312217 -0.29639511  0.60909686  0.86268485  0.53007694</span></span>
+<span id="cb39-9"><a href="exercise-2.html#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7]  0.22653074          NA          NA          NA</span></span></code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>caro60</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 </div>
 <div id="task-5-optional-calculate-turning-angles" class="section level3">
