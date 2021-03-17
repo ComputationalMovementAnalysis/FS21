@@ -13,3 +13,4 @@ rmd_files: [
   ]
 delete_merged_file: true
 book_filename: "patterns-and-trends.Rmd"
+output_dir: "docs"

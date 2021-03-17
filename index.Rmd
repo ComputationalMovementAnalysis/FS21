@@ -1,6 +1,6 @@
 ---
 title: "Patterns and Trends in Environmental Data"
-subtitle: "Master ENR, Spring Semester 2020"
+subtitle: "Master ENR, Spring Semester 2021"
 author: "Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 site: bookdown::bookdown_site
@@ -8,16 +8,6 @@ documentclass: book
 bibliography: ["00_Admin/bibliography.bib"]
 link-citations: true
 geometry: "left=2cm, right=2cm, top=2.5cm, bottom=2cm"
-output:
-  bookdown::gitbook:
-    number_sections: false
-    config:
-      toc:
-        collapse: section
-      download: ["pdf"]
-  bookdown::pdf_book:
-    number_sections: true
-    keep_tex: yes
 ---
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = F)

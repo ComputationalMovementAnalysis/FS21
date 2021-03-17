@@ -1,0 +1,9 @@
+bookdown::gitbook:
+  number_sections: false
+  config:
+    toc:
+      collapse: section
+    download: ["pdf"]
+bookdown::pdf_book:
+  number_sections: true
+  keep_tex: yes

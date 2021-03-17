@@ -1,0 +1,11 @@
+Package: cma-book
+Title: Computational Movement Analysis
+Version: 0.0.0.9000
+Depends: R (>= 2.10)
+Imports: 
+  ggspatial,
+  plotly,
+  raster,
+  sf,
+  SimilarityMeasures,
+  tidyverse,

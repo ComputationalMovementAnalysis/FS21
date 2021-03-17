@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Exercise 1 | Patterns and Trends in Environmental Data</title>
+  <meta name="description" content="Exercise 1 | Patterns and Trends in Environmental Data" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Exercise 1 | Patterns and Trends in Environmental Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Exercise 1 | Patterns and Trends in Environmental Data" />
+  
+  
+  
+
+<meta name="author" content="Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="exercise-2.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction Chapter</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html"><i class="fa fa-check"></i>Exercise 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#leaning-outcomes"><i class="fa fa-check"></i>Leaning outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#preperation"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#tasks-and-inputs"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-1-initialize-project"><i class="fa fa-check"></i>Task 1: Initialize project</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-2-import-data"><i class="fa fa-check"></i>Task 2: Import data</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-3-explore-data"><i class="fa fa-check"></i>Task 3: Explore Data</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-handling-spatial-data"><i class="fa fa-check"></i>Input: Handling spatial data</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-4-project-data-from-wgs84"><i class="fa fa-check"></i>Task 4: Project data from WGS84</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-calculate-convex-hull"><i class="fa fa-check"></i>Input: Calculate Convex Hull</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-5-ploting-spatial-objects"><i class="fa fa-check"></i>Task 5: Ploting spatial objects</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#input-importing-raster-data"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-6-adding-a-background-map"><i class="fa fa-check"></i>Task 6: Adding a background map</a></li>
+<li class="chapter" data-level="" data-path="exercise-1.html"><a href="exercise-1.html#task-7-create-an-interactive-map"><i class="fa fa-check"></i>Task 7: Create an interactive map</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i>Exercise 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#prerequisites-1"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#preperation-1"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#demo-tidyverse"><i class="fa fa-check"></i>Demo Tidyverse</a>
+<ul>
+<li><a href="exercise-2.html#difftime"><code>difftime</code></a></li>
+<li><a href="exercise-2.html#lead-lag"><code>lead()</code> / <code>lag()</code></a></li>
+<li><a href="exercise-2.html#mutate"><code>mutate()</code></a></li>
+<li><a href="exercise-2.html#group_by"><code>group_by()</code></a></li>
+<li><a href="exercise-2.html#summarise"><code>summarise()</code></a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#bring-it-all-together"><i class="fa fa-check"></i>Bring it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#tasks-and-inputs-1"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an overview</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#input-geometry-as-columns"><i class="fa fa-check"></i>Input: Geometry as columns</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-2-deriving-movement-parameters-i-speed"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Speed</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
+<li class="chapter" data-level="" data-path="exercise-2.html"><a href="exercise-2.html#task-5-optional-calculate-turning-angles"><i class="fa fa-check"></i>Task 5 (optional): Calculate turning angles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html"><i class="fa fa-check"></i>Exercise 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#learning-outcomes-1"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#preperation-2"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#tasks-and-inputs-2"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#input-segmentation-as-in-laube-and-purves-2011"><i class="fa fa-check"></i>Input: Segmentation as in Laube and Purves (2011)</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
+<li><a href="exercise-3.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
+<li class="chapter" data-level="" data-path="exercise-3.html"><a href="exercise-3.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html"><i class="fa fa-check"></i>Exercise 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#learning-outcomes-2"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#prerequisites-3"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#preparation"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#tasks-and-inputs-3"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-4-measuring-distance-at-concurrent-locations"><i class="fa fa-check"></i>Task 4: Measuring distance at concurrent locations</a></li>
+<li class="chapter" data-level="" data-path="exercise-4.html"><a href="exercise-4.html#task-5-visualize-data"><i class="fa fa-check"></i>Task 5: Visualize data</a></li>
+<li><a href="exercise-4.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html"><i class="fa fa-check"></i>Exercise 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#learning-outcomes-3"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#preperation-3"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#tasks"><i class="fa fa-check"></i>Tasks</a>
+<ul>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
+<li class="chapter" data-level="" data-path="exercise-5.html"><a href="exercise-5.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Patterns and Trends in Environmental Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercise-1" class="section level1">
+<h1>Exercise 1</h1>
+<!-- '- Set up Rstudio Project -->
+<!-- - Import and clean data -->
+<!-- - Explore Dataset: remove outliers, find sampling interval, make subsets and find overlapping areas of individuals) -->
+<!-- - Make my first simple map -->
+<p>Exercise 1 covers the necessary steps for getting ready in <code>R</code> and some basic concepts for setting up a well-structured <code>R</code> project. The lesson introduces how additional packages that provide useful functions for data science are made available and how spatial data is handled. The exercise concludes with the creation of your first map featuring movement data.</p>
+<div id="leaning-outcomes" class="section level2">
+<h2>Leaning outcomes</h2>
+<ul>
+<li>You learn how to structure an <code>R</code> project.</li>
+<li>You can read movement data from a .csv-file into a <code>data.frame</code></li>
+<li>You can convert spatial point data from a <code>data.frame</code> to a spatial object <code>sf</code></li>
+<li>You can perform basic spatial operations on spatial objects in <code>R</code></li>
+<li>You can produce simple maps of your spatial data using <code>ggplot2</code></li>
+<li>You can produce simple maps of your spatial data using <code>tmap</code></li>
+</ul>
+</div>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+<p>Readings Skills from “R for Data Science” <span class="citation">(<a href="references.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>:</p>
+<ul>
+<li>RS1.1 Preface (16p, ix-xxiv)</li>
+<li>RS1.2 Chap2 Workflow basics (3p, 37-39)</li>
+<li>RS1.3 Chap4 Workflow scripts (3p, 77-79)</li>
+<li>RS1.4 Chap6 workflow projects (6p, 111-116)</li>
+<li>RS1.5 Chap8 Data Import with <code>readr</code> (21p)</li>
+<li>RS1.6 Chap13 Date and Times with <code>lubridate</code> (18p, 237-256)</li>
+</ul>
+</div>
+<div id="preperation" class="section level2">
+<h2>Preperation</h2>
+<p>If you haven’t already, install the packages <code>tidyverse</code>, <code>sf</code>, <code>raster</code> and <code>ggspatial</code>(using <code>install.packages()</code>). <strong>Restart your <code>R</code> session after installing all these packages.</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="exercise-1.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb1-2"><a href="exercise-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb1-3"><a href="exercise-1.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;raster&quot;</span>)</span></code></pre></div>
+</div>
+<div id="tasks-and-inputs" class="section level2">
+<h2>Tasks and inputs</h2>
+<div id="task-1-initialize-project" class="section level3">
+<h3>Task 1: Initialize project</h3>
+<p>Create a new <em>RStudio Project</em>. As recommended in <span class="citation"><a href="references.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="references.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, remove the option “<em>Restore .RData into workspace at startup</em>” and set the option “<em>save workspace to .RData on exit</em>” to “<em>Never</em>.”</p>
+<p>Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science Workflow. In .R Files, “Sections” can be created within RStudio by adding Comments (<code>#</code>) with at least 4 trailing dashes, equal, or pound signs ( <code>-</code>, <code>=</code>,<code>#</code>). In .Rmd Files, their are created with leading pound signs (<code>#</code>).</p>
+<p>Sections allow code folding (try clicking on the small triangle next to the line number) and facilitate navigation (try the shortcut: <code>Shift</code>+<code>Alt</code>+<code>J</code>). We recommend following sections:</p>
+<ul>
+<li>Loading environment / libraries</li>
+<li>Data import</li>
+<li>Data cleansing</li>
+<li>Data analysis and visualization</li>
+</ul>
+</div>
+<div id="task-2-import-data" class="section level3">
+<h3>Task 2: Import data</h3>
+<p>In section “data import,” import the file <code>wildschwein_BE.csv</code>. Obtain this file from moodle.</p>
+<p>Note:</p>
+<ul>
+<li>If your are using <a href="https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio">a graphical tool</a> to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your workflow is documented without gaps. We’d rather recommend to move away from using graphical tools and focus on using code.</li>
+<li>We recommend using one of the <code>tidyverse</code> functions from the <code>readr</code> package to import your data (they all begin with "<code>read_*</code>, note the underscore). These functions are less error prone than the base <code>R</code> functions (<code>read.*</code>). Specifically for the wild boar data, we recommend <code>read_delim()</code>.</li>
+<li>If you use <code>read_delim()</code> and receive warnings during import, have a look at these warnings by using the function <code>problems()</code>. Resolve these problems until import runs without warnings.</li>
+<li>Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.</li>
+<li>For everyone working on the RStudio Server: You will first need to upload this data to the server using the “<em>upload</em>”-button in the “<em>Files</em>” tab.</li>
+</ul>
+</div>
+<div id="task-3-explore-data" class="section level3">
+<h3>Task 3: Explore Data</h3>
+<p>We will use a range of different visualization tools (i.e. R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While <code>base::plot()</code>is quick and simple, it not very scalable with growing complexity. <code>ggplot2</code> offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.</p>
+<p>Get an overview of your data by creating a first “map-like” plot of your data producing a simple scatter plot with <code>ggplot2</code>.
+Setting up a <code>ggplot</code> with our data is done using the command <code>ggplot(wildschwein_BE, aes(Long, Lat, colour = TierID))</code>. Creating a map is done via the basic scatter plot command <code>geom_point()</code>.
+<!-- Use `coord_map()` to get a reasonable aspect ratio of `Lat` and `Long`. -->
+Assigning every individual its own colour is done using the <code>ggplot</code> argument <code>colour =</code>.</p>
+<p>Save your code in the appropriate section.</p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="input-handling-spatial-data" class="section level3">
+<h3>Input: Handling spatial data</h3>
+<p>Until now, we’ve stored our location data within data frames as Lat/Long columns. This works well for many tasks, but sometimes we need special <em>spatial</em> classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our <code>data.frame</code> into a spatial object.
+Some of you might be familiar with the <code>sp</code> package with the classes <code>SpatialPoints</code>, <code>SpatialPointsDataFrame</code> and so on. These packages are mostly replaced by the fairly new package <code>sf</code>. This packages has some huge advantages over <code>sp</code>:</p>
+<ul>
+<li>simple features are essentially data frames with minor extensions and thus are easily integratable in standard workflows</li>
+<li>they are programmed to cleanly interface with the <code>tidyverse</code> methods (specifically <code>dplyr</code>’s <code>mutate</code> and <code>summarise</code>)</li>
+<li>comply with the common Open Geospatial Consortium (OGC) standards (ISO 19125-1:2004) and interface with other important spatial tools such as GDAL, PostGIS, GeoJSON and so fourth</li>
+<li>are being rapidly implemented in visualisation tools such as <code>ggplot2</code>, <code>plotly</code> and <code>tmap</code></li>
+</ul>
+<p>We will largely rely on <code>sf</code>when working with vector data in <code>R</code>. In order to transform our <code>data.frame</code> into an sf object, we need to use the function <code>st_as_sf()</code> while specifying the columns storing the coordinates and the coordinate reference system<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="exercise-1.html#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="exercise-1.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-3"><a href="exercise-1.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="exercise-1.html#cb2-4" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, </span>
+<span id="cb2-5"><a href="exercise-1.html#cb2-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), </span>
+<span id="cb2-6"><a href="exercise-1.html#cb2-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">crs =</span> <span class="dv">4326</span>)</span></code></pre></div>
+<p>Notice how <code>st_as_sf</code> takes the EPSG code for the <code>crs =</code> argument. This is so much easier and more elegant than using <code>PROJ.4</code> or <code>WKT</code>. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes , etc.) under <a href="http://spatialreference.org/ref/epsg/2056/">spatialreference.org</a> or <a href="http://epsg.io" class="uri">http://epsg.io</a>.</p>
+<p>Let’s compare our original <code>data.frame</code> with this new <code>sf</code> object:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="exercise-1.html#cb3-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE</span></code></pre></div>
+<pre><code>## # A tibble: 51,246 x 6
+##    TierID TierName CollarID DatetimeUTC           Lat  Long
+##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;
+##  1 002A   Sabi        12275 2014-08-22 21:00:12  47.0  7.05
+##  2 002A   Sabi        12275 2014-08-22 21:15:16  47.0  7.05
+##  3 002A   Sabi        12275 2014-08-22 21:30:43  47.0  7.05
+##  4 002A   Sabi        12275 2014-08-22 21:46:07  47.0  7.05
+##  5 002A   Sabi        12275 2014-08-22 22:00:22  47.0  7.05
+##  6 002A   Sabi        12275 2014-08-22 22:15:10  47.0  7.05
+##  7 002A   Sabi        12275 2014-08-22 22:30:13  47.0  7.05
+##  8 002A   Sabi        12275 2014-08-22 22:45:11  47.0  7.05
+##  9 002A   Sabi        12275 2014-08-22 23:00:27  47.0  7.05
+## 10 002A   Sabi        12275 2014-08-22 23:15:41  47.0  7.05
+## # ... with 51,236 more rows</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="exercise-1.html#cb5-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf</span></code></pre></div>
+<pre><code>## Simple feature collection with 51246 features and 4 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: 7.019889 ymin: 46.97125 xmax: 7.112075 ymax: 47.01882
+## geographic CRS: WGS 84
+## # A tibble: 51,246 x 5
+##    TierID TierName CollarID DatetimeUTC                    geometry
+##  * &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                      &lt;POINT [°]&gt;
+##  1 002A   Sabi        12275 2014-08-22 21:00:12 (7.049618 46.99317)
+##  2 002A   Sabi        12275 2014-08-22 21:15:16 (7.049509 46.99416)
+##  3 002A   Sabi        12275 2014-08-22 21:30:43 (7.049406 46.99383)
+##  4 002A   Sabi        12275 2014-08-22 21:46:07 (7.049217 46.99375)
+##  5 002A   Sabi        12275 2014-08-22 22:00:22 (7.049359 46.99375)
+##  6 002A   Sabi        12275 2014-08-22 22:15:10 (7.049363 46.99382)
+##  7 002A   Sabi        12275 2014-08-22 22:30:13 (7.049326 46.99387)
+##  8 002A   Sabi        12275 2014-08-22 22:45:11 (7.049237 46.99395)
+##  9 002A   Sabi        12275 2014-08-22 23:00:27 (7.048383 46.99481)
+## 10 002A   Sabi        12275 2014-08-22 23:15:41 (7.049396 46.99373)
+## # ... with 51,236 more rows</code></pre>
+<p>As you can see, <code>st_as_sf()</code> has added some metadata to our dataframe (<code>geometry type</code>, <code>dimension</code>, <code>bbox</code>, <code>epsg</code> and <code>proj4string</code>) and replaced the columns <code>Lat</code> and <code>Long</code> with a column named <code>geometry</code>. Other than that, the new <code>sf</code> object is very similar to our original dataframe. In fact, <code>sf</code> objects <em>are</em> essentially <code>dataframes</code>, just ask <code>R</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="exercise-1.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(wildschwein_BE_sf)</span>
+<span id="cb7-2"><a href="exercise-1.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
+<p>All operations we know from handling <code>data.frames</code> can be used on the <code>sf</code> object. Try some out!</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="exercise-1.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset rows</span></span>
+<span id="cb8-2"><a href="exercise-1.html#cb8-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span>
+<span id="cb8-3"><a href="exercise-1.html#cb8-3" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf[wildschwein_BE_sf<span class="sc">$</span>TierName <span class="sc">==</span> <span class="st">&quot;Sabi&quot;</span>,]</span>
+<span id="cb8-4"><a href="exercise-1.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="exercise-1.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># subset colums</span></span>
+<span id="cb8-6"><a href="exercise-1.html#cb8-6" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<p>Instead of keeping the same data twice (once as a <code>data.frame</code>, and once as an <code>sf</code> object), we will overwrite the <code>data.frame</code> and continue working with the <code>sf</code> object from now on. This saves some memory space in <code>R</code> and avoids confusion.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="exercise-1.html#cb9-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">=</span> <span class="fu">st_as_sf</span>(wildschwein_BE, </span>
+<span id="cb9-2"><a href="exercise-1.html#cb9-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), </span>
+<span id="cb9-3"><a href="exercise-1.html#cb9-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb9-4"><a href="exercise-1.html#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="exercise-1.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(wildschwein_BE_sf) </span>
+<span id="cb9-6"><a href="exercise-1.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># we can remove this sf object, since it just eats up our memory</span></span></code></pre></div>
+</div>
+<div id="task-4-project-data-from-wgs84" class="section level3">
+<h3>Task 4: Project data from WGS84</h3>
+<p>So what can we do with our new <code>sf</code> object that we couldn’t before? One example is projecting the WGS84 (<code>Lat</code>/<code>Long</code>) coordinates into the new Swiss CRS <code>CH1903+ LV95</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Do this by using the function <code>st_transform</code>. By the way, do you notice a pattern here? The package <code>sf</code> names most functions for spatial operations with the prefix <code>st_*</code>, just as in PostGIS.</p>
+<p>Here’s the resulting <code>sf</code> object from the operation:</p>
+<pre><code>## Simple feature collection with 51246 features and 4 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
+## projected CRS:  CH1903+ / LV95
+## # A tibble: 51,246 x 5
+##    TierID TierName CollarID DatetimeUTC                  geometry
+##  * &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                    &lt;POINT [m]&gt;
+##  1 002A   Sabi        12275 2014-08-22 21:00:12 (2570409 1204752)
+##  2 002A   Sabi        12275 2014-08-22 21:15:16 (2570402 1204863)
+##  3 002A   Sabi        12275 2014-08-22 21:30:43 (2570394 1204826)
+##  4 002A   Sabi        12275 2014-08-22 21:46:07 (2570379 1204817)
+##  5 002A   Sabi        12275 2014-08-22 22:00:22 (2570390 1204818)
+##  6 002A   Sabi        12275 2014-08-22 22:15:10 (2570390 1204825)
+##  7 002A   Sabi        12275 2014-08-22 22:30:13 (2570387 1204831)
+##  8 002A   Sabi        12275 2014-08-22 22:45:11 (2570381 1204840)
+##  9 002A   Sabi        12275 2014-08-22 23:00:27 (2570316 1204935)
+## 10 002A   Sabi        12275 2014-08-22 23:15:41 (2570393 1204815)
+## # ... with 51,236 more rows</code></pre>
+</div>
+<div id="input-calculate-convex-hull" class="section level3">
+<h3>Input: Calculate Convex Hull</h3>
+<p>Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a <a href="https://en.wikipedia.org/wiki/Convex_hull">convex hull</a> per Wild boar. And guess what the function for calculating a convex hull is called in <code>sf</code>? If you guessed <code>st_convex_hull()</code>, you were right!</p>
+<p>By default <code>st_convex_hull()</code> calculates the convex hull <em>per feature</em>, i.e. <em>per point</em> in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:</p>
+<p>First: add a grouping variable to the <code>sf</code> object. Note the new grouping variable in the metadata of the <code>sf</code> object. Other than that, <code>group_by</code> has no effect on our <code>sf</code> object.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="exercise-1.html#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="exercise-1.html#cb11-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_grouped <span class="ot">&lt;-</span> <span class="fu">group_by</span>(wildschwein_BE,TierID)</span>
+<span id="cb11-3"><a href="exercise-1.html#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="exercise-1.html#cb11-4" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_grouped</span>
+<span id="cb11-5"><a href="exercise-1.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 51246 features and 4 fields</span></span>
+<span id="cb11-6"><a href="exercise-1.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
+<span id="cb11-7"><a href="exercise-1.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
+<span id="cb11-8"><a href="exercise-1.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
+<span id="cb11-9"><a href="exercise-1.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb11-10"><a href="exercise-1.html#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 51,246 x 5</span></span>
+<span id="cb11-11"><a href="exercise-1.html#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   TierID [3]</span></span>
+<span id="cb11-12"><a href="exercise-1.html#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                  geometry</span></span>
+<span id="cb11-13"><a href="exercise-1.html#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                    &lt;POINT [m]&gt;</span></span>
+<span id="cb11-14"><a href="exercise-1.html#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 002A   Sabi        12275 2014-08-22 21:00:12 (2570409 1204752)</span></span>
+<span id="cb11-15"><a href="exercise-1.html#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 002A   Sabi        12275 2014-08-22 21:15:16 (2570402 1204863)</span></span>
+<span id="cb11-16"><a href="exercise-1.html#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 002A   Sabi        12275 2014-08-22 21:30:43 (2570394 1204826)</span></span>
+<span id="cb11-17"><a href="exercise-1.html#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 002A   Sabi        12275 2014-08-22 21:46:07 (2570379 1204817)</span></span>
+<span id="cb11-18"><a href="exercise-1.html#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 002A   Sabi        12275 2014-08-22 22:00:22 (2570390 1204818)</span></span>
+<span id="cb11-19"><a href="exercise-1.html#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 002A   Sabi        12275 2014-08-22 22:15:10 (2570390 1204825)</span></span>
+<span id="cb11-20"><a href="exercise-1.html#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 002A   Sabi        12275 2014-08-22 22:30:13 (2570387 1204831)</span></span>
+<span id="cb11-21"><a href="exercise-1.html#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 002A   Sabi        12275 2014-08-22 22:45:11 (2570381 1204840)</span></span>
+<span id="cb11-22"><a href="exercise-1.html#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 002A   Sabi        12275 2014-08-22 23:00:27 (2570316 1204935)</span></span>
+<span id="cb11-23"><a href="exercise-1.html#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 002A   Sabi        12275 2014-08-22 23:15:41 (2570393 1204815)</span></span>
+<span id="cb11-24"><a href="exercise-1.html#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 51,236 more rows</span></span></code></pre></div>
+<p>Second: use <code>summarise()</code> to “dissolve” all points into a mulipoint object.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="exercise-1.html#cb12-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_smry <span class="ot">&lt;-</span> <span class="fu">summarise</span>(wildschwein_BE_grouped)</span>
+<span id="cb12-2"><a href="exercise-1.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="exercise-1.html#cb12-3" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_smry</span>
+<span id="cb12-4"><a href="exercise-1.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 3 features and 1 field</span></span>
+<span id="cb12-5"><a href="exercise-1.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  MULTIPOINT</span></span>
+<span id="cb12-6"><a href="exercise-1.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
+<span id="cb12-7"><a href="exercise-1.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
+<span id="cb12-8"><a href="exercise-1.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb12-9"><a href="exercise-1.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
+<span id="cb12-10"><a href="exercise-1.html#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID                                                                geometry</span></span>
+<span id="cb12-11"><a href="exercise-1.html#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                         &lt;MULTIPOINT [m]&gt;</span></span>
+<span id="cb12-12"><a href="exercise-1.html#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A   ((2568903 1206200), (2568925 1206207), (2568980 1206197), (2569024 120~</span></span>
+<span id="cb12-13"><a href="exercise-1.html#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 016A   ((2569231 1205823), (2569245 1205925), (2569247 1206027), (2569251 120~</span></span>
+<span id="cb12-14"><a href="exercise-1.html#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 018A   ((2568153 1205611), (2568155 1205613), (2568161 1205624), (2568162 120~</span></span></code></pre></div>
+<p>Now we can run <code>st_convex_hull</code> on the new <code>sf</code> object.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="exercise-1.html#cb13-1" aria-hidden="true" tabindex="-1"></a>mcp <span class="ot">&lt;-</span> <span class="fu">st_convex_hull</span>(wildschwein_BE_smry)</span></code></pre></div>
+</div>
+<div id="task-5-ploting-spatial-objects" class="section level3">
+<h3>Task 5: Ploting spatial objects</h3>
+<p>Using base plot to visualize <code>sf</code> objects is easy enough, just try the following code.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="exercise-1.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mcp)</span></code></pre></div>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>But since we use <code>ggplot</code> extensively, try and plot the object <code>mcp</code> with <code>ggplot</code>. Hint: Use the layer <code>geom_sf()</code> to add an <code>sf</code> object.</p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>Note: <code>ggplot</code> refuses to use our specified CRS, so we need to force this by specifying <code>datum =</code> in <code>coord_sf()</code>. Try it out.</p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="input-importing-raster-data" class="section level3">
+<h3>Input: Importing raster data</h3>
+<p>In the next task, we would like to add a background map to our <code>mcp</code> object. To do this, we have to the raster data into <code>R</code> first. For this, we use the package <code>raster</code> with the function <code>brick</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="exercise-1.html#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="exercise-1.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb15-3"><a href="exercise-1.html#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="exercise-1.html#cb15-4" aria-hidden="true" tabindex="-1"></a>pk100_BE <span class="ot">&lt;-</span> <span class="fu">brick</span>(<span class="st">&quot;00_Rawdata/pk100_BE_2056.tif&quot;</span>)</span>
+<span id="cb15-5"><a href="exercise-1.html#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="exercise-1.html#cb15-6" aria-hidden="true" tabindex="-1"></a>pk100_BE</span>
+<span id="cb15-7"><a href="exercise-1.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="do">## class      : RasterBrick </span></span>
+<span id="cb15-8"><a href="exercise-1.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="do">## dimensions : 1821, 2321, 4226541, 4  (nrow, ncol, ncell, nlayers)</span></span>
+<span id="cb15-9"><a href="exercise-1.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="do">## resolution : 5, 5  (x, y)</span></span>
+<span id="cb15-10"><a href="exercise-1.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="do">## extent     : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)</span></span>
+<span id="cb15-11"><a href="exercise-1.html#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="do">## crs        : +proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +units=m +no_defs </span></span>
+<span id="cb15-12"><a href="exercise-1.html#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="do">## source     : C:/Users/rata/switchdrive/Lehre/Master/Pattern_and_Trends/2021_FS/00_Rawdata/pk100_BE_2056.tif </span></span>
+<span id="cb15-13"><a href="exercise-1.html#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="do">## names      : pk100_BE_2056.1, pk100_BE_2056.2, pk100_BE_2056.3, pk100_BE_2056.4 </span></span>
+<span id="cb15-14"><a href="exercise-1.html#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="do">## min values :               0,               0,               0,               0 </span></span>
+<span id="cb15-15"><a href="exercise-1.html#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="do">## max values :             255,             255,             255,             255</span></span></code></pre></div>
+<p><code>pk100_BE_2056.tif</code> is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (<code>pk100_BE_2056.1</code>, <code>pk100_BE_2056.2</code>etc). For some reason, <code>RasterBrick</code> imported a fourth layer (<code>pk100_BE_2056.4</code>). <code>plot()</code> shows that the fourth layer is empty. We will remove this layer using <code>subset()</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="exercise-1.html#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="exercise-1.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pk100_BE)</span></code></pre></div>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="exercise-1.html#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-2"><a href="exercise-1.html#cb17-2" aria-hidden="true" tabindex="-1"></a>pk100_BE <span class="ot">&lt;-</span> <span class="fu">subset</span>(pk100_BE,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb17-3"><a href="exercise-1.html#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="exercise-1.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pk100_BE)</span></code></pre></div>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
+</div>
+<div id="task-6-adding-a-background-map" class="section level3">
+<h3>Task 6: Adding a background map</h3>
+<p>There are multiple ways to add a background map in <code>ggplot</code>, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: <code>tmap</code> (“thematic map”). This package was developed with a syntax very similar to <code>ggplot2</code>, which makes it easy to learn.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="exercise-1.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb18-2"><a href="exercise-1.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="exercise-1.html#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="exercise-1.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pk100_BE) <span class="sc">+</span> </span>
+<span id="cb18-5"><a href="exercise-1.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_rgb</span>() </span></code></pre></div>
+<p><img src="patterns-and-trends_files/figure-html/task6-1.png" width="672" /></p>
+<p>As you can see, plotting layers in <code>tmap</code> is combined with the <code>+</code> sign, just as in <code>ggplot2</code>. In <code>tmap</code> however, each layer consists of two objects: a <code>tm_shape()</code> in which the data is called, and a <code>tm_*</code> object in which we define how the data is visualized (<code>tm_rgb()</code> states that it is plotted as an RGB Raster Layer). Add the object <code>mcp</code> to the plot in this manner. Read <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html">the vignette</a> if you are having trouble.</p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+<div id="task-7-create-an-interactive-map" class="section level3">
+<h3>Task 7: Create an interactive map</h3>
+<p>Rerun the <code>tmap()...</code> command from the previous task, but switch the plotting mode to “view”" (<code>tmap_mode("view")</code>) beforehand. Omit the raster layer (<code>pk100_BE</code>), you won’t be needing it.</p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>At this point, we assume you know what a Coordinate Reference Systems is. Check out <a href="https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/">this link</a> if this is not the case.<a href="exercise-1.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>As we’ve mentioned in the first Input, you can look up the EPSG codes under <a href="http://spatialreference.org/ref/epsg/2056/">spatialreference.org</a> or <a href="http://epsg.io" class="uri">http://epsg.io</a>. For information specific to Switzerland, check the <a href="https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html">swisstopo website</a><a href="exercise-1.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercise-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["patterns-and-trends.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

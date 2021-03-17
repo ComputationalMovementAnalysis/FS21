@@ -40,14 +40,7 @@ max(wildschwein_BE$DatetimeUTC)
 
 
 wildschwein_BE_2015 <- wildschwein_BE %>%
-  filter(DatetimeUTC > "2015-05-01",DatetimeUTC < "2015-07-31")
-
-# I think this brings a better result -- without unnecessary entries
-# not comparing a POSIXct class to a character one
-wildschwein_BE_2015 <- wildschwein_BE %>%
-  filter(DatetimeUTC > as.POSIXct("2015-05-01 00:00:00", tz = "UTC"),
-         DatetimeUTC < as.POSIXct("2015-08-01 00:00:00", tz = "UTC"))
-
+  filter(DatetimeUTC > "2015-01-05",DatetimeUTC < "2015-07-31")
 
 mcp2015 <- wildschwein_BE_2015 %>%
   group_by(TierID) %>%
