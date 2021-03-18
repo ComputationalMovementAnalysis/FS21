@@ -267,7 +267,7 @@ To measure the distance between concurrent locations, we need to follow the foll
 ```{r}
 wildschwein_join <- wildschwein_filter %>%
   ungroup() %>%
-  select(TierID,DatetimeRound,E,N) %>%
+  dplyr::select(TierID,DatetimeRound,E,N) %>% 
   st_set_geometry(NULL) %>%
   split(.$TierID) %>%
   accumulate(~full_join(.x,.y, by = "DatetimeRound")) %>%

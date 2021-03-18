@@ -169,10 +169,10 @@ p1 <- caro60 %>%
 p1
 
 
-
-library(plotly)
-ggplotly(p1)
-
+## 
+## library(plotly)
+## ggplotly(p1)
+## 
 
 
 
@@ -273,7 +273,7 @@ pedestrians_matrix <- pedestrians %>%
   split(.$TrajID) %>%
   map(function(x){
     x %>%
-      select(E,N) %>%
+      dplyr::select(E,N) %>% 
       as.matrix()
   })
 

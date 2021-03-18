@@ -490,7 +490,7 @@ pedestrians_matrix <- pedestrians %>%
   split(.$TrajID) %>%
   map(function(x){
     x %>%
-      select(E,N) %>%
+      dplyr::select(E,N) %>% 
       as.matrix()
   })
 
