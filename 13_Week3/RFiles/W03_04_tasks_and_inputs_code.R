@@ -129,10 +129,10 @@ p1 <- caro60 %>%
 p1
 
 
-
-library(plotly)
-ggplotly(p1)
-
+## 
+## library(plotly)
+## ggplotly(p1)
+## 
 
 
 
