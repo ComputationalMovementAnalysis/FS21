@@ -4,6 +4,7 @@ bookdown::gitbook:
     toc:
       collapse: section
     download: ["pdf"]
+  split_by: "rmd"
 bookdown::pdf_book:
   number_sections: true
   keep_tex: yes
