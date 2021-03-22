@@ -1,0 +1,193 @@
+## Demo Tidyverse
+```{r}
+## Demo Tidyverse ##############################################################
+```
+
+Depending on your knowledge of `R`, getting an overview of the data we imported last week might have been quite a challenge. Surprisingly enough, importing, cleaning and exploring your data can be the most challenging, time consuming part of a project. RStudio and the tidyverse offer many helpful tools to make this part easier (and more fun). You have read chapters on `dplyr` and `magrittr` as a preparation for this exercise. Before we start with the exercise however, this demo illustrates a simple approach offered by tidyverse which is applicable to sf-objects.
+
+Assume we want to calculate the timelag between subsequent positions. To achieve this we can use the function `difftime()` combined with `lead()` from `dplyr`. Let's look at these functions one by one.
+
+### `difftime`
+
+`difftime` takes two `POSIXct` values.
+
+
+```{r, echo = T, include = T, eval = T}
+now <- Sys.time()
+
+later <- now + 10000
+
+time_difference <- difftime(later,now)
+```
+
+
+```{r}
+time_difference
+```
+
+You can also specify the unit of the output.
+
+```{r, echo = T, include = T, eval = T}
+time_difference <- difftime(later,now,units = "mins")
+```
+
+```{r}
+time_difference
+```
+
+
+`difftime` returns an object of the Class `difftime`. However in our case, numeric values would be more handy than the Class `difftime`. So we'll wrap the command in `as.numeric()`:
+```{r, echo = T, include = T, eval = T}
+str(time_difference)
+```
+
+
+
+```{r, echo = T, include = T, eval = T}
+time_difference <- as.numeric(difftime(later,now,units = "mins"))
+
+str(time_difference)
+
+```
+
+### `lead()` / `lag()`
+
+
+`lead()` and `lag()` return a vector of the same length as the input, just offset by a specific number of values (default is 1). Consider the following sequence:
+
+```{r, echo = T, include = T, eval = T}
+numbers <- 1:10
+
+numbers
+```
+
+We can now run `lead()` and `lag()` on this sequence to illustrate the output. `n =` specifies the offset, `default =` specifies the default value used to "fill" the emerging "empty spaces" of the vector.
+
+```{r, echo = T, include = T, eval = T}
+lead(numbers)
+
+lead(numbers,n = 2)
+
+lag(numbers)
+
+lag(numbers,n = 5)
+
+lag(numbers,n = 5, default = 0)
+```
+
+This helps us performing operations on subsequent values in a vector (or rows in a table). You can think of this a little bit like a moving temporal window that moves along the trajectory, or down the rows of a table respectively.
+
+```{r}
+lead(numbers)-numbers
+```
+
+
+### `mutate()`
+Using the above functions (`difftime()` and `lead()`), we can calculate the time lag, that is, the time difference between subsequent positions:
+
+```{r, echo = T, include = T, eval = T}
+
+wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),
+                                               wildschwein_BE$DatetimeUTC,
+                                               units = "secs"))
+
+```
+
+We mention `wildschwein_BE` three times in this function, which is complicated. Instead, we can use `mutate()` to simplify the syntax:
+
+```{r, echo = T, include = T, eval = T}
+wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),
+                                                                      DatetimeUTC,
+                                                                      units = "secs")))
+```
+
+
+### `group_by()`
+
+Now let's have a look at the vector created before:
+```{r, echo = T, include = T, eval = T}
+summary(wildschwein_BE$timelag)
+```
+
+These values don't make much sense: some are negative (which should not be the case) and some are very high (which would indicate large data gaps and should not be the case either). The reason for this result is that we did not consider that `timelag` should just be calculated between subsequent rows *of the same individual*. We can implement this by using `group_by()` (just as if calculating the convex hull last week). 
+
+```{r, echo = T, include = T, eval = T}
+wildschwein_BE <- group_by(wildschwein_BE,TierID)
+```
+
+After adding this grouping variable, calculating the timelag automatically accounts for the individual trajectories.
+
+```{r, echo = T, include = T, eval = T}
+wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),
+                                                                      DatetimeUTC,
+                                                                      units = "secs")))
+
+summary(wildschwein_BE$timelag)
+```
+
+
+
+### `summarise()`
+
+`summary()` returned the metrics over all individuals. If we want to summarise our data and get metrics *per animal*, we can use the `dplyr` function `summarise()`. In contrast to `mutate()`, which just adds a new column to the dataset, `summarise()` "collapses" the data to one row per individual (specified by `group_by`).
+
+```{r,, echo = T, eval = F, include= T}
+summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
+```
+
+The above operation works fine on normal `data.frames`, but since `wildschwein_BE` is also an `sf` object, `summarise` actually merges all the points to a multipoint geometry, which takes a long time to calculate. In order to prevent this, we can set the objects geometry to `NULL`, which removes the spatial attribute.
+```{r, echo = T, include = T, eval = T}
+
+summarise(st_set_geometry(wildschwein_BE,NULL), mean_timelag = mean(timelag, na.rm = T))
+```
+
+
+
+### Piping 
+The code above may be a bit hard to read, since it has so many nested functions which need to be read from the inside out. In order to make code readable in a more human-friendly way, we can use the piping command `%>%` from `magrittr`, which is included in `dplyr` and the `tidyverse`. The above code then looks like this:
+
+```{r, echo = T, include = T, eval = T}
+
+wildschwein_BE %>%                     # Take wildschwein_BE...
+  st_set_geometry(NULL) %>%            # ...remove the geometry column...
+  group_by(TierID) %>%                 # ...group it by TierID
+  summarise(                           # Summarise the data...
+    mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
+  )
+```
+
+
+### Bring it all together...
+
+Here is the same approach with a different, smaller dataset:
+
+```{r, echo = T, include = T, eval = T}
+pigs = data.frame(
+  TierID=c(8001,8003,8004,8005,8800,8820,3000,3001,3002,3003,8330,7222),
+  sex=c("M","M","M","F","M","M","F","F","M","F","M","F"),
+  age=c("A","A","J","A","J","J","J","A","J","J","A","A"),
+  weight=c(50.755,43.409,12.000,16.787,20.987,25.765,22.0122,21.343,12.532,54.32,11.027,88.08)
+)
+
+pigs
+
+pigs %>%
+    summarise(         
+    mean_weight = mean(weight)
+  )
+
+pigs %>%
+  group_by(sex) %>%
+  summarise(         
+    mean_weight = mean(weight)
+  )
+
+pigs %>%
+  group_by(sex,age) %>%
+  summarise(         
+    mean_weight = mean(weight)
+  )
+
+```
+
+

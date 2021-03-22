@@ -1,0 +1,9 @@
+## Preperation
+If you haven't already, install the packages `tidyverse`, `sf`, `raster` and `ggspatial`(using `install.packages()`). **Restart your `R` session after installing all these packages.**
+
+```{r, echo = T, include=T,eval = F, purl = F}
+install.packages("tidyverse")
+install.packages("sf")
+install.packages("raster")
+```
+

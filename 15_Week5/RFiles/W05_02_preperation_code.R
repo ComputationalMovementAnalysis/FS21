@@ -1,0 +1,26 @@
+## Preperation ##################################################################
+
+
+library(tidyverse)
+library(sf)
+library(ggspatial)
+library(raster)
+
+# Import as tibble
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
+
+
+# Convert to sf-object
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
+
+# transform to CH1903 LV95
+wildschwein_BE <- st_transform(wildschwein_BE, 2056)
+
+# Add geometry as E/N integer Columns
+wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
+  cbind(wildschwein_BE,.) %>%
+  rename(E = X) %>%
+  rename(N = Y)
+
+
+

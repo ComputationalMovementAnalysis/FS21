@@ -1,0 +1,39 @@
+## 
+## ## Preperation #################################################################
+## 
+## install.packages("SimilarityMeasures")
+## 
+## # The following packages are for optional tasks:
+## install.packages("plotly")
+## 
+## # You don't really need the following packages,
+## # we just use them in our figures
+## install.packages("ggrepel")
+
+library(tidyverse)
+library(sf)
+
+# Import as dataframe
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
+
+# Convert to sf-object
+wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
+
+# transform to CH1903 LV95
+wildschwein_BE <- st_transform(wildschwein_BE, 2056)
+
+# Add geometry as E/N integer Columns
+wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
+  cbind(wildschwein_BE,.) %>%
+  rename(E = X) %>%
+  rename(N = Y)
+
+# Compute timelag, steplength and speed
+wildschwein_BE <- wildschwein_BE %>%
+  group_by(TierID) %>%
+  mutate(
+    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
+    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
+    speed = steplength/timelag
+  )
+
