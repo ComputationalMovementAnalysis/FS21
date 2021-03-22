@@ -32,8 +32,8 @@
   
 <link rel="prev" href="exercise-1.html"/>
 <link rel="next" href="exercise-3.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,13 +50,15 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -367,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb33-2"><a href="exercise-2.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">st_set_geometry</span>(wildschwein_BE,<span class="cn">NULL</span>), <span class="at">mean_timelag =</span> <span class="fu">mean</span>(timelag, <span class="at">na.rm =</span> T))</span>
 <span id="cb33-3"><a href="exercise-2.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
 <span id="cb33-4"><a href="exercise-2.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID mean_timelag</span></span>
-<span id="cb33-5"><a href="exercise-2.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="do">## * &lt;chr&gt;         &lt;dbl&gt;</span></span>
+<span id="cb33-5"><a href="exercise-2.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;         &lt;dbl&gt;</span></span>
 <span id="cb33-6"><a href="exercise-2.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A          1286.</span></span>
 <span id="cb33-7"><a href="exercise-2.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 016A          1412.</span></span>
 <span id="cb33-8"><a href="exercise-2.html#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 018A          1599.</span></span></code></pre></div>
@@ -384,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb34-7"><a href="exercise-2.html#cb34-7" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb34-8"><a href="exercise-2.html#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
 <span id="cb34-9"><a href="exercise-2.html#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID mean_timelag</span></span>
-<span id="cb34-10"><a href="exercise-2.html#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="do">## * &lt;chr&gt;         &lt;dbl&gt;</span></span>
+<span id="cb34-10"><a href="exercise-2.html#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;         &lt;dbl&gt;</span></span>
 <span id="cb34-11"><a href="exercise-2.html#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A          1286.</span></span>
 <span id="cb34-12"><a href="exercise-2.html#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 016A          1412.</span></span>
 <span id="cb34-13"><a href="exercise-2.html#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 018A          1599.</span></span></code></pre></div>
@@ -428,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb35-34"><a href="exercise-2.html#cb35-34" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb35-35"><a href="exercise-2.html#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2 x 2</span></span>
 <span id="cb35-36"><a href="exercise-2.html#cb35-36" aria-hidden="true" tabindex="-1"></a><span class="do">##   sex   mean_weight</span></span>
-<span id="cb35-37"><a href="exercise-2.html#cb35-37" aria-hidden="true" tabindex="-1"></a><span class="do">## * &lt;chr&gt;       &lt;dbl&gt;</span></span>
+<span id="cb35-37"><a href="exercise-2.html#cb35-37" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;       &lt;dbl&gt;</span></span>
 <span id="cb35-38"><a href="exercise-2.html#cb35-38" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 F            40.5</span></span>
 <span id="cb35-39"><a href="exercise-2.html#cb35-39" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 M            25.2</span></span>
 <span id="cb35-40"><a href="exercise-2.html#cb35-40" aria-hidden="true" tabindex="-1"></a></span>
@@ -559,11 +561,11 @@ Save this data to a new variable (we will use <code>caro60</code>).</p>
 <span id="cb39-2"><a href="exercise-2.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="exercise-2.html#cb39-3" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
 <span id="cb39-4"><a href="exercise-2.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">3</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb39-5"><a href="exercise-2.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] -0.4274889 -0.2885408 -0.3880966  0.3556317  0.8621043  0.7375428</span></span>
-<span id="cb39-6"><a href="exercise-2.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7]  0.7138661 -0.1544565         NA         NA</span></span>
+<span id="cb39-5"><a href="exercise-2.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] -0.4802185 -0.4595655 -0.6098473 -0.2802903 -0.2560879 -0.4534443</span></span>
+<span id="cb39-6"><a href="exercise-2.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.4202666  0.1614054         NA         NA</span></span>
 <span id="cb39-7"><a href="exercise-2.html#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">4</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb39-8"><a href="exercise-2.html#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] -0.35809805  0.09312217 -0.29639511  0.60909686  0.86268485  0.53007694</span></span>
-<span id="cb39-9"><a href="exercise-2.html#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7]  0.22653074          NA          NA          NA</span></span></code></pre></div>
+<span id="cb39-8"><a href="exercise-2.html#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] -0.46014049 -0.40492146 -0.50737925 -0.29204257 -0.40033054 -0.36519371</span></span>
+<span id="cb39-9"><a href="exercise-2.html#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7]  0.03922914          NA          NA          NA</span></span></code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>caro60</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 </div>
 <div id="task-5-optional-calculate-turning-angles" class="section level3">

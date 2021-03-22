@@ -1,0 +1,2079 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Patterns and Trends in Environmental Data},
+  pdfauthor={Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[left=2cm, right=2cm, top=2.5cm, bottom=2cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\title{Patterns and Trends in Environmental Data}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Master ENR, Spring Semester 2021}
+\author{Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis}
+\date{18 März, 2021}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{introduction-chapter}{%
+\chapter*{Introduction Chapter}\label{introduction-chapter}}
+\addcontentsline{toc}{chapter}{Introduction Chapter}
+
+For our practical \texttt{R} course building-up skills for analyzing movement data in the software environment \texttt{R}, you'll be using data from the ZHAW project \href{https://www.zhaw.ch/de/ueber-uns/aktuell/news/detailansicht-news/event-news/wildschweinschaeden-mit-akustischer-methode-verhindern/}{``Prävention von Wildschweinschäden in der Landwirtschaft''}. Watch \href{https://youtu.be/WYXnCQMfPiI}{this video on youtube} for a nice introduction into the project.
+
+The project investigates the spatiotemporal movement patterns of wild boar (\emph{Sus scrofa}) in agricultural landscapes. We will study the trajectories of these wild boar, practicing the most basic analysis tasks of Computational Movement Analysis (CMA).
+
+\textbf{Please note:} we are given application data from an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected. So, please do not pass on this data, for any use beyond this module contact Patrick Laube or the data owner Stefan Suter (\href{mailto:suts@zhaw.ch}{\nolinkurl{suts@zhaw.ch}}).
+
+\hypertarget{exercise-1}{%
+\chapter{Exercise 1}\label{exercise-1}}
+
+Exercise 1 covers the necessary steps for getting ready in \texttt{R} and some basic concepts for setting up a well-structured \texttt{R} project. The lesson introduces how additional packages that provide useful functions for data science are made available and how spatial data is handled. The exercise concludes with the creation of your first map featuring movement data.
+
+\hypertarget{leaning-outcomes}{%
+\section{Leaning outcomes}\label{leaning-outcomes}}
+
+\begin{itemize}
+\tightlist
+\item
+  You learn how to structure an \texttt{R} project.
+\item
+  You can read movement data from a .csv-file into a \texttt{data.frame}
+\item
+  You can convert spatial point data from a \texttt{data.frame} to a spatial object \texttt{sf}
+\item
+  You can perform basic spatial operations on spatial objects in \texttt{R}
+\item
+  You can produce simple maps of your spatial data using \texttt{ggplot2}
+\item
+  You can produce simple maps of your spatial data using \texttt{tmap}
+\end{itemize}
+
+\hypertarget{prerequisites}{%
+\section{Prerequisites}\label{prerequisites}}
+
+Readings Skills from ``R for Data Science'' (\protect\hyperlink{ref-wickham2017}{Wickham and Grolemund 2017}):
+
+\begin{itemize}
+\tightlist
+\item
+  RS1.1 Preface (16p, ix-xxiv)
+\item
+  RS1.2 Chap2 Workflow basics (3p, 37-39)
+\item
+  RS1.3 Chap4 Workflow scripts (3p, 77-79)
+\item
+  RS1.4 Chap6 workflow projects (6p, 111-116)
+\item
+  RS1.5 Chap8 Data Import with \texttt{readr} (21p)
+\item
+  RS1.6 Chap13 Date and Times with \texttt{lubridate} (18p, 237-256)
+\end{itemize}
+
+\hypertarget{preperation}{%
+\section{Preperation}\label{preperation}}
+
+If you haven't already, install the packages \texttt{tidyverse}, \texttt{sf}, \texttt{raster} and \texttt{ggspatial}(using \texttt{install.packages()}). \textbf{Restart your \texttt{R} session after installing all these packages.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"sf"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"raster"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tasks-and-inputs}{%
+\section{Tasks and inputs}\label{tasks-and-inputs}}
+
+\hypertarget{task-1-initialize-project}{%
+\subsection{Task 1: Initialize project}\label{task-1-initialize-project}}
+
+Create a new \emph{RStudio Project}. As recommended in \protect\hyperlink{ref-wickham2017}{Wickham and Grolemund} (\protect\hyperlink{ref-wickham2017}{2017}), remove the option ``\emph{Restore .RData into workspace at startup}'' and set the option ``\emph{save workspace to .RData on exit}'' to ``\emph{Never}.''
+
+Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science Workflow. In .R Files, ``Sections'' can be created within RStudio by adding Comments (\texttt{\#}) with at least 4 trailing dashes, equal, or pound signs ( \texttt{-}, \texttt{=},\texttt{\#}). In .Rmd Files, their are created with leading pound signs (\texttt{\#}).
+
+Sections allow code folding (try clicking on the small triangle next to the line number) and facilitate navigation (try the shortcut: \texttt{Shift}+\texttt{Alt}+\texttt{J}). We recommend following sections:
+
+\begin{itemize}
+\tightlist
+\item
+  Loading environment / libraries
+\item
+  Data import
+\item
+  Data cleansing
+\item
+  Data analysis and visualization
+\end{itemize}
+
+\hypertarget{task-2-import-data}{%
+\subsection{Task 2: Import data}\label{task-2-import-data}}
+
+In section ``data import,'' import the file \texttt{wildschwein\_BE.csv}. Obtain this file from moodle.
+
+Note:
+
+\begin{itemize}
+\tightlist
+\item
+  If your are using \href{https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio}{a graphical tool} to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your workflow is documented without gaps. We'd rather recommend to move away from using graphical tools and focus on using code.
+\item
+  We recommend using one of the \texttt{tidyverse} functions from the \texttt{readr} package to import your data (they all begin with "\texttt{read\_*}, note the underscore). These functions are less error prone than the base \texttt{R} functions (\texttt{read.*}). Specifically for the wild boar data, we recommend \texttt{read\_delim()}.
+\item
+  If you use \texttt{read\_delim()} and receive warnings during import, have a look at these warnings by using the function \texttt{problems()}. Resolve these problems until import runs without warnings.
+\item
+  Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
+\item
+  For everyone working on the RStudio Server: You will first need to upload this data to the server using the ``\emph{upload}''-button in the ``\emph{Files}'' tab.
+\end{itemize}
+
+\hypertarget{task-3-explore-data}{%
+\subsection{Task 3: Explore Data}\label{task-3-explore-data}}
+
+We will use a range of different visualization tools (i.e.~R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While \texttt{base::plot()}is quick and simple, it not very scalable with growing complexity. \texttt{ggplot2} offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
+
+Get an overview of your data by creating a first ``map-like'' plot of your data producing a simple scatter plot with \texttt{ggplot2}.
+Setting up a \texttt{ggplot} with our data is done using the command \texttt{ggplot(wildschwein\_BE,\ aes(Long,\ Lat,\ colour\ =\ TierID))}. Creating a map is done via the basic scatter plot command \texttt{geom\_point()}.
+Assigning every individual its own colour is done using the \texttt{ggplot} argument \texttt{colour\ =}.
+
+Save your code in the appropriate section.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\hypertarget{input-handling-spatial-data}{%
+\subsection{Input: Handling spatial data}\label{input-handling-spatial-data}}
+
+Until now, we've stored our location data within data frames as Lat/Long columns. This works well for many tasks, but sometimes we need special \emph{spatial} classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our \texttt{data.frame} into a spatial object.
+Some of you might be familiar with the \texttt{sp} package with the classes \texttt{SpatialPoints}, \texttt{SpatialPointsDataFrame} and so on. These packages are mostly replaced by the fairly new package \texttt{sf}. This packages has some huge advantages over \texttt{sp}:
+
+\begin{itemize}
+\tightlist
+\item
+  simple features are essentially data frames with minor extensions and thus are easily integratable in standard workflows
+\item
+  they are programmed to cleanly interface with the \texttt{tidyverse} methods (specifically \texttt{dplyr}'s \texttt{mutate} and \texttt{summarise})
+\item
+  comply with the common Open Geospatial Consortium (OGC) standards (ISO 19125-1:2004) and interface with other important spatial tools such as GDAL, PostGIS, GeoJSON and so fourth
+\item
+  are being rapidly implemented in visualisation tools such as \texttt{ggplot2}, \texttt{plotly} and \texttt{tmap}
+\end{itemize}
+
+We will largely rely on \texttt{sf}when working with vector data in \texttt{R}. In order to transform our \texttt{data.frame} into an sf object, we need to use the function \texttt{st\_as\_sf()} while specifying the columns storing the coordinates and the coordinate reference system\footnote{At this point, we assume you know what a Coordinate Reference Systems is. Check out \href{https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/}{this link} if this is not the case.}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{library}\NormalTok{(sf)}
+
+\NormalTok{wildschwein\_BE\_sf }\OtherTok{\textless{}{-}} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }
+                              \AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
+                              \AttributeTok{crs =} \DecValTok{4326}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Notice how \texttt{st\_as\_sf} takes the EPSG code for the \texttt{crs\ =} argument. This is so much easier and more elegant than using \texttt{PROJ.4} or \texttt{WKT}. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes , etc.) under \href{http://spatialreference.org/ref/epsg/2056/}{spatialreference.org} or \url{http://epsg.io}.
+
+Let's compare our original \texttt{data.frame} with this new \texttt{sf} object:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein\_BE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 51,246 x 6
+##    TierID TierName CollarID DatetimeUTC           Lat  Long
+##    <chr>  <chr>       <dbl> <dttm>              <dbl> <dbl>
+##  1 002A   Sabi        12275 2014-08-22 21:00:12  47.0  7.05
+##  2 002A   Sabi        12275 2014-08-22 21:15:16  47.0  7.05
+##  3 002A   Sabi        12275 2014-08-22 21:30:43  47.0  7.05
+##  4 002A   Sabi        12275 2014-08-22 21:46:07  47.0  7.05
+##  5 002A   Sabi        12275 2014-08-22 22:00:22  47.0  7.05
+##  6 002A   Sabi        12275 2014-08-22 22:15:10  47.0  7.05
+##  7 002A   Sabi        12275 2014-08-22 22:30:13  47.0  7.05
+##  8 002A   Sabi        12275 2014-08-22 22:45:11  47.0  7.05
+##  9 002A   Sabi        12275 2014-08-22 23:00:27  47.0  7.05
+## 10 002A   Sabi        12275 2014-08-22 23:15:41  47.0  7.05
+## # ... with 51,236 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein\_BE\_sf}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Simple feature collection with 51246 features and 4 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: 7.019889 ymin: 46.97125 xmax: 7.112075 ymax: 47.01882
+## geographic CRS: WGS 84
+## # A tibble: 51,246 x 5
+##    TierID TierName CollarID DatetimeUTC                    geometry
+##  * <chr>  <chr>       <dbl> <dttm>                      <POINT [°]>
+##  1 002A   Sabi        12275 2014-08-22 21:00:12 (7.049618 46.99317)
+##  2 002A   Sabi        12275 2014-08-22 21:15:16 (7.049509 46.99416)
+##  3 002A   Sabi        12275 2014-08-22 21:30:43 (7.049406 46.99383)
+##  4 002A   Sabi        12275 2014-08-22 21:46:07 (7.049217 46.99375)
+##  5 002A   Sabi        12275 2014-08-22 22:00:22 (7.049359 46.99375)
+##  6 002A   Sabi        12275 2014-08-22 22:15:10 (7.049363 46.99382)
+##  7 002A   Sabi        12275 2014-08-22 22:30:13 (7.049326 46.99387)
+##  8 002A   Sabi        12275 2014-08-22 22:45:11 (7.049237 46.99395)
+##  9 002A   Sabi        12275 2014-08-22 23:00:27 (7.048383 46.99481)
+## 10 002A   Sabi        12275 2014-08-22 23:15:41 (7.049396 46.99373)
+## # ... with 51,236 more rows
+\end{verbatim}
+
+As you can see, \texttt{st\_as\_sf()} has added some metadata to our dataframe (\texttt{geometry\ type}, \texttt{dimension}, \texttt{bbox}, \texttt{epsg} and \texttt{proj4string}) and replaced the columns \texttt{Lat} and \texttt{Long} with a column named \texttt{geometry}. Other than that, the new \texttt{sf} object is very similar to our original dataframe. In fact, \texttt{sf} objects \emph{are} essentially \texttt{dataframes}, just ask \texttt{R}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{is.data.frame}\NormalTok{(wildschwein\_BE\_sf)}
+\DocumentationTok{\#\# [1] TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+All operations we know from handling \texttt{data.frames} can be used on the \texttt{sf} object. Try some out!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# subset rows}
+\NormalTok{wildschwein\_BE\_sf[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{,]}
+\NormalTok{wildschwein\_BE\_sf[wildschwein\_BE\_sf}\SpecialCharTok{$}\NormalTok{TierName }\SpecialCharTok{==} \StringTok{"Sabi"}\NormalTok{,]}
+
+\CommentTok{\# subset colums}
+\NormalTok{wildschwein\_BE\_sf[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Instead of keeping the same data twice (once as a \texttt{data.frame}, and once as an \texttt{sf} object), we will overwrite the \texttt{data.frame} and continue working with the \texttt{sf} object from now on. This saves some memory space in \texttt{R} and avoids confusion.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }
+                          \AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
+                          \AttributeTok{crs =} \DecValTok{4326}\NormalTok{)}
+
+\FunctionTok{rm}\NormalTok{(wildschwein\_BE\_sf) }
+\CommentTok{\# we can remove this sf object, since it just eats up our memory}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{task-4-project-data-from-wgs84}{%
+\subsection{Task 4: Project data from WGS84}\label{task-4-project-data-from-wgs84}}
+
+So what can we do with our new \texttt{sf} object that we couldn't before? One example is projecting the WGS84 (\texttt{Lat}/\texttt{Long}) coordinates into the new Swiss CRS \texttt{CH1903+\ LV95}\footnote{As we've mentioned in the first Input, you can look up the EPSG codes under \href{http://spatialreference.org/ref/epsg/2056/}{spatialreference.org} or \url{http://epsg.io}. For information specific to Switzerland, check the \href{https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html}{swisstopo website}}. Do this by using the function \texttt{st\_transform}. By the way, do you notice a pattern here? The package \texttt{sf} names most functions for spatial operations with the prefix \texttt{st\_*}, just as in PostGIS.
+
+Here's the resulting \texttt{sf} object from the operation:
+
+\begin{verbatim}
+## Simple feature collection with 51246 features and 4 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
+## projected CRS:  CH1903+ / LV95
+## # A tibble: 51,246 x 5
+##    TierID TierName CollarID DatetimeUTC                  geometry
+##  * <chr>  <chr>       <dbl> <dttm>                    <POINT [m]>
+##  1 002A   Sabi        12275 2014-08-22 21:00:12 (2570409 1204752)
+##  2 002A   Sabi        12275 2014-08-22 21:15:16 (2570402 1204863)
+##  3 002A   Sabi        12275 2014-08-22 21:30:43 (2570394 1204826)
+##  4 002A   Sabi        12275 2014-08-22 21:46:07 (2570379 1204817)
+##  5 002A   Sabi        12275 2014-08-22 22:00:22 (2570390 1204818)
+##  6 002A   Sabi        12275 2014-08-22 22:15:10 (2570390 1204825)
+##  7 002A   Sabi        12275 2014-08-22 22:30:13 (2570387 1204831)
+##  8 002A   Sabi        12275 2014-08-22 22:45:11 (2570381 1204840)
+##  9 002A   Sabi        12275 2014-08-22 23:00:27 (2570316 1204935)
+## 10 002A   Sabi        12275 2014-08-22 23:15:41 (2570393 1204815)
+## # ... with 51,236 more rows
+\end{verbatim}
+
+\hypertarget{input-calculate-convex-hull}{%
+\subsection{Input: Calculate Convex Hull}\label{input-calculate-convex-hull}}
+
+Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a \href{https://en.wikipedia.org/wiki/Convex_hull}{convex hull} per Wild boar. And guess what the function for calculating a convex hull is called in \texttt{sf}? If you guessed \texttt{st\_convex\_hull()}, you were right!
+
+By default \texttt{st\_convex\_hull()} calculates the convex hull \emph{per feature}, i.e.~\emph{per point} in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:
+
+First: add a grouping variable to the \texttt{sf} object. Note the new grouping variable in the metadata of the \texttt{sf} object. Other than that, \texttt{group\_by} has no effect on our \texttt{sf} object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{wildschwein\_BE\_grouped }\OtherTok{\textless{}{-}} \FunctionTok{group\_by}\NormalTok{(wildschwein\_BE,TierID)}
+
+\NormalTok{wildschwein\_BE\_grouped}
+\DocumentationTok{\#\# Simple feature collection with 51246 features and 4 fields}
+\DocumentationTok{\#\# geometry type:  POINT}
+\DocumentationTok{\#\# dimension:      XY}
+\DocumentationTok{\#\# bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609}
+\DocumentationTok{\#\# projected CRS:  CH1903+ / LV95}
+\DocumentationTok{\#\# \# A tibble: 51,246 x 5}
+\DocumentationTok{\#\# \# Groups:   TierID [3]}
+\DocumentationTok{\#\#    TierID TierName CollarID DatetimeUTC                  geometry}
+\DocumentationTok{\#\#    \textless{}chr\textgreater{}  \textless{}chr\textgreater{}       \textless{}dbl\textgreater{} \textless{}dttm\textgreater{}                    \textless{}POINT [m]\textgreater{}}
+\DocumentationTok{\#\#  1 002A   Sabi        12275 2014{-}08{-}22 21:00:12 (2570409 1204752)}
+\DocumentationTok{\#\#  2 002A   Sabi        12275 2014{-}08{-}22 21:15:16 (2570402 1204863)}
+\DocumentationTok{\#\#  3 002A   Sabi        12275 2014{-}08{-}22 21:30:43 (2570394 1204826)}
+\DocumentationTok{\#\#  4 002A   Sabi        12275 2014{-}08{-}22 21:46:07 (2570379 1204817)}
+\DocumentationTok{\#\#  5 002A   Sabi        12275 2014{-}08{-}22 22:00:22 (2570390 1204818)}
+\DocumentationTok{\#\#  6 002A   Sabi        12275 2014{-}08{-}22 22:15:10 (2570390 1204825)}
+\DocumentationTok{\#\#  7 002A   Sabi        12275 2014{-}08{-}22 22:30:13 (2570387 1204831)}
+\DocumentationTok{\#\#  8 002A   Sabi        12275 2014{-}08{-}22 22:45:11 (2570381 1204840)}
+\DocumentationTok{\#\#  9 002A   Sabi        12275 2014{-}08{-}22 23:00:27 (2570316 1204935)}
+\DocumentationTok{\#\# 10 002A   Sabi        12275 2014{-}08{-}22 23:15:41 (2570393 1204815)}
+\DocumentationTok{\#\# \# ... with 51,236 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Second: use \texttt{summarise()} to ``dissolve'' all points into a mulipoint object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein\_BE\_smry }\OtherTok{\textless{}{-}} \FunctionTok{summarise}\NormalTok{(wildschwein\_BE\_grouped)}
+
+\NormalTok{wildschwein\_BE\_smry}
+\DocumentationTok{\#\# Simple feature collection with 3 features and 1 field}
+\DocumentationTok{\#\# geometry type:  MULTIPOINT}
+\DocumentationTok{\#\# dimension:      XY}
+\DocumentationTok{\#\# bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609}
+\DocumentationTok{\#\# projected CRS:  CH1903+ / LV95}
+\DocumentationTok{\#\# \# A tibble: 3 x 2}
+\DocumentationTok{\#\#   TierID                                                                geometry}
+\DocumentationTok{\#\#   \textless{}chr\textgreater{}                                                         \textless{}MULTIPOINT [m]\textgreater{}}
+\DocumentationTok{\#\# 1 002A   ((2568903 1206200), (2568925 1206207), (2568980 1206197), (2569024 120\textasciitilde{}}
+\DocumentationTok{\#\# 2 016A   ((2569231 1205823), (2569245 1205925), (2569247 1206027), (2569251 120\textasciitilde{}}
+\DocumentationTok{\#\# 3 018A   ((2568153 1205611), (2568155 1205613), (2568161 1205624), (2568162 120\textasciitilde{}}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can run \texttt{st\_convex\_hull} on the new \texttt{sf} object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mcp }\OtherTok{\textless{}{-}} \FunctionTok{st\_convex\_hull}\NormalTok{(wildschwein\_BE\_smry)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{task-5-ploting-spatial-objects}{%
+\subsection{Task 5: Ploting spatial objects}\label{task-5-ploting-spatial-objects}}
+
+Using base plot to visualize \texttt{sf} objects is easy enough, just try the following code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(mcp)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+But since we use \texttt{ggplot} extensively, try and plot the object \texttt{mcp} with \texttt{ggplot}. Hint: Use the layer \texttt{geom\_sf()} to add an \texttt{sf} object.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+Note: \texttt{ggplot} refuses to use our specified CRS, so we need to force this by specifying \texttt{datum\ =} in \texttt{coord\_sf()}. Try it out.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\hypertarget{input-importing-raster-data}{%
+\subsection{Input: Importing raster data}\label{input-importing-raster-data}}
+
+In the next task, we would like to add a background map to our \texttt{mcp} object. To do this, we have to the raster data into \texttt{R} first. For this, we use the package \texttt{raster} with the function \texttt{brick}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{library}\NormalTok{(raster)}
+
+\NormalTok{pk100\_BE }\OtherTok{\textless{}{-}} \FunctionTok{brick}\NormalTok{(}\StringTok{"00\_Rawdata/pk100\_BE\_2056.tif"}\NormalTok{)}
+
+\NormalTok{pk100\_BE}
+\DocumentationTok{\#\# class      : RasterBrick }
+\DocumentationTok{\#\# dimensions : 1821, 2321, 4226541, 4  (nrow, ncol, ncell, nlayers)}
+\DocumentationTok{\#\# resolution : 5, 5  (x, y)}
+\DocumentationTok{\#\# extent     : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)}
+\DocumentationTok{\#\# crs        : +proj=somerc +lat\_0=46.9524055555556 +lon\_0=7.43958333333333 +k\_0=1 +x\_0=2600000 +y\_0=1200000 +ellps=bessel +units=m +no\_defs }
+\DocumentationTok{\#\# source     : C:/Users/bako/Desktop/Kurse/FS21/FS21/00\_Rawdata/pk100\_BE\_2056.tif }
+\DocumentationTok{\#\# names      : pk100\_BE\_2056.1, pk100\_BE\_2056.2, pk100\_BE\_2056.3, pk100\_BE\_2056.4 }
+\DocumentationTok{\#\# min values :               0,               0,               0,               0 }
+\DocumentationTok{\#\# max values :             255,             255,             255,             255}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{pk100\_BE\_2056.tif} is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (\texttt{pk100\_BE\_2056.1}, \texttt{pk100\_BE\_2056.2}etc). For some reason, \texttt{RasterBrick} imported a fourth layer (\texttt{pk100\_BE\_2056.4}). \texttt{plot()} shows that the fourth layer is empty. We will remove this layer using \texttt{subset()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{plot}\NormalTok{(pk100\_BE)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{pk100\_BE }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(pk100\_BE,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(pk100\_BE)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-27-2.pdf}
+
+\hypertarget{task-6-adding-a-background-map}{%
+\subsection{Task 6: Adding a background map}\label{task-6-adding-a-background-map}}
+
+There are multiple ways to add a background map in \texttt{ggplot}, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: \texttt{tmap} (``thematic map''). This package was developed with a syntax very similar to \texttt{ggplot2}, which makes it easy to learn.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tmap)}
+
+
+\FunctionTok{tm\_shape}\NormalTok{(pk100\_BE) }\SpecialCharTok{+} 
+  \FunctionTok{tm\_rgb}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{patterns-and-trends_files/figure-latex/task6-1.pdf}
+
+As you can see, plotting layers in \texttt{tmap} is combined with the \texttt{+} sign, just as in \texttt{ggplot2}. In \texttt{tmap} however, each layer consists of two objects: a \texttt{tm\_shape()} in which the data is called, and a \texttt{tm\_*} object in which we define how the data is visualized (\texttt{tm\_rgb()} states that it is plotted as an RGB Raster Layer). Add the object \texttt{mcp} to the plot in this manner. Read \href{https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html}{the vignette} if you are having trouble.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+\hypertarget{task-7-create-an-interactive-map}{%
+\subsection{Task 7: Create an interactive map}\label{task-7-create-an-interactive-map}}
+
+Rerun the \texttt{tmap()...} command from the previous task, but switch the plotting mode to ``view''" (\texttt{tmap\_mode("view")}) beforehand. Omit the raster layer (\texttt{pk100\_BE}), you won't be needing it.
+
+\hypertarget{exercise-2}{%
+\chapter{Exercise 2}\label{exercise-2}}
+
+\hypertarget{learning-outcomes}{%
+\section{Learning Outcomes}\label{learning-outcomes}}
+
+\begin{itemize}
+\tightlist
+\item
+  You understand the dplyr functions \texttt{mutate}, \texttt{summarise} and \texttt{group\_by} and can apply them to \texttt{sf} objects
+\item
+  You can derive movement parameters (\texttt{timelag}, \texttt{steplength}, \texttt{speed}) from trajectory data.
+\item
+  You can re-sample your trajectory data for cross-scale movement analysis.
+\end{itemize}
+
+\hypertarget{prerequisites-1}{%
+\section{Prerequisites}\label{prerequisites-1}}
+
+Readings Skills from ``R for Data Science'' (\protect\hyperlink{ref-wickham2017}{Wickham and Grolemund 2017}):
+
+\begin{itemize}
+\tightlist
+\item
+  RS2.1 Chap3 Data Transformation with \texttt{dplyr} (31p, 43-76)
+\item
+  RS2.2 Chap10 Relational data with \texttt{dplyr} (21p, 171-193)
+\item
+  RS2.3 Chap14 Pipes with \texttt{magrittr} (6p, 261-268)
+\end{itemize}
+
+Readings Theory
+
+\begin{itemize}
+\tightlist
+\item
+  R2.1 \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}): How fast is a cow? cross - scale analysis of movement data.
+\end{itemize}
+
+\hypertarget{preperation-1}{%
+\section{Preperation}\label{preperation-1}}
+
+Install the package \texttt{zoo} to get access to the rolling window functions for last exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"zoo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Import the wild boar data and convert it to an \texttt{sf} object with CH1903+ LV95 Coordinates. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sf)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+
+\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }
+                          \AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
+                          \AttributeTok{crs =} \DecValTok{4326}\NormalTok{)}
+
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_transform}\NormalTok{(wildschwein\_BE, }\DecValTok{2056}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{demo-tidyverse}{%
+\section{Demo Tidyverse}\label{demo-tidyverse}}
+
+Depending on your knowledge of \texttt{R}, getting an overview of the data we imported last week might have been quite a challenge. Surprisingly enough, importing, cleaning and exploring your data can be the most challenging, time consuming part of a project. RStudio and the tidyverse offer many helpful tools to make this part easier (and more fun). You have read chapters on \texttt{dplyr} and \texttt{magrittr} as a preparation for this exercise. Before we start with the exercise however, this demo illustrates a simple approach offered by tidyverse which is applicable to sf-objects.
+
+Assume we want to calculate the timelag between subsequent positions. To achieve this we can use the function \texttt{difftime()} combined with \texttt{lead()} from \texttt{dplyr}. Let's look at these functions one by one.
+
+\hypertarget{difftime}{%
+\subsection{\texorpdfstring{\texttt{difftime}}{difftime}}\label{difftime}}
+
+\texttt{difftime} takes two \texttt{POSIXct} values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{now }\OtherTok{\textless{}{-}} \FunctionTok{Sys.time}\NormalTok{()}
+
+\NormalTok{later }\OtherTok{\textless{}{-}}\NormalTok{ now }\SpecialCharTok{+} \DecValTok{10000}
+
+\NormalTok{time\_difference }\OtherTok{\textless{}{-}} \FunctionTok{difftime}\NormalTok{(later,now)}
+\end{Highlighting}
+\end{Shaded}
+
+You can also specify the unit of the output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{time\_difference }\OtherTok{\textless{}{-}} \FunctionTok{difftime}\NormalTok{(later,now,}\AttributeTok{units =} \StringTok{"mins"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{difftime} returns an object of the Class \texttt{difftime}. However in our case, numeric values would be more handy than the Class \texttt{difftime}. So we'll wrap the command in \texttt{as.numeric()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(time\_difference)}
+\DocumentationTok{\#\#  \textquotesingle{}difftime\textquotesingle{} num 166.666666666667}
+\DocumentationTok{\#\#  {-} attr(*, "units")= chr "mins"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{time\_difference }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(later,now,}\AttributeTok{units =} \StringTok{"mins"}\NormalTok{))}
+
+\FunctionTok{str}\NormalTok{(time\_difference)}
+\DocumentationTok{\#\#  num 167}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{lead-lag}{%
+\subsection{\texorpdfstring{\texttt{lead()} / \texttt{lag()}}{lead() / lag()}}\label{lead-lag}}
+
+\texttt{lead()} and \texttt{lag()} return a vector of the same length as the input, just offset by a specific number of values (default is 1). Consider the following sequence:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numbers }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
+
+\NormalTok{numbers}
+\DocumentationTok{\#\#  [1]  1  2  3  4  5  6  7  8  9 10}
+\end{Highlighting}
+\end{Shaded}
+
+We can now run \texttt{lead()} and \texttt{lag()} on this sequence to illustrate the output. \texttt{n\ =} specifies the offset, \texttt{default\ =} specifies the default value used to ``fill'' the emerging ``empty spaces'' of the vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lead}\NormalTok{(numbers)}
+\DocumentationTok{\#\#  [1]  2  3  4  5  6  7  8  9 10 NA}
+
+\FunctionTok{lead}\NormalTok{(numbers,}\AttributeTok{n =} \DecValTok{2}\NormalTok{)}
+\DocumentationTok{\#\#  [1]  3  4  5  6  7  8  9 10 NA NA}
+
+\FunctionTok{lag}\NormalTok{(numbers)}
+\DocumentationTok{\#\#  [1] NA  1  2  3  4  5  6  7  8  9}
+
+\FunctionTok{lag}\NormalTok{(numbers,}\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
+\DocumentationTok{\#\#  [1] NA NA NA NA NA  1  2  3  4  5}
+
+\FunctionTok{lag}\NormalTok{(numbers,}\AttributeTok{n =} \DecValTok{5}\NormalTok{, }\AttributeTok{default =} \DecValTok{0}\NormalTok{)}
+\DocumentationTok{\#\#  [1] 0 0 0 0 0 1 2 3 4 5}
+\end{Highlighting}
+\end{Shaded}
+
+This helps us performing operations on subsequent values in a vector (or rows in a table). You can think of this a little bit like a moving temporal window that moves along the trajectory, or down the rows of a table respectively.
+
+\hypertarget{mutate}{%
+\subsection{\texorpdfstring{\texttt{mutate()}}{mutate()}}\label{mutate}}
+
+Using the above functions (\texttt{difftime()} and \texttt{lead()}), we can calculate the time lag, that is, the time difference between subsequent positions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{wildschwein\_BE}\SpecialCharTok{$}\NormalTok{timelag  }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(}\FunctionTok{lead}\NormalTok{(wildschwein\_BE}\SpecialCharTok{$}\NormalTok{DatetimeUTC),}
+\NormalTok{                                               wildschwein\_BE}\SpecialCharTok{$}\NormalTok{DatetimeUTC,}
+                                               \AttributeTok{units =} \StringTok{"secs"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+We mention \texttt{wildschwein\_BE} three times in this function, which is complicated. Instead, we can use \texttt{mutate()} to simplify the syntax:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(wildschwein\_BE,}\AttributeTok{timelag =} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(}\FunctionTok{lead}\NormalTok{(DatetimeUTC),}
+\NormalTok{                                                                      DatetimeUTC,}
+                                                                      \AttributeTok{units =} \StringTok{"secs"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{group_by}{%
+\subsection{\texorpdfstring{\texttt{group\_by()}}{group\_by()}}\label{group_by}}
+
+Now let's have a look at the vector created before:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(wildschwein\_BE}\SpecialCharTok{$}\NormalTok{timelag)}
+\DocumentationTok{\#\#      Min.   1st Qu.    Median      Mean   3rd Qu.      Max.      NA\textquotesingle{}s }
+\DocumentationTok{\#\# {-}22648470       896       903       571       916     60367         1}
+\end{Highlighting}
+\end{Shaded}
+
+These values don't make much sense: some are negative (which should not be the case) and some are very high (which would indicate large data gaps and should not be the case either). The reason for this result is that we did not consider that \texttt{timelag} should just be calculated between subsequent rows \emph{of the same individual}. We can implement this by using \texttt{group\_by()} (just as if calculating the convex hull last week).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{group\_by}\NormalTok{(wildschwein\_BE,TierID)}
+\end{Highlighting}
+\end{Shaded}
+
+After adding this grouping variable, calculating the timelag automatically accounts for the individual trajectories.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(wildschwein\_BE,}\AttributeTok{timelag =} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(}\FunctionTok{lead}\NormalTok{(DatetimeUTC),}
+\NormalTok{                                                                      DatetimeUTC,}
+                                                                      \AttributeTok{units =} \StringTok{"secs"}\NormalTok{)))}
+
+\FunctionTok{summary}\NormalTok{(wildschwein\_BE}\SpecialCharTok{$}\NormalTok{timelag)}
+\DocumentationTok{\#\#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA\textquotesingle{}s }
+\DocumentationTok{\#\#      12     896     903    1408     916   60367       3}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{summarise}{%
+\subsection{\texorpdfstring{\texttt{summarise()}}{summarise()}}\label{summarise}}
+
+\texttt{summary()} returned the metrics over all individuals. If we want to summarise our data and get metrics \emph{per animal}, we can use the \texttt{dplyr} function \texttt{summarise()}. In contrast to \texttt{mutate()}, which just adds a new column to the dataset, \texttt{summarise()} ``collapses'' the data to one row per individual (specified by \texttt{group\_by}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summarise}\NormalTok{(wildschwein\_BE, }\AttributeTok{mean =} \FunctionTok{mean}\NormalTok{(timelag, }\AttributeTok{na.rm =}\NormalTok{ T))}
+\end{Highlighting}
+\end{Shaded}
+
+The above operation works fine on normal \texttt{data.frames}, but since \texttt{wildschwein\_BE} is also an \texttt{sf} object, \texttt{summarise} actually merges all the points to a multipoint geometry, which takes a long time to calculate. In order to prevent this, we can set the objects geometry to \texttt{NULL}, which removes the spatial attribute.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{summarise}\NormalTok{(}\FunctionTok{st\_set\_geometry}\NormalTok{(wildschwein\_BE,}\ConstantTok{NULL}\NormalTok{), }\AttributeTok{mean\_timelag =} \FunctionTok{mean}\NormalTok{(timelag, }\AttributeTok{na.rm =}\NormalTok{ T))}
+\DocumentationTok{\#\# \# A tibble: 3 x 2}
+\DocumentationTok{\#\#   TierID mean\_timelag}
+\DocumentationTok{\#\#   \textless{}chr\textgreater{}         \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# 1 002A          1286.}
+\DocumentationTok{\#\# 2 016A          1412.}
+\DocumentationTok{\#\# 3 018A          1599.}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{piping}{%
+\subsection{Piping}\label{piping}}
+
+The code above may be a bit hard to read, since it has so many nested functions which need to be read from the inside out. In order to make code readable in a more human-friendly way, we can use the piping command \texttt{\%\textgreater{}\%} from \texttt{magrittr}, which is included in \texttt{dplyr} and the \texttt{tidyverse}. The above code then looks like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{wildschwein\_BE }\SpecialCharTok{\%\textgreater{}\%}                     \CommentTok{\# Take wildschwein\_BE...}
+  \FunctionTok{st\_set\_geometry}\NormalTok{(}\ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}            \CommentTok{\# ...remove the geometry column...}
+  \FunctionTok{group\_by}\NormalTok{(TierID) }\SpecialCharTok{\%\textgreater{}\%}                 \CommentTok{\# ...group it by TierID}
+  \FunctionTok{summarise}\NormalTok{(                           }\CommentTok{\# Summarise the data...}
+    \AttributeTok{mean\_timelag =} \FunctionTok{mean}\NormalTok{(timelag,}\AttributeTok{na.rm =}\NormalTok{ T) }\CommentTok{\# ...by calculating the mean timelag}
+\NormalTok{  )}
+\DocumentationTok{\#\# \# A tibble: 3 x 2}
+\DocumentationTok{\#\#   TierID mean\_timelag}
+\DocumentationTok{\#\#   \textless{}chr\textgreater{}         \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# 1 002A          1286.}
+\DocumentationTok{\#\# 2 016A          1412.}
+\DocumentationTok{\#\# 3 018A          1599.}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{bring-it-all-together}{%
+\subsection{Bring it all together\ldots{}}\label{bring-it-all-together}}
+
+Here is the same approach with a different, smaller dataset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pigs }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{TierID=}\FunctionTok{c}\NormalTok{(}\DecValTok{8001}\NormalTok{,}\DecValTok{8003}\NormalTok{,}\DecValTok{8004}\NormalTok{,}\DecValTok{8005}\NormalTok{,}\DecValTok{8800}\NormalTok{,}\DecValTok{8820}\NormalTok{,}\DecValTok{3000}\NormalTok{,}\DecValTok{3001}\NormalTok{,}\DecValTok{3002}\NormalTok{,}\DecValTok{3003}\NormalTok{,}\DecValTok{8330}\NormalTok{,}\DecValTok{7222}\NormalTok{),}
+  \AttributeTok{sex=}\FunctionTok{c}\NormalTok{(}\StringTok{"M"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"F"}\NormalTok{,}\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"F"}\NormalTok{),}
+  \AttributeTok{age=}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"A"}\NormalTok{,}\StringTok{"J"}\NormalTok{,}\StringTok{"A"}\NormalTok{,}\StringTok{"J"}\NormalTok{,}\StringTok{"J"}\NormalTok{,}\StringTok{"J"}\NormalTok{,}\StringTok{"A"}\NormalTok{,}\StringTok{"J"}\NormalTok{,}\StringTok{"J"}\NormalTok{,}\StringTok{"A"}\NormalTok{,}\StringTok{"A"}\NormalTok{),}
+  \AttributeTok{weight=}\FunctionTok{c}\NormalTok{(}\FloatTok{50.755}\NormalTok{,}\FloatTok{43.409}\NormalTok{,}\FloatTok{12.000}\NormalTok{,}\FloatTok{16.787}\NormalTok{,}\FloatTok{20.987}\NormalTok{,}\FloatTok{25.765}\NormalTok{,}\FloatTok{22.0122}\NormalTok{,}\FloatTok{21.343}\NormalTok{,}\FloatTok{12.532}\NormalTok{,}\FloatTok{54.32}\NormalTok{,}\FloatTok{11.027}\NormalTok{,}\FloatTok{88.08}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{pigs}
+\DocumentationTok{\#\#    TierID sex age  weight}
+\DocumentationTok{\#\# 1    8001   M   A 50.7550}
+\DocumentationTok{\#\# 2    8003   M   A 43.4090}
+\DocumentationTok{\#\# 3    8004   M   J 12.0000}
+\DocumentationTok{\#\# 4    8005   F   A 16.7870}
+\DocumentationTok{\#\# 5    8800   M   J 20.9870}
+\DocumentationTok{\#\# 6    8820   M   J 25.7650}
+\DocumentationTok{\#\# 7    3000   F   J 22.0122}
+\DocumentationTok{\#\# 8    3001   F   A 21.3430}
+\DocumentationTok{\#\# 9    3002   M   J 12.5320}
+\DocumentationTok{\#\# 10   3003   F   J 54.3200}
+\DocumentationTok{\#\# 11   8330   M   A 11.0270}
+\DocumentationTok{\#\# 12   7222   F   A 88.0800}
+
+\NormalTok{pigs }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{summarise}\NormalTok{(         }
+    \AttributeTok{mean\_weight =} \FunctionTok{mean}\NormalTok{(weight)}
+\NormalTok{  )}
+\DocumentationTok{\#\#   mean\_weight}
+\DocumentationTok{\#\# 1    31.58477}
+
+\NormalTok{pigs }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(sex) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(         }
+    \AttributeTok{mean\_weight =} \FunctionTok{mean}\NormalTok{(weight)}
+\NormalTok{  )}
+\DocumentationTok{\#\# \# A tibble: 2 x 2}
+\DocumentationTok{\#\#   sex   mean\_weight}
+\DocumentationTok{\#\#   \textless{}chr\textgreater{}       \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# 1 F            40.5}
+\DocumentationTok{\#\# 2 M            25.2}
+
+\NormalTok{pigs }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(sex,age) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(         }
+    \AttributeTok{mean\_weight =} \FunctionTok{mean}\NormalTok{(weight)}
+\NormalTok{  )}
+\DocumentationTok{\#\# \# A tibble: 4 x 3}
+\DocumentationTok{\#\# \# Groups:   sex [2]}
+\DocumentationTok{\#\#   sex   age   mean\_weight}
+\DocumentationTok{\#\#   \textless{}chr\textgreater{} \textless{}chr\textgreater{}       \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# 1 F     A            42.1}
+\DocumentationTok{\#\# 2 F     J            38.2}
+\DocumentationTok{\#\# 3 M     A            35.1}
+\DocumentationTok{\#\# 4 M     J            17.8}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tasks-and-inputs-1}{%
+\section{Tasks and Inputs}\label{tasks-and-inputs-1}}
+
+\hypertarget{task-1-getting-an-overview}{%
+\subsection{Task 1: Getting an overview}\label{task-1-getting-an-overview}}
+
+Calculate the time difference between subsequent rows as described in the demo (column \texttt{timelag}).
+First, inspect your data in more detail. Try to answer the following questions:
+
+\begin{itemize}
+\tightlist
+\item
+  How many individuals were tracked?
+\item
+  For how long were the individual tracked? Are there gaps?
+\item
+  Were all individuals tracked concurrently or sequentially?
+\item
+  What is the temporal sampling interval between the locations?
+\end{itemize}
+
+Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-3.pdf}
+
+\hypertarget{input-geometry-as-columns}{%
+\subsection{Input: Geometry as columns}\label{input-geometry-as-columns}}
+
+Last week, we transformed our data from a \texttt{data.frame} to an \texttt{sf} object. This turned our \texttt{Lat}/\texttt{Long} columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. To do this, we have to extract the Coordinates using \texttt{st\_coordinates()}. We can store these values in a new variable and display them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Store coordinates in a new variable}
+
+\NormalTok{coordinates }\OtherTok{\textless{}{-}} \FunctionTok{st\_coordinates}\NormalTok{(wildschwein\_BE)}
+
+\FunctionTok{head}\NormalTok{(coordinates)}
+\DocumentationTok{\#\#         X       Y}
+\DocumentationTok{\#\# 1 2570409 1204752}
+\DocumentationTok{\#\# 2 2570402 1204863}
+\DocumentationTok{\#\# 3 2570394 1204826}
+\DocumentationTok{\#\# 4 2570379 1204817}
+\DocumentationTok{\#\# 5 2570390 1204818}
+\DocumentationTok{\#\# 6 2570390 1204825}
+\end{Highlighting}
+\end{Shaded}
+
+Note that that the column are named \texttt{X} and \texttt{Y}, while \href{https://www.swisstopo.admin.ch/de/wissen-fakten/geodaesie-vermessung/neue-koordinaten.html}{\texttt{CH1903+\ LV95}} names the Axes \texttt{E} and \texttt{N}: let's rename the columns appropriately. After this, we can use \texttt{cbind()} to ``glue'' the columns to our original \texttt{sf}-object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(coordinates) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"E"}\NormalTok{,}\StringTok{"N"}\NormalTok{)}
+
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(wildschwein\_BE,coordinates)}
+
+\FunctionTok{head}\NormalTok{(wildschwein\_BE)}
+\DocumentationTok{\#\# Simple feature collection with 6 features and 7 fields}
+\DocumentationTok{\#\# geometry type:  POINT}
+\DocumentationTok{\#\# dimension:      XY}
+\DocumentationTok{\#\# bbox:           xmin: 2570379 ymin: 1204752 xmax: 2570409 ymax: 1204863}
+\DocumentationTok{\#\# projected CRS:  CH1903+ / LV95}
+\DocumentationTok{\#\#   TierID TierName CollarID         DatetimeUTC timelag       E       N}
+\DocumentationTok{\#\# 1   002A     Sabi    12275 2014{-}08{-}22 21:00:12     904 2570409 1204752}
+\DocumentationTok{\#\# 2   002A     Sabi    12275 2014{-}08{-}22 21:15:16     927 2570402 1204863}
+\DocumentationTok{\#\# 3   002A     Sabi    12275 2014{-}08{-}22 21:30:43     924 2570394 1204826}
+\DocumentationTok{\#\# 4   002A     Sabi    12275 2014{-}08{-}22 21:46:07     855 2570379 1204817}
+\DocumentationTok{\#\# 5   002A     Sabi    12275 2014{-}08{-}22 22:00:22     888 2570390 1204818}
+\DocumentationTok{\#\# 6   002A     Sabi    12275 2014{-}08{-}22 22:15:10     903 2570390 1204825}
+\DocumentationTok{\#\#                  geometry}
+\DocumentationTok{\#\# 1 POINT (2570409 1204752)}
+\DocumentationTok{\#\# 2 POINT (2570402 1204863)}
+\DocumentationTok{\#\# 3 POINT (2570394 1204826)}
+\DocumentationTok{\#\# 4 POINT (2570379 1204817)}
+\DocumentationTok{\#\# 5 POINT (2570390 1204818)}
+\DocumentationTok{\#\# 6 POINT (2570390 1204825)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{task-2-deriving-movement-parameters-i-speed}{%
+\subsection{Task 2: Deriving movement parameters I: Speed}\label{task-2-deriving-movement-parameters-i-speed}}
+
+In this task we will derive some additional movement parameters from our trajectories. So far our trajectories only consist of a list of time-stamped spatial locations. So let's calculate the animal's steplength based on the Euclidean distance between two subsequent locations.
+
+\begin{itemize}
+\tightlist
+\item
+  You can calculate the Euclidean distance with the following formula: \texttt{sqrt((E1-E2)\^{}2+(N1-N2)\^{}2)}
+\item
+  use \texttt{lead(E,1)} to address the the row \texttt{n+1} (i.e.~E2)
+\end{itemize}
+
+Why do we use \texttt{E} and \texttt{N} when calculating the Euclidean distance, and not \texttt{Lat}/\texttt{Long}? Now calculate the animals' speed between subsequent locations based on the steplength as calculated in the previous task and the timelag between the locations. What speed unit do you get?
+
+\hypertarget{task-3-cross-scale-movement-analysis}{%
+\subsection{Task 3: Cross-scale movement analysis}\label{task-3-cross-scale-movement-analysis}}
+
+\protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}) analyse animal movement across different scales (see below). We will do the same on a \emph{subset} of our data.
+
+!(\protect\hyperlink{ref-laube2011}{Laube and Purves 2011}: \emph{Black points are used in calculation of movement parameters (e.g.~speed) at a given termporal scale.})(02\_Images/laube\_2011\_2.jpg)
+
+\hypertarget{import-caro60}{%
+\subsubsection{Import ``Caro60''}\label{import-caro60}}
+
+In the first task, we saw that the animals are sampled at different frequencies. To simplify the task, we've prepared a dataset that includes 200 locations of a single wild boar with a constant sampling interval of 60 seconds. Import this dataset named ``caro60.csv'' (available on moodle) just like you imported the other wild boar data. \textbf{NOTE:} We've converted the positions to CH1903+ LV95 for your convenience. Consider this when transforming to \texttt{sf}!
+Save this data to a new variable (we will use \texttt{caro60}).
+
+\hypertarget{resample}{%
+\subsubsection{Resample}\label{resample}}
+
+Now manually reduce the granularity of our sampling interval by selecting every 3\textsuperscript{rd}, 6\textsuperscript{th} and 9\textsuperscript{th} position.
+
+If you like to stick to the \texttt{tidyverse} approach, you can use \texttt{slice()} to subset the dataset by row number. Slice takes an integer vector. Eg: \texttt{slice(dataset,\ 1:10)}, returns the first 10 rows of a dataset, \texttt{slice(dataset,\ c(1,5,10))} returns the 1\textsuperscript{st}, 5\textsuperscript{th} and 10\textsuperscript{th} value of a dataset. Save each re-sampled dataset in a new variable. We will use \texttt{caro60\_3}, \texttt{caro60\_6} and \texttt{caro60\_9}.
+
+You should now have 4 data sets with different number of rows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(caro60)}
+\DocumentationTok{\#\# [1] 200}
+\FunctionTok{nrow}\NormalTok{(caro60\_3)}
+\DocumentationTok{\#\# [1] 67}
+\FunctionTok{nrow}\NormalTok{(caro60\_6)}
+\DocumentationTok{\#\# [1] 34}
+\FunctionTok{nrow}\NormalTok{(caro60\_9)}
+\DocumentationTok{\#\# [1] 23}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{update-derived-parameters}{%
+\subsubsection{Update derived parameters}\label{update-derived-parameters}}
+
+\texttt{timelag}, \texttt{steplength} and \texttt{speed} now have to be recalculated for the three re-sampled data sets. Do so as we illustrated in the Chapter \emph{Demo}.
+
+\hypertarget{visualize}{%
+\subsubsection{Visualize}\label{visualize}}
+
+Compare the speeds in a line plot and visualize the trajectories in a map (see examples below). Interpret the line plot, what do the different lines for the different temporal granularities tell you?
+
+We've stored the geographic location of our point in the trajectory in three different forms in our dataset. Once as a \texttt{geometry}, once as \texttt{E}/\texttt{N} and once as \texttt{lat}/\texttt{long}. In our view, it is most practical to use the \texttt{E}/\texttt{N} (integer) columns of our data to map them in this task
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{geom\_sf()} does not plot lines, just points
+\item
+  Therefore, use \texttt{geom\_path()} \emph{and} \texttt{geom\_point()} rather than \texttt{geom\_sf()} within \texttt{ggplot}
+\item
+  In contrast to \texttt{geom\_sf()}, you have to explicitly specify the \texttt{x}/\texttt{y} columns (in our case \texttt{E}/\texttt{N}) with \texttt{geom\_path()}/\texttt{geom\_point()}
+\item
+  \texttt{geom\_line()} does not work when mapping trajectory data, since it connects the observations \emph{in order of the variable on the x axis}. \texttt{geom\_path()} connects the observations in the order in which they appear in the data
+\end{itemize}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-67-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-67-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-67-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-67-4.pdf}
+
+\hypertarget{task-4-deriving-movement-parameters-ii-rolling-window-functions}{%
+\subsection{Task 4: Deriving movement parameters II: Rolling window functions}\label{task-4-deriving-movement-parameters-ii-rolling-window-functions}}
+
+A different approach would be to \emph{smoothen} the derived parameters using a \href{https://docs.wavefront.com/images/5sec_moving_window.png}{moving window function}. The \texttt{zoo} package offers a variate of moving window functions (\texttt{roll\_*}). Use \texttt{roll\_mean()} to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(zoo)}
+
+\NormalTok{example }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\FunctionTok{rollmean}\NormalTok{(example,}\AttributeTok{k =} \DecValTok{3}\NormalTok{,}\AttributeTok{fill =} \ConstantTok{NA}\NormalTok{,}\AttributeTok{align =} \StringTok{"left"}\NormalTok{)}
+\DocumentationTok{\#\#  [1] {-}0.08145389  0.16710397 {-}0.21160835 {-}0.23824666 {-}0.58580212 {-}0.09891376}
+\DocumentationTok{\#\#  [7] {-}0.10375999 {-}0.53739296          NA          NA}
+\FunctionTok{rollmean}\NormalTok{(example,}\AttributeTok{k =} \DecValTok{4}\NormalTok{,}\AttributeTok{fill =} \ConstantTok{NA}\NormalTok{,}\AttributeTok{align =} \StringTok{"left"}\NormalTok{)}
+\DocumentationTok{\#\#  [1]  0.07207105 {-}0.12637177 {-}0.21885298 {-}0.30619012 {-}0.32588506 {-}0.13796671}
+\DocumentationTok{\#\#  [7] {-}0.53054985          NA          NA          NA}
+\end{Highlighting}
+\end{Shaded}
+
+Now run \texttt{rollmean}on the \texttt{speed} variable of the subset (\texttt{caro60}). Visualize the output from your moving windows and compare different window sizes (\texttt{k\ =}).
+
+\hypertarget{task-5-optional-calculate-turning-angles}{%
+\subsection{Task 5 (optional): Calculate turning angles}\label{task-5-optional-calculate-turning-angles}}
+
+Just like we did with \texttt{speed} in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2!
+
+\hypertarget{exercise-3}{%
+\chapter{Exercise 3}\label{exercise-3}}
+
+\hypertarget{learning-outcomes-1}{%
+\section{Learning Outcomes}\label{learning-outcomes-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  You are able to segment a trajectory, e.g.~using the approach proposed in \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011})
+\item
+  You are able to compute the similarity between given trajectories using the package \texttt{SimilarityMeasures.}
+\item
+  You acquire further useful data processing skills.
+\end{itemize}
+
+\hypertarget{prerequisites-2}{%
+\section{Prerequisites}\label{prerequisites-2}}
+
+Readings Skills from ``R for Data Science'' (\protect\hyperlink{ref-wickham2017}{Wickham and Grolemund 2017}):
+
+\begin{itemize}
+\tightlist
+\item
+  RS3.1 Chap1 Data visualization with \texttt{ggplot2} (31, 3-35)
+\item
+  RS3.2 Chap5 Exploratory Data Analysis (28p, 81.109)
+\end{itemize}
+
+Readings Theory:
+
+\protect\hyperlink{ref-both2018}{Alan Both} (\protect\hyperlink{ref-both2018}{2018}) A Comparative Analysis of Trajectory Similarity Measures: Recommendations for Selection and Use, excerpt from an unpublished manuscript, confidential.
+
+\hypertarget{preperation-2}{%
+\section{Preperation}\label{preperation-2}}
+
+Install the following libraries:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\DocumentationTok{\#\# Preperation \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"SimilarityMeasures"}\NormalTok{)}
+
+\CommentTok{\# The following packages are for optional tasks:}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"plotly"}\NormalTok{)}
+
+\CommentTok{\# You don\textquotesingle{}t really need the following packages, }
+\CommentTok{\# we just use them in our figures}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"ggrepel"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sf)}
+
+\CommentTok{\# Import as dataframe}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+
+\CommentTok{\# Convert to sf{-}object}
+\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }\AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\AttributeTok{crs =} \DecValTok{4326}\NormalTok{,}\AttributeTok{remove =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# transform to CH1903 LV95}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_transform}\NormalTok{(wildschwein\_BE, }\DecValTok{2056}\NormalTok{)}
+
+\CommentTok{\# Add geometry as E/N integer Columns}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_coordinates}\NormalTok{(wildschwein\_BE) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{cbind}\NormalTok{(wildschwein\_BE,.) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{E =}\NormalTok{ X) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{N =}\NormalTok{ Y)}
+
+\CommentTok{\# Compute timelag, steplength and speed}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}}\NormalTok{ wildschwein\_BE }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(TierID) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{timelag =} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(}\FunctionTok{lead}\NormalTok{(DatetimeUTC),DatetimeUTC,}\AttributeTok{units =} \StringTok{"secs"}\NormalTok{)),}
+    \AttributeTok{steplength =} \FunctionTok{sqrt}\NormalTok{((E}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(E))}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{(N}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(N))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{),}
+    \AttributeTok{speed =}\NormalTok{ steplength}\SpecialCharTok{/}\NormalTok{timelag}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tasks-and-inputs-2}{%
+\section{Tasks and Inputs}\label{tasks-and-inputs-2}}
+
+\hypertarget{input-segmentation-as-in-laube-and-purves-2011}{%
+\subsection{Input: Segmentation as in Laube and Purves (2011)}\label{input-segmentation-as-in-laube-and-purves-2011}}
+
+You've read \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}) about segmenting trajectories. In the paper, the authors define ``\emph{static}'' fixes as ``\emph{those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d},'' as illustrated in the following figure:
+
+\includegraphics{02_Images/laube_2011.jpg}
+
+The above image from \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}) visualizes the following steps:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Temporal representation of constant sample interval with associated temporal window v for three exemplary points;
+\item
+  Measurement of average distance in temporal window v to sample points in spatial representation;
+\item
+  Removal of all points where average distance is less than a given threshold, i.e.~removal of static points; and
+\item
+  Removal of subtrajectories with less than a threshold temporal length.
+\end{enumerate}
+
+We will implement this method on the following dummy data. Once you've grasped the idea on this simple data, you will implement it for the wild boar data in task 1.
+
+Note: I use \texttt{tibble()} instead of \texttt{data.frame()}. The two functions are very similar, this is just a matter of preference.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\DocumentationTok{\#\# Input: Segmentation \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{n }\OtherTok{=} \DecValTok{20}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{X =} \FunctionTok{cumsum}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n)), }\AttributeTok{Y =} \FunctionTok{cumsum}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n)))}
+
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(X,Y)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_path}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{coord\_equal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-75-1.pdf}
+
+\hypertarget{segmenting}{%
+\subsubsection{Segmenting}\label{segmenting}}
+
+The first step is calculating the distances to temporally close samples within the temporal window \emph{v}. Take the following sample data, assuming the sampling interval is 5 minutes. If we take a temporal window of 20 minutes, that would mean including 5 fixes. We need to calculate the following Euclidean distances (pos representing single location):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{pos{[}n-2}{]} to \texttt{pos{[}n{]}}
+\item
+  \texttt{pos{[}n-1{]}} to \texttt{pos{[}n{]}}
+\item
+  \texttt{pos{[}n{]}} to \texttt{pos{[}n+1{]}}
+\item
+  \texttt{pos{[}n{]}} to \texttt{pos{[}n+2{]}}
+\end{enumerate}
+
+Just like last week, we use the formular for calculating the Euclidean distance in in combination with \texttt{lead()} and \texttt{lag()}. For example, to create the necessary offset of n-2, we use \texttt{lag(x,\ 2)}. For each offset, we create one individual column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{nMinus2 =} \FunctionTok{sqrt}\NormalTok{((}\FunctionTok{lag}\NormalTok{(X,}\DecValTok{2}\NormalTok{)}\SpecialCharTok{{-}}\NormalTok{X)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{(}\FunctionTok{lag}\NormalTok{(Y,}\DecValTok{2}\NormalTok{)}\SpecialCharTok{{-}}\NormalTok{Y)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{),   }\CommentTok{\# distance to pos {-}10 minutes}
+    \AttributeTok{nMinus1 =} \FunctionTok{sqrt}\NormalTok{((}\FunctionTok{lag}\NormalTok{(X,}\DecValTok{1}\NormalTok{)}\SpecialCharTok{{-}}\NormalTok{X)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{(}\FunctionTok{lag}\NormalTok{(Y,}\DecValTok{1}\NormalTok{)}\SpecialCharTok{{-}}\NormalTok{Y)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{),   }\CommentTok{\# distance to pos {-} 5 minutes}
+    \AttributeTok{nPlus1  =} \FunctionTok{sqrt}\NormalTok{((X}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(X,}\DecValTok{1}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{(Y}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(Y,}\DecValTok{1}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\CommentTok{\# distance to pos + 5 mintues}
+    \AttributeTok{nPlus2  =} \FunctionTok{sqrt}\NormalTok{((X}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(X,}\DecValTok{2}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{(Y}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(Y,}\DecValTok{2}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)  }\CommentTok{\# distance to pos +10 minutes}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+Now we want to calculate the mean distance of \texttt{nMinus2}, \texttt{nMinus1}, \texttt{nPlus1}, \texttt{nPlus2} for each row. The below function calculates the overall mean of all columns, which is not what we want.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{stepMean =} \FunctionTok{mean}\NormalTok{(}\FunctionTok{c}\NormalTok{(nMinus2, nMinus1,nPlus1,nPlus2), }\AttributeTok{na.rm =}\NormalTok{ T)}
+\NormalTok{  )}
+\DocumentationTok{\#\# \# A tibble: 20 x 7}
+\DocumentationTok{\#\#          X       Y nMinus2 nMinus1 nPlus1 nPlus2 stepMean}
+\DocumentationTok{\#\#      \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\#  1  0.0187  {-}0.596   NA     NA      2.19    3.26     1.72}
+\DocumentationTok{\#\#  2 {-}0.166   {-}2.78    NA      2.19   1.53    3.42     1.72}
+\DocumentationTok{\#\#  3 {-}1.54    {-}3.46     3.26   1.53   2.20    3.40     1.72}
+\DocumentationTok{\#\#  4 {-}2.14    {-}5.58     3.42   2.20   1.30    1.78     1.72}
+\DocumentationTok{\#\#  5 {-}1.84    {-}6.84     3.40   1.30   0.540   1.34     1.72}
+\DocumentationTok{\#\#  6 {-}1.45    {-}7.21     1.78   0.540  1.39    2.21     1.72}
+\DocumentationTok{\#\#  7 {-}2.66    {-}7.90     1.34   1.39   0.945   2.22     1.72}
+\DocumentationTok{\#\#  8 {-}3.02    {-}8.77     2.21   0.945  1.63    1.92     1.72}
+\DocumentationTok{\#\#  9 {-}4.65    {-}8.88     2.22   1.63   0.361   2.27     1.72}
+\DocumentationTok{\#\# 10 {-}4.91    {-}9.13     1.92   0.361  2.16    2.68     1.72}
+\DocumentationTok{\#\# 11 {-}3.80   {-}11.0      2.27   2.16   0.760   1.03     1.72}
+\DocumentationTok{\#\# 12 {-}3.05   {-}11.1      2.68   0.760  0.997   1.38     1.72}
+\DocumentationTok{\#\# 13 {-}3.29   {-}10.1      1.03   0.997  1.00    2.10     1.72}
+\DocumentationTok{\#\# 14 {-}2.30    {-}9.91     1.38   1.00   1.57    2.94     1.72}
+\DocumentationTok{\#\# 15 {-}1.56   {-}11.3      2.10   1.57   1.44    1.38     1.72}
+\DocumentationTok{\#\# 16 {-}1.47   {-}12.7      2.94   1.44   1.02    1.81     1.72}
+\DocumentationTok{\#\# 17 {-}2.42   {-}12.4      1.38   1.02   1.77    2.21     1.72}
+\DocumentationTok{\#\# 18 {-}2.62   {-}14.1      1.81   1.77   0.981   1.71     1.72}
+\DocumentationTok{\#\# 19 {-}1.69   {-}14.4      2.21   0.981  0.811  NA        1.72}
+\DocumentationTok{\#\# 20 {-}1.21   {-}15.1      1.71   0.811 NA      NA        1.72}
+\end{Highlighting}
+\end{Shaded}
+
+Since we want the mean value \emph{per Row}, we have to explicitly specify this before \texttt{mutate()} with the function \texttt{rowwise()}. Note the new grouping variable \texttt{\textless{}by\ row\textgreater{}} when printing the dataframe to the console.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rowwise}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{stepMean =} \FunctionTok{mean}\NormalTok{(}\FunctionTok{c}\NormalTok{(nMinus2, nMinus1,nPlus1,nPlus2))}
+\NormalTok{  )}
+
+\NormalTok{df}
+\DocumentationTok{\#\# \# A tibble: 20 x 7}
+\DocumentationTok{\#\# \# Rowwise: }
+\DocumentationTok{\#\#          X       Y nMinus2 nMinus1 nPlus1 nPlus2 stepMean}
+\DocumentationTok{\#\#      \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\#  1  0.0187  {-}0.596   NA     NA      2.19    3.26    NA   }
+\DocumentationTok{\#\#  2 {-}0.166   {-}2.78    NA      2.19   1.53    3.42    NA   }
+\DocumentationTok{\#\#  3 {-}1.54    {-}3.46     3.26   1.53   2.20    3.40     2.60}
+\DocumentationTok{\#\#  4 {-}2.14    {-}5.58     3.42   2.20   1.30    1.78     2.17}
+\DocumentationTok{\#\#  5 {-}1.84    {-}6.84     3.40   1.30   0.540   1.34     1.64}
+\DocumentationTok{\#\#  6 {-}1.45    {-}7.21     1.78   0.540  1.39    2.21     1.48}
+\DocumentationTok{\#\#  7 {-}2.66    {-}7.90     1.34   1.39   0.945   2.22     1.47}
+\DocumentationTok{\#\#  8 {-}3.02    {-}8.77     2.21   0.945  1.63    1.92     1.68}
+\DocumentationTok{\#\#  9 {-}4.65    {-}8.88     2.22   1.63   0.361   2.27     1.62}
+\DocumentationTok{\#\# 10 {-}4.91    {-}9.13     1.92   0.361  2.16    2.68     1.78}
+\DocumentationTok{\#\# 11 {-}3.80   {-}11.0      2.27   2.16   0.760   1.03     1.55}
+\DocumentationTok{\#\# 12 {-}3.05   {-}11.1      2.68   0.760  0.997   1.38     1.45}
+\DocumentationTok{\#\# 13 {-}3.29   {-}10.1      1.03   0.997  1.00    2.10     1.28}
+\DocumentationTok{\#\# 14 {-}2.30    {-}9.91     1.38   1.00   1.57    2.94     1.72}
+\DocumentationTok{\#\# 15 {-}1.56   {-}11.3      2.10   1.57   1.44    1.38     1.62}
+\DocumentationTok{\#\# 16 {-}1.47   {-}12.7      2.94   1.44   1.02    1.81     1.80}
+\DocumentationTok{\#\# 17 {-}2.42   {-}12.4      1.38   1.02   1.77    2.21     1.59}
+\DocumentationTok{\#\# 18 {-}2.62   {-}14.1      1.81   1.77   0.981   1.71     1.57}
+\DocumentationTok{\#\# 19 {-}1.69   {-}14.4      2.21   0.981  0.811  NA       NA   }
+\DocumentationTok{\#\# 20 {-}1.21   {-}15.1      1.71   0.811 NA      NA       NA}
+\end{Highlighting}
+\end{Shaded}
+
+We can now determin if an animal is moving or not by specifying a threshold on \texttt{stepMean}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{moving =}\NormalTok{ stepMean}\SpecialCharTok{\textgreater{}}\FloatTok{1.5}
+\NormalTok{    )}
+
+\NormalTok{df}
+\DocumentationTok{\#\# \# A tibble: 20 x 8}
+\DocumentationTok{\#\# \# Rowwise: }
+\DocumentationTok{\#\#          X       Y nMinus2 nMinus1 nPlus1 nPlus2 stepMean moving}
+\DocumentationTok{\#\#      \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{} \textless{}lgl\textgreater{} }
+\DocumentationTok{\#\#  1  0.0187  {-}0.596   NA     NA      2.19    3.26    NA    NA    }
+\DocumentationTok{\#\#  2 {-}0.166   {-}2.78    NA      2.19   1.53    3.42    NA    NA    }
+\DocumentationTok{\#\#  3 {-}1.54    {-}3.46     3.26   1.53   2.20    3.40     2.60 TRUE  }
+\DocumentationTok{\#\#  4 {-}2.14    {-}5.58     3.42   2.20   1.30    1.78     2.17 TRUE  }
+\DocumentationTok{\#\#  5 {-}1.84    {-}6.84     3.40   1.30   0.540   1.34     1.64 TRUE  }
+\DocumentationTok{\#\#  6 {-}1.45    {-}7.21     1.78   0.540  1.39    2.21     1.48 FALSE }
+\DocumentationTok{\#\#  7 {-}2.66    {-}7.90     1.34   1.39   0.945   2.22     1.47 FALSE }
+\DocumentationTok{\#\#  8 {-}3.02    {-}8.77     2.21   0.945  1.63    1.92     1.68 TRUE  }
+\DocumentationTok{\#\#  9 {-}4.65    {-}8.88     2.22   1.63   0.361   2.27     1.62 TRUE  }
+\DocumentationTok{\#\# 10 {-}4.91    {-}9.13     1.92   0.361  2.16    2.68     1.78 TRUE  }
+\DocumentationTok{\#\# 11 {-}3.80   {-}11.0      2.27   2.16   0.760   1.03     1.55 TRUE  }
+\DocumentationTok{\#\# 12 {-}3.05   {-}11.1      2.68   0.760  0.997   1.38     1.45 FALSE }
+\DocumentationTok{\#\# 13 {-}3.29   {-}10.1      1.03   0.997  1.00    2.10     1.28 FALSE }
+\DocumentationTok{\#\# 14 {-}2.30    {-}9.91     1.38   1.00   1.57    2.94     1.72 TRUE  }
+\DocumentationTok{\#\# 15 {-}1.56   {-}11.3      2.10   1.57   1.44    1.38     1.62 TRUE  }
+\DocumentationTok{\#\# 16 {-}1.47   {-}12.7      2.94   1.44   1.02    1.81     1.80 TRUE  }
+\DocumentationTok{\#\# 17 {-}2.42   {-}12.4      1.38   1.02   1.77    2.21     1.59 TRUE  }
+\DocumentationTok{\#\# 18 {-}2.62   {-}14.1      1.81   1.77   0.981   1.71     1.57 TRUE  }
+\DocumentationTok{\#\# 19 {-}1.69   {-}14.4      2.21   0.981  0.811  NA       NA    NA    }
+\DocumentationTok{\#\# 20 {-}1.21   {-}15.1      1.71   0.811 NA      NA       NA    NA}
+
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(X,Y)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_path}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour =}\NormalTok{ moving)) }\SpecialCharTok{+}
+  \FunctionTok{coord\_equal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-79-1.pdf}
+
+\hypertarget{unique-ids-per-segment}{%
+\subsubsection{\texorpdfstring{Unique IDs \emph{per segment}}{Unique IDs per segment}}\label{unique-ids-per-segment}}
+
+When segmenting trajectories, we often want to compute metrics on the basis of \emph{each segment}. Within the tidyverse logic, we need a unique ID per segment that we can pass to \texttt{group\_by()}. In other words, we need a unique ID for a sequence of successive \texttt{TRUE} values. For lack of a better way, we suggest solving this problem with \texttt{cumsum()}.
+
+\texttt{cumsum()} returns the cummulative sum of a given vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{one\_to\_ten }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
+\NormalTok{one\_to\_ten}
+\DocumentationTok{\#\#  [1]  1  2  3  4  5  6  7  8  9 10}
+\FunctionTok{cumsum}\NormalTok{(one\_to\_ten)}
+\DocumentationTok{\#\#  [1]  1  3  6 10 15 21 28 36 45 55}
+\end{Highlighting}
+\end{Shaded}
+
+In R, \texttt{TRUE}and \texttt{FALSE} are interprated as \texttt{1} and \texttt{0} if coerced to an integer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{as.integer}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{)}
+\DocumentationTok{\#\# [1] 1}
+\FunctionTok{as.integer}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{)}
+\DocumentationTok{\#\# [1] 0}
+
+\ConstantTok{TRUE}\SpecialCharTok{+}\ConstantTok{TRUE}
+\DocumentationTok{\#\# [1] 2}
+\end{Highlighting}
+\end{Shaded}
+
+Therefore, \texttt{cumsum()} on a boolean vector increases the count on each \texttt{TRUE} value:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{boolvec }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\ConstantTok{FALSE}\NormalTok{,}\ConstantTok{FALSE}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{df\_cumsum }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{boolvec =}\NormalTok{ boolvec,}\AttributeTok{cumsum =} \FunctionTok{cumsum}\NormalTok{(boolvec))}
+
+\NormalTok{df\_cumsum}
+\DocumentationTok{\#\# \# A tibble: 8 x 2}
+\DocumentationTok{\#\#   boolvec cumsum}
+\DocumentationTok{\#\#   \textless{}lgl\textgreater{}    \textless{}int\textgreater{}}
+\DocumentationTok{\#\# 1 FALSE        0}
+\DocumentationTok{\#\# 2 TRUE         1}
+\DocumentationTok{\#\# 3 TRUE         2}
+\DocumentationTok{\#\# 4 TRUE         3}
+\DocumentationTok{\#\# 5 FALSE        3}
+\DocumentationTok{\#\# 6 FALSE        3}
+\DocumentationTok{\#\# 7 TRUE         4}
+\DocumentationTok{\#\# 8 TRUE         5}
+\end{Highlighting}
+\end{Shaded}
+
+You might have noticed that this is pretty much exactly the opposite of what we need. We therefore have to take the inverse of the boolean vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{df\_cumsum }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{boolvec\_inverse =} \SpecialCharTok{!}\NormalTok{boolvec,}
+    \AttributeTok{cumsum2 =} \FunctionTok{cumsum}\NormalTok{(boolvec\_inverse)}
+\NormalTok{  )}
+\DocumentationTok{\#\# \# A tibble: 8 x 4}
+\DocumentationTok{\#\#   boolvec cumsum boolvec\_inverse cumsum2}
+\DocumentationTok{\#\#   \textless{}lgl\textgreater{}    \textless{}int\textgreater{} \textless{}lgl\textgreater{}             \textless{}int\textgreater{}}
+\DocumentationTok{\#\# 1 FALSE        0 TRUE                  1}
+\DocumentationTok{\#\# 2 TRUE         1 FALSE                 1}
+\DocumentationTok{\#\# 3 TRUE         2 FALSE                 1}
+\DocumentationTok{\#\# 4 TRUE         3 FALSE                 1}
+\DocumentationTok{\#\# 5 FALSE        3 TRUE                  2}
+\DocumentationTok{\#\# 6 FALSE        3 TRUE                  3}
+\DocumentationTok{\#\# 7 TRUE         4 FALSE                 3}
+\DocumentationTok{\#\# 8 TRUE         5 FALSE                 3}
+\end{Highlighting}
+\end{Shaded}
+
+To simplify our workflow, we can we can take the inverse of \texttt{boolvec} \emph{within} our \texttt{cumsum()} statement and save an extra line of code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_cumsum }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{cumsum2 =} \FunctionTok{cumsum}\NormalTok{(}\SpecialCharTok{!}\NormalTok{boolvec)}
+\NormalTok{  )}
+\DocumentationTok{\#\# \# A tibble: 8 x 3}
+\DocumentationTok{\#\#   boolvec cumsum cumsum2}
+\DocumentationTok{\#\#   \textless{}lgl\textgreater{}    \textless{}int\textgreater{}   \textless{}int\textgreater{}}
+\DocumentationTok{\#\# 1 FALSE        0       1}
+\DocumentationTok{\#\# 2 TRUE         1       1}
+\DocumentationTok{\#\# 3 TRUE         2       1}
+\DocumentationTok{\#\# 4 TRUE         3       1}
+\DocumentationTok{\#\# 5 FALSE        3       2}
+\DocumentationTok{\#\# 6 FALSE        3       3}
+\DocumentationTok{\#\# 7 TRUE         4       3}
+\DocumentationTok{\#\# 8 TRUE         5       3}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{task-1-segmentation}{%
+\subsection{Task 1: Segmentation}\label{task-1-segmentation}}
+
+With the skills from the input above we can now implement the segmentation algorithm described in \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}). The described method depends on a regular sampling interval. Therefore, take the dataset ``caro60.csv'' from task 3 of last week (available on moodle). Import it as a dataframe, we don't need an \texttt{sf}-object to for today's tasks.
+
+Next, we have to have to define our \emph{temporal window v} (\protect\hyperlink{ref-laube2011}{Laube and Purves 2011}). To keep things simple, I would suggest a window of n +/- 2 minutes. With a sampling interval of around 1 minute, this corresponds to a window size of n +/- 2 positions.
+
+\hypertarget{task-2-specify-and-apply-threshold-d}{%
+\subsection{\texorpdfstring{Task 2: Specify and apply threshold \emph{d}}{Task 2: Specify and apply threshold d}}\label{task-2-specify-and-apply-threshold-d}}
+
+After calculating the Euclidean distances to positions within the temporal window \emph{v} in task 1, you can explore these values (we stored them in the column \texttt{stepMean}) using summary statistics (histograms, boxplot, \texttt{summary()}): This way we can define a reasonable threshold value to differentiate between ``stops'' and ``moves.'' There is no ``correct'' way of doing this, specifying a threshold always depends on data as well as the question that needs to be answered. In this exercise, find a threshold that matches your intuition.
+
+Store the new information (boolean to differentiate between stops (\texttt{TRUE}) and moves (\texttt{FALSE})) in a new column named \texttt{moving}.
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+##  0.8109  2.2397  3.3496  5.0371  5.8618 24.2903       4
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-90-1.pdf}
+\caption{\label{fig:unnamed-chunk-90}My summary statistics shows a mean of 5, the histogram shows that this might be a reasonable threshold.}
+\end{figure}
+
+\hypertarget{task-3-visualize-segmented-trajectories}{%
+\subsection{Task 3: Visualize segmented trajectories}\label{task-3-visualize-segmented-trajectories}}
+
+Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with \texttt{geom\_path()}, \texttt{geom\_point()} and \texttt{coord\_equal()}. Assign \texttt{colour\ =\ moving} within \texttt{aes()} to distinguish between segments \emph{with} ``movement'' and \emph{without}.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+Tip: if you want to get a \texttt{ggplot()} with Zoom capability, just load the library \texttt{plotly} and wrap the \texttt{ggplot()} function with \texttt{ggplotly()}
+
+\begin{figure}
+\centering
+\includegraphics{02_Images/w03_ex3_p1.jpg}
+\caption{This is the same plot as above, wrapped in the function \texttt{ggplotly()} from the library \texttt{plotly}. With this function, the plot becomes interactive. However, the interactive map/plot is only available in the online version of this document.}
+\end{figure}
+
+\hypertarget{task-4-segment-based-analysis}{%
+\subsection{Task 4: Segment-based analysis}\label{task-4-segment-based-analysis}}
+
+In applying \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}), we've come as far as steps (b)/(c) in \href{02_Images/laube_2011.jpg}{Figure 1}. In order to complete step (d) (\emph{Removal of subtrajectories with less than a threshold temporal length}), we have to calculate each segment's temporal duration.
+
+In order to do this, we need a \emph{unique} name for each segment that we can use as a grouping variable. This is where the \texttt{cumsum()} approach which we introduced in the input comes useful. Complete the following steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Filter the data by removing all rows where \texttt{moving} equals to \texttt{NA} (typically these are the the first and last 2 rows).
+\item
+  Get a unique ID per segment and using the \texttt{cumsum()} approach we introduced in the input. Store this ID in a new column \texttt{segment\_ID}
+\item
+  Filter the data to remove all rows where the animal is not moving
+\item
+  Group by the column \texttt{segment\_ID} to calculate the temporal length of each segment with \texttt{mutate()}.
+\item
+  Remove segments with a duration less than 3 minutes
+\item
+  inspect your data visually
+\end{enumerate}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-97-1.pdf}
+
+\hypertarget{task-5-similarity-measures}{%
+\subsection{Task 5: Similarity measures}\label{task-5-similarity-measures}}
+
+Import the dataset \texttt{pedestrian.csv} (available on moodle) as a dataframe (you don't need an \texttt{sf} object). It it a set of six different but similar trajectories from pedestrians walking on a path. Explore this data visually.
+
+We will analyse these trajectories with the package \texttt{SimilarityMeasures}, always comparing trajectory 1 pairwise to the other trajectories 2-6. For this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-100-1.pdf}
+\caption{\label{fig:unnamed-chunk-100}Comparing Trajectories 1 and 2}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-101-1.pdf}
+\caption{\label{fig:unnamed-chunk-101}Comparing Trajectories 1 and 3. Some positions are labelled with the position index to illustrate the direction of movement per trajectory.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-102-1.pdf}
+\caption{\label{fig:unnamed-chunk-102}Comparing Trajectories 1 and 4}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-103-1.pdf}
+\caption{\label{fig:unnamed-chunk-103}Comparing Trajectories 1 and 5}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-104-1.pdf}
+\caption{\label{fig:unnamed-chunk-104}Comparing Trajectories 1 and 6}
+\end{figure}
+
+\hypertarget{task-6-calculate-similarity}{%
+\subsection{Task 6: Calculate similarity}\label{task-6-calculate-similarity}}
+
+Calculate the similarity between trajectory 1 and trajectories 2-6. Use the different similarity measures in the package \texttt{SimilarityMeasures}. Visualize your results and try to understand the different results with respect to your reading of \protect\hyperlink{ref-both2018}{Alan Both} (\protect\hyperlink{ref-both2018}{2018}). Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?
+
+Note:
+
+\begin{itemize}
+\tightlist
+\item
+  All functions in the package need matrices as input, with one trajectory per matrix.
+\item
+  \texttt{LCSS}takes very long to compute. The accuracy of the algorithm (\texttt{pointSpacing\ =} ,\texttt{pointDistance\ =} and \texttt{errorMarg\ =}) can be varied to provide faster calculations. Please see \protect\hyperlink{ref-vlachos2002}{Vlachos, Gunopoulos, and Kollios} (\protect\hyperlink{ref-vlachos2002}{2002}) for more information.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-108-1.pdf}
+\caption{\label{fig:unnamed-chunk-108}Comparing Trajectory 1 to trajectories 2 to 6}
+\end{figure}
+
+\hypertarget{exercise-4}{%
+\chapter{Exercise 4}\label{exercise-4}}
+
+\hypertarget{learning-outcomes-2}{%
+\section{Learning Outcomes}\label{learning-outcomes-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  You are able to conceptualize a simple movement pattern and implement data structures and corresponding procedures (let's call them algorithms\ldots) for detecting it using R.
+\item
+  You understand the sensitivity of movement patterns to pattern parameter thresholds.
+\end{itemize}
+
+\hypertarget{prerequisites-3}{%
+\section{Prerequisites}\label{prerequisites-3}}
+
+Readings Skills from ``R for Data Science'' (\protect\hyperlink{ref-wickham2017}{Wickham and Grolemund 2017}):
+
+\begin{itemize}
+\tightlist
+\item
+  RS4.1 Chap15 Functions (19p, 269-289)
+\end{itemize}
+
+Readings Theory, \protect\hyperlink{ref-laube2014}{Laube} (\protect\hyperlink{ref-laube2014}{2014})
+- R4.1 Chap.2, p.~29-58
+
+\hypertarget{preparation}{%
+\section{Preparation}\label{preparation}}
+
+Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sf)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+
+\CommentTok{\# Import as tibble}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+
+\CommentTok{\# Convert to sf{-}object}
+\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }\AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\AttributeTok{crs =} \DecValTok{4326}\NormalTok{,}\AttributeTok{remove =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# transform to CH1903 LV95}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_transform}\NormalTok{(wildschwein\_BE, }\DecValTok{2056}\NormalTok{)}
+
+\CommentTok{\# Add geometry as E/N integer Columns}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_coordinates}\NormalTok{(wildschwein\_BE) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{cbind}\NormalTok{(wildschwein\_BE,.) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{E =}\NormalTok{ X) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{N =}\NormalTok{ Y)}
+
+\CommentTok{\# Compute timelag, steplength and speed}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}}\NormalTok{ wildschwein\_BE }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(TierID) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{timelag =} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(}\FunctionTok{lead}\NormalTok{(DatetimeUTC),DatetimeUTC,}\AttributeTok{units =} \StringTok{"secs"}\NormalTok{)),}
+    \AttributeTok{steplength =} \FunctionTok{sqrt}\NormalTok{((E}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(E,}\DecValTok{1}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{(N}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(N,}\DecValTok{1}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{),}
+    \AttributeTok{speed =}\NormalTok{ steplength}\SpecialCharTok{/}\NormalTok{timelag}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tasks-and-inputs-3}{%
+\section{Tasks and inputs}\label{tasks-and-inputs-3}}
+
+\hypertarget{input-creating-functions}{%
+\subsection{Input: Creating functions}\label{input-creating-functions}}
+
+Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you've copied and pasted a block of code more than twice, you should consider writing a function (\protect\hyperlink{ref-wickham2017}{Wickham and Grolemund 2017}).
+
+We have violated this rule multiple times when calculating the Euclidean distances between points. Writing and rewriting the code \texttt{sqrt((x-lead(x,1))\^{}2+(y-lead(y,1))\^{}2)} over and over again is not only cumbersome, it is also error prone. We can easily wrap this operation into a function. This input on writing functions should bring you up to speed to do this in your first task.
+
+The first step in writing a function, is picking a name and assigning \texttt{\textless{}-\ function()\{\}} to it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testfun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{()\{\}}
+\end{Highlighting}
+\end{Shaded}
+
+To run the function, we have to call the assigned name with the brackets. This function gives no output, which is why we get \texttt{NULL} back.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{testfun}\NormalTok{()}
+\DocumentationTok{\#\# NULL}
+
+\FunctionTok{class}\NormalTok{(testfun)}
+\DocumentationTok{\#\# [1] "function"}
+\end{Highlighting}
+\end{Shaded}
+
+To make the function actually \emph{do} something, we need to specify \emph{what} should be done within the curly brackets \texttt{\{\}}. The following function always prints the same statement and accepts no input values:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testfun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{()\{}\FunctionTok{print}\NormalTok{(}\StringTok{"this function does nothing"}\NormalTok{)\}}
+
+\FunctionTok{testfun}\NormalTok{()}
+\DocumentationTok{\#\# [1] "this function does nothing"}
+\end{Highlighting}
+\end{Shaded}
+
+If we want the function to accept some input values, we have to define them within the round brackets. For example, I specify a variable named \texttt{sometext} and can call this variable within the execution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testfun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(sometext)\{}\FunctionTok{print}\NormalTok{(sometext)\}}
+
+\FunctionTok{testfun}\NormalTok{(}\AttributeTok{sometext =} \StringTok{"this function does slightly more, but still not much"}\NormalTok{)}
+\DocumentationTok{\#\# [1] "this function does slightly more, but still not much"}
+\end{Highlighting}
+\end{Shaded}
+
+Let's take a more practical example. Say we want a function that calculates the n\textsuperscript{th} root of a value, since the base function \texttt{sqrt()} just returns the 2\textsuperscript{nd} root. To do this, we need to know two things:
+
+\begin{itemize}
+\tightlist
+\item
+  taking the n\textsuperscript{th} rooth of x is the same as raising \texttt{x} by the the reciprocal value (``Kehrwert'') of n \[\sqrt[n]{x}=\ x^{\frac{1}{n}}\]
+\item
+  We can raise a value \texttt{x} to the power of a value \texttt{n} in R with the following code: \texttt{x\^{}n}
+\end{itemize}
+
+To create a function that simplifies taking the n\textsuperscript{th} root, we just need one line of code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# specify two parameters:}
+\CommentTok{\# x: the value  with want to take the root from}
+\CommentTok{\# n: the root we want to take (2 for 2nd root)}
+
+\NormalTok{nthroot }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x,n)\{x}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n)\}}
+
+\CommentTok{\# Test function by taking the second root of 4. }
+\CommentTok{\# Expecting the result to be 2:}
+\FunctionTok{nthroot}\NormalTok{(}\AttributeTok{x =} \DecValTok{4}\NormalTok{,}\AttributeTok{n =} \DecValTok{2}\NormalTok{)}
+\DocumentationTok{\#\# [1] 2}
+\end{Highlighting}
+\end{Shaded}
+
+As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of \texttt{x\ =}and \texttt{n\ =}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nthroot}\NormalTok{(}\DecValTok{27}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\DocumentationTok{\#\# [1] 3}
+\FunctionTok{nthroot}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\DocumentationTok{\#\# [1] 1.44225}
+\end{Highlighting}
+\end{Shaded}
+
+If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nthroot }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x,}\AttributeTok{n =} \DecValTok{2}\NormalTok{)\{x}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n)\}}
+
+\CommentTok{\# if not stated otherwise, our function takes the square root}
+\FunctionTok{nthroot}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\DocumentationTok{\#\# [1] 3.162278}
+\CommentTok{\# We can still overwrite n}
+\FunctionTok{nthroot}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\DocumentationTok{\#\# [1] 2.154435}
+\end{Highlighting}
+\end{Shaded}
+
+All you need to do now is run these few lines of code at the beginning of your script, and you can use the function for your entire R session. After starting a new session, you will simply have to re-run the lines. So it might be a good idea to place this function within the section \texttt{Loading\ environment\ /\ libraries} of your project.
+
+\hypertarget{task-1-write-your-own-functions}{%
+\subsection{Task 1: Write your own functions}\label{task-1-write-your-own-functions}}
+
+Create a function for our Euclidean distance calculation. Optionally, write another function to number successive \texttt{TRUE} values with the \texttt{cumsum()} approach from last week.
+
+Note: if you treat your input variables as vectors, they will work in most use cases (in particular in \texttt{dplyr}s \texttt{mutate()} and \texttt{summarise()} functions).
+
+\hypertarget{task-2-filter-data}{%
+\subsection{Task 2: Filter data}\label{task-2-filter-data}}
+
+We propose conceptualizing the pattern ``meet'' as ``being close in space \emph{and} time,'' with the notion ``close'' to be defined for the spatial and the temporal case separately. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose manipulating the timestamps in such a way, that all observations are sampled concurrently, synchronously. This allows us using the data science concept \emph{join} for detecting the temporal expression of meet - using \texttt{DateTimeUTC} as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on the Euclidean distances between concurrent positions.
+
+Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g.~\texttt{wildschwein\_filter}). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein\_filter }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(TierID) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{st\_convex\_hull}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_sf}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ TierID),}\AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-124-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{wildschwein\_filter }\OtherTok{\textless{}{-}}\NormalTok{ wildschwein\_filter }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(TierID }\SpecialCharTok{!=} \StringTok{"018A"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{task-3-create-join-key}{%
+\subsection{Task 3: Create Join Key}\label{task-3-create-join-key}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(wildschwein\_filter)}
+\DocumentationTok{\#\# Simple feature collection with 6 features and 11 fields}
+\DocumentationTok{\#\# geometry type:  POINT}
+\DocumentationTok{\#\# dimension:      XY}
+\DocumentationTok{\#\# bbox:           xmin: 2570245 ymin: 1205259 xmax: 2570375 ymax: 1205320}
+\DocumentationTok{\#\# projected CRS:  CH1903+ / LV95}
+\DocumentationTok{\#\# \# A tibble: 6 x 12}
+\DocumentationTok{\#\# \# Groups:   TierID [1]}
+\DocumentationTok{\#\#   TierID TierName CollarID DatetimeUTC           Lat  Long      E      N}
+\DocumentationTok{\#\#   \textless{}chr\textgreater{}  \textless{}chr\textgreater{}       \textless{}dbl\textgreater{} \textless{}dttm\textgreater{}              \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# 1 002A   Sabi        12275 2015{-}03{-}31 22:00:28  47.0  7.05 2.57e6 1.21e6}
+\DocumentationTok{\#\# 2 002A   Sabi        12275 2015{-}03{-}31 22:15:44  47.0  7.05 2.57e6 1.21e6}
+\DocumentationTok{\#\# 3 002A   Sabi        12275 2015{-}03{-}31 22:30:44  47.0  7.05 2.57e6 1.21e6}
+\DocumentationTok{\#\# 4 002A   Sabi        12275 2015{-}03{-}31 22:46:04  47.0  7.05 2.57e6 1.21e6}
+\DocumentationTok{\#\# 5 002A   Sabi        12275 2015{-}03{-}31 23:00:17  47.0  7.05 2.57e6 1.21e6}
+\DocumentationTok{\#\# 6 002A   Sabi        12275 2015{-}03{-}31 23:15:12  47.0  7.05 2.57e6 1.21e6}
+\DocumentationTok{\#\# \# ... with 4 more variables: geometry \textless{}POINT [m]\textgreater{}, timelag \textless{}dbl\textgreater{},}
+\DocumentationTok{\#\# \#   steplength \textless{}dbl\textgreater{}, speed \textless{}dbl\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. Verify if we have the same sampling interval (\texttt{timelag}) throughout our filtered dataset.
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-128-1.pdf}
+
+With a few exceptions, the sampling interval is \emph{around} 15 minutes. In order to join the data, however, we need \emph{identical} time stamps to serve as a join key. We therefore need to slightly adjust our time stamps to a common, concurrent interval.
+
+Round the minutes of \texttt{DatetimeUTC} to a multiple of 15 (00, 15, 30,45) and store the values in a new column. You can use the \texttt{lubridate} function \texttt{round\_date()} for this. See the examples \href{https://lubridate.tidyverse.org/reference/round_date.html}{here} to see how this goes.
+
+\emph{Please note:} We are manipulating our time stamps without adjusting the x,y-coordinates. This is fine for our simple example, but we would advice against this in a more serious research endeavour, e.g.~in your semester projects. One simple approach would be to linearly interpolate the positions to the new timestamps. If you choose Option A the wild boar projects as your semester projects, you should aim for a linear interpolation. Get in touch if you need help with this.
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-129-1.pdf}
+\caption{\label{fig:unnamed-chunk-129}After resampling, the movement data is slightly manipulated (this visualization is not part of the task) since we changed the original timestamp. We are usually off from the `true' value around 10 to 15 seconds, some are off by as much as 2 minutes.}
+\end{figure}
+
+\hypertarget{task-4-measuring-distance-at-concurrent-locations}{%
+\subsection{Task 4: Measuring distance at concurrent locations}\label{task-4-measuring-distance-at-concurrent-locations}}
+
+To measure the distance between concurrent locations, we need to follow the following steps.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  First, split the \texttt{wildschwein\_filter} object into one \texttt{data.frame} per animal.\footnote{This is a perfect opportunity to learn functional programming if you are an intermediate to advanced programmer (or want to be). You can use \texttt{purrr::map()} specifically for these tasks. Ask us if you want to learn this but are struggling}
+\item
+  Next, join these datasets by the new, manipulated \texttt{Datetime} column and save it to the variable \texttt{wildschwein\_join}. Which join-type is appropriate? The joined observations are \emph{temporally close}.
+\item
+  On \texttt{wildschwein\_join}, calculate Euclidean distances between concurrent observations. Store the values in a new column \texttt{distance}.
+\item
+  Use a reasonable threshold on \texttt{distance} to determine if the animals are also \emph{spatially close} enough to constitute a \emph{meet} (we use 50 meters). Store this Boolean information (\texttt{TRUE}/\texttt{FALSE}) in a new column named \texttt{meet}.
+\end{enumerate}
+
+\begin{verbatim}
+## # A tibble: 1,344 x 9
+##    TierID.x DatetimeRound          E.x    N.x TierID.y    E.y    N.y distance
+##    <chr>    <dttm>               <dbl>  <dbl> <chr>     <dbl>  <dbl>    <dbl>
+##  1 002A     2015-03-31 22:00:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     482.
+##  2 002A     2015-03-31 22:15:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     536.
+##  3 002A     2015-03-31 22:30:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     542.
+##  4 002A     2015-03-31 22:45:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     564.
+##  5 002A     2015-03-31 23:00:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     486.
+##  6 002A     2015-03-31 23:15:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     470.
+##  7 002A     2015-03-31 23:30:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     440.
+##  8 002A     2015-03-31 23:45:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     432.
+##  9 002A     2015-04-01 00:00:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     451.
+## 10 002A     2015-04-01 00:15:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     522.
+## # ... with 1,334 more rows, and 1 more variable: meet <lgl>
+\end{verbatim}
+
+\hypertarget{task-5-visualize-data}{%
+\subsection{Task 5: Visualize data}\label{task-5-visualize-data}}
+
+Now, visualize the \emph{meets} spatially in a way that you think reasonable. You can attempt to recreate the plot below, but this is not trivial. If you want to try it, these are the steps to take:
+
+Create a new dataset (e.g.~\texttt{wildschwein\_meet}) as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Using the \texttt{cumsum()}approach from last week, create a new column (e.g.~\texttt{meet\_seq}) enumerating the ``meets'' with individual ID (see proposed function below)
+\item
+  Filter all rows where the animals \emph{did} meet.
+\item
+  Optional: create a column with the start- and endtime of each meet (e.g.~\texttt{meet\_time})
+\end{enumerate}
+
+To create a plot similar to the one below:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Initiate a \texttt{ggplot()} with the \texttt{wildschwein\_join} dataset.
+\item
+  Add two \texttt{geom\_point}-layers (not \texttt{geom\_sf}, since we haven't turned \texttt{wildschwein\_join} into an \texttt{sf}object), one referring to E.x/N.x, the other to E.y/N.y
+\item
+  Add two more \texttt{geom\_point}-layers, this time with the dataset \texttt{wildschwein\_meet}
+\item
+  Facet the plot into small multiples either using \texttt{meet\_seq} or \texttt{meet\_time}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cumsum appraoch from Exercise 3}
+\NormalTok{number\_seq }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(bool)\{}
+\NormalTok{  fac }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(bool,}\DecValTok{1}\SpecialCharTok{+}\FunctionTok{cumsum}\NormalTok{(}\SpecialCharTok{!}\NormalTok{bool),}\ConstantTok{NA}\NormalTok{))}
+  \FunctionTok{levels}\NormalTok{(fac) }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(}\FunctionTok{levels}\NormalTok{(fac))}
+  \FunctionTok{return}\NormalTok{(fac)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-135-1.pdf}
+
+\hypertarget{task-6-optional-visualize-data-as-timecube-with-plotly}{%
+\subsection{\texorpdfstring{Task 6 (optional): Visualize data as timecube with \texttt{plotly}}{Task 6 (optional): Visualize data as timecube with plotly}}\label{task-6-optional-visualize-data-as-timecube-with-plotly}}
+
+Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube (\protect\hyperlink{ref-hagerstraand1970}{Hägerstraand 1970}) with the package \texttt{plotly}. There are some \href{https://plot.ly/r/3d-line-plots/}{nice ressources} available online.
+
+\begin{figure}
+\centering
+\includegraphics{02_Images/w04_ex1_p1.jpg}
+\caption{Trace 0 and 1 show the trajectories of the two individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other. This representation nicely shows that animal `0' is not very mobile and has large periods where the animal seems to rest in the same place. The interactive map/plot is only available in the online version of this document.}
+\end{figure}
+
+\hypertarget{exercise-5}{%
+\chapter{Exercise 5}\label{exercise-5}}
+
+\hypertarget{learning-outcomes-3}{%
+\section{Learning Outcomes}\label{learning-outcomes-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  You are able to process spatial data (vector and raster) within R, including creating simple maps within R.
+\item
+  You know basic operations for semantically annotating your trajectories with geographic context.
+\end{itemize}
+
+\hypertarget{preperation-3}{%
+\section{Preperation}\label{preperation-3}}
+
+Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sf)}
+\FunctionTok{library}\NormalTok{(ggspatial)}
+\FunctionTok{library}\NormalTok{(raster)}
+
+\CommentTok{\# Import as tibble}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+
+
+\CommentTok{\# Convert to sf{-}object}
+\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }\AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\AttributeTok{crs =} \DecValTok{4326}\NormalTok{,}\AttributeTok{remove =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# transform to CH1903 LV95}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_transform}\NormalTok{(wildschwein\_BE, }\DecValTok{2056}\NormalTok{)}
+
+\CommentTok{\# Add geometry as E/N integer Columns}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_coordinates}\NormalTok{(wildschwein\_BE) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{cbind}\NormalTok{(wildschwein\_BE,.) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{E =}\NormalTok{ X) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{N =}\NormalTok{ Y)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tasks}{%
+\section{Tasks}\label{tasks}}
+
+\hypertarget{tasks-1-import-and-visualize-spatial-data}{%
+\subsection{Tasks 1: Import and visualize spatial data}\label{tasks-1-import-and-visualize-spatial-data}}
+
+\begin{itemize}
+\tightlist
+\item
+  Import the vector dataset \texttt{Feldaufnahmen\_Fanel\_2016.shp} from moodle with \texttt{read\_sf()} and save it to the variable \texttt{fanel2016}. The file .shp stands for Shapefile, which is a simple format for spatial vector data (points, lines, or polygons). This shapefile contains vector data about cultivated crops in the study area.
+\item
+  Transform the coordinates to \texttt{CH1903+\ LV95}.
+\item
+  Filter the dataset \texttt{wildschwein\_BE} to the months May, June and July of 2016 and store the data in a new variable (\texttt{wildschwein\_BE\_2015}).
+\item
+  Create a minimum convex polygon for each individual in \texttt{wildschwein\_BE\_2015} and store it in a new variable (\texttt{mcp2015})
+\item
+  Create a map with the layers \texttt{fanel2016} and \texttt{mcp2015}.
+\end{itemize}
+
+\begin{verbatim}
+## [1] "2015-07-27 11:00:14 UTC"
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-143-1.pdf}
+
+\hypertarget{task-2-annotate-trajectories-from-vector-data}{%
+\subsection{Task 2: Annotate Trajectories from vector data}\label{task-2-annotate-trajectories-from-vector-data}}
+
+Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use \texttt{st\_join()} to attach the attributes from \texttt{fanel2016} to your trajectory data \texttt{wildschwein\_BE} (semantic annotation). Visualize the number of sample points in each category of \texttt{Frucht} over the course of the filtered time period.
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-146-1.pdf}
+\caption{\label{fig:unnamed-chunk-146}The number of samples per category \emph{per week} from May to July 2015.}
+\end{figure}
+
+\hypertarget{task-3-explore-annotated-trajectories}{%
+\subsection{Task 3: Explore annotated trajectories}\label{task-3-explore-annotated-trajectories}}
+
+Think of other ways you could visually explore the spatio-temporal patterns of wild boar in relation to the crops.
+
+Ideas:
+
+\begin{itemize}
+\tightlist
+\item
+  For example, in the visualisation above, we did not account for the different availability of the different crops. Potatoes (``Kartoffeln'') are seemingly not visited at all, while rapeseed (``Raps'') has high visitation from May to June. Maybe this is due to the fact that there are mostly rapeseed fields and basically no potatoe fields. How could you consider availability in the visulisation?
+\item
+  Exlpore the circadian rhythm / daily patterns of crop visitations.
+\end{itemize}
+
+\hypertarget{task-4-annotate-trajectories-from-raster-data}{%
+\subsection{Task 4: Annotate Trajectories from raster data}\label{task-4-annotate-trajectories-from-raster-data}}
+
+In terms of raster data, we have prepared the \href{https://map.geo.admin.ch/index.html?zoom=5\&lang=en\&topic=ech\&bgLayer=ch.swisstopo.pixelkarte-grau\&layers_opacity=0.5\&layers=ch.bafu.landesforstinventar-vegetationshoehenmodell\&E=2627157.14\&N=1122170.97}{Vegetation Height Model} provided by the Swiss National Forrest Inventory (NFI). This dataset contains high resolution information (1x1 Meter) on the vegetation height, which is determined from the difference between the digital surface models DSM and the digital terrain model by swisstopo (swissAlti3D). Buildings are eliminated using a combination of the ground areas of the swisstopo topographic landscape model (TLM) and spectral information from the stereo aerial photos.
+
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-148-1.pdf}
+\caption{\label{fig:unnamed-chunk-148}An example of a temporal exploration of the data obtained from the nDSM.}
+\end{figure}
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\hypertarget{ref-both2018}{}%
+Alan Both, Matt Duckham, Kevin Buchin. 2018. {``A Comparative Analysis of Trajectory Similarity Measures: Recommendations for Selection and Use.''}
+
+\leavevmode\hypertarget{ref-hagerstraand1970}{}%
+Hägerstraand, Torsten. 1970. {``What about People in Regional Science?''} \emph{Papers in Regional Science} 24 (1): 7--24.
+
+\leavevmode\hypertarget{ref-laube2014}{}%
+Laube, Patrick. 2014. \emph{Computational Movement Analysis}. SpringerBriefs in Computer Science. Springer International Publishing. \url{https://books.google.ch/books?id=xMRpBAAAQBAJ}.
+
+\leavevmode\hypertarget{ref-laube2011}{}%
+Laube, Patrick, and Ross S. Purves. 2011. {``How Fast Is a Cow? Cross - Scale Analysis of Movement Data.''} \emph{Transactions in GIS} 15 (3): 401--18. \url{https://doi.org/10.1111/j.1467-9671.2011.01256.x}.
+
+\leavevmode\hypertarget{ref-vlachos2002}{}%
+Vlachos, Michail, Dimitrios Gunopoulos, and George Kollios. 2002. {``Discovering Similar Multidimensional Trajectories.''} In \emph{Proceedings of the 18th International Conference on Data Engineering}, 673--73. ICDE '02. Washington, DC, USA: IEEE Computer Society. \url{http://dl.acm.org/citation.cfm?id=876875.878994}.
+
+\leavevmode\hypertarget{ref-wickham2017}{}%
+Wickham, Hadley, and Garrett Grolemund. 2017. \emph{R for Data Science: Import, Tidy, Transform, Visualize, and Model Data}. 1st ed. O'Reilly Media, Inc.
+
+\end{CSLReferences}
+
+\end{document}
