@@ -1,21 +1,31 @@
-name: CI
-
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - main
+      - master
+
+name: Generate templates
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Pushes to another repository
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v1
+
+      - name: Pushes to another repository  
         uses: cpina/github-action-push-to-another-repository@master
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: 'docs'
-          destination-repository-username: 'ComputationalMovementAnalysis'
+          destination-github-username: 'ratnanil'
           destination-repository-name: 'computationalmovementanalysis.github.io'
-          user-email: rata@zhaw.ch
+          destination-repository-username: 'ComputationalMovementAnalysis'
+          user-email: 'rata@zhaw.ch'
+          commit-message: 'updated html files'
