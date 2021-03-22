@@ -68,6 +68,32 @@ for (file in rmds){
  
 ```
 
+```{r, echo = FALSE}
+mydecrypt <- function(input, output = NULL, passphrase = NULL, verbosity = 1, overwrite = TRUE){
+  require(stringr)
+  require(rcrypt)
+  
+  if(is.null(passphrase)){
+    passphrase <- readLines(".passphrase",warn = FALSE)
+  }
+  
+    if(is.null(output)){
+    output <- str_remove(input, ".gpg|.asc")
+  }
+  
+  if(overwrite & file.exists(output)){
+    file.remove(output)
+    warning("Removed file",output)
+  }
+  
+  decrypt(input = input,output = output, passphrase = passphrase, verbosity = verbosity)
+  
+  mylines <- readLines(output,warn = FALSE)
+  file.remove(output)
+  
+  mylines
+}
+```
 
 
 # Introduction Chapter {-}
