@@ -80,24 +80,12 @@ Assigning every individual its own colour is done using the `ggplot` argument `c
 Save your code in the appropriate section.
 
 
-```{r echo = FALSE, include=TRUE, eval = TRUE, code = mydecrypt("11_Week1/solutions/task_3.R.gpg")}
-
-library(rcrypt)
-
-encrypt("11_Week1/solutions/task_3.R",passphrase = "cma")
-encrypt("11_Week1/W01_01_exercise.Rmd")
-
-
-
-mydecrypt("11_Week1/test.Rmd.gpg")
-
+```{r echo = FALSE, include=TRUE, eval = TRUE, code =  mydecrypt("11_Week1/solutions/task_3.R.gpg")}
 ```
 
 
 ### Input: Handling spatial data
-```{r}
-## Input Handling Spatial Data #################################################
-```
+
 Until now, we've stored our location data within data frames as Lat/Long columns. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our `data.frame` into a spatial object.
 Some of you might be familiar with the `sp` package with the classes `SpatialPoints`, `SpatialPointsDataFrame` and so on. These packages are mostly replaced by the fairly new package `sf`. This packages has some huge advantages over `sp`:
 
@@ -165,9 +153,7 @@ rm(wildschwein_BE_sf)
 
 
 ### Task 4: Project data from WGS84
-```{r}
-## Task 4 ######################################################################
-```
+
 So what can we do with our new `sf` object that we couldn't before? One example is projecting the WGS84 (`Lat`/`Long`) coordinates into the new Swiss CRS `CH1903+ LV95`[^50]. Do this by using the function `st_transform`. By the way, do you notice a pattern here? The package `sf` names most functions for spatial operations with the prefix `st_*`, just as in PostGIS.
 
 [^50]: As we've mentioned in the first Input, you can look up the EPSG codes under [spatialreference.org](http://spatialreference.org/ref/epsg/2056/) or http://epsg.io. For information specific to Switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
@@ -189,9 +175,7 @@ wildschwein_BE
 
 
 ### Input: Calculate Convex Hull
-```{r}
-## Input: Calculate Convex Hull ################################################
-```
+
 Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a [convex hull](https://en.wikipedia.org/wiki/Convex_hull) per Wild boar. And guess what the function for calculating a convex hull is called in `sf`? If you guessed `st_convex_hull()`, you were right! 
 
 By default `st_convex_hull()` calculates the convex hull *per feature*, i.e. *per point* in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:
@@ -228,9 +212,7 @@ mcp <- st_convex_hull(wildschwein_BE_smry)
 
 
 ### Task 5: Ploting spatial objects
-```{r}
-## Task 5 ######################################################################
-```
+
 Using base plot to visualize `sf` objects is easy enough, just try the following code. 
 
 
@@ -256,9 +238,7 @@ ggplot(mcp,aes(fill = TierID)) +
 
 
 ### Input: Importing raster data
-```{r}
-## Input: Importing Raster Data ################################################
-```
+
 In the next task, we would like to add a background map to our `mcp` object. To do this, we have to the raster data into `R` first. For this, we use the package `raster` with the function `brick`.
 
 
@@ -287,9 +267,7 @@ plot(pk100_BE)
 
 
 ### Task 6: Adding a background map
-```{r}
-## Task 6 ######################################################################
-```
+
 There are multiple ways to add a background map in `ggplot`, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: `tmap` ("thematic map"). This package was developed with a syntax very similar to `ggplot2`, which makes it easy to learn.
 
 
@@ -317,10 +295,6 @@ tm_shape(pk100_BE) +
 
 
 ### Task 7: Create an interactive map
-
-```{r}
-## Task 7 ######################################################################
-```
 
 Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand. Omit the raster layer (`pk100_BE`), you won't be needing it.
 
