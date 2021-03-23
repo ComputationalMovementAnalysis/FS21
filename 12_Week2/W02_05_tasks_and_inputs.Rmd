@@ -44,10 +44,6 @@ wildschwein_BE %>%
 
 
 ### Input: Geometry as columns
-```{r}
-## Input: Geometry as Columns ##################################################
-```
-
 
 Last week, we transformed our data from a `data.frame` to an `sf` object. This turned our `Lat`/`Long` columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. To do this, we have to extract the Coordinates using `st_coordinates()`. We can store these values in a new variable and display them:
 
@@ -74,10 +70,6 @@ head(wildschwein_BE)
 ```
 
 ### Task 2: Deriving movement parameters I: Speed
-
-```{r}
-## Task 2 ######################################################################
-```
 
 In this task we will derive some additional movement parameters from our trajectories. So far our trajectories only consist of a list of time-stamped spatial locations. So let's calculate the animal's steplength based on the Euclidean distance between two subsequent locations. 
 
@@ -106,10 +98,6 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ### Task 3: Cross-scale movement analysis
 
-```{r}
-## Task 3 ######################################################################
-
-```
 
 
 @laube2011 analyse animal movement across different scales (see below). We will do the same on a *subset* of our data.
@@ -248,10 +236,6 @@ ggplot() +
 
 ### Task 4: Deriving movement parameters II: Rolling window functions
 
-```{r}
-## Task 4 ######################################################################
-```
-
 
 A different approach would be to *smoothen* the derived parameters using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offers a variate of moving window functions (`roll_*`). Use `roll_mean()` to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
 
@@ -286,9 +270,6 @@ caro60 %>%
 
 
 ### Task 5 (optional): Calculate turning angles
-```{r}
-## Task 5 ######################################################################
-```
 
 Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2!
 

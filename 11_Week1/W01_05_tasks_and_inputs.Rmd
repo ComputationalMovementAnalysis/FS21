@@ -17,11 +17,6 @@ Sections allow code folding (try clicking on the small triangle next to the line
 
 
 ```{r}
-
-## Task 1 ######################################################################
-```
-
-```{r}
 # Loading enironment / libraries ####
 library(tidyverse)
 
@@ -38,9 +33,7 @@ library(tidyverse)
 
 
 ### Task 2: Import data
-```{r}
-## Task 2 ######################################################################
-```
+
 In section "data import", import the file `wildschwein_BE.csv`. Obtain this file from moodle.
 
 Note: 
@@ -67,9 +60,7 @@ wildschwein_BE$DatetimeUTC[1]
 
 
 ### Task 3: Explore Data
-```{r}
-## Task 3 ######################################################################
-```
+
 We will use a range of different visualization tools (i.e. R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While `base::plot() `is quick and simple, it not very scalable with growing complexity. `ggplot2` offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
 
 Get an overview of your data by creating a first "map-like" plot of your data producing a simple scatter plot with `ggplot2`. 
@@ -161,10 +152,7 @@ So what can we do with our new `sf` object that we couldn't before? One example 
 
 
 ```{r}
-
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
-
-
 ```
 
 Here's the resulting `sf` object from the operation:

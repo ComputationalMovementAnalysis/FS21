@@ -20,9 +20,6 @@ Note: I use `tibble()` instead of `data.frame()`. The two functions are very sim
 
 ```{r, echo = T, include = T, eval = T}
 
-## Input: Segmentation #########################################################
-
-
 set.seed(10)
 n = 20
 df <- tibble(X = cumsum(rnorm(n)), Y = cumsum(rnorm(n)))
@@ -163,10 +160,6 @@ df_cumsum %>%
 
 ### Task 1: Segmentation
 
-```{r}
-## Task 1 ######################################################################
-```
-
 With the skills from the input above we can now implement the segmentation algorithm described in @laube2011. The described method depends on a regular sampling interval. Therefore, take the dataset "caro60.csv" from task 3 of last week (available on moodle). Import it as a dataframe, we don't need an `sf`-object to for today's tasks.
 
 Next, we have to have to define our *temporal window v* [@laube2011]. To keep things simple, I would suggest a window of n +/- 2 minutes. With a sampling interval of around 1 minute, this corresponds to a window size of n +/- 2 positions.
@@ -196,10 +189,6 @@ caro60 <- caro60 %>%
 
 ### Task 2: Specify and apply threshold *d*
 
-```{r}
-## Task 2 ######################################################################
-
-```
 
 After calculating the Euclidean distances to positions within the temporal window *v* in task 1, you can explore these values (we stored them in the column `stepMean`) using summary statistics (histograms, boxplot, `summary()`): This way we can define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on data as well as the question that needs to be answered. In this exercise, find a threshold that matches your intuition. 
 
@@ -226,9 +215,6 @@ caro60 <- caro60 %>%
 
 
 ### Task 3: Visualize segmented trajectories
-```{r}
-## Task 3 ######################################################################
-```
 
 Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with `geom_path()`, `geom_point()` and `coord_equal()`. Assign `colour = moving` within `aes()` to distinguish between segments *with* "movement" and *without*.
 
@@ -265,10 +251,6 @@ pander::pandoc.image("02_Images/w03_ex3_p1.jpg","This is the same plot as above,
 
 
 ### Task 4: Segment-based analysis
-
-```{r}
-## Task 4 ######################################################################
-```
 
 In applying @laube2011, we've come as far as steps (b)/(c) in [Figure 1](02_Images/laube_2011.jpg). In order to complete step (d) (*Removal of subtrajectories with less than a threshold temporal length*), we have to calculate each segment's temporal duration. 
 
@@ -314,12 +296,6 @@ bind_rows(mutate(caro60, lab = "before"),mutate(caro60_moveseg,lab = "after")) %
 
 
 ### Task 5: Similarity measures 
-
-```{r}
-## Task 5 ######################################################################
-
-```
-
 
 Import the dataset `pedestrian.csv` (available on moodle) as a dataframe (you don't need an `sf` object). It it a set of six different but similar trajectories from pedestrians walking on a path. Explore this data visually.
 
@@ -396,9 +372,6 @@ plotraj(6)
 
 ### Task 6: Calculate similarity
 
-```{r}
-## Task 6 ######################################################################
-```
 
 Calculate the similarity between trajectory 1 and trajectories 2-6. Use the different similarity measures in the package `SimilarityMeasures`. Visualize your results and try to understand the different results with respect to your reading of @both2018. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?
 
