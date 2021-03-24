@@ -151,10 +151,10 @@ So what can we do with our new `sf` object that we couldn't before? One example 
 [^50]: As we've mentioned in the first Input, you can look up the EPSG codes under [spatialreference.org](http://spatialreference.org/ref/epsg/2056/) or http://epsg.io. For information specific to Switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
 
 
+```{r echo = FALSE, include=TRUE, eval = TRUE, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase")}
 
-```{r}
-wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 ```
+
 
 Here's the resulting `sf` object from the operation:
 ```{r, echo = F, include=T,eval = T}
