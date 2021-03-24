@@ -71,7 +71,8 @@ Assigning every individual its own colour is done using the `ggplot` argument `c
 Save your code in the appropriate section.
 
 
-```{r echo = FALSE, include=TRUE, eval = TRUE, code =  mydecrypt("11_Week1/solutions/task_3.R.gpg")}
+```{r echo = FALSE, include=TRUE, eval = TRUE, code =  mydecrypt("11_Week1/solutions/task_3.R",".passphrase")}
+
 ```
 
 
