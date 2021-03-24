@@ -1,6 +1,3 @@
-
-## Task 1 ######################################################################
-
 # Loading enironment / libraries ####
 library(tidyverse)
 
@@ -13,8 +10,6 @@ library(tidyverse)
 # Data analysis and visualization ####
 
 
-## Task 2 ######################################################################
-
 # Data import ####
 wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
@@ -23,20 +18,7 @@ wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 attr(wildschwein_BE$DatetimeUTC,"tzone") # or
 wildschwein_BE$DatetimeUTC[1]
 
-## Task 3 ######################################################################
 
-
-library(rcrypt)
-
-encrypt("11_Week1/solutions/task_3.R",passphrase = "cma")
-encrypt("11_Week1/W01_01_exercise.Rmd")
-
-
-
-mydecrypt("11_Week1/test.Rmd.gpg")
-
-
-## Input Handling Spatial Data #################################################
 
 
 library(sf)
@@ -62,16 +44,9 @@ rm(wildschwein_BE_sf)
 # we can remove this sf object, since it just eats up our memory
 
 
-## Task 4 ######################################################################
-
-
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 
-
-
 wildschwein_BE
-
-## Input: Calculate Convex Hull ################################################
 
 
 wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
@@ -87,8 +62,6 @@ wildschwein_BE_smry
 mcp <- st_convex_hull(wildschwein_BE_smry)
 
 
-## Task 5 ######################################################################
-
 plot(mcp)
 
 ggplot(mcp,aes(fill = TierID)) +
@@ -97,8 +70,6 @@ ggplot(mcp,aes(fill = TierID)) +
 ggplot(mcp,aes(fill = TierID)) +
   geom_sf(alpha = 0.4) +
   coord_sf(datum = 2056)
-
-## Input: Importing Raster Data ################################################
 
 
 library(raster)
@@ -115,8 +86,6 @@ pk100_BE <- subset(pk100_BE,1:3)
 plot(pk100_BE)
 
 
-## Task 6 ######################################################################
-
 library(tmap)
 
 
@@ -131,8 +100,6 @@ tm_shape(pk100_BE) +
   tm_legend(bg.color = "white")
 
 
-
-## Task 7 ######################################################################
 
 ## 
 ## tmap_mode("view")

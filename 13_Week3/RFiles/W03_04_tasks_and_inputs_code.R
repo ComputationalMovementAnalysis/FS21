@@ -1,7 +1,4 @@
 
-## Input: Segmentation #########################################################
-
-
 set.seed(10)
 n = 20
 df <- tibble(X = cumsum(rnorm(n)), Y = cumsum(rnorm(n)))
@@ -80,8 +77,6 @@ df_cumsum %>%
 
 #- chunkend
 
-## Task 1 ######################################################################
-
 
 
 caro60 <- read_delim("00_Rawdata/caro60.csv",",")
@@ -100,9 +95,6 @@ caro60 <- caro60 %>%
 
 #- chunkend
 
-## Task 2 ######################################################################
-
-
 
 summary(caro60$stepMean)
 
@@ -116,8 +108,6 @@ caro60 <- caro60 %>%
   ) 
 
 
-## Task 3 ######################################################################
-
 
 p1 <- caro60 %>%
   ggplot() +
@@ -129,14 +119,12 @@ p1 <- caro60 %>%
 p1
 
 
-## 
-## library(plotly)
-## ggplotly(p1)
-## 
+
+library(plotly)
+ggplotly(p1)
 
 
 
-## Task 4 ######################################################################
 
 
 caro60_moveseg <-caro60 %>%
@@ -164,9 +152,6 @@ bind_rows(mutate(caro60, lab = "before"),mutate(caro60_moveseg,lab = "after")) %
   facet_wrap(~lab)
 
 
-
-
-## Task 5 ######################################################################
 
 
 
@@ -221,8 +206,6 @@ plotraj(5)
 plotraj(6)
 
 #- chunkend
-
-## Task 6 ######################################################################
 
 
 # instead of repeating the same step 6 times, I use purrr::map() 

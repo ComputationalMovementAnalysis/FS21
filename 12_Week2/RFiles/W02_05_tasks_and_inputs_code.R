@@ -24,8 +24,6 @@ wildschwein_BE %>%
   geom_point()
   
 
-## Input: Geometry as Columns ##################################################
-
 # Store coordinates in a new variable
 
 coordinates <- st_coordinates(wildschwein_BE)
@@ -40,8 +38,6 @@ head(wildschwein_BE)
 
 #- chunkend
 
-## Task 2 ######################################################################
-
 wildschwein_BE <- wildschwein_BE %>%
   group_by(TierID) %>%
   mutate(
@@ -53,9 +49,6 @@ wildschwein_BE <- wildschwein_BE %>%
   mutate(
     speed = steplength/timelag
   )
-
-## Task 3 ######################################################################
-
 
 caro60 <- read_delim("00_Rawdata/caro60.csv",",") %>%
   st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)
@@ -143,8 +136,6 @@ ggplot() +
   theme_minimal()
 
 
-## Task 4 ######################################################################
-
 library(zoo)
 
 example <- rnorm(10)
@@ -165,8 +156,6 @@ caro60 %>%
   ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
   # geom_point() +
   geom_line() 
-
-## Task 5 ######################################################################
 
 library(grid) # just for the arrows
 
