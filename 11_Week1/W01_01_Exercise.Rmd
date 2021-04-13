@@ -4,8 +4,7 @@
 <!-- - Explore Dataset: remove outliers, find sampling interval, make subsets and find overlapping areas of individuals) -->
 <!-- - Make my first simple map -->
 
-Exercise 1 covers the necessary steps for getting ready in `R` and some basic concepts for setting up a well-structured `R` project. The lesson introduces how additional packages that provide useful functions for data science are made available and how spatial data is handled. The exercise concludes with the creation of your first map featuring movement data.
-
+Exercise 1 covers the necessary steps for getting ready in `R` and some basic concepts for setting up a well-structured `R` project. The lesson introduces how additional packages that provide useful functions for data science are made available and how spatial data is handled. The exercise concludes with the creation of your first map featuring movement data. 
 
 
 
