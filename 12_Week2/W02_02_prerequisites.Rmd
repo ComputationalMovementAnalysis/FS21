@@ -1,4 +1,5 @@
 ## Prerequisites
+
 Readings Skills from "R for Data Science" [@wickham2017]:
 
 - RS2.1 Chap3 Data Transformation with `dplyr` (31p, 43-76)

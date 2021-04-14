@@ -50,6 +50,8 @@ wildschwein_BE <- wildschwein_BE %>%
     speed = steplength/timelag
   )
 
+knitr::include_graphics("02_Images/laube_2011_2.jpg")
+
 caro60 <- read_delim("00_Rawdata/caro60.csv",",") %>%
   st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)
   

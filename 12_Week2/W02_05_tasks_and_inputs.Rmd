@@ -102,7 +102,11 @@ wildschwein_BE <- wildschwein_BE %>%
 
 @laube2011 analyse animal movement across different scales (see below). We will do the same on a *subset* of our data.
 
-![@laube2011: *Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale.*](02_Images/laube_2011_2.jpg)
+
+```{r, fig.cap="Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale (Laube and Purves, 2011)"}
+knitr::include_graphics("02_Images/laube_2011_2.jpg")
+```
+
 
 #### Import "Caro60"
 
