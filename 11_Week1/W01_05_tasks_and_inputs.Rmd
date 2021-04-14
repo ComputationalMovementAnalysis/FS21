@@ -16,8 +16,7 @@ Sections allow code folding (try clicking on the small triangle next to the line
 - Data analysis and visualization
 
 
-```{r, code =  mydecrypt("11_Week1/solutions/task_1.R",".passphrase")}
-
+```{r, code =  mydecrypt("11_Week1/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
@@ -34,7 +33,7 @@ Note:
 - For everyone working on the RStudio Server: You will first need to upload this data to the server using the "*upload*"-button in the "*Files*" tab.
 
 
-```{r, code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase")}
+```{r, code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
@@ -51,7 +50,7 @@ Assigning every individual its own colour is done using the `ggplot` argument `c
 Save your code in the appropriate section.
 
 
-```{r code =  mydecrypt("11_Week1/solutions/task_3.R",".passphrase")}
+```{r code =  mydecrypt("11_Week1/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -67,7 +66,7 @@ We will largely rely on `sf`when working with vector data in `R`. In order to tr
 
 
 
-```{r input_handlingSpatialData, echo = TRUE, include = TRUE, eval = TRUE}
+```{r, opts.label="example_showOutput"}
 
 library(sf)
 
@@ -80,7 +79,7 @@ wildschwein_BE_sf <- st_as_sf(wildschwein_BE,
 Notice how `st_as_sf` takes the EPSG code for the `crs =` argument. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes , etc.) under (epsg.io)[http://epsg.io].  
 Let's compare our original `data.frame` with this new `sf` object:
 
-```{r,  echo = TRUE, include = TRUE, eval = TRUE, collapse=FALSE}
+```{r, opts.label="example_showOutput", collapse=FALSE}
 wildschwein_BE
 
 wildschwein_BE_sf
@@ -88,12 +87,12 @@ wildschwein_BE_sf
 
 As you can see, `st_as_sf()` has added some metadata to our dataframe (`geometry type`, `dimension`, `bbox`, `epsg` and `proj4string`) and replaced the columns `Lat` and `Long` with a column named `geometry`. Other than that, the new `sf` object is very similar to our original dataframe. In fact, `sf` objects *are* essentially `dataframes`, as you can verify with the function `is.data.frame()`:
 
-```{r,  echo = TRUE, purl = FALSE}
+```{r, opts.label="example_showOutput"}
 is.data.frame(wildschwein_BE_sf)
 ```
 
 All operations we know from handling `data.frames` can be used on the `sf` object. Try some out!
-```{r,  echo = TRUE, purl = FALSE, eval = FALSE}
+```{r, opts.label="example_hideOutput"}
 # subset rows
 wildschwein_BE_sf[1:10,]
 wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Sabi",]
@@ -104,7 +103,7 @@ wildschwein_BE_sf[,2:3]
 
 Instead of keeping the same data twice (once as a `data.frame`, and once as an `sf` object), we will overwrite the `data.frame` and continue working with the `sf` object from now on. This saves some memory space in `R` and avoids confusion. 
 
-```{r,  echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 wildschwein_BE <- st_as_sf(wildschwein_BE, 
                           coords = c("Long", "Lat"), 
                           crs = 4326)
@@ -122,13 +121,12 @@ So what can we do with our new `sf` object that we couldn't before? One example 
 [^50]: As we've mentioned in the first Input, you can look up the EPSG codes under (epsg.io)[http://epsg.io]. For information specific to Switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
 
 
-```{r, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase")}
-
+```{r, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
 Here's the resulting `sf` object from the operation:
-```{r, echo = FALSE, eval = TRUE}
+```{r, opts.label="example_showOutput"}
 wildschwein_BE
 ```
 
@@ -144,7 +142,7 @@ First: add a grouping variable to the `sf` object. Note the new grouping variabl
 
 
 
-```{r input_calculateConvexHull, echo = T,include = T,eval = T}
+```{r, opts.label="example_showOutput"}
 
 wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
 
@@ -155,7 +153,7 @@ wildschwein_BE_grouped
 
 Second: use `summarise()` to "dissolve" all points into a mulipoint object. 
 
-```{r, echo = T,include = T,eval = T}
+```{r, opts.label="example_showOutput"}
 wildschwein_BE_smry <- summarise(wildschwein_BE_grouped)
 
 wildschwein_BE_smry
@@ -165,7 +163,7 @@ wildschwein_BE_smry
 
 Now we can run `st_convex_hull` on the new `sf` object. 
 
-```{r, echo = T,include = T,eval = T}
+```{r, opts.label="example_showOutput"}
 mcp <- st_convex_hull(wildschwein_BE_smry)
 
 ```
@@ -176,27 +174,26 @@ mcp <- st_convex_hull(wildschwein_BE_smry)
 Using base plot to visualize `sf` objects is easy enough, just try the following code. 
 
 
-```{r echo = T,include = T,eval = T}
+```{r, opts.label="example_showOutput"}
 plot(mcp)
 ```
 
 But since we use `ggplot` extensively, try and plot the object `mcp` with `ggplot`. Hint: Use the layer `geom_sf()` to add an `sf` object.
 Note: `ggplot` refuses to use our specified CRS, so we need to force this by specifying `datum = ` in `coord_sf()`. Try it out.
 
-```{r, eval = (1:2), include = TRUE, fig.cap = "No Datum specified",code =  mydecrypt("11_Week1/solutions/task_5.R",".passphrase")}
+```{r, code =  mydecrypt("11_Week1/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
-```{r, eval = (4:7), include = TRUE, fig.cap = "'datum' set to '2056' in coord_sf", code =  mydecrypt("11_Week1/solutions/task_5.R",".passphrase")}
-```
+
 
 
 
 ### Input: Importing raster data
 
-In the next task, we would like to add a background map to our `mcp` object. To do this, we have to the raster data into `R` first. For this, we use the package `terra` with the function `rast``.
+In the next task, we would like to add a background map to our `mcp` object. To do this, we have to the raster data into `R` first. For this, we use the package `terra` with the function `rast`.
 
 
-```{r echo = TRUE,include = T}
+```{r, opts.label="example_showOutput"}
 
 library(terra)
 
@@ -208,7 +205,7 @@ pk100_BE
 
 `pk100_BE_2056.tif` is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (`pk100_BE_2056.1`, `pk100_BE_2056.2`etc). For some reason, `rast` imported a fourth layer (`pk1_4 `). `plot()` shows that the fourth layer is empty. We will remove this layer using `subset()`. 
 
-```{r, echo = T,include = T,eval = T}
+```{r, opts.label="example_showOutput"}
 
 plot(pk100_BE)
 
@@ -225,7 +222,7 @@ plot(pk100_BE)
 There are multiple ways to add a background map in `ggplot`, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: `tmap` ("thematic map"). This package was developed with a syntax very similar to `ggplot2`, which makes it easy to learn.
 
 
-```{r task6, echo = T,include = T,eval = T}
+```{r, opts.label="example_showOutput"}
 library(tmap)
 
 tm_shape(pk100_BE) + 
@@ -235,7 +232,7 @@ tm_shape(pk100_BE) +
 
 As you can see, plotting layers in `tmap` is combined with the `+` sign, just as in `ggplot2`. In `tmap` however, each layer consists of two objects: a `tm_shape()` in which the data is called, and a `tm_*` object in which we define how the data is visualized (`tm_rgb()` states that it is plotted as an RGB Raster Layer). Add the object `mcp` to the plot in this manner. Read [the vignette](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html) if you are having trouble.
 
-```{r, include = TRUE, fig.cap = "'datum' set to '2056' in coord_sf", code =  mydecrypt("11_Week1/solutions/task_6.R",".passphrase")}
+```{r, code =  mydecrypt("11_Week1/solutions/task_6.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -245,11 +242,5 @@ As you can see, plotting layers in `tmap` is combined with the `+` sign, just as
 Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand. Omit the raster layer (`pk100_BE`), you won't be needing it.
 
 
-```{r task7, echo = F,include = T,eval = FALSE}
-
-tmap_mode("view")
-
-tm_shape(mcp) +
-  tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
-  tm_legend(bg.color = "white")
+```{r code =  mydecrypt("11_Week1/solutions/task_7.R",".passphrase"), opts.label="solution_hideOutput"}
 ```

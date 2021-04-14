@@ -10,9 +10,14 @@ wildschwein_BE
 
 wildschwein_BE_sf
 
+is.data.frame(wildschwein_BE_sf)
 
+# subset rows
+wildschwein_BE_sf[1:10,]
+wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Sabi",]
 
-
+# subset colums
+wildschwein_BE_sf[,2:3]
 
 wildschwein_BE <- st_as_sf(wildschwein_BE, 
                           coords = c("Long", "Lat"), 
@@ -45,9 +50,9 @@ plot(mcp)
 
 
 
-library(raster)
+library(terra)
 
-pk100_BE <- brick("00_Rawdata/pk100_BE_2056.tif")
+pk100_BE <- terra::rast("00_Rawdata/pk100_BE_2056.tif")
 
 pk100_BE
 
@@ -61,22 +66,6 @@ plot(pk100_BE)
 
 library(tmap)
 
-
 tm_shape(pk100_BE) + 
   tm_rgb() 
 
-
-tm_shape(pk100_BE) + 
-  tm_rgb() +
-  tm_shape(mcp) +
-  tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
-  tm_legend(bg.color = "white")
-
-
-
-## 
-## tmap_mode("view")
-## 
-## tm_shape(mcp) +
-##   tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
-##   tm_legend(bg.color = "white")
