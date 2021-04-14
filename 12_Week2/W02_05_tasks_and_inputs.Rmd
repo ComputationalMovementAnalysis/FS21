@@ -1,9 +1,6 @@
 ## Tasks and Inputs
 
 ### Task 1: Getting an overview
-```{r}
-## Task 1 ######################################################################
-```
 
 Calculate the time difference between subsequent rows as described in the demo (column `timelag`).
 First, inspect your data in more detail. Try to answer the following questions:
@@ -16,7 +13,7 @@ First, inspect your data in more detail. Try to answer the following questions:
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
 
-```{r, echo = F, include=T, eval = T}
+```{r, code =  mydecrypt("11_Week2/solutions/task_1.R",".passphrase"), opts.label="solution_showOutput"}
 
 
 
