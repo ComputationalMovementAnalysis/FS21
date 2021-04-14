@@ -1,10 +1,3 @@
-bndqyqh(cmyo)
-
-
-cm_vjyoa(oi100_BE) + 
-  cm_qkd() 
-
-
 cm_vjyoa(oi100_BE) + 
   cm_qkd() +
   cm_vjyoa(meo) +
