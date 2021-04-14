@@ -16,17 +16,7 @@ Sections allow code folding (try clicking on the small triangle next to the line
 - Data analysis and visualization
 
 
-```{r}
-# Loading enironment / libraries ####
-library(tidyverse)
-
-
-
-# Data import ####
-
-# Data clensing ####
-
-# Data analysis and visualization ####
+```{r, code =  mydecrypt("11_Week1/solutions/task_1.R",".passphrase")}
 
 ```
 
@@ -34,27 +24,17 @@ library(tidyverse)
 
 ### Task 2: Import data
 
-In section "data import", import the file `wildschwein_BE.csv`. Obtain this file from moodle.
+In section "data import", import the file `wildschwein_BE.csv`. Obtain this file from moodle. Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
 
 Note: 
 
 - If your are using [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your workflow is documented without gaps. We'd rather recommend to move away from using graphical tools and focus on using code. 
 - We recommend using one of the `tidyverse` functions from the `readr` package to import your data (they all begin with "`read_*`, note the underscore). These functions are less error prone than the base `R` functions (`read.*`). Specifically for the wild boar data, we recommend `read_delim()`.
 - If you use `read_delim()` and receive warnings during import, have a look at these warnings by using the function `problems()`. Resolve these problems until import runs without warnings.
-- Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
 - For everyone working on the RStudio Server: You will first need to upload this data to the server using the "*upload*"-button in the "*Files*" tab.
 
 
-
-
-```{r}
-# Data import ####
-wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
-
-
-# Check Timezone
-attr(wildschwein_BE$DatetimeUTC,"tzone") # or
-wildschwein_BE$DatetimeUTC[1]
+```{r, code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase")}
 ```
 
 
@@ -71,31 +51,23 @@ Assigning every individual its own colour is done using the `ggplot` argument `c
 Save your code in the appropriate section.
 
 
-```{r echo = FALSE, include=TRUE, eval = TRUE, code =  mydecrypt("11_Week1/solutions/task_3.R",".passphrase")}
-
+```{r code =  mydecrypt("11_Week1/solutions/task_3.R",".passphrase")}
 ```
 
 
 ### Input: Handling spatial data
 
 Until now, we've stored our location data within data frames as Lat/Long columns. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our `data.frame` into a spatial object.
-Some of you might be familiar with the `sp` package with the classes `SpatialPoints`, `SpatialPointsDataFrame` and so on. These packages are mostly replaced by the fairly new package `sf`. This packages has some huge advantages over `sp`:
 
-- simple features are essentially data frames with minor extensions and thus are easily integratable in standard workflows
-- they are programmed to cleanly interface with the `tidyverse` methods (specifically `dplyr`'s `mutate` and `summarise`)
-- comply with the common Open Geospatial Consortium (OGC) standards (ISO 19125-1:2004) and interface with other important spatial tools such as GDAL, PostGIS, GeoJSON and so fourth
-- are being rapidly implemented in visualisation tools such as `ggplot2`, `plotly` and `tmap`
+We will largely rely on `sf`when working with vector data in `R`. In order to transform our `data.frame` into an sf object, we need to use the function `st_as_sf()` while specifying the columns storing the coordinates and the coordinate reference system.
 
-
-We will largely rely on `sf`when working with vector data in `R`. In order to transform our `data.frame` into an sf object, we need to use the function `st_as_sf()` while specifying the columns storing the coordinates and the coordinate reference system[^10].
-
-[^10]: At this point, we assume you know what a Coordinate Reference Systems is. Check out [this link](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/) if this is not the case. 
+(At this point, we assume you know what a Coordinate Reference Systems is. Check out [this link](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/) if this is not the case.)
 
 
 
 
 
-```{r input_handlingSpatialData, echo = T, include = T, eval = T}
+```{r input_handlingSpatialData, echo = TRUE, include = TRUE, eval = TRUE}
 
 library(sf)
 
@@ -105,24 +77,23 @@ wildschwein_BE_sf <- st_as_sf(wildschwein_BE,
 
 ```
 
-Notice how `st_as_sf` takes the EPSG code for the `crs =` argument. This is so much easier and more elegant than using `PROJ.4` or `WKT`. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes , etc.) under [spatialreference.org](http://spatialreference.org/ref/epsg/2056/) or http://epsg.io.  
-
+Notice how `st_as_sf` takes the EPSG code for the `crs =` argument. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes , etc.) under (epsg.io)[http://epsg.io].  
 Let's compare our original `data.frame` with this new `sf` object:
 
-```{r,  echo = T, include = T, eval = T, collapse=F}
+```{r,  echo = TRUE, include = TRUE, eval = TRUE, collapse=FALSE}
 wildschwein_BE
 
 wildschwein_BE_sf
 ```
 
-As you can see, `st_as_sf()` has added some metadata to our dataframe (`geometry type`, `dimension`, `bbox`, `epsg` and `proj4string`) and replaced the columns `Lat` and `Long` with a column named `geometry`. Other than that, the new `sf` object is very similar to our original dataframe. In fact, `sf` objects *are* essentially `dataframes`, just ask `R`:
+As you can see, `st_as_sf()` has added some metadata to our dataframe (`geometry type`, `dimension`, `bbox`, `epsg` and `proj4string`) and replaced the columns `Lat` and `Long` with a column named `geometry`. Other than that, the new `sf` object is very similar to our original dataframe. In fact, `sf` objects *are* essentially `dataframes`, as you can verify with the function `is.data.frame()`:
 
-```{r,  echo = T, include = T, eval = T, purl = F}
+```{r,  echo = TRUE, purl = FALSE}
 is.data.frame(wildschwein_BE_sf)
 ```
 
 All operations we know from handling `data.frames` can be used on the `sf` object. Try some out!
-```{r,  echo = T, include = T, eval = F, purl = F}
+```{r,  echo = TRUE, purl = FALSE, eval = FALSE}
 # subset rows
 wildschwein_BE_sf[1:10,]
 wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Sabi",]
@@ -134,7 +105,7 @@ wildschwein_BE_sf[,2:3]
 Instead of keeping the same data twice (once as a `data.frame`, and once as an `sf` object), we will overwrite the `data.frame` and continue working with the `sf` object from now on. This saves some memory space in `R` and avoids confusion. 
 
 ```{r,  echo = T, include = T, eval = T}
-wildschwein_BE = st_as_sf(wildschwein_BE, 
+wildschwein_BE <- st_as_sf(wildschwein_BE, 
                           coords = c("Long", "Lat"), 
                           crs = 4326)
 
@@ -148,16 +119,16 @@ rm(wildschwein_BE_sf)
 
 So what can we do with our new `sf` object that we couldn't before? One example is projecting the WGS84 (`Lat`/`Long`) coordinates into the new Swiss CRS `CH1903+ LV95`[^50]. Do this by using the function `st_transform`. By the way, do you notice a pattern here? The package `sf` names most functions for spatial operations with the prefix `st_*`, just as in PostGIS.
 
-[^50]: As we've mentioned in the first Input, you can look up the EPSG codes under [spatialreference.org](http://spatialreference.org/ref/epsg/2056/) or http://epsg.io. For information specific to Switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
+[^50]: As we've mentioned in the first Input, you can look up the EPSG codes under (epsg.io)[http://epsg.io]. For information specific to Switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
 
 
-```{r echo = FALSE, include=TRUE, eval = TRUE, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase")}
+```{r, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase")}
 
 ```
 
 
 Here's the resulting `sf` object from the operation:
-```{r, echo = F, include=T,eval = T}
+```{r, echo = FALSE, eval = TRUE}
 wildschwein_BE
 ```
 
@@ -210,38 +181,32 @@ plot(mcp)
 ```
 
 But since we use `ggplot` extensively, try and plot the object `mcp` with `ggplot`. Hint: Use the layer `geom_sf()` to add an `sf` object.
-
-```{r, echo = F,include = T,eval = T}
-ggplot(mcp,aes(fill = TierID)) +
-  geom_sf(alpha = 0.4)
-```
-
 Note: `ggplot` refuses to use our specified CRS, so we need to force this by specifying `datum = ` in `coord_sf()`. Try it out.
 
-
-```{r, echo = F,include = T,eval = T}
-ggplot(mcp,aes(fill = TierID)) +
-  geom_sf(alpha = 0.4) +
-  coord_sf(datum = 2056)
+```{r, eval = (1:2), include = TRUE, fig.cap = "No Datum specified",code =  mydecrypt("11_Week1/solutions/task_5.R",".passphrase")}
 ```
+
+```{r, eval = (4:7), include = TRUE, fig.cap = "'datum' set to '2056' in coord_sf", code =  mydecrypt("11_Week1/solutions/task_5.R",".passphrase")}
+```
+
 
 
 ### Input: Importing raster data
 
-In the next task, we would like to add a background map to our `mcp` object. To do this, we have to the raster data into `R` first. For this, we use the package `raster` with the function `brick`.
+In the next task, we would like to add a background map to our `mcp` object. To do this, we have to the raster data into `R` first. For this, we use the package `terra` with the function `rast``.
 
 
-```{r echo = T,include = T,eval = T}
+```{r echo = TRUE,include = T}
 
-library(raster)
+library(terra)
 
-pk100_BE <- brick("00_Rawdata/pk100_BE_2056.tif")
+pk100_BE <- terra::rast("00_Rawdata/pk100_BE_2056.tif")
 
 pk100_BE
 ```
 
 
-`pk100_BE_2056.tif` is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (`pk100_BE_2056.1`, `pk100_BE_2056.2`etc). For some reason, `RasterBrick` imported a fourth layer (`pk100_BE_2056.4`). `plot()` shows that the fourth layer is empty. We will remove this layer using `subset()`. 
+`pk100_BE_2056.tif` is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (`pk100_BE_2056.1`, `pk100_BE_2056.2`etc). For some reason, `rast` imported a fourth layer (`pk1_4 `). `plot()` shows that the fourth layer is empty. We will remove this layer using `subset()`. 
 
 ```{r, echo = T,include = T,eval = T}
 
@@ -263,7 +228,6 @@ There are multiple ways to add a background map in `ggplot`, many require additi
 ```{r task6, echo = T,include = T,eval = T}
 library(tmap)
 
-
 tm_shape(pk100_BE) + 
   tm_rgb() 
 
@@ -271,14 +235,7 @@ tm_shape(pk100_BE) +
 
 As you can see, plotting layers in `tmap` is combined with the `+` sign, just as in `ggplot2`. In `tmap` however, each layer consists of two objects: a `tm_shape()` in which the data is called, and a `tm_*` object in which we define how the data is visualized (`tm_rgb()` states that it is plotted as an RGB Raster Layer). Add the object `mcp` to the plot in this manner. Read [the vignette](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html) if you are having trouble.
 
-```{r, echo = F,include = T,eval = T}
-tm_shape(pk100_BE) + 
-  tm_rgb() +
-  tm_shape(mcp) +
-  tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
-  tm_legend(bg.color = "white")
-
-
+```{r, include = TRUE, fig.cap = "'datum' set to '2056' in coord_sf", code =  mydecrypt("11_Week1/solutions/task_6.R",".passphrase")}
 ```
 
 
@@ -288,7 +245,7 @@ tm_shape(pk100_BE) +
 Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand. Omit the raster layer (`pk100_BE`), you won't be needing it.
 
 
-```{r task7, echo = F,include = T,eval = F}
+```{r task7, echo = F,include = T,eval = FALSE}
 
 tmap_mode("view")
 

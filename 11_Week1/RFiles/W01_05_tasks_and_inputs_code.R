@@ -1,25 +1,3 @@
-# Loading enironment / libraries ####
-library(tidyverse)
-
-
-
-# Data import ####
-
-# Data clensing ####
-
-# Data analysis and visualization ####
-
-
-# Data import ####
-wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
-
-
-# Check Timezone
-attr(wildschwein_BE$DatetimeUTC,"tzone") # or
-wildschwein_BE$DatetimeUTC[1]
-
-
-
 
 library(sf)
 
@@ -36,7 +14,7 @@ wildschwein_BE_sf
 
 
 
-wildschwein_BE = st_as_sf(wildschwein_BE, 
+wildschwein_BE <- st_as_sf(wildschwein_BE, 
                           coords = c("Long", "Lat"), 
                           crs = 4326)
 
@@ -44,7 +22,7 @@ rm(wildschwein_BE_sf)
 # we can remove this sf object, since it just eats up our memory
 
 
-wildschwein_BE <- st_transform(wildschwein_BE, 2056)
+
 
 wildschwein_BE
 
@@ -64,12 +42,7 @@ mcp <- st_convex_hull(wildschwein_BE_smry)
 
 plot(mcp)
 
-ggplot(mcp,aes(fill = TierID)) +
-  geom_sf(alpha = 0.4)
 
-ggplot(mcp,aes(fill = TierID)) +
-  geom_sf(alpha = 0.4) +
-  coord_sf(datum = 2056)
 
 
 library(raster)
