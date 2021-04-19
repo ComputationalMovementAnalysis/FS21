@@ -18,47 +18,25 @@ head(wildschwein_BE)
 
 knitr::include_graphics("02_Images/laube_2011_2.jpg")
 
+
+library(sf)
+
+wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
+                              coords = c("Long", "Lat"), 
+                              crs = 4326)
+
+
 nrow(caro60)
 nrow(caro60_3)
 nrow(caro60_6)
 nrow(caro60_9)
 
-is.data.frame(wildschwein_BE_sf)
+# subset rows
+wildschwein_BE_sf[1:10,]
+wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Sabi",]
 
-
-ggplot() +
-  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro60_3, aes(E,N, colour = "3 minutes")) +
-  geom_path(data = caro60_3, aes(E,N, colour = "3 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 3 minutes-resampled data")  +
-  theme_minimal()
-
-ggplot() +
-  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro60_6, aes(E,N, colour = "6 minutes")) +
-  geom_path(data = caro60_6, aes(E,N, colour = "6 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 6 minutes-resampled data") +
-  theme_minimal()
-
-ggplot() +
-  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro60_9, aes(E,N, colour = "9 minutes")) +
-  geom_path(data = caro60_9, aes(E,N, colour = "9 minutes"))+
-  labs(color="Trajectory", title = "Comparing original- with 9 minutes-resampled data") +
-  theme_minimal()
-
-
-ggplot() +
-  geom_line(data = caro60, aes(DatetimeUTC,speed, colour = "1 minute")) +
-  geom_line(data = caro60_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
-  geom_line(data = caro60_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
-  geom_line(data = caro60_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
-  labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
-  theme_minimal()
-
+# subset colums
+wildschwein_BE_sf[,2:3]
 
 library(zoo)
 
