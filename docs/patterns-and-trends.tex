@@ -1524,6 +1524,71 @@ Note:
 
 \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-79-1.pdf}
 
+\hypertarget{exercise-4}{%
+\chapter{Exercise 4}\label{exercise-4}}
+
+\hypertarget{learning-outcomes-3}{%
+\section{Learning Outcomes}\label{learning-outcomes-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  You are able to conceptualize a simple movement pattern and implement data structures and corresponding procedures (let's call them algorithms\ldots) for detecting it using R.
+\item
+  You understand the sensitivity of movement patterns to pattern parameter thresholds.
+\end{itemize}
+
+\hypertarget{prerequisites-3}{%
+\section{Prerequisites}\label{prerequisites-3}}
+
+Readings Skills from ``R for Data Science'' (\protect\hyperlink{ref-wickham2017}{Wickham and Grolemund 2017}):
+
+\begin{itemize}
+\tightlist
+\item
+  RS4.1 Chap15 Functions (19p, 269-289)
+\end{itemize}
+
+Readings Theory, \protect\hyperlink{ref-laube2014}{Laube} (\protect\hyperlink{ref-laube2014}{2014})
+- R4.1 Chap.2, p.~29-58
+
+\hypertarget{preparation}{%
+\section{Preparation}\label{preparation}}
+
+Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sf)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+
+\CommentTok{\# Import as tibble}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+
+\CommentTok{\# Convert to sf{-}object}
+\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }\AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\AttributeTok{crs =} \DecValTok{4326}\NormalTok{,}\AttributeTok{remove =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# transform to CH1903 LV95}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_transform}\NormalTok{(wildschwein\_BE, }\DecValTok{2056}\NormalTok{)}
+
+\CommentTok{\# Add geometry as E/N integer Columns}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_coordinates}\NormalTok{(wildschwein\_BE) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{cbind}\NormalTok{(wildschwein\_BE,.) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{E =}\NormalTok{ X) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{N =}\NormalTok{ Y)}
+
+\CommentTok{\# Compute timelag, steplength and speed}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}}\NormalTok{ wildschwein\_BE }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(TierID) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{timelag =} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(}\FunctionTok{lead}\NormalTok{(DatetimeUTC),DatetimeUTC,}\AttributeTok{units =} \StringTok{"secs"}\NormalTok{)),}
+    \AttributeTok{steplength =} \FunctionTok{sqrt}\NormalTok{((E}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(E,}\DecValTok{1}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{(N}\SpecialCharTok{{-}}\FunctionTok{lead}\NormalTok{(N,}\DecValTok{1}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{),}
+    \AttributeTok{speed =}\NormalTok{ steplength}\SpecialCharTok{/}\NormalTok{timelag}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{references}{%
 \chapter*{References}\label{references}}
 \addcontentsline{toc}{chapter}{References}
@@ -1532,6 +1597,9 @@ Note:
 \begin{CSLReferences}{1}{0}
 \leavevmode\hypertarget{ref-both2018}{}%
 Alan Both, Matt Duckham, Kevin Buchin. 2018. {``A Comparative Analysis of Trajectory Similarity Measures: Recommendations for Selection and Use.''}
+
+\leavevmode\hypertarget{ref-laube2014}{}%
+Laube, Patrick. 2014. \emph{Computational Movement Analysis}. SpringerBriefs in Computer Science. Springer International Publishing. \url{https://books.google.ch/books?id=xMRpBAAAQBAJ}.
 
 \leavevmode\hypertarget{ref-laube2011}{}%
 Laube, Patrick, and Ross S. Purves. 2011. {``How Fast Is a Cow? Cross - Scale Analysis of Movement Data.''} \emph{Transactions in GIS} 15 (3): 401--18. \url{https://doi.org/10.1111/j.1467-9671.2011.01256.x}.

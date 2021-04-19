@@ -16,7 +16,6 @@ The first step in writing a function, is picking a name and assigning `<- functi
 
 ```{r, echo = T, include = T, eval = T}
 testfun <- function(){}
-
 ```
 
 To run the function, we have to call the assigned name with the brackets. This function gives no output, which is why we get `NULL` back. 
@@ -33,7 +32,6 @@ To make the function actually *do* something, we need to specify *what* should b
 testfun <- function(){print("this function does nothing")}
 
 testfun()
-
 ```
 
 If we want the function to accept some input values, we have to define them within the round brackets. For example, I specify a variable named `sometext` and can call this variable within the execution.
