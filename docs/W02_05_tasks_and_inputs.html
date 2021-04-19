@@ -304,25 +304,21 @@ Save this data to a new variable (we will use <code>caro60</code>).</p>
 <li>In contrast to <code>geom_sf()</code>, you have to explicitly specify the <code>x</code>/<code>y</code> columns (in our case <code>E</code>/<code>N</code>) with <code>geom_path()</code>/<code>geom_point()</code></li>
 <li><code>geom_line()</code> does not work when mapping trajectory data, since it connects the observations <em>in order of the variable on the x axis</em>. <code>geom_path()</code> connects the observations in the order in which they appear in the data</li>
 </ul>
-<pre><code>## [1] 200
-## [1] 67
-## [1] 34
-## [1] 23</code></pre>
 <p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-54-1.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-54-2.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-54-3.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-54-4.png" width="672" /></p>
 </div>
 </div>
 <div id="task-4-deriving-movement-parameters-ii-rolling-window-functions" class="section level3">
 <h3>Task 4: Deriving movement parameters II: Rolling window functions</h3>
 <p>A different approach would be to <em>smoothen</em> the derived parameters using a <a href="https://docs.wavefront.com/images/5sec_moving_window.png">moving window function</a>. The <code>zoo</code> package offers a variate of moving window functions (<code>roll_*</code>). Use <code>roll_mean()</code> to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="W02_05_tasks_and_inputs.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
-<span id="cb38-2"><a href="W02_05_tasks_and_inputs.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="W02_05_tasks_and_inputs.html#cb38-3" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb38-4"><a href="W02_05_tasks_and_inputs.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">3</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb38-5"><a href="W02_05_tasks_and_inputs.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  0.93634335  0.31709038  0.02370048  0.67869801  0.73369105  0.50401344</span></span>
-<span id="cb38-6"><a href="W02_05_tasks_and_inputs.html#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.56144365 -0.56902598          NA          NA</span></span>
-<span id="cb38-7"><a href="W02_05_tasks_and_inputs.html#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">4</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb38-8"><a href="W02_05_tasks_and_inputs.html#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  0.6775521  0.2045005  0.5848215  0.5255629  0.3446928  0.1459635</span></span>
-<span id="cb38-9"><a href="W02_05_tasks_and_inputs.html#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.4102301         NA         NA         NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="W02_05_tasks_and_inputs.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb37-2"><a href="W02_05_tasks_and_inputs.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="W02_05_tasks_and_inputs.html#cb37-3" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb37-4"><a href="W02_05_tasks_and_inputs.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">3</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb37-5"><a href="W02_05_tasks_and_inputs.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  0.93634335  0.31709038  0.02370048  0.67869801  0.73369105  0.50401344</span></span>
+<span id="cb37-6"><a href="W02_05_tasks_and_inputs.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.56144365 -0.56902598          NA          NA</span></span>
+<span id="cb37-7"><a href="W02_05_tasks_and_inputs.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">4</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb37-8"><a href="W02_05_tasks_and_inputs.html#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  0.6775521  0.2045005  0.5848215  0.5255629  0.3446928  0.1459635</span></span>
+<span id="cb37-9"><a href="W02_05_tasks_and_inputs.html#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.4102301         NA         NA         NA</span></span></code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>caro60</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 </div>
 <div id="task-5-optional-calculate-turning-angles" class="section level3">
