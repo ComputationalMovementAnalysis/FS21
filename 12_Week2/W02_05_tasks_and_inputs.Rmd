@@ -13,30 +13,8 @@ First, inspect your data in more detail. Try to answer the following questions:
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
 
-```{r, code =  mydecrypt("11_Week2/solutions/task_1.R",".passphrase"), opts.label="solution_showOutput"}
 
-
-
-wildschwein_BE <- wildschwein_BE %>%
-  mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),
-                                       DatetimeUTC,
-                                       units = "secs")))
-
-ggplot(wildschwein_BE, aes(DatetimeUTC,TierID)) +
-  geom_line()
-
-ggplot(wildschwein_BE, aes(timelag)) +
-  geom_histogram(binwidth = 50) +
-  lims(x = c(0,15000)) +
-  scale_y_log10()
-  
-
-wildschwein_BE %>%
-  filter(year(DatetimeUTC)  == 2014) %>%
-  ggplot(aes(DatetimeUTC,timelag, colour = TierID)) +
-  geom_line() +
-  geom_point()
-  
+```{r, code =  mydecrypt("12_Week2/solutions/task_1.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -44,7 +22,7 @@ wildschwein_BE %>%
 
 Last week, we transformed our data from a `data.frame` to an `sf` object. This turned our `Lat`/`Long` columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. To do this, we have to extract the Coordinates using `st_coordinates()`. We can store these values in a new variable and display them:
 
-```{r, echo = T, eval = T, include=T}
+```{r, opts.label="example_showOutput"}
 # Store coordinates in a new variable
 
 coordinates <- st_coordinates(wildschwein_BE)
@@ -54,7 +32,7 @@ head(coordinates)
 
 Note that that the column are named `X` and `Y`, while [`CH1903+ LV95`](https://www.swisstopo.admin.ch/de/wissen-fakten/geodaesie-vermessung/neue-koordinaten.html) names the Axes `E` and `N`: let's rename the columns appropriately. After this, we can use `cbind()` to "glue" the columns to our original `sf`-object.
 
-```{r, echo = T, eval = T, include=T}
+```{r, opts.label="example_showOutput"}
 colnames(coordinates) <- c("E","N")
 
 wildschwein_BE <- cbind(wildschwein_BE,coordinates)
@@ -73,29 +51,13 @@ In this task we will derive some additional movement parameters from our traject
 - You can calculate the Euclidean distance with the following formula: `sqrt((E1-E2)^2+(N1-N2)^2)`
 - use `lead(E,1)` to address the the row `n+1` (i.e. E2)
 
-```{r}
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
-  mutate(
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2)
-  )
-```
-
 Why do we use `E` and `N` when calculating the Euclidean distance, and not `Lat`/`Long`? Now calculate the animals' speed between subsequent locations based on the steplength as calculated in the previous task and the timelag between the locations. What speed unit do you get?
 
-```{r}
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
-  mutate(
-    speed = steplength/timelag
-  )
+```{r, code =  mydecrypt("12_Week2/solutions/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
-
 
 
 ### Task 3: Cross-scale movement analysis
-
-
 
 @laube2011 analyse animal movement across different scales (see below). We will do the same on a *subset* of our data.
 
@@ -108,12 +70,9 @@ knitr::include_graphics("02_Images/laube_2011_2.jpg")
 #### Import "Caro60"
 
 In the first task, we saw that the animals are sampled at different frequencies. To simplify the task, we've prepared a dataset that includes 200 locations of a single wild boar with a constant sampling interval of 60 seconds. Import this dataset named "caro60.csv" (available on moodle) just like you imported the other wild boar data. **NOTE:** We've converted the positions to CH1903+ LV95 for your convenience. Consider this when transforming to `sf`!
-Save this data to a new variable (we will use `caro60`). 
+Save this data to a new variable (we will use `caro60`).
 
-```{r}
-caro60 <- read_delim("00_Rawdata/caro60.csv",",") %>%
-  st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)
-  
+```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 #### Resample 
@@ -122,65 +81,18 @@ Now manually reduce the granularity of our sampling interval by selecting every 
 
 If you like to stick to the `tidyverse` approach, you can use `slice()` to subset the dataset by row number. Slice takes an integer vector. Eg: `slice(dataset, 1:10)`, returns the first 10 rows of a dataset, `slice(dataset, c(1,5,10))` returns the 1^st^, 5^th^ and 10^th^ value of a dataset. Save each re-sampled dataset in a new variable. We will use `caro60_3`, `caro60_6` and `caro60_9`.
 
-
-```{r}
-caro60_3 <- caro60 %>%
-  slice(seq(1,nrow(.),3)) # the dot (".") represents the piped dataset
-
-caro60_6 <- caro60 %>%
-  slice(seq(1,nrow(.),6))
-
-caro60_9 <- caro60 %>%
-  slice(seq(1,nrow(.),9))
-```
-
 You should now have  4 data sets with different number of rows:
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 nrow(caro60)
 nrow(caro60_3)
 nrow(caro60_6)
 nrow(caro60_9)
 ```
 
-
 #### Update derived parameters
 
 `timelag`, `steplength` and `speed` now have to be recalculated for the three re-sampled data sets. Do so as we illustrated in the Chapter *Demo*. 
-
-
-```{r}
-
-caro60 <- caro60 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-caro60_3 <- caro60_3 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-caro60_6 <- caro60_6 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-
-caro60_9 <- caro60_9 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-```
 
 
 
@@ -195,44 +107,8 @@ We've stored the geographic location of our point in the trajectory in three dif
 - `geom_line()` does not work when mapping trajectory data, since it connects the observations *in order of the variable on the x axis*. `geom_path()` connects the observations in the order in which they appear in the data
 
 
-```{r, echo = F, include = T,eval = T}
-
-
-
-ggplot() +
-  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro60_3, aes(E,N, colour = "3 minutes")) +
-  geom_path(data = caro60_3, aes(E,N, colour = "3 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 3 minutes-resampled data")  +
-  theme_minimal()
-
-ggplot() +
-  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro60_6, aes(E,N, colour = "6 minutes")) +
-  geom_path(data = caro60_6, aes(E,N, colour = "6 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 6 minutes-resampled data") +
-  theme_minimal()
-
-ggplot() +
-  geom_point(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro60, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro60_9, aes(E,N, colour = "9 minutes")) +
-  geom_path(data = caro60_9, aes(E,N, colour = "9 minutes"))+
-  labs(color="Trajectory", title = "Comparing original- with 9 minutes-resampled data") +
-  theme_minimal()
-
-
-ggplot() +
-  geom_line(data = caro60, aes(DatetimeUTC,speed, colour = "1 minute")) +
-  geom_line(data = caro60_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
-  geom_line(data = caro60_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
-  geom_line(data = caro60_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
-  labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
-  theme_minimal()
-
-``` 
+```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
+```
 
 
 ### Task 4: Deriving movement parameters II: Rolling window functions
@@ -241,7 +117,7 @@ ggplot() +
 A different approach would be to *smoothen* the derived parameters using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offers a variate of moving window functions (`roll_*`). Use `roll_mean()` to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
 
 
-```{r, echo = T, eval = T, include= T}
+```{r, opts.label="example_showOutput"}
 library(zoo)
 
 example <- rnorm(10)
@@ -253,70 +129,16 @@ rollmean(example,k = 4,fill = NA,align = "left")
 
 Now run `rollmean`on the `speed` variable of the subset (`caro60`). Visualize the output from your moving windows and compare different window sizes (`k = `).
 
-
-```{r}
-caro60 <- caro60 %>%
-  mutate(
-    speed3 = rollmean(speed,3,NA,align = "left"),
-    speed6 = rollmean(speed,6,NA,align = "left"),
-    speed9 = rollmean(speed,9,NA,align = "left")
-  )
-
-caro60 %>%
-  gather(key,val,c(speed,speed3,speed6,speed9)) %>%
-  ggplot(aes(DatetimeUTC,val,colour = key,group = key)) +
-  # geom_point() +
-  geom_line() 
+```{r, code =  mydecrypt("12_Week2/solutions/task_4.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
-
 
 ### Task 5 (optional): Calculate turning angles
 
 Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2!
 
-
-```{r}
-library(grid) # just for the arrows
-
-
-# Advanced solution including the building of functions. Only for very motivated students!
-
-euclid <- function(x1,y1,x2,y2){
-  return(sqrt((x1-x2)^2+(y1-y2)^2))
-}
-turning_angle <- function(x,y,lead_lag = 1){
-  if(length(x) < 3){stop("Minimum length of x and y is 3")}
-  if(length(x) != length(y)){stop("x and y must be of the same length")}
-  p1x <- lag(x,lead_lag)
-  p1y <- lag(y,lead_lag)
-  p2x <- x
-  p2y <- y
-  p3x <- lead(x,lead_lag)
-  p3y <- lead(y,lead_lag)
-  p12 <- euclid(p1x,p1y,p2x,p2y)
-  p13 <- euclid(p1x,p1y,p3x,p3y)
-  p23 <- euclid(p2x,p2y,p3x,p3y)
-  rad <- acos((p12^2+p23^2-p13^2)/(2*p12*p23))
-  grad <- (rad*180)/pi
-  grad[p12 == 0 | p23 == 0] <- NA
-  d <-  (p3x-p1x)*(p2y-p1y)-(p3y-p1y)*(p2x-p1x)
-  d <- ifelse(d == 0,1,d)
-  d[d>0] <- 1
-  d[d<0] <- -1
-  d[d==0] <- 1
-  turning <- grad*d*-1+180
-  return(turning)
-}
-
-# Running the functions on some dummy data:
-set.seed(20)
-data.frame(x = cumsum(rnorm(10)),y = cumsum(rnorm(10))) %>%
-  mutate(angle = as.integer(turning_angle(x,y))) %>%
-  ggplot(aes(x,y)) +
-  geom_segment(aes(x = lag(x), y = lag(y), xend = x,yend = y),arrow = arrow(length = unit(0.5,"cm"))) +
-  geom_label(aes(label = paste0(angle,"°")),alpha = 0.4,nudge_x = 0.2, nudge_y = 0.2) +
-  coord_equal()
+```{r, code =  mydecrypt("12_Week2/solutions/task_5.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
+
 
 
 

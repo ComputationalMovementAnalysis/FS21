@@ -32,8 +32,8 @@
   
 <link rel="prev" href="W02_03_preperation.html"/>
 <link rel="next" href="W02_05_tasks_and_inputs.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,13 +50,18 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -138,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction Chapter</a></li>
 <li class="chapter" data-level="" data-path="W01_01_exercise.html"><a href="W01_01_exercise.html"><i class="fa fa-check"></i>Exercise 1</a>
 <ul>
-<li class="chapter" data-level="" data-path="W01_02_outcomes.html"><a href="W01_02_outcomes.html"><i class="fa fa-check"></i>Leaning outcomes</a></li>
+<li class="chapter" data-level="" data-path="W01_02_outcomes.html"><a href="W01_02_outcomes.html"><i class="fa fa-check"></i>Learning outcomes</a></li>
 <li class="chapter" data-level="" data-path="W01_03_prerequesites.html"><a href="W01_03_prerequesites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html"><i class="fa fa-check"></i>Preperation</a></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
@@ -180,50 +185,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-5-optional-calculate-turning-angles"><i class="fa fa-check"></i>Task 5 (optional): Calculate turning angles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="W03_01_exercise.html"><a href="W03_01_exercise.html"><i class="fa fa-check"></i>Exercise 3</a>
-<ul>
-<li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W03_03_preperation.html"><a href="W03_03_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
-<ul>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#input-segmentation-as-in-laube-and-purves-2011"><i class="fa fa-check"></i>Input: Segmentation as in Laube and Purves (2011)</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
-<li><a href="W03_04_tasks_and_inputs.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="W04_01_exercise.html"><a href="W04_01_exercise.html"><i class="fa fa-check"></i>Exercise 4</a>
-<ul>
-<li class="chapter" data-level="" data-path="W04_01_learning_outcomes.html"><a href="W04_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W04_02_prerequisites.html"><a href="W04_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
-<ul>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-4-measuring-distance-at-concurrent-locations"><i class="fa fa-check"></i>Task 4: Measuring distance at concurrent locations</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-5-visualize-data"><i class="fa fa-check"></i>Task 5: Visualize data</a></li>
-<li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W05_02_preperation.html"><a href="W05_02_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
-</ul></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -249,162 +210,162 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="difftime" class="section level3">
 <h3><code>difftime</code></h3>
 <p><code>difftime</code> takes two <code>POSIXct</code> values.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="W02_04_demo_tidyverse.html#cb17-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb17-2"><a href="W02_04_demo_tidyverse.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="W02_04_demo_tidyverse.html#cb17-3" aria-hidden="true" tabindex="-1"></a>later <span class="ot">&lt;-</span> now <span class="sc">+</span> <span class="dv">10000</span></span>
-<span id="cb17-4"><a href="W02_04_demo_tidyverse.html#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="W02_04_demo_tidyverse.html#cb17-5" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="W02_04_demo_tidyverse.html#cb19-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb19-2"><a href="W02_04_demo_tidyverse.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="W02_04_demo_tidyverse.html#cb19-3" aria-hidden="true" tabindex="-1"></a>later <span class="ot">&lt;-</span> now <span class="sc">+</span> <span class="dv">10000</span></span>
+<span id="cb19-4"><a href="W02_04_demo_tidyverse.html#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="W02_04_demo_tidyverse.html#cb19-5" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now)</span></code></pre></div>
 <p>You can also specify the unit of the output.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="W02_04_demo_tidyverse.html#cb18-1" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="W02_04_demo_tidyverse.html#cb20-1" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>)</span></code></pre></div>
 <p><code>difftime</code> returns an object of the Class <code>difftime</code>. However in our case, numeric values would be more handy than the Class <code>difftime</code>. So we’ll wrap the command in <code>as.numeric()</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="W02_04_demo_tidyverse.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
-<span id="cb19-2"><a href="W02_04_demo_tidyverse.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  &#39;difftime&#39; num 166.666666666667</span></span>
-<span id="cb19-3"><a href="W02_04_demo_tidyverse.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  - attr(*, &quot;units&quot;)= chr &quot;mins&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="W02_04_demo_tidyverse.html#cb20-1" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>))</span>
-<span id="cb20-2"><a href="W02_04_demo_tidyverse.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="W02_04_demo_tidyverse.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
-<span id="cb20-4"><a href="W02_04_demo_tidyverse.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  num 167</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="W02_04_demo_tidyverse.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
+<span id="cb21-2"><a href="W02_04_demo_tidyverse.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  &#39;difftime&#39; num 166.666666666667</span></span>
+<span id="cb21-3"><a href="W02_04_demo_tidyverse.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  - attr(*, &quot;units&quot;)= chr &quot;mins&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="W02_04_demo_tidyverse.html#cb22-1" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>))</span>
+<span id="cb22-2"><a href="W02_04_demo_tidyverse.html#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="W02_04_demo_tidyverse.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
+<span id="cb22-4"><a href="W02_04_demo_tidyverse.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  num 167</span></span></code></pre></div>
 </div>
 <div id="lead-lag" class="section level3">
 <h3><code>lead()</code> / <code>lag()</code></h3>
 <p><code>lead()</code> and <code>lag()</code> return a vector of the same length as the input, just offset by a specific number of values (default is 1). Consider the following sequence:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="W02_04_demo_tidyverse.html#cb21-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb21-2"><a href="W02_04_demo_tidyverse.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="W02_04_demo_tidyverse.html#cb21-3" aria-hidden="true" tabindex="-1"></a>numbers</span>
-<span id="cb21-4"><a href="W02_04_demo_tidyverse.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="W02_04_demo_tidyverse.html#cb23-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb23-2"><a href="W02_04_demo_tidyverse.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="W02_04_demo_tidyverse.html#cb23-3" aria-hidden="true" tabindex="-1"></a>numbers</span>
+<span id="cb23-4"><a href="W02_04_demo_tidyverse.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
 <p>We can now run <code>lead()</code> and <code>lag()</code> on this sequence to illustrate the output. <code>n =</code> specifies the offset, <code>default =</code> specifies the default value used to “fill” the emerging “empty spaces” of the vector.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="W02_04_demo_tidyverse.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers)</span>
-<span id="cb22-2"><a href="W02_04_demo_tidyverse.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  2  3  4  5  6  7  8  9 10 NA</span></span>
-<span id="cb22-3"><a href="W02_04_demo_tidyverse.html#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="W02_04_demo_tidyverse.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers,<span class="at">n =</span> <span class="dv">2</span>)</span>
-<span id="cb22-5"><a href="W02_04_demo_tidyverse.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  3  4  5  6  7  8  9 10 NA NA</span></span>
-<span id="cb22-6"><a href="W02_04_demo_tidyverse.html#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="W02_04_demo_tidyverse.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers)</span>
-<span id="cb22-8"><a href="W02_04_demo_tidyverse.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] NA  1  2  3  4  5  6  7  8  9</span></span>
-<span id="cb22-9"><a href="W02_04_demo_tidyverse.html#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="W02_04_demo_tidyverse.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb22-11"><a href="W02_04_demo_tidyverse.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] NA NA NA NA NA  1  2  3  4  5</span></span>
-<span id="cb22-12"><a href="W02_04_demo_tidyverse.html#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="W02_04_demo_tidyverse.html#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>, <span class="at">default =</span> <span class="dv">0</span>)</span>
-<span id="cb22-14"><a href="W02_04_demo_tidyverse.html#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] 0 0 0 0 0 1 2 3 4 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="W02_04_demo_tidyverse.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers)</span>
+<span id="cb24-2"><a href="W02_04_demo_tidyverse.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  2  3  4  5  6  7  8  9 10 NA</span></span>
+<span id="cb24-3"><a href="W02_04_demo_tidyverse.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="W02_04_demo_tidyverse.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers,<span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb24-5"><a href="W02_04_demo_tidyverse.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  3  4  5  6  7  8  9 10 NA NA</span></span>
+<span id="cb24-6"><a href="W02_04_demo_tidyverse.html#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="W02_04_demo_tidyverse.html#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers)</span>
+<span id="cb24-8"><a href="W02_04_demo_tidyverse.html#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] NA  1  2  3  4  5  6  7  8  9</span></span>
+<span id="cb24-9"><a href="W02_04_demo_tidyverse.html#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="W02_04_demo_tidyverse.html#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb24-11"><a href="W02_04_demo_tidyverse.html#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] NA NA NA NA NA  1  2  3  4  5</span></span>
+<span id="cb24-12"><a href="W02_04_demo_tidyverse.html#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="W02_04_demo_tidyverse.html#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>, <span class="at">default =</span> <span class="dv">0</span>)</span>
+<span id="cb24-14"><a href="W02_04_demo_tidyverse.html#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] 0 0 0 0 0 1 2 3 4 5</span></span></code></pre></div>
 <p>This helps us performing operations on subsequent values in a vector (or rows in a table). You can think of this a little bit like a moving temporal window that moves along the trajectory, or down the rows of a table respectively.</p>
 </div>
 <div id="mutate" class="section level3">
 <h3><code>mutate()</code></h3>
 <p>Using the above functions (<code>difftime()</code> and <code>lead()</code>), we can calculate the time lag, that is, the time difference between subsequent positions:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="W02_04_demo_tidyverse.html#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-2"><a href="W02_04_demo_tidyverse.html#cb23-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE<span class="sc">$</span>timelag  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(wildschwein_BE<span class="sc">$</span>DatetimeUTC),</span>
-<span id="cb23-3"><a href="W02_04_demo_tidyverse.html#cb23-3" aria-hidden="true" tabindex="-1"></a>                                               wildschwein_BE<span class="sc">$</span>DatetimeUTC,</span>
-<span id="cb23-4"><a href="W02_04_demo_tidyverse.html#cb23-4" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">units =</span> <span class="st">&quot;secs&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="W02_04_demo_tidyverse.html#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="W02_04_demo_tidyverse.html#cb25-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE<span class="sc">$</span>timelag  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(wildschwein_BE<span class="sc">$</span>DatetimeUTC),</span>
+<span id="cb25-3"><a href="W02_04_demo_tidyverse.html#cb25-3" aria-hidden="true" tabindex="-1"></a>                                               wildschwein_BE<span class="sc">$</span>DatetimeUTC,</span>
+<span id="cb25-4"><a href="W02_04_demo_tidyverse.html#cb25-4" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">units =</span> <span class="st">&quot;secs&quot;</span>))</span></code></pre></div>
 <p>We mention <code>wildschwein_BE</code> three times in this function, which is complicated. Instead, we can use <code>mutate()</code> to simplify the syntax:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="W02_04_demo_tidyverse.html#cb24-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein_BE,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),</span>
-<span id="cb24-2"><a href="W02_04_demo_tidyverse.html#cb24-2" aria-hidden="true" tabindex="-1"></a>                                                                      DatetimeUTC,</span>
-<span id="cb24-3"><a href="W02_04_demo_tidyverse.html#cb24-3" aria-hidden="true" tabindex="-1"></a>                                                                      <span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="W02_04_demo_tidyverse.html#cb26-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein_BE,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),</span>
+<span id="cb26-2"><a href="W02_04_demo_tidyverse.html#cb26-2" aria-hidden="true" tabindex="-1"></a>                                                                      DatetimeUTC,</span>
+<span id="cb26-3"><a href="W02_04_demo_tidyverse.html#cb26-3" aria-hidden="true" tabindex="-1"></a>                                                                      <span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)))</span></code></pre></div>
 </div>
 <div id="group_by" class="section level3">
 <h3><code>group_by()</code></h3>
 <p>Now let’s have a look at the vector created before:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="W02_04_demo_tidyverse.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wildschwein_BE<span class="sc">$</span>timelag)</span>
-<span id="cb25-2"><a href="W02_04_demo_tidyverse.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max.      NA&#39;s </span></span>
-<span id="cb25-3"><a href="W02_04_demo_tidyverse.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="do">## -22648470       896       903       571       916     60367         1</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="W02_04_demo_tidyverse.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wildschwein_BE<span class="sc">$</span>timelag)</span>
+<span id="cb27-2"><a href="W02_04_demo_tidyverse.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max.      NA&#39;s </span></span>
+<span id="cb27-3"><a href="W02_04_demo_tidyverse.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="do">## -22648470       896       903       571       916     60367         1</span></span></code></pre></div>
 <p>These values don’t make much sense: some are negative (which should not be the case) and some are very high (which would indicate large data gaps and should not be the case either). The reason for this result is that we did not consider that <code>timelag</code> should just be calculated between subsequent rows <em>of the same individual</em>. We can implement this by using <code>group_by()</code> (just as if calculating the convex hull last week).</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="W02_04_demo_tidyverse.html#cb26-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">group_by</span>(wildschwein_BE,TierID)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="W02_04_demo_tidyverse.html#cb28-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">group_by</span>(wildschwein_BE,TierID)</span></code></pre></div>
 <p>After adding this grouping variable, calculating the timelag automatically accounts for the individual trajectories.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="W02_04_demo_tidyverse.html#cb27-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein_BE,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),</span>
-<span id="cb27-2"><a href="W02_04_demo_tidyverse.html#cb27-2" aria-hidden="true" tabindex="-1"></a>                                                                      DatetimeUTC,</span>
-<span id="cb27-3"><a href="W02_04_demo_tidyverse.html#cb27-3" aria-hidden="true" tabindex="-1"></a>                                                                      <span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)))</span>
-<span id="cb27-4"><a href="W02_04_demo_tidyverse.html#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="W02_04_demo_tidyverse.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wildschwein_BE<span class="sc">$</span>timelag)</span>
-<span id="cb27-6"><a href="W02_04_demo_tidyverse.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
-<span id="cb27-7"><a href="W02_04_demo_tidyverse.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="do">##      12     896     903    1408     916   60367       3</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="W02_04_demo_tidyverse.html#cb29-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein_BE,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),</span>
+<span id="cb29-2"><a href="W02_04_demo_tidyverse.html#cb29-2" aria-hidden="true" tabindex="-1"></a>                                                                      DatetimeUTC,</span>
+<span id="cb29-3"><a href="W02_04_demo_tidyverse.html#cb29-3" aria-hidden="true" tabindex="-1"></a>                                                                      <span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)))</span>
+<span id="cb29-4"><a href="W02_04_demo_tidyverse.html#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="W02_04_demo_tidyverse.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wildschwein_BE<span class="sc">$</span>timelag)</span>
+<span id="cb29-6"><a href="W02_04_demo_tidyverse.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
+<span id="cb29-7"><a href="W02_04_demo_tidyverse.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="do">##      12     896     903    1408     916   60367       3</span></span></code></pre></div>
 </div>
 <div id="summarise" class="section level3">
 <h3><code>summarise()</code></h3>
 <p><code>summary()</code> returned the metrics over all individuals. If we want to summarise our data and get metrics <em>per animal</em>, we can use the <code>dplyr</code> function <code>summarise()</code>. In contrast to <code>mutate()</code>, which just adds a new column to the dataset, <code>summarise()</code> “collapses” the data to one row per individual (specified by <code>group_by</code>).</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="W02_04_demo_tidyverse.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(wildschwein_BE, <span class="at">mean =</span> <span class="fu">mean</span>(timelag, <span class="at">na.rm =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="W02_04_demo_tidyverse.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(wildschwein_BE, <span class="at">mean =</span> <span class="fu">mean</span>(timelag, <span class="at">na.rm =</span> T))</span></code></pre></div>
 <p>The above operation works fine on normal <code>data.frames</code>, but since <code>wildschwein_BE</code> is also an <code>sf</code> object, <code>summarise</code> actually merges all the points to a multipoint geometry, which takes a long time to calculate. In order to prevent this, we can set the objects geometry to <code>NULL</code>, which removes the spatial attribute.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="W02_04_demo_tidyverse.html#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-2"><a href="W02_04_demo_tidyverse.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">st_set_geometry</span>(wildschwein_BE,<span class="cn">NULL</span>), <span class="at">mean_timelag =</span> <span class="fu">mean</span>(timelag, <span class="at">na.rm =</span> T))</span>
-<span id="cb29-3"><a href="W02_04_demo_tidyverse.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
-<span id="cb29-4"><a href="W02_04_demo_tidyverse.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID mean_timelag</span></span>
-<span id="cb29-5"><a href="W02_04_demo_tidyverse.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="do">## * &lt;chr&gt;         &lt;dbl&gt;</span></span>
-<span id="cb29-6"><a href="W02_04_demo_tidyverse.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A          1286.</span></span>
-<span id="cb29-7"><a href="W02_04_demo_tidyverse.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 016A          1412.</span></span>
-<span id="cb29-8"><a href="W02_04_demo_tidyverse.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 018A          1599.</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="W02_04_demo_tidyverse.html#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="W02_04_demo_tidyverse.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">st_set_geometry</span>(wildschwein_BE,<span class="cn">NULL</span>), <span class="at">mean_timelag =</span> <span class="fu">mean</span>(timelag, <span class="at">na.rm =</span> T))</span>
+<span id="cb31-3"><a href="W02_04_demo_tidyverse.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
+<span id="cb31-4"><a href="W02_04_demo_tidyverse.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID mean_timelag</span></span>
+<span id="cb31-5"><a href="W02_04_demo_tidyverse.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;         &lt;dbl&gt;</span></span>
+<span id="cb31-6"><a href="W02_04_demo_tidyverse.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A          1286.</span></span>
+<span id="cb31-7"><a href="W02_04_demo_tidyverse.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 016A          1412.</span></span>
+<span id="cb31-8"><a href="W02_04_demo_tidyverse.html#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 018A          1599.</span></span></code></pre></div>
 </div>
 <div id="piping" class="section level3">
 <h3>Piping</h3>
 <p>The code above may be a bit hard to read, since it has so many nested functions which need to be read from the inside out. In order to make code readable in a more human-friendly way, we can use the piping command <code>%&gt;%</code> from <code>magrittr</code>, which is included in <code>dplyr</code> and the <code>tidyverse</code>. The above code then looks like this:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="W02_04_demo_tidyverse.html#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="W02_04_demo_tidyverse.html#cb30-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="sc">%&gt;%</span>                     <span class="co"># Take wildschwein_BE...</span></span>
-<span id="cb30-3"><a href="W02_04_demo_tidyverse.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_geometry</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span>            <span class="co"># ...remove the geometry column...</span></span>
-<span id="cb30-4"><a href="W02_04_demo_tidyverse.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span>                 <span class="co"># ...group it by TierID</span></span>
-<span id="cb30-5"><a href="W02_04_demo_tidyverse.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(                           <span class="co"># Summarise the data...</span></span>
-<span id="cb30-6"><a href="W02_04_demo_tidyverse.html#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_timelag =</span> <span class="fu">mean</span>(timelag,<span class="at">na.rm =</span> T) <span class="co"># ...by calculating the mean timelag</span></span>
-<span id="cb30-7"><a href="W02_04_demo_tidyverse.html#cb30-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-8"><a href="W02_04_demo_tidyverse.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
-<span id="cb30-9"><a href="W02_04_demo_tidyverse.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID mean_timelag</span></span>
-<span id="cb30-10"><a href="W02_04_demo_tidyverse.html#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="do">## * &lt;chr&gt;         &lt;dbl&gt;</span></span>
-<span id="cb30-11"><a href="W02_04_demo_tidyverse.html#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A          1286.</span></span>
-<span id="cb30-12"><a href="W02_04_demo_tidyverse.html#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 016A          1412.</span></span>
-<span id="cb30-13"><a href="W02_04_demo_tidyverse.html#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 018A          1599.</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="W02_04_demo_tidyverse.html#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="W02_04_demo_tidyverse.html#cb32-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="sc">%&gt;%</span>                     <span class="co"># Take wildschwein_BE...</span></span>
+<span id="cb32-3"><a href="W02_04_demo_tidyverse.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_geometry</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span>            <span class="co"># ...remove the geometry column...</span></span>
+<span id="cb32-4"><a href="W02_04_demo_tidyverse.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span>                 <span class="co"># ...group it by TierID</span></span>
+<span id="cb32-5"><a href="W02_04_demo_tidyverse.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(                           <span class="co"># Summarise the data...</span></span>
+<span id="cb32-6"><a href="W02_04_demo_tidyverse.html#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_timelag =</span> <span class="fu">mean</span>(timelag,<span class="at">na.rm =</span> T) <span class="co"># ...by calculating the mean timelag</span></span>
+<span id="cb32-7"><a href="W02_04_demo_tidyverse.html#cb32-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-8"><a href="W02_04_demo_tidyverse.html#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
+<span id="cb32-9"><a href="W02_04_demo_tidyverse.html#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID mean_timelag</span></span>
+<span id="cb32-10"><a href="W02_04_demo_tidyverse.html#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;         &lt;dbl&gt;</span></span>
+<span id="cb32-11"><a href="W02_04_demo_tidyverse.html#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A          1286.</span></span>
+<span id="cb32-12"><a href="W02_04_demo_tidyverse.html#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 016A          1412.</span></span>
+<span id="cb32-13"><a href="W02_04_demo_tidyverse.html#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 018A          1599.</span></span></code></pre></div>
 </div>
 <div id="bring-it-all-together" class="section level3">
 <h3>Bring it all together…</h3>
 <p>Here is the same approach with a different, smaller dataset:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="W02_04_demo_tidyverse.html#cb31-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb31-2"><a href="W02_04_demo_tidyverse.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID=</span><span class="fu">c</span>(<span class="dv">8001</span>,<span class="dv">8003</span>,<span class="dv">8004</span>,<span class="dv">8005</span>,<span class="dv">8800</span>,<span class="dv">8820</span>,<span class="dv">3000</span>,<span class="dv">3001</span>,<span class="dv">3002</span>,<span class="dv">3003</span>,<span class="dv">8330</span>,<span class="dv">7222</span>),</span>
-<span id="cb31-3"><a href="W02_04_demo_tidyverse.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex=</span><span class="fu">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>),</span>
-<span id="cb31-4"><a href="W02_04_demo_tidyverse.html#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age=</span><span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>),</span>
-<span id="cb31-5"><a href="W02_04_demo_tidyverse.html#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight=</span><span class="fu">c</span>(<span class="fl">50.755</span>,<span class="fl">43.409</span>,<span class="fl">12.000</span>,<span class="fl">16.787</span>,<span class="fl">20.987</span>,<span class="fl">25.765</span>,<span class="fl">22.0122</span>,<span class="fl">21.343</span>,<span class="fl">12.532</span>,<span class="fl">54.32</span>,<span class="fl">11.027</span>,<span class="fl">88.08</span>)</span>
-<span id="cb31-6"><a href="W02_04_demo_tidyverse.html#cb31-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb31-7"><a href="W02_04_demo_tidyverse.html#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-8"><a href="W02_04_demo_tidyverse.html#cb31-8" aria-hidden="true" tabindex="-1"></a>pigs</span>
-<span id="cb31-9"><a href="W02_04_demo_tidyverse.html#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID sex age  weight</span></span>
-<span id="cb31-10"><a href="W02_04_demo_tidyverse.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    8001   M   A 50.7550</span></span>
-<span id="cb31-11"><a href="W02_04_demo_tidyverse.html#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2    8003   M   A 43.4090</span></span>
-<span id="cb31-12"><a href="W02_04_demo_tidyverse.html#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 3    8004   M   J 12.0000</span></span>
-<span id="cb31-13"><a href="W02_04_demo_tidyverse.html#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 4    8005   F   A 16.7870</span></span>
-<span id="cb31-14"><a href="W02_04_demo_tidyverse.html#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 5    8800   M   J 20.9870</span></span>
-<span id="cb31-15"><a href="W02_04_demo_tidyverse.html#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 6    8820   M   J 25.7650</span></span>
-<span id="cb31-16"><a href="W02_04_demo_tidyverse.html#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 7    3000   F   J 22.0122</span></span>
-<span id="cb31-17"><a href="W02_04_demo_tidyverse.html#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 8    3001   F   A 21.3430</span></span>
-<span id="cb31-18"><a href="W02_04_demo_tidyverse.html#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 9    3002   M   J 12.5320</span></span>
-<span id="cb31-19"><a href="W02_04_demo_tidyverse.html#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 10   3003   F   J 54.3200</span></span>
-<span id="cb31-20"><a href="W02_04_demo_tidyverse.html#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 11   8330   M   A 11.0270</span></span>
-<span id="cb31-21"><a href="W02_04_demo_tidyverse.html#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 12   7222   F   A 88.0800</span></span>
-<span id="cb31-22"><a href="W02_04_demo_tidyverse.html#cb31-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-23"><a href="W02_04_demo_tidyverse.html#cb31-23" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
-<span id="cb31-24"><a href="W02_04_demo_tidyverse.html#cb31-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(         </span>
-<span id="cb31-25"><a href="W02_04_demo_tidyverse.html#cb31-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
-<span id="cb31-26"><a href="W02_04_demo_tidyverse.html#cb31-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb31-27"><a href="W02_04_demo_tidyverse.html#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean_weight</span></span>
-<span id="cb31-28"><a href="W02_04_demo_tidyverse.html#cb31-28" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    31.58477</span></span>
-<span id="cb31-29"><a href="W02_04_demo_tidyverse.html#cb31-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-30"><a href="W02_04_demo_tidyverse.html#cb31-30" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
-<span id="cb31-31"><a href="W02_04_demo_tidyverse.html#cb31-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb31-32"><a href="W02_04_demo_tidyverse.html#cb31-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
-<span id="cb31-33"><a href="W02_04_demo_tidyverse.html#cb31-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
-<span id="cb31-34"><a href="W02_04_demo_tidyverse.html#cb31-34" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb31-35"><a href="W02_04_demo_tidyverse.html#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2 x 2</span></span>
-<span id="cb31-36"><a href="W02_04_demo_tidyverse.html#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="do">##   sex   mean_weight</span></span>
-<span id="cb31-37"><a href="W02_04_demo_tidyverse.html#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="do">## * &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span id="cb31-38"><a href="W02_04_demo_tidyverse.html#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 F            40.5</span></span>
-<span id="cb31-39"><a href="W02_04_demo_tidyverse.html#cb31-39" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 M            25.2</span></span>
-<span id="cb31-40"><a href="W02_04_demo_tidyverse.html#cb31-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-41"><a href="W02_04_demo_tidyverse.html#cb31-41" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
-<span id="cb31-42"><a href="W02_04_demo_tidyverse.html#cb31-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex,age) <span class="sc">%&gt;%</span></span>
-<span id="cb31-43"><a href="W02_04_demo_tidyverse.html#cb31-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
-<span id="cb31-44"><a href="W02_04_demo_tidyverse.html#cb31-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
-<span id="cb31-45"><a href="W02_04_demo_tidyverse.html#cb31-45" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb31-46"><a href="W02_04_demo_tidyverse.html#cb31-46" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 4 x 3</span></span>
-<span id="cb31-47"><a href="W02_04_demo_tidyverse.html#cb31-47" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   sex [2]</span></span>
-<span id="cb31-48"><a href="W02_04_demo_tidyverse.html#cb31-48" aria-hidden="true" tabindex="-1"></a><span class="do">##   sex   age   mean_weight</span></span>
-<span id="cb31-49"><a href="W02_04_demo_tidyverse.html#cb31-49" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span id="cb31-50"><a href="W02_04_demo_tidyverse.html#cb31-50" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 F     A            42.1</span></span>
-<span id="cb31-51"><a href="W02_04_demo_tidyverse.html#cb31-51" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 F     J            38.2</span></span>
-<span id="cb31-52"><a href="W02_04_demo_tidyverse.html#cb31-52" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 M     A            35.1</span></span>
-<span id="cb31-53"><a href="W02_04_demo_tidyverse.html#cb31-53" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 M     J            17.8</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="W02_04_demo_tidyverse.html#cb33-1" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb33-2"><a href="W02_04_demo_tidyverse.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID=</span><span class="fu">c</span>(<span class="dv">8001</span>,<span class="dv">8003</span>,<span class="dv">8004</span>,<span class="dv">8005</span>,<span class="dv">8800</span>,<span class="dv">8820</span>,<span class="dv">3000</span>,<span class="dv">3001</span>,<span class="dv">3002</span>,<span class="dv">3003</span>,<span class="dv">8330</span>,<span class="dv">7222</span>),</span>
+<span id="cb33-3"><a href="W02_04_demo_tidyverse.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex=</span><span class="fu">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>),</span>
+<span id="cb33-4"><a href="W02_04_demo_tidyverse.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age=</span><span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>),</span>
+<span id="cb33-5"><a href="W02_04_demo_tidyverse.html#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight=</span><span class="fu">c</span>(<span class="fl">50.755</span>,<span class="fl">43.409</span>,<span class="fl">12.000</span>,<span class="fl">16.787</span>,<span class="fl">20.987</span>,<span class="fl">25.765</span>,<span class="fl">22.0122</span>,<span class="fl">21.343</span>,<span class="fl">12.532</span>,<span class="fl">54.32</span>,<span class="fl">11.027</span>,<span class="fl">88.08</span>)</span>
+<span id="cb33-6"><a href="W02_04_demo_tidyverse.html#cb33-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-7"><a href="W02_04_demo_tidyverse.html#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="W02_04_demo_tidyverse.html#cb33-8" aria-hidden="true" tabindex="-1"></a>pigs</span>
+<span id="cb33-9"><a href="W02_04_demo_tidyverse.html#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID sex age  weight</span></span>
+<span id="cb33-10"><a href="W02_04_demo_tidyverse.html#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    8001   M   A 50.7550</span></span>
+<span id="cb33-11"><a href="W02_04_demo_tidyverse.html#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2    8003   M   A 43.4090</span></span>
+<span id="cb33-12"><a href="W02_04_demo_tidyverse.html#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 3    8004   M   J 12.0000</span></span>
+<span id="cb33-13"><a href="W02_04_demo_tidyverse.html#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 4    8005   F   A 16.7870</span></span>
+<span id="cb33-14"><a href="W02_04_demo_tidyverse.html#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 5    8800   M   J 20.9870</span></span>
+<span id="cb33-15"><a href="W02_04_demo_tidyverse.html#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 6    8820   M   J 25.7650</span></span>
+<span id="cb33-16"><a href="W02_04_demo_tidyverse.html#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 7    3000   F   J 22.0122</span></span>
+<span id="cb33-17"><a href="W02_04_demo_tidyverse.html#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 8    3001   F   A 21.3430</span></span>
+<span id="cb33-18"><a href="W02_04_demo_tidyverse.html#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 9    3002   M   J 12.5320</span></span>
+<span id="cb33-19"><a href="W02_04_demo_tidyverse.html#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 10   3003   F   J 54.3200</span></span>
+<span id="cb33-20"><a href="W02_04_demo_tidyverse.html#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 11   8330   M   A 11.0270</span></span>
+<span id="cb33-21"><a href="W02_04_demo_tidyverse.html#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 12   7222   F   A 88.0800</span></span>
+<span id="cb33-22"><a href="W02_04_demo_tidyverse.html#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-23"><a href="W02_04_demo_tidyverse.html#cb33-23" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
+<span id="cb33-24"><a href="W02_04_demo_tidyverse.html#cb33-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(         </span>
+<span id="cb33-25"><a href="W02_04_demo_tidyverse.html#cb33-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
+<span id="cb33-26"><a href="W02_04_demo_tidyverse.html#cb33-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-27"><a href="W02_04_demo_tidyverse.html#cb33-27" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean_weight</span></span>
+<span id="cb33-28"><a href="W02_04_demo_tidyverse.html#cb33-28" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    31.58477</span></span>
+<span id="cb33-29"><a href="W02_04_demo_tidyverse.html#cb33-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-30"><a href="W02_04_demo_tidyverse.html#cb33-30" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
+<span id="cb33-31"><a href="W02_04_demo_tidyverse.html#cb33-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb33-32"><a href="W02_04_demo_tidyverse.html#cb33-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
+<span id="cb33-33"><a href="W02_04_demo_tidyverse.html#cb33-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
+<span id="cb33-34"><a href="W02_04_demo_tidyverse.html#cb33-34" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-35"><a href="W02_04_demo_tidyverse.html#cb33-35" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2 x 2</span></span>
+<span id="cb33-36"><a href="W02_04_demo_tidyverse.html#cb33-36" aria-hidden="true" tabindex="-1"></a><span class="do">##   sex   mean_weight</span></span>
+<span id="cb33-37"><a href="W02_04_demo_tidyverse.html#cb33-37" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;       &lt;dbl&gt;</span></span>
+<span id="cb33-38"><a href="W02_04_demo_tidyverse.html#cb33-38" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 F            40.5</span></span>
+<span id="cb33-39"><a href="W02_04_demo_tidyverse.html#cb33-39" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 M            25.2</span></span>
+<span id="cb33-40"><a href="W02_04_demo_tidyverse.html#cb33-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-41"><a href="W02_04_demo_tidyverse.html#cb33-41" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
+<span id="cb33-42"><a href="W02_04_demo_tidyverse.html#cb33-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex,age) <span class="sc">%&gt;%</span></span>
+<span id="cb33-43"><a href="W02_04_demo_tidyverse.html#cb33-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
+<span id="cb33-44"><a href="W02_04_demo_tidyverse.html#cb33-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
+<span id="cb33-45"><a href="W02_04_demo_tidyverse.html#cb33-45" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-46"><a href="W02_04_demo_tidyverse.html#cb33-46" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 4 x 3</span></span>
+<span id="cb33-47"><a href="W02_04_demo_tidyverse.html#cb33-47" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   sex [2]</span></span>
+<span id="cb33-48"><a href="W02_04_demo_tidyverse.html#cb33-48" aria-hidden="true" tabindex="-1"></a><span class="do">##   sex   age   mean_weight</span></span>
+<span id="cb33-49"><a href="W02_04_demo_tidyverse.html#cb33-49" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
+<span id="cb33-50"><a href="W02_04_demo_tidyverse.html#cb33-50" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 F     A            42.1</span></span>
+<span id="cb33-51"><a href="W02_04_demo_tidyverse.html#cb33-51" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 F     J            38.2</span></span>
+<span id="cb33-52"><a href="W02_04_demo_tidyverse.html#cb33-52" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 M     A            35.1</span></span>
+<span id="cb33-53"><a href="W02_04_demo_tidyverse.html#cb33-53" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 M     J            17.8</span></span></code></pre></div>
 
 </div>
 </div>
@@ -464,20 +425,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ## Tasks and inputs
 
 
@@ -35,8 +40,6 @@ Note:
 
 ```{r, code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
-
-
 
 ### Task 3: Explore Data
 
@@ -214,7 +217,6 @@ pk100_BE <- subset(pk100_BE,1:3)
 plot(pk100_BE)
 
 ```
-
 
 
 ### Task 6: Adding a background map
