@@ -143,29 +143,29 @@ ggplot(wildschwein_join) +
 
 ## Task 6 ######################################################################
 
+## 
+## meanmeetpoints <- wildschwein_join %>%
+##   filter(meet) %>%
+##   mutate(
+##     E.mean = (E.x+E.y)/2,
+##     N.mean = (N.x+N.y)/2
+## 
+##   )
+## 
+## library(plotly)
+## plot_ly(wildschwein_join, x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
+##   add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%
+##   add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%
+##   layout(scene = list(xaxis = list(title = 'E'),
+##                       yaxis = list(title = 'N'),
+##                       zaxis = list(title = 'Time')))
+## 
 
-meanmeetpoints <- wildschwein_join %>%
-  filter(meet) %>%
-  mutate(
-    E.mean = (E.x+E.y)/2,
-    N.mean = (N.x+N.y)/2
-
-  )
-
-library(plotly)
-plot_ly(wildschwein_join, x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
-  add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%
-  add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%
-  layout(scene = list(xaxis = list(title = 'E'),
-                      yaxis = list(title = 'N'),
-                      zaxis = list(title = 'Time')))
-
-
-wildschwein_join %>%
-  filter(DatetimeRound<"2015-04-04") %>%
-  plot_ly(x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
-  add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%
-  add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%
-  layout(scene = list(xaxis = list(title = 'E'),
-                      yaxis = list(title = 'N'),
-                      zaxis = list(title = 'Time')))
+## wildschwein_join %>%
+##   filter(DatetimeRound<"2015-04-04") %>%
+##   plot_ly(x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
+##   add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%
+##   add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%
+##   layout(scene = list(xaxis = list(title = 'E'),
+##                       yaxis = list(title = 'N'),
+##                       zaxis = list(title = 'Time')))
