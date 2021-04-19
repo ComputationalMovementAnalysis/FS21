@@ -1,0 +1,36 @@
+### Task 1: Segmentation
+
+```{r}
+
+```
+
+### Task 2: Specify and apply threshold *d*
+
+```{r}
+
+```
+
+### Task 3: Visualize segmented trajectories
+
+```{r}
+
+```
+
+### Task 4: Segment-based analysis
+
+```{r}
+
+```
+
+### Task 5: Similarity measures 
+
+```{r}
+
+```
+
+### Task 6: Calculate similarity
+
+```{r}
+
+```
+

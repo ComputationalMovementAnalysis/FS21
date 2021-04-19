@@ -1,0 +1,42 @@
+### Task 1: Initialize project
+
+```{r}
+
+```
+
+### Task 2: Import data
+
+```{r}
+
+```
+
+### Task 3: Explore Data
+
+```{r}
+
+```
+
+### Task 4: Project data from WGS84
+
+```{r}
+
+```
+
+### Task 5: Ploting spatial objects
+
+```{r}
+
+```
+
+### Task 6: Adding a background map
+
+```{r}
+
+```
+
+### Task 7: Create an interactive map
+
+```{r}
+
+```
+

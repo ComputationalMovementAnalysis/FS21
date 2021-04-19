@@ -1,0 +1,36 @@
+### Task 1: Write your own functions
+
+```{r}
+
+```
+
+### Task 2: Filter data
+
+```{r}
+
+```
+
+### Task 3: Create Join Key
+
+```{r}
+
+```
+
+### Task 4: Measuring distance at concurrent locations
+
+```{r}
+
+```
+
+### Task 5: Visualize data
+
+```{r}
+
+```
+
+### Task 6 (optional): Visualize data as timecube with `plotly`
+
+```{r}
+
+```
+

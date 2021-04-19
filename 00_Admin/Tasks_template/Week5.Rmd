@@ -1,0 +1,24 @@
+### Tasks 1: Import and visualize spatial data
+
+```{r}
+
+```
+
+### Task 2: Annotate Trajectories from vector data
+
+```{r}
+
+```
+
+### Task 3: Explore annotated trajectories
+
+```{r}
+
+```
+
+### Task 4: Annotate Trajectories from raster data
+
+```{r}
+
+```
+

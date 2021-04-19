@@ -1,0 +1,30 @@
+### Task 1: Getting an overview
+
+```{r}
+
+```
+
+### Task 2: Deriving movement parameters I: Speed
+
+```{r}
+
+```
+
+### Task 3: Cross-scale movement analysis
+
+```{r}
+
+```
+
+### Task 4: Deriving movement parameters II: Rolling window functions
+
+```{r}
+
+```
+
+### Task 5 (optional): Calculate turning angles
+
+```{r}
+
+```
+
