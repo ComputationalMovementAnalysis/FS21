@@ -18,7 +18,7 @@ We will implement this method on the following dummy data. Once you've grasped t
 Note: I use `tibble()` instead of `data.frame()`. The two functions are very similar, this is just a matter of preference. 
 
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 
 set.seed(10)
 n = 20
@@ -45,7 +45,7 @@ The first step is calculating the distances to temporally close samples within t
 Just like last week, we use the formular for calculating the Euclidean distance in in combination with `lead()` and `lag()`. For example, to create the necessary offset of n-2, we use `lag(x, 2)`. For each offset, we create one individual column.
 
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 
 df <- df %>%
   mutate(
@@ -60,7 +60,7 @@ df <- df %>%
 Now we want to calculate the mean distance of `nMinus2`, `nMinus1`, `nPlus1`, `nPlus2` for each row. The below function calculates the overall mean of all columns, which is not what we want.
 
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 df %>%
   mutate(
     stepMean = mean(c(nMinus2, nMinus1,nPlus1,nPlus2), na.rm = T)
@@ -70,7 +70,7 @@ df %>%
 
 Since we want the mean value *per Row*, we have to explicitly specify this before `mutate()` with the function `rowwise()`. Note the new grouping variable `<by row>` when printing the dataframe to the console.
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 df <- df %>%
   rowwise() %>%
   mutate(
@@ -82,7 +82,7 @@ df
 
 We can now determin if an animal is moving or not by specifying a threshold on `stepMean`
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 
 df <- df %>% 
   mutate(
@@ -104,14 +104,14 @@ ggplot(df, aes(X,Y)) +
 When segmenting trajectories, we often want to compute metrics on the basis of *each segment*. Within the tidyverse logic, we need a unique ID per segment that we can pass to `group_by()`. In other words, we need a unique ID for a sequence of successive `TRUE` values. For lack of a better way, we suggest solving this problem with `cumsum()`.
 
 `cumsum()` returns the cummulative sum of a given vector:
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 one_to_ten <- 1:10
 one_to_ten
 cumsum(one_to_ten)
 ```
 
 In R, `TRUE`and `FALSE` are interprated as `1` and `0` if coerced to an integer. 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 as.integer(TRUE)
 as.integer(FALSE)
 
@@ -120,7 +120,7 @@ TRUE+TRUE
 
 Therefore, `cumsum()` on a boolean vector increases the count on each `TRUE` value:
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 
 boolvec <- c(FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,TRUE)
 
@@ -131,7 +131,7 @@ df_cumsum
 
 You might have noticed that this is pretty much exactly the opposite of what we need. We therefore have to take the inverse of the boolean vector:
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 
 df_cumsum %>%
   mutate(
@@ -146,7 +146,7 @@ df_cumsum %>%
 To simplify our workflow, we can we can take the inverse of `boolvec` *within* our `cumsum()` statement and save an extra line of code.
 
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 df_cumsum %>%
   mutate(
     cumsum2 = cumsum(!boolvec)
@@ -164,24 +164,8 @@ With the skills from the input above we can now implement the segmentation algor
 
 Next, we have to have to define our *temporal window v* [@laube2011]. To keep things simple, I would suggest a window of n +/- 2 minutes. With a sampling interval of around 1 minute, this corresponds to a window size of n +/- 2 positions.
 
-```{r}
-
-
-caro60 <- read_delim("00_Rawdata/caro60.csv",",")
-
-caro60 <- caro60 %>%
-  mutate(
-    stepMean = rowMeans(                       # We present here a slightly different 
-      cbind(                                   # approach as presented in the input
-        sqrt((lag(E,2)-E)^2+(lag(E,2)-E)^2),   # cbind() creates a matrix with the same 
-        sqrt((lag(E,1)-E)^2+(lag(E,1)-E)^2),   # number of rows as the original dataframe,
-        sqrt((E-lead(E,1))^2+(E-lead(E,1))^2), # but with four columns, and rowMeans() returns 
-        sqrt((E-lead(E,2))^2+(E-lead(E,2))^2)  # a single vector (again, with the same number 
-        )                                      # of rows as the original dataframe)
-      )
-  )
+```{r, code =  mydecrypt("13_Week3/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
-
 
 ```{r}
 #- chunkend
@@ -194,23 +178,7 @@ After calculating the Euclidean distances to positions within the temporal windo
 
 Store the new information (boolean to differentiate between stops (`TRUE`) and moves (`FALSE`)) in a new column named `moving`.
 
-
-
-```{r, echo = F, include = T, eval = T, fig.cap="My summary statistics shows a mean of 5, the histogram shows that this might be a reasonable threshold."}
-
-summary(caro60$stepMean)
-
-ggplot(caro60, aes(stepMean)) +
-  geom_histogram(binwidth = 1) +
-  geom_vline(xintercept = 5)
-```
-
-```{r}
-caro60 <- caro60 %>%
-  mutate(
-    moving = stepMean > 5
-  ) 
-
+```{r, code =  mydecrypt("13_Week3/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -218,30 +186,11 @@ caro60 <- caro60 %>%
 
 Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with `geom_path()`, `geom_point()` and `coord_equal()`. Assign `colour = moving` within `aes()` to distinguish between segments *with* "movement" and *without*.
 
- 
-
-```{r, echo = F, include = T, eval = T}
-
-p1 <- caro60 %>%
-  ggplot() +
-  geom_path(aes(E,N), alpha = 0.5) +
-  geom_point(aes(E,N,colour = moving)) +
-  theme_minimal() +
-  coord_equal()
-
-p1
-
+```{r, code =  mydecrypt("13_Week3/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
 ```
+
 
 Tip: if you want to get a `ggplot()` with Zoom capability, just load the library `plotly` and wrap the `ggplot()` function with `ggplotly()`
-
-
-```{r, echo = F, include = T, eval = knitr::is_html_output(), fig.cap="This is the same plot as above, wrapped in the function `ggplotly()` from the library `plotly`. With this function, the plot becomes interactive. Try it out!"}
-
-library(plotly)
-ggplotly(p1)
-
-```
 
 
 ```{r, echo = F, include=T, eval = knitr::is_latex_output(), results = "asis", purl = F}
@@ -263,36 +212,9 @@ In order to do this, we need a *unique* name for each segment that we can use as
 5. Remove segments with a duration less than 3 minutes
 6. inspect your data visually
 
-```{r, echo = F, include = T, eval = T}
 
-caro60_moveseg <-caro60 %>%
-  filter(!is.na(moving)) %>%
-  ungroup() %>%
-  mutate(
-    segment_ID = as.factor(1+cumsum(!moving))
-  )  %>%
-  filter(moving) %>%
-  group_by(segment_ID) %>%
-  mutate(
-    segment_duration = as.integer(difftime(max(DatetimeUTC),min(DatetimeUTC),units = "mins"))
-  ) %>%
-  filter(segment_duration >= 3)
-
-
-
-bind_rows(mutate(caro60, lab = "before"),mutate(caro60_moveseg,lab = "after")) %>%
-  mutate(lab = fct_rev(lab)) %>%
-  ggplot(aes(E,N, colour = segment_ID)) +
-  geom_path(alpha = 0.5) +
-  geom_point() +
-  theme_minimal() +
-  coord_equal() + 
-  facet_wrap(~lab)
-
-
-
+```{r, code =  mydecrypt("13_Week3/solutions/task_4.R",".passphrase"), opts.label="solution_showOutput"}
 ```
-
 
 
 ### Task 5: Similarity measures 
@@ -301,70 +223,9 @@ Import the dataset `pedestrian.csv` (available on moodle) as a dataframe (you do
 
 We will analyse these trajectories with the package `SimilarityMeasures`, always comparing trajectory 1 pairwise to the other trajectories 2-6. For this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
 
-
-```{r}
-
-library(ggrepel)
-pedestrians <- read_delim("00_Rawdata/pedestrian.csv",",")
-
-pedestrians <- pedestrians %>%
-  group_by(TrajID) %>%
-  mutate(index = row_number()) %>%
-  ungroup() %>%
-  mutate(TrajID = as.factor(TrajID))
-
-
-plotraj <- function(idx,lab = F){
-  dat <- pedestrians %>%
-    filter(TrajID %in% c(1,idx))
-  
-  p <- ggplot(dat, aes(E,N, colour = TrajID, label = index)) +
-    geom_path(colour = "grey", alpha = 0.5) + 
-    geom_point() + 
-    # scale_color_discrete(guide = "none") +
-    # labs(title = paste("Trajectories 1 and",idx)) +
-    theme_minimal() +
-    coord_equal()
-  
-  if(lab == T){
-    p <- p + 
-      geom_text_repel(data = filter(dat,index == 1 | index %% 2 == 0),
-                      aes(E,N,label = index,colour = TrajID),
-                      show.legend = FALSE) 
-  }
-  
-  p
-}
-
+```{r, code =  mydecrypt("13_Week3/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
-
-```{r, echo = F, include = T, eval = T, fig.cap="Comparing Trajectories 1 and 2"}
-plotraj(2)
-
-
-```
-
-```{r, echo = F, include = T, eval = T, fig.cap="Comparing Trajectories 1 and 3. Some positions are labelled with the position index to illustrate the direction of movement per trajectory."}
-plotraj(3,T) 
-
-
-```
-
-```{r, echo = F, include = T, eval = T, fig.cap="Comparing Trajectories 1 and 4"}
-plotraj(4)
-
-```
-
-```{r, echo = F, include = T, eval = T, fig.cap="Comparing Trajectories 1 and 5"}
-plotraj(5)
-
-```
-
-```{r, echo = F, include = T, eval = T, fig.cap="Comparing Trajectories 1 and 6"}
-
-plotraj(6)
-```
 
 ```{r}
 #- chunkend
@@ -381,52 +242,9 @@ Note:
 - `LCSS`takes very long to compute. The accuracy of the algorithm (`pointSpacing =` ,`pointDistance =` and `errorMarg =`) can be varied to provide faster calculations. Please see @vlachos2002 for more information.
 
 
-
-```{r}
-
-# instead of repeating the same step 6 times, I use purrr::map() 
-# which creates a list of dataframes. Feel free to use a method
-# with which you feel comfortable.
-
-pedestrians_matrix <- pedestrians %>%
-  split(.$TrajID) %>%
-  map(function(x){
-    x %>%
-      dplyr::select(E,N) %>% 
-      as.matrix()
-  })
-
+```{r, code =  mydecrypt("13_Week3/solutions/task_6.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
-
-```{r, echo = F, include=T, eval = T, fig.cap="Comparing Trajectory 1 to trajectories 2 to 6"}
-library(SimilarityMeasures)
-
-# Again, we use one of the purrr::map_* family of functions
-# to calculate three indicies over all 5 pairs in one go.
-# As before: feel free to use a different method you feel 
-# more comfortable in.
-
-
-pedest_measures <- imap_dfr(pedestrians_matrix, ~data_frame(
-  traj = .y,
-  DTW = DTW(.x,pedestrians_matrix[[1]]),
-  EditDist = EditDist(.x,pedestrians_matrix[[1]]),
-  Frechet = Frechet(.x,pedestrians_matrix[[1]]),
-  LCSS = LCSS(.x,pedestrians_matrix[[1]],5,4,4)
-  ))
-
-
-
-pedest_measures %>%
-  gather(key,val,-traj) %>%
-  ggplot(aes(traj,val, fill = traj))+ 
-  geom_bar(stat = "identity") +
-  facet_wrap(~key,scales = "free") +
-  theme(legend.position = "none") +
-  labs(x = "Comparison trajectory", y = "Value", title = "Computed similarities using different measures \nbetween trajectory 1 to all other trajectories ")
-
-```
 
 
 

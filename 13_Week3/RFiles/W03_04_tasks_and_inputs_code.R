@@ -78,172 +78,28 @@ df_cumsum %>%
 #- chunkend
 
 
+library(terra)
 
-caro60 <- read_delim("00_Rawdata/caro60.csv",",")
+pk100_BE <- terra::rast("00_Rawdata/pk100_BE_2056.tif")
 
-caro60 <- caro60 %>%
-  mutate(
-    stepMean = rowMeans(                       # We present here a slightly different 
-      cbind(                                   # approach as presented in the input
-        sqrt((lag(E,2)-E)^2+(lag(E,2)-E)^2),   # cbind() creates a matrix with the same 
-        sqrt((lag(E,1)-E)^2+(lag(E,1)-E)^2),   # number of rows as the original dataframe,
-        sqrt((E-lead(E,1))^2+(E-lead(E,1))^2), # but with four columns, and rowMeans() returns 
-        sqrt((E-lead(E,2))^2+(E-lead(E,2))^2)  # a single vector (again, with the same number 
-        )                                      # of rows as the original dataframe)
-      )
-  )
+pk100_BE
 
 #- chunkend
 
 
-summary(caro60$stepMean)
-
-ggplot(caro60, aes(stepMean)) +
-  geom_histogram(binwidth = 1) +
-  geom_vline(xintercept = 5)
-
-caro60 <- caro60 %>%
-  mutate(
-    moving = stepMean > 5
-  ) 
-
-
-
-p1 <- caro60 %>%
-  ggplot() +
-  geom_path(aes(E,N), alpha = 0.5) +
-  geom_point(aes(E,N,colour = moving)) +
-  theme_minimal() +
-  coord_equal()
-
-p1
-
-
-## 
-## library(plotly)
-## ggplotly(p1)
-## 
-
-
-
-
-caro60_moveseg <-caro60 %>%
-  filter(!is.na(moving)) %>%
-  ungroup() %>%
-  mutate(
-    segment_ID = as.factor(1+cumsum(!moving))
-  )  %>%
-  filter(moving) %>%
-  group_by(segment_ID) %>%
-  mutate(
-    segment_duration = as.integer(difftime(max(DatetimeUTC),min(DatetimeUTC),units = "mins"))
-  ) %>%
-  filter(segment_duration >= 3)
-
-
-
-bind_rows(mutate(caro60, lab = "before"),mutate(caro60_moveseg,lab = "after")) %>%
-  mutate(lab = fct_rev(lab)) %>%
-  ggplot(aes(E,N, colour = segment_ID)) +
-  geom_path(alpha = 0.5) +
-  geom_point() +
-  theme_minimal() +
-  coord_equal() + 
-  facet_wrap(~lab)
 
 
 
 
 
-library(ggrepel)
-pedestrians <- read_delim("00_Rawdata/pedestrian.csv",",")
+now <- Sys.time()
 
-pedestrians <- pedestrians %>%
-  group_by(TrajID) %>%
-  mutate(index = row_number()) %>%
-  ungroup() %>%
-  mutate(TrajID = as.factor(TrajID))
+later <- now + 10000
 
+time_difference <- difftime(later,now)
 
-plotraj <- function(idx,lab = F){
-  dat <- pedestrians %>%
-    filter(TrajID %in% c(1,idx))
-  
-  p <- ggplot(dat, aes(E,N, colour = TrajID, label = index)) +
-    geom_path(colour = "grey", alpha = 0.5) + 
-    geom_point() + 
-    # scale_color_discrete(guide = "none") +
-    # labs(title = paste("Trajectories 1 and",idx)) +
-    theme_minimal() +
-    coord_equal()
-  
-  if(lab == T){
-    p <- p + 
-      geom_text_repel(data = filter(dat,index == 1 | index %% 2 == 0),
-                      aes(E,N,label = index,colour = TrajID),
-                      show.legend = FALSE) 
-  }
-  
-  p
-}
-
-
-plotraj(2)
-
-
-
-plotraj(3,T) 
-
-
-
-plotraj(4)
-
-
-plotraj(5)
-
-
-
-plotraj(6)
+time_difference
 
 #- chunkend
 
-
-# instead of repeating the same step 6 times, I use purrr::map() 
-# which creates a list of dataframes. Feel free to use a method
-# with which you feel comfortable.
-
-pedestrians_matrix <- pedestrians %>%
-  split(.$TrajID) %>%
-  map(function(x){
-    x %>%
-      dplyr::select(E,N) %>% 
-      as.matrix()
-  })
-
-
-library(SimilarityMeasures)
-
-# Again, we use one of the purrr::map_* family of functions
-# to calculate three indicies over all 5 pairs in one go.
-# As before: feel free to use a different method you feel 
-# more comfortable in.
-
-
-pedest_measures <- imap_dfr(pedestrians_matrix, ~data_frame(
-  traj = .y,
-  DTW = DTW(.x,pedestrians_matrix[[1]]),
-  EditDist = EditDist(.x,pedestrians_matrix[[1]]),
-  Frechet = Frechet(.x,pedestrians_matrix[[1]]),
-  LCSS = LCSS(.x,pedestrians_matrix[[1]],5,4,4)
-  ))
-
-
-
-pedest_measures %>%
-  gather(key,val,-traj) %>%
-  ggplot(aes(traj,val, fill = traj))+ 
-  geom_bar(stat = "identity") +
-  facet_wrap(~key,scales = "free") +
-  theme(legend.position = "none") +
-  labs(x = "Comparison trajectory", y = "Value", title = "Computed similarities using different measures \nbetween trajectory 1 to all other trajectories ")
-
+str(time_difference)
