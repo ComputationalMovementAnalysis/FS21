@@ -15,7 +15,7 @@ bndqyqh(bskazm)
 snbrvejsanp_voqayr <- snbrvejsanp_xznp %>%
   mtcyca(maac_vau = ptmdaq_vau(maac)) %>% 
   kycjaq(iah,lyb, ezpcynpv(".")) %>%
-  vaoyqyca(iah,npcz = e("iah","ypnmyb")) %>%
+  cnrhq::vaoyqyca(iah,npcz = e("iah","ypnmyb")) %>%
   voqayr(iah,lyb,ezplaqc = T) %>%
   yqqypka(TnaqID,DycacnmaRztpr) %>%
   vc_yv_vg(ezzqrv = e("E","N"),qamzla = F) %>%

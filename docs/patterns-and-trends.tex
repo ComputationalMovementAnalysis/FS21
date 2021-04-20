@@ -1589,6 +1589,262 @@ Open your R Project from last week. Either run your own script from last week or
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{tasks-and-inputs-3}{%
+\section{Tasks and inputs}\label{tasks-and-inputs-3}}
+
+\hypertarget{input-creating-functions}{%
+\subsection{Input: Creating functions}\label{input-creating-functions}}
+
+Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you've copied and pasted a block of code more than twice, you should consider writing a function (\protect\hyperlink{ref-wickham2017}{Wickham and Grolemund 2017}).
+
+We have violated this rule multiple times when calculating the Euclidean distances between points. Writing and rewriting the code \texttt{sqrt((x-lead(x,1))\^{}2+(y-lead(y,1))\^{}2)} over and over again is not only cumbersome, it is also error prone. We can easily wrap this operation into a function. This input on writing functions should bring you up to speed to do this in your first task.
+
+The first step in writing a function, is picking a name and assigning \texttt{\textless{}-\ function()\{\}} to it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testfun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{()\{\}}
+\end{Highlighting}
+\end{Shaded}
+
+To run the function, we have to call the assigned name with the brackets. This function gives no output, which is why we get \texttt{NULL} back.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{testfun}\NormalTok{()}
+\DocumentationTok{\#\# NULL}
+
+\FunctionTok{class}\NormalTok{(testfun)}
+\DocumentationTok{\#\# [1] "function"}
+\end{Highlighting}
+\end{Shaded}
+
+To make the function actually \emph{do} something, we need to specify \emph{what} should be done within the curly brackets \texttt{\{\}}. The following function always prints the same statement and accepts no input values:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testfun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{()\{}\FunctionTok{print}\NormalTok{(}\StringTok{"this function does nothing"}\NormalTok{)\}}
+
+\FunctionTok{testfun}\NormalTok{()}
+\DocumentationTok{\#\# [1] "this function does nothing"}
+\end{Highlighting}
+\end{Shaded}
+
+If we want the function to accept some input values, we have to define them within the round brackets. For example, I specify a variable named \texttt{sometext} and can call this variable within the execution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testfun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(sometext)\{}\FunctionTok{print}\NormalTok{(sometext)\}}
+
+\FunctionTok{testfun}\NormalTok{(}\AttributeTok{sometext =} \StringTok{"this function does slightly more, but still not much"}\NormalTok{)}
+\DocumentationTok{\#\# [1] "this function does slightly more, but still not much"}
+\end{Highlighting}
+\end{Shaded}
+
+Let's take a more practical example. Say we want a function that calculates the n\textsuperscript{th} root of a value, since the base function \texttt{sqrt()} just returns the 2\textsuperscript{nd} root. To do this, we need to know two things:
+
+\begin{itemize}
+\tightlist
+\item
+  taking the n\textsuperscript{th} rooth of x is the same as raising \texttt{x} by the the reciprocal value (``Kehrwert'') of n \[\sqrt[n]{x}=\ x^{\frac{1}{n}}\]
+\item
+  We can raise a value \texttt{x} to the power of a value \texttt{n} in R with the following code: \texttt{x\^{}n}
+\end{itemize}
+
+To create a function that simplifies taking the n\textsuperscript{th} root, we just need one line of code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# specify two parameters:}
+\CommentTok{\# x: the value  with want to take the root from}
+\CommentTok{\# n: the root we want to take (2 for 2nd root)}
+
+\NormalTok{nthroot }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x,n)\{x}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n)\}}
+
+\CommentTok{\# Test function by taking the second root of 4. }
+\CommentTok{\# Expecting the result to be 2:}
+\FunctionTok{nthroot}\NormalTok{(}\AttributeTok{x =} \DecValTok{4}\NormalTok{,}\AttributeTok{n =} \DecValTok{2}\NormalTok{)}
+\DocumentationTok{\#\# [1] 2}
+\end{Highlighting}
+\end{Shaded}
+
+As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of \texttt{x\ =}and \texttt{n\ =}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nthroot}\NormalTok{(}\DecValTok{27}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\DocumentationTok{\#\# [1] 3}
+\FunctionTok{nthroot}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\DocumentationTok{\#\# [1] 1.44225}
+\end{Highlighting}
+\end{Shaded}
+
+If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nthroot }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x,}\AttributeTok{n =} \DecValTok{2}\NormalTok{)\{x}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n)\}}
+
+\CommentTok{\# if not stated otherwise, our function takes the square root}
+\FunctionTok{nthroot}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\DocumentationTok{\#\# [1] 3.162278}
+\CommentTok{\# We can still overwrite n}
+\FunctionTok{nthroot}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\DocumentationTok{\#\# [1] 2.154435}
+\end{Highlighting}
+\end{Shaded}
+
+All you need to do now is run these few lines of code at the beginning of your script, and you can use the function for your entire R session. After starting a new session, you will simply have to re-run the lines. So it might be a good idea to place this function within the section \texttt{Loading\ environment\ /\ libraries} of your project.
+
+\hypertarget{task-1-write-your-own-functions}{%
+\subsection{Task 1: Write your own functions}\label{task-1-write-your-own-functions}}
+
+Create a function for our Euclidean distance calculation. Optionally, write another function to number successive \texttt{TRUE} values with the \texttt{cumsum()} approach from last week.
+
+Note: if you treat your input variables as vectors, they will work in most use cases (in particular in \texttt{dplyr}s \texttt{mutate()} and \texttt{summarise()} functions).
+
+\hypertarget{task-2-filter-data}{%
+\subsection{Task 2: Filter data}\label{task-2-filter-data}}
+
+We propose conceptualizing the pattern ``meet'' as ``being close in space \emph{and} time,'' with the notion ``close'' to be defined for the spatial and the temporal case separately. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose manipulating the timestamps in such a way, that all observations are sampled concurrently, synchronously. This allows us using the data science concept \emph{join} for detecting the temporal expression of meet - using \texttt{DateTimeUTC} as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on the Euclidean distances between concurrent positions.
+
+Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g.~\texttt{wildschwein\_filter}). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-92-1.pdf}
+
+\hypertarget{task-3-create-join-key}{%
+\subsection{Task 3: Create Join Key}\label{task-3-create-join-key}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(wildschwein\_filter)}
+\DocumentationTok{\#\# Simple feature collection with 6 features and 11 fields}
+\DocumentationTok{\#\# geometry type:  POINT}
+\DocumentationTok{\#\# dimension:      XY}
+\DocumentationTok{\#\# bbox:           xmin: 2570245 ymin: 1205259 xmax: 2570375 ymax: 1205320}
+\DocumentationTok{\#\# projected CRS:  CH1903+ / LV95}
+\DocumentationTok{\#\# \# A tibble: 6 x 12}
+\DocumentationTok{\#\# \# Groups:   TierID [1]}
+\DocumentationTok{\#\#   TierID TierName CollarID DatetimeUTC           Lat  Long        E        N}
+\DocumentationTok{\#\#   \textless{}chr\textgreater{}  \textless{}chr\textgreater{}       \textless{}dbl\textgreater{} \textless{}dttm\textgreater{}              \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# 1 002A   Sabi        12275 2015{-}03{-}31 22:00:28  47.0  7.05 2570296. 1205283.}
+\DocumentationTok{\#\# 2 002A   Sabi        12275 2015{-}03{-}31 22:15:44  47.0  7.05 2570259. 1205259.}
+\DocumentationTok{\#\# 3 002A   Sabi        12275 2015{-}03{-}31 22:30:44  47.0  7.05 2570255. 1205259.}
+\DocumentationTok{\#\# 4 002A   Sabi        12275 2015{-}03{-}31 22:46:04  47.0  7.05 2570245. 1205268.}
+\DocumentationTok{\#\# 5 002A   Sabi        12275 2015{-}03{-}31 23:00:17  47.0  7.05 2570364. 1205314.}
+\DocumentationTok{\#\# 6 002A   Sabi        12275 2015{-}03{-}31 23:15:12  47.0  7.05 2570375. 1205320.}
+\DocumentationTok{\#\# \# ... with 4 more variables: geometry \textless{}POINT [m]\textgreater{}, timelag \textless{}dbl\textgreater{},}
+\DocumentationTok{\#\# \#   steplength \textless{}dbl\textgreater{}, speed \textless{}dbl\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. Verify if we have the same sampling interval (\texttt{timelag}) throughout our filtered dataset.
+
+\begin{verbatim}
+## Simple feature collection with 6 features and 11 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: 2570245 ymin: 1205259 xmax: 2570375 ymax: 1205320
+## projected CRS:  CH1903+ / LV95
+## # A tibble: 6 x 12
+## # Groups:   TierID [1]
+##   TierID TierName CollarID DatetimeUTC           Lat  Long        E        N
+##   <chr>  <chr>       <dbl> <dttm>              <dbl> <dbl>    <dbl>    <dbl>
+## 1 002A   Sabi        12275 2015-03-31 22:00:28  47.0  7.05 2570296. 1205283.
+## 2 002A   Sabi        12275 2015-03-31 22:15:44  47.0  7.05 2570259. 1205259.
+## 3 002A   Sabi        12275 2015-03-31 22:30:44  47.0  7.05 2570255. 1205259.
+## 4 002A   Sabi        12275 2015-03-31 22:46:04  47.0  7.05 2570245. 1205268.
+## 5 002A   Sabi        12275 2015-03-31 23:00:17  47.0  7.05 2570364. 1205314.
+## 6 002A   Sabi        12275 2015-03-31 23:15:12  47.0  7.05 2570375. 1205320.
+## # ... with 4 more variables: geometry <POINT [m]>, timelag <dbl>,
+## #   steplength <dbl>, speed <dbl>
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-95-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-95-2.pdf}
+
+With a few exceptions, the sampling interval is \emph{around} 15 minutes. In order to join the data, however, we need \emph{identical} time stamps to serve as a join key. We therefore need to slightly adjust our time stamps to a common, concurrent interval.
+
+Round the minutes of \texttt{DatetimeUTC} to a multiple of 15 (00, 15, 30,45) and store the values in a new column. You can use the \texttt{lubridate} function \texttt{round\_date()} for this. See the examples \href{https://lubridate.tidyverse.org/reference/round_date.html}{here} to see how this goes.
+
+\emph{Please note:} We are manipulating our time stamps without adjusting the x,y-coordinates. This is fine for our simple example, but we would advice against this in a more serious research endeavour, e.g.~in your semester projects. One simple approach would be to linearly interpolate the positions to the new timestamps. If you choose Option A the wild boar projects as your semester projects, you should aim for a linear interpolation. Get in touch if you need help with this.
+
+\hypertarget{task-4-measuring-distance-at-concurrent-locations}{%
+\subsection{Task 4: Measuring distance at concurrent locations}\label{task-4-measuring-distance-at-concurrent-locations}}
+
+To measure the distance between concurrent locations, we need to follow the following steps.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  First, split the \texttt{wildschwein\_filter} object into one \texttt{data.frame} per animal.\footnote{This is a perfect opportunity to learn functional programming if you are an intermediate to advanced programmer (or want to be). You can use \texttt{purrr::map()} specifically for these tasks. Ask us if you want to learn this but are struggling}
+\item
+  Next, join these datasets by the new, manipulated \texttt{Datetime} column and save it to the variable \texttt{wildschwein\_join}. Which join-type is appropriate? The joined observations are \emph{temporally close}.
+\item
+  On \texttt{wildschwein\_join}, calculate Euclidean distances between concurrent observations. Store the values in a new column \texttt{distance}.
+\item
+  Use a reasonable threshold on \texttt{distance} to determine if the animals are also \emph{spatially close} enough to constitute a \emph{meet} (we use 50 meters). Store this Boolean information (\texttt{TRUE}/\texttt{FALSE}) in a new column named \texttt{meet}.
+\end{enumerate}
+
+\begin{verbatim}
+## # A tibble: 1,344 x 9
+##    TierID.x DatetimeRound           E.x     N.x TierID.y     E.y    N.y distance
+##    <chr>    <dttm>                <dbl>   <dbl> <chr>      <dbl>  <dbl>    <dbl>
+##  1 002A     2015-03-31 22:00:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     482.
+##  2 002A     2015-03-31 22:15:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     536.
+##  3 002A     2015-03-31 22:30:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     542.
+##  4 002A     2015-03-31 22:45:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     564.
+##  5 002A     2015-03-31 23:00:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     486.
+##  6 002A     2015-03-31 23:15:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     470.
+##  7 002A     2015-03-31 23:30:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     440.
+##  8 002A     2015-03-31 23:45:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     432.
+##  9 002A     2015-04-01 00:00:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     451.
+## 10 002A     2015-04-01 00:15:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     522.
+## # ... with 1,334 more rows, and 1 more variable: meet <lgl>
+\end{verbatim}
+
+\hypertarget{task-5-visualize-data}{%
+\subsection{Task 5: Visualize data}\label{task-5-visualize-data}}
+
+Now, visualize the \emph{meets} spatially in a way that you think reasonable. You can attempt to recreate the plot below, but this is not trivial. If you want to try it, these are the steps to take:
+
+Create a new dataset (e.g.~\texttt{wildschwein\_meet}) as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Using the \texttt{cumsum()}approach from last week, create a new column (e.g.~\texttt{meet\_seq}) enumerating the ``meets'' with individual ID (see proposed function below)
+\item
+  Filter all rows where the animals \emph{did} meet.
+\item
+  Optional: create a column with the start- and endtime of each meet (e.g.~\texttt{meet\_time})
+\end{enumerate}
+
+To create a plot similar to the one below:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Initiate a \texttt{ggplot()} with the \texttt{wildschwein\_join} dataset.
+\item
+  Add two \texttt{geom\_point}-layers (not \texttt{geom\_sf}, since we haven't turned \texttt{wildschwein\_join} into an \texttt{sf}object), one referring to E.x/N.x, the other to E.y/N.y
+\item
+  Add two more \texttt{geom\_point}-layers, this time with the dataset \texttt{wildschwein\_meet}
+\item
+  Facet the plot into small multiples either using \texttt{meet\_seq} or \texttt{meet\_time}
+\end{enumerate}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-97-1.pdf}
+
+\hypertarget{task-6-optional-visualize-data-as-timecube-with-plotly}{%
+\subsection{\texorpdfstring{Task 6 (optional): Visualize data as timecube with \texttt{plotly}}{Task 6 (optional): Visualize data as timecube with plotly}}\label{task-6-optional-visualize-data-as-timecube-with-plotly}}
+
+Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube (\protect\hyperlink{ref-hagerstraand1970}{Hägerstraand 1970}) with the package \texttt{plotly}. There are some \href{https://plot.ly/r/3d-line-plots/}{nice ressources} available online.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-99-1.pdf}
+
 \hypertarget{exercise-5}{%
 \chapter{Exercise 5}\label{exercise-5}}
 
@@ -1657,14 +1913,14 @@ Open your R Project from last week. Either run your own script from last week or
 ## [1] "2015-07-27 11:00:14 UTC"
 \end{verbatim}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-86-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-103-1.pdf}
 
 \hypertarget{task-2-annotate-trajectories-from-vector-data}{%
 \subsection{Task 2: Annotate Trajectories from vector data}\label{task-2-annotate-trajectories-from-vector-data}}
 
 Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use \texttt{st\_join()} to attach the attributes from \texttt{fanel2016} to your trajectory data \texttt{wildschwein\_BE} (semantic annotation). Visualize the number of sample points in each category of \texttt{Frucht} over the course of the filtered time period.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-89-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-106-1.pdf}
 
 \hypertarget{task-3-explore-annotated-trajectories}{%
 \subsection{Task 3: Explore annotated trajectories}\label{task-3-explore-annotated-trajectories}}
@@ -1686,7 +1942,7 @@ Ideas:
 
 In terms of raster data, we have prepared the \href{https://map.geo.admin.ch/index.html?zoom=5\&lang=en\&topic=ech\&bgLayer=ch.swisstopo.pixelkarte-grau\&layers_opacity=0.5\&layers=ch.bafu.landesforstinventar-vegetationshoehenmodell\&E=2627157.14\&N=1122170.97}{Vegetation Height Model} provided by the Swiss National Forrest Inventory (NFI). This dataset contains high resolution information (1x1 Meter) on the vegetation height, which is determined from the difference between the digital surface models DSM and the digital terrain model by swisstopo (swissAlti3D). Buildings are eliminated using a combination of the ground areas of the swisstopo topographic landscape model (TLM) and spectral information from the stereo aerial photos.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-91-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 \hypertarget{references}{%
 \chapter*{References}\label{references}}
@@ -1696,6 +1952,9 @@ In terms of raster data, we have prepared the \href{https://map.geo.admin.ch/ind
 \begin{CSLReferences}{1}{0}
 \leavevmode\hypertarget{ref-both2018}{}%
 Alan Both, Matt Duckham, Kevin Buchin. 2018. {``A Comparative Analysis of Trajectory Similarity Measures: Recommendations for Selection and Use.''}
+
+\leavevmode\hypertarget{ref-hagerstraand1970}{}%
+Hägerstraand, Torsten. 1970. {``What about People in Regional Science?''} \emph{Papers in Regional Science} 24 (1): 7--24.
 
 \leavevmode\hypertarget{ref-laube2014}{}%
 Laube, Patrick. 2014. \emph{Computational Movement Analysis}. SpringerBriefs in Computer Science. Springer International Publishing. \url{https://books.google.ch/books?id=xMRpBAAAQBAJ}.
