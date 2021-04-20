@@ -2,7 +2,6 @@
 
 testfun <- function(){}
 
-
 testfun()
 
 class(testfun)
@@ -11,7 +10,6 @@ class(testfun)
 testfun <- function(){print("this function does nothing")}
 
 testfun()
-
 
 testfun <- function(sometext){print(sometext)}
 
@@ -39,133 +37,37 @@ nthroot(10)
 nthroot(10,3)
 
 
-## Task 4 ######################################################################
+wildschwein_BE
 
-euclid <- function(x,y,leadval = 1){
-  sqrt((x-lead(x,leadval))^2+(y-lead(y,leadval))^2)
-}
 
-## Task 2 ######################################################################
+wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
 
-wildschwein_filter <- wildschwein_BE %>%
-  filter(DatetimeUTC > "2015-04-01",
-         DatetimeUTC < "2015-04-15") 
-
-wildschwein_filter %>%
-  group_by(TierID) %>%
-  summarise() %>%
-  st_convex_hull() %>%
-  ggplot() + geom_sf(aes(fill = TierID),alpha = 0.3)
-
-wildschwein_filter <- wildschwein_filter %>%
-  filter(TierID != "018A")
+wildschwein_BE_grouped
 
 
 #- chunkend
 
-## Task 3 ######################################################################
-
-
 head(wildschwein_filter)
 
-ggplot(wildschwein_filter, aes(DatetimeUTC,timelag/60, colour = TierID)) + 
-  geom_line() + 
-  geom_point()+ 
-  expand_limits(y = 0) +
-  facet_grid(TierID~.)
+
+library(terra)
+
+pk100_BE <- terra::rast("00_Rawdata/pk100_BE_2056.tif")
+
+pk100_BE
 
 
-wildschwein_filter <- wildschwein_filter %>%
-  group_by(TierID) %>%
-  mutate(
-    DatetimeRound = round_date(DatetimeUTC,"15 minutes")
-  )
+plot(pk100_BE)
 
-wildschwein_filter %>%
-  mutate(delta = abs(as.integer(difftime(DatetimeUTC,DatetimeRound, units = "secs")))) %>%
-  ggplot(aes(delta)) +
-  geom_histogram(binwidth = 1) +
-  labs(x = "Absolute time difference between original- and rounded Timestamp",
-       y = "Number of values")
+pk100_BE <- subset(pk100_BE,1:3)
 
-## Task 4 ######################################################################
-
-wildschwein_join <- wildschwein_filter %>%
-  ungroup() %>%
-  dplyr::select(TierID,DatetimeRound,E,N) %>% 
-  st_set_geometry(NULL) %>%
-  split(.$TierID) %>%
-  accumulate(~full_join(.x,.y, by = "DatetimeRound")) %>%
-  pluck(length(.))
+plot(pk100_BE)
 
 
-euclid2 <- function(x1,y1,x2,y2){
-  sqrt((x1-x2)^2+(y2-y2)^2)
-}
+library(tmap)
 
-
-wildschwein_join <- wildschwein_join %>%
-  mutate(
-    distance = euclid2(E.x,N.x,E.y,N.y),
-    meet = distance < 100
-  )
-
-
-wildschwein_join
-
-## Task 5 ######################################################################
-
-# Cumsum appraoch from Exercise 3
-number_seq = function(bool){
-  fac <- as.factor(ifelse(bool,1+cumsum(!bool),NA))
-  levels(fac) <- 1:length(levels(fac))
-  return(fac)
-}
-
-# library(lwgeom)
-
-wildschwein_meet <- wildschwein_join %>%
-  mutate(meet_seq = number_seq(meet)) %>%
-  filter(meet) %>%
-  group_by(meet_seq) %>%
-  mutate(meet_time = paste0(LETTERS[meet_seq],": ",strftime(min(DatetimeRound),format = "%d.%m.%Y %H:%M"),"-",strftime(max(DatetimeRound),format = "%H:%M")))
-
-ggplot(wildschwein_join) + 
-  geom_point(aes(E.x, N.x),colour = "cornsilk",alpha = 0.2,shape = 4) +
-  geom_point(aes(E.y, N.y),colour = "cornsilk4",alpha = 0.2,shape = 4) +
-  geom_point(data = wildschwein_meet, aes(E.x,N.x), colour = "red") +
-  geom_point(data = wildschwein_meet, aes(E.y,N.y), colour = "blue") +
-  coord_equal() +
-  facet_wrap(~meet_time) +
-  theme_light() +
-  theme(axis.title = element_blank(),axis.text = element_blank())
+tm_shape(pk100_BE) + 
+  tm_rgb() 
 
 
 ## Task 6 ######################################################################
-
-## 
-## meanmeetpoints <- wildschwein_join %>%
-##   filter(meet) %>%
-##   mutate(
-##     E.mean = (E.x+E.y)/2,
-##     N.mean = (N.x+N.y)/2
-## 
-##   )
-## 
-## library(plotly)
-## plot_ly(wildschwein_join, x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
-##   add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%
-##   add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%
-##   layout(scene = list(xaxis = list(title = 'E'),
-##                       yaxis = list(title = 'N'),
-##                       zaxis = list(title = 'Time')))
-## 
-
-## wildschwein_join %>%
-##   filter(DatetimeRound<"2015-04-04") %>%
-##   plot_ly(x = ~E.x,y = ~N.x, z = ~DatetimeRound,type = "scatter3d", mode = "lines") %>%
-##   add_trace(wildschwein_join, x = ~E.y,y = ~N.y, z = ~DatetimeRound) %>%
-##   add_markers(data = meanmeetpoints, x = ~E.mean,y = ~N.mean, z = ~DatetimeRound) %>%
-##   layout(scene = list(xaxis = list(title = 'E'),
-##                       yaxis = list(title = 'N'),
-##                       zaxis = list(title = 'Time')))

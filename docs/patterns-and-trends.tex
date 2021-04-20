@@ -143,7 +143,7 @@
 \makeatother
 \subtitle{Master ENR, Spring Semester 2021}
 \author{Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis}
-\date{19 April, 2021}
+\date{20 April, 2021}
 
 \begin{document}
 \maketitle
@@ -1588,6 +1588,105 @@ Open your R Project from last week. Either run your own script from last week or
 \NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
+
+\hypertarget{exercise-5}{%
+\chapter{Exercise 5}\label{exercise-5}}
+
+\hypertarget{learning-outcomes-4}{%
+\section{Learning Outcomes}\label{learning-outcomes-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  You are able to process spatial data (vector and raster) within R, including creating simple maps within R.
+\item
+  You know basic operations for semantically annotating your trajectories with geographic context.
+\end{itemize}
+
+\hypertarget{preperation-3}{%
+\section{Preperation}\label{preperation-3}}
+
+Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sf)}
+\FunctionTok{library}\NormalTok{(ggspatial)}
+\FunctionTok{library}\NormalTok{(raster)}
+
+\CommentTok{\# Import as tibble}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+
+
+\CommentTok{\# Convert to sf{-}object}
+\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }\AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\AttributeTok{crs =} \DecValTok{4326}\NormalTok{,}\AttributeTok{remove =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# transform to CH1903 LV95}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_transform}\NormalTok{(wildschwein\_BE, }\DecValTok{2056}\NormalTok{)}
+
+\CommentTok{\# Add geometry as E/N integer Columns}
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_coordinates}\NormalTok{(wildschwein\_BE) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{cbind}\NormalTok{(wildschwein\_BE,.) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{E =}\NormalTok{ X) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{N =}\NormalTok{ Y)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tasks}{%
+\section{Tasks}\label{tasks}}
+
+\hypertarget{tasks-1-import-and-visualize-spatial-data}{%
+\subsection{Tasks 1: Import and visualize spatial data}\label{tasks-1-import-and-visualize-spatial-data}}
+
+\begin{itemize}
+\tightlist
+\item
+  Import the vector dataset \texttt{Feldaufnahmen\_Fanel\_2016.shp} from moodle with \texttt{read\_sf()} and save it to the variable \texttt{fanel2016}. The file .shp stands for Shapefile, which is a simple format for spatial vector data (points, lines, or polygons). This shapefile contains vector data about cultivated crops in the study area.
+\item
+  Transform the coordinates to \texttt{CH1903+\ LV95}.
+\item
+  Filter the dataset \texttt{wildschwein\_BE} to the months May, June and July of 2016 and store the data in a new variable (\texttt{wildschwein\_BE\_2015}).
+\item
+  Create a minimum convex polygon for each individual in \texttt{wildschwein\_BE\_2015} and store it in a new variable (\texttt{mcp2015})
+\item
+  Create a map with the layers \texttt{fanel2016} and \texttt{mcp2015}.
+\end{itemize}
+
+\begin{verbatim}
+## [1] "2015-07-27 11:00:14 UTC"
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-86-1.pdf}
+
+\hypertarget{task-2-annotate-trajectories-from-vector-data}{%
+\subsection{Task 2: Annotate Trajectories from vector data}\label{task-2-annotate-trajectories-from-vector-data}}
+
+Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use \texttt{st\_join()} to attach the attributes from \texttt{fanel2016} to your trajectory data \texttt{wildschwein\_BE} (semantic annotation). Visualize the number of sample points in each category of \texttt{Frucht} over the course of the filtered time period.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-89-1.pdf}
+
+\hypertarget{task-3-explore-annotated-trajectories}{%
+\subsection{Task 3: Explore annotated trajectories}\label{task-3-explore-annotated-trajectories}}
+
+Think of other ways you could visually explore the spatio-temporal patterns of wild boar in relation to the crops.
+
+Ideas:
+
+\begin{itemize}
+\tightlist
+\item
+  For example, in the visualisation above, we did not account for the different availability of the different crops. Potatoes (``Kartoffeln'') are seemingly not visited at all, while rapeseed (``Raps'') has high visitation from May to June. Maybe this is due to the fact that there are mostly rapeseed fields and basically no potatoe fields. How could you consider availability in the visulisation?
+\item
+  Exlpore the circadian rhythm / daily patterns of crop visitations.
+\end{itemize}
+
+\hypertarget{task-4-annotate-trajectories-from-raster-data}{%
+\subsection{Task 4: Annotate Trajectories from raster data}\label{task-4-annotate-trajectories-from-raster-data}}
+
+In terms of raster data, we have prepared the \href{https://map.geo.admin.ch/index.html?zoom=5\&lang=en\&topic=ech\&bgLayer=ch.swisstopo.pixelkarte-grau\&layers_opacity=0.5\&layers=ch.bafu.landesforstinventar-vegetationshoehenmodell\&E=2627157.14\&N=1122170.97}{Vegetation Height Model} provided by the Swiss National Forrest Inventory (NFI). This dataset contains high resolution information (1x1 Meter) on the vegetation height, which is determined from the difference between the digital surface models DSM and the digital terrain model by swisstopo (swissAlti3D). Buildings are eliminated using a combination of the ground areas of the swisstopo topographic landscape model (TLM) and spectral information from the stereo aerial photos.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-91-1.pdf}
 
 \hypertarget{references}{%
 \chapter*{References}\label{references}}

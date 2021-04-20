@@ -12,33 +12,8 @@
 - Create a minimum convex polygon for each individual in `wildschwein_BE_2015` and store it in a new variable (`mcp2015`)
 - Create a map with the layers `fanel2016` and `mcp2015`.
 
-```{r, echo = F, include=T, eval = T,fig.height=9}
 
-library(lubridate)
-library(tmap)
-
-fanel2016 <- read_sf("00_Rawdata/Feldaufnahmen_Fanel_2016.shp") %>%
-  st_transform(2056)
-
-
-
-max(wildschwein_BE$DatetimeUTC)
-
-
-wildschwein_BE_2015 <- wildschwein_BE %>%
-  filter(DatetimeUTC > "2015-01-05",DatetimeUTC < "2015-07-31")
-
-mcp2015 <- wildschwein_BE_2015 %>%
-  group_by(TierID) %>%
-  summarise() %>%
-  st_convex_hull()
-
-
-tm_shape(fanel2016) + 
-  tm_polygons(col = "Frucht") +
-  tm_shape(mcp2015) +
-  tm_borders(lwd = 3,lty = 2)
-
+```{r, code =  mydecrypt("15_Week5/solutions/task_1.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 ```{r}
@@ -48,28 +23,14 @@ tm_shape(fanel2016) +
 
 
 ### Task 2: Annotate Trajectories from vector data
+
 ```{r}
 ## Task 2 ######################################################################
 ```
 Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use `st_join()` to attach the attributes from `fanel2016` to your trajectory data `wildschwein_BE` (semantic annotation). Visualize the number of sample points in each category of `Frucht` over the course of the filtered time period.
 
-```{r, echo = F, include=T, eval = T, fig.cap="The number of samples per category *per week* from May to July 2015."}
-wildschwein_BE_2015 <- wildschwein_BE_2015 %>%
-  st_join(dplyr::select(fanel2016,Frucht))
 
-
-wildschwein_BE_2015 %>%
-  st_set_geometry(NULL) %>%
-  mutate(week = floor_date(DatetimeUTC,"weeks")) %>%
-  group_by(TierID,week,Frucht) %>%
-  summarise(n = n()) %>%
-  filter(!Frucht %in% c("0","Flugplatz","Rhabarber","Zucchetti","NA")) %>%
-  ggplot(aes(week,n, colour = TierID)) + 
-  geom_line() +
-  labs(x = "Time",y = "Number of Samples") +
-  facet_wrap(~Frucht) +
-  theme_minimal()
-
+```{r, code =  mydecrypt("15_Week5/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 ### Task 3: Explore annotated trajectories
@@ -89,30 +50,5 @@ Ideas:
 
 In terms of raster data, we have prepared the [Vegetation Height Model](https://map.geo.admin.ch/index.html?zoom=5&lang=en&topic=ech&bgLayer=ch.swisstopo.pixelkarte-grau&layers_opacity=0.5&layers=ch.bafu.landesforstinventar-vegetationshoehenmodell&E=2627157.14&N=1122170.97) provided by the Swiss National Forrest Inventory (NFI). This dataset contains high resolution information (1x1 Meter) on the vegetation height, which is determined from the difference between the digital surface models DSM and the digital terrain model by swisstopo (swissAlti3D). Buildings are eliminated using a combination of the ground areas of the swisstopo topographic landscape model (TLM) and spectral information from the stereo aerial photos. 
 
-
-```{r, echo = F, include=T, eval = T, fig.cap="An example of a temporal exploration of the data obtained from the nDSM."}
-vegetation_height <- raster("00_Rawdata/vegetationshoehe_LFI.tif")
-
-wildschwein_BE_2015 <- wildschwein_BE_2015 %>%
-  mutate(dod = raster::extract(vegetation_height,.))
-
-
-wildschwein_BE_2015 %>%
-  st_set_geometry(NULL) %>%
-  mutate(
-    hour = hour(round_date(DatetimeUTC,"1 hours"))
-    ) %>%
-  group_by(TierID,hour) %>%
-  summarise(
-    mean = mean(dod,na.rm = T),
-    ) %>%
-  ggplot(aes(x = hour,y = mean,colour = TierID)) +
-  geom_line() +
-  labs(
-    x = "Hour",
-    y = "Vegetation Height (Meters)",
-    title = "Mean Vegetation Height per hour"
-    )+
-  theme_minimal()
-    
+```{r, code =  mydecrypt("15_Week5/solutions/task_4.R",".passphrase"), opts.label="solution_showOutput"}
 ```
