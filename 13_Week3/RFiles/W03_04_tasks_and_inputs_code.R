@@ -78,28 +78,27 @@ df_cumsum %>%
 #- chunkend
 
 
-library(terra)
-
-pk100_BE <- terra::rast("00_Rawdata/pk100_BE_2056.tif")
-
-pk100_BE
+summarise(st_set_geometry(wildschwein_BE,NULL), mean_timelag = mean(timelag, na.rm = T))
 
 #- chunkend
 
 
 
+# Store coordinates in a new variable
+
+coordinates <- st_coordinates(wildschwein_BE)
+
+head(coordinates)
 
 
 
 
-now <- Sys.time()
 
-later <- now + 10000
-
-time_difference <- difftime(later,now)
-
-time_difference
+knitr::include_graphics("02_Images/laube_2011_2.jpg")
 
 #- chunkend
 
-str(time_difference)
+nrow(caro60)
+nrow(caro60_3)
+nrow(caro60_6)
+nrow(caro60_9)

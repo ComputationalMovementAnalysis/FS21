@@ -37,37 +37,62 @@ nthroot(10)
 nthroot(10,3)
 
 
-wildschwein_BE
+
+wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),
+                                               wildschwein_BE$DatetimeUTC,
+                                               units = "secs"))
 
 
-wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
-
-wildschwein_BE_grouped
-
+wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),
+                                                                      DatetimeUTC,
+                                                                      units = "secs")))
 
 #- chunkend
 
 head(wildschwein_filter)
 
 
-library(terra)
-
-pk100_BE <- terra::rast("00_Rawdata/pk100_BE_2056.tif")
-
-pk100_BE
+summarise(st_set_geometry(wildschwein_BE,NULL), mean_timelag = mean(timelag, na.rm = T))
 
 
-plot(pk100_BE)
+wildschwein_BE %>%                     # Take wildschwein_BE...
+  st_set_geometry(NULL) %>%            # ...remove the geometry column...
+  group_by(TierID) %>%                 # ...group it by TierID
+  summarise(                           # Summarise the data...
+    mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
+  )
 
-pk100_BE <- subset(pk100_BE,1:3)
+pigs = data.frame(
+  TierID=c(8001,8003,8004,8005,8800,8820,3000,3001,3002,3003,8330,7222),
+  sex=c("M","M","M","F","M","M","F","F","M","F","M","F"),
+  age=c("A","A","J","A","J","J","J","A","J","J","A","A"),
+  weight=c(50.755,43.409,12.000,16.787,20.987,25.765,22.0122,21.343,12.532,54.32,11.027,88.08)
+)
 
-plot(pk100_BE)
+pigs
 
+pigs %>%
+    summarise(         
+    mean_weight = mean(weight)
+  )
 
-library(tmap)
+pigs %>%
+  group_by(sex) %>%
+  summarise(         
+    mean_weight = mean(weight)
+  )
 
-tm_shape(pk100_BE) + 
-  tm_rgb() 
+pigs %>%
+  group_by(sex,age) %>%
+  summarise(         
+    mean_weight = mean(weight)
+  )
 
 
 ## Task 6 ######################################################################
+
+# Store coordinates in a new variable
+
+coordinates <- st_coordinates(wildschwein_BE)
+
+head(coordinates)
