@@ -14,24 +14,29 @@ head(wildschwein_BE)
 
 #- chunkend
 
-now <- Sys.time()
 
-later <- now + 10000
-
-time_difference <- difftime(later,now)
 
 knitr::include_graphics("02_Images/laube_2011_2.jpg")
 
-time_difference
+
+library(sf)
+
+wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
+                              coords = c("Long", "Lat"), 
+                              crs = 4326)
+
 
 nrow(caro60)
 nrow(caro60_3)
 nrow(caro60_6)
 nrow(caro60_9)
 
-numbers <- 1:10
+# subset rows
+wildschwein_BE_sf[1:10,]
+wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Sabi",]
 
-numbers
+# subset colums
+wildschwein_BE_sf[,2:3]
 
 library(zoo)
 
@@ -41,12 +46,10 @@ rollmean(example,k = 4,fill = NA,align = "left")
 
 
 
-
-wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),
-                                               wildschwein_BE$DatetimeUTC,
-                                               units = "secs"))
+wildschwein_BE
 
 
-wildschwein_BE <- mutate(wildschwein_BE,timelag = as.numeric(difftime(lead(DatetimeUTC),
-                                                                      DatetimeUTC,
-                                                                      units = "secs")))
+wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
+
+wildschwein_BE_grouped
+

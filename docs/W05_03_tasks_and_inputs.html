@@ -212,6 +212,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W04_01_learning_outcomes.html"><a href="W04_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W04_02_prerequisites.html"><a href="W04_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-4-measuring-distance-at-concurrent-locations"><i class="fa fa-check"></i>Task 4: Measuring distance at concurrent locations</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-5-visualize-data"><i class="fa fa-check"></i>Task 5: Visualize data</a></li>
+<li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
 <ul>
@@ -261,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="task-2-annotate-trajectories-from-vector-data" class="section level3">
 <h3>Task 2: Annotate Trajectories from vector data</h3>
 <p>Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use <code>st_join()</code> to attach the attributes from <code>fanel2016</code> to your trajectory data <code>wildschwein_BE</code> (semantic annotation). Visualize the number of sample points in each category of <code>Frucht</code> over the course of the filtered time period.</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 </div>
 <div id="task-3-explore-annotated-trajectories" class="section level3">
 <h3>Task 3: Explore annotated trajectories</h3>
@@ -276,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Task 4: Annotate Trajectories from raster data</h3>
 <!-- In terms of raster data, we have prepared a [Normalised Digital Surface Model (nDSM)](https://gisgeography.com/lidar-light-detection-and-ranging/)^[The nDSM was created by calculating the difference between the [digital surface models (DSM)](https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&guid=094ce943-6ad7-4f07-aa9f-d8eb17c5cb38&catalog=geocatalog&type=complete&preview=search_list) and the [digital terrain model (DTM)](https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html?view=sheet&guid=490de97b-8932-4ef7-9d13-e89ef41eeb4b&catalog=geocatalog&type=complete&preview=search_list) obtained from the [geoportal from the canton Bern](https://www.geo.apps.be.ch/de/geodaten/suche-nach-geodaten.html). ], which provides information on the height of topological features on the ground. Since our wild boar usually use natural landscapes, the nDSM is a good approximation of vegitation height. This nDSM is available on moodle (`nDSM.tif`). Import this data with `raster()`and attach the respective raster values to the point data in your `sf` object (`wildschwein_BE_2016`). Explore the dataset similar to the crop data in task 2/3. Explore again spatio-temporal relations! -->
 <p>In terms of raster data, we have prepared the <a href="https://map.geo.admin.ch/index.html?zoom=5&amp;lang=en&amp;topic=ech&amp;bgLayer=ch.swisstopo.pixelkarte-grau&amp;layers_opacity=0.5&amp;layers=ch.bafu.landesforstinventar-vegetationshoehenmodell&amp;E=2627157.14&amp;N=1122170.97">Vegetation Height Model</a> provided by the Swiss National Forrest Inventory (NFI). This dataset contains high resolution information (1x1 Meter) on the vegetation height, which is determined from the difference between the digital surface models DSM and the digital terrain model by swisstopo (swissAlti3D). Buildings are eliminated using a combination of the ground areas of the swisstopo topographic landscape model (TLM) and spectral information from the stereo aerial photos.</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -337,6 +347,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

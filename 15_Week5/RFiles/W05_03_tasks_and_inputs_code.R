@@ -6,12 +6,14 @@ source("01_R_Files/helperfunctions.R")
 
 ## Task 2 ######################################################################
 
-now <- Sys.time()
 
-later <- now + 10000
-
-time_difference <- difftime(later,now)
 
 ## Task 4 ######################################################################
 
-time_difference
+
+library(sf)
+
+wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
+                              coords = c("Long", "Lat"), 
+                              crs = 4326)
+
