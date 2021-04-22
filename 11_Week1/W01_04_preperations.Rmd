@@ -1,9 +1,53 @@
 ## Preperation
-If you haven't already, install the packages `tidyverse`, `sf`, `raster` and `ggspatial`(using `install.packages()`). **Restart your `R` session after installing all these packages.**
 
-```{r, echo = T, include=T,eval = F, purl = F}
+
+```{r, opts.label="solution_hideOutput"}
+
+rversion_current <- rversions::r_release()
+rversion_current
+
+
+rversion_minimal <- function(version_string){
+  version_int <- as.integer(strsplit(version_string, "\\.")[[1]])
+  paste(version_int[1], ifelse(version_int[2] == 0, version_int[2], version_int[2]-1), 0,sep = ".")
+}
+
+```
+
+
+## Check you Version of `R`
+
+Check your Version of `R` by opening RStudio and typing the following command into the console. 
+
+```{r, opts.label="example_showOutput"}
+R.version.string
+```
+
+This returns the version number of your R installation, whereas the first digit indicates the number of the *major release*, the second digit indicates the *minor release* and the last digit refers to the *patch release*. As a general rule of thumb, you will want to update R if you
+
+- don't have the current *major* version or
+- are lagging two (or more) versions behind the current *minor release*
+
+In the time of writing (`r strftime(Sys.Date(), "%B, %Y")`), the current `R` Version is `r rversion_current$version` (from `r rversion_current$date`). Your installation should therefore not be older than `rversion_minimal(rversion_current$version)`. If it is, make sure that you have updated R until next week. Check [these instructions on how to update R](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/)
+
+
+## Check your Version of RStudio
+
+RStudio is the Graphical User Interface (GUI) we use in our course to interact with R. RStudio should not be too old either and we recommend updating if you don't have the latest version: check if this is the case by clicking on *help > check for updates*. 
+
+
+## Install packages
+
+If you haven't already, install the packages `tidyverse`, `sf` and `terra`(using `install.packages()`). **Restart your `R` session after installing all these packages.**
+
+```{r, opts.label = "noeval"}
 install.packages("tidyverse")
 install.packages("sf")
 install.packages("raster")
 ```
 
+
+## Install Git
+
+
+Next, install 
