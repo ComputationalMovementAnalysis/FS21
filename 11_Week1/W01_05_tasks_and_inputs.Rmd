@@ -8,6 +8,20 @@ output:
 
 
 
+Before starting with the task:
+
+- make sure you have read and followed the instructions in section [Preperation](#w1-preperation)
+- In RStudio, open the RStudio Project you created for this week if you havent dont so already. You can see that you are in an RStudio Project if the project's name is visible next to the little RStudio logo in the top right corner of RStudio (otherwise it will read "Project: (None)".
+- Download the wildboar movement data ()
+
+Then, create a new RMarkdown File and start by loading the tidyverse:
+
+```{r, opts.label="example_hideOutput"}
+library(tidyverse)
+```
+
+
+
 ### Task 1: Import data
 
 In section "data import", import the file `wildschwein_BE.csv`. Obtain this file from moodle. Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
