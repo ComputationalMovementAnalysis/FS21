@@ -50,6 +50,9 @@ knitr::opts_template$set(solution_hideOutput = list(include = FALSE))
 knitr::opts_template$set(example_showOutput = list(echo = TRUE, include = TRUE, eval = TRUE))
 knitr::opts_template$set(example_hideOutput = list(echo = TRUE, include = FALSE, eval = TRUE))
 
+knitr::opts_template$set(noeval = list(echo = TRUE, eval = FALSE))
+
+
 ```
 
 
