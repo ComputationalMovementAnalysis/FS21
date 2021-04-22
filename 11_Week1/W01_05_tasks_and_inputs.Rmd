@@ -7,26 +7,8 @@ output:
 
 
 
-### Task 1: Initialize project
 
-Create a new *RStudio Project*. As recommended in @wickham2017, remove the option "*Restore .RData into workspace at startup*" and set the option "*save workspace to .RData on exit*" to "*Never*".
-
-Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science Workflow. In .R Files, "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes, equal, or pound signs ( `-`, `=`,`#`). In .Rmd Files, their are created with leading pound signs (`#`).
-
-Sections allow code folding (try clicking on the small triangle next to the line number) and facilitate navigation (try the shortcut: `Shift`+`Alt`+`J`). We recommend following sections:
-
-- Loading environment / libraries
-- Data import
-- Data cleansing
-- Data analysis and visualization
-
-
-```{r, code =  mydecrypt("11_Week1/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
-```
-
-
-
-### Task 2: Import data
+### Task 1: Import data
 
 In section "data import", import the file `wildschwein_BE.csv`. Obtain this file from moodle. Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
 
@@ -38,10 +20,10 @@ Note:
 - For everyone working on the RStudio Server: You will first need to upload this data to the server using the "*upload*"-button in the "*Files*" tab.
 
 
-```{r, code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("11_Week1/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
-### Task 3: Explore Data
+### Task 2: Explore Data
 
 We will use a range of different visualization tools (i.e. R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While `base::plot() `is quick and simple, it not very scalable with growing complexity. `ggplot2` offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
 
@@ -53,7 +35,7 @@ Assigning every individual its own colour is done using the `ggplot` argument `c
 Save your code in the appropriate section.
 
 
-```{r code =  mydecrypt("11_Week1/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
+```{r code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -117,14 +99,14 @@ rm(wildschwein_BE_sf)
 ```
 
 
-### Task 4: Project data from WGS84
+### Task 3: Project data from WGS84
 
 So what can we do with our new `sf` object that we couldn't before? One example is projecting the WGS84 (`Lat`/`Long`) coordinates into the new Swiss CRS `CH1903+ LV95`[^50]. Do this by using the function `st_transform`. By the way, do you notice a pattern here? The package `sf` names most functions for spatial operations with the prefix `st_*`, just as in PostGIS.
 
 [^50]: As we've mentioned in the first Input, you can look up the EPSG codes under (epsg.io)[http://epsg.io]. For information specific to Switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
 
 
-```{r, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("11_Week1/solutions/task_3.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
@@ -172,7 +154,7 @@ mcp <- st_convex_hull(wildschwein_BE_smry)
 ```
 
 
-### Task 5: Ploting spatial objects
+### Task 4: Ploting spatial objects
 
 Using base plot to visualize `sf` objects is easy enough, just try the following code. 
 
@@ -184,7 +166,7 @@ plot(mcp)
 But since we use `ggplot` extensively, try and plot the object `mcp` with `ggplot`. Hint: Use the layer `geom_sf()` to add an `sf` object.
 Note: `ggplot` refuses to use our specified CRS, so we need to force this by specifying `datum = ` in `coord_sf()`. Try it out.
 
-```{r, code =  mydecrypt("11_Week1/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -219,7 +201,7 @@ plot(pk100_BE)
 ```
 
 
-### Task 6: Adding a background map
+### Task 5: Adding a background map
 
 There are multiple ways to add a background map in `ggplot`, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: `tmap` ("thematic map"). This package was developed with a syntax very similar to `ggplot2`, which makes it easy to learn.
 
@@ -234,15 +216,15 @@ tm_shape(pk100_BE) +
 
 As you can see, plotting layers in `tmap` is combined with the `+` sign, just as in `ggplot2`. In `tmap` however, each layer consists of two objects: a `tm_shape()` in which the data is called, and a `tm_*` object in which we define how the data is visualized (`tm_rgb()` states that it is plotted as an RGB Raster Layer). Add the object `mcp` to the plot in this manner. Read [the vignette](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html) if you are having trouble.
 
-```{r, code =  mydecrypt("11_Week1/solutions/task_6.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("11_Week1/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
 
-### Task 7: Create an interactive map
+### Task 6: Create an interactive map
 
 Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand. Omit the raster layer (`pk100_BE`), you won't be needing it.
 
 
-```{r code =  mydecrypt("11_Week1/solutions/task_7.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r code =  mydecrypt("11_Week1/solutions/task_6.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
