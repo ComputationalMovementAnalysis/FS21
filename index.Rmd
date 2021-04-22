@@ -23,18 +23,18 @@ options(knitr.duplicate.label = 'allow')
 
 library(stringr)
 
-rmds <- list.files(pattern = "tasks_and_inputs.Rmd$",recursive = T)
-
-for (file in rmds){
-  file_r <- paste0(str_split_fixed(file,"\\.",2)[1],"_code.R",collapse = "")
-  file_r <- str_split_fixed(file_r,"/",Inf)   # split path at /
-  file_r <- append(file_r, "RFiles",length(file_r)-1)# append Foldername
-  file_r <- paste(file_r,collapse = "/")    # collapse vector to string
-  if(file.exists(file_r)){
-    file.remove(file_r)
-  }
-  knitr::purl(file,documentation = 0,output = file_r)
-}
+# rmds <- list.files(pattern = "tasks_and_inputs.Rmd$",recursive = T)
+# 
+# for (file in rmds){
+#   file_r <- paste0(str_split_fixed(file,"\\.",2)[1],"_code.R",collapse = "")
+#   file_r <- str_split_fixed(file_r,"/",Inf)   # split path at /
+#   file_r <- append(file_r, "RFiles",length(file_r)-1)# append Foldername
+#   file_r <- paste(file_r,collapse = "/")    # collapse vector to string
+#   if(file.exists(file_r)){
+#     file.remove(file_r)
+#   }
+#   knitr::purl(file,documentation = 0,output = file_r)
+# }
  
 ```
 
