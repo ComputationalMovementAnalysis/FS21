@@ -268,6 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you’ve copied and pasted a block of code more than twice, you should consider writing a function <span class="citation">(<a href="references.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
 <p>We have violated this rule multiple times when calculating the Euclidean distances between points. Writing and rewriting the code <code>sqrt((x-lead(x,1))^2+(y-lead(y,1))^2)</code> over and over again is not only cumbersome, it is also error prone. We can easily wrap this operation into a function. This input on writing functions should bring you up to speed to do this in your first task.</p>
 <p>The first step in writing a function, is picking a name and assigning <code>&lt;- function(){}</code> to it.</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="W04_04_tasks_and_inputs.html#cb79-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){}</span></code></pre></div>
 <p>To run the function, we have to call the assigned name with the brackets. This function gives no output, which is why we get <code>NULL</code> back.</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="W04_04_tasks_and_inputs.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span>
@@ -285,12 +286,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb82-2"><a href="W04_04_tasks_and_inputs.html#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb82-3"><a href="W04_04_tasks_and_inputs.html#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>(<span class="at">sometext =</span> <span class="st">&quot;this function does slightly more, but still not much&quot;</span>)</span>
 <span id="cb82-4"><a href="W04_04_tasks_and_inputs.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;this function does slightly more, but still not much&quot;</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="W04_04_tasks_and_inputs.html#cb53-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){}</span></code></pre></div>
+<p>To run the function, we have to call the assigned name with the brackets. This function gives no output, which is why we get <code>NULL</code> back.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="W04_04_tasks_and_inputs.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span>
+<span id="cb54-2"><a href="W04_04_tasks_and_inputs.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="do">## NULL</span></span>
+<span id="cb54-3"><a href="W04_04_tasks_and_inputs.html#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="W04_04_tasks_and_inputs.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(testfun)</span>
+<span id="cb54-5"><a href="W04_04_tasks_and_inputs.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;function&quot;</span></span></code></pre></div>
+<p>To make the function actually <em>do</em> something, we need to specify <em>what</em> should be done within the curly brackets <code>{}</code>. The following function always prints the same statement and accepts no input values:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="W04_04_tasks_and_inputs.html#cb55-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){<span class="fu">print</span>(<span class="st">&quot;this function does nothing&quot;</span>)}</span>
+<span id="cb55-2"><a href="W04_04_tasks_and_inputs.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="W04_04_tasks_and_inputs.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span>
+<span id="cb55-4"><a href="W04_04_tasks_and_inputs.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;this function does nothing&quot;</span></span></code></pre></div>
+<p>If we want the function to accept some input values, we have to define them within the round brackets. For example, I specify a variable named <code>sometext</code> and can call this variable within the execution.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="W04_04_tasks_and_inputs.html#cb56-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(sometext){<span class="fu">print</span>(sometext)}</span>
+<span id="cb56-2"><a href="W04_04_tasks_and_inputs.html#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="W04_04_tasks_and_inputs.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>(<span class="at">sometext =</span> <span class="st">&quot;this function does slightly more, but still not much&quot;</span>)</span>
+<span id="cb56-4"><a href="W04_04_tasks_and_inputs.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;this function does slightly more, but still not much&quot;</span></span></code></pre></div>
+>>>>>>> 9e1f93f3fe69289879ce212ed64e1847c2ee494e
 <p>Let’s take a more practical example. Say we want a function that calculates the n<sup>th</sup> root of a value, since the base function <code>sqrt()</code> just returns the 2<sup>nd</sup> root. To do this, we need to know two things:</p>
 <ul>
 <li>taking the n<sup>th</sup> rooth of x is the same as raising <code>x</code> by the the reciprocal value (“Kehrwert”) of n <span class="math display">\[\sqrt[n]{x}=\ x^{\frac{1}{n}}\]</span></li>
 <li>We can raise a value <code>x</code> to the power of a value <code>n</code> in R with the following code: <code>x^n</code></li>
 </ul>
 <p>To create a function that simplifies taking the n<sup>th</sup> root, we just need one line of code:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="W04_04_tasks_and_inputs.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify two parameters:</span></span>
 <span id="cb83-2"><a href="W04_04_tasks_and_inputs.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x: the value  with want to take the root from</span></span>
 <span id="cb83-3"><a href="W04_04_tasks_and_inputs.html#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># n: the root we want to take (2 for 2nd root)</span></span>
@@ -315,6 +336,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb85-6"><a href="W04_04_tasks_and_inputs.html#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite n</span></span>
 <span id="cb85-7"><a href="W04_04_tasks_and_inputs.html#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">10</span>,<span class="dv">3</span>)</span>
 <span id="cb85-8"><a href="W04_04_tasks_and_inputs.html#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2.154435</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="W04_04_tasks_and_inputs.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify two parameters:</span></span>
+<span id="cb57-2"><a href="W04_04_tasks_and_inputs.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x: the value  with want to take the root from</span></span>
+<span id="cb57-3"><a href="W04_04_tasks_and_inputs.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># n: the root we want to take (2 for 2nd root)</span></span>
+<span id="cb57-4"><a href="W04_04_tasks_and_inputs.html#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="W04_04_tasks_and_inputs.html#cb57-5" aria-hidden="true" tabindex="-1"></a>nthroot <span class="ot">&lt;-</span> <span class="cf">function</span>(x,n){x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)}</span>
+<span id="cb57-6"><a href="W04_04_tasks_and_inputs.html#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="W04_04_tasks_and_inputs.html#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Test function by taking the second root of 4. </span></span>
+<span id="cb57-8"><a href="W04_04_tasks_and_inputs.html#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Expecting the result to be 2:</span></span>
+<span id="cb57-9"><a href="W04_04_tasks_and_inputs.html#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="at">x =</span> <span class="dv">4</span>,<span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb57-10"><a href="W04_04_tasks_and_inputs.html#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span></code></pre></div>
+<p>As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of <code>x =</code>and <code>n =</code>).</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="W04_04_tasks_and_inputs.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">27</span>,<span class="dv">3</span>)</span>
+<span id="cb58-2"><a href="W04_04_tasks_and_inputs.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3</span></span>
+<span id="cb58-3"><a href="W04_04_tasks_and_inputs.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb58-4"><a href="W04_04_tasks_and_inputs.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1.44225</span></span></code></pre></div>
+<p>If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="W04_04_tasks_and_inputs.html#cb59-1" aria-hidden="true" tabindex="-1"></a>nthroot <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">n =</span> <span class="dv">2</span>){x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)}</span>
+<span id="cb59-2"><a href="W04_04_tasks_and_inputs.html#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="W04_04_tasks_and_inputs.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># if not stated otherwise, our function takes the square root</span></span>
+<span id="cb59-4"><a href="W04_04_tasks_and_inputs.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">10</span>)</span>
+<span id="cb59-5"><a href="W04_04_tasks_and_inputs.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3.162278</span></span>
+<span id="cb59-6"><a href="W04_04_tasks_and_inputs.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite n</span></span>
+<span id="cb59-7"><a href="W04_04_tasks_and_inputs.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">10</span>,<span class="dv">3</span>)</span>
+<span id="cb59-8"><a href="W04_04_tasks_and_inputs.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2.154435</span></span></code></pre></div>
+>>>>>>> 9e1f93f3fe69289879ce212ed64e1847c2ee494e
 <p>All you need to do now is run these few lines of code at the beginning of your script, and you can use the function for your entire R session. After starting a new session, you will simply have to re-run the lines. So it might be a good idea to place this function within the section <code>Loading environment / libraries</code> of your project.</p>
 </div>
 <div id="task-1-write-your-own-functions" class="section level3">
@@ -331,6 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="task-3-create-join-key" class="section level3">
 <h3>Task 3: Create Join Key</h3>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="W04_04_tasks_and_inputs.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wildschwein_filter)</span>
 <span id="cb87-2"><a href="W04_04_tasks_and_inputs.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 6 features and 11 fields</span></span>
 <span id="cb87-3"><a href="W04_04_tasks_and_inputs.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
@@ -349,6 +397,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb87-16"><a href="W04_04_tasks_and_inputs.html#cb87-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 002A   Sabi        12275 2015-03-31 23:15:12  47.0  7.05 2570375. 1205320.</span></span>
 <span id="cb87-17"><a href="W04_04_tasks_and_inputs.html#cb87-17" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 4 more variables: geometry &lt;POINT [m]&gt;, timelag &lt;dbl&gt;,</span></span>
 <span id="cb87-18"><a href="W04_04_tasks_and_inputs.html#cb87-18" aria-hidden="true" tabindex="-1"></a><span class="do">## #   steplength &lt;dbl&gt;, speed &lt;dbl&gt;</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="W04_04_tasks_and_inputs.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wildschwein_filter)</span>
+<span id="cb60-2"><a href="W04_04_tasks_and_inputs.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 6 features and 11 fields</span></span>
+<span id="cb60-3"><a href="W04_04_tasks_and_inputs.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
+<span id="cb60-4"><a href="W04_04_tasks_and_inputs.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
+<span id="cb60-5"><a href="W04_04_tasks_and_inputs.html#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2570245 ymin: 1205259 xmax: 2570375 ymax: 1205320</span></span>
+<span id="cb60-6"><a href="W04_04_tasks_and_inputs.html#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb60-7"><a href="W04_04_tasks_and_inputs.html#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 x 12</span></span>
+<span id="cb60-8"><a href="W04_04_tasks_and_inputs.html#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   TierID [1]</span></span>
+<span id="cb60-9"><a href="W04_04_tasks_and_inputs.html#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID TierName CollarID DatetimeUTC           Lat  Long        E        N</span></span>
+<span id="cb60-10"><a href="W04_04_tasks_and_inputs.html#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb60-11"><a href="W04_04_tasks_and_inputs.html#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A   Sabi        12275 2015-03-31 22:00:28  47.0  7.05 2570296. 1205283.</span></span>
+<span id="cb60-12"><a href="W04_04_tasks_and_inputs.html#cb60-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 002A   Sabi        12275 2015-03-31 22:15:44  47.0  7.05 2570259. 1205259.</span></span>
+<span id="cb60-13"><a href="W04_04_tasks_and_inputs.html#cb60-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 002A   Sabi        12275 2015-03-31 22:30:44  47.0  7.05 2570255. 1205259.</span></span>
+<span id="cb60-14"><a href="W04_04_tasks_and_inputs.html#cb60-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 002A   Sabi        12275 2015-03-31 22:46:04  47.0  7.05 2570245. 1205268.</span></span>
+<span id="cb60-15"><a href="W04_04_tasks_and_inputs.html#cb60-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 002A   Sabi        12275 2015-03-31 23:00:17  47.0  7.05 2570364. 1205314.</span></span>
+<span id="cb60-16"><a href="W04_04_tasks_and_inputs.html#cb60-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 002A   Sabi        12275 2015-03-31 23:15:12  47.0  7.05 2570375. 1205320.</span></span>
+<span id="cb60-17"><a href="W04_04_tasks_and_inputs.html#cb60-17" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 4 more variables: geometry &lt;POINT [m]&gt;, timelag &lt;dbl&gt;,</span></span>
+<span id="cb60-18"><a href="W04_04_tasks_and_inputs.html#cb60-18" aria-hidden="true" tabindex="-1"></a><span class="do">## #   steplength &lt;dbl&gt;, speed &lt;dbl&gt;</span></span></code></pre></div>
+>>>>>>> 9e1f93f3fe69289879ce212ed64e1847c2ee494e
 <p>Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. Verify if we have the same sampling interval (<code>timelag</code>) throughout our filtered dataset.</p>
 <pre><code>## Simple feature collection with 6 features and 11 fields
 ## geometry type:  POINT

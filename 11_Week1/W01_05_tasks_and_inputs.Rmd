@@ -74,7 +74,7 @@ We will largely rely on `sf`when working with vector data in `R`. In order to tr
 (At this point, we assume you know what a Coordinate Reference Systems is. Check out [this link](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/) if this is not the case.)
 
 
-```{r, opts.label="example_hideOutput"}
+```{r, opts.label="example_showOutput"}
 
 library(sf)
 

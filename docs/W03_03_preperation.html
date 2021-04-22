@@ -263,6 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="preperation-1" class="section level2">
 <h2>Preperation</h2>
 <p>Install the following libraries:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="W03_03_preperation.html#cb55-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-2"><a href="W03_03_preperation.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Preperation #################################################################</span></span>
 <span id="cb55-3"><a href="W03_03_preperation.html#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -311,6 +312,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb56-34"><a href="W03_03_preperation.html#cb56-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
 <span id="cb56-35"><a href="W03_03_preperation.html#cb56-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
 <span id="cb56-36"><a href="W03_03_preperation.html#cb56-36" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="W03_03_preperation.html#cb39-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-2"><a href="W03_03_preperation.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Preperation #################################################################</span></span>
+<span id="cb39-3"><a href="W03_03_preperation.html#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="W03_03_preperation.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;SimilarityMeasures&quot;</span>)</span>
+<span id="cb39-5"><a href="W03_03_preperation.html#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="W03_03_preperation.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The following packages are for optional tasks:</span></span>
+<span id="cb39-7"><a href="W03_03_preperation.html#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;plotly&quot;</span>)</span>
+<span id="cb39-8"><a href="W03_03_preperation.html#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="W03_03_preperation.html#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co"># You don&#39;t really need the following packages, </span></span>
+<span id="cb39-10"><a href="W03_03_preperation.html#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co"># we just use them in our figures</span></span>
+<span id="cb39-11"><a href="W03_03_preperation.html#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggrepel&quot;</span>)</span></code></pre></div>
+<p>Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today’s exercise.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="W03_03_preperation.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb40-2"><a href="W03_03_preperation.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb40-3"><a href="W03_03_preperation.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="W03_03_preperation.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import as dataframe</span></span>
+<span id="cb40-5"><a href="W03_03_preperation.html#cb40-5" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb40-6"><a href="W03_03_preperation.html#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="W03_03_preperation.html#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf-object</span></span>
+<span id="cb40-8"><a href="W03_03_preperation.html#cb40-8" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">=</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>,<span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb40-9"><a href="W03_03_preperation.html#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="W03_03_preperation.html#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to CH1903 LV95</span></span>
+<span id="cb40-11"><a href="W03_03_preperation.html#cb40-11" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
+<span id="cb40-12"><a href="W03_03_preperation.html#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-13"><a href="W03_03_preperation.html#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometry as E/N integer Columns</span></span>
+<span id="cb40-14"><a href="W03_03_preperation.html#cb40-14" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE) <span class="sc">%&gt;%</span></span>
+<span id="cb40-15"><a href="W03_03_preperation.html#cb40-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(wildschwein_BE,.) <span class="sc">%&gt;%</span></span>
+<span id="cb40-16"><a href="W03_03_preperation.html#cb40-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">E =</span> X) <span class="sc">%&gt;%</span></span>
+<span id="cb40-17"><a href="W03_03_preperation.html#cb40-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">N =</span> Y)</span>
+<span id="cb40-18"><a href="W03_03_preperation.html#cb40-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-19"><a href="W03_03_preperation.html#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute timelag, steplength and speed</span></span>
+<span id="cb40-20"><a href="W03_03_preperation.html#cb40-20" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> wildschwein_BE <span class="sc">%&gt;%</span></span>
+<span id="cb40-21"><a href="W03_03_preperation.html#cb40-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span></span>
+<span id="cb40-22"><a href="W03_03_preperation.html#cb40-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb40-23"><a href="W03_03_preperation.html#cb40-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
+<span id="cb40-24"><a href="W03_03_preperation.html#cb40-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb40-25"><a href="W03_03_preperation.html#cb40-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
+<span id="cb40-26"><a href="W03_03_preperation.html#cb40-26" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+>>>>>>> 9e1f93f3fe69289879ce212ed64e1847c2ee494e
 
 </div>
             </section>

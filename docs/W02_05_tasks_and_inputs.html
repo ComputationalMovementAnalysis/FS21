@@ -282,6 +282,7 @@ First, inspect your data in more detail. Try to answer the following questions:<
 <div id="input-geometry-as-columns" class="section level3">
 <h3>Input: Geometry as columns</h3>
 <p>Last week, we transformed our data from a <code>data.frame</code> to an <code>sf</code> object. This turned our <code>Lat</code>/<code>Long</code> columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. To do this, we have to extract the Coordinates using <code>st_coordinates()</code>. We can store these values in a new variable and display them:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="W02_05_tasks_and_inputs.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store coordinates in a new variable</span></span>
 <span id="cb47-2"><a href="W02_05_tasks_and_inputs.html#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="W02_05_tasks_and_inputs.html#cb47-3" aria-hidden="true" tabindex="-1"></a>coordinates <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE)</span>
@@ -320,6 +321,45 @@ First, inspect your data in more detail. Try to answer the following questions:<
 <span id="cb48-23"><a href="W02_05_tasks_and_inputs.html#cb48-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 POINT (2570390 1204818)</span></span>
 <span id="cb48-24"><a href="W02_05_tasks_and_inputs.html#cb48-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 POINT (2570390 1204825)</span></span></code></pre></div>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="W02_05_tasks_and_inputs.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#- chunkend</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="W02_05_tasks_and_inputs.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store coordinates in a new variable</span></span>
+<span id="cb35-2"><a href="W02_05_tasks_and_inputs.html#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="W02_05_tasks_and_inputs.html#cb35-3" aria-hidden="true" tabindex="-1"></a>coordinates <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE)</span>
+<span id="cb35-4"><a href="W02_05_tasks_and_inputs.html#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="W02_05_tasks_and_inputs.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(coordinates)</span>
+<span id="cb35-6"><a href="W02_05_tasks_and_inputs.html#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="do">##         X       Y</span></span>
+<span id="cb35-7"><a href="W02_05_tasks_and_inputs.html#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2570409 1204752</span></span>
+<span id="cb35-8"><a href="W02_05_tasks_and_inputs.html#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 2570402 1204863</span></span>
+<span id="cb35-9"><a href="W02_05_tasks_and_inputs.html#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 2570394 1204826</span></span>
+<span id="cb35-10"><a href="W02_05_tasks_and_inputs.html#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 2570379 1204817</span></span>
+<span id="cb35-11"><a href="W02_05_tasks_and_inputs.html#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 2570390 1204818</span></span>
+<span id="cb35-12"><a href="W02_05_tasks_and_inputs.html#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 2570390 1204825</span></span></code></pre></div>
+<p>Note that that the column are named <code>X</code> and <code>Y</code>, while <a href="https://www.swisstopo.admin.ch/de/wissen-fakten/geodaesie-vermessung/neue-koordinaten.html"><code>CH1903+ LV95</code></a> names the Axes <code>E</code> and <code>N</code>: let’s rename the columns appropriately. After this, we can use <code>cbind()</code> to “glue” the columns to our original <code>sf</code>-object.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="W02_05_tasks_and_inputs.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coordinates) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>,<span class="st">&quot;N&quot;</span>)</span>
+<span id="cb36-2"><a href="W02_05_tasks_and_inputs.html#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="W02_05_tasks_and_inputs.html#cb36-3" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">cbind</span>(wildschwein_BE,coordinates)</span>
+<span id="cb36-4"><a href="W02_05_tasks_and_inputs.html#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="W02_05_tasks_and_inputs.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wildschwein_BE)</span>
+<span id="cb36-6"><a href="W02_05_tasks_and_inputs.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 6 features and 7 fields</span></span>
+<span id="cb36-7"><a href="W02_05_tasks_and_inputs.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
+<span id="cb36-8"><a href="W02_05_tasks_and_inputs.html#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
+<span id="cb36-9"><a href="W02_05_tasks_and_inputs.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2570379 ymin: 1204752 xmax: 2570409 ymax: 1204863</span></span>
+<span id="cb36-10"><a href="W02_05_tasks_and_inputs.html#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb36-11"><a href="W02_05_tasks_and_inputs.html#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID TierName CollarID         DatetimeUTC timelag       E       N</span></span>
+<span id="cb36-12"><a href="W02_05_tasks_and_inputs.html#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 1   002A     Sabi    12275 2014-08-22 21:00:12     904 2570409 1204752</span></span>
+<span id="cb36-13"><a href="W02_05_tasks_and_inputs.html#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 2   002A     Sabi    12275 2014-08-22 21:15:16     927 2570402 1204863</span></span>
+<span id="cb36-14"><a href="W02_05_tasks_and_inputs.html#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 3   002A     Sabi    12275 2014-08-22 21:30:43     924 2570394 1204826</span></span>
+<span id="cb36-15"><a href="W02_05_tasks_and_inputs.html#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 4   002A     Sabi    12275 2014-08-22 21:46:07     855 2570379 1204817</span></span>
+<span id="cb36-16"><a href="W02_05_tasks_and_inputs.html#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 5   002A     Sabi    12275 2014-08-22 22:00:22     888 2570390 1204818</span></span>
+<span id="cb36-17"><a href="W02_05_tasks_and_inputs.html#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 6   002A     Sabi    12275 2014-08-22 22:15:10     903 2570390 1204825</span></span>
+<span id="cb36-18"><a href="W02_05_tasks_and_inputs.html#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="do">##                  geometry</span></span>
+<span id="cb36-19"><a href="W02_05_tasks_and_inputs.html#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 POINT (2570409 1204752)</span></span>
+<span id="cb36-20"><a href="W02_05_tasks_and_inputs.html#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 POINT (2570402 1204863)</span></span>
+<span id="cb36-21"><a href="W02_05_tasks_and_inputs.html#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 POINT (2570394 1204826)</span></span>
+<span id="cb36-22"><a href="W02_05_tasks_and_inputs.html#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 POINT (2570379 1204817)</span></span>
+<span id="cb36-23"><a href="W02_05_tasks_and_inputs.html#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 POINT (2570390 1204818)</span></span>
+<span id="cb36-24"><a href="W02_05_tasks_and_inputs.html#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 POINT (2570390 1204825)</span></span></code></pre></div>
+>>>>>>> 9e1f93f3fe69289879ce212ed64e1847c2ee494e
 </div>
 <div id="task-2-deriving-movement-parameters-i-speed" class="section level3">
 <h3>Task 2: Deriving movement parameters I: Speed</h3>
@@ -351,6 +391,7 @@ Save this data to a new variable (we will use <code>caro60</code>).</p>
 <p>Now manually reduce the granularity of our sampling interval by selecting every 3<sup>rd</sup>, 6<sup>th</sup> and 9<sup>th</sup> position.</p>
 <p>If you like to stick to the <code>tidyverse</code> approach, you can use <code>slice()</code> to subset the dataset by row number. Slice takes an integer vector. Eg: <code>slice(dataset, 1:10)</code>, returns the first 10 rows of a dataset, <code>slice(dataset, c(1,5,10))</code> returns the 1<sup>st</sup>, 5<sup>th</sup> and 10<sup>th</sup> value of a dataset. Save each re-sampled dataset in a new variable. We will use <code>caro60_3</code>, <code>caro60_6</code> and <code>caro60_9</code>.</p>
 <p>You should now have 4 data sets with different number of rows:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="W02_05_tasks_and_inputs.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro60)</span>
 <span id="cb51-2"><a href="W02_05_tasks_and_inputs.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 200</span></span>
 <span id="cb51-3"><a href="W02_05_tasks_and_inputs.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro60_3)</span>
@@ -359,6 +400,16 @@ Save this data to a new variable (we will use <code>caro60</code>).</p>
 <span id="cb51-6"><a href="W02_05_tasks_and_inputs.html#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 34</span></span>
 <span id="cb51-7"><a href="W02_05_tasks_and_inputs.html#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro60_9)</span>
 <span id="cb51-8"><a href="W02_05_tasks_and_inputs.html#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 23</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="W02_05_tasks_and_inputs.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro60)</span>
+<span id="cb37-2"><a href="W02_05_tasks_and_inputs.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 200</span></span>
+<span id="cb37-3"><a href="W02_05_tasks_and_inputs.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro60_3)</span>
+<span id="cb37-4"><a href="W02_05_tasks_and_inputs.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 67</span></span>
+<span id="cb37-5"><a href="W02_05_tasks_and_inputs.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro60_6)</span>
+<span id="cb37-6"><a href="W02_05_tasks_and_inputs.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 34</span></span>
+<span id="cb37-7"><a href="W02_05_tasks_and_inputs.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro60_9)</span>
+<span id="cb37-8"><a href="W02_05_tasks_and_inputs.html#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 23</span></span></code></pre></div>
+>>>>>>> 9e1f93f3fe69289879ce212ed64e1847c2ee494e
 </div>
 <div id="update-derived-parameters" class="section level4">
 <h4>Update derived parameters</h4>
@@ -398,6 +449,7 @@ Save this data to a new variable (we will use <code>caro60</code>).</p>
 <div id="task-4-deriving-movement-parameters-ii-rolling-window-functions" class="section level3">
 <h3>Task 4: Deriving movement parameters II: Rolling window functions</h3>
 <p>A different approach would be to <em>smoothen</em> the derived parameters using a <a href="https://docs.wavefront.com/images/5sec_moving_window.png">moving window function</a>. The <code>zoo</code> package offers a variate of moving window functions (<code>roll_*</code>). Use <code>roll_mean()</code> to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="W02_05_tasks_and_inputs.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
 <span id="cb54-2"><a href="W02_05_tasks_and_inputs.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb54-3"><a href="W02_05_tasks_and_inputs.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Attaching package: &#39;zoo&#39;</span></span>
@@ -415,6 +467,17 @@ Save this data to a new variable (we will use <code>caro60</code>).</p>
 <span id="cb54-15"><a href="W02_05_tasks_and_inputs.html#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">4</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
 <span id="cb54-16"><a href="W02_05_tasks_and_inputs.html#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  0.6775521  0.2045005  0.5848215  0.5255629  0.3446928  0.1459635</span></span>
 <span id="cb54-17"><a href="W02_05_tasks_and_inputs.html#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.4102301         NA         NA         NA</span></span></code></pre></div>
+=======
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="W02_05_tasks_and_inputs.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb38-2"><a href="W02_05_tasks_and_inputs.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="W02_05_tasks_and_inputs.html#cb38-3" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb38-4"><a href="W02_05_tasks_and_inputs.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">3</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb38-5"><a href="W02_05_tasks_and_inputs.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  0.93634335  0.31709038  0.02370048  0.67869801  0.73369105  0.50401344</span></span>
+<span id="cb38-6"><a href="W02_05_tasks_and_inputs.html#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.56144365 -0.56902598          NA          NA</span></span>
+<span id="cb38-7"><a href="W02_05_tasks_and_inputs.html#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">4</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb38-8"><a href="W02_05_tasks_and_inputs.html#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  0.6775521  0.2045005  0.5848215  0.5255629  0.3446928  0.1459635</span></span>
+<span id="cb38-9"><a href="W02_05_tasks_and_inputs.html#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.4102301         NA         NA         NA</span></span></code></pre></div>
+>>>>>>> 9e1f93f3fe69289879ce212ed64e1847c2ee494e
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>caro60</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).</p>
 <p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 </div>
