@@ -31,9 +31,9 @@
   
   
 <link rel="prev" href="W01_03_prerequesites.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="W01_05_tasks_and_inputs.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,6 +50,22 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -135,13 +151,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W01_03_prerequesites.html"><a href="W01_03_prerequesites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html"><i class="fa fa-check"></i>Preperation</a>
 <ul>
-<li><a href="W01_04_preperations.html#check-you-version-of-r">Check you Version of <code>R</code></a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#check-your-version-of-rstudio"><i class="fa fa-check"></i>Check your Version of RStudio</a></li>
+<li><a href="W01_04_preperations.html#check-you-version-of-r">Check you version of <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#check-your-version-of-rstudio"><i class="fa fa-check"></i>Check your version of RStudio</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#install-the-necessary-packages"><i class="fa fa-check"></i>Install the necessary packages</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#install-git"><i class="fa fa-check"></i>Install Git</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#configure-rstudio"><i class="fa fa-check"></i>Configure RStudio</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#introduce-yourself-to-git"><i class="fa fa-check"></i>Introduce yourself to Git</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#prepare-the-folder-structure-for-this-course"><i class="fa fa-check"></i>Prepare the folder structure for this course</a></li>
 <li><a href="W01_04_preperations.html#create-an-rstudio-project-for-the-first-week">Create an RStudio <em>project</em> for the first week</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-1-import-data"><i class="fa fa-check"></i>Task 1: Import data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-2-explore-data"><i class="fa fa-check"></i>Task 2: Explore Data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-handling-spatial-data"><i class="fa fa-check"></i>Input: Handling spatial data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-3-project-data-from-wgs84"><i class="fa fa-check"></i>Task 3: Project data from WGS84</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-calculate-convex-hull"><i class="fa fa-check"></i>Input: Calculate Convex Hull</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-4-ploting-spatial-objects"><i class="fa fa-check"></i>Task 4: Ploting spatial objects</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-importing-raster-data"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-5-adding-a-background-map"><i class="fa fa-check"></i>Task 5: Adding a background map</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-6-create-an-interactive-map"><i class="fa fa-check"></i>Task 6: Create an interactive map</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_01_exercise.html"><a href="W02_01_exercise.html"><i class="fa fa-check"></i>Exercise 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_01_learning_outcomes.html"><a href="W02_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="W02_02_prerequisites.html"><a href="W02_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html"><i class="fa fa-check"></i>Demo Tidyverse</a>
+<ul>
+<li><a href="W02_04_demo_tidyverse.html#difftime"><code>difftime</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#lead-lag"><code>lead()</code> / <code>lag()</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#mutate"><code>mutate()</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#group_by"><code>group_by()</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#summarise"><code>summarise()</code></a></li>
+<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#bring-it-all-together"><i class="fa fa-check"></i>Bring it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an overview</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#input-geometry-as-columns"><i class="fa fa-check"></i>Input: Geometry as columns</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-2-deriving-movement-parameters-i-speed"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Speed</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-5-optional-calculate-turning-angles"><i class="fa fa-check"></i>Task 5 (optional): Calculate turning angles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W03_01_exercise.html"><a href="W03_01_exercise.html"><i class="fa fa-check"></i>Exercise 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preperation.html"><a href="W03_03_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#input-segmentation-as-in-laube-and-purves-2011"><i class="fa fa-check"></i>Input: Segmentation as in Laube and Purves (2011)</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
+<li><a href="W03_04_tasks_and_inputs.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W04_01_exercise.html"><a href="W04_01_exercise.html"><i class="fa fa-check"></i>Exercise 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_01_learning_outcomes.html"><a href="W04_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="W04_02_prerequisites.html"><a href="W04_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-4-measuring-distance-at-concurrent-locations"><i class="fa fa-check"></i>Task 4: Measuring distance at concurrent locations</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-5-visualize-data"><i class="fa fa-check"></i>Task 5: Visualize data</a></li>
+<li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="W05_02_preperation.html"><a href="W05_02_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -165,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="w1-preperation" class="section level2">
 <h2>Preperation</h2>
 <div id="check-you-version-of-r" class="section level3">
-<h3>Check you Version of <code>R</code></h3>
+<h3>Check you version of <code>R</code></h3>
 <p>Check your Version of <code>R</code> by opening RStudio and typing the following command into the console.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="W01_04_preperations.html#cb1-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span>
 <span id="cb1-2"><a href="W01_04_preperations.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;R version 4.0.3 (2020-10-10)&quot;</span></span></code></pre></div>
@@ -174,15 +272,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>don’t have the current <em>major</em> version or</li>
 <li>are lagging two (or more) versions behind the current <em>minor release</em></li>
 </ul>
-<p>In the time of writing (April, 2021), the current <code>R</code> Version is 4.0.5 (released on 2021-03-31 07:05:15, see <a href="https://cran.r-project.org/">cran.r-project.org</a>). Your installation should therefore not be older than 4.0.0. If it is, make sure that you have updated R until next week (doing it now will probabbly take too long). Check <a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/">these instructions on how to update R</a></p>
+<p>In the time of writing (April, 2021), the current <code>R</code> Version is 4.0.5 (released on 2021-03-31 07:05:15, see <a href="https://cran.r-project.org/">cran.r-project.org</a>). Your installation should therefore not be older than 4.0.0. If it is, make sure that you have updated R until next week (doing it now will probably take too long). Check <a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/">these instructions on how to update R</a></p>
 </div>
 <div id="check-your-version-of-rstudio" class="section level3">
-<h3>Check your Version of RStudio</h3>
+<h3>Check your version of RStudio</h3>
 <p>RStudio is the Graphical User Interface (GUI) we use in our course to interact with R. RStudio should not be too old either and we recommend updating if you don’t have the latest version: check if this is the case by clicking on <em>help &gt; check for updates</em>. If you need to update RStudio, don’t update now but have a newer version of RStudio installed before next week.</p>
 </div>
 <div id="install-the-necessary-packages" class="section level3">
 <h3>Install the necessary packages</h3>
 <p>If you haven’t already, install the packages <code>tidyverse</code>, <code>sf</code> and <code>terra</code>(using <code>install.packages()</code>).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="W01_04_preperations.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb2-2"><a href="W01_04_preperations.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb2-3"><a href="W01_04_preperations.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;raster&quot;</span>)</span></code></pre></div>
 </div>
 <div id="install-git" class="section level3">
 <h3>Install Git</h3>
@@ -227,6 +328,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
+<div id="introduce-yourself-to-git" class="section level3">
+<h3>Introduce yourself to Git</h3>
+<p>Now it is time to introduce yourself to git. In the terminal, enter your name and email address by entering the following commands:</p>
+<pre><code>git config --global user.name &quot;Maria Nusslinger&quot;
+git config --global user.email &quot;nussmar@email.com&quot;</code></pre>
+<p>Of course, replace the name and address with your credentials. Use the email address that you will use to create your Github account (which we will do next week).</p>
+</div>
 <div id="prepare-the-folder-structure-for-this-course" class="section level3">
 <h3>Prepare the folder structure for this course</h3>
 <p>By this point, you probably have created a folder for this course somewhere on your computer. In our example, we assume this folder is located here: <code>C:/Users/yourname/semester2/Modul_CMA</code> (mentally replace this with your actual path). Before we dive into the exercises, take a minute to think about how you are going to structure your files in this folder. This course will take place over 7 weeks, and in each week you will receive or produce various files. We recommend creating a separate folder for each week, and one folder for the semester project, like so:</p>
@@ -248,10 +356,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
      ¦--week1-r.Rproj                                           
      ¦--wildschwein.csv                                         
      °--my_solution.Rmd  </code></pre>
-<p>Note that the RStudio Project is located in a subfolder of <code>C:/Users/yourname/semester2/Modul_CMA/week1</code> and named <code>week1-rexercise</code>.</p>
+<p>Note:</p>
 <ul>
+<li>the RStudio Project is located in a subfolder of <code>C:/Users/yourname/semester2/Modul_CMA/week1</code> and named <code>week1-rexercise</code>.</li>
 <li><code>week1-rexercise</code> is the project’s <em>directory name</em> and the <em>project name</em></li>
-<li>we realize that that the week number is redundant, there is a reason for this<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+<li>we realize that that the week number is redundant, there is a reason<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> for this</li>
 <li>this means each week is a fresh start (which has pros and cons)</li>
 </ul>
 </div>
@@ -264,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Check the option “Create a git repository”</li>
 <li>Click on “Create Project”</li>
 </ol>
-<!-- Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science Workflow. In .R Files, "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes, equal, or pound signs ( `-`, `=`,`#`). In .Rmd Files, their are created with leading pound signs (`#`). -->
+<!-- Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science workflow. In .R Files, "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes, equal, or pound signs ( `-`, `=`,`#`). In .Rmd Files, their are created with leading pound signs (`#`). -->
 <!-- Sections allow code folding (try clicking on the small triangle next to the line number) and facilitate navigation (try the shortcut: `Shift`+`Alt`+`J`). We recommend following sections: -->
 <!-- - Loading environment / libraries -->
 <!-- - Data import -->
@@ -273,11 +382,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 </div>
-</div>
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>You will see the project names of all your RStudio Projets listed in RStudio. Having the week number in the project name keeps you from getting confused on which project you are working on.<a href="W01_04_preperations.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>You will see the project names of all your RStudio Projects listed in RStudio. Having the week number in the project name keeps you from getting confused on which project you are working on.<a href="W01_04_preperations.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -286,7 +394,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="W01_03_prerequesites.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="W01_05_tasks_and_inputs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -336,6 +444,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

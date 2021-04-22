@@ -51,6 +51,12 @@
 
 
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -60,12 +66,6 @@
 <script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
 <script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -151,13 +151,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W01_03_prerequesites.html"><a href="W01_03_prerequesites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html"><i class="fa fa-check"></i>Preperation</a>
 <ul>
-<li><a href="W01_04_preperations.html#check-you-version-of-r">Check you Version of <code>R</code></a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#check-your-version-of-rstudio"><i class="fa fa-check"></i>Check your Version of RStudio</a></li>
+<li><a href="W01_04_preperations.html#check-you-version-of-r">Check you version of <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#check-your-version-of-rstudio"><i class="fa fa-check"></i>Check your version of RStudio</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#install-the-necessary-packages"><i class="fa fa-check"></i>Install the necessary packages</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#install-git"><i class="fa fa-check"></i>Install Git</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#configure-rstudio"><i class="fa fa-check"></i>Configure RStudio</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#introduce-yourself-to-git"><i class="fa fa-check"></i>Introduce yourself to Git</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#prepare-the-folder-structure-for-this-course"><i class="fa fa-check"></i>Prepare the folder structure for this course</a></li>
-<li><a href="W01_04_preperations.html#create-an-rstudio-project">Create an RStudio <em>project</em></a></li>
+<li><a href="W01_04_preperations.html#create-an-rstudio-project-for-the-first-week">Create an RStudio <em>project</em> for the first week</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
 <ul>
@@ -262,19 +263,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="preperation" class="section level2">
 <h2>Preperation</h2>
 <p>Install the package <code>zoo</code> to get access to the rolling window functions for last exercise.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="W02_03_preperation.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;zoo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="W02_03_preperation.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;zoo&quot;</span>)</span></code></pre></div>
 <p>Import the wild boar data and convert it to an <code>sf</code> object with CH1903+ LV95 Coordinates. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="W02_03_preperation.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb20-2"><a href="W02_03_preperation.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb20-3"><a href="W02_03_preperation.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb20-4"><a href="W02_03_preperation.html#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="W02_03_preperation.html#cb20-5" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
-<span id="cb20-6"><a href="W02_03_preperation.html#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="W02_03_preperation.html#cb20-7" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">=</span> <span class="fu">st_as_sf</span>(wildschwein_BE, </span>
-<span id="cb20-8"><a href="W02_03_preperation.html#cb20-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), </span>
-<span id="cb20-9"><a href="W02_03_preperation.html#cb20-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">crs =</span> <span class="dv">4326</span>)</span>
-<span id="cb20-10"><a href="W02_03_preperation.html#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="W02_03_preperation.html#cb20-11" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="W02_03_preperation.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb27-2"><a href="W02_03_preperation.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --</span></span>
+<span id="cb27-3"><a href="W02_03_preperation.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="do">## v tibble  3.0.4     v purrr   0.3.4</span></span>
+<span id="cb27-4"><a href="W02_03_preperation.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="do">## v tidyr   1.1.2     v forcats 0.5.1</span></span>
+<span id="cb27-5"><a href="W02_03_preperation.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning: package &#39;tidyr&#39; was built under R version 4.0.4</span></span>
+<span id="cb27-6"><a href="W02_03_preperation.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="do">## -- Conflicts ------------------------------------------ tidyverse_conflicts() --</span></span>
+<span id="cb27-7"><a href="W02_03_preperation.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="do">## x terra::collapse()  masks dplyr::collapse(), glue::collapse()</span></span>
+<span id="cb27-8"><a href="W02_03_preperation.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="do">## x terra::desc()      masks dplyr::desc()</span></span>
+<span id="cb27-9"><a href="W02_03_preperation.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="do">## x tidyr::expand()    masks terra::expand()</span></span>
+<span id="cb27-10"><a href="W02_03_preperation.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="do">## x tidyr::extract()   masks terra::extract()</span></span>
+<span id="cb27-11"><a href="W02_03_preperation.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="do">## x tidyr::fill()      masks terra::fill()</span></span>
+<span id="cb27-12"><a href="W02_03_preperation.html#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="do">## x dplyr::filter()    masks stats::filter()</span></span>
+<span id="cb27-13"><a href="W02_03_preperation.html#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="do">## x dplyr::lag()       masks stats::lag()</span></span>
+<span id="cb27-14"><a href="W02_03_preperation.html#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="do">## x terra::near()      masks dplyr::near()</span></span>
+<span id="cb27-15"><a href="W02_03_preperation.html#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="do">## x tidyr::pack()      masks terra::pack()</span></span>
+<span id="cb27-16"><a href="W02_03_preperation.html#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="do">## x terra::select()    masks dplyr::select()</span></span>
+<span id="cb27-17"><a href="W02_03_preperation.html#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="do">## x tidyr::separate()  masks terra::separate()</span></span>
+<span id="cb27-18"><a href="W02_03_preperation.html#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="do">## x purrr::transpose() masks terra::transpose()</span></span>
+<span id="cb27-19"><a href="W02_03_preperation.html#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb27-20"><a href="W02_03_preperation.html#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb27-21"><a href="W02_03_preperation.html#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning: package &#39;lubridate&#39; was built under R version 4.0.4</span></span>
+<span id="cb27-22"><a href="W02_03_preperation.html#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-23"><a href="W02_03_preperation.html#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Attaching package: &#39;lubridate&#39;</span></span>
+<span id="cb27-24"><a href="W02_03_preperation.html#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:terra&#39;:</span></span>
+<span id="cb27-25"><a href="W02_03_preperation.html#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-26"><a href="W02_03_preperation.html#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="do">##     intersect, union</span></span>
+<span id="cb27-27"><a href="W02_03_preperation.html#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb27-28"><a href="W02_03_preperation.html#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-29"><a href="W02_03_preperation.html#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="do">##     date, intersect, setdiff, union</span></span>
+<span id="cb27-30"><a href="W02_03_preperation.html#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-31"><a href="W02_03_preperation.html#cb27-31" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb27-32"><a href="W02_03_preperation.html#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb27-33"><a href="W02_03_preperation.html#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="do">## -- Column specification --------------------------------------------------------</span></span>
+<span id="cb27-34"><a href="W02_03_preperation.html#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="do">## cols(</span></span>
+<span id="cb27-35"><a href="W02_03_preperation.html#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID = col_character(),</span></span>
+<span id="cb27-36"><a href="W02_03_preperation.html#cb27-36" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierName = col_character(),</span></span>
+<span id="cb27-37"><a href="W02_03_preperation.html#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="do">##   CollarID = col_double(),</span></span>
+<span id="cb27-38"><a href="W02_03_preperation.html#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="do">##   DatetimeUTC = col_datetime(format = &quot;&quot;),</span></span>
+<span id="cb27-39"><a href="W02_03_preperation.html#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="do">##   Lat = col_double(),</span></span>
+<span id="cb27-40"><a href="W02_03_preperation.html#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="do">##   Long = col_double()</span></span>
+<span id="cb27-41"><a href="W02_03_preperation.html#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="do">## )</span></span>
+<span id="cb27-42"><a href="W02_03_preperation.html#cb27-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-43"><a href="W02_03_preperation.html#cb27-43" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">=</span> <span class="fu">st_as_sf</span>(wildschwein_BE, </span>
+<span id="cb27-44"><a href="W02_03_preperation.html#cb27-44" aria-hidden="true" tabindex="-1"></a>                          <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), </span>
+<span id="cb27-45"><a href="W02_03_preperation.html#cb27-45" aria-hidden="true" tabindex="-1"></a>                          <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb27-46"><a href="W02_03_preperation.html#cb27-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-47"><a href="W02_03_preperation.html#cb27-47" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span></code></pre></div>
 
 </div>
             </section>
@@ -314,15 +351,15 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/12_Week2/W02_03_preperation.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
 "view": {
-"link": null,
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/12_Week2/W02_03_preperation.Rmd",
 "text": null
 },
 "download": ["patterns-and-trends.pdf"],
