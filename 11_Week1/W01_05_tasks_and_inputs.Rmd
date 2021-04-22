@@ -3,14 +3,14 @@ output:
   pdf_document: default
   html_document: default
 ---
-## Tasks and inputs
+## Tasks and inputs {#w1-tasks-and-inputs}
 
 Before starting with the task:
 
 1. make sure you have read and followed the instructions in section [Preperation](#w1-preperation)
 2. In RStudio, open the RStudio Project you created for this week if you haven't done so already. You can see that you are in an RStudio Project if the project's name is visible next to the little RStudio logo in the top right corner of RStudio (otherwise it will read `Project: (None)`).
 3. Download the wildboar movement data here: `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click "Save target as..")
-4. lastly, create a new RMarkdown File and start by loading the following packages: 
+4. lastly, create a new R- (or RMarkdown) file and begin by loading the following packages: 
 
 ```{r, opts.label = "example_hideOutput"}
 library(readr)        # to import tabular data (e.g. csv)
@@ -18,6 +18,16 @@ library(dplyr)        # to manipulate (tabular) data
 library(ggplot2)      # to visualize data
 ```
 
+
+Once you have set everything up, commit your file to your git repo in the following manner:
+
+
+1. Save your R/RMarkdown file
+2. Switch to the "Git"-Tab in the pane in the top right corner
+3. Click "commit" to open the "commit-Window"
+4. Click in the checkbox left of the file you want to commit 
+5. Add a commit message to explain what you are commiting (e.g. "`initial commit`")
+6. Click on "commit" to commit your changes
 
 
 ### Task 1: Import data
@@ -33,6 +43,9 @@ Note:
 ```{r, code =  mydecrypt("11_Week1/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
+
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Write a meaningful commit message (e.g. "`completed task 1`").
+
 ### Task 2: Explore Data
 
 We will use a range of different visualization tools (i.e. R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While `base::plot() `is quick and simple, it not very scalable with growing complexity. `ggplot2` offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
@@ -47,6 +60,9 @@ Save your code in the appropriate section.
 
 ```{r code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput", fig.cap="You plot should look something like this."}
 ```
+
+
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
 
 
 ### Input: Handling spatial data
@@ -122,6 +138,7 @@ Here's the resulting `sf` object from the operation:
 wildschwein_BE
 ```
 
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
 
 
 ### Input: Calculate Convex Hull
@@ -178,6 +195,7 @@ Note: `ggplot` refuses to use our specified CRS, so we need to force this by spe
 
 
 
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
 
 
 ### Input: Importing raster data
@@ -185,27 +203,30 @@ Note: `ggplot` refuses to use our specified CRS, so we need to force this by spe
 In the next task, we would like to add a background map to our `mcp` object. To do this, we have to the raster data into `R` first. For this, we use the package `terra` with the function `rast`.
 
 
-```{r, opts.label="example_showOutput"}
 
+```{r, opts.label="example_showOutput"}
 library(terra)
 
-pk100_BE <- terra::rast("00_Rawdata/pk100_BE_2056.tif")
+pk100_BE <- terra::rast("00_Rawdata/pk100_BE.tif")
 
 pk100_BE
 ```
 
 
-`pk100_BE_2056.tif` is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (`pk100_BE_2056.1`, `pk100_BE_2056.2`etc). For some reason, `rast` imported a fourth layer (`pk1_4 `). `plot()` shows that the fourth layer is empty. We will remove this layer using `subset()`. 
+`pk100_BE_2056.tif` is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (`pk1_1`, `pk1_2`etc). With the default `plot` method, each layer is displayed individually:
 
 ```{r, opts.label="example_showOutput"}
-
-plot(pk100_BE)
-
-pk100_BE <- subset(pk100_BE,1:3)
-
 plot(pk100_BE)
 
 ```
+
+With `plotRGB` all three layers are combined into a single image:
+
+```{r}
+plotRGB(pk100_BE)
+```
+
+
 
 
 ### Task 5: Adding a background map
@@ -226,11 +247,14 @@ As you can see, plotting layers in `tmap` is combined with the `+` sign, just as
 ```{r, code =  mydecrypt("11_Week1/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
 
 
 ### Task 6: Create an interactive map
 
 Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand. Omit the raster layer (`pk100_BE`), you won't be needing it.
+
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
 
 
 ```{r code =  mydecrypt("11_Week1/solutions/task_6.R",".passphrase"), opts.label="solution_hideOutput"}
