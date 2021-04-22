@@ -1,10 +1,15 @@
-## Preperation
+## Preperation {#w1-preperation}
 
 
 ```{r, opts.label="solution_hideOutput"}
 
+library(rversions)
+
 rversion_current <- rversions::r_release()
 rversion_current
+
+
+rversion_current_sep <- strsplit(as.character(base::getRversion()), "\\.")[[1]]
 
 
 rversion_minimal <- function(version_string){
@@ -15,7 +20,7 @@ rversion_minimal <- function(version_string){
 ```
 
 
-## Check you Version of `R`
+### Check you Version of `R`
 
 Check your Version of `R` by opening RStudio and typing the following command into the console. 
 
@@ -23,31 +28,185 @@ Check your Version of `R` by opening RStudio and typing the following command in
 R.version.string
 ```
 
-This returns the version number of your R installation, whereas the first digit indicates the number of the *major release*, the second digit indicates the *minor release* and the last digit refers to the *patch release*. As a general rule of thumb, you will want to update R if you
+This returns the version number of your R installation, whereas the first digit (``r rversion_current_sep[1]``) indicates the number of the *major release*, the second digit  (``r rversion_current_sep[2]``) indicates the *minor release* and the last digit (``r rversion_current_sep[3]``) refers to the *patch release*. As a general rule of thumb, you will want to update R if you
 
 - don't have the current *major* version or
 - are lagging two (or more) versions behind the current *minor release*
 
-In the time of writing (`r strftime(Sys.Date(), "%B, %Y")`), the current `R` Version is `r rversion_current$version` (from `r rversion_current$date`). Your installation should therefore not be older than `rversion_minimal(rversion_current$version)`. If it is, make sure that you have updated R until next week. Check [these instructions on how to update R](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/)
+In the time of writing (`r strftime(Sys.Date(), "%B, %Y")`), the current `R` Version is `r rversion_current$version` (released on `r rversion_current$date`, see [cran.r-project.org](https://cran.r-project.org/)). Your installation should therefore not be older than `r rversion_minimal(rversion_current$version)`. If it is, make sure that you have updated R until next week (doing it now will probabbly take too long). Check [these instructions on how to update R](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/)
 
 
-## Check your Version of RStudio
+### Check your Version of RStudio
 
-RStudio is the Graphical User Interface (GUI) we use in our course to interact with R. RStudio should not be too old either and we recommend updating if you don't have the latest version: check if this is the case by clicking on *help > check for updates*. 
+RStudio is the Graphical User Interface (GUI) we use in our course to interact with R. RStudio should not be too old either and we recommend updating if you don't have the latest version: check if this is the case by clicking on *help > check for updates*. If you need to update RStudio, don't update now but have a newer version of RStudio installed before next week. 
 
 
-## Install packages
+### Install the necessary packages
 
-If you haven't already, install the packages `tidyverse`, `sf` and `terra`(using `install.packages()`). **Restart your `R` session after installing all these packages.**
+If you haven't already, install the packages `tidyverse`, `sf` and `terra`(using `install.packages()`). 
 
-```{r, opts.label = "noeval"}
+```{r, opts.label = "noeval", eval = FALSE}
 install.packages("tidyverse")
 install.packages("sf")
 install.packages("raster")
 ```
 
 
-## Install Git
+### Install Git
+
+Next, install Git. If you are not sure whether you already have Git installed or not, you can verify this by typing `git --version` in the terminal (there is a terminal built into RStudio which you can use for this. By default, it is situated in the bottom left corner in the tab named "Terminal"). If this command returns a version number you have Git installed already and might only need to update it. If this command returns `git: command not found` (or something similar), you will need to install Git first.
 
 
-Next, install 
+- **Windows**: 
+  - We recommend installing [Git for Windows](https://gitforwindows.org/), also known as `msysgit` or “Git Bash". 
+  - When asked about “Adjusting your PATH environment”, select “Git from the command line and also from 3rd-party software”
+  - RStudio prefers Git to be installed in `C:/Program Files/Git`, we recommend following this convention
+  - Otherwise, we believe it is good to accept the defaults
+- **macOS**:  
+  - We recommend you install the Xcode command line tools (not all of Xcode), which includes Git
+  - Go to the shell and enter `xcode-select --install` to install developer command line tools
+- **Linux**: 
+  - On Ubuntu or Debian Linux: `sudo apt-get install git`
+  - On Fedora or RedHat Linux: `sudo yum install git`
+  
+  
+  
+### Configure RStudio
+
+Now we will set some RStudio Global options. But first, **close all instances of RStudio and restart it (!!!)**. Then go to Tools > Global options. 
+
+- **R General**
+  - Deactivate the option "Restore .RData into workspace at startup"
+  - Set "Save workspace to .RData on exit " to "Never"
+- **Git / SVN**
+  - Activate the option "Enable version control interface for RStudio projects"
+  - If the Field "Git executable:" shows `(Not Found)`, browse to your git installation (previous step). This path should look something like this:
+    - Windows: `C:/Program Files/Git/bin/git.exe` (**not** `C:/Program Files/Git/cmd/git.exe` or `git-bash.exe`)
+    - Linux / macOS: `/usr/bin/git`
+
+
+
+### Prepare the folder structure for this course
+
+```{r, echo = FALSE}
+rootdir <- "C:/Users/yourname/semester2/Modul_CMA"
+
+paths2node <- function(paths){
+  require(data.tree)
+  as.Node(data.frame(paths = paths),pathName = "paths")
+}
+
+subpaths <- function(rootfolder_path, rootfolder_name, subfolders){
+  require(stringr)
+  c(paste0(rootfolder_name," (",stringr::str_replace_all(rootfolder_path, "/", "\\\\"),")"), file.path("rootfolder_path",subfolders))
+}
+
+```
+
+
+By this point, you probably have created a folder for this course somewhere on your computer. In our example, we assume this folder is located here: ``r rootdir`` (mentally replace this with your actual path). Before we dive into the exercises, take a minute to think about how you are going to structure your files in this folder. This course will take place over 7 weeks, and in each week you will receive or produce various files. We recommend creating a separate folder for each week, and one folder for the semester project, like so:
+
+
+
+```{r, echo = FALSE, eval = TRUE}
+subpaths(rootdir,"Course Folder",c(paste0("week",1:7),"semester_project")) %>%
+  paths2node()
+```
+
+```
+Course Folder (C:\\Users\\yourname\\semester2\\Modul_CMA)
+ ¦--week1                                                
+ ¦--week2                                                
+ ¦--week3                                                
+ ¦--week4                                                
+ ¦--week5                                                
+ ¦--week6                                                
+ ¦--week7                                                
+ °--semester_project 
+```
+
+
+For the R-exercises that take place in weeks 1 to 5, we recommend that you create a new RStudio Project each week in subdirectory of the appropriate week. For example, this week your folder structure could look like this: 
+
+
+```{r, echo = FALSE, eval = TRUE}
+
+
+week_rootdir <- file.path(rootdir, "week1")
+
+rprojfolder <- "week1-rexercise"
+
+rprojfiles <- file.path(rprojfolder,c("week1-r.Rproj","wildschwein.csv","my_solution.Rmd"))
+
+files_week1 <- file.path("week1", c("slides.pdf","my_notes.docx","seminar_screenshot.jpg",rprojfiles))
+
+
+subpaths(week_rootdir,"Folder Week 1",c("slides.pdf","my_notes.docx","seminar_screenshot.jpg",rprojfiles))  %>%
+  paths2node()
+```
+
+
+```
+Folder Week 1 (C:\\Users\\yourname\\semester2\\Modul_CMA\\week1)
+ ¦--slides.pdf                                                  
+ ¦--my_notes.docx                                               
+ ¦--seminar_screenshot.jpg                                      
+ °--week1-rexercise                                             
+     ¦--week1-r.Rproj                                           
+     ¦--wildschwein.csv                                         
+     °--my_solution.Rmd  
+```
+
+
+Note that the RStudio Project is located in a subfolder of ``r week_rootdir`` and named ``r rprojfolder``.
+
+- ``r rprojfolder`` is the project's *directory name* and the *project name*
+- we realize that that the week number is redundant, there is a reason for this[^redundancy]
+- this means each week is a fresh start (which has pros and cons)
+
+[^redundancy]: You will see the project names of all your RStudio Projets listed in RStudio. Having the week number in the project name keeps you from getting confused on which project you are working on.
+
+
+### Create an RStudio *project* for the first week
+
+
+Create a new *RStudio Project* (File > New Project > New Directory > New Project). 
+
+1. Click on "Browse" and switch to *your equivalent* of the folder ``r week_rootdir`` (the project we are about to initiate will be be created in a subdirectory of this folder). Click on "open" to confirm the selection
+2. In the field "Directory name", type ``r rprojfolder``. This will be the name of your RStudio project and the it's parent directory.
+3. Check the option "Create a git repository"
+4. Click on "Create Project"
+
+
+
+
+
+<!-- Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science Workflow. In .R Files, "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes, equal, or pound signs ( `-`, `=`,`#`). In .Rmd Files, their are created with leading pound signs (`#`). -->
+
+<!-- Sections allow code folding (try clicking on the small triangle next to the line number) and facilitate navigation (try the shortcut: `Shift`+`Alt`+`J`). We recommend following sections: -->
+
+<!-- - Loading environment / libraries -->
+<!-- - Data import -->
+<!-- - Data cleansing -->
+<!-- - Data analysis and visualization -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
