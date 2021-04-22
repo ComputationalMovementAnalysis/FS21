@@ -20,7 +20,7 @@ rversion_minimal <- function(version_string){
 ```
 
 
-### Check you Version of `R`
+### Check you version of `R`
 
 Check your Version of `R` by opening RStudio and typing the following command into the console. 
 
@@ -33,10 +33,10 @@ This returns the version number of your R installation, whereas the first digit 
 - don't have the current *major* version or
 - are lagging two (or more) versions behind the current *minor release*
 
-In the time of writing (`r strftime(Sys.Date(), "%B, %Y")`), the current `R` Version is `r rversion_current$version` (released on `r rversion_current$date`, see [cran.r-project.org](https://cran.r-project.org/)). Your installation should therefore not be older than `r rversion_minimal(rversion_current$version)`. If it is, make sure that you have updated R until next week (doing it now will probabbly take too long). Check [these instructions on how to update R](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/)
+In the time of writing (`r strftime(Sys.Date(), "%B, %Y")`), the current `R` Version is `r rversion_current$version` (released on `r rversion_current$date`, see [cran.r-project.org](https://cran.r-project.org/)). Your installation should therefore not be older than `r rversion_minimal(rversion_current$version)`. If it is, make sure that you have updated R until next week (doing it now will probably take too long). Check [these instructions on how to update R](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/)
 
 
-### Check your Version of RStudio
+### Check your version of RStudio
 
 RStudio is the Graphical User Interface (GUI) we use in our course to interact with R. RStudio should not be too old either and we recommend updating if you don't have the latest version: check if this is the case by clicking on *help > check for updates*. If you need to update RStudio, don't update now but have a newer version of RStudio installed before next week. 
 
@@ -85,6 +85,16 @@ Now we will set some RStudio Global options. But first, **close all instances of
     - Linux / macOS: `/usr/bin/git`
 
 
+### Introduce yourself to Git
+
+Now it is time to introduce yourself to git. In the terminal, enter your name and email address by entering the following commands:
+
+```
+git config --global user.name "Maria Nusslinger"
+git config --global user.email "nussmar@email.com"
+```
+
+Of course, replace the name and address with your credentials. Use the email address that you will use to create your Github account (which we will do next week).
 
 ### Prepare the folder structure for this course
 
@@ -108,7 +118,7 @@ By this point, you probably have created a folder for this course somewhere on y
 
 
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, include=FALSE}
 subpaths(rootdir,"Course Folder",c(paste0("week",1:7),"semester_project")) %>%
   paths2node()
 ```
@@ -129,7 +139,7 @@ Course Folder (C:\\Users\\yourname\\semester2\\Modul_CMA)
 For the R-exercises that take place in weeks 1 to 5, we recommend that you create a new RStudio Project each week in subdirectory of the appropriate week. For example, this week your folder structure could look like this: 
 
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, include=FALSE}
 
 
 week_rootdir <- file.path(rootdir, "week1")
@@ -158,13 +168,14 @@ Folder Week 1 (C:\\Users\\yourname\\semester2\\Modul_CMA\\week1)
 ```
 
 
-Note that the RStudio Project is located in a subfolder of ``r week_rootdir`` and named ``r rprojfolder``.
+Note: 
 
+- the RStudio Project is located in a subfolder of ``r week_rootdir`` and named ``r rprojfolder``.
 - ``r rprojfolder`` is the project's *directory name* and the *project name*
-- we realize that that the week number is redundant, there is a reason for this[^redundancy]
+- we realize that that the week number is redundant, there is a reason[^redundancy] for this
 - this means each week is a fresh start (which has pros and cons)
 
-[^redundancy]: You will see the project names of all your RStudio Projets listed in RStudio. Having the week number in the project name keeps you from getting confused on which project you are working on.
+[^redundancy]: You will see the project names of all your RStudio Projects listed in RStudio. Having the week number in the project name keeps you from getting confused on which project you are working on.
 
 
 ### Create an RStudio *project* for the first week
@@ -181,7 +192,7 @@ Create a new *RStudio Project* (File > New Project > New Directory > New Project
 
 
 
-<!-- Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science Workflow. In .R Files, "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes, equal, or pound signs ( `-`, `=`,`#`). In .Rmd Files, their are created with leading pound signs (`#`). -->
+<!-- Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science workflow. In .R Files, "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes, equal, or pound signs ( `-`, `=`,`#`). In .Rmd Files, their are created with leading pound signs (`#`). -->
 
 <!-- Sections allow code folding (try clicking on the small triangle next to the line number) and facilitate navigation (try the shortcut: `Shift`+`Alt`+`J`). We recommend following sections: -->
 
