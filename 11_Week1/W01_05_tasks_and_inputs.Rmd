@@ -32,7 +32,7 @@ Once you have set everything up, commit your file to your git repo in the follow
 
 ### Task 1: Import data
 
-In section "data import", import the file `wildschwein_BE.csv`. Obtain this file from moodle. Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
+Move the file `wildschwein_BE.csv` you just downloaded into your project directory and import it into `r` as a `data.frame`.  Assign correct column types as necessary and make sure the time zone is set correctly for the date/time column.
 
 Note: 
 
