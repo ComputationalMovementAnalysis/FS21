@@ -69,7 +69,7 @@ We will largely rely on `sf`when working with vector data in `R`. In order to tr
 
 
 
-```{r, opts.label="example_hideOutput"}
+```{r, opts.label="example_showOutput"}
 
 library(sf)
 
