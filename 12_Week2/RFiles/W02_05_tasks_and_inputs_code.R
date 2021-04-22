@@ -14,16 +14,21 @@ head(wildschwein_BE)
 
 #- chunkend
 
+rootdir <- "C:/Users/yourname/semester2/Modul_CMA"
+
+paths2node <- function(paths){
+  require(data.tree)
+  as.Node(data.frame(paths = paths),pathName = "paths")
+}
+
+subpaths <- function(rootfolder_path, rootfolder_name, subfolders){
+  require(stringr)
+  c(paste0(rootfolder_name," (",stringr::str_replace_all(rootfolder_path, "/", "\\\\"),")"), file.path("rootfolder_path",subfolders))
+}
 
 
 knitr::include_graphics("02_Images/laube_2011_2.jpg")
 
-
-library(sf)
-
-wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
-                              coords = c("Long", "Lat"), 
-                              crs = 4326)
 
 
 nrow(caro60)
@@ -31,12 +36,7 @@ nrow(caro60_3)
 nrow(caro60_6)
 nrow(caro60_9)
 
-# subset rows
-wildschwein_BE_sf[1:10,]
-wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Sabi",]
 
-# subset colums
-wildschwein_BE_sf[,2:3]
 
 library(zoo)
 
@@ -44,12 +44,4 @@ example <- rnorm(10)
 rollmean(example,k = 3,fill = NA,align = "left")
 rollmean(example,k = 4,fill = NA,align = "left")
 
-
-
-wildschwein_BE
-
-
-wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
-
-wildschwein_BE_grouped
 

@@ -37,12 +37,8 @@ nthroot(10)
 nthroot(10,3)
 
 
-wildschwein_BE
 
 
-wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
-
-wildschwein_BE_grouped
 
 
 #- chunkend
@@ -50,24 +46,9 @@ wildschwein_BE_grouped
 head(wildschwein_filter)
 
 
-library(terra)
-
-pk100_BE <- terra::rast("00_Rawdata/pk100_BE_2056.tif")
-
-pk100_BE
 
 
-plot(pk100_BE)
 
-pk100_BE <- subset(pk100_BE,1:3)
-
-plot(pk100_BE)
-
-
-library(tmap)
-
-tm_shape(pk100_BE) + 
-  tm_rgb() 
 
 
 ## Task 6 ######################################################################

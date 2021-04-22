@@ -78,11 +78,6 @@ df_cumsum %>%
 #- chunkend
 
 
-library(terra)
-
-pk100_BE <- terra::rast("00_Rawdata/pk100_BE_2056.tif")
-
-pk100_BE
 
 #- chunkend
 
@@ -92,14 +87,8 @@ pk100_BE
 
 
 
-now <- Sys.time()
 
-later <- now + 10000
 
-time_difference <- difftime(later,now)
 
-time_difference
 
 #- chunkend
-
-str(time_difference)
