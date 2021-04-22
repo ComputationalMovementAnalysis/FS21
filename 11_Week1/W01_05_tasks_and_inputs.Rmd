@@ -5,19 +5,17 @@ output:
 ---
 ## Tasks and inputs
 
-
-
-
 Before starting with the task:
 
-- make sure you have read and followed the instructions in section [Preperation](#w1-preperation)
-- In RStudio, open the RStudio Project you created for this week if you havent dont so already. You can see that you are in an RStudio Project if the project's name is visible next to the little RStudio logo in the top right corner of RStudio (otherwise it will read "Project: (None)".
-- Download the wildboar movement data ()
+1. make sure you have read and followed the instructions in section [Preperation](#w1-preperation)
+2. In RStudio, open the RStudio Project you created for this week if you haven't done so already. You can see that you are in an RStudio Project if the project's name is visible next to the little RStudio logo in the top right corner of RStudio (otherwise it will read `Project: (None)`).
+3. Download the wildboar movement data here: `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click "Save target as..")
+4. lastly, create a new RMarkdown File and start by loading the following packages: 
 
-Then, create a new RMarkdown File and start by loading the tidyverse:
-
-```{r, opts.label="example_hideOutput"}
-library(tidyverse)
+```{r, opts.label = "example_hideOutput"}
+library(readr)        # to import tabular data (e.g. csv)
+library(dplyr)        # to manipulate (tabular) data
+library(ggplot2)      # to visualize data
 ```
 
 
@@ -28,9 +26,7 @@ In section "data import", import the file `wildschwein_BE.csv`. Obtain this file
 
 Note: 
 
-- If your are using [a graphical tool](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio) to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your workflow is documented without gaps. We'd rather recommend to move away from using graphical tools and focus on using code. 
-- We recommend using one of the `tidyverse` functions from the `readr` package to import your data (they all begin with "`read_*`, note the underscore). These functions are less error prone than the base `R` functions (`read.*`). Specifically for the wild boar data, we recommend `read_delim()`.
-- If you use `read_delim()` and receive warnings during import, have a look at these warnings by using the function `problems()`. Resolve these problems until import runs without warnings.
+- We recommend using the `readr` package to import your data (they all begin with `read_*`, note the underscore). These functions are less error prone than the base `R` functions (`read.*`, note the period). Specifically for the wild boar data, we recommend `read_delim()`.
 - For everyone working on the RStudio Server: You will first need to upload this data to the server using the "*upload*"-button in the "*Files*" tab.
 
 
@@ -49,7 +45,7 @@ Assigning every individual its own colour is done using the `ggplot` argument `c
 Save your code in the appropriate section.
 
 
-```{r code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput"}
+```{r code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput", fig.cap="You plot should look something like this."}
 ```
 
 
@@ -59,10 +55,7 @@ Until now, we've stored our location data within data frames as Lat/Long columns
 
 We will largely rely on `sf`when working with vector data in `R`. In order to transform our `data.frame` into an sf object, we need to use the function `st_as_sf()` while specifying the columns storing the coordinates and the coordinate reference system.
 
-(At this point, we assume you know what a Coordinate Reference Systems is. Check out [this link](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/) if this is not the case.)
-
-
-
+(At this point, we assume you know what a Coordinate Reference Systems is. Check out [this link](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/) if this is not the case.)
 
 
 ```{r, opts.label="example_hideOutput"}
@@ -75,7 +68,7 @@ wildschwein_BE_sf <- st_as_sf(wildschwein_BE,
 
 ```
 
-Notice how `st_as_sf` takes the EPSG code for the `crs =` argument. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes , etc.) under (epsg.io)[http://epsg.io].  
+Notice how `st_as_sf` takes the EPSG code for the `crs =` argument. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes, etc.) under [epsg.io](http://epsg.io).  
 Let's compare our original `data.frame` with this new `sf` object:
 
 ```{r, opts.label="example_showOutput", collapse=FALSE}
