@@ -143,7 +143,7 @@
 \makeatother
 \subtitle{Master ENR, Spring Semester 2021}
 \author{Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis}
-\date{18 März, 2021}
+\date{20 April, 2021}
 
 \begin{document}
 \maketitle
@@ -165,10 +165,10 @@ The project investigates the spatiotemporal movement patterns of wild boar (\emp
 \hypertarget{exercise-1}{%
 \chapter{Exercise 1}\label{exercise-1}}
 
-Exercise 1 covers the necessary steps for getting ready in \texttt{R} and some basic concepts for setting up a well-structured \texttt{R} project. The lesson introduces how additional packages that provide useful functions for data science are made available and how spatial data is handled. The exercise concludes with the creation of your first map featuring movement data.
+This exercise covers the necessary steps for getting ready in \texttt{R} and some basic concepts for setting up a well-structured \texttt{R} project. The lesson introduces how additional packages that provide useful functions for data science are made available and how spatial data is handled. The exercise concludes with the creation of your first map featuring movement data.
 
-\hypertarget{leaning-outcomes}{%
-\section{Leaning outcomes}\label{leaning-outcomes}}
+\hypertarget{learning-outcomes}{%
+\section{Learning outcomes}\label{learning-outcomes}}
 
 \begin{itemize}
 \tightlist
@@ -247,7 +247,7 @@ Sections allow code folding (try clicking on the small triangle next to the line
 \hypertarget{task-2-import-data}{%
 \subsection{Task 2: Import data}\label{task-2-import-data}}
 
-In section ``data import,'' import the file \texttt{wildschwein\_BE.csv}. Obtain this file from moodle.
+In section ``data import,'' import the file \texttt{wildschwein\_BE.csv}. Obtain this file from moodle. Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
 
 Note:
 
@@ -259,8 +259,6 @@ Note:
   We recommend using one of the \texttt{tidyverse} functions from the \texttt{readr} package to import your data (they all begin with "\texttt{read\_*}, note the underscore). These functions are less error prone than the base \texttt{R} functions (\texttt{read.*}). Specifically for the wild boar data, we recommend \texttt{read\_delim()}.
 \item
   If you use \texttt{read\_delim()} and receive warnings during import, have a look at these warnings by using the function \texttt{problems()}. Resolve these problems until import runs without warnings.
-\item
-  Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
 \item
   For everyone working on the RStudio Server: You will first need to upload this data to the server using the ``\emph{upload}''-button in the ``\emph{Files}'' tab.
 \end{itemize}
@@ -276,41 +274,18 @@ Assigning every individual its own colour is done using the \texttt{ggplot} argu
 
 Save your code in the appropriate section.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-9-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-8-1.pdf}
 
 \hypertarget{input-handling-spatial-data}{%
 \subsection{Input: Handling spatial data}\label{input-handling-spatial-data}}
 
 Until now, we've stored our location data within data frames as Lat/Long columns. This works well for many tasks, but sometimes we need special \emph{spatial} classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our \texttt{data.frame} into a spatial object.
-Some of you might be familiar with the \texttt{sp} package with the classes \texttt{SpatialPoints}, \texttt{SpatialPointsDataFrame} and so on. These packages are mostly replaced by the fairly new package \texttt{sf}. This packages has some huge advantages over \texttt{sp}:
 
-\begin{itemize}
-\tightlist
-\item
-  simple features are essentially data frames with minor extensions and thus are easily integratable in standard workflows
-\item
-  they are programmed to cleanly interface with the \texttt{tidyverse} methods (specifically \texttt{dplyr}'s \texttt{mutate} and \texttt{summarise})
-\item
-  comply with the common Open Geospatial Consortium (OGC) standards (ISO 19125-1:2004) and interface with other important spatial tools such as GDAL, PostGIS, GeoJSON and so fourth
-\item
-  are being rapidly implemented in visualisation tools such as \texttt{ggplot2}, \texttt{plotly} and \texttt{tmap}
-\end{itemize}
+We will largely rely on \texttt{sf}when working with vector data in \texttt{R}. In order to transform our \texttt{data.frame} into an sf object, we need to use the function \texttt{st\_as\_sf()} while specifying the columns storing the coordinates and the coordinate reference system.
 
-We will largely rely on \texttt{sf}when working with vector data in \texttt{R}. In order to transform our \texttt{data.frame} into an sf object, we need to use the function \texttt{st\_as\_sf()} while specifying the columns storing the coordinates and the coordinate reference system\footnote{At this point, we assume you know what a Coordinate Reference Systems is. Check out \href{https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/}{this link} if this is not the case.}.
+(At this point, we assume you know what a Coordinate Reference Systems is. Check out \href{https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/}{this link} if this is not the case.)
 
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\FunctionTok{library}\NormalTok{(sf)}
-
-\NormalTok{wildschwein\_BE\_sf }\OtherTok{\textless{}{-}} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }
-                              \AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
-                              \AttributeTok{crs =} \DecValTok{4326}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Notice how \texttt{st\_as\_sf} takes the EPSG code for the \texttt{crs\ =} argument. This is so much easier and more elegant than using \texttt{PROJ.4} or \texttt{WKT}. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes , etc.) under \href{http://spatialreference.org/ref/epsg/2056/}{spatialreference.org} or \url{http://epsg.io}.
-
+Notice how \texttt{st\_as\_sf} takes the EPSG code for the \texttt{crs\ =} argument. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes , etc.) under (epsg.io){[}\url{http://epsg.io}{]}.\\
 Let's compare our original \texttt{data.frame} with this new \texttt{sf} object:
 
 \begin{Shaded}
@@ -364,7 +339,7 @@ Let's compare our original \texttt{data.frame} with this new \texttt{sf} object:
 ## # ... with 51,236 more rows
 \end{verbatim}
 
-As you can see, \texttt{st\_as\_sf()} has added some metadata to our dataframe (\texttt{geometry\ type}, \texttt{dimension}, \texttt{bbox}, \texttt{epsg} and \texttt{proj4string}) and replaced the columns \texttt{Lat} and \texttt{Long} with a column named \texttt{geometry}. Other than that, the new \texttt{sf} object is very similar to our original dataframe. In fact, \texttt{sf} objects \emph{are} essentially \texttt{dataframes}, just ask \texttt{R}:
+As you can see, \texttt{st\_as\_sf()} has added some metadata to our dataframe (\texttt{geometry\ type}, \texttt{dimension}, \texttt{bbox}, \texttt{epsg} and \texttt{proj4string}) and replaced the columns \texttt{Lat} and \texttt{Long} with a column named \texttt{geometry}. Other than that, the new \texttt{sf} object is very similar to our original dataframe. In fact, \texttt{sf} objects \emph{are} essentially \texttt{dataframes}, as you can verify with the function \texttt{is.data.frame()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -375,22 +350,11 @@ As you can see, \texttt{st\_as\_sf()} has added some metadata to our dataframe (
 
 All operations we know from handling \texttt{data.frames} can be used on the \texttt{sf} object. Try some out!
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# subset rows}
-\NormalTok{wildschwein\_BE\_sf[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{,]}
-\NormalTok{wildschwein\_BE\_sf[wildschwein\_BE\_sf}\SpecialCharTok{$}\NormalTok{TierName }\SpecialCharTok{==} \StringTok{"Sabi"}\NormalTok{,]}
-
-\CommentTok{\# subset colums}
-\NormalTok{wildschwein\_BE\_sf[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
 Instead of keeping the same data twice (once as a \texttt{data.frame}, and once as an \texttt{sf} object), we will overwrite the \texttt{data.frame} and continue working with the \texttt{sf} object from now on. This saves some memory space in \texttt{R} and avoids confusion.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }
                           \AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
                           \AttributeTok{crs =} \DecValTok{4326}\NormalTok{)}
 
@@ -402,31 +366,34 @@ Instead of keeping the same data twice (once as a \texttt{data.frame}, and once 
 \hypertarget{task-4-project-data-from-wgs84}{%
 \subsection{Task 4: Project data from WGS84}\label{task-4-project-data-from-wgs84}}
 
-So what can we do with our new \texttt{sf} object that we couldn't before? One example is projecting the WGS84 (\texttt{Lat}/\texttt{Long}) coordinates into the new Swiss CRS \texttt{CH1903+\ LV95}\footnote{As we've mentioned in the first Input, you can look up the EPSG codes under \href{http://spatialreference.org/ref/epsg/2056/}{spatialreference.org} or \url{http://epsg.io}. For information specific to Switzerland, check the \href{https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html}{swisstopo website}}. Do this by using the function \texttt{st\_transform}. By the way, do you notice a pattern here? The package \texttt{sf} names most functions for spatial operations with the prefix \texttt{st\_*}, just as in PostGIS.
+So what can we do with our new \texttt{sf} object that we couldn't before? One example is projecting the WGS84 (\texttt{Lat}/\texttt{Long}) coordinates into the new Swiss CRS \texttt{CH1903+\ LV95}\footnote{As we've mentioned in the first Input, you can look up the EPSG codes under (epsg.io){[}\url{http://epsg.io}{]}. For information specific to Switzerland, check the \href{https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html}{swisstopo website}}. Do this by using the function \texttt{st\_transform}. By the way, do you notice a pattern here? The package \texttt{sf} names most functions for spatial operations with the prefix \texttt{st\_*}, just as in PostGIS.
 
 Here's the resulting \texttt{sf} object from the operation:
 
-\begin{verbatim}
-## Simple feature collection with 51246 features and 4 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
-## projected CRS:  CH1903+ / LV95
-## # A tibble: 51,246 x 5
-##    TierID TierName CollarID DatetimeUTC                  geometry
-##  * <chr>  <chr>       <dbl> <dttm>                    <POINT [m]>
-##  1 002A   Sabi        12275 2014-08-22 21:00:12 (2570409 1204752)
-##  2 002A   Sabi        12275 2014-08-22 21:15:16 (2570402 1204863)
-##  3 002A   Sabi        12275 2014-08-22 21:30:43 (2570394 1204826)
-##  4 002A   Sabi        12275 2014-08-22 21:46:07 (2570379 1204817)
-##  5 002A   Sabi        12275 2014-08-22 22:00:22 (2570390 1204818)
-##  6 002A   Sabi        12275 2014-08-22 22:15:10 (2570390 1204825)
-##  7 002A   Sabi        12275 2014-08-22 22:30:13 (2570387 1204831)
-##  8 002A   Sabi        12275 2014-08-22 22:45:11 (2570381 1204840)
-##  9 002A   Sabi        12275 2014-08-22 23:00:27 (2570316 1204935)
-## 10 002A   Sabi        12275 2014-08-22 23:15:41 (2570393 1204815)
-## # ... with 51,236 more rows
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wildschwein\_BE}
+\DocumentationTok{\#\# Simple feature collection with 51246 features and 4 fields}
+\DocumentationTok{\#\# geometry type:  POINT}
+\DocumentationTok{\#\# dimension:      XY}
+\DocumentationTok{\#\# bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609}
+\DocumentationTok{\#\# projected CRS:  CH1903+ / LV95}
+\DocumentationTok{\#\# \# A tibble: 51,246 x 5}
+\DocumentationTok{\#\#    TierID TierName CollarID DatetimeUTC                  geometry}
+\DocumentationTok{\#\#  * \textless{}chr\textgreater{}  \textless{}chr\textgreater{}       \textless{}dbl\textgreater{} \textless{}dttm\textgreater{}                    \textless{}POINT [m]\textgreater{}}
+\DocumentationTok{\#\#  1 002A   Sabi        12275 2014{-}08{-}22 21:00:12 (2570409 1204752)}
+\DocumentationTok{\#\#  2 002A   Sabi        12275 2014{-}08{-}22 21:15:16 (2570402 1204863)}
+\DocumentationTok{\#\#  3 002A   Sabi        12275 2014{-}08{-}22 21:30:43 (2570394 1204826)}
+\DocumentationTok{\#\#  4 002A   Sabi        12275 2014{-}08{-}22 21:46:07 (2570379 1204817)}
+\DocumentationTok{\#\#  5 002A   Sabi        12275 2014{-}08{-}22 22:00:22 (2570390 1204818)}
+\DocumentationTok{\#\#  6 002A   Sabi        12275 2014{-}08{-}22 22:15:10 (2570390 1204825)}
+\DocumentationTok{\#\#  7 002A   Sabi        12275 2014{-}08{-}22 22:30:13 (2570387 1204831)}
+\DocumentationTok{\#\#  8 002A   Sabi        12275 2014{-}08{-}22 22:45:11 (2570381 1204840)}
+\DocumentationTok{\#\#  9 002A   Sabi        12275 2014{-}08{-}22 23:00:27 (2570316 1204935)}
+\DocumentationTok{\#\# 10 002A   Sabi        12275 2014{-}08{-}22 23:15:41 (2570393 1204815)}
+\DocumentationTok{\#\# \# ... with 51,236 more rows}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{input-calculate-convex-hull}{%
 \subsection{Input: Calculate Convex Hull}\label{input-calculate-convex-hull}}
@@ -506,42 +473,37 @@ Using base plot to visualize \texttt{sf} objects is easy enough, just try the fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-22-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 But since we use \texttt{ggplot} extensively, try and plot the object \texttt{mcp} with \texttt{ggplot}. Hint: Use the layer \texttt{geom\_sf()} to add an \texttt{sf} object.
-
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-23-1.pdf}
-
 Note: \texttt{ggplot} refuses to use our specified CRS, so we need to force this by specifying \texttt{datum\ =} in \texttt{coord\_sf()}. Try it out.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-20-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-20-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-20-3.pdf}
 
 \hypertarget{input-importing-raster-data}{%
 \subsection{Input: Importing raster data}\label{input-importing-raster-data}}
 
-In the next task, we would like to add a background map to our \texttt{mcp} object. To do this, we have to the raster data into \texttt{R} first. For this, we use the package \texttt{raster} with the function \texttt{brick}.
+In the next task, we would like to add a background map to our \texttt{mcp} object. To do this, we have to the raster data into \texttt{R} first. For this, we use the package \texttt{terra} with the function \texttt{rast}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\FunctionTok{library}\NormalTok{(raster)}
+\FunctionTok{library}\NormalTok{(terra)}
 
-\NormalTok{pk100\_BE }\OtherTok{\textless{}{-}} \FunctionTok{brick}\NormalTok{(}\StringTok{"00\_Rawdata/pk100\_BE\_2056.tif"}\NormalTok{)}
+\NormalTok{pk100\_BE }\OtherTok{\textless{}{-}}\NormalTok{ terra}\SpecialCharTok{::}\FunctionTok{rast}\NormalTok{(}\StringTok{"00\_Rawdata/pk100\_BE\_2056.tif"}\NormalTok{)}
 
 \NormalTok{pk100\_BE}
-\DocumentationTok{\#\# class      : RasterBrick }
-\DocumentationTok{\#\# dimensions : 1821, 2321, 4226541, 4  (nrow, ncol, ncell, nlayers)}
-\DocumentationTok{\#\# resolution : 5, 5  (x, y)}
-\DocumentationTok{\#\# extent     : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)}
-\DocumentationTok{\#\# crs        : +proj=somerc +lat\_0=46.9524055555556 +lon\_0=7.43958333333333 +k\_0=1 +x\_0=2600000 +y\_0=1200000 +ellps=bessel +units=m +no\_defs }
-\DocumentationTok{\#\# source     : C:/Users/bako/Desktop/Kurse/FS21/FS21/00\_Rawdata/pk100\_BE\_2056.tif }
-\DocumentationTok{\#\# names      : pk100\_BE\_2056.1, pk100\_BE\_2056.2, pk100\_BE\_2056.3, pk100\_BE\_2056.4 }
-\DocumentationTok{\#\# min values :               0,               0,               0,               0 }
-\DocumentationTok{\#\# max values :             255,             255,             255,             255}
+\DocumentationTok{\#\# class       : SpatRaster }
+\DocumentationTok{\#\# dimensions  : 1821, 2321, 4  (nrow, ncol, nlyr)}
+\DocumentationTok{\#\# resolution  : 5, 5  (x, y)}
+\DocumentationTok{\#\# extent      : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)}
+\DocumentationTok{\#\# coord. ref. : +proj=somerc +lat\_0=46.9524055555556 +lon\_0=7.43958333333333 +k\_0=1 +x\_0=2600000 +y\_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no\_defs }
+\DocumentationTok{\#\# data source : pk100\_BE\_2056.tif }
+\DocumentationTok{\#\# names       : pk1\_1, pk1\_2, pk1\_3, pk1\_4}
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{pk100\_BE\_2056.tif} is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (\texttt{pk100\_BE\_2056.1}, \texttt{pk100\_BE\_2056.2}etc). For some reason, \texttt{RasterBrick} imported a fourth layer (\texttt{pk100\_BE\_2056.4}). \texttt{plot()} shows that the fourth layer is empty. We will remove this layer using \texttt{subset()}.
+\texttt{pk100\_BE\_2056.tif} is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (\texttt{pk100\_BE\_2056.1}, \texttt{pk100\_BE\_2056.2}etc). For some reason, \texttt{rast} imported a fourth layer (\texttt{pk1\_4}). \texttt{plot()} shows that the fourth layer is empty. We will remove this layer using \texttt{subset()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -550,7 +512,7 @@ In the next task, we would like to add a background map to our \texttt{mcp} obje
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-27-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -561,7 +523,7 @@ In the next task, we would like to add a background map to our \texttt{mcp} obje
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-27-2.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-22-2.pdf}
 
 \hypertarget{task-6-adding-a-background-map}{%
 \subsection{Task 6: Adding a background map}\label{task-6-adding-a-background-map}}
@@ -572,17 +534,16 @@ There are multiple ways to add a background map in \texttt{ggplot}, many require
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tmap)}
 
-
 \FunctionTok{tm\_shape}\NormalTok{(pk100\_BE) }\SpecialCharTok{+} 
   \FunctionTok{tm\_rgb}\NormalTok{() }
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/task6-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 As you can see, plotting layers in \texttt{tmap} is combined with the \texttt{+} sign, just as in \texttt{ggplot2}. In \texttt{tmap} however, each layer consists of two objects: a \texttt{tm\_shape()} in which the data is called, and a \texttt{tm\_*} object in which we define how the data is visualized (\texttt{tm\_rgb()} states that it is plotted as an RGB Raster Layer). Add the object \texttt{mcp} to the plot in this manner. Read \href{https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html}{the vignette} if you are having trouble.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-29-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-24-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-24-2.pdf}
 
 \hypertarget{task-7-create-an-interactive-map}{%
 \subsection{Task 7: Create an interactive map}\label{task-7-create-an-interactive-map}}
@@ -592,8 +553,8 @@ Rerun the \texttt{tmap()...} command from the previous task, but switch the plot
 \hypertarget{exercise-2}{%
 \chapter{Exercise 2}\label{exercise-2}}
 
-\hypertarget{learning-outcomes}{%
-\section{Learning Outcomes}\label{learning-outcomes}}
+\hypertarget{learning-outcomes-1}{%
+\section{Learning Outcomes}\label{learning-outcomes-1}}
 
 \begin{itemize}
 \tightlist
@@ -937,7 +898,7 @@ First, inspect your data in more detail. Try to answer the following questions:
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-3.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-46-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-46-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-46-3.pdf}
 
 \hypertarget{input-geometry-as-columns}{%
 \subsection{Input: Geometry as columns}\label{input-geometry-as-columns}}
@@ -1012,8 +973,6 @@ Why do we use \texttt{E} and \texttt{N} when calculating the Euclidean distance,
 
 \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}) analyse animal movement across different scales (see below). We will do the same on a \emph{subset} of our data.
 
-!(\protect\hyperlink{ref-laube2011}{Laube and Purves 2011}: \emph{Black points are used in calculation of movement parameters (e.g.~speed) at a given termporal scale.})(02\_Images/laube\_2011\_2.jpg)
-
 \hypertarget{import-caro60}{%
 \subsubsection{Import ``Caro60''}\label{import-caro60}}
 
@@ -1066,7 +1025,7 @@ We've stored the geographic location of our point in the trajectory in three dif
   \texttt{geom\_line()} does not work when mapping trajectory data, since it connects the observations \emph{in order of the variable on the x axis}. \texttt{geom\_path()} connects the observations in the order in which they appear in the data
 \end{itemize}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-67-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-67-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-67-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-67-4.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-4.pdf}
 
 \hypertarget{task-4-deriving-movement-parameters-ii-rolling-window-functions}{%
 \subsection{Task 4: Deriving movement parameters II: Rolling window functions}\label{task-4-deriving-movement-parameters-ii-rolling-window-functions}}
@@ -1079,11 +1038,11 @@ A different approach would be to \emph{smoothen} the derived parameters using a 
 
 \NormalTok{example }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \FunctionTok{rollmean}\NormalTok{(example,}\AttributeTok{k =} \DecValTok{3}\NormalTok{,}\AttributeTok{fill =} \ConstantTok{NA}\NormalTok{,}\AttributeTok{align =} \StringTok{"left"}\NormalTok{)}
-\DocumentationTok{\#\#  [1] {-}0.08145389  0.16710397 {-}0.21160835 {-}0.23824666 {-}0.58580212 {-}0.09891376}
-\DocumentationTok{\#\#  [7] {-}0.10375999 {-}0.53739296          NA          NA}
+\DocumentationTok{\#\#  [1]  0.93634335  0.31709038  0.02370048  0.67869801  0.73369105  0.50401344}
+\DocumentationTok{\#\#  [7] {-}0.56144365 {-}0.56902598          NA          NA}
 \FunctionTok{rollmean}\NormalTok{(example,}\AttributeTok{k =} \DecValTok{4}\NormalTok{,}\AttributeTok{fill =} \ConstantTok{NA}\NormalTok{,}\AttributeTok{align =} \StringTok{"left"}\NormalTok{)}
-\DocumentationTok{\#\#  [1]  0.07207105 {-}0.12637177 {-}0.21885298 {-}0.30619012 {-}0.32588506 {-}0.13796671}
-\DocumentationTok{\#\#  [7] {-}0.53054985          NA          NA          NA}
+\DocumentationTok{\#\#  [1]  0.6775521  0.2045005  0.5848215  0.5255629  0.3446928  0.1459635}
+\DocumentationTok{\#\#  [7] {-}0.4102301         NA         NA         NA}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1097,8 +1056,8 @@ Just like we did with \texttt{speed} in tasks 2 - 4, we could do the same with t
 \hypertarget{exercise-3}{%
 \chapter{Exercise 3}\label{exercise-3}}
 
-\hypertarget{learning-outcomes-1}{%
-\section{Learning Outcomes}\label{learning-outcomes-1}}
+\hypertarget{learning-outcomes-2}{%
+\section{Learning Outcomes}\label{learning-outcomes-2}}
 
 \begin{itemize}
 \tightlist
@@ -1213,9 +1172,6 @@ Note: I use \texttt{tibble()} instead of \texttt{data.frame()}. The two function
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\DocumentationTok{\#\# Input: Segmentation \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-
-
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \NormalTok{n }\OtherTok{=} \DecValTok{20}
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{X =} \FunctionTok{cumsum}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n)), }\AttributeTok{Y =} \FunctionTok{cumsum}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n)))}
@@ -1227,7 +1183,7 @@ Note: I use \texttt{tibble()} instead of \texttt{data.frame()}. The two function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-75-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-60-1.pdf}
 
 \hypertarget{segmenting}{%
 \subsubsection{Segmenting}\label{segmenting}}
@@ -1377,7 +1333,7 @@ We can now determin if an animal is moving or not by specifying a threshold on \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-79-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-64-1.pdf}
 
 \hypertarget{unique-ids-per-segment}{%
 \subsubsection{\texorpdfstring{Unique IDs \emph{per segment}}{Unique IDs per segment}}\label{unique-ids-per-segment}}
@@ -1499,18 +1455,14 @@ Store the new information (boolean to differentiate between stops (\texttt{TRUE}
 ##  0.8109  2.2397  3.3496  5.0371  5.8618 24.2903       4
 \end{verbatim}
 
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-90-1.pdf}
-\caption{\label{fig:unnamed-chunk-90}My summary statistics shows a mean of 5, the histogram shows that this might be a reasonable threshold.}
-\end{figure}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-73-1.pdf}
 
 \hypertarget{task-3-visualize-segmented-trajectories}{%
 \subsection{Task 3: Visualize segmented trajectories}\label{task-3-visualize-segmented-trajectories}}
 
 Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with \texttt{geom\_path()}, \texttt{geom\_point()} and \texttt{coord\_equal()}. Assign \texttt{colour\ =\ moving} within \texttt{aes()} to distinguish between segments \emph{with} ``movement'' and \emph{without}.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-93-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-74-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-74-2.pdf}
 
 Tip: if you want to get a \texttt{ggplot()} with Zoom capability, just load the library \texttt{plotly} and wrap the \texttt{ggplot()} function with \texttt{ggplotly()}
 
@@ -1544,7 +1496,7 @@ In order to do this, we need a \emph{unique} name for each segment that we can u
   inspect your data visually
 \end{enumerate}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-97-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-76-1.pdf}
 
 \hypertarget{task-5-similarity-measures}{%
 \subsection{Task 5: Similarity measures}\label{task-5-similarity-measures}}
@@ -1553,35 +1505,7 @@ Import the dataset \texttt{pedestrian.csv} (available on moodle) as a dataframe 
 
 We will analyse these trajectories with the package \texttt{SimilarityMeasures}, always comparing trajectory 1 pairwise to the other trajectories 2-6. For this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
 
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-100-1.pdf}
-\caption{\label{fig:unnamed-chunk-100}Comparing Trajectories 1 and 2}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-101-1.pdf}
-\caption{\label{fig:unnamed-chunk-101}Comparing Trajectories 1 and 3. Some positions are labelled with the position index to illustrate the direction of movement per trajectory.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-102-1.pdf}
-\caption{\label{fig:unnamed-chunk-102}Comparing Trajectories 1 and 4}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-103-1.pdf}
-\caption{\label{fig:unnamed-chunk-103}Comparing Trajectories 1 and 5}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-104-1.pdf}
-\caption{\label{fig:unnamed-chunk-104}Comparing Trajectories 1 and 6}
-\end{figure}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-4.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-5.pdf}
 
 \hypertarget{task-6-calculate-similarity}{%
 \subsection{Task 6: Calculate similarity}\label{task-6-calculate-similarity}}
@@ -1598,17 +1522,13 @@ Note:
   \texttt{LCSS}takes very long to compute. The accuracy of the algorithm (\texttt{pointSpacing\ =} ,\texttt{pointDistance\ =} and \texttt{errorMarg\ =}) can be varied to provide faster calculations. Please see \protect\hyperlink{ref-vlachos2002}{Vlachos, Gunopoulos, and Kollios} (\protect\hyperlink{ref-vlachos2002}{2002}) for more information.
 \end{itemize}
 
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-108-1.pdf}
-\caption{\label{fig:unnamed-chunk-108}Comparing Trajectory 1 to trajectories 2 to 6}
-\end{figure}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-79-1.pdf}
 
 \hypertarget{exercise-4}{%
 \chapter{Exercise 4}\label{exercise-4}}
 
-\hypertarget{learning-outcomes-2}{%
-\section{Learning Outcomes}\label{learning-outcomes-2}}
+\hypertarget{learning-outcomes-3}{%
+\section{Learning Outcomes}\label{learning-outcomes-3}}
 
 \begin{itemize}
 \tightlist
@@ -1790,25 +1710,7 @@ We propose conceptualizing the pattern ``meet'' as ``being close in space \emph{
 
 Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g.~\texttt{wildschwein\_filter}). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{wildschwein\_filter }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(TierID) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{st\_convex\_hull}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_sf}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ TierID),}\AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-124-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\NormalTok{wildschwein\_filter }\OtherTok{\textless{}{-}}\NormalTok{ wildschwein\_filter }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(TierID }\SpecialCharTok{!=} \StringTok{"018A"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-92-1.pdf}
 
 \hypertarget{task-3-create-join-key}{%
 \subsection{Task 3: Create Join Key}\label{task-3-create-join-key}}
@@ -1823,33 +1725,48 @@ Simplifying the task even further, we will focus on an interval where we have a 
 \DocumentationTok{\#\# projected CRS:  CH1903+ / LV95}
 \DocumentationTok{\#\# \# A tibble: 6 x 12}
 \DocumentationTok{\#\# \# Groups:   TierID [1]}
-\DocumentationTok{\#\#   TierID TierName CollarID DatetimeUTC           Lat  Long      E      N}
-\DocumentationTok{\#\#   \textless{}chr\textgreater{}  \textless{}chr\textgreater{}       \textless{}dbl\textgreater{} \textless{}dttm\textgreater{}              \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}}
-\DocumentationTok{\#\# 1 002A   Sabi        12275 2015{-}03{-}31 22:00:28  47.0  7.05 2.57e6 1.21e6}
-\DocumentationTok{\#\# 2 002A   Sabi        12275 2015{-}03{-}31 22:15:44  47.0  7.05 2.57e6 1.21e6}
-\DocumentationTok{\#\# 3 002A   Sabi        12275 2015{-}03{-}31 22:30:44  47.0  7.05 2.57e6 1.21e6}
-\DocumentationTok{\#\# 4 002A   Sabi        12275 2015{-}03{-}31 22:46:04  47.0  7.05 2.57e6 1.21e6}
-\DocumentationTok{\#\# 5 002A   Sabi        12275 2015{-}03{-}31 23:00:17  47.0  7.05 2.57e6 1.21e6}
-\DocumentationTok{\#\# 6 002A   Sabi        12275 2015{-}03{-}31 23:15:12  47.0  7.05 2.57e6 1.21e6}
+\DocumentationTok{\#\#   TierID TierName CollarID DatetimeUTC           Lat  Long        E        N}
+\DocumentationTok{\#\#   \textless{}chr\textgreater{}  \textless{}chr\textgreater{}       \textless{}dbl\textgreater{} \textless{}dttm\textgreater{}              \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# 1 002A   Sabi        12275 2015{-}03{-}31 22:00:28  47.0  7.05 2570296. 1205283.}
+\DocumentationTok{\#\# 2 002A   Sabi        12275 2015{-}03{-}31 22:15:44  47.0  7.05 2570259. 1205259.}
+\DocumentationTok{\#\# 3 002A   Sabi        12275 2015{-}03{-}31 22:30:44  47.0  7.05 2570255. 1205259.}
+\DocumentationTok{\#\# 4 002A   Sabi        12275 2015{-}03{-}31 22:46:04  47.0  7.05 2570245. 1205268.}
+\DocumentationTok{\#\# 5 002A   Sabi        12275 2015{-}03{-}31 23:00:17  47.0  7.05 2570364. 1205314.}
+\DocumentationTok{\#\# 6 002A   Sabi        12275 2015{-}03{-}31 23:15:12  47.0  7.05 2570375. 1205320.}
 \DocumentationTok{\#\# \# ... with 4 more variables: geometry \textless{}POINT [m]\textgreater{}, timelag \textless{}dbl\textgreater{},}
 \DocumentationTok{\#\# \#   steplength \textless{}dbl\textgreater{}, speed \textless{}dbl\textgreater{}}
 \end{Highlighting}
 \end{Shaded}
 
 Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. Verify if we have the same sampling interval (\texttt{timelag}) throughout our filtered dataset.
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-128-1.pdf}
+
+\begin{verbatim}
+## Simple feature collection with 6 features and 11 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: 2570245 ymin: 1205259 xmax: 2570375 ymax: 1205320
+## projected CRS:  CH1903+ / LV95
+## # A tibble: 6 x 12
+## # Groups:   TierID [1]
+##   TierID TierName CollarID DatetimeUTC           Lat  Long        E        N
+##   <chr>  <chr>       <dbl> <dttm>              <dbl> <dbl>    <dbl>    <dbl>
+## 1 002A   Sabi        12275 2015-03-31 22:00:28  47.0  7.05 2570296. 1205283.
+## 2 002A   Sabi        12275 2015-03-31 22:15:44  47.0  7.05 2570259. 1205259.
+## 3 002A   Sabi        12275 2015-03-31 22:30:44  47.0  7.05 2570255. 1205259.
+## 4 002A   Sabi        12275 2015-03-31 22:46:04  47.0  7.05 2570245. 1205268.
+## 5 002A   Sabi        12275 2015-03-31 23:00:17  47.0  7.05 2570364. 1205314.
+## 6 002A   Sabi        12275 2015-03-31 23:15:12  47.0  7.05 2570375. 1205320.
+## # ... with 4 more variables: geometry <POINT [m]>, timelag <dbl>,
+## #   steplength <dbl>, speed <dbl>
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-95-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-95-2.pdf}
 
 With a few exceptions, the sampling interval is \emph{around} 15 minutes. In order to join the data, however, we need \emph{identical} time stamps to serve as a join key. We therefore need to slightly adjust our time stamps to a common, concurrent interval.
 
 Round the minutes of \texttt{DatetimeUTC} to a multiple of 15 (00, 15, 30,45) and store the values in a new column. You can use the \texttt{lubridate} function \texttt{round\_date()} for this. See the examples \href{https://lubridate.tidyverse.org/reference/round_date.html}{here} to see how this goes.
 
 \emph{Please note:} We are manipulating our time stamps without adjusting the x,y-coordinates. This is fine for our simple example, but we would advice against this in a more serious research endeavour, e.g.~in your semester projects. One simple approach would be to linearly interpolate the positions to the new timestamps. If you choose Option A the wild boar projects as your semester projects, you should aim for a linear interpolation. Get in touch if you need help with this.
-
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-129-1.pdf}
-\caption{\label{fig:unnamed-chunk-129}After resampling, the movement data is slightly manipulated (this visualization is not part of the task) since we changed the original timestamp. We are usually off from the `true' value around 10 to 15 seconds, some are off by as much as 2 minutes.}
-\end{figure}
 
 \hypertarget{task-4-measuring-distance-at-concurrent-locations}{%
 \subsection{Task 4: Measuring distance at concurrent locations}\label{task-4-measuring-distance-at-concurrent-locations}}
@@ -1871,18 +1788,18 @@ To measure the distance between concurrent locations, we need to follow the foll
 
 \begin{verbatim}
 ## # A tibble: 1,344 x 9
-##    TierID.x DatetimeRound          E.x    N.x TierID.y    E.y    N.y distance
-##    <chr>    <dttm>               <dbl>  <dbl> <chr>     <dbl>  <dbl>    <dbl>
-##  1 002A     2015-03-31 22:00:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     482.
-##  2 002A     2015-03-31 22:15:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     536.
-##  3 002A     2015-03-31 22:30:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     542.
-##  4 002A     2015-03-31 22:45:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     564.
-##  5 002A     2015-03-31 23:00:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     486.
-##  6 002A     2015-03-31 23:15:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     470.
-##  7 002A     2015-03-31 23:30:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     440.
-##  8 002A     2015-03-31 23:45:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     432.
-##  9 002A     2015-04-01 00:00:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     451.
-## 10 002A     2015-04-01 00:15:00 2.57e6 1.21e6 016A     2.57e6 1.20e6     522.
+##    TierID.x DatetimeRound           E.x     N.x TierID.y     E.y    N.y distance
+##    <chr>    <dttm>                <dbl>   <dbl> <chr>      <dbl>  <dbl>    <dbl>
+##  1 002A     2015-03-31 22:00:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     482.
+##  2 002A     2015-03-31 22:15:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     536.
+##  3 002A     2015-03-31 22:30:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     542.
+##  4 002A     2015-03-31 22:45:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     564.
+##  5 002A     2015-03-31 23:00:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     486.
+##  6 002A     2015-03-31 23:15:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     470.
+##  7 002A     2015-03-31 23:30:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     440.
+##  8 002A     2015-03-31 23:45:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     432.
+##  9 002A     2015-04-01 00:00:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     451.
+## 10 002A     2015-04-01 00:15:00  2.57e6  1.21e6 016A      2.57e6 1.20e6     522.
 ## # ... with 1,334 more rows, and 1 more variable: meet <lgl>
 \end{verbatim}
 
@@ -1919,35 +1836,20 @@ To create a plot similar to the one below:
   Facet the plot into small multiples either using \texttt{meet\_seq} or \texttt{meet\_time}
 \end{enumerate}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Cumsum appraoch from Exercise 3}
-\NormalTok{number\_seq }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(bool)\{}
-\NormalTok{  fac }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(bool,}\DecValTok{1}\SpecialCharTok{+}\FunctionTok{cumsum}\NormalTok{(}\SpecialCharTok{!}\NormalTok{bool),}\ConstantTok{NA}\NormalTok{))}
-  \FunctionTok{levels}\NormalTok{(fac) }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(}\FunctionTok{levels}\NormalTok{(fac))}
-  \FunctionTok{return}\NormalTok{(fac)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-135-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-97-1.pdf}
 
 \hypertarget{task-6-optional-visualize-data-as-timecube-with-plotly}{%
 \subsection{\texorpdfstring{Task 6 (optional): Visualize data as timecube with \texttt{plotly}}{Task 6 (optional): Visualize data as timecube with plotly}}\label{task-6-optional-visualize-data-as-timecube-with-plotly}}
 
 Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube (\protect\hyperlink{ref-hagerstraand1970}{Hägerstraand 1970}) with the package \texttt{plotly}. There are some \href{https://plot.ly/r/3d-line-plots/}{nice ressources} available online.
 
-\begin{figure}
-\centering
-\includegraphics{02_Images/w04_ex1_p1.jpg}
-\caption{Trace 0 and 1 show the trajectories of the two individuals in 3D space, while time is the z-axis. The Dots represent instances where two animals are spatiotemporally close to each other. This representation nicely shows that animal `0' is not very mobile and has large periods where the animal seems to rest in the same place. The interactive map/plot is only available in the online version of this document.}
-\end{figure}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-99-1.pdf}
 
 \hypertarget{exercise-5}{%
 \chapter{Exercise 5}\label{exercise-5}}
 
-\hypertarget{learning-outcomes-3}{%
-\section{Learning Outcomes}\label{learning-outcomes-3}}
+\hypertarget{learning-outcomes-4}{%
+\section{Learning Outcomes}\label{learning-outcomes-4}}
 
 \begin{itemize}
 \tightlist
@@ -2011,18 +1913,14 @@ Open your R Project from last week. Either run your own script from last week or
 ## [1] "2015-07-27 11:00:14 UTC"
 \end{verbatim}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-143-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-103-1.pdf}
 
 \hypertarget{task-2-annotate-trajectories-from-vector-data}{%
 \subsection{Task 2: Annotate Trajectories from vector data}\label{task-2-annotate-trajectories-from-vector-data}}
 
 Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use \texttt{st\_join()} to attach the attributes from \texttt{fanel2016} to your trajectory data \texttt{wildschwein\_BE} (semantic annotation). Visualize the number of sample points in each category of \texttt{Frucht} over the course of the filtered time period.
 
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-146-1.pdf}
-\caption{\label{fig:unnamed-chunk-146}The number of samples per category \emph{per week} from May to July 2015.}
-\end{figure}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-106-1.pdf}
 
 \hypertarget{task-3-explore-annotated-trajectories}{%
 \subsection{Task 3: Explore annotated trajectories}\label{task-3-explore-annotated-trajectories}}
@@ -2044,11 +1942,7 @@ Ideas:
 
 In terms of raster data, we have prepared the \href{https://map.geo.admin.ch/index.html?zoom=5\&lang=en\&topic=ech\&bgLayer=ch.swisstopo.pixelkarte-grau\&layers_opacity=0.5\&layers=ch.bafu.landesforstinventar-vegetationshoehenmodell\&E=2627157.14\&N=1122170.97}{Vegetation Height Model} provided by the Swiss National Forrest Inventory (NFI). This dataset contains high resolution information (1x1 Meter) on the vegetation height, which is determined from the difference between the digital surface models DSM and the digital terrain model by swisstopo (swissAlti3D). Buildings are eliminated using a combination of the ground areas of the swisstopo topographic landscape model (TLM) and spectral information from the stereo aerial photos.
 
-\begin{figure}
-\centering
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-148-1.pdf}
-\caption{\label{fig:unnamed-chunk-148}An example of a temporal exploration of the data obtained from the nDSM.}
-\end{figure}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 \hypertarget{references}{%
 \chapter*{References}\label{references}}

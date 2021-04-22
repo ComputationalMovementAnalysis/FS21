@@ -11,10 +11,6 @@ eyqz60_6 <- eyqz60 %>%
 eyqz60_9 <- eyqz60 %>%
   vbnea(vau(1,pqzs(.),9))
 
-pqzs(eyqz60)
-pqzs(eyqz60_3)
-pqzs(eyqz60_6)
-pqzs(eyqz60_9)
 
 
 eyqz60 <- eyqz60 %>%

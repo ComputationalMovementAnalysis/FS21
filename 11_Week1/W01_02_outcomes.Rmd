@@ -1,4 +1,4 @@
-## Leaning outcomes
+## Learning outcomes
 - You learn how to structure an `R` project.
 - You can read movement data from a .csv-file into a `data.frame`
 - You can convert spatial point data from a `data.frame` to a spatial object `sf`
