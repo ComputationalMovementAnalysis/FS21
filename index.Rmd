@@ -9,11 +9,10 @@ bibliography: ["00_Admin/bibliography.bib"]
 link-citations: true
 geometry: "left=2cm, right=2cm, top=2.5cm, bottom=2cm"
 ---
-```{r include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, include = FALSE, eval = TRUE, purl = TRUE, collapse = TRUE, warning = FALSE, message = FALSE)
+```{r, include=FALSE}
 ```
 
-```{r}
+```{r, include=FALSE}
 # Allow duplicate Labels so that calling purl() does not create an error
 # https://stackoverflow.com/q/36868287/4139249
 options(knitr.duplicate.label = 'allow')
@@ -39,22 +38,49 @@ for (file in rmds){
  
 ```
 
-```{r, echo = FALSE}
+```{r, include=FALSE}
 source("01_R_Files/helperfunctions.R")
 ```
 
 
-```{r}
-knitr::opts_template$set(solution_showOutput = list(include = TRUE))
-knitr::opts_template$set(solution_hideOutput = list(include = FALSE))
-knitr::opts_template$set(example_showOutput = list(echo = TRUE, include = TRUE, eval = TRUE))
-knitr::opts_template$set(example_hideOutput = list(echo = TRUE, include = FALSE, eval = TRUE))
+```{r, include=FALSE}
+
+
+knitr::opts_chunk$set(collapse = TRUE)
+
+knitr::opts_template$set(solution_showOutput = list(echo = FALSE))
+knitr::opts_template$set(solution_hideOutput = list(echo = FALSE, results = "hide", warning = FALSE, message = FALSE))
+knitr::opts_template$set(example_showOutput = list(echo = TRUE))
+knitr::opts_template$set(example_hideOutput = list(echo = TRUE, results = "hide", warning = FALSE, message = FALSE))
 
 knitr::opts_template$set(noeval = list(echo = TRUE, eval = FALSE))
 
 
 ```
 
+```{r, include=FALSE}
+
+# Gets the URL to the github repo
+get_yaml <- function(what,bookdown_yaml = "_bookdown.yml") {
+  require(yaml)
+  yaml::read_yaml(bookdown_yaml)[[what]]
+}
+# Turns the "edit" url into a "raw" url
+
+get_github <- function(type,bookdown_yaml = "_bookdown.yml"){
+  require(stringr)
+  require(yaml)
+  github_edit <- get_yaml("edit")
+  str_remove(stringr::str_replace(github_edit, "/edit/",paste0("/",type,"/")),"%s")
+}
+
+# given a filename, a folder and a github_url (raw) it returns an url that allows downloading said file
+download_url <- function(filename,folder){
+  require(glue)
+  github_raw <- get_github("raw")
+  glue("[{filename}]({github_raw}{folder}/{filename})")
+}
+```
 
 # Introduction Chapter {-}
 
