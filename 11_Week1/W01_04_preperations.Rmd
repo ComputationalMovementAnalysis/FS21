@@ -48,7 +48,7 @@ If you haven't already, install the packages `tidyverse`, `sf` and `terra`(using
 ```{r, opts.label = "noeval", eval = FALSE}
 install.packages("tidyverse")
 install.packages("sf")
-install.packages("raster")
+install.packages("terra")
 ```
 
 
