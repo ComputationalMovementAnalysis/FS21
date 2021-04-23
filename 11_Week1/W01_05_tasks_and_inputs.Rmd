@@ -3,6 +3,7 @@ output:
   pdf_document: default
   html_document: default
 ---
+
 ## Tasks and inputs {#w1-tasks-and-inputs}
 
 Before starting with the task:
@@ -200,7 +201,8 @@ Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
 
 ### Input: Importing raster data
 
-In the next task, we would like to add a background map to our `mcp` object. To do this, we have to the raster data into `R` first. For this, we use the package `terra` with the function `rast`.
+In the next task, we would like to add a background map to our `mcp` object. Download the file here: `r download_url("pk100_BE.tif","00_Rawdata")` 
+To import the file into `R`, we use the package `terra` with the function `rast`.
 
 
 
