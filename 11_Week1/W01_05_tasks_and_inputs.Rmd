@@ -25,8 +25,8 @@ Once you have set everything up, commit your file to your git repo in the follow
 1. Save your R/RMarkdown file
 2. Switch to the "Git"-Tab in the pane in the top right corner
 3. Click "commit" to open the "commit-Window"
-4. Click in the checkbox left of the file you want to commit 
-5. Add a commit message to explain what you are commiting (e.g. "`initial commit`")
+4. Click in the checkbox left of the file you want to commit (you should find 3 new files: your `.RProj`, `.gitignore` and `.R`-file)
+5. Add a commit message to explain what you are committing (e.g. "`initial commit`")
 6. Click on "commit" to commit your changes
 
 
