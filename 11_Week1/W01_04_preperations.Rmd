@@ -189,7 +189,7 @@ Create a new *RStudio Project* (File > New Project > New Directory > New Project
 4. Click on "Create Project"
 
 
-**You are all set! You can start working on the tasks of exercise 1.**
+**You are all set! You can start working on the tasks of exercise 1.**    
 
 
 
