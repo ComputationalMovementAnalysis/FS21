@@ -10,7 +10,7 @@ install.packages("zoo")
 
 Import the wild boar data and convert it to an `sf` object with CH1903+ LV95 Coordinates. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_hideOutput"}
 library(tidyverse)
 library(sf)
 library(lubridate)
