@@ -177,7 +177,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W02_01_learning_outcomes.html"><a href="W02_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W02_02_prerequisites.html"><a href="W02_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html"><i class="fa fa-check"></i>Preperation</a>
+<ul>
+<li><a href="W02_03_preperation.html#update-r-and-rstudio">Update <code>R</code> and RStudio</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#install-and-configure-git"><i class="fa fa-check"></i>Install and configure Git</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#create-a-github-account"><i class="fa fa-check"></i>Create a Github account</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Authenticate Git to work with Github</a></li>
+<li><a href="W02_03_preperation.html#create-a-github-repo">Create a Git<strong>hub</strong> repo</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#connet-your-local-repo-with-the-remote-repository"><i class="fa fa-check"></i>Connet your local repo with the remote repository</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html"><i class="fa fa-check"></i>Demo Tidyverse</a>
 <ul>
 <li><a href="W02_04_demo_tidyverse.html#difftime"><code>difftime</code></a></li>
@@ -262,54 +270,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="preperation-2" class="section level2">
 <h2>Preperation</h2>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="W05_02_preperation.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Preperation ##################################################################</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="W05_02_preperation.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Preperation ##################################################################</span></span></code></pre></div>
 <p>Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today’s exercise.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="W05_02_preperation.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb93-2"><a href="W05_02_preperation.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb93-3"><a href="W05_02_preperation.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
-<span id="cb93-4"><a href="W05_02_preperation.html#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning: package &#39;ggspatial&#39; was built under R version 4.0.4</span></span>
-<span id="cb93-5"><a href="W05_02_preperation.html#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
-<span id="cb93-6"><a href="W05_02_preperation.html#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Loading required package: sp</span></span>
-<span id="cb93-7"><a href="W05_02_preperation.html#cb93-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb93-8"><a href="W05_02_preperation.html#cb93-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Attaching package: &#39;raster&#39;</span></span>
-<span id="cb93-9"><a href="W05_02_preperation.html#cb93-9" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:plotly&#39;:</span></span>
-<span id="cb93-10"><a href="W05_02_preperation.html#cb93-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb93-11"><a href="W05_02_preperation.html#cb93-11" aria-hidden="true" tabindex="-1"></a><span class="do">##     select</span></span>
-<span id="cb93-12"><a href="W05_02_preperation.html#cb93-12" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:tidyr&#39;:</span></span>
-<span id="cb93-13"><a href="W05_02_preperation.html#cb93-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb93-14"><a href="W05_02_preperation.html#cb93-14" aria-hidden="true" tabindex="-1"></a><span class="do">##     extract</span></span>
-<span id="cb93-15"><a href="W05_02_preperation.html#cb93-15" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:dplyr&#39;:</span></span>
-<span id="cb93-16"><a href="W05_02_preperation.html#cb93-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb93-17"><a href="W05_02_preperation.html#cb93-17" aria-hidden="true" tabindex="-1"></a><span class="do">##     select</span></span>
-<span id="cb93-18"><a href="W05_02_preperation.html#cb93-18" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:glue&#39;:</span></span>
-<span id="cb93-19"><a href="W05_02_preperation.html#cb93-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb93-20"><a href="W05_02_preperation.html#cb93-20" aria-hidden="true" tabindex="-1"></a><span class="do">##     trim</span></span>
-<span id="cb93-21"><a href="W05_02_preperation.html#cb93-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-22"><a href="W05_02_preperation.html#cb93-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Import as tibble</span></span>
-<span id="cb93-23"><a href="W05_02_preperation.html#cb93-23" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
-<span id="cb93-24"><a href="W05_02_preperation.html#cb93-24" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb93-25"><a href="W05_02_preperation.html#cb93-25" aria-hidden="true" tabindex="-1"></a><span class="do">## -- Column specification --------------------------------------------------------</span></span>
-<span id="cb93-26"><a href="W05_02_preperation.html#cb93-26" aria-hidden="true" tabindex="-1"></a><span class="do">## cols(</span></span>
-<span id="cb93-27"><a href="W05_02_preperation.html#cb93-27" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID = col_character(),</span></span>
-<span id="cb93-28"><a href="W05_02_preperation.html#cb93-28" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierName = col_character(),</span></span>
-<span id="cb93-29"><a href="W05_02_preperation.html#cb93-29" aria-hidden="true" tabindex="-1"></a><span class="do">##   CollarID = col_double(),</span></span>
-<span id="cb93-30"><a href="W05_02_preperation.html#cb93-30" aria-hidden="true" tabindex="-1"></a><span class="do">##   DatetimeUTC = col_datetime(format = &quot;&quot;),</span></span>
-<span id="cb93-31"><a href="W05_02_preperation.html#cb93-31" aria-hidden="true" tabindex="-1"></a><span class="do">##   Lat = col_double(),</span></span>
-<span id="cb93-32"><a href="W05_02_preperation.html#cb93-32" aria-hidden="true" tabindex="-1"></a><span class="do">##   Long = col_double()</span></span>
-<span id="cb93-33"><a href="W05_02_preperation.html#cb93-33" aria-hidden="true" tabindex="-1"></a><span class="do">## )</span></span>
-<span id="cb93-34"><a href="W05_02_preperation.html#cb93-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-35"><a href="W05_02_preperation.html#cb93-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-36"><a href="W05_02_preperation.html#cb93-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf-object</span></span>
-<span id="cb93-37"><a href="W05_02_preperation.html#cb93-37" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">=</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>,<span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb93-38"><a href="W05_02_preperation.html#cb93-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-39"><a href="W05_02_preperation.html#cb93-39" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to CH1903 LV95</span></span>
-<span id="cb93-40"><a href="W05_02_preperation.html#cb93-40" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
-<span id="cb93-41"><a href="W05_02_preperation.html#cb93-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-42"><a href="W05_02_preperation.html#cb93-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometry as E/N integer Columns</span></span>
-<span id="cb93-43"><a href="W05_02_preperation.html#cb93-43" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE) <span class="sc">%&gt;%</span></span>
-<span id="cb93-44"><a href="W05_02_preperation.html#cb93-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(wildschwein_BE,.) <span class="sc">%&gt;%</span></span>
-<span id="cb93-45"><a href="W05_02_preperation.html#cb93-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">E =</span> X) <span class="sc">%&gt;%</span></span>
-<span id="cb93-46"><a href="W05_02_preperation.html#cb93-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">N =</span> Y)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="W05_02_preperation.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb94-2"><a href="W05_02_preperation.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb94-3"><a href="W05_02_preperation.html#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
+<span id="cb94-4"><a href="W05_02_preperation.html#cb94-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning: package &#39;ggspatial&#39; was built under R version 4.0.4</span></span>
+<span id="cb94-5"><a href="W05_02_preperation.html#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb94-6"><a href="W05_02_preperation.html#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Loading required package: sp</span></span>
+<span id="cb94-7"><a href="W05_02_preperation.html#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb94-8"><a href="W05_02_preperation.html#cb94-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Attaching package: &#39;raster&#39;</span></span>
+<span id="cb94-9"><a href="W05_02_preperation.html#cb94-9" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:plotly&#39;:</span></span>
+<span id="cb94-10"><a href="W05_02_preperation.html#cb94-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb94-11"><a href="W05_02_preperation.html#cb94-11" aria-hidden="true" tabindex="-1"></a><span class="do">##     select</span></span>
+<span id="cb94-12"><a href="W05_02_preperation.html#cb94-12" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:tidyr&#39;:</span></span>
+<span id="cb94-13"><a href="W05_02_preperation.html#cb94-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb94-14"><a href="W05_02_preperation.html#cb94-14" aria-hidden="true" tabindex="-1"></a><span class="do">##     extract</span></span>
+<span id="cb94-15"><a href="W05_02_preperation.html#cb94-15" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:dplyr&#39;:</span></span>
+<span id="cb94-16"><a href="W05_02_preperation.html#cb94-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb94-17"><a href="W05_02_preperation.html#cb94-17" aria-hidden="true" tabindex="-1"></a><span class="do">##     select</span></span>
+<span id="cb94-18"><a href="W05_02_preperation.html#cb94-18" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:glue&#39;:</span></span>
+<span id="cb94-19"><a href="W05_02_preperation.html#cb94-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb94-20"><a href="W05_02_preperation.html#cb94-20" aria-hidden="true" tabindex="-1"></a><span class="do">##     trim</span></span>
+<span id="cb94-21"><a href="W05_02_preperation.html#cb94-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-22"><a href="W05_02_preperation.html#cb94-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Import as tibble</span></span>
+<span id="cb94-23"><a href="W05_02_preperation.html#cb94-23" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb94-24"><a href="W05_02_preperation.html#cb94-24" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb94-25"><a href="W05_02_preperation.html#cb94-25" aria-hidden="true" tabindex="-1"></a><span class="do">## -- Column specification --------------------------------------------------------</span></span>
+<span id="cb94-26"><a href="W05_02_preperation.html#cb94-26" aria-hidden="true" tabindex="-1"></a><span class="do">## cols(</span></span>
+<span id="cb94-27"><a href="W05_02_preperation.html#cb94-27" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID = col_character(),</span></span>
+<span id="cb94-28"><a href="W05_02_preperation.html#cb94-28" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierName = col_character(),</span></span>
+<span id="cb94-29"><a href="W05_02_preperation.html#cb94-29" aria-hidden="true" tabindex="-1"></a><span class="do">##   CollarID = col_double(),</span></span>
+<span id="cb94-30"><a href="W05_02_preperation.html#cb94-30" aria-hidden="true" tabindex="-1"></a><span class="do">##   DatetimeUTC = col_datetime(format = &quot;&quot;),</span></span>
+<span id="cb94-31"><a href="W05_02_preperation.html#cb94-31" aria-hidden="true" tabindex="-1"></a><span class="do">##   Lat = col_double(),</span></span>
+<span id="cb94-32"><a href="W05_02_preperation.html#cb94-32" aria-hidden="true" tabindex="-1"></a><span class="do">##   Long = col_double()</span></span>
+<span id="cb94-33"><a href="W05_02_preperation.html#cb94-33" aria-hidden="true" tabindex="-1"></a><span class="do">## )</span></span>
+<span id="cb94-34"><a href="W05_02_preperation.html#cb94-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-35"><a href="W05_02_preperation.html#cb94-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-36"><a href="W05_02_preperation.html#cb94-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf-object</span></span>
+<span id="cb94-37"><a href="W05_02_preperation.html#cb94-37" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">=</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>,<span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb94-38"><a href="W05_02_preperation.html#cb94-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-39"><a href="W05_02_preperation.html#cb94-39" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to CH1903 LV95</span></span>
+<span id="cb94-40"><a href="W05_02_preperation.html#cb94-40" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
+<span id="cb94-41"><a href="W05_02_preperation.html#cb94-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-42"><a href="W05_02_preperation.html#cb94-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometry as E/N integer Columns</span></span>
+<span id="cb94-43"><a href="W05_02_preperation.html#cb94-43" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE) <span class="sc">%&gt;%</span></span>
+<span id="cb94-44"><a href="W05_02_preperation.html#cb94-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(wildschwein_BE,.) <span class="sc">%&gt;%</span></span>
+<span id="cb94-45"><a href="W05_02_preperation.html#cb94-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">E =</span> X) <span class="sc">%&gt;%</span></span>
+<span id="cb94-46"><a href="W05_02_preperation.html#cb94-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">N =</span> Y)</span></code></pre></div>
 
 </div>
             </section>

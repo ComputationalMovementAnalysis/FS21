@@ -177,7 +177,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W02_01_learning_outcomes.html"><a href="W02_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W02_02_prerequisites.html"><a href="W02_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html"><i class="fa fa-check"></i>Preperation</a>
+<ul>
+<li><a href="W02_03_preperation.html#update-r-and-rstudio">Update <code>R</code> and RStudio</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#install-and-configure-git"><i class="fa fa-check"></i>Install and configure Git</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#create-a-github-account"><i class="fa fa-check"></i>Create a Github account</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Authenticate Git to work with Github</a></li>
+<li><a href="W02_03_preperation.html#create-a-github-repo">Create a Git<strong>hub</strong> repo</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#connet-your-local-repo-with-the-remote-repository"><i class="fa fa-check"></i>Connet your local repo with the remote repository</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html"><i class="fa fa-check"></i>Demo Tidyverse</a>
 <ul>
 <li><a href="W02_04_demo_tidyverse.html#difftime"><code>difftime</code></a></li>
@@ -277,13 +285,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Save your R/RMarkdown file</li>
 <li>Switch to the “Git”-Tab in the pane in the top right corner</li>
 <li>Click “commit” to open the “commit-Window”</li>
-<li>Click in the checkbox left of the file you want to commit</li>
+<li>Click in the checkbox left of the file you want to commit (you should find 3 new files: your <code>.RProj</code>, <code>.gitignore</code> and <code>.R</code>-file)</li>
 <li>Add a commit message to explain what you are commiting (e.g. “<code>initial commit</code>”)</li>
 <li>Click on “commit” to commit your changes</li>
 </ol>
 <div id="task-1-import-data" class="section level3">
 <h3>Task 1: Import data</h3>
-<p>In section “data import,” import the file <code>wildschwein_BE.csv</code>. Obtain this file from moodle. Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.</p>
+<p>Move the file <code>wildschwein_BE.csv</code> you just downloaded into your project directory and import it into <code>r</code> as a <code>data.frame</code>. Assign correct column types as necessary and make sure the time zone is set correctly for the date/time column.</p>
 <p>Note:</p>
 <ul>
 <li>We recommend using the <code>readr</code> package to import your data (they all begin with <code>read_*</code>, note the underscore). These functions are less error prone than the base <code>R</code> functions (<code>read.*</code>, note the period). Specifically for the wild boar data, we recommend <code>read_delim()</code>.</li>
