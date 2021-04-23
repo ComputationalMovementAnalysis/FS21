@@ -143,7 +143,7 @@
 \makeatother
 \subtitle{Master ENR, Spring Semester 2021}
 \author{Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis}
-\date{20 April, 2021}
+\date{23 April, 2021}
 
 \begin{document}
 \maketitle
@@ -207,64 +207,271 @@ Readings Skills from ``R for Data Science'' (\protect\hyperlink{ref-wickham2017}
   RS1.6 Chap13 Date and Times with \texttt{lubridate} (18p, 237-256)
 \end{itemize}
 
-\hypertarget{preperation}{%
-\section{Preperation}\label{preperation}}
+\hypertarget{w1-preperation}{%
+\section{Preperation}\label{w1-preperation}}
 
-If you haven't already, install the packages \texttt{tidyverse}, \texttt{sf}, \texttt{raster} and \texttt{ggspatial}(using \texttt{install.packages()}). \textbf{Restart your \texttt{R} session after installing all these packages.}
+\hypertarget{check-you-version-of-r}{%
+\subsection{\texorpdfstring{Check you version of \texttt{R}}{Check you version of R}}\label{check-you-version-of-r}}
+
+Check your Version of \texttt{R} by opening RStudio and typing the following command into the console.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.version.string}
+\DocumentationTok{\#\# [1] "R version 4.0.3 (2020{-}10{-}10)"}
+\end{Highlighting}
+\end{Shaded}
+
+This returns the version number of your R installation, whereas the first digit (\texttt{4}) indicates the number of the \emph{major release}, the second digit (\texttt{0}) indicates the \emph{minor release} and the last digit (\texttt{3}) refers to the \emph{patch release}. As a general rule of thumb, you will want to update R if you
+
+\begin{itemize}
+\tightlist
+\item
+  don't have the current \emph{major} version or
+\item
+  are lagging two (or more) versions behind the current \emph{minor release}
+\end{itemize}
+
+In the time of writing (April, 2021), the current \texttt{R} Version is 4.0.5 (released on 2021-03-31 07:05:15, see \href{https://cran.r-project.org/}{cran.r-project.org}). Your installation should therefore not be older than 4.0.0. If it is, make sure that you have updated R until next week (doing it now will probably take too long). Check \href{https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/}{these instructions on how to update R}
+
+\hypertarget{check-your-version-of-rstudio}{%
+\subsection{Check your version of RStudio}\label{check-your-version-of-rstudio}}
+
+RStudio is the Graphical User Interface (GUI) we use in our course to interact with R. RStudio should not be too old either and we recommend updating if you don't have the latest version: check if this is the case by clicking on \emph{help \textgreater{} check for updates}. If you need to update RStudio, don't update now but have a newer version of RStudio installed before next week.
+
+\hypertarget{install-the-necessary-packages}{%
+\subsection{Install the necessary packages}\label{install-the-necessary-packages}}
+
+If you haven't already, install the packages \texttt{tidyverse}, \texttt{sf} and \texttt{terra}(using \texttt{install.packages()}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
 \FunctionTok{install.packages}\NormalTok{(}\StringTok{"sf"}\NormalTok{)}
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"raster"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"terra"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{tasks-and-inputs}{%
-\section{Tasks and inputs}\label{tasks-and-inputs}}
+\hypertarget{install-git}{%
+\subsection{Install Git}\label{install-git}}
 
-\hypertarget{task-1-initialize-project}{%
-\subsection{Task 1: Initialize project}\label{task-1-initialize-project}}
-
-Create a new \emph{RStudio Project}. As recommended in \protect\hyperlink{ref-wickham2017}{Wickham and Grolemund} (\protect\hyperlink{ref-wickham2017}{2017}), remove the option ``\emph{Restore .RData into workspace at startup}'' and set the option ``\emph{save workspace to .RData on exit}'' to ``\emph{Never}.''
-
-Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science Workflow. In .R Files, ``Sections'' can be created within RStudio by adding Comments (\texttt{\#}) with at least 4 trailing dashes, equal, or pound signs ( \texttt{-}, \texttt{=},\texttt{\#}). In .Rmd Files, their are created with leading pound signs (\texttt{\#}).
-
-Sections allow code folding (try clicking on the small triangle next to the line number) and facilitate navigation (try the shortcut: \texttt{Shift}+\texttt{Alt}+\texttt{J}). We recommend following sections:
+Next, install Git. If you are not sure whether you already have Git installed or not, you can verify this by typing \texttt{git\ -\/-version} in the terminal (there is a terminal built into RStudio which you can use for this. By default, it is situated in the bottom left corner in the tab named ``Terminal''). If this command returns a version number you have Git installed already and might only need to update it. If this command returns \texttt{git:\ command\ not\ found} (or something similar), you will need to install Git first.
 
 \begin{itemize}
 \tightlist
 \item
-  Loading environment / libraries
+  \textbf{Windows}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We recommend installing \href{https://gitforwindows.org/}{Git for Windows}, also known as \texttt{msysgit} or ``Git Bash.''
+  \item
+    When asked about ``Adjusting your PATH environment,'' select ``Git from the command line and also from 3rd-party software''
+  \item
+    RStudio prefers Git to be installed in \texttt{C:/Program\ Files/Git}, we recommend following this convention
+  \item
+    Otherwise, we believe it is good to accept the defaults
+  \end{itemize}
 \item
-  Data import
+  \textbf{macOS}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We recommend you install the Xcode command line tools (not all of Xcode), which includes Git
+  \item
+    Go to the shell and enter \texttt{xcode-select\ -\/-install} to install developer command line tools
+  \end{itemize}
 \item
-  Data cleansing
-\item
-  Data analysis and visualization
+  \textbf{Linux}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    On Ubuntu or Debian Linux: \texttt{sudo\ apt-get\ install\ git}
+  \item
+    On Fedora or RedHat Linux: \texttt{sudo\ yum\ install\ git}
+  \end{itemize}
 \end{itemize}
 
-\hypertarget{task-2-import-data}{%
-\subsection{Task 2: Import data}\label{task-2-import-data}}
+\hypertarget{configure-rstudio}{%
+\subsection{Configure RStudio}\label{configure-rstudio}}
 
-In section ``data import,'' import the file \texttt{wildschwein\_BE.csv}. Obtain this file from moodle. Assign correct data types as necessary and make sure the time zone is set correctly for the date/time column.
+Now we will set some RStudio Global options. But first, \textbf{close all instances of RStudio and restart it (!!!)}. Then go to Tools \textgreater{} Global options.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{R General}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Deactivate the option ``Restore .RData into workspace at startup''
+  \item
+    Set ``Save workspace to .RData on exit'' to ``Never''
+  \end{itemize}
+\item
+  \textbf{Git / SVN}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Activate the option ``Enable version control interface for RStudio projects''
+  \item
+    If the Field ``Git executable:'' shows \texttt{(Not\ Found)}, browse to your git installation (previous step). This path should look something like this:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Windows: \texttt{C:/Program\ Files/Git/bin/git.exe} (\textbf{not} \texttt{C:/Program\ Files/Git/cmd/git.exe} or \texttt{git-bash.exe})
+    \item
+      Linux / macOS: \texttt{/usr/bin/git}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{introduce-yourself-git}{%
+\subsection{Introduce yourself to Git}\label{introduce-yourself-git}}
+
+Now it is time to introduce yourself to git. In the terminal, enter your name and email address by entering the following commands:
+
+\begin{verbatim}
+git config --global user.name "Maria Nusslinger"
+git config --global user.email "nussmar@email.com"
+\end{verbatim}
+
+Of course, replace the name and address with your credentials. Use the email address that you will use to create your Github account (which we will do next week).
+
+\hypertarget{prepare-the-folder-structure-for-this-course}{%
+\subsection{Prepare the folder structure for this course}\label{prepare-the-folder-structure-for-this-course}}
+
+By this point, you probably have created a folder for this course somewhere on your computer. In our example, we assume this folder is located here: \texttt{C:/Users/yourname/semester2/Modul\_CMA} (mentally replace this with your actual path). Before we dive into the exercises, take a minute to think about how you are going to structure your files in this folder. This course will take place over 7 weeks, and in each week you will receive or produce various files. We recommend creating a separate folder for each week, and one folder for the semester project, like so:
+
+\begin{verbatim}
+Course Folder (C:\\Users\\yourname\\semester2\\Modul_CMA)
+ ¦--week1                                                
+ ¦--week2                                                
+ ¦--week3                                                
+ ¦--week4                                                
+ ¦--week5                                                
+ ¦--week6                                                
+ ¦--week7                                                
+ °--semester_project 
+\end{verbatim}
+
+For the R-exercises that take place in weeks 1 to 5, we recommend that you create a new RStudio Project each week in subdirectory of the appropriate week. For example, this week your folder structure could look like this:
+
+\begin{verbatim}
+Folder Week 1 (C:\\Users\\yourname\\semester2\\Modul_CMA\\week1)
+ ¦--slides.pdf                                                  
+ ¦--my_notes.docx                                               
+ ¦--seminar_screenshot.jpg                                      
+ °--week1-rexercise                                             
+     ¦--week1-rexercise.Rproj                                   
+     ¦--wildschwein_BE.csv                                      
+     °--my_solution.Rmd   
+\end{verbatim}
 
 Note:
 
 \begin{itemize}
 \tightlist
 \item
-  If your are using \href{https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio}{a graphical tool} to import your code, make sure you save the corresponding code in your R Script. This is important in regard to the reproducibility of your script and will ensure that your workflow is documented without gaps. We'd rather recommend to move away from using graphical tools and focus on using code.
+  the RStudio Project is located in a subfolder of \texttt{C:/Users/yourname/semester2/Modul\_CMA/week1} and named \texttt{week1-rexercise}.
 \item
-  We recommend using one of the \texttt{tidyverse} functions from the \texttt{readr} package to import your data (they all begin with "\texttt{read\_*}, note the underscore). These functions are less error prone than the base \texttt{R} functions (\texttt{read.*}). Specifically for the wild boar data, we recommend \texttt{read\_delim()}.
+  \texttt{week1-rexercise} is the project's \emph{directory name} and the \emph{project name}
 \item
-  If you use \texttt{read\_delim()} and receive warnings during import, have a look at these warnings by using the function \texttt{problems()}. Resolve these problems until import runs without warnings.
+  we realize that that the week number is redundant, there is a reason\footnote{You will see the project names of all your RStudio Projects listed in RStudio. Having the week number in the project name keeps you from getting confused on which project you are working on.} for this
+\item
+  this means each week is a fresh start (which has pros and cons)
+\end{itemize}
+
+\hypertarget{create-an-rstudio-project-for-the-first-week}{%
+\subsection{\texorpdfstring{Create an RStudio \emph{project} for the first week}{Create an RStudio project for the first week}}\label{create-an-rstudio-project-for-the-first-week}}
+
+Create a new \emph{RStudio Project} (File \textgreater{} New Project \textgreater{} New Directory \textgreater{} New Project).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Click on ``Browse'' and switch to \emph{your equivalent} of the folder \texttt{C:/Users/yourname/semester2/Modul\_CMA/week1} (the project we are about to initiate will be be created in a subdirectory of this folder). Click on ``open'' to confirm the selection
+\item
+  In the field ``Directory name,'' type \texttt{week1-rexercise}. This will be the name of your RStudio project and it's parent directory.
+\item
+  Check the option ``Create a git repository''
+\item
+  Click on ``Create Project''
+\end{enumerate}
+
+\textbf{You are all set! You can start working on the tasks of exercise 1.}
+
+\hypertarget{w1-tasks-and-inputs}{%
+\section{Tasks and inputs}\label{w1-tasks-and-inputs}}
+
+Before starting with the task:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  make sure you have read and followed the instructions in section \protect\hyperlink{w1-preperation}{Preperation}
+\item
+  In RStudio, open the RStudio Project you created for this week if you haven't done so already. You can see that you are in an RStudio Project if the project's name is visible next to the little RStudio logo in the top right corner of RStudio (otherwise it will read \texttt{Project:\ (None)}).
+\item
+  Download the wildboar movement data here: \href{https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/wildschwein_BE.csv}{wildschwein\_BE.csv} (right click ``Save target as..'')
+\item
+  lastly, create a new R- (or RMarkdown) file and begin by loading the following packages:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)        }\CommentTok{\# to import tabular data (e.g. csv)}
+\FunctionTok{library}\NormalTok{(dplyr)        }\CommentTok{\# to manipulate (tabular) data}
+\FunctionTok{library}\NormalTok{(ggplot2)      }\CommentTok{\# to visualize data}
+\end{Highlighting}
+\end{Shaded}
+
+Once you have set everything up, commit your file to your git repo in the following manner:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Save your R/RMarkdown file
+\item
+  Switch to the ``Git''-Tab in the pane in the top right corner
+\item
+  Click ``commit'' to open the ``commit-Window''
+\item
+  Click in the checkbox left of the file you want to commit (you should find 3 new files: your \texttt{.RProj}, \texttt{.gitignore} and \texttt{.R}-file)
+\item
+  Add a commit message to explain what you are committing (e.g.~``\texttt{initial\ commit}'')
+\item
+  Click on ``commit'' to commit your changes
+\end{enumerate}
+
+\hypertarget{task-1-import-data}{%
+\subsection{Task 1: Import data}\label{task-1-import-data}}
+
+Move the file \texttt{wildschwein\_BE.csv} you just downloaded into your project directory and import it into \texttt{r} as a \texttt{data.frame}. Assign correct column types as necessary and make sure the time zone is set correctly for the date/time column.
+
+Note:
+
+\begin{itemize}
+\tightlist
+\item
+  We recommend using the \texttt{readr} package to import your data (they all begin with \texttt{read\_*}, note the underscore). These functions are less error prone than the base \texttt{R} functions (\texttt{read.*}, note the period). Specifically for the wild boar data, we recommend \texttt{read\_delim()}.
 \item
   For everyone working on the RStudio Server: You will first need to upload this data to the server using the ``\emph{upload}''-button in the ``\emph{Files}'' tab.
 \end{itemize}
 
-\hypertarget{task-3-explore-data}{%
-\subsection{Task 3: Explore Data}\label{task-3-explore-data}}
+Commit your changes as described \protect\hyperlink{w1-tasks-and-inputs}{in the beginning}. Write a meaningful commit message (e.g.~``\texttt{completed\ task\ 1}'').
+
+\hypertarget{task-2-explore-data}{%
+\subsection{Task 2: Explore Data}\label{task-2-explore-data}}
 
 We will use a range of different visualization tools (i.e.~R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While \texttt{base::plot()}is quick and simple, it not very scalable with growing complexity. \texttt{ggplot2} offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
 
@@ -274,7 +481,13 @@ Assigning every individual its own colour is done using the \texttt{ggplot} argu
 
 Save your code in the appropriate section.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-8-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-14-1.pdf}
+\caption{\label{fig:unnamed-chunk-14}You plot should look something like this.}
+\end{figure}
+
+Commit your changes as described \protect\hyperlink{w1-tasks-and-inputs}{in the beginning}. Have a look at your commit history by clicking on ``History'' in the ``Git''-Pane.
 
 \hypertarget{input-handling-spatial-data}{%
 \subsection{Input: Handling spatial data}\label{input-handling-spatial-data}}
@@ -283,9 +496,21 @@ Until now, we've stored our location data within data frames as Lat/Long columns
 
 We will largely rely on \texttt{sf}when working with vector data in \texttt{R}. In order to transform our \texttt{data.frame} into an sf object, we need to use the function \texttt{st\_as\_sf()} while specifying the columns storing the coordinates and the coordinate reference system.
 
-(At this point, we assume you know what a Coordinate Reference Systems is. Check out \href{https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/}{this link} if this is not the case.)
+(At this point, we assume you know what a Coordinate Reference Systems is. Check out \href{https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/}{this link} if this is not the case.)
 
-Notice how \texttt{st\_as\_sf} takes the EPSG code for the \texttt{crs\ =} argument. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes , etc.) under (epsg.io){[}\url{http://epsg.io}{]}.\\
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{library}\NormalTok{(sf)}
+\DocumentationTok{\#\# Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1}
+
+\NormalTok{wildschwein\_BE\_sf }\OtherTok{\textless{}{-}} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }
+                              \AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
+                              \AttributeTok{crs =} \DecValTok{4326}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Notice how \texttt{st\_as\_sf} takes the EPSG code for the \texttt{crs\ =} argument. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes, etc.) under \href{http://epsg.io}{epsg.io}.\\
 Let's compare our original \texttt{data.frame} with this new \texttt{sf} object:
 
 \begin{Shaded}
@@ -350,6 +575,17 @@ As you can see, \texttt{st\_as\_sf()} has added some metadata to our dataframe (
 
 All operations we know from handling \texttt{data.frames} can be used on the \texttt{sf} object. Try some out!
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# subset rows}
+\NormalTok{wildschwein\_BE\_sf[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{,]}
+\NormalTok{wildschwein\_BE\_sf[wildschwein\_BE\_sf}\SpecialCharTok{$}\NormalTok{TierName }\SpecialCharTok{==} \StringTok{"Sabi"}\NormalTok{,]}
+
+\CommentTok{\# subset colums}
+\NormalTok{wildschwein\_BE\_sf[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
 Instead of keeping the same data twice (once as a \texttt{data.frame}, and once as an \texttt{sf} object), we will overwrite the \texttt{data.frame} and continue working with the \texttt{sf} object from now on. This saves some memory space in \texttt{R} and avoids confusion.
 
 \begin{Shaded}
@@ -363,8 +599,8 @@ Instead of keeping the same data twice (once as a \texttt{data.frame}, and once 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{task-4-project-data-from-wgs84}{%
-\subsection{Task 4: Project data from WGS84}\label{task-4-project-data-from-wgs84}}
+\hypertarget{task-3-project-data-from-wgs84}{%
+\subsection{Task 3: Project data from WGS84}\label{task-3-project-data-from-wgs84}}
 
 So what can we do with our new \texttt{sf} object that we couldn't before? One example is projecting the WGS84 (\texttt{Lat}/\texttt{Long}) coordinates into the new Swiss CRS \texttt{CH1903+\ LV95}\footnote{As we've mentioned in the first Input, you can look up the EPSG codes under (epsg.io){[}\url{http://epsg.io}{]}. For information specific to Switzerland, check the \href{https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html}{swisstopo website}}. Do this by using the function \texttt{st\_transform}. By the way, do you notice a pattern here? The package \texttt{sf} names most functions for spatial operations with the prefix \texttt{st\_*}, just as in PostGIS.
 
@@ -394,6 +630,8 @@ Here's the resulting \texttt{sf} object from the operation:
 \DocumentationTok{\#\# \# ... with 51,236 more rows}
 \end{Highlighting}
 \end{Shaded}
+
+Commit your changes as described \protect\hyperlink{w1-tasks-and-inputs}{in the beginning}.
 
 \hypertarget{input-calculate-convex-hull}{%
 \subsection{Input: Calculate Convex Hull}\label{input-calculate-convex-hull}}
@@ -462,8 +700,8 @@ Now we can run \texttt{st\_convex\_hull} on the new \texttt{sf} object.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{task-5-ploting-spatial-objects}{%
-\subsection{Task 5: Ploting spatial objects}\label{task-5-ploting-spatial-objects}}
+\hypertarget{task-4-ploting-spatial-objects}{%
+\subsection{Task 4: Ploting spatial objects}\label{task-4-ploting-spatial-objects}}
 
 Using base plot to visualize \texttt{sf} objects is easy enough, just try the following code.
 
@@ -473,60 +711,71 @@ Using base plot to visualize \texttt{sf} objects is easy enough, just try the fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-19-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-25-1.pdf}
 
 But since we use \texttt{ggplot} extensively, try and plot the object \texttt{mcp} with \texttt{ggplot}. Hint: Use the layer \texttt{geom\_sf()} to add an \texttt{sf} object.
 Note: \texttt{ggplot} refuses to use our specified CRS, so we need to force this by specifying \texttt{datum\ =} in \texttt{coord\_sf()}. Try it out.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-20-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-20-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-20-3.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-26-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-26-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-26-3.pdf}
+
+Commit your changes as described \protect\hyperlink{w1-tasks-and-inputs}{in the beginning}. Have a look at your commit history by clicking on ``History'' in the ``Git''-Pane.
 
 \hypertarget{input-importing-raster-data}{%
 \subsection{Input: Importing raster data}\label{input-importing-raster-data}}
 
-In the next task, we would like to add a background map to our \texttt{mcp} object. To do this, we have to the raster data into \texttt{R} first. For this, we use the package \texttt{terra} with the function \texttt{rast}.
+In the next task, we would like to add a background map to our \texttt{mcp} object. Download the file here: \href{https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/pk100_BE.tif}{pk100\_BE.tif}
+To import the file into \texttt{R}, we use the package \texttt{terra} with the function \texttt{rast}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-
 \FunctionTok{library}\NormalTok{(terra)}
+\DocumentationTok{\#\# terra version 1.0.10}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\# Attaching package: \textquotesingle{}terra\textquotesingle{}}
+\DocumentationTok{\#\# The following objects are masked from \textquotesingle{}package:dplyr\textquotesingle{}:}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#     collapse, desc, near}
+\DocumentationTok{\#\# The following object is masked from \textquotesingle{}package:glue\textquotesingle{}:}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#     collapse}
 
-\NormalTok{pk100\_BE }\OtherTok{\textless{}{-}}\NormalTok{ terra}\SpecialCharTok{::}\FunctionTok{rast}\NormalTok{(}\StringTok{"00\_Rawdata/pk100\_BE\_2056.tif"}\NormalTok{)}
+\NormalTok{pk100\_BE }\OtherTok{\textless{}{-}}\NormalTok{ terra}\SpecialCharTok{::}\FunctionTok{rast}\NormalTok{(}\StringTok{"00\_Rawdata/pk100\_BE.tif"}\NormalTok{)}
 
 \NormalTok{pk100\_BE}
 \DocumentationTok{\#\# class       : SpatRaster }
-\DocumentationTok{\#\# dimensions  : 1821, 2321, 4  (nrow, ncol, nlyr)}
+\DocumentationTok{\#\# dimensions  : 1821, 2321, 3  (nrow, ncol, nlyr)}
 \DocumentationTok{\#\# resolution  : 5, 5  (x, y)}
 \DocumentationTok{\#\# extent      : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)}
 \DocumentationTok{\#\# coord. ref. : +proj=somerc +lat\_0=46.9524055555556 +lon\_0=7.43958333333333 +k\_0=1 +x\_0=2600000 +y\_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no\_defs }
-\DocumentationTok{\#\# data source : pk100\_BE\_2056.tif }
-\DocumentationTok{\#\# names       : pk1\_1, pk1\_2, pk1\_3, pk1\_4}
+\DocumentationTok{\#\# source      : pk100\_BE.tif }
+\DocumentationTok{\#\# names       : pk1\_1, pk1\_2, pk1\_3 }
+\DocumentationTok{\#\# min values  :     0,     0,     0 }
+\DocumentationTok{\#\# max values  :   255,   255,   255}
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{pk100\_BE\_2056.tif} is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (\texttt{pk100\_BE\_2056.1}, \texttt{pk100\_BE\_2056.2}etc). For some reason, \texttt{rast} imported a fourth layer (\texttt{pk1\_4}). \texttt{plot()} shows that the fourth layer is empty. We will remove this layer using \texttt{subset()}.
+\texttt{pk100\_BE\_2056.tif} is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (\texttt{pk1\_1}, \texttt{pk1\_2}etc). With the default \texttt{plot} method, each layer is displayed individually:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-
 \FunctionTok{plot}\NormalTok{(pk100\_BE)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-22-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-28-1.pdf}
+
+With \texttt{plotRGB} all three layers are combined into a single image:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-
-\NormalTok{pk100\_BE }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(pk100\_BE,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)}
-
-\FunctionTok{plot}\NormalTok{(pk100\_BE)}
+\FunctionTok{plotRGB}\NormalTok{(pk100\_BE)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-22-2.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-29-1.pdf}
 
-\hypertarget{task-6-adding-a-background-map}{%
-\subsection{Task 6: Adding a background map}\label{task-6-adding-a-background-map}}
+\hypertarget{task-5-adding-a-background-map}{%
+\subsection{Task 5: Adding a background map}\label{task-5-adding-a-background-map}}
 
 There are multiple ways to add a background map in \texttt{ggplot}, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: \texttt{tmap} (``thematic map''). This package was developed with a syntax very similar to \texttt{ggplot2}, which makes it easy to learn.
 
@@ -536,19 +785,45 @@ There are multiple ways to add a background map in \texttt{ggplot}, many require
 
 \FunctionTok{tm\_shape}\NormalTok{(pk100\_BE) }\SpecialCharTok{+} 
   \FunctionTok{tm\_rgb}\NormalTok{() }
+\DocumentationTok{\#\# Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer\_proj}
+\DocumentationTok{\#\# = prefer\_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4}
+\DocumentationTok{\#\# definition}
+\DocumentationTok{\#\# stars object downsampled to 1129 by 886 cells. See tm\_shape manual (argument raster.downsample)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-23-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-30-1.pdf}
 
 As you can see, plotting layers in \texttt{tmap} is combined with the \texttt{+} sign, just as in \texttt{ggplot2}. In \texttt{tmap} however, each layer consists of two objects: a \texttt{tm\_shape()} in which the data is called, and a \texttt{tm\_*} object in which we define how the data is visualized (\texttt{tm\_rgb()} states that it is plotted as an RGB Raster Layer). Add the object \texttt{mcp} to the plot in this manner. Read \href{https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html}{the vignette} if you are having trouble.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-24-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-24-2.pdf}
+\begin{verbatim}
+## Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer_proj
+## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4
+## definition
+## stars object downsampled to 1129 by 886 cells. See tm_shape manual (argument raster.downsample)
+\end{verbatim}
 
-\hypertarget{task-7-create-an-interactive-map}{%
-\subsection{Task 7: Create an interactive map}\label{task-7-create-an-interactive-map}}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+\begin{verbatim}
+## Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer_proj
+## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4
+## definition
+## stars object downsampled to 1129 by 886 cells. See tm_shape manual (argument raster.downsample)
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-31-2.pdf}
+
+Commit your changes as described \protect\hyperlink{w1-tasks-and-inputs}{in the beginning}.
+
+\hypertarget{task-6-create-an-interactive-map}{%
+\subsection{Task 6: Create an interactive map}\label{task-6-create-an-interactive-map}}
 
 Rerun the \texttt{tmap()...} command from the previous task, but switch the plotting mode to ``view''" (\texttt{tmap\_mode("view")}) beforehand. Omit the raster layer (\texttt{pk100\_BE}), you won't be needing it.
+
+Commit your changes as described \protect\hyperlink{w1-tasks-and-inputs}{in the beginning}. Have a look at your commit history by clicking on ``History'' in the ``Git''-Pane.
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-32-1.pdf}
 
 \hypertarget{exercise-2}{%
 \chapter{Exercise 2}\label{exercise-2}}
@@ -589,34 +864,114 @@ Readings Theory
   R2.1 \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}): How fast is a cow? cross - scale analysis of movement data.
 \end{itemize}
 
-\hypertarget{preperation-1}{%
-\section{Preperation}\label{preperation-1}}
+\hypertarget{preperation}{%
+\section{Preperation}\label{preperation}}
 
-Install the package \texttt{zoo} to get access to the rolling window functions for last exercise.
+\hypertarget{update-r-and-rstudio}{%
+\subsection{\texorpdfstring{Update \texttt{R} and RStudio}{Update R and RStudio}}\label{update-r-and-rstudio}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"zoo"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+Last week, we showed you how to determine whether your \texttt{R} Version or your RStudio needs updating (see \protect\hyperlink{w1-preperation}{Preperation}). If your versions are up to date: Great! If not, update these before today's session.
 
-Import the wild boar data and convert it to an \texttt{sf} object with CH1903+ LV95 Coordinates. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
+\hypertarget{install-and-configure-git}{%
+\subsection{Install and configure Git}\label{install-and-configure-git}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\FunctionTok{library}\NormalTok{(sf)}
-\FunctionTok{library}\NormalTok{(lubridate)}
+You will need Git again this week. If you had issues last week installing or configuring Git to work with RStudio, make sure you debug these problems now. Consult the \href{https://happygitwithr.com/troubleshooting.html}{chapter on troubleshooting} in Jenny Brian's book ``Happy Git with R.''
 
-\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+\hypertarget{create-a-github-account}{%
+\subsection{Create a Github account}\label{create-a-github-account}}
 
-\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }
-                          \AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
-                          \AttributeTok{crs =} \DecValTok{4326}\NormalTok{)}
+Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. To do this, create a Github account on \href{https://github.com/}{github.com} (it's free of course). Use the email address that you \protect\hyperlink{introduce-yourself-git}{configured in git last week}. If you are not sure which mail you used, type \texttt{git\ config\ user.email} in the console.
 
-\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_transform}\NormalTok{(wildschwein\_BE, }\DecValTok{2056}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+You don't have to use the same \texttt{user.name} on Github as use configured in Git. When choosing a username on Github, consider the following tips:
+
+\begin{itemize}
+\tightlist
+\item
+  incorporating your actual name is nice, people like to know who they are dealing with
+\item
+  choose a name that you are comfortable revealing it to a future boss
+\item
+  shorter is better than longer
+\item
+  make it timeless (e.g.~don't incorporate your university's name)
+\end{itemize}
+
+\hypertarget{authenticate-git-to-work-with-github}{%
+\subsection{Authenticate Git to work with Github}\label{authenticate-git-to-work-with-github}}
+
+If we want to push changes from our local repository to our Github Cloud, Github must verify your credentials. Other software might just ask for your username and password, it's a little different with Git. Basically there are two ways to connect with your remote repo (ssh and https), we will use https in this course. \textbf{This is a one time set up per computer}, you need to do this only once.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Step 1}: Create a personal access token (PAT) on Github
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Login into github.com, click on your user profile (top right) and click on ``Settings'' (\href{https://github.com/settings}{github.com/settings})
+  \item
+    Choose ``Personal access tokens'' \textgreater{} Generate new token
+  \item
+    Add a descriptive note (e.g.~\texttt{https\ access\ from\ my\ personal\ laptop})
+  \item
+    Select scope ``repo''
+  \item
+    Click on ``Generate token''
+  \item
+    Copy your new personal access token (in the green box). \textbf{You won't be able to see it again!}
+  \item
+    Treat this PAT like a password: Store it in a secure place, like a password management app if you have one (which you should!). \emph{Never publish this PAT publicly}.
+  \end{itemize}
+\item
+  \textbf{Step 2}: Store your PAT in you local Git
+
+  \begin{itemize}
+  \tightlist
+  \item
+    In R, install the \texttt{gitcreds} package (via \texttt{install.packages("gitcreds")})
+  \item
+    Call the function \texttt{gitcreds\_set()} (via \texttt{gitcreds::gitcreds\_set()})
+  \item
+    Respond to the prompt with your PAT
+  \item
+    (You can check that you have stored a credential with \texttt{gitcreds::gitcreds\_get()})
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{create-a-github-repo}{%
+\subsection{\texorpdfstring{Create a Git\textbf{hub} repo}{Create a Github repo}}\label{create-a-github-repo}}
+
+Now you can create a Repository on Github that you can afterwards connect to your RStudio project from week 1. This is something you have to do for every Git repo that you want to connect to Github. To do this go to \href{https://github.com/new}{github.com/new} and fill in the following information:
+
+\begin{itemize}
+\tightlist
+\item
+  Repository name: Give a meaningful name, e.g.~\texttt{cma-week1}
+\item
+  Description: Give a meaningful description, e.g.~\texttt{Solving\ exercise\ 1\ of\ the\ course\ "Computational\ Movement\ Analysis}
+\item
+  Make the repo public, not private
+\item
+  Make sure that \texttt{Add\ a\ README\ file}, \texttt{Add\ .gitignore} and \texttt{Choose\ a\ license} are all \emph{un}checked
+\item
+  Click on \texttt{Create\ repository}
+\end{itemize}
+
+You will be forwarded to a new page with instructions. You can switch between instructions for \texttt{https} and \texttt{SSH} by clicking on the appropriate button. Make sure you choose \texttt{https}, keep this page open and open RStudio.
+
+\hypertarget{connect-your-local-repo-with-the-remote-repository}{%
+\subsection{Connect your local repo with the remote repository}\label{connect-your-local-repo-with-the-remote-repository}}
+
+In RStudio, open the RStudio project from week 1. Open the terminal and follow the instructions described in \emph{\ldots or push an existing repository from the command line} in the website you were just forwarded to on Github (under \url{https://github.com/yourgithubusername/cma-week1}). These instructions should look something like this:
+
+\begin{verbatim}
+git remote add origin https://github.com/yourgithubusername/cma-week1.git
+git branch -M main
+git push -u origin main
+\end{verbatim}
+
+Type these commands line by line into your terminal. If you want to copy and paste the commands rather than type them: Note that ctrl + V for ``pasting'' won't work via the keyboard shortcut, you will have to paste by right clicking into the terminal and choosing ``paste.''
 
 \hypertarget{demo-tidyverse}{%
 \section{Demo Tidyverse}\label{demo-tidyverse}}
@@ -640,11 +995,25 @@ Assume we want to calculate the timelag between subsequent positions. To achieve
 \end{Highlighting}
 \end{Shaded}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{time\_difference}
+\DocumentationTok{\#\# Time difference of 2.777778 hours}
+\end{Highlighting}
+\end{Shaded}
+
 You can also specify the unit of the output.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{time\_difference }\OtherTok{\textless{}{-}} \FunctionTok{difftime}\NormalTok{(later,now,}\AttributeTok{units =} \StringTok{"mins"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{time\_difference}
+\DocumentationTok{\#\# Time difference of 166.6667 mins}
 \end{Highlighting}
 \end{Shaded}
 
@@ -703,6 +1072,13 @@ We can now run \texttt{lead()} and \texttt{lag()} on this sequence to illustrate
 \end{Shaded}
 
 This helps us performing operations on subsequent values in a vector (or rows in a table). You can think of this a little bit like a moving temporal window that moves along the trajectory, or down the rows of a table respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lead}\NormalTok{(numbers)}\SpecialCharTok{{-}}\NormalTok{numbers}
+\DocumentationTok{\#\#  [1]  1  1  1  1  1  1  1  1  1 NA}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{mutate}{%
 \subsection{\texorpdfstring{\texttt{mutate()}}{mutate()}}\label{mutate}}
@@ -782,7 +1158,7 @@ The above operation works fine on normal \texttt{data.frames}, but since \texttt
 \FunctionTok{summarise}\NormalTok{(}\FunctionTok{st\_set\_geometry}\NormalTok{(wildschwein\_BE,}\ConstantTok{NULL}\NormalTok{), }\AttributeTok{mean\_timelag =} \FunctionTok{mean}\NormalTok{(timelag, }\AttributeTok{na.rm =}\NormalTok{ T))}
 \DocumentationTok{\#\# \# A tibble: 3 x 2}
 \DocumentationTok{\#\#   TierID mean\_timelag}
-\DocumentationTok{\#\#   \textless{}chr\textgreater{}         \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# * \textless{}chr\textgreater{}         \textless{}dbl\textgreater{}}
 \DocumentationTok{\#\# 1 002A          1286.}
 \DocumentationTok{\#\# 2 016A          1412.}
 \DocumentationTok{\#\# 3 018A          1599.}
@@ -805,7 +1181,7 @@ The code above may be a bit hard to read, since it has so many nested functions 
 \NormalTok{  )}
 \DocumentationTok{\#\# \# A tibble: 3 x 2}
 \DocumentationTok{\#\#   TierID mean\_timelag}
-\DocumentationTok{\#\#   \textless{}chr\textgreater{}         \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# * \textless{}chr\textgreater{}         \textless{}dbl\textgreater{}}
 \DocumentationTok{\#\# 1 002A          1286.}
 \DocumentationTok{\#\# 2 016A          1412.}
 \DocumentationTok{\#\# 3 018A          1599.}
@@ -855,7 +1231,7 @@ Here is the same approach with a different, smaller dataset:
 \NormalTok{  )}
 \DocumentationTok{\#\# \# A tibble: 2 x 2}
 \DocumentationTok{\#\#   sex   mean\_weight}
-\DocumentationTok{\#\#   \textless{}chr\textgreater{}       \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# * \textless{}chr\textgreater{}       \textless{}dbl\textgreater{}}
 \DocumentationTok{\#\# 1 F            40.5}
 \DocumentationTok{\#\# 2 M            25.2}
 
@@ -864,6 +1240,7 @@ Here is the same approach with a different, smaller dataset:
   \FunctionTok{summarise}\NormalTok{(         }
     \AttributeTok{mean\_weight =} \FunctionTok{mean}\NormalTok{(weight)}
 \NormalTok{  )}
+\DocumentationTok{\#\# \textasciigrave{}summarise()\textasciigrave{} has grouped output by \textquotesingle{}sex\textquotesingle{}. You can override using the \textasciigrave{}.groups\textasciigrave{} argument.}
 \DocumentationTok{\#\# \# A tibble: 4 x 3}
 \DocumentationTok{\#\# \# Groups:   sex [2]}
 \DocumentationTok{\#\#   sex   age   mean\_weight}
@@ -875,8 +1252,34 @@ Here is the same approach with a different, smaller dataset:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{tasks-and-inputs-1}{%
-\section{Tasks and Inputs}\label{tasks-and-inputs-1}}
+\hypertarget{tasks-and-inputs}{%
+\section{Tasks and Inputs}\label{tasks-and-inputs}}
+
+Install the package \texttt{zoo} to get access to the rolling window functions for last exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"zoo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Import the wild boar data and convert it to an \texttt{sf} object with CH1903+ LV95 Coordinates. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sf)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+
+\NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }
+                          \AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }
+                          \AttributeTok{crs =} \DecValTok{4326}\NormalTok{)}
+
+\NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{st\_transform}\NormalTok{(wildschwein\_BE, }\DecValTok{2056}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{task-1-getting-an-overview}{%
 \subsection{Task 1: Getting an overview}\label{task-1-getting-an-overview}}
@@ -898,7 +1301,15 @@ First, inspect your data in more detail. Try to answer the following questions:
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-46-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-46-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-46-3.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+\begin{verbatim}
+## Warning: Removed 35 rows containing non-finite values (stat_bin).
+## Warning: Transformation introduced infinite values in continuous y-axis
+## Warning: Removed 205 rows containing missing values (geom_bar).
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-53-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-53-3.pdf}
 
 \hypertarget{input-geometry-as-columns}{%
 \subsection{Input: Geometry as columns}\label{input-geometry-as-columns}}
@@ -953,6 +1364,12 @@ Note that that the column are named \texttt{X} and \texttt{Y}, while \href{https
 \end{Highlighting}
 \end{Shaded}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#{-} chunkend}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{task-2-deriving-movement-parameters-i-speed}{%
 \subsection{Task 2: Deriving movement parameters I: Speed}\label{task-2-deriving-movement-parameters-i-speed}}
 
@@ -973,11 +1390,23 @@ Why do we use \texttt{E} and \texttt{N} when calculating the Euclidean distance,
 
 \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}) analyse animal movement across different scales (see below). We will do the same on a \emph{subset} of our data.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"02\_Images/laube\_2011\_2.jpg"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=19.58in]{02_Images/laube_2011_2} \caption{Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale (Laube and Purves, 2011)}\label{fig:unnamed-chunk-58}
+\end{figure}
+
 \hypertarget{import-caro60}{%
 \subsubsection{Import ``Caro60''}\label{import-caro60}}
 
 In the first task, we saw that the animals are sampled at different frequencies. To simplify the task, we've prepared a dataset that includes 200 locations of a single wild boar with a constant sampling interval of 60 seconds. Import this dataset named ``caro60.csv'' (available on moodle) just like you imported the other wild boar data. \textbf{NOTE:} We've converted the positions to CH1903+ LV95 for your convenience. Consider this when transforming to \texttt{sf}!
 Save this data to a new variable (we will use \texttt{caro60}).
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-59-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-59-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-59-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-59-4.pdf}
 
 \hypertarget{resample}{%
 \subsubsection{Resample}\label{resample}}
@@ -1025,7 +1454,32 @@ We've stored the geographic location of our point in the trajectory in three dif
   \texttt{geom\_line()} does not work when mapping trajectory data, since it connects the observations \emph{in order of the variable on the x axis}. \texttt{geom\_path()} connects the observations in the order in which they appear in the data
 \end{itemize}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-54-4.pdf}
+\begin{verbatim}
+## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   TierID = col_character(),
+##   TierName = col_character(),
+##   CollarID = col_double(),
+##   DatetimeUTC = col_datetime(format = ""),
+##   N = col_double(),
+##   E = col_double()
+## )
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-61-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-61-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-61-3.pdf}
+
+\begin{verbatim}
+## Warning: Removed 1 row(s) containing missing values (geom_path).
+
+## Warning: Removed 1 row(s) containing missing values (geom_path).
+
+## Warning: Removed 1 row(s) containing missing values (geom_path).
+
+## Warning: Removed 1 row(s) containing missing values (geom_path).
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-61-4.pdf}
 
 \hypertarget{task-4-deriving-movement-parameters-ii-rolling-window-functions}{%
 \subsection{Task 4: Deriving movement parameters II: Rolling window functions}\label{task-4-deriving-movement-parameters-ii-rolling-window-functions}}
@@ -1035,6 +1489,14 @@ A different approach would be to \emph{smoothen} the derived parameters using a 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(zoo)}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\# Attaching package: \textquotesingle{}zoo\textquotesingle{}}
+\DocumentationTok{\#\# The following object is masked from \textquotesingle{}package:terra\textquotesingle{}:}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#     time\textless{}{-}}
+\DocumentationTok{\#\# The following objects are masked from \textquotesingle{}package:base\textquotesingle{}:}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#     as.Date, as.Date.numeric}
 
 \NormalTok{example }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \FunctionTok{rollmean}\NormalTok{(example,}\AttributeTok{k =} \DecValTok{3}\NormalTok{,}\AttributeTok{fill =} \ConstantTok{NA}\NormalTok{,}\AttributeTok{align =} \StringTok{"left"}\NormalTok{)}
@@ -1048,10 +1510,14 @@ A different approach would be to \emph{smoothen} the derived parameters using a 
 
 Now run \texttt{rollmean}on the \texttt{speed} variable of the subset (\texttt{caro60}). Visualize the output from your moving windows and compare different window sizes (\texttt{k\ =}).
 
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-63-1.pdf}
+
 \hypertarget{task-5-optional-calculate-turning-angles}{%
 \subsection{Task 5 (optional): Calculate turning angles}\label{task-5-optional-calculate-turning-angles}}
 
 Just like we did with \texttt{speed} in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2!
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-64-1.pdf}
 
 \hypertarget{exercise-3}{%
 \chapter{Exercise 3}\label{exercise-3}}
@@ -1086,8 +1552,8 @@ Readings Theory:
 
 \protect\hyperlink{ref-both2018}{Alan Both} (\protect\hyperlink{ref-both2018}{2018}) A Comparative Analysis of Trajectory Similarity Measures: Recommendations for Selection and Use, excerpt from an unpublished manuscript, confidential.
 
-\hypertarget{preperation-2}{%
-\section{Preperation}\label{preperation-2}}
+\hypertarget{preperation-1}{%
+\section{Preperation}\label{preperation-1}}
 
 Install the following libraries:
 
@@ -1116,6 +1582,16 @@ Open your R Project from last week. Either run your own script from last week or
 
 \CommentTok{\# Import as dataframe}
 \NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\# {-}{-} Column specification {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\DocumentationTok{\#\# cols(}
+\DocumentationTok{\#\#   TierID = col\_character(),}
+\DocumentationTok{\#\#   TierName = col\_character(),}
+\DocumentationTok{\#\#   CollarID = col\_double(),}
+\DocumentationTok{\#\#   DatetimeUTC = col\_datetime(format = ""),}
+\DocumentationTok{\#\#   Lat = col\_double(),}
+\DocumentationTok{\#\#   Long = col\_double()}
+\DocumentationTok{\#\# )}
 
 \CommentTok{\# Convert to sf{-}object}
 \NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }\AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\AttributeTok{crs =} \DecValTok{4326}\NormalTok{,}\AttributeTok{remove =} \ConstantTok{FALSE}\NormalTok{)}
@@ -1140,8 +1616,8 @@ Open your R Project from last week. Either run your own script from last week or
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{tasks-and-inputs-2}{%
-\section{Tasks and Inputs}\label{tasks-and-inputs-2}}
+\hypertarget{tasks-and-inputs-1}{%
+\section{Tasks and Inputs}\label{tasks-and-inputs-1}}
 
 \hypertarget{input-segmentation-as-in-laube-and-purves-2011}{%
 \subsection{Input: Segmentation as in Laube and Purves (2011)}\label{input-segmentation-as-in-laube-and-purves-2011}}
@@ -1183,7 +1659,7 @@ Note: I use \texttt{tibble()} instead of \texttt{data.frame()}. The two function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-60-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-67-1.pdf}
 
 \hypertarget{segmenting}{%
 \subsubsection{Segmenting}\label{segmenting}}
@@ -1333,7 +1809,7 @@ We can now determin if an animal is moving or not by specifying a threshold on \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-64-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-71-1.pdf}
 
 \hypertarget{unique-ids-per-segment}{%
 \subsubsection{\texorpdfstring{Unique IDs \emph{per segment}}{Unique IDs per segment}}\label{unique-ids-per-segment}}
@@ -1436,12 +1912,24 @@ To simplify our workflow, we can we can take the inverse of \texttt{boolvec} \em
 \end{Highlighting}
 \end{Shaded}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#{-} chunkend}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{task-1-segmentation}{%
 \subsection{Task 1: Segmentation}\label{task-1-segmentation}}
 
 With the skills from the input above we can now implement the segmentation algorithm described in \protect\hyperlink{ref-laube2011}{Laube and Purves} (\protect\hyperlink{ref-laube2011}{2011}). The described method depends on a regular sampling interval. Therefore, take the dataset ``caro60.csv'' from task 3 of last week (available on moodle). Import it as a dataframe, we don't need an \texttt{sf}-object to for today's tasks.
 
 Next, we have to have to define our \emph{temporal window v} (\protect\hyperlink{ref-laube2011}{Laube and Purves 2011}). To keep things simple, I would suggest a window of n +/- 2 minutes. With a sampling interval of around 1 minute, this corresponds to a window size of n +/- 2 positions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#{-} chunkend}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{task-2-specify-and-apply-threshold-d}{%
 \subsection{\texorpdfstring{Task 2: Specify and apply threshold \emph{d}}{Task 2: Specify and apply threshold d}}\label{task-2-specify-and-apply-threshold-d}}
@@ -1453,16 +1941,37 @@ Store the new information (boolean to differentiate between stops (\texttt{TRUE}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 ##  0.8109  2.2397  3.3496  5.0371  5.8618 24.2903       4
+## Warning: Removed 4 rows containing non-finite values (stat_bin).
 \end{verbatim}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-73-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-80-1.pdf}
 
 \hypertarget{task-3-visualize-segmented-trajectories}{%
 \subsection{Task 3: Visualize segmented trajectories}\label{task-3-visualize-segmented-trajectories}}
 
 Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with \texttt{geom\_path()}, \texttt{geom\_point()} and \texttt{coord\_equal()}. Assign \texttt{colour\ =\ moving} within \texttt{aes()} to distinguish between segments \emph{with} ``movement'' and \emph{without}.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-74-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-74-2.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-81-1.pdf}
+
+\begin{verbatim}
+## Warning: package 'plotly' was built under R version 4.0.4
+## 
+## Attaching package: 'plotly'
+## The following object is masked from 'package:terra':
+## 
+##     select
+## The following object is masked from 'package:ggplot2':
+## 
+##     last_plot
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## The following object is masked from 'package:graphics':
+## 
+##     layout
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-81-2.pdf}
 
 Tip: if you want to get a \texttt{ggplot()} with Zoom capability, just load the library \texttt{plotly} and wrap the \texttt{ggplot()} function with \texttt{ggplotly()}
 
@@ -1496,7 +2005,7 @@ In order to do this, we need a \emph{unique} name for each segment that we can u
   inspect your data visually
 \end{enumerate}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-76-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-83-1.pdf}
 
 \hypertarget{task-5-similarity-measures}{%
 \subsection{Task 5: Similarity measures}\label{task-5-similarity-measures}}
@@ -1505,7 +2014,31 @@ Import the dataset \texttt{pedestrian.csv} (available on moodle) as a dataframe 
 
 We will analyse these trajectories with the package \texttt{SimilarityMeasures}, always comparing trajectory 1 pairwise to the other trajectories 2-6. For this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-4.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-77-5.pdf}
+\begin{verbatim}
+## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   TrajID = col_double(),
+##   E = col_double(),
+##   N = col_double(),
+##   DatetimeUTC = col_datetime(format = "")
+## )
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-84-1.pdf}
+
+\begin{verbatim}
+## Warning: ggrepel: 6 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-84-2.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-84-3.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-84-4.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-84-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#{-} chunkend}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{task-6-calculate-similarity}{%
 \subsection{Task 6: Calculate similarity}\label{task-6-calculate-similarity}}
@@ -1522,7 +2055,14 @@ Note:
   \texttt{LCSS}takes very long to compute. The accuracy of the algorithm (\texttt{pointSpacing\ =} ,\texttt{pointDistance\ =} and \texttt{errorMarg\ =}) can be varied to provide faster calculations. Please see \protect\hyperlink{ref-vlachos2002}{Vlachos, Gunopoulos, and Kollios} (\protect\hyperlink{ref-vlachos2002}{2002}) for more information.
 \end{itemize}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-79-1.pdf}
+\begin{verbatim}
+## Warning: `data_frame()` was deprecated in tibble 1.1.0.
+## Please use `tibble()` instead.
+## Warning: attributes are not identical across measure variables;
+## they will be dropped
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-86-1.pdf}
 
 \hypertarget{exercise-4}{%
 \chapter{Exercise 4}\label{exercise-4}}
@@ -1555,6 +2095,12 @@ Readings Theory, \protect\hyperlink{ref-laube2014}{Laube} (\protect\hyperlink{re
 \hypertarget{preparation}{%
 \section{Preparation}\label{preparation}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Preperation \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\end{Highlighting}
+\end{Shaded}
+
 Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
 
 \begin{Shaded}
@@ -1565,6 +2111,16 @@ Open your R Project from last week. Either run your own script from last week or
 
 \CommentTok{\# Import as tibble}
 \NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\# {-}{-} Column specification {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\DocumentationTok{\#\# cols(}
+\DocumentationTok{\#\#   TierID = col\_character(),}
+\DocumentationTok{\#\#   TierName = col\_character(),}
+\DocumentationTok{\#\#   CollarID = col\_double(),}
+\DocumentationTok{\#\#   DatetimeUTC = col\_datetime(format = ""),}
+\DocumentationTok{\#\#   Lat = col\_double(),}
+\DocumentationTok{\#\#   Long = col\_double()}
+\DocumentationTok{\#\# )}
 
 \CommentTok{\# Convert to sf{-}object}
 \NormalTok{wildschwein\_BE }\OtherTok{=} \FunctionTok{st\_as\_sf}\NormalTok{(wildschwein\_BE, }\AttributeTok{coords =} \FunctionTok{c}\NormalTok{(}\StringTok{"Long"}\NormalTok{, }\StringTok{"Lat"}\NormalTok{), }\AttributeTok{crs =} \DecValTok{4326}\NormalTok{,}\AttributeTok{remove =} \ConstantTok{FALSE}\NormalTok{)}
@@ -1589,11 +2145,23 @@ Open your R Project from last week. Either run your own script from last week or
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{tasks-and-inputs-3}{%
-\section{Tasks and inputs}\label{tasks-and-inputs-3}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#{-} chunkend}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tasks-and-inputs-2}{%
+\section{Tasks and inputs}\label{tasks-and-inputs-2}}
 
 \hypertarget{input-creating-functions}{%
 \subsection{Input: Creating functions}\label{input-creating-functions}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Input: Creating Functions \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\end{Highlighting}
+\end{Shaded}
 
 Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you've copied and pasted a block of code more than twice, you should consider writing a function (\protect\hyperlink{ref-wickham2017}{Wickham and Grolemund 2017}).
 
@@ -1710,7 +2278,13 @@ We propose conceptualizing the pattern ``meet'' as ``being close in space \emph{
 
 Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g.~\texttt{wildschwein\_filter}). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-92-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-99-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#{-} chunkend}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{task-3-create-join-key}{%
 \subsection{Task 3: Create Join Key}\label{task-3-create-join-key}}
@@ -1760,7 +2334,7 @@ Have a look at your dataset. You will notice that samples are taken at every ful
 ## #   steplength <dbl>, speed <dbl>
 \end{verbatim}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-95-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-95-2.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-102-1.pdf} \includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-102-2.pdf}
 
 With a few exceptions, the sampling interval is \emph{around} 15 minutes. In order to join the data, however, we need \emph{identical} time stamps to serve as a join key. We therefore need to slightly adjust our time stamps to a common, concurrent interval.
 
@@ -1836,14 +2410,24 @@ To create a plot similar to the one below:
   Facet the plot into small multiples either using \texttt{meet\_seq} or \texttt{meet\_time}
 \end{enumerate}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-97-1.pdf}
+\begin{verbatim}
+## Linking to liblwgeom 3.0.0beta1 r16016, GEOS 3.8.0, PROJ 6.3.1
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-104-1.pdf}
 
 \hypertarget{task-6-optional-visualize-data-as-timecube-with-plotly}{%
 \subsection{\texorpdfstring{Task 6 (optional): Visualize data as timecube with \texttt{plotly}}{Task 6 (optional): Visualize data as timecube with plotly}}\label{task-6-optional-visualize-data-as-timecube-with-plotly}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Task 6 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\end{Highlighting}
+\end{Shaded}
+
 Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube (\protect\hyperlink{ref-hagerstraand1970}{Hägerstraand 1970}) with the package \texttt{plotly}. There are some \href{https://plot.ly/r/3d-line-plots/}{nice ressources} available online.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-106-1.pdf}
 
 \hypertarget{exercise-5}{%
 \chapter{Exercise 5}\label{exercise-5}}
@@ -1859,8 +2443,14 @@ Finally, you can nicely visualize the meeting patterns and trajectories in a Spa
   You know basic operations for semantically annotating your trajectories with geographic context.
 \end{itemize}
 
-\hypertarget{preperation-3}{%
-\section{Preperation}\label{preperation-3}}
+\hypertarget{preperation-2}{%
+\section{Preperation}\label{preperation-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Preperation \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\end{Highlighting}
+\end{Shaded}
 
 Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today's exercise.
 
@@ -1869,10 +2459,36 @@ Open your R Project from last week. Either run your own script from last week or
 \FunctionTok{library}\NormalTok{(tidyverse)}
 \FunctionTok{library}\NormalTok{(sf)}
 \FunctionTok{library}\NormalTok{(ggspatial)}
+\DocumentationTok{\#\# Warning: package \textquotesingle{}ggspatial\textquotesingle{} was built under R version 4.0.4}
 \FunctionTok{library}\NormalTok{(raster)}
+\DocumentationTok{\#\# Loading required package: sp}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\# Attaching package: \textquotesingle{}raster\textquotesingle{}}
+\DocumentationTok{\#\# The following object is masked from \textquotesingle{}package:plotly\textquotesingle{}:}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#     select}
+\DocumentationTok{\#\# The following object is masked from \textquotesingle{}package:tidyr\textquotesingle{}:}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#     extract}
+\DocumentationTok{\#\# The following object is masked from \textquotesingle{}package:dplyr\textquotesingle{}:}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#     select}
+\DocumentationTok{\#\# The following object is masked from \textquotesingle{}package:glue\textquotesingle{}:}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#     trim}
 
 \CommentTok{\# Import as tibble}
 \NormalTok{wildschwein\_BE }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"00\_Rawdata/wildschwein\_BE.csv"}\NormalTok{,}\StringTok{","}\NormalTok{)}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\# {-}{-} Column specification {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\DocumentationTok{\#\# cols(}
+\DocumentationTok{\#\#   TierID = col\_character(),}
+\DocumentationTok{\#\#   TierName = col\_character(),}
+\DocumentationTok{\#\#   CollarID = col\_double(),}
+\DocumentationTok{\#\#   DatetimeUTC = col\_datetime(format = ""),}
+\DocumentationTok{\#\#   Lat = col\_double(),}
+\DocumentationTok{\#\#   Long = col\_double()}
+\DocumentationTok{\#\# )}
 
 
 \CommentTok{\# Convert to sf{-}object}
@@ -1895,6 +2511,12 @@ Open your R Project from last week. Either run your own script from last week or
 \hypertarget{tasks-1-import-and-visualize-spatial-data}{%
 \subsection{Tasks 1: Import and visualize spatial data}\label{tasks-1-import-and-visualize-spatial-data}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Task 1 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{itemize}
 \tightlist
 \item
@@ -1911,16 +2533,39 @@ Open your R Project from last week. Either run your own script from last week or
 
 \begin{verbatim}
 ## [1] "2015-07-27 11:00:14 UTC"
+## Warning: Number of levels of the variable "Frucht" is 43, which is
+## larger than max.categories (which is 30), so levels are combined. Set
+## tmap_options(max.categories = 43) in the layer function to show all levels.
 \end{verbatim}
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-103-1.pdf}
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-110-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#{-} chunkend}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{task-2-annotate-trajectories-from-vector-data}{%
 \subsection{Task 2: Annotate Trajectories from vector data}\label{task-2-annotate-trajectories-from-vector-data}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Task 2 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\end{Highlighting}
+\end{Shaded}
+
 Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use \texttt{st\_join()} to attach the attributes from \texttt{fanel2016} to your trajectory data \texttt{wildschwein\_BE} (semantic annotation). Visualize the number of sample points in each category of \texttt{Frucht} over the course of the filtered time period.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-106-1.pdf}
+\begin{verbatim}
+## `summarise()` has grouped output by 'TierID', 'week'. You can override using the `.groups` argument.
+## geom_path: Each group consists of only one observation. Do you need to adjust
+## the group aesthetic?
+## geom_path: Each group consists of only one observation. Do you need to adjust
+## the group aesthetic?
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-113-1.pdf}
 
 \hypertarget{task-3-explore-annotated-trajectories}{%
 \subsection{Task 3: Explore annotated trajectories}\label{task-3-explore-annotated-trajectories}}
@@ -1940,9 +2585,28 @@ Ideas:
 \hypertarget{task-4-annotate-trajectories-from-raster-data}{%
 \subsection{Task 4: Annotate Trajectories from raster data}\label{task-4-annotate-trajectories-from-raster-data}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Task 4 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\end{Highlighting}
+\end{Shaded}
+
 In terms of raster data, we have prepared the \href{https://map.geo.admin.ch/index.html?zoom=5\&lang=en\&topic=ech\&bgLayer=ch.swisstopo.pixelkarte-grau\&layers_opacity=0.5\&layers=ch.bafu.landesforstinventar-vegetationshoehenmodell\&E=2627157.14\&N=1122170.97}{Vegetation Height Model} provided by the Swiss National Forrest Inventory (NFI). This dataset contains high resolution information (1x1 Meter) on the vegetation height, which is determined from the difference between the digital surface models DSM and the digital terrain model by swisstopo (swissAlti3D). Buildings are eliminated using a combination of the ground areas of the swisstopo topographic landscape model (TLM) and spectral information from the stereo aerial photos.
 
-\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-108-1.pdf}
+\begin{verbatim}
+## Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer_proj
+## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4
+## definition
+
+## Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer_proj
+## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4
+## definition
+## Warning in showSRID(SRS_string, format = "PROJ", multiline = "NO", prefer_proj =
+## prefer_proj): Discarded datum CH1903+ in Proj4 definition
+## `summarise()` has grouped output by 'TierID'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\includegraphics{patterns-and-trends_files/figure-latex/unnamed-chunk-115-1.pdf}
 
 \hypertarget{references}{%
 \chapter*{References}\label{references}}

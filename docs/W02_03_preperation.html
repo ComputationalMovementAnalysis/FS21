@@ -156,7 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#install-the-necessary-packages"><i class="fa fa-check"></i>Install the necessary packages</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#install-git"><i class="fa fa-check"></i>Install Git</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#configure-rstudio"><i class="fa fa-check"></i>Configure RStudio</a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#introduce-yourself-to-git"><i class="fa fa-check"></i>Introduce yourself to Git</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#introduce-yourself-git"><i class="fa fa-check"></i>Introduce yourself to Git</a></li>
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#prepare-the-folder-structure-for-this-course"><i class="fa fa-check"></i>Prepare the folder structure for this course</a></li>
 <li><a href="W01_04_preperations.html#create-an-rstudio-project-for-the-first-week">Create an RStudio <em>project</em> for the first week</a></li>
 </ul></li>
@@ -280,12 +280,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="create-a-github-account" class="section level3">
 <h3>Create a Github account</h3>
-<p>Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. Create a Github account on <a href="https://github.com/">github.com</a> (it’s free of course). Use the email adress that you configured in git last week! If you are not sure which mail you used, type <code>git config user.email</code> in the console. When choosing a username in github, consider the following tips:</p>
+<p>Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. To do this, create a Github account on <a href="https://github.com/">github.com</a> (it’s free of course). Use the email address that you <a href="W01_04_preperations.html#introduce-yourself-git">configured in git last week</a>. If you are not sure which mail you used, type <code>git config user.email</code> in the console.</p>
+<p>You don’t have to use the same <code>user.name</code> on Github as use configured in Git. When choosing a username on Github, consider the following tips:</p>
 <ul>
-<li>consider incorporating your actual name</li>
-<li>make sure you are comfortable revealing it to a future boss</li>
-<li>shorter &gt; longer</li>
-<li>make it timeless</li>
+<li>incorporating your actual name is nice, people like to know who they are dealing with</li>
+<li>choose a name that you are comfortable revealing it to a future boss</li>
+<li>shorter is better than longer</li>
+<li>make it timeless (e.g. don’t incorporate your university’s name)</li>
 </ul>
 </div>
 <div id="authenticate-git-to-work-with-github" class="section level3">
@@ -313,23 +314,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="create-a-github-repo" class="section level3">
 <h3>Create a Git<strong>hub</strong> repo</h3>
-<p>Now you can create a Repository on Github that you can afterwards connect to your RStudio project from week 1. To do this go to <a href="https://github.com/new">github.com/new</a> and fill in the following information:</p>
+<p>Now you can create a Repository on Github that you can afterwards connect to your RStudio project from week 1. This is something you have to do for every Git repo that you want to connect to Github. To do this go to <a href="https://github.com/new">github.com/new</a> and fill in the following information:</p>
 <ul>
-<li>Repository name: <code>cma-week1</code></li>
+<li>Repository name: Give a meaningful name, e.g. <code>cma-week1</code></li>
 <li>Description: Give a meaningful description, e.g. <code>Solving exercise 1 of the course "Computational Movement Analysis</code></li>
 <li>Make the repo public, not private</li>
-<li>Make sure that <code>Add a README file</code>, <code>Add .gitignore</code> and <code>Choose a license</code> are all unchecked</li>
+<li>Make sure that <code>Add a README file</code>, <code>Add .gitignore</code> and <code>Choose a license</code> are all <em>un</em>checked</li>
 <li>Click on <code>Create repository</code></li>
 </ul>
-<p>You will be forwarded to a new page with instructions. You can swich between instructions for <code>https</code> and <code>SSH</code> by clicking on the appropriate button. Make sure you choose <code>https</code>, keep this page open and open RStudio.</p>
+<p>You will be forwarded to a new page with instructions. You can switch between instructions for <code>https</code> and <code>SSH</code> by clicking on the appropriate button. Make sure you choose <code>https</code>, keep this page open and open RStudio.</p>
 </div>
 <div id="connect-your-local-repo-with-the-remote-repository" class="section level3">
 <h3>Connect your local repo with the remote repository</h3>
-<p>In RStudio, open the RStudio project from week 1. Open the terminal and follow the instructions described in <em>…or push an existing repository from the command line</em> in your new repo on Github (under <a href="https://github.com/yourgithubusername/cma-week1" class="uri">https://github.com/yourgithubusername/cma-week1</a>). These instructions should look something like this:</p>
+<p>In RStudio, open the RStudio project from week 1. Open the terminal and follow the instructions described in <em>…or push an existing repository from the command line</em> in the website you were just forwarded to on Github (under <a href="https://github.com/yourgithubusername/cma-week1" class="uri">https://github.com/yourgithubusername/cma-week1</a>). These instructions should look something like this:</p>
 <pre><code>git remote add origin https://github.com/yourgithubusername/cma-week1.git
 git branch -M main
 git push -u origin main</code></pre>
-<p>Type these commands line by line into your terminal (“pasting” won’t work via the keyboard shortcut CTRL+V, you will have to paste by right clicking into the terminal and choosing “paste”)</p>
+<p>Type these commands line by line into your terminal. If you want to copy and paste the commands rather than type them: Note that ctrl + V for “pasting” won’t work via the keyboard shortcut, you will have to paste by right clicking into the terminal and choosing “paste.”</p>
 
 </div>
 </div>
