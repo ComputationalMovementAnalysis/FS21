@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#create-a-github-account"><i class="fa fa-check"></i>Create a Github account</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Authenticate Git to work with Github</a></li>
 <li><a href="W02_03_preperation.html#create-a-github-repo">Create a Git<strong>hub</strong> repo</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#connet-your-local-repo-with-the-remote-repository"><i class="fa fa-check"></i>Connet your local repo with the remote repository</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#connect-your-local-repo-with-the-remote-repository"><i class="fa fa-check"></i>Connect your local repo with the remote repository</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html"><i class="fa fa-check"></i>Demo Tidyverse</a>
 <ul>
@@ -286,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Switch to the “Git”-Tab in the pane in the top right corner</li>
 <li>Click “commit” to open the “commit-Window”</li>
 <li>Click in the checkbox left of the file you want to commit (you should find 3 new files: your <code>.RProj</code>, <code>.gitignore</code> and <code>.R</code>-file)</li>
-<li>Add a commit message to explain what you are commiting (e.g. “<code>initial commit</code>”)</li>
+<li>Add a commit message to explain what you are committing (e.g. “<code>initial commit</code>”)</li>
 <li>Click on “commit” to commit your changes</li>
 </ol>
 <div id="task-1-import-data" class="section level3">
@@ -467,7 +467,8 @@ Note: <code>ggplot</code> refuses to use our specified CRS, so we need to force 
 </div>
 <div id="input-importing-raster-data" class="section level3">
 <h3>Input: Importing raster data</h3>
-<p>In the next task, we would like to add a background map to our <code>mcp</code> object. To do this, we have to the raster data into <code>R</code> first. For this, we use the package <code>terra</code> with the function <code>rast</code>.</p>
+<p>In the next task, we would like to add a background map to our <code>mcp</code> object. Download the file here: <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/pk100_BE.tif">pk100_BE.tif</a>
+To import the file into <code>R</code>, we use the package <code>terra</code> with the function <code>rast</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="W01_05_tasks_and_inputs.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
 <span id="cb20-2"><a href="W01_05_tasks_and_inputs.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## terra version 1.0.10</span></span>
 <span id="cb20-3"><a href="W01_05_tasks_and_inputs.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>

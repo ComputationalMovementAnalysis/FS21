@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#create-a-github-account"><i class="fa fa-check"></i>Create a Github account</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Authenticate Git to work with Github</a></li>
 <li><a href="W02_03_preperation.html#create-a-github-repo">Create a Git<strong>hub</strong> repo</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#connet-your-local-repo-with-the-remote-repository"><i class="fa fa-check"></i>Connet your local repo with the remote repository</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#connect-your-local-repo-with-the-remote-repository"><i class="fa fa-check"></i>Connect your local repo with the remote repository</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html"><i class="fa fa-check"></i>Demo Tidyverse</a>
 <ul>
@@ -280,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="create-a-github-account" class="section level3">
 <h3>Create a Github account</h3>
-<p>Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. Create a Github account on <a href="https://github.com/">github.com</a> (it’s free of course). Use the emailadress that you configured in git last week! If you are not sure which mail you used, type <code>git config user.email</code> in the console. When choosing a username in github, consider the following tips:</p>
+<p>Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. Create a Github account on <a href="https://github.com/">github.com</a> (it’s free of course). Use the email adress that you configured in git last week! If you are not sure which mail you used, type <code>git config user.email</code> in the console. When choosing a username in github, consider the following tips:</p>
 <ul>
 <li>consider incorporating your actual name</li>
 <li>make sure you are comfortable revealing it to a future boss</li>
@@ -290,14 +290,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="authenticate-git-to-work-with-github" class="section level3">
 <h3>Authenticate Git to work with Github</h3>
-<p>If we want to push changes from our local repository to our Github Cloud, Github must verify your credentials. Other software might just ask for your username and password, it’s a little different with Git. Basically there are two ways to connect with your remote repo (ssh and https), we will use https in this course.</p>
+<p>If we want to push changes from our local repository to our Github Cloud, Github must verify your credentials. Other software might just ask for your username and password, it’s a little different with Git. Basically there are two ways to connect with your remote repo (ssh and https), we will use https in this course. <strong>This is a one time set up per computer</strong>, you need to do this only once.</p>
 <ul>
 <li><strong>Step 1</strong>: Create a personal access token (PAT) on Github
 <ul>
-<li>Follow <a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token">these instructions</a> to do so.</li>
+<li>Login into github.com, click on your user profile (top right) and click on “Settings” (<a href="https://github.com/settings">github.com/settings</a>)</li>
+<li>Choose “Personal access tokens” &gt; Generate new token</li>
+<li>Add a descriptive note (e.g. <code>https access from my personal laptop</code>)</li>
+<li>Select scope “repo”</li>
+<li>Click on “Generate token”</li>
+<li>Copy your new personal access token (in the green box). <strong>You won’t be able to see it again!</strong></li>
 <li>Treat this PAT like a password: Store it in a secure place, like a password management app if you have one (which you should!). <em>Never publish this PAT publicly</em>.</li>
 </ul></li>
-<li><strong>Step 2</strong>: Store your PAT
+<li><strong>Step 2</strong>: Store your PAT in you local Git
 <ul>
 <li>In R, install the <code>gitcreds</code> package (via <code>install.packages("gitcreds")</code>)</li>
 <li>Call the function <code>gitcreds_set()</code> (via <code>gitcreds::gitcreds_set()</code>)</li>
@@ -308,17 +313,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="create-a-github-repo" class="section level3">
 <h3>Create a Git<strong>hub</strong> repo</h3>
-<p>Now you can create a Repository on Github that you can connect to later on. To do this go to <a href="https://github.com/new">github.com/new</a> and fill in the following information:</p>
+<p>Now you can create a Repository on Github that you can afterwards connect to your RStudio project from week 1. To do this go to <a href="https://github.com/new">github.com/new</a> and fill in the following information:</p>
 <ul>
-<li>Repository name: cma-week1</li>
-<li>Description: Solving exercise 1 of the course “Computational Movement Analysis”</li>
+<li>Repository name: <code>cma-week1</code></li>
+<li>Description: Give a meaningful description, e.g. <code>Solving exercise 1 of the course "Computational Movement Analysis</code></li>
 <li>Make the repo public, not private</li>
 <li>Make sure that <code>Add a README file</code>, <code>Add .gitignore</code> and <code>Choose a license</code> are all unchecked</li>
+<li>Click on <code>Create repository</code></li>
 </ul>
-<p>Clikc on <code>Create repository</code>. You will be forwarded to a new page with instructions. You can swich between instructions for <code>https</code> and <code>SSH</code> by clicking on the appropriate button. Make sure you choose <code>https</code>, keep this page open and open RStudio.</p>
+<p>You will be forwarded to a new page with instructions. You can swich between instructions for <code>https</code> and <code>SSH</code> by clicking on the appropriate button. Make sure you choose <code>https</code>, keep this page open and open RStudio.</p>
 </div>
-<div id="connet-your-local-repo-with-the-remote-repository" class="section level3">
-<h3>Connet your local repo with the remote repository</h3>
+<div id="connect-your-local-repo-with-the-remote-repository" class="section level3">
+<h3>Connect your local repo with the remote repository</h3>
 <p>In RStudio, open the RStudio project from week 1. Open the terminal and follow the instructions described in <em>…or push an existing repository from the command line</em> in your new repo on Github (under <a href="https://github.com/yourgithubusername/cma-week1" class="uri">https://github.com/yourgithubusername/cma-week1</a>). These instructions should look something like this:</p>
 <pre><code>git remote add origin https://github.com/yourgithubusername/cma-week1.git
 git branch -M main
