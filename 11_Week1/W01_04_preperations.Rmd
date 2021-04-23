@@ -85,7 +85,7 @@ Now we will set some RStudio Global options. But first, **close all instances of
     - Linux / macOS: `/usr/bin/git`
 
 
-### Introduce yourself to Git
+### Introduce yourself to Git{#introduce-yourself-git}
 
 Now it is time to introduce yourself to git. In the terminal, enter your name and email address by entering the following commands:
 
@@ -146,7 +146,7 @@ week_rootdir <- file.path(rootdir, "week1")
 
 rprojfolder <- "week1-rexercise"
 
-rprojfiles <- file.path(rprojfolder,c("week1-r.Rproj","wildschwein.csv","my_solution.Rmd"))
+rprojfiles <- file.path(rprojfolder,c(paste0(rprojfolder,".Rproj"),"wildschwein_BE.csv","my_solution.Rmd"))
 
 files_week1 <- file.path("week1", c("slides.pdf","my_notes.docx","seminar_screenshot.jpg",rprojfiles))
 
@@ -162,9 +162,9 @@ Folder Week 1 (C:\\Users\\yourname\\semester2\\Modul_CMA\\week1)
  ¦--my_notes.docx                                               
  ¦--seminar_screenshot.jpg                                      
  °--week1-rexercise                                             
-     ¦--week1-r.Rproj                                           
-     ¦--wildschwein.csv                                         
-     °--my_solution.Rmd  
+     ¦--week1-rexercise.Rproj                                   
+     ¦--wildschwein_BE.csv                                      
+     °--my_solution.Rmd   
 ```
 
 
@@ -184,10 +184,12 @@ Note:
 Create a new *RStudio Project* (File > New Project > New Directory > New Project). 
 
 1. Click on "Browse" and switch to *your equivalent* of the folder ``r week_rootdir`` (the project we are about to initiate will be be created in a subdirectory of this folder). Click on "open" to confirm the selection
-2. In the field "Directory name", type ``r rprojfolder``. This will be the name of your RStudio project and the it's parent directory.
+2. In the field "Directory name", type ``r rprojfolder``. This will be the name of your RStudio project and it's parent directory.
 3. Check the option "Create a git repository"
 4. Click on "Create Project"
 
+
+**You are all set! You can start working on the tasks of exercise 1.**
 
 
 
