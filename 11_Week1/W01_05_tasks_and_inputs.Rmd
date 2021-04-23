@@ -63,7 +63,7 @@ Save your code in the appropriate section.
 ```
 
 
-Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
 
 
 ### Input: Handling spatial data
@@ -196,7 +196,7 @@ Note: `ggplot` refuses to use our specified CRS, so we need to force this by spe
 
 
 
-Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
 
 
 ### Input: Importing raster data
@@ -256,7 +256,7 @@ Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
 
 Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand. Omit the raster layer (`pk100_BE`), you won't be needing it.
 
-Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
 
 
 ```{r code =  mydecrypt("11_Week1/solutions/task_6.R",".passphrase"), opts.label="solution_hideOutput"}
