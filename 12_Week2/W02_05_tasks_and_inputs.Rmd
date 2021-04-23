@@ -1,5 +1,31 @@
 ## Tasks and Inputs
 
+
+Install the package `zoo` to get access to the rolling window functions for last exercise. 
+
+
+```{r, echo = T, include = T, eval = F, purl = F}
+install.packages("zoo")
+```
+
+Import the wild boar data and convert it to an `sf` object with CH1903+ LV95 Coordinates. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
+
+```{r, echo = T, include = T, eval = T}
+library(tidyverse)
+library(sf)
+library(lubridate)
+
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
+
+wildschwein_BE = st_as_sf(wildschwein_BE, 
+                          coords = c("Long", "Lat"), 
+                          crs = 4326)
+
+wildschwein_BE <- st_transform(wildschwein_BE, 2056)
+```
+
+
+
 ### Task 1: Getting an overview
 
 Calculate the time difference between subsequent rows as described in the demo (column `timelag`).
