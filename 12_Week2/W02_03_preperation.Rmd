@@ -14,7 +14,7 @@ You will need Git again this week. If you had issues last week installing or con
 
 ### Create a Github account
 
-Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. Create a Github account on [github.com](https://github.com/) (it's free of course). Use the emailadress that you configured in git last week! If you are not sure which mail you used, type `git config user.email` in the console. When choosing a username in github, consider the following tips: 
+Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. Create a Github account on [github.com](https://github.com/) (it's free of course). Use the email adress that you configured in git last week! If you are not sure which mail you used, type `git config user.email` in the console. When choosing a username in github, consider the following tips: 
 
 - consider incorporating your actual name
 - make sure you are comfortable revealing it to a future boss
@@ -25,12 +25,17 @@ Last week, you worked with git on your local machine, with no way of synchronisi
 
 ### Authenticate Git to work with Github
 
-If we want to push changes from our local repository to our Github Cloud, Github must verify your credentials. Other software might just ask for your username and password, it's a little different with Git. Basically there are two ways to connect with your remote repo (ssh and https), we will use https in this course. 
+If we want to push changes from our local repository to our Github Cloud, Github must verify your credentials. Other software might just ask for your username and password, it's a little different with Git. Basically there are two ways to connect with your remote repo (ssh and https), we will use https in this course. **This is a one time set up per computer**, you need to do this only once. 
 
 - **Step 1**: Create a personal access token (PAT) on Github
-  - Follow [these instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token) to do so. 
+  - Login into github.com, click on your user profile (top right) and click on "Settings" ([github.com/settings](https://github.com/settings))
+  - Choose "Personal access tokens" > Generate new token
+  - Add a descriptive note (e.g. `https access from my personal laptop`)
+  - Select scope "repo"
+  - Click on "Generate token"
+  - Copy your new personal access token (in the green box). **You won’t be able to see it again!** 
   - Treat this PAT like a password: Store it in a secure place, like a password management app if you have one (which you should!). *Never publish this PAT publicly*.
-- **Step 2**: Store your PAT
+- **Step 2**: Store your PAT in you local Git
   - In R, install the `gitcreds` package (via `install.packages("gitcreds")`)
   - Call the function `gitcreds_set()` (via `gitcreds::gitcreds_set()`)
   - Respond to the prompt with your PAT
@@ -39,17 +44,18 @@ If we want to push changes from our local repository to our Github Cloud, Github
   
 ### Create a Git**hub** repo
 
-Now you can create a Repository on Github that you can connect to later on. To do this go to [github.com/new](https://github.com/new) and fill in the following information:
+Now you can create a Repository on Github that you can afterwards connect to your RStudio project from week 1. To do this go to [github.com/new](https://github.com/new) and fill in the following information:
 
-- Repository name: cma-week1
-- Description: Solving exercise 1 of the course "Computational Movement Analysis"
+- Repository name: `cma-week1`
+- Description: Give a meaningful description, e.g. `Solving exercise 1 of the course "Computational Movement Analysis`
 - Make the repo public, not private
 - Make sure that `Add a README file`, `Add .gitignore ` and `Choose a license` are all unchecked
+- Click on `Create repository`
 
-Clikc on `Create repository`. You will be forwarded to a new page with instructions. You can swich between instructions for `https` and `SSH` by clicking on the appropriate button. Make sure you choose `https`, keep this page open and open RStudio.
+You will be forwarded to a new page with instructions. You can swich between instructions for `https` and `SSH` by clicking on the appropriate button. Make sure you choose `https`, keep this page open and open RStudio.
 
 
-### Connet your local repo with the remote repository
+### Connect your local repo with the remote repository
 
 In RStudio, open the RStudio project from week 1. Open the terminal and follow the instructions described in *…or push an existing repository from the command line* in your new repo on Github (under https://github.com/yourgithubusername/cma-week1). These instructions should look something like this:
 
