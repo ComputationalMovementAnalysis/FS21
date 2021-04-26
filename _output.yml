@@ -5,6 +5,8 @@ bookdown::gitbook:
       collapse: section
     download: ["pdf"]
   split_by: "rmd"
+  includes: 
+    after_body: 90_misc/utterances.html
 bookdown::pdf_book:
   number_sections: true
   keep_tex: yes
