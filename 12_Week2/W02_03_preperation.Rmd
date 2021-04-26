@@ -4,17 +4,17 @@
 ### Update `R` and RStudio
 
 
-Last week, we showed you how to determine whether your `R` Version or your RStudio needs updating (see [Preperation](#w1-preperation)). If your versions are up to date: Great! If not, update these before today's session.
+Last week, we showed you how to determine whether your `R` Version or your RStudio needs updating (see [Exercise 1 / Preperation](#w1-preperation)). If your versions are up to date: Great! If not, update these before today's session.
 
 
-### Install and configure Git
+### Was your Git installation successfull?
 
 You will need Git again this week. If you had issues last week installing or configuring Git to work with RStudio, make sure you debug these problems now. Consult the [chapter on troubleshooting](https://happygitwithr.com/troubleshooting.html) in Jenny Brian's book "Happy Git with R".
 
 
 ### Create a Github account
 
-Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. To do this, create a Github account on [github.com](https://github.com/) (it's free of course). Use the email address that you [configured in git last week](#introduce-yourself-git). If you are not sure which mail you used, type `git config user.email` in the console. 
+Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. To do this, create a Github account on [github.com](https://github.com/) (it's free of course). Use the email address that you [configured in git last week](#introduce-yourself-git). If you are not sure which mail you used, type `git config user.email` in the terminal. 
 
 You don't have to use the same `user.name` on Github as use configured in Git. When choosing a username on Github, consider the following tips: 
 
@@ -59,7 +59,11 @@ You will be forwarded to a new page with instructions. You can switch between in
 
 ### Connect your local repo with the remote repository
 
-In RStudio, open the RStudio project from week 1. Open the terminal and follow the instructions described in *…or push an existing repository from the command line* in the website you were just forwarded to on Github (under https://github.com/yourgithubusername/cma-week1). These instructions should look something like this:
+In RStudio, open the RStudio project from week 1. Open the terminal[^terminal] and follow the instructions described in *…or push an existing repository from the command line* in the website you were just forwarded to on Github (under https://github.com/yourgithubusername/cma-week1). These instructions should look something like this:
+
+
+[^terminal]: There is a terminal built into RStudio which you can use for this. By default, it is situated in the bottom left corner in the tab named "Terminal"
+
 
 ```
 git remote add origin https://github.com/yourgithubusername/cma-week1.git

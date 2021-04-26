@@ -54,7 +54,7 @@ install.packages("terra")
 
 ### Install Git
 
-Next, install Git. If you are not sure whether you already have Git installed or not, you can verify this by typing `git --version` in the terminal (there is a terminal built into RStudio which you can use for this. By default, it is situated in the bottom left corner in the tab named "Terminal"). If this command returns a version number you have Git installed already and might only need to update it. If this command returns `git: command not found` (or something similar), you will need to install Git first.
+Next, install Git. If you are not sure whether you already have Git installed or not, you can verify this by typing `git --version` in the terminal[^terminal]. If this command returns a version number you have Git installed already and might only need to update it. If this command returns `git: command not found` (or something similar), you will need to install Git first.
 
 
 - **Windows**: 
@@ -87,7 +87,7 @@ Now we will set some RStudio Global options. But first, **close all instances of
 
 ### Introduce yourself to Git{#introduce-yourself-git}
 
-Now it is time to introduce yourself to git. In the terminal, enter your name and email address by entering the following commands:
+Now it is time to introduce yourself to git. In the terminal[^terminal], enter your name and email address by entering the following commands:
 
 ```
 git config --global user.name "Maria Nusslinger"
@@ -95,6 +95,9 @@ git config --global user.email "nussmar@email.com"
 ```
 
 Of course, replace the name and address with your credentials. Use the email address that you will use to create your Github account (which we will do next week).
+
+[^terminal]: There is a terminal built into RStudio which you can use for this. By default, it is situated in the bottom left corner in the tab named "Terminal"
+
 
 ### Prepare the folder structure for this course
 
