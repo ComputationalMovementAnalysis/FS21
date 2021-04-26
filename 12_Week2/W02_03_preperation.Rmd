@@ -1,22 +1,20 @@
 ## Preperation
 
 
-### Update `R` and RStudio
+### Software
 
+- R and RStudio: Last week, we showed you how to determine whether your `R` Version or your RStudio needs updating (see [Exercise 1 / Preperation](#w1-preperation)). If your versions are up to date: Great! If not, update these before today's session.
+- Git:  If you had issues last week installing or configuring Git to work with RStudio, make sure you debug these problems now. Consult the [chapter on troubleshooting](https://happygitwithr.com/troubleshooting.html) @bryan2021. If this doesn't help, contact us. 
 
-Last week, we showed you how to determine whether your `R` Version or your RStudio needs updating (see [Exercise 1 / Preperation](#w1-preperation)). If your versions are up to date: Great! If not, update these before today's session.
-
-
-### Was your Git installation successfull?
-
-You will need Git again this week. If you had issues last week installing or configuring Git to work with RStudio, make sure you debug these problems now. Consult the [chapter on troubleshooting](https://happygitwithr.com/troubleshooting.html) in Jenny Brian's book "Happy Git with R".
 
 
 ### Create a Github account
 
-Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week, you will use Github to sync your changes. To do this, create a Github account on [github.com](https://github.com/) (it's free of course). Use the email address that you [configured in git last week](#introduce-yourself-git). If you are not sure which mail you used, type `git config user.email` in the terminal. 
+**Typically, you do this once (in a lifetime)**
 
-You don't have to use the same `user.name` on Github as use configured in Git. When choosing a username on Github, consider the following tips: 
+Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week you will use Github to sync your changes. To do this, create a Github account on [github.com](https://github.com/) (it's free of course). Use the email address that you [configured in git last week](#introduce-yourself-git). If you are not sure which mail you used, type `git config user.email` in the terminal[^terminal2]. 
+
+You don't have to use the same `user.name` on Github as use configured in Git. When choosing a username on Github, consider the following advice: 
 
 - incorporating your actual name is nice, people like to know who they are dealing with
 - choose a name that you are comfortable revealing it to a future boss
@@ -27,51 +25,72 @@ You don't have to use the same `user.name` on Github as use configured in Git. W
 
 ### Authenticate Git to work with Github
 
-If we want to push changes from our local repository to our Github Cloud, Github must verify your credentials. Other software might just ask for your username and password, it's a little different with Git. Basically there are two ways to connect with your remote repo (ssh and https), we will use https in this course. **This is a one time set up per computer**, you need to do this only once. 
+**Typically, you do this once (per computer)**
 
-- **Step 1**: Create a personal access token (PAT) on Github
-  - Login into github.com, click on your user profile (top right) and click on "Settings" ([github.com/settings](https://github.com/settings))
-  - Choose "Personal access tokens" > Generate new token
-  - Add a descriptive note (e.g. `https access from my personal laptop`)
-  - Select scope "repo"
-  - Click on "Generate token"
-  - Copy your new personal access token (in the green box). **You won’t be able to see it again!** 
-  - Treat this PAT like a password: Store it in a secure place, like a password management app if you have one (which you should!). *Never publish this PAT publicly*.
-- **Step 2**: Store your PAT in you local Git
-  - In R, install the `gitcreds` package (via `install.packages("gitcreds")`)
-  - Call the function `gitcreds_set()` (via `gitcreds::gitcreds_set()`)
-  - Respond to the prompt with your PAT
-  - (You can check that you have stored a credential with `gitcreds::gitcreds_get()`)
+If we want to push changes from our local repository to our Github cloud repository, Github must verify your credentials. Other software might just ask for your username and password, it's a little different with Git. Basically there are two ways to connect with your remote repo (`ssh` and `https`), we will use `https` in this course. 
+
+
+Step 1: Create a personal access token (PAT) on Github
+
+- Login into github.com, click on your user profile (top right) and click on "Settings" ([github.com/settings](https://github.com/settings))
+- Choose "Personal access tokens" > Generate new token
+- Add a descriptive note (e.g. `https access from my personal laptop`)
+- Select scope "repo"
+- Click on "Generate token"
+- Copy your new personal access token (in the green box). **You won’t be able to see it again!** 
+- Treat this PAT like a password: Store it in a secure place, like a password management app if you have one (which you should!). *Never publish this PAT publicly*.
+
+
+Step 2: Store your PAT in you local Git
+
+- In R, install the `gitcreds` package (`install.packages("gitcreds")`)
+- Call the function `gitcreds_set()` (`gitcreds::gitcreds_set()`)
+- Respond to the prompt with your PAT from the last step
+- Check that you have stored a credential (`gitcreds::gitcreds_get()`)
   
   
 ### Create a Git**hub** repo
 
+**Typically, you do this once per project**
+
 Now you can create a Repository on Github that you can afterwards connect to your RStudio project from week 1. This is something you have to do for every Git repo that you want to connect to Github. To do this go to [github.com/new](https://github.com/new) and fill in the following information:
 
-- Repository name: Give a meaningful name, e.g.  `cma-week1`
-- Description: Give a meaningful description, e.g. `Solving exercise 1 of the course "Computational Movement Analysis`
+- Repository name: Give a meaningful name, e.g.  `cma-week2`
+- Description: Give a meaningful description, e.g. `Solving exercise 2 of the course "Computational Movement Analysis`
 - Make the repo public, not private
-- Make sure that `Add a README file`, `Add .gitignore ` and `Choose a license` are all *un*checked
-- Click on `Create repository`
+- Check `Add a README file`
+<!-- - Make sure that `Add a README file`, `Add .gitignore ` and `Choose a license` are all *un*checked -->
 
-You will be forwarded to a new page with instructions. You can switch between instructions for `https` and `SSH` by clicking on the appropriate button. Make sure you choose `https`, keep this page open and open RStudio.
-
-
-### Connect your local repo with the remote repository
-
-In RStudio, open the RStudio project from week 1. Open the terminal[^terminal] and follow the instructions described in *…or push an existing repository from the command line* in the website you were just forwarded to on Github (under https://github.com/yourgithubusername/cma-week1). These instructions should look something like this:
+Click on `Create repository`, then on the green button "Code". Select HTTPS (it might already be selected) and then copy the URL by clicking on the clipboard symbol. The URL should look something list this `https://github.com/YOUR-GITHUB-USERNAME/cma-week2.git`
 
 
-[^terminal]: There is a terminal built into RStudio which you can use for this. By default, it is situated in the bottom left corner in the tab named "Terminal"
+### Create a new RStudio Project{#w2-project}
+
+You will now create a new RStudio Project for week 2. Unlike last week, we will create the project in such a way that it is immediately connected to our Git*hub* repo. In RStudio, start a new project. Choose: File > New Project > **Version Control** > Git. 
+
+- In the repository URL, paste the URL you copied in the last step
+- Change "Project directory name" to `week1-rexercise` (if you are following [the convention we proposed last week](#folder-structure))
+- Change the parent directory (`Create project as a subdirectory of`) to your equivalent of ``r file.path(rootdir, "week2")``
+
+Click on "Create Project"
+
+<!-- ### Connect your local repo with the remote repository -->
+
+<!-- **Typically, you do this once per project** -->
+
+<!-- In RStudio, open the RStudio project from week 1. Open the terminal[^terminal2] and follow the instructions described in *…or push an existing repository from the command line* in the website you were just forwarded to on Github (under https://github.com/YOUR-GITHUB-USERNAME/cma-week1). These instructions should look something like this: -->
 
 
-```
-git remote add origin https://github.com/yourgithubusername/cma-week1.git
-git branch -M main
-git push -u origin main
-```
+<!-- [^terminal2]: There is a terminal built into RStudio which you can use for this. By default, it is situated in the bottom left corner in the tab named "Terminal" -->
 
-Type these commands line by line into your terminal. If you want to copy and paste the commands rather than type them: Note that ctrl + V for "pasting" won't work via the keyboard shortcut, you will have to paste by right clicking into the terminal and choosing "paste". 
+
+<!-- ``` -->
+<!-- git remote add origin https://github.com/YOUR-GITHUB-USERNAME/cma-week2.git -->
+<!-- git branch -M main -->
+<!-- git push -u origin main -->
+<!-- ``` -->
+
+<!-- Type these commands line by line into your terminal. If you want to copy and paste the commands rather than type them: Note that ctrl + V for "pasting" won't work via the keyboard shortcut, you will have to paste by right clicking into the terminal and choosing "paste". Now refresh your repo on Github (https://github.com/YOUR-GITHUB-USERNAME/cma-week1): You should now see the files from week 1 on GitHub. Didn't work? Contact us! -->
 
 
 

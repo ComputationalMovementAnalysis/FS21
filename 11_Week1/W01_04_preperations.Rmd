@@ -1,5 +1,6 @@
 ## Preperation {#w1-preperation}
 
+Much of this chapter was taken from @bryan2021. If you want to dive deeper into using Git, we highly recommend this book. For an *even* deeper dive into Git, read @chacon2014. Both books are available free and open source on [happygitwithr.com](https://happygitwithr.com/) and [git-scm.com/book](https://git-scm.com/book/), respectively. 
 
 ```{r, opts.label="solution_hideOutput"}
 
@@ -52,7 +53,7 @@ install.packages("terra")
 ```
 
 
-### Install Git
+### Install Git{#install-git}
 
 Next, install Git. If you are not sure whether you already have Git installed or not, you can verify this by typing `git --version` in the terminal[^terminal]. If this command returns a version number you have Git installed already and might only need to update it. If this command returns `git: command not found` (or something similar), you will need to install Git first.
 
@@ -69,9 +70,9 @@ Next, install Git. If you are not sure whether you already have Git installed or
   - On Ubuntu or Debian Linux: `sudo apt-get install git`
   - On Fedora or RedHat Linux: `sudo yum install git`
   
-  
-  
-### Configure RStudio
+
+
+### Configure RStudio{#configure-rstudio}
 
 Now we will set some RStudio Global options. But first, **close all instances of RStudio and restart it (!!!)**. Then go to Tools > Global options. 
 
@@ -83,11 +84,23 @@ Now we will set some RStudio Global options. But first, **close all instances of
   - If the Field "Git executable:" shows `(Not Found)`, browse to your git installation (previous step). This path should look something like this:
     - Windows: `C:/Program Files/Git/bin/git.exe` (**not** `C:/Program Files/Git/cmd/git.exe` or `git-bash.exe`)
     - Linux / macOS: `/usr/bin/git`
+- **Terminal**
+  - Set option "New terminals open with" to "Git Bash" 
+  
+Click on "Ok" to apply the change and close the options menu.
+
+
 
 
 ### Introduce yourself to Git{#introduce-yourself-git}
 
-Now it is time to introduce yourself to git. In the terminal[^terminal], enter your name and email address by entering the following commands:
+Now it is time to introduce yourself to git. For this, we need to use the shell terminal, which is why we are going to spend a few word on the shell first. 
+
+The shell is a program on your computer whose job is to run other programs. It looks very much like the `R`-console (in the bottom left of RStudio) that you are already know: You have a place to input text which is transferred to (and interpreted by) the computer when you press "enter". RStudio has a shell terminal right next to the `R`-console (tab `Terminal`).
+
+Every Windows comes with two different shell installations: "Command prompt" and "PowerShell"[^launch]. After installing Git we now have a third option, "Git Bash". The shell terminal in RStudio uses "Command prompt" per default, in [the last task][#configure-rstudio] we just switched the shell to "Git Bash".
+
+Now use the terminal in RStudio to introduce yourself:
 
 ```
 git config --global user.name "Maria Nusslinger"
@@ -96,10 +109,9 @@ git config --global user.email "nussmar@email.com"
 
 Of course, replace the name and address with your credentials. Use the email address that you will use to create your Github account (which we will do next week).
 
-[^terminal]: There is a terminal built into RStudio which you can use for this. By default, it is situated in the bottom left corner in the tab named "Terminal"
 
 
-### Prepare the folder structure for this course
+### Prepare the folder structure for this course{#folder-structure}
 
 ```{r, echo = FALSE}
 rootdir <- "C:/Users/yourname/semester2/Modul_CMA"
@@ -193,9 +205,6 @@ Create a new *RStudio Project* (File > New Project > New Directory > New Project
 
 
 **You are all set! You can start working on the tasks of exercise 1.**    
-
-
-
 
 <!-- Create a new .R (or .Rmd) File and divide it into the sections necessary in a classical Data Science workflow. In .R Files, "Sections" can be created within RStudio by adding Comments (`#`) with at least 4 trailing dashes, equal, or pound signs ( `-`, `=`,`#`). In .Rmd Files, their are created with leading pound signs (`#`). -->
 

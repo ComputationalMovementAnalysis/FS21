@@ -30,7 +30,7 @@ library(sf)
 wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
 
 # Convert to sf-object
-wildschwein_BE = st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
+wildschwein_BE <- st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
 
 # transform to CH1903 LV95
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)

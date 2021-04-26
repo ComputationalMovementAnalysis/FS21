@@ -1,28 +1,29 @@
 ## Tasks and Inputs
 
 
-Install the package `zoo` to get access to the rolling window functions for last exercise. 
-
-
-```{r, echo = T, include = T, eval = F, purl = F}
-install.packages("zoo")
-```
-
-Import the wild boar data and convert it to an `sf` object with CH1903+ LV95 Coordinates. Either run your own script from last week or the following lines to bring the data to the form we need it for today exercise.
+1. Open the project you created in [the preparation task](#w2-project)
+2. install the package `zoo` to get access to the rolling window functions for last exercise (`install.packages("zoo")`)
+3. Download the wildboar movement data again, and save it to your new projects directory `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click "Save target as..")
+4. Create a new R- (or RMarkdown) file and begin with the following lines of code:
 
 ```{r, opts.label="example_hideOutput"}
-library(tidyverse)
-library(sf)
-library(lubridate)
+library(readr)        # to import tabular data (e.g. csv)
+library(dplyr)        # to manipulate (tabular) data
+library(ggplot2)      # to visualize data
+library(sf)           # to handle spatial vector data
+library(terra)        # To handle raster data
 
-wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",") # adjust path
 
-wildschwein_BE = st_as_sf(wildschwein_BE, 
+wildschwein_BE <- st_as_sf(wildschwein_BE, 
                           coords = c("Long", "Lat"), 
                           crs = 4326)
 
 wildschwein_BE <- st_transform(wildschwein_BE, 2056)
 ```
+
+
+Now, commit your changes to your repo like we did [last week](#w1-tasks-and-inputs). To push these changes to Github, click on the green button "Push" in the Git tab in RStudio (this is just to test if the connection to Github works. You won't need to push after every commit).
 
 
 

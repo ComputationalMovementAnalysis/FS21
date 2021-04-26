@@ -20,16 +20,17 @@ library(ggplot2)      # to visualize data
 ```
 
 
+
 Once you have set everything up, commit your file to your git repo in the following manner:
 
-
-1. Save your R/RMarkdown file
+<div>
+1. Save your (R/RMarkdown)) file
 2. Switch to the "Git"-Tab in the pane in the top right corner
 3. Click "commit" to open the "commit-Window"
 4. Click in the checkbox left of the file you want to commit (you should find 3 new files: your `.RProj`, `.gitignore` and `.R`-file)
 5. Add a commit message to explain what you are committing (e.g. "`initial commit`")
 6. Click on "commit" to commit your changes
-
+</div>
 
 ### Task 1: Import data
 

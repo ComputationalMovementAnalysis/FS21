@@ -61,6 +61,9 @@ numbers
 We can now run `lead()` and `lag()` on this sequence to illustrate the output. `n =` specifies the offset, `default =` specifies the default value used to "fill" the emerging "empty spaces" of the vector.
 
 ```{r, echo = T, include = T, eval = T}
+
+library(dplyr)
+
 lead(numbers)
 
 lead(numbers,n = 2)
@@ -83,6 +86,16 @@ lead(numbers)-numbers
 Using the above functions (`difftime()` and `lead()`), we can calculate the time lag, that is, the time difference between subsequent positions:
 
 ```{r, echo = T, include = T, eval = T}
+
+library(readr)
+library(sf)
+
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
+
+wildschwein_BE <- st_as_sf(wildschwein_BE, 
+                          coords = c("Long", "Lat"), 
+                          crs = 4326)
+
 
 wildschwein_BE$timelag  <- as.numeric(difftime(lead(wildschwein_BE$DatetimeUTC),
                                                wildschwein_BE$DatetimeUTC,
@@ -134,6 +147,8 @@ summarise(wildschwein_BE, mean = mean(timelag, na.rm = T))
 
 The above operation works fine on normal `data.frames`, but since `wildschwein_BE` is also an `sf` object, `summarise` actually merges all the points to a multipoint geometry, which takes a long time to calculate. In order to prevent this, we can set the objects geometry to `NULL`, which removes the spatial attribute.
 ```{r, echo = T, include = T, eval = T}
+
+
 
 summarise(st_set_geometry(wildschwein_BE,NULL), mean_timelag = mean(timelag, na.rm = T))
 ```
