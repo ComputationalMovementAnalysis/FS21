@@ -3,7 +3,11 @@ bookdown::gitbook:
   config:
     toc:
       collapse: section
-    download: ["pdf"]
+      before: |
+        <img src="02_Images/zhaw_lsfm_schwarz.png" alt="ZHAW Logo" width="300">
+      after: |
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /></a>.
+    sharing: no
   split_by: "rmd"
   includes: 
     after_body: 90_misc/utterances.html
