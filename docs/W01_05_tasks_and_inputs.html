@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Tasks and inputs | Patterns and Trends in Environmental Data</title>
-  <meta name="description" content="Tasks and inputs | Patterns and Trends in Environmental Data" />
+  <title>Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
+  <meta name="description" content="Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Tasks and inputs | Patterns and Trends in Environmental Data" />
+  <meta property="og:title" content="Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
   
   
   
-  
+  <meta name="github-repo" content="ComputationalMovementAnalysis/FS21" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Tasks and inputs | Patterns and Trends in Environmental Data" />
+  <meta name="twitter:title" content="Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   
   
   
@@ -30,10 +30,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="W01_04_preperations.html"/>
-<link rel="next" href="W02_01_exercise.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,22 +50,6 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -132,6 +116,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="90_misc/mystyle.css" type="text/css" />
 </head>
 
 <body>
@@ -144,22 +129,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction Chapter</a></li>
-<li class="chapter" data-level="" data-path="W01_01_exercise.html"><a href="W01_01_exercise.html"><i class="fa fa-check"></i>Exercise 1</a>
+<img src="02_Images/zhaw_lsfm_schwarz.png" alt="ZHAW Logo" width="300">
+
+<li class="divider"></li>
+<li><a href="index.html#welcome-to-the-computational-movement-analysis-patterns-and-trends-in-environmental-data">Welcome to the <em>Computational Movement Analysis: Patterns and Trends in Environmental Data</em></a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>License</a>
 <ul>
-<li class="chapter" data-level="" data-path="W01_02_outcomes.html"><a href="W01_02_outcomes.html"><i class="fa fa-check"></i>Learning outcomes</a></li>
-<li class="chapter" data-level="" data-path="W01_03_prerequesites.html"><a href="W01_03_prerequesites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html"><i class="fa fa-check"></i>Preperation</a>
-<ul>
-<li><a href="W01_04_preperations.html#check-you-version-of-r">Check you version of <code>R</code></a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#check-your-version-of-rstudio"><i class="fa fa-check"></i>Check your version of RStudio</a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#install-the-necessary-packages"><i class="fa fa-check"></i>Install the necessary packages</a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#install-git"><i class="fa fa-check"></i>Install Git</a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#configure-rstudio"><i class="fa fa-check"></i>Configure RStudio</a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#introduce-yourself-git"><i class="fa fa-check"></i>Introduce yourself to Git</a></li>
-<li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#prepare-the-folder-structure-for-this-course"><i class="fa fa-check"></i>Prepare the folder structure for this course</a></li>
-<li><a href="W01_04_preperations.html#create-an-rstudio-project-for-the-first-week">Create an RStudio <em>project</em> for the first week</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
 <ul>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-1-import-data"><i class="fa fa-check"></i>Task 1: Import data</a></li>
@@ -173,84 +148,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-6-create-an-interactive-map"><i class="fa fa-check"></i>Task 6: Create an interactive map</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="W02_01_exercise.html"><a href="W02_01_exercise.html"><i class="fa fa-check"></i>Exercise 2</a>
-<ul>
-<li class="chapter" data-level="" data-path="W02_01_learning_outcomes.html"><a href="W02_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W02_02_prerequisites.html"><a href="W02_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html"><i class="fa fa-check"></i>Preperation</a>
-<ul>
-<li><a href="W02_03_preperation.html#update-r-and-rstudio">Update <code>R</code> and RStudio</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#install-and-configure-git"><i class="fa fa-check"></i>Install and configure Git</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#create-a-github-account"><i class="fa fa-check"></i>Create a Github account</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Authenticate Git to work with Github</a></li>
-<li><a href="W02_03_preperation.html#create-a-github-repo">Create a Git<strong>hub</strong> repo</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#connect-your-local-repo-with-the-remote-repository"><i class="fa fa-check"></i>Connect your local repo with the remote repository</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html"><i class="fa fa-check"></i>Demo Tidyverse</a>
-<ul>
-<li><a href="W02_04_demo_tidyverse.html#difftime"><code>difftime</code></a></li>
-<li><a href="W02_04_demo_tidyverse.html#lead-lag"><code>lead()</code> / <code>lag()</code></a></li>
-<li><a href="W02_04_demo_tidyverse.html#mutate"><code>mutate()</code></a></li>
-<li><a href="W02_04_demo_tidyverse.html#group_by"><code>group_by()</code></a></li>
-<li><a href="W02_04_demo_tidyverse.html#summarise"><code>summarise()</code></a></li>
-<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#piping"><i class="fa fa-check"></i>Piping</a></li>
-<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#bring-it-all-together"><i class="fa fa-check"></i>Bring it all together…</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
-<ul>
-<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an overview</a></li>
-<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#input-geometry-as-columns"><i class="fa fa-check"></i>Input: Geometry as columns</a></li>
-<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-2-deriving-movement-parameters-i-speed"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Speed</a></li>
-<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
-<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
-<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-5-optional-calculate-turning-angles"><i class="fa fa-check"></i>Task 5 (optional): Calculate turning angles</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="W03_01_exercise.html"><a href="W03_01_exercise.html"><i class="fa fa-check"></i>Exercise 3</a>
-<ul>
-<li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W03_03_preperation.html"><a href="W03_03_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
-<ul>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#input-segmentation-as-in-laube-and-purves-2011"><i class="fa fa-check"></i>Input: Segmentation as in Laube and Purves (2011)</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
-<li><a href="W03_04_tasks_and_inputs.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
-<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="W04_01_exercise.html"><a href="W04_01_exercise.html"><i class="fa fa-check"></i>Exercise 4</a>
-<ul>
-<li class="chapter" data-level="" data-path="W04_01_learning_outcomes.html"><a href="W04_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W04_02_prerequisites.html"><a href="W04_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
-<ul>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-4-measuring-distance-at-concurrent-locations"><i class="fa fa-check"></i>Task 4: Measuring distance at concurrent locations</a></li>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-5-visualize-data"><i class="fa fa-check"></i>Task 5: Visualize data</a></li>
-<li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W05_02_preperation.html"><a href="W05_02_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
-</ul></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /></a>.
+
 </ul>
 
       </nav>
@@ -260,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Patterns and Trends in Environmental Data</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Movement Analysis: Patterns and Trends in Environmental Data</a>
           </h1>
         </div>
 
@@ -272,23 +173,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Tasks and inputs</h2>
 <p>Before starting with the task:</p>
 <ol style="list-style-type: decimal">
-<li>make sure you have read and followed the instructions in section <a href="W01_04_preperations.html#w1-preperation">Preperation</a></li>
+<li>make sure you have read and followed the instructions in section <a href="#w1-preperation">Preperation</a></li>
 <li>In RStudio, open the RStudio Project you created for this week if you haven’t done so already. You can see that you are in an RStudio Project if the project’s name is visible next to the little RStudio logo in the top right corner of RStudio (otherwise it will read <code>Project: (None)</code>).</li>
 <li>Download the wildboar movement data here: <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/wildschwein_BE.csv">wildschwein_BE.csv</a> (right click “Save target as..”)</li>
 <li>lastly, create a new R- (or RMarkdown) file and begin by loading the following packages:</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="W01_05_tasks_and_inputs.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)        <span class="co"># to import tabular data (e.g. csv)</span></span>
-<span id="cb6-2"><a href="W01_05_tasks_and_inputs.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)        <span class="co"># to manipulate (tabular) data</span></span>
-<span id="cb6-3"><a href="W01_05_tasks_and_inputs.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># to visualize data</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="W01_05_tasks_and_inputs.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)        <span class="co"># to import tabular data (e.g. csv)</span></span>
+<span id="cb1-2"><a href="W01_05_tasks_and_inputs.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)        <span class="co"># to manipulate (tabular) data</span></span>
+<span id="cb1-3"><a href="W01_05_tasks_and_inputs.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># to visualize data</span></span></code></pre></div>
 <p>Once you have set everything up, commit your file to your git repo in the following manner:</p>
+<div>
 <ol style="list-style-type: decimal">
-<li>Save your R/RMarkdown file</li>
+<li>Save your (R/RMarkdown)) file</li>
 <li>Switch to the “Git”-Tab in the pane in the top right corner</li>
 <li>Click “commit” to open the “commit-Window”</li>
 <li>Click in the checkbox left of the file you want to commit (you should find 3 new files: your <code>.RProj</code>, <code>.gitignore</code> and <code>.R</code>-file)</li>
 <li>Add a commit message to explain what you are committing (e.g. “<code>initial commit</code>”)</li>
 <li>Click on “commit” to commit your changes</li>
 </ol>
+</div>
 <div id="task-1-import-data" class="section level3">
 <h3>Task 1: Import data</h3>
 <p>Move the file <code>wildschwein_BE.csv</code> you just downloaded into your project directory and import it into <code>r</code> as a <code>data.frame</code>. Assign correct column types as necessary and make sure the time zone is set correctly for the date/time column.</p>
@@ -307,8 +210,8 @@ Setting up a <code>ggplot</code> with our data is done using the command <code>g
 <!-- Use `coord_map()` to get a reasonable aspect ratio of `Lat` and `Long`. -->
 Assigning every individual its own colour is done using the <code>ggplot</code> argument <code>colour =</code>.</p>
 <p>Save your code in the appropriate section.</p>
-<div class="figure"><span id="fig:unnamed-chunk-14"></span>
-<img src="patterns-and-trends_files/figure-html/unnamed-chunk-14-1.png" alt="You plot should look something like this." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-10"></span>
+<img src="patterns-and-trends_files/figure-html/unnamed-chunk-10-1.png" alt="You plot should look something like this." width="672" />
 <p class="caption">
 Figure 1: You plot should look something like this.
 </p>
@@ -320,16 +223,16 @@ Figure 1: You plot should look something like this.
 <p>Until now, we’ve stored our location data within data frames as Lat/Long columns. This works well for many tasks, but sometimes we need special <em>spatial</em> classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our <code>data.frame</code> into a spatial object.</p>
 <p>We will largely rely on <code>sf</code>when working with vector data in <code>R</code>. In order to transform our <code>data.frame</code> into an sf object, we need to use the function <code>st_as_sf()</code> while specifying the columns storing the coordinates and the coordinate reference system.</p>
 <p>(At this point, we assume you know what a Coordinate Reference Systems is. Check out <a href="https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/">this link</a> if this is not the case.)</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="W01_05_tasks_and_inputs.html#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="W01_05_tasks_and_inputs.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb7-3"><a href="W01_05_tasks_and_inputs.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</span></span>
-<span id="cb7-4"><a href="W01_05_tasks_and_inputs.html#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="W01_05_tasks_and_inputs.html#cb7-5" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, </span>
-<span id="cb7-6"><a href="W01_05_tasks_and_inputs.html#cb7-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), </span>
-<span id="cb7-7"><a href="W01_05_tasks_and_inputs.html#cb7-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">crs =</span> <span class="dv">4326</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="W01_05_tasks_and_inputs.html#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="W01_05_tasks_and_inputs.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-3"><a href="W01_05_tasks_and_inputs.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</span></span>
+<span id="cb2-4"><a href="W01_05_tasks_and_inputs.html#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="W01_05_tasks_and_inputs.html#cb2-5" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, </span>
+<span id="cb2-6"><a href="W01_05_tasks_and_inputs.html#cb2-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), </span>
+<span id="cb2-7"><a href="W01_05_tasks_and_inputs.html#cb2-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">crs =</span> <span class="dv">4326</span>)</span></code></pre></div>
 <p>Notice how <code>st_as_sf</code> takes the EPSG code for the <code>crs =</code> argument. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes, etc.) under <a href="http://epsg.io">epsg.io</a>.<br />
 Let’s compare our original <code>data.frame</code> with this new <code>sf</code> object:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="W01_05_tasks_and_inputs.html#cb8-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="W01_05_tasks_and_inputs.html#cb3-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE</span></code></pre></div>
 <pre><code>## # A tibble: 51,246 x 6
 ##    TierID TierName CollarID DatetimeUTC           Lat  Long
 ##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;
@@ -344,7 +247,7 @@ Let’s compare our original <code>data.frame</code> with this new <code>sf</cod
 ##  9 002A   Sabi        12275 2014-08-22 23:00:27  47.0  7.05
 ## 10 002A   Sabi        12275 2014-08-22 23:15:41  47.0  7.05
 ## # ... with 51,236 more rows</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="W01_05_tasks_and_inputs.html#cb10-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="W01_05_tasks_and_inputs.html#cb5-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf</span></code></pre></div>
 <pre><code>## Simple feature collection with 51246 features and 4 fields
 ## geometry type:  POINT
 ## dimension:      XY
@@ -365,47 +268,47 @@ Let’s compare our original <code>data.frame</code> with this new <code>sf</cod
 ## 10 002A   Sabi        12275 2014-08-22 23:15:41 (7.049396 46.99373)
 ## # ... with 51,236 more rows</code></pre>
 <p>As you can see, <code>st_as_sf()</code> has added some metadata to our dataframe (<code>geometry type</code>, <code>dimension</code>, <code>bbox</code>, <code>epsg</code> and <code>proj4string</code>) and replaced the columns <code>Lat</code> and <code>Long</code> with a column named <code>geometry</code>. Other than that, the new <code>sf</code> object is very similar to our original dataframe. In fact, <code>sf</code> objects <em>are</em> essentially <code>dataframes</code>, as you can verify with the function <code>is.data.frame()</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="W01_05_tasks_and_inputs.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(wildschwein_BE_sf)</span>
-<span id="cb12-2"><a href="W01_05_tasks_and_inputs.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="W01_05_tasks_and_inputs.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(wildschwein_BE_sf)</span>
+<span id="cb7-2"><a href="W01_05_tasks_and_inputs.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
 <p>All operations we know from handling <code>data.frames</code> can be used on the <code>sf</code> object. Try some out!</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="W01_05_tasks_and_inputs.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset rows</span></span>
-<span id="cb13-2"><a href="W01_05_tasks_and_inputs.html#cb13-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span>
-<span id="cb13-3"><a href="W01_05_tasks_and_inputs.html#cb13-3" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf[wildschwein_BE_sf<span class="sc">$</span>TierName <span class="sc">==</span> <span class="st">&quot;Sabi&quot;</span>,]</span>
-<span id="cb13-4"><a href="W01_05_tasks_and_inputs.html#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="W01_05_tasks_and_inputs.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># subset colums</span></span>
-<span id="cb13-6"><a href="W01_05_tasks_and_inputs.html#cb13-6" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="W01_05_tasks_and_inputs.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset rows</span></span>
+<span id="cb8-2"><a href="W01_05_tasks_and_inputs.html#cb8-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span>
+<span id="cb8-3"><a href="W01_05_tasks_and_inputs.html#cb8-3" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf[wildschwein_BE_sf<span class="sc">$</span>TierName <span class="sc">==</span> <span class="st">&quot;Sabi&quot;</span>,]</span>
+<span id="cb8-4"><a href="W01_05_tasks_and_inputs.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="W01_05_tasks_and_inputs.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># subset colums</span></span>
+<span id="cb8-6"><a href="W01_05_tasks_and_inputs.html#cb8-6" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <p>Instead of keeping the same data twice (once as a <code>data.frame</code>, and once as an <code>sf</code> object), we will overwrite the <code>data.frame</code> and continue working with the <code>sf</code> object from now on. This saves some memory space in <code>R</code> and avoids confusion.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="W01_05_tasks_and_inputs.html#cb14-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, </span>
-<span id="cb14-2"><a href="W01_05_tasks_and_inputs.html#cb14-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), </span>
-<span id="cb14-3"><a href="W01_05_tasks_and_inputs.html#cb14-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">crs =</span> <span class="dv">4326</span>)</span>
-<span id="cb14-4"><a href="W01_05_tasks_and_inputs.html#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="W01_05_tasks_and_inputs.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(wildschwein_BE_sf) </span>
-<span id="cb14-6"><a href="W01_05_tasks_and_inputs.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># we can remove this sf object, since it just eats up our memory</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="W01_05_tasks_and_inputs.html#cb9-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, </span>
+<span id="cb9-2"><a href="W01_05_tasks_and_inputs.html#cb9-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), </span>
+<span id="cb9-3"><a href="W01_05_tasks_and_inputs.html#cb9-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb9-4"><a href="W01_05_tasks_and_inputs.html#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="W01_05_tasks_and_inputs.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(wildschwein_BE_sf) </span>
+<span id="cb9-6"><a href="W01_05_tasks_and_inputs.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># we can remove this sf object, since it just eats up our memory</span></span></code></pre></div>
 </div>
 <div id="task-3-project-data-from-wgs84" class="section level3">
 <h3>Task 3: Project data from WGS84</h3>
-<p>So what can we do with our new <code>sf</code> object that we couldn’t before? One example is projecting the WGS84 (<code>Lat</code>/<code>Long</code>) coordinates into the new Swiss CRS <code>CH1903+ LV95</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Do this by using the function <code>st_transform</code>. By the way, do you notice a pattern here? The package <code>sf</code> names most functions for spatial operations with the prefix <code>st_*</code>, just as in PostGIS.</p>
+<p>So what can we do with our new <code>sf</code> object that we couldn’t before? One example is projecting the WGS84 (<code>Lat</code>/<code>Long</code>) coordinates into the new Swiss CRS <code>CH1903+ LV95</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Do this by using the function <code>st_transform</code>. By the way, do you notice a pattern here? The package <code>sf</code> names most functions for spatial operations with the prefix <code>st_*</code>, just as in PostGIS.</p>
 <p>Here’s the resulting <code>sf</code> object from the operation:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="W01_05_tasks_and_inputs.html#cb15-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE</span>
-<span id="cb15-2"><a href="W01_05_tasks_and_inputs.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 51246 features and 4 fields</span></span>
-<span id="cb15-3"><a href="W01_05_tasks_and_inputs.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
-<span id="cb15-4"><a href="W01_05_tasks_and_inputs.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
-<span id="cb15-5"><a href="W01_05_tasks_and_inputs.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
-<span id="cb15-6"><a href="W01_05_tasks_and_inputs.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
-<span id="cb15-7"><a href="W01_05_tasks_and_inputs.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 51,246 x 5</span></span>
-<span id="cb15-8"><a href="W01_05_tasks_and_inputs.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                  geometry</span></span>
-<span id="cb15-9"><a href="W01_05_tasks_and_inputs.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  * &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                    &lt;POINT [m]&gt;</span></span>
-<span id="cb15-10"><a href="W01_05_tasks_and_inputs.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 002A   Sabi        12275 2014-08-22 21:00:12 (2570409 1204752)</span></span>
-<span id="cb15-11"><a href="W01_05_tasks_and_inputs.html#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 002A   Sabi        12275 2014-08-22 21:15:16 (2570402 1204863)</span></span>
-<span id="cb15-12"><a href="W01_05_tasks_and_inputs.html#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 002A   Sabi        12275 2014-08-22 21:30:43 (2570394 1204826)</span></span>
-<span id="cb15-13"><a href="W01_05_tasks_and_inputs.html#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 002A   Sabi        12275 2014-08-22 21:46:07 (2570379 1204817)</span></span>
-<span id="cb15-14"><a href="W01_05_tasks_and_inputs.html#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 002A   Sabi        12275 2014-08-22 22:00:22 (2570390 1204818)</span></span>
-<span id="cb15-15"><a href="W01_05_tasks_and_inputs.html#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 002A   Sabi        12275 2014-08-22 22:15:10 (2570390 1204825)</span></span>
-<span id="cb15-16"><a href="W01_05_tasks_and_inputs.html#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 002A   Sabi        12275 2014-08-22 22:30:13 (2570387 1204831)</span></span>
-<span id="cb15-17"><a href="W01_05_tasks_and_inputs.html#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 002A   Sabi        12275 2014-08-22 22:45:11 (2570381 1204840)</span></span>
-<span id="cb15-18"><a href="W01_05_tasks_and_inputs.html#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 002A   Sabi        12275 2014-08-22 23:00:27 (2570316 1204935)</span></span>
-<span id="cb15-19"><a href="W01_05_tasks_and_inputs.html#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 002A   Sabi        12275 2014-08-22 23:15:41 (2570393 1204815)</span></span>
-<span id="cb15-20"><a href="W01_05_tasks_and_inputs.html#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 51,236 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="W01_05_tasks_and_inputs.html#cb10-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE</span>
+<span id="cb10-2"><a href="W01_05_tasks_and_inputs.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 51246 features and 4 fields</span></span>
+<span id="cb10-3"><a href="W01_05_tasks_and_inputs.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
+<span id="cb10-4"><a href="W01_05_tasks_and_inputs.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
+<span id="cb10-5"><a href="W01_05_tasks_and_inputs.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
+<span id="cb10-6"><a href="W01_05_tasks_and_inputs.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb10-7"><a href="W01_05_tasks_and_inputs.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 51,246 x 5</span></span>
+<span id="cb10-8"><a href="W01_05_tasks_and_inputs.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                  geometry</span></span>
+<span id="cb10-9"><a href="W01_05_tasks_and_inputs.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  * &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                    &lt;POINT [m]&gt;</span></span>
+<span id="cb10-10"><a href="W01_05_tasks_and_inputs.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 002A   Sabi        12275 2014-08-22 21:00:12 (2570409 1204752)</span></span>
+<span id="cb10-11"><a href="W01_05_tasks_and_inputs.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 002A   Sabi        12275 2014-08-22 21:15:16 (2570402 1204863)</span></span>
+<span id="cb10-12"><a href="W01_05_tasks_and_inputs.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 002A   Sabi        12275 2014-08-22 21:30:43 (2570394 1204826)</span></span>
+<span id="cb10-13"><a href="W01_05_tasks_and_inputs.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 002A   Sabi        12275 2014-08-22 21:46:07 (2570379 1204817)</span></span>
+<span id="cb10-14"><a href="W01_05_tasks_and_inputs.html#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 002A   Sabi        12275 2014-08-22 22:00:22 (2570390 1204818)</span></span>
+<span id="cb10-15"><a href="W01_05_tasks_and_inputs.html#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 002A   Sabi        12275 2014-08-22 22:15:10 (2570390 1204825)</span></span>
+<span id="cb10-16"><a href="W01_05_tasks_and_inputs.html#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 002A   Sabi        12275 2014-08-22 22:30:13 (2570387 1204831)</span></span>
+<span id="cb10-17"><a href="W01_05_tasks_and_inputs.html#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 002A   Sabi        12275 2014-08-22 22:45:11 (2570381 1204840)</span></span>
+<span id="cb10-18"><a href="W01_05_tasks_and_inputs.html#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 002A   Sabi        12275 2014-08-22 23:00:27 (2570316 1204935)</span></span>
+<span id="cb10-19"><a href="W01_05_tasks_and_inputs.html#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 002A   Sabi        12275 2014-08-22 23:15:41 (2570393 1204815)</span></span>
+<span id="cb10-20"><a href="W01_05_tasks_and_inputs.html#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 51,236 more rows</span></span></code></pre></div>
 <p>Commit your changes as described <a href="W01_05_tasks_and_inputs.html#w1-tasks-and-inputs">in the beginning</a>.</p>
 </div>
 <div id="input-calculate-convex-hull" class="section level3">
@@ -413,115 +316,118 @@ Let’s compare our original <code>data.frame</code> with this new <code>sf</cod
 <p>Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a <a href="https://en.wikipedia.org/wiki/Convex_hull">convex hull</a> per Wild boar. And guess what the function for calculating a convex hull is called in <code>sf</code>? If you guessed <code>st_convex_hull()</code>, you were right!</p>
 <p>By default <code>st_convex_hull()</code> calculates the convex hull <em>per feature</em>, i.e. <em>per point</em> in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:</p>
 <p>First: add a grouping variable to the <code>sf</code> object. Note the new grouping variable in the metadata of the <code>sf</code> object. Other than that, <code>group_by</code> has no effect on our <code>sf</code> object.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="W01_05_tasks_and_inputs.html#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-2"><a href="W01_05_tasks_and_inputs.html#cb16-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_grouped <span class="ot">&lt;-</span> <span class="fu">group_by</span>(wildschwein_BE,TierID)</span>
-<span id="cb16-3"><a href="W01_05_tasks_and_inputs.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="W01_05_tasks_and_inputs.html#cb16-4" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_grouped</span>
-<span id="cb16-5"><a href="W01_05_tasks_and_inputs.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 51246 features and 4 fields</span></span>
-<span id="cb16-6"><a href="W01_05_tasks_and_inputs.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
-<span id="cb16-7"><a href="W01_05_tasks_and_inputs.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
-<span id="cb16-8"><a href="W01_05_tasks_and_inputs.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
-<span id="cb16-9"><a href="W01_05_tasks_and_inputs.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
-<span id="cb16-10"><a href="W01_05_tasks_and_inputs.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 51,246 x 5</span></span>
-<span id="cb16-11"><a href="W01_05_tasks_and_inputs.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   TierID [3]</span></span>
-<span id="cb16-12"><a href="W01_05_tasks_and_inputs.html#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                  geometry</span></span>
-<span id="cb16-13"><a href="W01_05_tasks_and_inputs.html#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                    &lt;POINT [m]&gt;</span></span>
-<span id="cb16-14"><a href="W01_05_tasks_and_inputs.html#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 002A   Sabi        12275 2014-08-22 21:00:12 (2570409 1204752)</span></span>
-<span id="cb16-15"><a href="W01_05_tasks_and_inputs.html#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 002A   Sabi        12275 2014-08-22 21:15:16 (2570402 1204863)</span></span>
-<span id="cb16-16"><a href="W01_05_tasks_and_inputs.html#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 002A   Sabi        12275 2014-08-22 21:30:43 (2570394 1204826)</span></span>
-<span id="cb16-17"><a href="W01_05_tasks_and_inputs.html#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 002A   Sabi        12275 2014-08-22 21:46:07 (2570379 1204817)</span></span>
-<span id="cb16-18"><a href="W01_05_tasks_and_inputs.html#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 002A   Sabi        12275 2014-08-22 22:00:22 (2570390 1204818)</span></span>
-<span id="cb16-19"><a href="W01_05_tasks_and_inputs.html#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 002A   Sabi        12275 2014-08-22 22:15:10 (2570390 1204825)</span></span>
-<span id="cb16-20"><a href="W01_05_tasks_and_inputs.html#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 002A   Sabi        12275 2014-08-22 22:30:13 (2570387 1204831)</span></span>
-<span id="cb16-21"><a href="W01_05_tasks_and_inputs.html#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 002A   Sabi        12275 2014-08-22 22:45:11 (2570381 1204840)</span></span>
-<span id="cb16-22"><a href="W01_05_tasks_and_inputs.html#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 002A   Sabi        12275 2014-08-22 23:00:27 (2570316 1204935)</span></span>
-<span id="cb16-23"><a href="W01_05_tasks_and_inputs.html#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 002A   Sabi        12275 2014-08-22 23:15:41 (2570393 1204815)</span></span>
-<span id="cb16-24"><a href="W01_05_tasks_and_inputs.html#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 51,236 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="W01_05_tasks_and_inputs.html#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="W01_05_tasks_and_inputs.html#cb11-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_grouped <span class="ot">&lt;-</span> <span class="fu">group_by</span>(wildschwein_BE,TierID)</span>
+<span id="cb11-3"><a href="W01_05_tasks_and_inputs.html#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="W01_05_tasks_and_inputs.html#cb11-4" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_grouped</span>
+<span id="cb11-5"><a href="W01_05_tasks_and_inputs.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 51246 features and 4 fields</span></span>
+<span id="cb11-6"><a href="W01_05_tasks_and_inputs.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
+<span id="cb11-7"><a href="W01_05_tasks_and_inputs.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
+<span id="cb11-8"><a href="W01_05_tasks_and_inputs.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
+<span id="cb11-9"><a href="W01_05_tasks_and_inputs.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb11-10"><a href="W01_05_tasks_and_inputs.html#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 51,246 x 5</span></span>
+<span id="cb11-11"><a href="W01_05_tasks_and_inputs.html#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   TierID [3]</span></span>
+<span id="cb11-12"><a href="W01_05_tasks_and_inputs.html#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                  geometry</span></span>
+<span id="cb11-13"><a href="W01_05_tasks_and_inputs.html#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                    &lt;POINT [m]&gt;</span></span>
+<span id="cb11-14"><a href="W01_05_tasks_and_inputs.html#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 002A   Sabi        12275 2014-08-22 21:00:12 (2570409 1204752)</span></span>
+<span id="cb11-15"><a href="W01_05_tasks_and_inputs.html#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 002A   Sabi        12275 2014-08-22 21:15:16 (2570402 1204863)</span></span>
+<span id="cb11-16"><a href="W01_05_tasks_and_inputs.html#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 002A   Sabi        12275 2014-08-22 21:30:43 (2570394 1204826)</span></span>
+<span id="cb11-17"><a href="W01_05_tasks_and_inputs.html#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 002A   Sabi        12275 2014-08-22 21:46:07 (2570379 1204817)</span></span>
+<span id="cb11-18"><a href="W01_05_tasks_and_inputs.html#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 002A   Sabi        12275 2014-08-22 22:00:22 (2570390 1204818)</span></span>
+<span id="cb11-19"><a href="W01_05_tasks_and_inputs.html#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 002A   Sabi        12275 2014-08-22 22:15:10 (2570390 1204825)</span></span>
+<span id="cb11-20"><a href="W01_05_tasks_and_inputs.html#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 002A   Sabi        12275 2014-08-22 22:30:13 (2570387 1204831)</span></span>
+<span id="cb11-21"><a href="W01_05_tasks_and_inputs.html#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 002A   Sabi        12275 2014-08-22 22:45:11 (2570381 1204840)</span></span>
+<span id="cb11-22"><a href="W01_05_tasks_and_inputs.html#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 002A   Sabi        12275 2014-08-22 23:00:27 (2570316 1204935)</span></span>
+<span id="cb11-23"><a href="W01_05_tasks_and_inputs.html#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 002A   Sabi        12275 2014-08-22 23:15:41 (2570393 1204815)</span></span>
+<span id="cb11-24"><a href="W01_05_tasks_and_inputs.html#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 51,236 more rows</span></span></code></pre></div>
 <p>Second: use <code>summarise()</code> to “dissolve” all points into a mulipoint object.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="W01_05_tasks_and_inputs.html#cb17-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_smry <span class="ot">&lt;-</span> <span class="fu">summarise</span>(wildschwein_BE_grouped)</span>
-<span id="cb17-2"><a href="W01_05_tasks_and_inputs.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="W01_05_tasks_and_inputs.html#cb17-3" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_smry</span>
-<span id="cb17-4"><a href="W01_05_tasks_and_inputs.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 3 features and 1 field</span></span>
-<span id="cb17-5"><a href="W01_05_tasks_and_inputs.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  MULTIPOINT</span></span>
-<span id="cb17-6"><a href="W01_05_tasks_and_inputs.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
-<span id="cb17-7"><a href="W01_05_tasks_and_inputs.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
-<span id="cb17-8"><a href="W01_05_tasks_and_inputs.html#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
-<span id="cb17-9"><a href="W01_05_tasks_and_inputs.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
-<span id="cb17-10"><a href="W01_05_tasks_and_inputs.html#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID                                                                geometry</span></span>
-<span id="cb17-11"><a href="W01_05_tasks_and_inputs.html#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                         &lt;MULTIPOINT [m]&gt;</span></span>
-<span id="cb17-12"><a href="W01_05_tasks_and_inputs.html#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A   ((2568903 1206200), (2568925 1206207), (2568980 1206197), (2569024 120~</span></span>
-<span id="cb17-13"><a href="W01_05_tasks_and_inputs.html#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 016A   ((2569231 1205823), (2569245 1205925), (2569247 1206027), (2569251 120~</span></span>
-<span id="cb17-14"><a href="W01_05_tasks_and_inputs.html#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 018A   ((2568153 1205611), (2568155 1205613), (2568161 1205624), (2568162 120~</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="W01_05_tasks_and_inputs.html#cb12-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_smry <span class="ot">&lt;-</span> <span class="fu">summarise</span>(wildschwein_BE_grouped)</span>
+<span id="cb12-2"><a href="W01_05_tasks_and_inputs.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="W01_05_tasks_and_inputs.html#cb12-3" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_smry</span>
+<span id="cb12-4"><a href="W01_05_tasks_and_inputs.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 3 features and 1 field</span></span>
+<span id="cb12-5"><a href="W01_05_tasks_and_inputs.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  MULTIPOINT</span></span>
+<span id="cb12-6"><a href="W01_05_tasks_and_inputs.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
+<span id="cb12-7"><a href="W01_05_tasks_and_inputs.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
+<span id="cb12-8"><a href="W01_05_tasks_and_inputs.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb12-9"><a href="W01_05_tasks_and_inputs.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
+<span id="cb12-10"><a href="W01_05_tasks_and_inputs.html#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID                                                                geometry</span></span>
+<span id="cb12-11"><a href="W01_05_tasks_and_inputs.html#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                         &lt;MULTIPOINT [m]&gt;</span></span>
+<span id="cb12-12"><a href="W01_05_tasks_and_inputs.html#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A   ((2568903 1206200), (2568925 1206207), (2568980 1206197), (2569024 120~</span></span>
+<span id="cb12-13"><a href="W01_05_tasks_and_inputs.html#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 016A   ((2569231 1205823), (2569245 1205925), (2569247 1206027), (2569251 120~</span></span>
+<span id="cb12-14"><a href="W01_05_tasks_and_inputs.html#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 018A   ((2568153 1205611), (2568155 1205613), (2568161 1205624), (2568162 120~</span></span></code></pre></div>
 <p>Now we can run <code>st_convex_hull</code> on the new <code>sf</code> object.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="W01_05_tasks_and_inputs.html#cb18-1" aria-hidden="true" tabindex="-1"></a>mcp <span class="ot">&lt;-</span> <span class="fu">st_convex_hull</span>(wildschwein_BE_smry)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="W01_05_tasks_and_inputs.html#cb13-1" aria-hidden="true" tabindex="-1"></a>mcp <span class="ot">&lt;-</span> <span class="fu">st_convex_hull</span>(wildschwein_BE_smry)</span></code></pre></div>
 </div>
 <div id="task-4-ploting-spatial-objects" class="section level3">
 <h3>Task 4: Ploting spatial objects</h3>
 <p>Using base plot to visualize <code>sf</code> objects is easy enough, just try the following code.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="W01_05_tasks_and_inputs.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mcp)</span></code></pre></div>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="W01_05_tasks_and_inputs.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mcp)</span></code></pre></div>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>But since we use <code>ggplot</code> extensively, try and plot the object <code>mcp</code> with <code>ggplot</code>. Hint: Use the layer <code>geom_sf()</code> to add an <code>sf</code> object.
 Note: <code>ggplot</code> refuses to use our specified CRS, so we need to force this by specifying <code>datum =</code> in <code>coord_sf()</code>. Try it out.</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-26-1.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-26-2.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-26-3.png" width="672" /></p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-22-1.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-22-2.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-22-3.png" width="672" /></p>
 <p>Commit your changes as described <a href="W01_05_tasks_and_inputs.html#w1-tasks-and-inputs">in the beginning</a>. Have a look at your commit history by clicking on “History” in the “Git”-Pane.</p>
 </div>
 <div id="input-importing-raster-data" class="section level3">
 <h3>Input: Importing raster data</h3>
 <p>In the next task, we would like to add a background map to our <code>mcp</code> object. Download the file here: <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/pk100_BE.tif">pk100_BE.tif</a>
 To import the file into <code>R</code>, we use the package <code>terra</code> with the function <code>rast</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="W01_05_tasks_and_inputs.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
-<span id="cb20-2"><a href="W01_05_tasks_and_inputs.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## terra version 1.0.10</span></span>
-<span id="cb20-3"><a href="W01_05_tasks_and_inputs.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb20-4"><a href="W01_05_tasks_and_inputs.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Attaching package: &#39;terra&#39;</span></span>
-<span id="cb20-5"><a href="W01_05_tasks_and_inputs.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:dplyr&#39;:</span></span>
-<span id="cb20-6"><a href="W01_05_tasks_and_inputs.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb20-7"><a href="W01_05_tasks_and_inputs.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="do">##     collapse, desc, near</span></span>
-<span id="cb20-8"><a href="W01_05_tasks_and_inputs.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:glue&#39;:</span></span>
-<span id="cb20-9"><a href="W01_05_tasks_and_inputs.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb20-10"><a href="W01_05_tasks_and_inputs.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="do">##     collapse</span></span>
-<span id="cb20-11"><a href="W01_05_tasks_and_inputs.html#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="W01_05_tasks_and_inputs.html#cb20-12" aria-hidden="true" tabindex="-1"></a>pk100_BE <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="st">&quot;00_Rawdata/pk100_BE.tif&quot;</span>)</span>
-<span id="cb20-13"><a href="W01_05_tasks_and_inputs.html#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-14"><a href="W01_05_tasks_and_inputs.html#cb20-14" aria-hidden="true" tabindex="-1"></a>pk100_BE</span>
-<span id="cb20-15"><a href="W01_05_tasks_and_inputs.html#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="do">## class       : SpatRaster </span></span>
-<span id="cb20-16"><a href="W01_05_tasks_and_inputs.html#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="do">## dimensions  : 1821, 2321, 3  (nrow, ncol, nlyr)</span></span>
-<span id="cb20-17"><a href="W01_05_tasks_and_inputs.html#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="do">## resolution  : 5, 5  (x, y)</span></span>
-<span id="cb20-18"><a href="W01_05_tasks_and_inputs.html#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="do">## extent      : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)</span></span>
-<span id="cb20-19"><a href="W01_05_tasks_and_inputs.html#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="do">## coord. ref. : +proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs </span></span>
-<span id="cb20-20"><a href="W01_05_tasks_and_inputs.html#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="do">## source      : pk100_BE.tif </span></span>
-<span id="cb20-21"><a href="W01_05_tasks_and_inputs.html#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="do">## names       : pk1_1, pk1_2, pk1_3 </span></span>
-<span id="cb20-22"><a href="W01_05_tasks_and_inputs.html#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="do">## min values  :     0,     0,     0 </span></span>
-<span id="cb20-23"><a href="W01_05_tasks_and_inputs.html#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="do">## max values  :   255,   255,   255</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="W01_05_tasks_and_inputs.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb15-2"><a href="W01_05_tasks_and_inputs.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## terra version 1.0.10</span></span>
+<span id="cb15-3"><a href="W01_05_tasks_and_inputs.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb15-4"><a href="W01_05_tasks_and_inputs.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Attaching package: &#39;terra&#39;</span></span>
+<span id="cb15-5"><a href="W01_05_tasks_and_inputs.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:dplyr&#39;:</span></span>
+<span id="cb15-6"><a href="W01_05_tasks_and_inputs.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb15-7"><a href="W01_05_tasks_and_inputs.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="do">##     collapse, desc, near</span></span>
+<span id="cb15-8"><a href="W01_05_tasks_and_inputs.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:glue&#39;:</span></span>
+<span id="cb15-9"><a href="W01_05_tasks_and_inputs.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb15-10"><a href="W01_05_tasks_and_inputs.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="do">##     collapse</span></span>
+<span id="cb15-11"><a href="W01_05_tasks_and_inputs.html#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:knitr&#39;:</span></span>
+<span id="cb15-12"><a href="W01_05_tasks_and_inputs.html#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb15-13"><a href="W01_05_tasks_and_inputs.html#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="do">##     spin</span></span>
+<span id="cb15-14"><a href="W01_05_tasks_and_inputs.html#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="W01_05_tasks_and_inputs.html#cb15-15" aria-hidden="true" tabindex="-1"></a>pk100_BE <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="st">&quot;00_Rawdata/pk100_BE.tif&quot;</span>)</span>
+<span id="cb15-16"><a href="W01_05_tasks_and_inputs.html#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="W01_05_tasks_and_inputs.html#cb15-17" aria-hidden="true" tabindex="-1"></a>pk100_BE</span>
+<span id="cb15-18"><a href="W01_05_tasks_and_inputs.html#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="do">## class       : SpatRaster </span></span>
+<span id="cb15-19"><a href="W01_05_tasks_and_inputs.html#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="do">## dimensions  : 1821, 2321, 3  (nrow, ncol, nlyr)</span></span>
+<span id="cb15-20"><a href="W01_05_tasks_and_inputs.html#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="do">## resolution  : 5, 5  (x, y)</span></span>
+<span id="cb15-21"><a href="W01_05_tasks_and_inputs.html#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="do">## extent      : 2567000, 2578605, 1199996, 1209101  (xmin, xmax, ymin, ymax)</span></span>
+<span id="cb15-22"><a href="W01_05_tasks_and_inputs.html#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="do">## coord. ref. : +proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs </span></span>
+<span id="cb15-23"><a href="W01_05_tasks_and_inputs.html#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="do">## source      : pk100_BE.tif </span></span>
+<span id="cb15-24"><a href="W01_05_tasks_and_inputs.html#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="do">## names       : pk1_1, pk1_2, pk1_3 </span></span>
+<span id="cb15-25"><a href="W01_05_tasks_and_inputs.html#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="do">## min values  :     0,     0,     0 </span></span>
+<span id="cb15-26"><a href="W01_05_tasks_and_inputs.html#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="do">## max values  :   255,   255,   255</span></span></code></pre></div>
 <p><code>pk100_BE_2056.tif</code> is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (<code>pk1_1</code>, <code>pk1_2</code>etc). With the default <code>plot</code> method, each layer is displayed individually:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="W01_05_tasks_and_inputs.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pk100_BE)</span></code></pre></div>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="W01_05_tasks_and_inputs.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pk100_BE)</span></code></pre></div>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>With <code>plotRGB</code> all three layers are combined into a single image:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="W01_05_tasks_and_inputs.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(pk100_BE)</span></code></pre></div>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="W01_05_tasks_and_inputs.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(pk100_BE)</span></code></pre></div>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
 <div id="task-5-adding-a-background-map" class="section level3">
 <h3>Task 5: Adding a background map</h3>
 <p>There are multiple ways to add a background map in <code>ggplot</code>, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: <code>tmap</code> (“thematic map”). This package was developed with a syntax very similar to <code>ggplot2</code>, which makes it easy to learn.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="W01_05_tasks_and_inputs.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
-<span id="cb23-2"><a href="W01_05_tasks_and_inputs.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="W01_05_tasks_and_inputs.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pk100_BE) <span class="sc">+</span> </span>
-<span id="cb23-4"><a href="W01_05_tasks_and_inputs.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_rgb</span>() </span>
-<span id="cb23-5"><a href="W01_05_tasks_and_inputs.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning in showSRID(uprojargs, format = &quot;PROJ&quot;, multiline = &quot;NO&quot;, prefer_proj</span></span>
-<span id="cb23-6"><a href="W01_05_tasks_and_inputs.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="do">## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4</span></span>
-<span id="cb23-7"><a href="W01_05_tasks_and_inputs.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="do">## definition</span></span>
-<span id="cb23-8"><a href="W01_05_tasks_and_inputs.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="do">## stars object downsampled to 1129 by 886 cells. See tm_shape manual (argument raster.downsample)</span></span></code></pre></div>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="W01_05_tasks_and_inputs.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb18-2"><a href="W01_05_tasks_and_inputs.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="W01_05_tasks_and_inputs.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pk100_BE) <span class="sc">+</span> </span>
+<span id="cb18-4"><a href="W01_05_tasks_and_inputs.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_rgb</span>() </span>
+<span id="cb18-5"><a href="W01_05_tasks_and_inputs.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning in showSRID(uprojargs, format = &quot;PROJ&quot;, multiline = &quot;NO&quot;, prefer_proj</span></span>
+<span id="cb18-6"><a href="W01_05_tasks_and_inputs.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="do">## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4</span></span>
+<span id="cb18-7"><a href="W01_05_tasks_and_inputs.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="do">## definition</span></span>
+<span id="cb18-8"><a href="W01_05_tasks_and_inputs.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="do">## stars object downsampled to 1129 by 886 cells. See tm_shape manual (argument raster.downsample)</span></span></code></pre></div>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>As you can see, plotting layers in <code>tmap</code> is combined with the <code>+</code> sign, just as in <code>ggplot2</code>. In <code>tmap</code> however, each layer consists of two objects: a <code>tm_shape()</code> in which the data is called, and a <code>tm_*</code> object in which we define how the data is visualized (<code>tm_rgb()</code> states that it is plotted as an RGB Raster Layer). Add the object <code>mcp</code> to the plot in this manner. Read <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html">the vignette</a> if you are having trouble.</p>
 <pre><code>## Warning in showSRID(uprojargs, format = &quot;PROJ&quot;, multiline = &quot;NO&quot;, prefer_proj
 ## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4
 ## definition
 ## stars object downsampled to 1129 by 886 cells. See tm_shape manual (argument raster.downsample)</code></pre>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <pre><code>## Warning in showSRID(uprojargs, format = &quot;PROJ&quot;, multiline = &quot;NO&quot;, prefer_proj
 ## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4
 ## definition
 ## stars object downsampled to 1129 by 886 cells. See tm_shape manual (argument raster.downsample)</code></pre>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
 <p>Commit your changes as described <a href="W01_05_tasks_and_inputs.html#w1-tasks-and-inputs">in the beginning</a>.</p>
 </div>
 <div id="task-6-create-an-interactive-map" class="section level3">
@@ -534,17 +440,24 @@ To import the file into <code>R</code>, we use the package <code>terra</code> wi
 </div>
 <div class="footnotes">
 <hr />
-<ol start="2">
-<li id="fn2"><p>As we’ve mentioned in the first Input, you can look up the EPSG codes under (epsg.io)[<a href="http://epsg.io" class="uri">http://epsg.io</a>]. For information specific to Switzerland, check the <a href="https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html">swisstopo website</a><a href="W01_05_tasks_and_inputs.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<ol start="1">
+<li id="fn1"><p>As we’ve mentioned in the first Input, you can look up the EPSG codes under (epsg.io)[<a href="http://epsg.io" class="uri">http://epsg.io</a>]. For information specific to Switzerland, check the <a href="https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html">swisstopo website</a><a href="W01_05_tasks_and_inputs.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
+<script src="https://utteranc.es/client.js"
+        repo=" ComputationalMovementAnalysis/utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
             </section>
 
           </div>
         </div>
       </div>
-<a href="W01_04_preperations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="W02_01_exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -559,16 +472,7 @@ To import the file into <code>R</code>, we use the package <code>terra</code> wi
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -586,7 +490,7 @@ gitbook.start({
 "link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/11_Week1/W01_05_tasks_and_inputs.Rmd",
 "text": null
 },
-"download": ["patterns-and-trends.pdf"],
+"download": null,
 "toc": {
 "collapse": "section"
 }
@@ -594,20 +498,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
