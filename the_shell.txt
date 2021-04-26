@@ -1,0 +1,32 @@
+- in an *`R` console*, all commands that you input are interpreted by the program "`R`". E.g. the command `Sys.time()` is an `R` command, and if you type it into the `R`-console it returns today's date and time. 
+- in a *terminal console* you usually specify a program to interpret your command. You can run the **`R`** Command `Sys.time()` from the shell in the following way: `Rscript -e "Sys.time()"`. 
+
+
+```{r, results="asis", echo = FALSE, message=FALSE, warning = FALSE}
+library(tidyverse)
+library(glue)
+
+tab <- tribble(
+  ~command, ~desc,
+  "Rscript", "refers to *the programm* you want to use, which is an executable located somewhere on your computer",
+  "-e", "is *an argument* (which specifies that we want to run a single line of `R`-Code)",
+  "'Sys.time()'", "is the *value* to the argument, in this case the command that we want to run",
+) %>%
+  mutate(col = RColorBrewer::brewer.pal(nrow(.), "Set1"))
+
+pmap_chr(tab, function(command, desc,col){
+  glue(  "<span style='color:{col}'>{command} </span>")
+}) %>%
+  paste(collapse = "")%>%
+  paste("<code>",.,"</code>") %>%
+  pander::pandoc.p()
+
+
+pmap_chr(tab, function(command, desc,col){
+  glue("<code style='color:{col};'>{command} </code> <span style = 'color: {col}'>{desc}</span>")
+}) %>%
+  pander::pandoc.list()
+
+
+```
+
