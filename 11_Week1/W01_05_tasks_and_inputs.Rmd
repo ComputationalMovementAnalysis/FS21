@@ -60,7 +60,7 @@ Assigning every individual its own colour is done using the `ggplot` argument `c
 Save your code in the appropriate section.
 
 
-```{r code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput", fig.cap="You plot should look something like this."}
+```{r code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput", fig.cap="Your plot should look something like this."}
 ```
 
 
