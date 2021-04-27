@@ -154,9 +154,7 @@ df_cumsum %>%
   
 ```
 
-```{r}
-#- chunkend
-```
+
 
 ### Task 1: Segmentation
 
@@ -167,9 +165,7 @@ Next, we have to have to define our *temporal window v* [@laube2011]. To keep th
 ```{r, code =  mydecrypt("13_Week3/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
-```{r}
-#- chunkend
-```
+
 
 ### Task 2: Specify and apply threshold *d*
 
@@ -227,9 +223,7 @@ We will analyse these trajectories with the package `SimilarityMeasures`, always
 ```
 
 
-```{r}
-#- chunkend
-```
+
 
 ### Task 6: Calculate similarity
 

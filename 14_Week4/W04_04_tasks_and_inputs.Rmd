@@ -106,9 +106,6 @@ Simplifying the task even further, we will focus on an interval where we have a 
 ```{r, code =  mydecrypt("14_Week4/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
-```{r}
-#- chunkend
-```
 
 ### Task 3: Create Join Key
 

@@ -1,37 +1,39 @@
 ## Tasks and Inputs
 
 
-1. Open the project you created in [the preparation task](#w2-project)
-2. Install the package `zoo` to get access to the rolling window functions for the last exercise (`install.packages("zoo")`)
-3. Download the wildboar movement data again, and save it to your new project's directory `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click "Save target as..")
-4. Create a new R- (or RMarkdown-) file and begin with the following lines of code:
+- Open the RStudio Project you created for week 2 in [the preparation](#w2-project)
+- Download the new wildboar movement data, and save it to your new project's directory `r download_url("wildschwein_BE_2056.csv","00_Rawdata")` (right click "Save target as..")
+- Now, commit your changes to your repo like we did [last week](#w1-tasks-and-inputs) (see below):
 
-```{r, opts.label="example_hideOutput"}
-library(readr)        # to import tabular data (e.g. csv)
-library(dplyr)        # to manipulate (tabular) data
-library(ggplot2)      # to visualize data
-library(sf)           # to handle spatial vector data
-library(terra)        # To handle raster data
-library(lubridate)    # To handle dates and times
-
-wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",") # adjust path
-
-wildschwein_BE <- st_as_sf(wildschwein_BE, 
-                          coords = c("Long", "Lat"), 
-                          crs = 4326)
-
-wildschwein_BE <- st_transform(wildschwein_BE, 2056)
+```{block2, commit-text, type="rmdtip"}
 ```
 
+- Pushing our changes from our local repo the remote repo on Github
+  - Simply click the green button "Push" in the Git tab in RStudio. 
+  - Have a look at your remote Repository on Github (``r repourl``). Do you see the new files there? Contact us if this does not work.
+  - **Note**: You do not need to push your changes to your remote repo after every commit. It's enough if you do this every few commits.
 
-Now, commit your changes to your repo like we did [last week](#w1-tasks-and-inputs). To push these changes to Github, click on the green button "Push" in the Git tab in RStudio (this is just to test if the connection to Github works. You won't need to push after every commit).
+### Task 0: Import your data
 
+Create a new R- (or RMarkdown-) file and begin with the following lines of code (adjust the path to your csv file accordingly). Note: 
+
+- that this dataset is already converted to EPSG 2056
+- the coordinates are stored in the columns (`E`/`N`)
+- setting `remove =  FALSE` preserves the original (`E`/`N`) columns, which come in handy later on
+
+```{r, code =  mydecrypt("12_Week2/solutions/task_0.R",".passphrase"),  opts.label="example_hideOutput"}
+```
 
 
 ### Task 1: Getting an overview
 
-Calculate the time difference between subsequent rows as described in the demo (column `timelag`).
-First, inspect your data in more detail. Try to answer the following questions:
+Calculate the time difference between subsequent rows as described in the demo. You can calculate the time difference using the function `difftime()` in combination with `lead()`. 
+
+- the function `difftime()` has an option `units`. Set this to `secs` to get the time difference in seconds
+- use `as.integer()` to turn the output returned by `difftime()` into an integer.
+- store the output in a new column (e.g. `timelag`)
+
+Now inspect your data in more detail. Try to answer the following questions:
 
 - How many individuals were tracked? 
 - For how long were the individual tracked? Are there gaps?
@@ -41,98 +43,66 @@ First, inspect your data in more detail. Try to answer the following questions:
 
 Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?
 
+After completing the task, commit your changes to git using a good commit message (e.g. `completed task 1`).
 
-```{r, code =  mydecrypt("12_Week2/solutions/task_1.R",".passphrase"), opts.label="solution_showOutput"}
+
+```{r, code =  mydecrypt("12_Week2/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
-### Input: Geometry as columns
-
-Last week, we transformed our data from a `data.frame` to an `sf` object. This turned our `Lat`/`Long` columns into a single geometry (list) column. While this is very handy for many spatial operations, accessing the coordinates directly becomes difficult. We therefore suggest storing the information twice, once as a geometry and once as a numeric value. To do this, we have to extract the Coordinates using `st_coordinates()`. We can store these values in a new variable and display them:
-
-```{r, opts.label="example_showOutput"}
-# Store coordinates in a new variable
-
-coordinates <- st_coordinates(wildschwein_BE)
-
-head(coordinates)
-```
-
-Note that that the column are named `X` and `Y`, while [`CH1903+ LV95`](https://www.swisstopo.admin.ch/de/wissen-fakten/geodaesie-vermessung/neue-koordinaten.html) names the Axes `E` and `N`: let's rename the columns appropriately. After this, we can use `cbind()` to "glue" the columns to our original `sf`-object.
-
-```{r, opts.label="example_showOutput"}
-colnames(coordinates) <- c("E","N")
-
-wildschwein_BE <- cbind(wildschwein_BE,coordinates)
-
-head(wildschwein_BE)
-```
-
-```{r}
-#- chunkend
-```
-
-### Task 2: Deriving movement parameters I: Speed
+### Task 2: Deriving movement parameters I: Speed {#w2-task2}
 
 In this task we will derive some additional movement parameters from our trajectories. So far our trajectories only consist of a list of time-stamped spatial locations. So let's calculate the animal's steplength based on the Euclidean distance between two subsequent locations. 
 
-- You can calculate the Euclidean distance with the following formula: `sqrt((E1-E2)^2+(N1-N2)^2)`
-- use `lead(E,1)` to address the the row `n+1` (i.e. E2)
+You can calculate the Euclidean distance with the following formula: $$\text{distance} = \sqrt{(\text{E1} - \text{E2})^{2}+(\text{N1} - \text{N2})^{2}}$$
 
-Why do we use `E` and `N` when calculating the Euclidean distance, and not `Lat`/`Long`? Now calculate the animals' speed between subsequent locations based on the steplength as calculated in the previous task and the timelag between the locations. What speed unit do you get?
+- `E1`, `N1` refers to the current location
+- `E2`, `N2` refers to the subsequent location
+- you can use `lead(E,1)` to address `E2`
+- store the output in a new column (e.g. `steplength`)
+
+  
+Now calculate the animals' speed between subsequent locations based on `steplength` and the `timelag` (from the last task). What speed unit do you get?
+
+After completing the task, commit your changes to git using a good commit message.
+
 
 ```{r, code =  mydecrypt("12_Week2/solutions/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
+
+
 ### Task 3: Cross-scale movement analysis
 
-@laube2011 analyse animal movement across different scales (see below). We will do the same on a *subset* of our data.
+@laube2011 analyse animal movement across different scales (see below). In their paper, the authors suggest reducing the granularity of the data by subsetting the data to every n^th^ element. We will do the same on a dataset that includes 200 locations of a single wild boar with a constant sampling interval of 60 seconds. 
 
-
-```{r, fig.cap="Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale (Laube and Purves, 2011)"}
+```{r, fig.cap="Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale (Laube and Purves, 2011)", echo = FALSE}
 knitr::include_graphics("02_Images/laube_2011_2.jpg")
 ```
 
+Download this dataset here: `r download_url("caro60.csv","00_Rawdata")` (right click: save target as..). Import it just like you imported the other wild boar data and save it to a new variable named `caro` (note that the locations are stored in EPSG 2056).
 
-#### Import "Caro60"
+Now manually reduce the granularity of our sampling interval by selecting every 3^rd^, 6^th^ and 9^th^ position and save the output to `caro_3`, `caro_6`,`caro_9` accordingly.
 
-In the first task, we saw that the animals are sampled at different frequencies. To simplify the task, we've prepared a dataset that includes 200 locations of a single wild boar with a constant sampling interval of 60 seconds. Import this dataset named "caro60.csv" just like you imported the other wild boar data. **NOTE:** We've converted the positions to CH1903+ LV95 for your convenience. Consider this when transforming to `sf`!
-Save this data to a new variable (we will use `caro60`).
+Tip: There are many ways to go about this, we recommend using `seq()` where `from = 1`, `to = ` the length of the dataset and `by = n` (i.e. `3`, `6` or `9`). This creates an integer vector that can either used in `dplyr::slice()` or in row subsetting (see `slice()` or `?"[.data.frame"`). 
 
 ```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
-#### Resample 
 
-Now manually reduce the granularity of our sampling interval by selecting every 3^rd^, 6^th^ and 9^th^ position. 
-
-If you like to stick to the `tidyverse` approach, you can use `slice()` to subset the dataset by row number. Slice takes an integer vector. Eg: `slice(dataset, 1:10)`, returns the first 10 rows of a dataset, `slice(dataset, c(1,5,10))` returns the 1^st^, 5^th^ and 10^th^ value of a dataset. Save each re-sampled dataset in a new variable. We will use `caro60_3`, `caro60_6` and `caro60_9`.
-
-You should now have  4 data sets with different number of rows:
+You should now have  4 datasets with different number of rows:
 
 ```{r, opts.label="example_showOutput"}
-nrow(caro60)
-nrow(caro60_3)
-nrow(caro60_6)
-nrow(caro60_9)
+nrow(caro)
+nrow(caro_3)
+nrow(caro_6)
+nrow(caro_9)
 ```
 
-#### Update derived parameters
+Now calculate `timelag`, `steplength` and `speed` for these data sets, just as you did in the [last task](#w2-task2). To finish the task, compare the speeds visually in a line plot and also visualize the trajectories in a map (see examples below). Interpret the line plot, what do the different lines for the different temporal granularities tell you?
 
-`timelag`, `steplength` and `speed` now have to be recalculated for the three re-sampled data sets. Do so as we illustrated in the Chapter *Demo*. 
-
-
-
-#### Visualize 
-Compare the speeds in a line plot and visualize the trajectories in a map (see examples below). Interpret the line plot, what do the different lines for the different temporal granularities tell you?
-
-We've stored the geographic location of our point in the trajectory in three different forms in our dataset. Once as a `geometry`, once as `E`/`N` and once as `lat`/`long`. In our view, it is most practical to use the `E`/`N` (integer) columns of our data to map them in this task
-
-- `geom_sf()` does not plot lines, just points
-- Therefore, use `geom_path()` *and* `geom_point()` rather than `geom_sf()` within `ggplot`
-- In contrast to `geom_sf()`, you have to explicitly specify  the `x`/`y` columns (in our case `E`/`N`) with `geom_path()`/`geom_point()`
-- `geom_line()` does not work when mapping trajectory data, since it connects the observations *in order of the variable on the x axis*. `geom_path()` connects the observations in the order in which they appear in the data
+After completing the task, commit your changes to git using a good commit message.
 
 
 ```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
@@ -142,7 +112,7 @@ We've stored the geographic location of our point in the trajectory in three dif
 ### Task 4: Deriving movement parameters II: Rolling window functions
 
 
-A different approach would be to *smoothen* the derived parameters using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offers a variate of moving window functions (`roll_*`). Use `roll_mean()` to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
+A different approach would be to *smoothen* the derived parameters using a [moving window function](https://docs.wavefront.com/images/5sec_moving_window.png). The `zoo` package offers a variate of moving window functions (`roll_*`). Install this package, load it into the session and use the function `roll_mean()` to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:
 
 
 ```{r, opts.label="example_showOutput"}
@@ -151,21 +121,23 @@ library(zoo)
 example <- rnorm(10)
 rollmean(example,k = 3,fill = NA,align = "left")
 rollmean(example,k = 4,fill = NA,align = "left")
-
-
 ```
 
-Now run `rollmean`on the `speed` variable of the subset (`caro60`). Visualize the output from your moving windows and compare different window sizes (`k = `).
+Now run `rollmean`on the `speed` variable of the subset (`caro`). Visualize the output from your moving windows and compare different window sizes (`k = `).
+After completing the task, commit your changes to git using a good commit message. **Additionally**, push all your commits to your remote repository on Github by clicking the green upwards pointing arrow in the Git pane in RStudio.
+
 
 ```{r, code =  mydecrypt("12_Week2/solutions/task_4.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
-### Task 5 (optional): Calculate turning angles
 
-Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2!
 
-```{r, code =  mydecrypt("12_Week2/solutions/task_5.R",".passphrase"), opts.label="solution_hideOutput"}
-```
+<!-- ### Task 5 (optional): Calculate turning angles -->
+
+<!-- Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2! -->
+
+<!-- ```{r, code =  mydecrypt("12_Week2/solutions/task_5.R",".passphrase"), opts.label="solution_hideOutput"} -->
+<!-- ``` -->
 
 
 

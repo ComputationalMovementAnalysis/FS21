@@ -16,11 +16,6 @@
 ```{r, code =  mydecrypt("15_Week5/solutions/task_1.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
-```{r}
-#- chunkend
-```
-
-
 
 ### Task 2: Annotate Trajectories from vector data
 

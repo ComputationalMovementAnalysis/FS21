@@ -12,17 +12,17 @@
 
 
 .rmdcaution {
-  background-image: url("../images/caution.png");
+  background-image: url("../02_Images/caution.png");
 }
 .rmdimportant {
-  background-image: url("../images/important.png");
+  background-image: url("../02_Images/important.png");
 }
 .rmdnote {
-  background-image: url("../images/note.png");
+  background-image: url("../02_Images/note.png");
 }
 .rmdtip {
-  background-image: url("../images/tip.png");
+  background-image: url("../02_Images/tip.png");
 }
 .rmdwarning {
-  background-image: url("../images/warning.png");
+  background-image: url("../02_Images/warning.png");
 }

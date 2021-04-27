@@ -38,6 +38,4 @@ wildschwein_BE <- wildschwein_BE %>%
 
 ```
 
-```{r}
-#- chunkend
-```
+

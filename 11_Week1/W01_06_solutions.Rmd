@@ -1,6 +1,10 @@
 
 ## Solutions
 
+```{block2, copychunk-text}
+Hover over the code chunk and copy the whole content by clicking on the clipboard icon on the top left.
+```
+
 
 ```{r code =  solutions_print("11_Week1/solutions/",".passphrase"), echo = TRUE, eval=FALSE}
 ```
