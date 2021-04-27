@@ -98,7 +98,7 @@ Now it is time to introduce yourself to git. For this, we need to use the shell 
 
 The shell is a program on your computer whose job is to run other programs. It looks very much like the `R`-console (in the bottom left of RStudio) that you are already know: You have a place to input text which is transferred to (and interpreted by) the computer when you press "enter". RStudio has a shell terminal right next to the `R`-console (tab `Terminal`).
 
-Every Windows comes with two different shell installations: "Command prompt" and "PowerShell"[^launch]. After installing Git we now have a third option, "Git Bash". The shell terminal in RStudio uses "Command prompt" per default, in [the last task][#configure-rstudio] we just switched the shell to "Git Bash".
+Every Windows comes with two different shell installations: "Command prompt" and "PowerShell". After installing Git we now have a third option, "Git Bash". The shell terminal in RStudio uses "Command prompt" per default, in [the last step][#configure-rstudio] we just switched the shell to "Git Bash".
 
 Now use the terminal in RStudio to introduce yourself:
 
@@ -134,7 +134,9 @@ By this point, you probably have created a folder for this course somewhere on y
 
 
 ```{r, include=FALSE}
-subpaths(rootdir,"Course Folder",c(paste0("week",1:7),"semester_project")) %>%
+week_folders <- paste0("week",1:7)
+
+subpaths(rootdir,"Course Folder",c(week_folders,"semester_project")) %>%
   paths2node()
 ```
 
@@ -157,13 +159,13 @@ For the R-exercises that take place in weeks 1 to 5, we recommend that you creat
 ```{r, include=FALSE}
 
 
-week_rootdir <- file.path(rootdir, "week1")
+week_rootdir <- file.path(rootdir, week_folders[1])
 
 rprojfolder <- "week1-rexercise"
 
 rprojfiles <- file.path(rprojfolder,c(paste0(rprojfolder,".Rproj"),"wildschwein_BE.csv","my_solution.Rmd"))
 
-files_week1 <- file.path("week1", c("slides.pdf","my_notes.docx","seminar_screenshot.jpg",rprojfiles))
+files_week1 <- file.path(week_folders[1], c("slides.pdf","my_notes.docx","seminar_screenshot.jpg",rprojfiles))
 
 
 subpaths(week_rootdir,"Folder Week 1",c("slides.pdf","my_notes.docx","seminar_screenshot.jpg",rprojfiles))  %>%
