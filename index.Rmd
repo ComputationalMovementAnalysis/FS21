@@ -45,7 +45,7 @@ source("01_R_Files/helperfunctions.R")
 
 
 
-```{r}
+```{r, include=FALSE}
 
 files <- list.files(pattern = "_hide.R",recursive = TRUE)
 
@@ -56,19 +56,18 @@ lapply(files, function(x){myencrypt(x,".passphrase")})
 ```{r, include=FALSE}
 
 
-knitr::opts_chunk$set(collapse = TRUE)
+knitr::opts_chunk$set(collapse = TRUE, warning = FALSE,message = FALSE)
 
 knitr::opts_template$set(
   solution_showOutput = list(echo = FALSE),
   solution_hideOutput = list(echo = FALSE, results = "hide", warning = FALSE, message = FALSE),
   example_showOutput = list(echo = TRUE),
-  example_hideOutput = list(echo = TRUE, results = "hide", warning = FALSE, message = FALSE),
-  noeval = list(echo = TRUE, eval = FALSE)
+  example_hideOutput = list(echo = TRUE, results = "hide", warning = FALSE, message = FALSE)
   )
 
 ```
 
-# Welcome to the *Computational Movement Analysis: Patterns and Trends in Environmental Data* {-}
+# Welcome to the course! {-}
 
 For the practical part of the course, building-up skills for analyzing movement data in the software environment `R`, you'll be using data from the ZHAW project ["Prävention von Wildschweinschäden in der Landwirtschaft"](https://www.zhaw.ch/de/ueber-uns/aktuell/news/detailansicht-news/event-news/wildschweinschaeden-mit-akustischer-methode-verhindern/).
 
