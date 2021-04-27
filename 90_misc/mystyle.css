@@ -2,3 +2,27 @@
   font-size: small;
   text-align: left;
 }
+
+/* from https://github.com/rstudio/bookdown/blob/b66380e7c9a478edbebb3c21a0449a5c98f9bddb/inst/examples/css/style.css*/
+.rmdcaution, .rmdimportant, .rmdnote, .rmdtip, .rmdwarning {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  background: #f5f5f5 5px center/3em no-repeat;
+}
+
+
+.rmdcaution {
+  background-image: url("../images/caution.png");
+}
+.rmdimportant {
+  background-image: url("../images/important.png");
+}
+.rmdnote {
+  background-image: url("../images/note.png");
+}
+.rmdtip {
+  background-image: url("../images/tip.png");
+}
+.rmdwarning {
+  background-image: url("../images/warning.png");
+}
