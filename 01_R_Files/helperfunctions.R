@@ -115,8 +115,7 @@ download_url <- function(filename,folder){
 # - the regex to grab the R-files is \d\.R, so as to exclude files ending with _hide.R
 # - the filename of the R-file can be used as comment to describe the code (after)
 #   some cleanup)
-# This function is to be used in combination with a code chunk and the template
-# "solution_print", like so:
+# This function is to be used in combination with a code chunk
 # ```{r code =  solutions_print("11_Week1/solutions/",".passphrase"), , opts.label="solution_print"}
 # ```
 solutions_print <- function(solutionspath, seedfile){
@@ -132,3 +131,21 @@ solutions_print <- function(solutionspath, seedfile){
     }) %>%
     unlist()
 }
+
+# Given a Rmdfile, this function returns a purl-ed version of the file by extracting
+# the code chunks and returning them as a character vector. Its very similar to 
+# knitr::purl, with the difference that you dont have any documentation option and
+# that the output does not produce intermediate (R-) files. It is to be used in
+# combination with a code chunk, like so:
+# ```{r code =  purl_quick("12_Week2/W02_04_demo_tidyverse.Rmd"), echo = TRUE, eval = FALSE}
+# ``
+purl_quick <- function(inputfile){
+  mylines <- readLines(inputfile,warn = FALSE)
+  chunkboders <- str_starts(mylines, "```")
+  cumsum <- cumsum(chunkboders)
+  inchunk <- cumsum %% 2 == 1 & !chunkboders
+  
+  
+  mylines[inchunk]
+}
+
