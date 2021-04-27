@@ -12,7 +12,7 @@
 
 **Typically, you do this once (in a lifetime)**
 
-Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week you will use Github to sync your changes. To do this, create a Github account on [github.com](https://github.com/) (it's free of course). Use the email address that you [configured in git last week](#introduce-yourself-git). If you are not sure which mail you used, type `git config user.email` in the terminal[^terminal2]. 
+Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week you will use Github to sync your changes. To do this, create a Github account on [github.com](https://github.com/) (it's free of course). Use the email address that you [configured in git last week](#introduce-yourself-git). If you are not sure which mail you used, type `git config user.email` in the shell terminal. 
 
 You don't have to use the same `user.name` on Github as use configured in Git. When choosing a username on Github, consider the following advice: 
 
@@ -32,36 +32,43 @@ If we want to push changes from our local repository to our Github cloud reposit
 
 Step 1: Create a personal access token (PAT) on Github
 
-- Login into github.com, click on your user profile (top right) and click on "Settings" ([github.com/settings](https://github.com/settings))
-- Choose "Personal access tokens" > Generate new token
+- Login into [github.com](https://github.com/), click on your user profile (top right) and click on "Settings" 
+- Choose *Personal access tokens > Generate new token*
 - Add a descriptive note (e.g. `https access from my personal laptop`)
 - Select scope "repo"
 - Click on "Generate token"
-- Copy your new personal access token (in the green box). **You won’t be able to see it again!** 
-- Treat this PAT like a password: Store it in a secure place, like a password management app if you have one (which you should!). *Never publish this PAT publicly*.
+- Copy your new personal access token (in the green box)
+  - You won’t be able to see this token again
+  - If you loose it, you can simply create a new one
+  - If you want to store it, you neeed to treat this PAT like a password. Only store it in a secure place (like a password management app) and *never publish this PAT publicly*
 
 
 Step 2: Store your PAT in you local Git
 
 - In R, install the `gitcreds` package (`install.packages("gitcreds")`)
-- Call the function `gitcreds_set()` (`gitcreds::gitcreds_set()`)
+- Load this library (`library(gitcreds)`)
+- Call the function `gitcreds_set()`
 - Respond to the prompt with your PAT from the last step
-- Check that you have stored a credential (`gitcreds::gitcreds_get()`)
+- Check that you have stored a credential with `gitcreds_get()`
   
   
 ### Create a Git**hub** repo
 
 **Typically, you do this once per project**
 
-Now you can create a Repository on Github that you can afterwards connect to your RStudio project from week 1. This is something you have to do for every Git repo that you want to connect to Github. To do this go to [github.com/new](https://github.com/new) and fill in the following information:
+Now you can create a Repository on Github that you can afterwards connect to your RStudio project from this week (which you will create in the next step). To do this, go to [github.com](https://github.com) and click on the plus sign in the top right corner, then fill in the following information:
 
-- Repository name: Give a meaningful name, e.g.  `cma-week2`
+```{r}
+reponame <- paste("cma",week_folders[2], sep = "-")
+```
+
+- Repository name: Give a meaningful name, e.g.  ``r reponame``
 - Description: Give a meaningful description, e.g. `Solving exercise 2 of the course "Computational Movement Analysis`
 - Make the repo public, not private
 - Check `Add a README file`
 <!-- - Make sure that `Add a README file`, `Add .gitignore ` and `Choose a license` are all *un*checked -->
 
-Click on `Create repository`, then on the green button "Code". Select HTTPS (it might already be selected) and then copy the URL by clicking on the clipboard symbol. The URL should look something list this `https://github.com/YOUR-GITHUB-USERNAME/cma-week2.git`
+Click on `Create repository`, then on the green button "Code". Select HTTPS (it might already be selected) and then copy the URL by clicking on the clipboard symbol. The URL should look something list this ``r glue::glue("https://github.com/YOUR-GITHUB-USERNAME/{reponame}.git")``
 
 
 ### Create a new RStudio Project{#w2-project}
@@ -69,7 +76,7 @@ Click on `Create repository`, then on the green button "Code". Select HTTPS (it 
 You will now create a new RStudio Project for week 2. Unlike last week, we will create the project in such a way that it is immediately connected to our Git*hub* repo. In RStudio, start a new project. Choose: File > New Project > **Version Control** > Git. 
 
 - In the repository URL, paste the URL you copied in the last step
-- Change "Project directory name" to `week1-rexercise` (if you are following [the convention we proposed last week](#folder-structure))
+- Change "Project directory name" to `week2-rexercise` (if you are following [the convention we proposed last week](#folder-structure))
 - Change the parent directory (`Create project as a subdirectory of`) to your equivalent of ``r file.path(rootdir, "week2")``
 
 Click on "Create Project"

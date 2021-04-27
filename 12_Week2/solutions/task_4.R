@@ -14,7 +14,8 @@ eyqz60 <- eyqz60 %>%
   )
 
 eyqz60 %>%
-  kycjaq(iah,lyb,e(voaar,voaar3,voaar6,voaar9)) %>%
-  kkobzc(yav(DycacnmaUTC,lyb,ezbztq = iah,kqzto = iah)) +
-  # kazm_oznpc() +
-  kazm_bnpa() 
+  kkobzc() +
+  kazm_bnpa(yav(DycacnmaUTC,voaar), ezbztq = "#E41A1C") +
+  kazm_bnpa(yav(DycacnmaUTC,voaar3), ezbztq = "#377EB8") +
+  kazm_bnpa(yav(DycacnmaUTC,voaar6), ezbztq = "#4DAF4A") +
+  kazm_bnpa(yav(DycacnmaUTC,voaar9), ezbztq = "#984EA3")

@@ -3,8 +3,8 @@
 
 1. Open the project you created in [the preparation task](#w2-project)
 2. Install the package `zoo` to get access to the rolling window functions for the last exercise (`install.packages("zoo")`)
-3. Download the wildboar movement data again, and save it to your new projects directory `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click "Save target as..")
-4. Create a new R- (or RMarkdown) file and begin with the following lines of code:
+3. Download the wildboar movement data again, and save it to your new project's directory `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click "Save target as..")
+4. Create a new R- (or RMarkdown-) file and begin with the following lines of code:
 
 ```{r, opts.label="example_hideOutput"}
 library(readr)        # to import tabular data (e.g. csv)
@@ -97,7 +97,7 @@ knitr::include_graphics("02_Images/laube_2011_2.jpg")
 
 #### Import "Caro60"
 
-In the first task, we saw that the animals are sampled at different frequencies. To simplify the task, we've prepared a dataset that includes 200 locations of a single wild boar with a constant sampling interval of 60 seconds. Import this dataset named "caro60.csv" (available on moodle) just like you imported the other wild boar data. **NOTE:** We've converted the positions to CH1903+ LV95 for your convenience. Consider this when transforming to `sf`!
+In the first task, we saw that the animals are sampled at different frequencies. To simplify the task, we've prepared a dataset that includes 200 locations of a single wild boar with a constant sampling interval of 60 seconds. Import this dataset named "caro60.csv" just like you imported the other wild boar data. **NOTE:** We've converted the positions to CH1903+ LV95 for your convenience. Consider this when transforming to `sf`!
 Save this data to a new variable (we will use `caro60`).
 
 ```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_hideOutput"}

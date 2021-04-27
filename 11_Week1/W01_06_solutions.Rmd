@@ -1,0 +1,7 @@
+
+## Solutions
+
+
+```{r code =  solutions_print("11_Week1/solutions/",".passphrase"), echo = TRUE, eval=FALSE}
+```
+
