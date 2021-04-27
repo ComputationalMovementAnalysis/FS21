@@ -107,3 +107,28 @@ download_url <- function(filename,folder){
   glue("[{filename}]({github_raw}{folder}/{filename})")
 }
 
+
+# Given a path containing R-files containing solution to tasks, this function grabs 
+# all these R files and prints out the code as a character vector. 
+# There are a couple of assumptions that I hope hold true in the weeks and years (!)
+# to come:
+# - the regex to grab the R-files is \d\.R, so as to exclude files ending with _hide.R
+# - the filename of the R-file can be used as comment to describe the code (after)
+#   some cleanup)
+# This function is to be used in combination with a code chunk and the template
+# "solution_print", like so:
+# ```{r code =  solutions_print("11_Week1/solutions/",".passphrase"), , opts.label="solution_print"}
+# ```
+solutions_print <- function(solutionspath, seedfile){
+  require(stringr)
+  require(magrittr)
+  require(purrr)
+  list.files(solutionspath,"\\d\\.R",full.names = TRUE) %>%
+    map(function(path){
+      taskname <- paste("#", str_replace(str_remove(basename(path), ".R"), "_", " ")) %>%
+        paste(., paste(rep("#",80-str_length(.)),collapse = ""))
+      
+      mydecrypt(path,seedfile) %>% c("", taskname,"",.,"")
+    }) %>%
+    unlist()
+}
