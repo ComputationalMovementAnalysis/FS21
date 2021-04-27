@@ -2,7 +2,7 @@
 ## Solutions
 
 ```{block2, copychunk-text}
-Hover over the code chunk and copy the whole content by clicking on the clipboard icon on the top left.
+Hover over the code and copy the content by clicking on the clipboard icon on the top right. You can now paste this into an R-Script.
 ```
 
 
