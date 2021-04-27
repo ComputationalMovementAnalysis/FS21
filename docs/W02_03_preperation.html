@@ -30,10 +30,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="W02_02_prerequisites.html"/>
-<link rel="next" href="W02_04_demo_tidyverse.html"/>
+<link rel="prev" href="W02_04b_demo_tidyverse_code.html"/>
+<link rel="next" href="W02_05_tasks_and_inputs.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,6 +50,22 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -132,8 +148,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="02_Images/zhaw_lsfm_schwarz.png" alt="ZHAW Logo" width="300">
 
 <li class="divider"></li>
-<li><a href="index.html#welcome-to-the-computational-movement-analysis-patterns-and-trends-in-environmental-data">Welcome to the <em>Computational Movement Analysis: Patterns and Trends in Environmental Data</em></a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to the course!</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
 <li class="chapter" data-level="" data-path="W01_01_Exercise.html"><a href="W01_01_Exercise.html"><i class="fa fa-check"></i>Exercise 1</a>
 <ul>
 <li class="chapter" data-level="" data-path="W01_02_outcomes.html"><a href="W01_02_outcomes.html"><i class="fa fa-check"></i>Learning outcomes</a></li>
@@ -149,19 +165,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W01_04_preperations.html"><a href="W01_04_preperations.html#folder-structure"><i class="fa fa-check"></i>Prepare the folder structure for this course</a></li>
 <li><a href="W01_04_preperations.html#create-an-rstudio-project-for-the-first-week">Create an RStudio <em>project</em> for the first week</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-1-import-data"><i class="fa fa-check"></i>Task 1: Import data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-2-explore-data"><i class="fa fa-check"></i>Task 2: Explore Data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-handling-spatial-data"><i class="fa fa-check"></i>Input: Handling spatial data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-3-project-data-from-wgs84"><i class="fa fa-check"></i>Task 3: Project data from WGS84</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-calculate-convex-hull"><i class="fa fa-check"></i>Input: Calculate Convex Hull</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-4-ploting-spatial-objects"><i class="fa fa-check"></i>Task 4: Ploting spatial objects</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-importing-raster-data"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-5-adding-a-background-map"><i class="fa fa-check"></i>Task 5: Adding a background map</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-6-create-an-interactive-map"><i class="fa fa-check"></i>Task 6: Create an interactive map</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W01_06_solutions.html"><a href="W01_06_solutions.html"><i class="fa fa-check"></i>Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W02_01_Exercise.html"><a href="W02_01_Exercise.html"><i class="fa fa-check"></i>Exercise 2</a>
 <ul>
 <li class="chapter" data-level="" data-path="W02_01_learning_outcomes.html"><a href="W02_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W02_02_prerequisites.html"><a href="W02_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html"><i class="fa fa-check"></i>Preperation</a>
-<ul>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#software"><i class="fa fa-check"></i>Software</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#create-a-github-account"><i class="fa fa-check"></i>Create a Github account</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Authenticate Git to work with Github</a></li>
-<li><a href="W02_03_preperation.html#create-a-github-repo">Create a Git<strong>hub</strong> repo</a></li>
-<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#w2-project"><i class="fa fa-check"></i>Create a new RStudio Project</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html"><i class="fa fa-check"></i>Demo Tidyverse</a>
 <ul>
 <li><a href="W02_04_demo_tidyverse.html#difftime"><code>difftime</code></a></li>
@@ -171,6 +192,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="W02_04_demo_tidyverse.html#summarise"><code>summarise()</code></a></li>
 <li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#piping"><i class="fa fa-check"></i>Piping</a></li>
 <li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#bring-it-all-together"><i class="fa fa-check"></i>Bring it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_04b_demo_tidyverse_code.html"><a href="W02_04b_demo_tidyverse_code.html"><i class="fa fa-check"></i>Demo Tidyverse (R-Code)</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html"><i class="fa fa-check"></i>Preperation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#step-1-create-a-github-account"><i class="fa fa-check"></i>Step 1: Create a Github account</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#step-2-authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Step 2: Authenticate Git to work with Github</a></li>
+<li><a href="W02_03_preperation.html#step-3-create-a-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preperation.html"><a href="W02_03_preperation.html#w2-project"><i class="fa fa-check"></i>Step 4: Create a new RStudio Project</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-0-import-your-data"><i class="fa fa-check"></i>Task 0: Import your data</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an overview</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#w2-task2"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Speed</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W03_01_exercise.html"><a href="W03_01_exercise.html"><i class="fa fa-check"></i>Exercise 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preperation.html"><a href="W03_03_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#input-segmentation-as-in-laube-and-purves-2011"><i class="fa fa-check"></i>Input: Segmentation as in Laube and Purves (2011)</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
+<li><a href="W03_04_tasks_and_inputs.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W04_01_exercise.html"><a href="W04_01_exercise.html"><i class="fa fa-check"></i>Exercise 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_01_learning_outcomes.html"><a href="W04_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="W04_02_prerequisites.html"><a href="W04_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-4-measuring-distance-at-concurrent-locations"><i class="fa fa-check"></i>Task 4: Measuring distance at concurrent locations</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-5-visualize-data"><i class="fa fa-check"></i>Task 5: Visualize data</a></li>
+<li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="W05_02_preperation.html"><a href="W05_02_preperation.html"><i class="fa fa-check"></i>Preperation</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -196,17 +277,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="preperation" class="section level2">
 <h2>Preperation</h2>
-<div id="software" class="section level3">
-<h3>Software</h3>
+<p>These preperations for week 2 build up on week 1. Make sure your software is up to date:</p>
 <ul>
-<li>R and RStudio: Last week, we showed you how to determine whether your <code>R</code> Version or your RStudio needs updating (see <a href="W01_04_preperations.html#w1-preperation">Exercise 1 / Preperation</a>). If your versions are up to date: Great! If not, update these before today’s session.</li>
-<li>Git: If you had issues last week installing or configuring Git to work with RStudio, make sure you debug these problems now. Consult the <a href="https://happygitwithr.com/troubleshooting.html">chapter on troubleshooting</a> <span class="citation"><a href="references.html#ref-bryan2021" role="doc-biblioref">Bryan and Heister</a> (<a href="references.html#ref-bryan2021" role="doc-biblioref">2021</a>)</span>. If this doesn’t help, contact us.</li>
+<li><strong>R and RStudio</strong>: Last week, we showed you how to determine whether your <code>R</code> Version or your RStudio needs updating (see <a href="W01_04_preperations.html#w1-preperation">Exercise 1 / Preperation</a>). If your versions are up to date: Great! If not, update these before today’s session.</li>
+<li><strong>Git</strong>: If you had issues last week installing or configuring Git to work with RStudio, make sure you debug these problems now. Consult the <a href="https://happygitwithr.com/troubleshooting.html">chapter on troubleshooting</a> <span class="citation"><a href="references.html#ref-bryan2021" role="doc-biblioref">Bryan and Heister</a> (<a href="references.html#ref-bryan2021" role="doc-biblioref">2021</a>)</span>. If this doesn’t help, contact us.</li>
 </ul>
-</div>
-<div id="create-a-github-account" class="section level3">
-<h3>Create a Github account</h3>
+<div id="step-1-create-a-github-account" class="section level3">
+<h3>Step 1: Create a Github account</h3>
 <p><strong>Typically, you do this once (in a lifetime)</strong></p>
-<p>Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week you will use Github to sync your changes. To do this, create a Github account on <a href="https://github.com/">github.com</a> (it’s free of course). Use the email address that you <a href="W01_04_preperations.html#introduce-yourself-git">configured in git last week</a>. If you are not sure which mail you used, type <code>git config user.email</code> in the terminal[^terminal2].</p>
+<p>Last week, you worked with git on your local machine, with no way of synchronising your changes with a cloud server. This week you will use Github to sync your changes. To do this, create a Github account on <a href="https://github.com/">github.com</a> (it’s free of course). Use the email address that you <a href="W01_04_preperations.html#introduce-yourself-git">configured in git last week</a>. If you are not sure which mail you used, type <code>git config user.email</code> in the shell terminal.</p>
 <p>You don’t have to use the same <code>user.name</code> on Github as use configured in Git. When choosing a username on Github, consider the following advice:</p>
 <ul>
 <li>incorporating your actual name is nice, people like to know who they are dealing with</li>
@@ -215,50 +294,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>make it timeless (e.g. don’t incorporate your university’s name)</li>
 </ul>
 </div>
-<div id="authenticate-git-to-work-with-github" class="section level3">
-<h3>Authenticate Git to work with Github</h3>
+<div id="step-2-authenticate-git-to-work-with-github" class="section level3">
+<h3>Step 2: Authenticate Git to work with Github</h3>
 <p><strong>Typically, you do this once (per computer)</strong></p>
 <p>If we want to push changes from our local repository to our Github cloud repository, Github must verify your credentials. Other software might just ask for your username and password, it’s a little different with Git. Basically there are two ways to connect with your remote repo (<code>ssh</code> and <code>https</code>), we will use <code>https</code> in this course.</p>
-<p>Step 1: Create a personal access token (PAT) on Github</p>
+<p>First, create a personal access token (PAT) on Github</p>
 <ul>
-<li>Login into github.com, click on your user profile (top right) and click on “Settings” (<a href="https://github.com/settings">github.com/settings</a>)</li>
-<li>Choose “Personal access tokens” &gt; Generate new token</li>
+<li>Login into <a href="https://github.com/">github.com</a>, click on your user profile (top right) and click on “Settings”</li>
+<li>Choose <em>Personal access tokens &gt; Generate new token</em></li>
 <li>Add a descriptive note (e.g. <code>https access from my personal laptop</code>)</li>
 <li>Select scope “repo”</li>
 <li>Click on “Generate token”</li>
-<li>Copy your new personal access token (in the green box). <strong>You won’t be able to see it again!</strong></li>
-<li>Treat this PAT like a password: Store it in a secure place, like a password management app if you have one (which you should!). <em>Never publish this PAT publicly</em>.</li>
+<li>Copy your new personal access token (in the green box)
+<ul>
+<li>You won’t be able to see this token again</li>
+<li>If you loose it, you can simply create a new one</li>
+<li>If you want to store it, you neeed to treat this PAT like a password. Only store it in a secure place (like a password management app) and <em>never publish this PAT publicly</em></li>
+</ul></li>
 </ul>
-<p>Step 2: Store your PAT in you local Git</p>
+<p>Then, store your PAT in you local Git</p>
 <ul>
 <li>In R, install the <code>gitcreds</code> package (<code>install.packages("gitcreds")</code>)</li>
-<li>Call the function <code>gitcreds_set()</code> (<code>gitcreds::gitcreds_set()</code>)</li>
+<li>Load this library (<code>library(gitcreds)</code>)</li>
+<li>Call the function <code>gitcreds_set()</code></li>
 <li>Respond to the prompt with your PAT from the last step</li>
-<li>Check that you have stored a credential (<code>gitcreds::gitcreds_get()</code>)</li>
+<li>Check that you have stored a credential with <code>gitcreds_get()</code></li>
 </ul>
 </div>
-<div id="create-a-github-repo" class="section level3">
-<h3>Create a Git<strong>hub</strong> repo</h3>
+<div id="step-3-create-a-github-repo" class="section level3">
+<h3>Step 3: Create a Git<strong>hub</strong> repo</h3>
 <p><strong>Typically, you do this once per project</strong></p>
-<p>Now you can create a Repository on Github that you can afterwards connect to your RStudio project from week 1. This is something you have to do for every Git repo that you want to connect to Github. To do this go to <a href="https://github.com/new">github.com/new</a> and fill in the following information:</p>
+<p>Now you can create a Repository on Github that you can afterwards connect to your RStudio project from this week (which you will create in the next step). To do this, go to <a href="https://github.com">github.com</a> and click on the plus sign in the top right corner, then fill in the following information:</p>
 <ul>
 <li>Repository name: Give a meaningful name, e.g. <code>cma-week2</code></li>
 <li>Description: Give a meaningful description, e.g. <code>Solving exercise 2 of the course "Computational Movement Analysis</code></li>
 <li>Make the repo public, not private</li>
-<li>Check <code>Add a README file</code>
-<!-- - Make sure that `Add a README file`, `Add .gitignore ` and `Choose a license` are all *un*checked --></li>
+<li>Check <code>Add a README file</code></li>
 </ul>
-<p>Click on <code>Create repository</code>, then on the green button “Code.” Select HTTPS (it might already be selected) and then copy the URL by clicking on the clipboard symbol. The URL should look something list this <code>https://github.com/YOUR-GITHUB-USERNAME/cma-week2.git</code></p>
+<p>Click on <code>Create repository</code>, then on the green button “Code.” Select HTTPS (it might already be selected) and then copy the URL by clicking on the clipboard symbol. The URL should look something list this <code>https://github.com/YOUR-GITHUB-USERNAME/cma-week2.git</code>. Report this URL back to us via Moodle (under <em>L2 Data Issues &gt; R Exercises E2 &gt; Exercise 2 (Github URL)</em>)</p>
 </div>
 <div id="w2-project" class="section level3">
-<h3>Create a new RStudio Project</h3>
+<h3>Step 4: Create a new RStudio Project</h3>
 <p>You will now create a new RStudio Project for week 2. Unlike last week, we will create the project in such a way that it is immediately connected to our Git<em>hub</em> repo. In RStudio, start a new project. Choose: File &gt; New Project &gt; <strong>Version Control</strong> &gt; Git.</p>
 <ul>
 <li>In the repository URL, paste the URL you copied in the last step</li>
-<li>Change “Project directory name” to <code>week1-rexercise</code> (if you are following <a href="W01_04_preperations.html#folder-structure">the convention we proposed last week</a>)</li>
+<li>Change “Project directory name” to <code>week2-rexercise</code> (if you are following <a href="W01_04_preperations.html#folder-structure">the convention we proposed last week</a>)</li>
 <li>Change the parent directory (<code>Create project as a subdirectory of</code>) to your equivalent of <code>C:/Users/yourname/semester2/Modul_CMA/week2</code></li>
 </ul>
-<p>Click on “Create Project”</p>
+<p>Click on “Create Project.” You are now all set and can start with this week’s tasks!</p>
+<p><strong>PS</strong>: You just created an RStudio Project which is automatically connected to Github. You can also connect existing local Git repositories (e.g. from week 1) to Github. Contact us if you are interested in learning this!</p>
 <!-- ### Connect your local repo with the remote repository -->
 <!-- **Typically, you do this once per project** -->
 <!-- In RStudio, open the RStudio project from week 1. Open the terminal[^terminal2] and follow the instructions described in *…or push an existing repository from the command line* in the website you were just forwarded to on Github (under https://github.com/YOUR-GITHUB-USERNAME/cma-week1). These instructions should look something like this: -->
@@ -284,8 +368,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="W02_02_prerequisites.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="W02_04_demo_tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="W02_04b_demo_tidyverse_code.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="W02_05_tasks_and_inputs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -326,6 +410,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
