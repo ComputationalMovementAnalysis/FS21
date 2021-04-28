@@ -33,7 +33,7 @@ If we want to push changes from our local repository to our Github cloud reposit
 First, create a personal access token (PAT) on Github
 
 - Login into [github.com](https://github.com/), click on your user profile (top right) and click on "Settings" 
-- Choose *Personal access tokens > Generate new token*
+- Choose *Developer settings > Personal access tokens > Generate new token*
 - Add a descriptive note (e.g. `https access from my personal laptop`)
 - Select scope "repo"
 - Click on "Generate token"
