@@ -1,4 +1,4 @@
-## Preperation {#w1-preperation}
+## Preparation {#w1-preparation}
 
 Much of this chapter was taken from @bryan2021. If you want to dive deeper into using Git, we highly recommend this book. For an *even* deeper dive into Git, read @chacon2014. Both books are available free and open source on [happygitwithr.com](https://happygitwithr.com/) and [git-scm.com/book](https://git-scm.com/book/), respectively. 
 
