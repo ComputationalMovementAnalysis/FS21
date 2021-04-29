@@ -70,7 +70,9 @@ repourl_git <- paste0(repourl, ".git")
 - Make the repo public, not private
 - Check `Add a README file`
 
-Click on `Create repository`, then on the green button "Code". Select HTTPS (it might already be selected) and then copy the URL by clicking on the clipboard symbol. The URL should look something list this ``r repourl_git``. Report this URL back to us via Moodle (under *L2 Data Issues > R Exercises E2 > Exercise 2 (Github URL)*)
+Click on `Create repository`, then on the green button "Code". Select HTTPS (it might already be selected) and then copy the URL by clicking on the clipboard symbol. The URL should look something list this ``r repourl_git``. 
+
+**Report this URL back to us via Moodle** (under *L2 Data Issues > R Exercises E2 > Exercise 2 (Github URL)*)
 
 
 ### Step 4: Create a new RStudio Project {#w2-project}
