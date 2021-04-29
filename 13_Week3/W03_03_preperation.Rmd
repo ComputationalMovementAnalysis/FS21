@@ -5,7 +5,7 @@ Install the following libraries:
 
 ```{r, echo = T, include = T, eval = F}
 
-## Preperation #################################################################
+## Preparation #################################################################
 
 install.packages("SimilarityMeasures")
 

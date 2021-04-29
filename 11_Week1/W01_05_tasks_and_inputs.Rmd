@@ -8,7 +8,7 @@ output:
 
 Before starting with the task:
 
-1. make sure you have read and followed the instructions in section [Preperation](#w1-preparation)
+1. make sure you have read and followed the instructions in section [Preparation](#w1-preparation)
 2. In RStudio, open the RStudio Project you created for this week if you haven't done so already. You can see that you are in an RStudio Project if the project's name is visible next to the little RStudio logo in the top right corner of RStudio (otherwise it will read `Project: (None)`).
 3. Download the wildboar movement data here: `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click "Save target as..")
 

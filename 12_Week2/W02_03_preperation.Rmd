@@ -1,9 +1,9 @@
 ## Preparation
 
 
-These preperations for week 2 build up on week 1. Make sure your software is up to date: 
+These preparations for week 2 build up on week 1. Make sure your software is up to date: 
 
-- **R and RStudio**: Last week, we showed you how to determine whether your `R` Version or your RStudio needs updating (see [Exercise 1 / Preperation](#w1-preparation)). If your versions are up to date: Great! If not, update these before today's session.
+- **R and RStudio**: Last week, we showed you how to determine whether your `R` Version or your RStudio needs updating (see [Exercise 1 / Preparation](#w1-preparation)). If your versions are up to date: Great! If not, update these before today's session.
 - **Git**:  If you had issues last week installing or configuring Git to work with RStudio, make sure you debug these problems now. Consult the [chapter on troubleshooting](https://happygitwithr.com/troubleshooting.html) @bryan2021. If this doesn't help, contact us. 
 
 
