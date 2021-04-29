@@ -1,2 +1,5 @@
 fig:unnamed-chunk-15
-fig:unnamed-chunk-58
+fig:unnamed-chunk-56
+fig:laubeimg
+fig:unnamed-chunk-65
+fig:unnamed-chunk-68
