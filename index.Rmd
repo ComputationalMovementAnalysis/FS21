@@ -60,9 +60,9 @@ knitr::opts_chunk$set(collapse = TRUE, warning = FALSE,message = FALSE)
 
 knitr::opts_template$set(
   solution_showOutput = list(echo = FALSE),
-  solution_hideOutput = list(echo = FALSE, results = "hide", warning = FALSE, message = FALSE),
+  solution_hideOutput = list(echo = FALSE, include = FALSE),
   example_showOutput = list(echo = TRUE),
-  example_hideOutput = list(echo = TRUE, results = "hide", warning = FALSE, message = FALSE)
+  example_hideOutput = list(echo = TRUE, results = "hide")
   )
 
 ```
