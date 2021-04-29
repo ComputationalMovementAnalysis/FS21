@@ -62,14 +62,13 @@ Setting up a `ggplot` with our data is done using the command `ggplot(wildschwei
 <!-- Use `coord_map()` to get a reasonable aspect ratio of `Lat` and `Long`. -->
 Assigning every individual its own colour is done using the `ggplot` argument `colour =`.
 
-Save your code in the appropriate section.
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
 
 
 ```{r code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput", fig.cap="Your plot should look something like this."}
 ```
 
 
-Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
 
 
 ### Input: Handling spatial data
@@ -197,7 +196,7 @@ plot(mcp)
 But since we use `ggplot` extensively, try and plot the object `mcp` with `ggplot`. Hint: Use the layer `geom_sf()` to add an `sf` object.
 Note: `ggplot` refuses to use our specified CRS, so we need to force this by specifying `datum = ` in `coord_sf()`. Try it out.
 
-```{r, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
