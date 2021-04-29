@@ -335,7 +335,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?</p>
 <p>After completing the task, commit your changes to git using a good commit message (e.g. <code>completed task 1</code>).</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-54-1.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-54-2.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-54-3.png" width="672" /></p>
 </div>
 <div id="w2-task2" class="section level3">
 <h3>Task 2: Deriving movement parameters I: Speed</h3>
@@ -362,7 +361,6 @@ Figure 2: Black points are used in calculation of movement parameters (e.g. spe
 <p>Download this dataset here: <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/caro60.csv">caro60.csv</a> (right click: save target as..). Import it just like you imported the other wild boar data and save it to a new variable named <code>caro</code> (note that the locations are stored in EPSG 2056).</p>
 <p>Now manually reduce the granularity of our sampling interval by selecting every 3<sup>rd</sup>, 6<sup>th</sup> and 9<sup>th</sup> position and save the output to <code>caro_3</code>, <code>caro_6</code>,<code>caro_9</code> accordingly.</p>
 <p>Tip: There are many ways to go about this, we recommend using <code>seq()</code> where <code>from = 1</code>, <code>to =</code> the length of the dataset and <code>by = n</code> (i.e. <code>3</code>, <code>6</code> or <code>9</code>). This creates an integer vector that can either used in <code>dplyr::slice()</code> or in row subsetting (type <code>?slice()</code> or <code>?"[.data.frame"</code> to get help on either of these methods).</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-57-1.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-57-2.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-57-3.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-57-4.png" width="672" /></p>
 <p>You should now have 4 datasets with different number of rows:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="W02_05_tasks_and_inputs.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro)</span>
 <span id="cb43-2"><a href="W02_05_tasks_and_inputs.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 200</span></span>
@@ -404,7 +402,6 @@ Figure 2: Black points are used in calculation of movement parameters (e.g. spe
 <span id="cb45-9"><a href="W02_05_tasks_and_inputs.html#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.4102301         NA         NA         NA</span></span></code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>caro</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).
 After completing the task, commit your changes to git using a good commit message. <strong>Additionally</strong>, push all your commits to your remote repository on Github by clicking the green upwards pointing arrow in the Git pane in RStudio.</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <!-- ### Task 5 (optional): Calculate turning angles -->
 <!-- Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2! -->
 <!-- ```{r, code =  mydecrypt("12_Week2/solutions/task_5.R",".passphrase"), opts.label="solution_hideOutput"} -->

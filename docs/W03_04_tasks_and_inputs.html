@@ -370,7 +370,6 @@ Figure 5: The trajectory of sabi, reduced to the positions where the animal was 
 <h3>Task 2: Specify and apply threshold <em>d</em></h3>
 <p>After calculating the Euclidean distances to positions within the temporal window <em>v</em> in task 1, you can explore these values (we stored them in the column <code>stepMean</code>) using summary statistics (histograms, boxplot, <code>summary()</code>): This way we can define a reasonable threshold value to differentiate between <em>stops</em> and <em>moves</em>. There is no “correct” way of doing this, specifying a threshold always depends on data as well as the question that needs to be answered. In this exercise, use the mean of all <code>stepMean</code> values.</p>
 <p>Store the new information (boolean to differentiate between stops (<code>TRUE</code>) and moves (<code>FALSE</code>)) in a new column named <code>static</code>.</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 </div>
 <div id="task-3-visualize-segmented-trajectories" class="section level3">
 <h3>Task 3: Visualize segmented trajectories</h3>
