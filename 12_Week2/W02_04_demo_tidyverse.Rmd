@@ -10,7 +10,7 @@ Assume we want to calculate the timelag between subsequent positions. To achieve
 `difftime` takes two `POSIXct` values.
 
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 now <- Sys.time()
 
 later <- now + 10000
@@ -19,29 +19,29 @@ time_difference <- difftime(later,now)
 ```
 
 
-```{r}
+```{r, opts.label="example_showOutput"}
 time_difference
 ```
 
 You can also specify the unit of the output.
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 time_difference <- difftime(later,now,units = "mins")
 ```
 
-```{r}
+```{r, opts.label="example_showOutput"}
 time_difference
 ```
 
 
 `difftime` returns an object of the Class `difftime`. However in our case, numeric values would be more handy than the Class `difftime`. So we'll wrap the command in `as.numeric()`:
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 str(time_difference)
 ```
 
 
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 time_difference <- as.numeric(difftime(later,now,units = "mins"))
 
 str(time_difference)
@@ -53,7 +53,7 @@ str(time_difference)
 
 `lead()` and `lag()` return a vector of the same length as the input, just offset by a specific number of values (default is 1). Consider the following sequence:
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 numbers <- 1:10
 
 numbers
@@ -61,7 +61,7 @@ numbers
 
 We can now run `lead()` and `lag()` on this sequence to illustrate the output. `n =` specifies the offset, `default =` specifies the default value used to "fill" the emerging "empty spaces" of the vector. This helps us performing operations on subsequent values in a vector (or rows in a table).
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 
 library(dplyr)
 
@@ -83,7 +83,7 @@ lag(numbers,n = 5, default = 0)
 
 Using the above functions (`difftime()` and `lead()`), we can calculate the time lag, that is, the time difference between consecutive positions. We will try this on a dummy version of our wildboar dataset.
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 wildschwein <- tibble(
   TierID = c(rep("Hans",5),rep("Klara",5)),
   DatetimeUTC = rep(as.POSIXct("2015-01-01 00:00:00",tz = "UTC")+0:4*15*60, 2)
@@ -95,14 +95,14 @@ wildschwein
 
 To calculate the `timelag` with base-R, we need to mention `wildschwein` three times 
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 wildschwein$timelag  <- as.numeric(difftime(lead(wildschwein$DatetimeUTC), wildschwein$DatetimeUTC))
 
 ```
 
 Using `mutate()` we can simplify this operation slightly:
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 wildschwein <- mutate(wildschwein,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC)))
 
 wildschwein
@@ -114,13 +114,13 @@ wildschwein
 You might have noticed that `timelag` is calculated across different individuals (`Hans` and `Klara`), which does not make much sense. 
 To avoid this, we need to specify that `timelag` should just be calculated between consecutive rows *of the same individual*. We can implement this by using `group_by()`. 
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 wildschwein <- group_by(wildschwein,TierID)
 ```
 
 After adding this grouping variable, calculating the `timelag` automatically accounts for the individual trajectories.
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 wildschwein <- mutate(wildschwein,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC)))
 
 
@@ -134,7 +134,7 @@ wildschwein
 
 If we want to summarise our data and get metrics *per animal*, we can use the `dplyr` function `summarise()`. In contrast to `mutate()`, which just adds a new column to the dataset, `summarise()` "collapses" the data to one row per individual (specified by `group_by`).
 
-```{r,, echo = T, eval = F, include= T}
+```{r, opts.label="example_showOutput"}
 summarise(wildschwein, mean = mean(timelag, na.rm = T))
 ```
 
@@ -144,7 +144,7 @@ Note: You can do `mutate()` and `summarise()` on `sf` objects as well. However, 
 
 The code above may be a bit hard to read, since it has so many nested functions which need to be read from the inside out. In order to make code readable in a more human-friendly way, we can use the piping command `%>%` from `magrittr`, which is included in `dplyr` and the `tidyverse`. The above code then looks like this:
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 
 wildschwein %>%                           # Take wildschwein...
   group_by(TierID) %>%                    # ...group it by TierID
@@ -158,7 +158,7 @@ wildschwein %>%                           # Take wildschwein...
 
 Here is the same approach with a different dataset:
 
-```{r, echo = T, include = T, eval = T}
+```{r, opts.label="example_showOutput"}
 pigs <- tibble(
   TierID = c(8001,8003,8004,8005,8800,8820,3000,3001,3002,3003,8330,7222),
   sex = c("M","M","M","F","M","M","F","F","M","F","M","F"),
