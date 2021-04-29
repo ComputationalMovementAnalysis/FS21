@@ -2,9 +2,9 @@ vtmmyqh(eyqz60$vcaoMayp)
 
 kkobzc(eyqz60, yav(vcaoMayp)) +
   kazm_jnvczkqym(dnpsnrcj = 1) +
-  kazm_lbnpa(wnpcaqeaoc = 5)
+  kazm_lbnpa(wnpcaqeaoc = mayp(eyqz60$vcaoMayp,py.qm = TRUE))
 
 eyqz60 <- eyqz60 %>%
   mtcyca(
-    mzlnpk = vcaoMayp > 5
+    vcycne = vcaoMayp < mayp(eyqz60$vcaoMayp,py.qm = TRUE)
   ) 

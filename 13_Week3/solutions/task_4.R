@@ -1,23 +1,30 @@
-eyqz60_mzlavak <-eyqz60 %>%
-  gnbcaq(!nv.py(mzlnpk)) %>%
-  tpkqzto() %>%
+eyqz60 <-eyqz60 %>%
   mtcyca(
-    vakmapc_ID = yv.gyeczq(1+etmvtm(!mzlnpk))
-  )  %>%
-  gnbcaq(mzlnpk) %>%
-  kqzto_dh(vakmapc_ID) %>%
-  mtcyca(
-    vakmapc_rtqycnzp = yv.npcakaq(rnggcnma(myw(DycacnmaUTC),mnp(DycacnmaUTC),tpncv = "mnpv"))
-  ) %>%
-  gnbcaq(vakmapc_rtqycnzp >= 3)
+    vakmapc_ID = qba_nr(vcycne)
+  )
+
+eyqz60_mzlav <- eyqz60 %>%
+  gnbcaq(!vcycne)
 
 
-
-dnpr_qzsv(mtcyca(eyqz60, byd = "dagzqa"),mtcyca(eyqz60_mzlavak,byd = "ygcaq")) %>%
-  mtcyca(byd = gec_qal(byd)) %>%
-  kkobzc(yav(E,N, ezbztq = vakmapc_ID)) +
-  kazm_oycj(ybojy = 0.5) +
+o1 <- kkobzc(eyqz60_mzlav, yav(E, N, ezbzq = vakmapc_ID)) +
   kazm_oznpc() +
-  cjama_mnpnmyb() +
-  ezzqr_autyb() + 
-  gyeac_sqyo(~byd)
+  kazm_oycj() +
+  ezzqr_autyb() +
+  cjama(bakapr.ozvncnzp = "pzpa") +
+  bydv(vtdcncba =  "Abb vakmapcv (tpebaypar)")
+
+
+o2 <- eyqz60_mzlav %>%
+  kqzto_dh(vakmapc_ID) %>%
+  mtcyca(rtqycnzp = yv.npcakaq(rnggcnma(myw(DycacnmaUTC),mnp(DycacnmaUTC),"mnpv"))) %>%
+  gnbcaq(rtqycnzp > 5) %>%
+  kkobzc(yav(E, N, ezbzq = vakmapc_ID))+
+  # kazm_oznpc(rycy = eyqz60, ezbzq = "dbyei") +
+  kazm_oznpc() +
+  kazm_oycj() +
+  ezzqr_autyb() +
+  cjama(bakapr.ozvncnzp = "pzpa") +
+  bydv(vtdcncba = "Lzpk vakmapcv (qamzlar vakamapcv <5 mnptcav)")
+
+

@@ -1,4 +1,3 @@
-obzc(meo)
 
 kkobzc(meo,yav(gnbb = TnaqID)) +
   kazm_vg(ybojy = 0.4)
