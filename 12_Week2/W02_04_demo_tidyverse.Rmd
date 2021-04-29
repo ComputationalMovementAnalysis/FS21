@@ -59,7 +59,7 @@ numbers <- 1:10
 numbers
 ```
 
-We can now run `lead()` and `lag()` on this sequence to illustrate the output. `n =` specifies the offset, `default =` specifies the default value used to "fill" the emerging "empty spaces" of the vector.
+We can now run `lead()` and `lag()` on this sequence to illustrate the output. `n =` specifies the offset, `default =` specifies the default value used to "fill" the emerging "empty spaces" of the vector. This helps us performing operations on subsequent values in a vector (or rows in a table).
 
 ```{r, echo = T, include = T, eval = T}
 
@@ -76,33 +76,34 @@ lag(numbers,n = 5)
 lag(numbers,n = 5, default = 0)
 ```
 
-This helps us performing operations on subsequent values in a vector (or rows in a table). You can think of this a little bit like a moving temporal window that moves along the trajectory, or down the rows of a table respectively.
 
-```{r}
-lead(numbers)-numbers
-```
 
 
 ### `mutate()`
 
-Using the above functions (`difftime()` and `lead()`), we can calculate the time lag, that is, the time difference between subsequent positions. We will try this on a dummy version of our wildboar dataset.
+Using the above functions (`difftime()` and `lead()`), we can calculate the time lag, that is, the time difference between consecutive positions. We will try this on a dummy version of our wildboar dataset.
 
 ```{r, echo = T, include = T, eval = T}
-
 wildschwein <- tibble(
   TierID = c(rep("Hans",5),rep("Klara",5)),
   DatetimeUTC = rep(as.POSIXct("2015-01-01 00:00:00",tz = "UTC")+0:4*15*60, 2)
   )
 
+wildschwein
+```
 
-wildschwein$timelag  <- as.numeric(difftime(lead(wildschwein$DatetimeUTC), wildschwein$DatetimeUTC, units = "mins"))
+
+To calculate the `timelag` with base-R, we need to mention `wildschwein` three times 
+
+```{r, echo = T, include = T, eval = T}
+wildschwein$timelag  <- as.numeric(difftime(lead(wildschwein$DatetimeUTC), wildschwein$DatetimeUTC))
 
 ```
 
-We mention `wildschwein_BE` three times in this operation, which is complicated. Instead, we can use `mutate()` to simplify the syntax:
+Using `mutate()` we can simplify this operation slightly:
 
 ```{r, echo = T, include = T, eval = T}
-wildschwein <- mutate(wildschwein,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "mins")))
+wildschwein <- mutate(wildschwein,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC)))
 
 wildschwein
 ```
@@ -110,8 +111,8 @@ wildschwein
 
 ### `group_by()`
 
-You might have noticed that `timelag` is calculated across different individuals (`Hans` and `Klara`), which does not make much sence. 
-The reason for this result is that we did not consider that `timelag` should just be calculated between subsequent rows *of the same individual*. We can implement this by using `group_by()` (just as if calculating the convex hull last week). 
+You might have noticed that `timelag` is calculated across different individuals (`Hans` and `Klara`), which does not make much sense. 
+To avoid this, we need to specify that `timelag` should just be calculated between consecutive rows *of the same individual*. We can implement this by using `group_by()`. 
 
 ```{r, echo = T, include = T, eval = T}
 wildschwein <- group_by(wildschwein,TierID)
@@ -120,7 +121,7 @@ wildschwein <- group_by(wildschwein,TierID)
 After adding this grouping variable, calculating the `timelag` automatically accounts for the individual trajectories.
 
 ```{r, echo = T, include = T, eval = T}
-wildschwein <- mutate(wildschwein,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "mins")))
+wildschwein <- mutate(wildschwein,timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC)))
 
 
 
@@ -137,17 +138,18 @@ If we want to summarise our data and get metrics *per animal*, we can use the `d
 summarise(wildschwein, mean = mean(timelag, na.rm = T))
 ```
 
-### Piping 
+Note: You can do `mutate()` and `summarise()` on `sf` objects as well. However, `summarise()` tries to coerce all geometries into one object, which can take along time. To avoid this, use `st_drop_geometry()` before using `summarise()`. 
 
+### Piping 
 
 The code above may be a bit hard to read, since it has so many nested functions which need to be read from the inside out. In order to make code readable in a more human-friendly way, we can use the piping command `%>%` from `magrittr`, which is included in `dplyr` and the `tidyverse`. The above code then looks like this:
 
 ```{r, echo = T, include = T, eval = T}
 
-wildschwein %>%                     # Take wildschwein_BE...
-  group_by(TierID) %>%                 # ...group it by TierID
-  summarise(                           # Summarise the data...
-    mean_timelag = mean(timelag,na.rm = T) # ...by calculating the mean timelag
+wildschwein %>%                           # Take wildschwein...
+  group_by(TierID) %>%                    # ...group it by TierID
+  summarise(                              # Summarise the data...
+    mean_timelag = mean(timelag,na.rm = T)# ...by calculating the mean timelag
   )
 ```
 
@@ -157,11 +159,11 @@ wildschwein %>%                     # Take wildschwein_BE...
 Here is the same approach with a different dataset:
 
 ```{r, echo = T, include = T, eval = T}
-pigs = data.frame(
-  TierID=c(8001,8003,8004,8005,8800,8820,3000,3001,3002,3003,8330,7222),
-  sex=c("M","M","M","F","M","M","F","F","M","F","M","F"),
-  age=c("A","A","J","A","J","J","J","A","J","J","A","A"),
-  weight=c(50.755,43.409,12.000,16.787,20.987,25.765,22.0122,21.343,12.532,54.32,11.027,88.08)
+pigs <- tibble(
+  TierID = c(8001,8003,8004,8005,8800,8820,3000,3001,3002,3003,8330,7222),
+  sex = c("M","M","M","F","M","M","F","F","M","F","M","F"),
+  age= c ("A","A","J","A","J","J","J","A","J","J","A","A"),
+  weight = c(50.755,43.409,12.000,16.787,20.987,25.765,22.0122,21.343,12.532,54.32,11.027,88.08)
 )
 
 pigs
