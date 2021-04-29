@@ -105,60 +105,6 @@ ggplot(sabi, aes(E, N))  +
 
 
 
-#### Unique IDs *per segment*
-
-When segmenting trajectories, we often want to compute metrics on the basis of *each segment*. Within the tidyverse logic, we need a unique ID per segment that we can pass to `group_by()`. In other words, we need a unique ID for a sequence of successive `TRUE` values. For lack of a better way, we suggest solving this problem with `cumsum()`.
-
-`cumsum()` returns the cummulative sum of a given vector:
-```{r, opts.label="example_showOutput"}
-one_to_ten <- 1:10
-one_to_ten
-cumsum(one_to_ten)
-```
-
-In R, `TRUE`and `FALSE` are interprated as `1` and `0` if coerced to an integer. 
-```{r, opts.label="example_showOutput"}
-as.integer(TRUE)
-as.integer(FALSE)
-
-TRUE+TRUE
-```
-
-Therefore, `cumsum()` on a boolean vector increases the count on each `TRUE` value:
-
-```{r, opts.label="example_showOutput"}
-
-boolvec <- c(FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,TRUE)
-
-df_cumsum <- tibble(boolvec = boolvec,cumsum = cumsum(boolvec))
-
-df_cumsum
-```
-
-You might have noticed that this is pretty much exactly the opposite of what we need. We therefore have to take the inverse of the boolean vector:
-
-```{r, opts.label="example_showOutput"}
-
-df_cumsum %>%
-  mutate(
-    boolvec_inverse = !boolvec,
-    cumsum2 = cumsum(boolvec_inverse)
-  )
-
-```
-
-
-To simplify our workflow, we can we can take the inverse of `boolvec` *within* our `cumsum()` statement and save an extra line of code.
-
-
-```{r, opts.label="example_showOutput"}
-df_cumsum %>%
-  mutate(
-    cumsum2 = cumsum(!boolvec)
-  )
-  
-```
-
 
 
 ### Task 1: Segmentation
