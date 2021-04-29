@@ -95,7 +95,7 @@ sabi
 
 We can now determine if an animal is moving or not by specifying a threshold distance on `stepMean`. In our example, we use the mean value as a threshold: Positions with distances below this value are considered static.
 
-```{r, opts.label="example_showOutput", fig.cap = "The trajectory of sabi, subet to the positions where the animal was not static"}
+```{r, opts.label="example_showOutput", fig.cap = "The trajectory of sabi, reduced to the positions where the animal was not static"}
 sabi <- sabi %>% 
   ungroup() %>%
   mutate(static = stepMean < mean(stepMean, na.rm = TRUE))
@@ -104,8 +104,7 @@ sabi <- sabi %>%
 sabi_filter <- sabi %>%
   filter(!static)
 
-sabi_filter%>%
-  ggplot(aes(E, N))  +
+ggplot(sabi_filter, aes(E, N))  +
   geom_path() +
   geom_point() +
   coord_fixed() +
