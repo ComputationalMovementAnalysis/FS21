@@ -32,7 +32,7 @@ sabi <- wildschwein %>%
 #   geom_point() +
 #   theme(panel.background = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(), axis.title.y = element_blank())
 
-ggplot(sabi, aes(N, E, color = DatetimeUTC))  +
+ggplot(sabi, aes(E, N, color = DatetimeUTC))  +
   geom_point() +
   geom_path() +
   coord_fixed() +
@@ -40,7 +40,7 @@ ggplot(sabi, aes(N, E, color = DatetimeUTC))  +
   guides(color = guide_colorbar(title.position = 'top', title.hjust = .5,
 barwidth = unit(30, 'lines'), barheight = unit(.5, 'lines'))) +
   theme(legend.position = "bottom") +
-  geom_point(x = 1205120, y = 2570470, size = 20, pch = 21, color = "black", stroke = 4)
+  geom_point(y = 1205120, x = 2570470, size = 20, pch = 21, color = "black", stroke = 4)
 
 ```
 
@@ -49,7 +49,7 @@ barwidth = unit(30, 'lines'), barheight = unit(.5, 'lines'))) +
 
 #### Segmenting
 
-The first step is calculating the distances to temporally close samples within the temporal window *v*. In the above dataset, the sampling interval is 15 minutes. If we take a temporal window of 60 minutes, that would mean including 5 fixes. We need to calculate the following Euclidean distances (pos representing single location):
+The first step is calculating the distances to temporally close samples within the temporal window *v*. In the above dataset, the sampling interval is 15 minutes. If we take a temporal window of 60 minutes, that would mean including 4 fixes. We need to calculate the following Euclidean distances (pos representing single location):
 
 1. `pos[n-2`] to `pos[n]`
 2. `pos[n-1]` to `pos[n]`
@@ -71,33 +71,36 @@ sabi <- sabi %>%
 
 ```
 
-Now we want to calculate the mean distance of `nMinus2`, `nMinus1`, `nPlus1`, `nPlus2` for each row. Since we want the mean value *per Row*, we have to explicitly specify this before `mutate()` with the function `rowwise()`. Note the new grouping variable `Rowwise:` when printing the dataframe to the console. Also note that for the first two positions, we cannot calculate a stepMean since there is no Position `n-2` for these positions. This is also true for the last to positions (lacking a position `n+2`).
+Now we want to calculate the mean distance of `nMinus2`, `nMinus1`, `nPlus1`, `nPlus2` for each row. Since we want the mean value *per Row*, we have to explicitly specify this before `mutate()` with the function `rowwise()`. To remove this rowwise-grouping, we end the operation with `ungroup()`. 
+
+Note that for the first two positions, we cannot calculate a `stepMean` since there is no Position `n-2` for these positions. This is also true for the last to positions (lacking a position `n+2`).
 
 ```{r, opts.label="example_showOutput"}
 sabi <- sabi %>%
   rowwise() %>%
   mutate(
     stepMean = mean(c(nMinus2, nMinus1,nPlus1,nPlus2))
-  )
+  ) %>%
+  ungroup() 
 
 sabi
 ```
 
-We can now determine if an animal is moving or not by specifying a threshold on `stepMean`
+We can now determine if an animal is moving or not by specifying a threshold distance on `stepMean`. In our example, we use the mean value as a threshold: Positions with distances below this value are considered static.
 
 ```{r, opts.label="example_showOutput"}
 
-df <- df %>% 
-  mutate(
-    moving = stepMean>1.5
-    )
+sabi <- sabi %>% 
+  ungroup() %>%
+  mutate(static = stepMean < mean(stepMean, na.rm = TRUE))
 
-df
 
-ggplot(df, aes(X,Y)) +
-  geom_path() + 
-  geom_point(aes(colour = moving)) +
-  coord_equal()
+ggplot(sabi, aes(E, N))  +
+  geom_path() +
+  geom_point(aes(color = static)) +
+  coord_fixed() +
+  theme(legend.position = "bottom") +
+  geom_point(y = 1205120, x = 2570470, size = 20, pch = 21, color = "black", stroke = 4)
 ```
 
 
@@ -142,7 +145,6 @@ df_cumsum %>%
     cumsum2 = cumsum(boolvec_inverse)
   )
 
-
 ```
 
 
@@ -161,9 +163,10 @@ df_cumsum %>%
 
 ### Task 1: Segmentation
 
-With the skills from the input above we can now implement the segmentation algorithm described in @laube2011. The described method depends on a regular sampling interval. Therefore, take the dataset "caro60.csv" from task 3 of last week (available on moodle). Import it as a dataframe, we don't need an `sf`-object to for today's tasks.
+With the skills from the input above you can now implement the segmentation algorithm described in @laube2011 on the dataset `r download_url("caro60.csv","00_Rawdata")`. Download this dataset (rightclick > save target as...) and import it as a simple `data.frame` or `tibble` (you dont need an `sf`-object for todays task).
 
-Next, we have to have to define our *temporal window v* [@laube2011]. To keep things simple, I would suggest a window of n +/- 2 minutes. With a sampling interval of around 1 minute, this corresponds to a window size of n +/- 2 positions.
+The sampling interval for this dataset is 1 minute. Use a temporal window $v$ of 6 minutes, i.e. a window size of 7 positions (`n±3`)
+
 
 ```{r, code =  mydecrypt("13_Week3/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
@@ -173,9 +176,9 @@ Next, we have to have to define our *temporal window v* [@laube2011]. To keep th
 ### Task 2: Specify and apply threshold *d*
 
 
-After calculating the Euclidean distances to positions within the temporal window *v* in task 1, you can explore these values (we stored them in the column `stepMean`) using summary statistics (histograms, boxplot, `summary()`): This way we can define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on data as well as the question that needs to be answered. In this exercise, find a threshold that matches your intuition. 
+After calculating the Euclidean distances to positions within the temporal window *v* in task 1, you can explore these values (we stored them in the column `stepMean`) using summary statistics (histograms, boxplot, `summary()`): This way we can define a reasonable threshold value to differentiate between "stops" and "moves". There is no "correct" way of doing this, specifying a threshold always depends on data as well as the question that needs to be answered. In this exercise, use the mean of all `stepMean` values.
 
-Store the new information (boolean to differentiate between stops (`TRUE`) and moves (`FALSE`)) in a new column named `moving`.
+Store the new information (boolean to differentiate between stops (`TRUE`) and moves (`FALSE`)) in a new column named `static`.
 
 ```{r, code =  mydecrypt("13_Week3/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput"}
 ```
@@ -183,19 +186,10 @@ Store the new information (boolean to differentiate between stops (`TRUE`) and m
 
 ### Task 3: Visualize segmented trajectories
 
-Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with `geom_path()`, `geom_point()` and `coord_equal()`. Assign `colour = moving` within `aes()` to distinguish between segments *with* "movement" and *without*.
+Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with `geom_path()`, `geom_point()` and `coord_equal()`. Assign `colour = static` within `aes()` to distinguish between segments *with* "movement" and *without*.
 
 ```{r, code =  mydecrypt("13_Week3/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
 ```
-
-
-Tip: if you want to get a `ggplot()` with Zoom capability, just load the library `plotly` and wrap the `ggplot()` function with `ggplotly()`
-
-
-```{r, echo = F, include=T, eval = knitr::is_latex_output(), results = "asis", purl = F}
-pander::pandoc.image("02_Images/w03_ex3_p1.jpg","This is the same plot as above, wrapped in the function `ggplotly()` from the library `plotly`. With this function, the plot becomes interactive. However, the interactive map/plot is only available in the online version of this document.")
-```
-
 
 
 ### Task 4: Segment-based analysis
