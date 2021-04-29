@@ -1,4 +1,4 @@
-## Preperation
+## Preparation
 
 Install the following libraries:
 
