@@ -15,15 +15,16 @@
 
 ### Task 0: Import your data
 
-Create a new R- (or RMarkdown-) file and begin with the following lines of code (adjust the path to your csv file accordingly). Note: 
-
-- that this dataset is already converted to EPSG 2056
-- the coordinates are stored in the columns (`E`/`N`)
-- setting `remove =  FALSE` preserves the original (`E`/`N`) columns, which come in handy later on
+Create a new R- (or RMarkdown-) file and begin with the following lines of code (adjust the path to your csv file accordingly).
 
 ```{r, code =  mydecrypt("12_Week2/solutions/task_0.R",".passphrase"),  opts.label="example_hideOutput"}
 ```
 
+Note: 
+
+- that this dataset is already converted to EPSG 2056
+- the coordinates are stored in the columns (`E`/`N`)
+- setting `remove =  FALSE` preserves the original (`E`/`N`) columns, which come in handy later on
 
 ### Task 1: Getting an overview
 
@@ -85,7 +86,7 @@ Download this dataset here: `r download_url("caro60.csv","00_Rawdata")` (right c
 
 Now manually reduce the granularity of our sampling interval by selecting every 3^rd^, 6^th^ and 9^th^ position and save the output to `caro_3`, `caro_6`,`caro_9` accordingly.
 
-Tip: There are many ways to go about this, we recommend using `seq()` where `from = 1`, `to = ` the length of the dataset and `by = n` (i.e. `3`, `6` or `9`). This creates an integer vector that can either used in `dplyr::slice()` or in row subsetting (see `slice()` or `?"[.data.frame"`). 
+Tip: There are many ways to go about this, we recommend using `seq()` where `from = 1`, `to = ` the length of the dataset and `by = n` (i.e. `3`, `6` or `9`). This creates an integer vector that can either used in `dplyr::slice()` or in row subsetting (type `?slice()` or `?"[.data.frame"` to get help on either of these methods). 
 
 ```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
