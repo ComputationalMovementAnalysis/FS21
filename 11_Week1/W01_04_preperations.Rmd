@@ -55,7 +55,9 @@ install.packages("terra")
 
 ### Install Git{#install-git}
 
-Next, install Git. If you are not sure whether you already have Git installed or not, you can verify this by typing `git --version` in the terminal[^terminal]. If this command returns a version number you have Git installed already and might only need to update it. If this command returns `git: command not found` (or something similar), you will need to install Git first.
+Next, install Git. There are different Git installers to choose from, we recommend the following:
+
+<!-- If you are not sure whether you already have Git installed or not, you can verify this by typing `git --version` in the terminal. If this command returns a version number you have Git installed already and might only need to update it. If this command returns `git: command not found` (or something similar), you will need to install Git first. -->
 
 
 - **Windows**: 
@@ -77,18 +79,20 @@ Next, install Git. If you are not sure whether you already have Git installed or
 Now we will set some RStudio Global options. But first, **close all instances of RStudio and restart it (!!!)**. Then go to Tools > Global options. 
 
 - **R General**
-  - Deactivate the option "Restore .RData into workspace at startup"
-  - Set "Save workspace to .RData on exit " to "Never"
+  - Deactivate the option "Restore .RData into workspace at startup"[^restore]
+  - Set "Save workspace to .RData on exit " to "Never"[^saveworkspace]
 - **Git / SVN**
   - Activate the option "Enable version control interface for RStudio projects"
   - If the Field "Git executable:" shows `(Not Found)`, browse to your git installation (previous step). This path should look something like this:
-    - Windows: `C:/Program Files/Git/bin/git.exe` (**not** `C:/Program Files/Git/cmd/git.exe` or `git-bash.exe`)
+    - Windows: `C:/Program Files/Git/bin/git.exe` (**not** `C:/Program Files/Git/cmd/git.exe` or `some-path/git-bash.exe`)
     - Linux / macOS: `/usr/bin/git`
 - **Terminal**
   - Set option "New terminals open with" to "Git Bash" 
   
 Click on "Ok" to apply the change and close the options menu.
 
+[^restore]: We recommend that you start each RStudio session with a blank slate, as recommended by @wickham2017 see [here](https://r4ds.had.co.nz/workflow-projects.html)
+[^saveworkspace]: If we don't restore the workspace at startup, there is no need to save it on exit.
 
 
 
