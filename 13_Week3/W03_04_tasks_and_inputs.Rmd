@@ -2,7 +2,10 @@
 
 You've read @laube2011 about segmenting trajectories. In the paper, the authors define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d*", as illustrated in the following figure:
 
-![](02_Images/laube_2011.jpg)
+
+```{r laubeimg, fig.cap="Laup"}
+knitr::include_graphics("02_Images/laube_2011.jpg")
+```
 
 The above image from @laube2011 visualizes the following steps:
 
@@ -140,11 +143,30 @@ Now visualize the segmented trajectory spatially. Just like last week, you can u
 
 ### Task 4: Segment-based analysis
 
-In applying @laube2011, we've come as far as steps (b)/(c) in [Figure 1](02_Images/laube_2011.jpg). In order to complete step (d) (*Removal of subtrajectories with less than a threshold temporal length*), we have to calculate each segment's temporal duration. 
+In applying @laube2011, we've come as far as steps (b)/(c) in \@ref(fig:laubeimg). In order to complete the last steps (c / d), we need a *unique* ID for each segment that we can use as a grouping variable. The following function does just that (it assigns unique IDs based on the column `static` which you created in Task 2). You will learn about functions next week. For now, just copy the following code chunk into your script and run it.
 
-In order to do this, we need a *unique* name for each segment that we can use as a grouping variable. This is where the `cumsum()` approach which we introduced in the input comes useful. Complete the following steps:
 
-1. Filter the data by removing all rows where `moving` equals to `NA` (typically these are the the first and last 2 rows). 
+```{r}
+rle_id <- function(vec){
+  x <- rle(vec)$lengths
+  as.factor(rep(seq_along(x), times=x))
+  }
+```
+
+
+You can use the newly created function `rle_id` to assign unique IDs to subtrajectories (as shown below). Visualize the *moving* segments by colourizing them by `segment_ID`. 
+
+Now use `segment_ID` as a grouping variable to determine the segments duration and remove short segments (e.g. segments with a duration < 10 Minutes) 
+
+```{r}
+caro60 <- caro60 %>%
+  mutate(segment_id = rle_id(static))
+
+caro60
+```
+
+
+1. Filter the data by removing all rows where `moving` equals to `NA` (typically these are the the first and last n rows). 
 2. Get a unique ID per segment and using the `cumsum()` approach we introduced in the input. Store this ID in a new column `segment_ID`
 3. Filter the data to remove all rows where the animal is not moving 
 4. Group by the column `segment_ID` to calculate the temporal length of each segment with `mutate()`.
@@ -152,9 +174,14 @@ In order to do this, we need a *unique* name for each segment that we can use as
 6. inspect your data visually
 
 
-```{r, code =  mydecrypt("13_Week3/solutions/task_4.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("13_Week3/solutions/task_4.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
+
+```{r, opts.label="solution_showOutput"}
+library(patchwork)
+p1 + p2 + patchwork::plot_annotation(title = "Moving segments coloured by segment ID")
+```
 
 ### Task 5: Similarity measures 
 
