@@ -47,7 +47,7 @@ Here are some exemplary visualisation you could produce to answer these question
 After completing the task, commit your changes to git using a good commit message (e.g. `completed task 1`).
 
 
-```{r, code =  mydecrypt("12_Week2/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("12_Week2/solutions/task_1.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
