@@ -92,7 +92,7 @@ You will now create a new RStudio Project for week 2. Unlike last week, we will 
 Click on "Create Project". You are now all set and can start with this week's tasks!
 
 
-**PS**: You just created an RStudio Project which is automatically connected to Github. You can also connect existing local Git repositories (e.g. from week 1) to Github. Contact us if you are interested in learning this!
+**PS**: You just created an RStudio Project which is automatically connected to Github. You can also connect existing local Git repositories (e.g. from week 1) to Github. You have the chance to learn this in [Week 3](#w3-preparation).
 
 
 
