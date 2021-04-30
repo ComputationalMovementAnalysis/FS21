@@ -1,21 +1,5 @@
 ## Preparation
 
-Install the following libraries:
-
-
-```{r, echo = T, include = T, eval = F}
-
-## Preparation #################################################################
-
-install.packages("SimilarityMeasures")
-
-# The following packages are for optional tasks:
-install.packages("plotly")
-
-# You don't really need the following packages, 
-# we just use them in our figures
-install.packages("ggrepel")
-```
 
 
 
