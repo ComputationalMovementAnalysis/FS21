@@ -196,7 +196,7 @@ or this task, explore the trajectories first and get an idea on how the pedestri
 
 ### Task 6: Calculate similarity
 
-Install the package `SimilarityMeasures` (`install.packages("SimilarityMeasures")`). Familiarize yourself with this package by skimming through the function descriptions `help(package = "SimilarityMeasures")`. Now compare trajectory 1 to trajectories 2-6 using different similarity measures from the package (`DTW`, `EditDist`, `Frechet` and `LCSS`) 
+Install the package `SimilarityMeasures` (`install.packages("SimilarityMeasures")`). Familiarize yourself with this package by skimming through the function descriptions `help(package = "SimilarityMeasures")`. Now compare trajectory 1 to trajectories 2-6 using two different similarity measures from the package. Your options are. `DTW`, `EditDist`, `Frechet` and `LCSS`.
 
 Visualize your results and try to understand the different results with respect to your reading of @both2018. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?
 
