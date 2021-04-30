@@ -52,7 +52,7 @@ Then, store your PAT in you local Git
 - Check that you have stored a credential with `gitcreds_get()`
   
   
-### Step 3: Create a Git**hub** repo
+### Step 3: Create a Git**hub** repo {#create-github-repo}
 
 **Typically, you do this once per project**
 
