@@ -183,11 +183,10 @@ p1 + p2 + patchwork::plot_annotation(title = "Moving segments coloured by segmen
 
 ### Task 5: Similarity measures 
 
-We will now leave the 
+We will now leave the wild boar data and turn our attentian to human movement. You will use the dataset  `r download_url("pedestrian.csv","00_Rawdata")` (right click > save target as..) for this (and the following) task. Download an import this dataset as a `data.frame`  or `tibble`. It it a set of six different but similar trajectories from pedestrians walking on a path. 
 
-Download and import the dataset `r download_url("pedestrian.csv","00_Rawdata")` (right click > save target as..) as a dataframe (you don't need an `sf` object). It it a set of six different but similar trajectories from pedestrians walking on a path. Explore this data visually.
+or this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
 
-We will analyse these trajectories with the package `SimilarityMeasures`, always comparing trajectory 1 pairwise to the other trajectories 2-6. For this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
 
 ```{r, code =  mydecrypt("13_Week3/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 ```
@@ -197,8 +196,9 @@ We will analyse these trajectories with the package `SimilarityMeasures`, always
 
 ### Task 6: Calculate similarity
 
+Install the package `SimilarityMeasures` (`install.packages("SimilarityMeasures")`). Familiarize yourself with this package by skimming through the function descriptions `help(package = "SimilarityMeasures")`. Now compare trajectory 1 to trajectories 2-6 using different similarity measures from the package (`DTW`, `EditDist`, `Frechet` and `LCSS`) 
 
-Calculate the similarity between trajectory 1 and trajectories 2-6. Use the different similarity measures in the package `SimilarityMeasures`. Visualize your results and try to understand the different results with respect to your reading of @both2018. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?
+Visualize your results and try to understand the different results with respect to your reading of @both2018. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?
 
 Note: 
 
