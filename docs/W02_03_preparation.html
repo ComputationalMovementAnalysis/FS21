@@ -192,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-1-create-a-github-account"><i class="fa fa-check"></i>Step 1: Create a Github account</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-2-authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Step 2: Authenticate Git to work with Github</a></li>
-<li><a href="W02_03_preparation.html#step-3-create-a-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
+<li><a href="W02_03_preparation.html#create-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#w2-project"><i class="fa fa-check"></i>Step 4: Create a new RStudio Project</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
@@ -208,7 +208,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-1-create-a-normal-rstudio-project"><i class="fa fa-check"></i>Step 1: Create a “normal” RStudio Project</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-2-activate-git-version-control"><i class="fa fa-check"></i>Step 2: Activate Git Version Control</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-3-rename-branch"><i class="fa fa-check"></i>Step 3: Rename branch</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-4-create-a-github-repository"><i class="fa fa-check"></i>Step 4: Create a Github Repository</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-5-connect-to-github"><i class="fa fa-check"></i>Step 5: Connect to Github</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
 <ul>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
@@ -314,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Check that you have stored a credential with <code>gitcreds_get()</code></li>
 </ul>
 </div>
-<div id="step-3-create-a-github-repo" class="section level3">
+<div id="create-github-repo" class="section level3">
 <h3>Step 3: Create a Git<strong>hub</strong> repo</h3>
 <p><strong>Typically, you do this once per project</strong></p>
 <p>Now you can create a Repository on Github that you can afterwards connect to your RStudio project from this week (which you will create in the next step). To do this, go to <a href="https://github.com">github.com</a> and click on the plus sign in the top right corner, then fill in the following information:</p>
@@ -325,10 +332,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Check <code>Add a README file</code></li>
 </ul>
 <p>Click on <code>Create repository</code>, then on the green button “Code.” Select HTTPS (it might already be selected) and then copy the URL by clicking on the clipboard symbol. The URL should look something list this <code>https://github.com/YOUR-GITHUB-USERNAME/cma-week2.git</code>.</p>
-<p><strong>Report this URL back to us via Moodle</strong> (under <em>L2 Data Issues &gt; R Exercises E2 &gt; Exercise 2 (Github URL)</em>)</p>
+
+<div class="rmdimportant">
+Report this URL back to us via Moodle (under <em>L2 Data Issues &gt; R Exercises E2 &gt; Exercise 2 (Github URL)</em>)
+</div>
 </div>
 <div id="w2-project" class="section level3">
 <h3>Step 4: Create a new RStudio Project</h3>
+<p><strong>Typically, you do this once per project</strong></p>
 <p>You will now create a new RStudio Project for week 2. Unlike last week, we will create the project in such a way that it is immediately connected to our Git<em>hub</em> repo. In RStudio, start a new project. Choose: File &gt; New Project &gt; <strong>Version Control</strong> &gt; Git.</p>
 <ul>
 <li>In the repository URL, paste the URL you copied in the last step</li>

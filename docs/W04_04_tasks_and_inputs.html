@@ -192,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-1-create-a-github-account"><i class="fa fa-check"></i>Step 1: Create a Github account</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-2-authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Step 2: Authenticate Git to work with Github</a></li>
-<li><a href="W02_03_preparation.html#step-3-create-a-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
+<li><a href="W02_03_preparation.html#create-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#w2-project"><i class="fa fa-check"></i>Step 4: Create a new RStudio Project</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
@@ -208,7 +208,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-1-create-a-normal-rstudio-project"><i class="fa fa-check"></i>Step 1: Create a “normal” RStudio Project</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-2-activate-git-version-control"><i class="fa fa-check"></i>Step 2: Activate Git Version Control</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-3-rename-branch"><i class="fa fa-check"></i>Step 3: Rename branch</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-4-create-a-github-repository"><i class="fa fa-check"></i>Step 4: Create a Github Repository</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-5-connect-to-github"><i class="fa fa-check"></i>Step 5: Connect to Github</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
 <ul>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
@@ -272,57 +279,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Tasks and inputs</h2>
 <div id="input-creating-functions" class="section level3">
 <h3>Input: Creating functions</h3>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="W04_04_tasks_and_inputs.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Input: Creating Functions ###################################################</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="W04_04_tasks_and_inputs.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Input: Creating Functions ###################################################</span></span></code></pre></div>
 <p>Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you’ve copied and pasted a block of code more than twice, you should consider writing a function <span class="citation">(<a href="references.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
 <p>We have violated this rule multiple times when calculating the Euclidean distances between points. Writing and rewriting the code <code>sqrt((x-lead(x,1))^2+(y-lead(y,1))^2)</code> over and over again is not only cumbersome, it is also error prone. We can easily wrap this operation into a function. This input on writing functions should bring you up to speed to do this in your first task.</p>
 <p>The first step in writing a function, is picking a name and assigning <code>&lt;- function(){}</code> to it.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="W04_04_tasks_and_inputs.html#cb56-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){}</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="W04_04_tasks_and_inputs.html#cb58-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){}</span></code></pre></div>
 <p>To run the function, we have to call the assigned name with the brackets. This function gives no output, which is why we get <code>NULL</code> back.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="W04_04_tasks_and_inputs.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span>
-<span id="cb57-2"><a href="W04_04_tasks_and_inputs.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="do">## NULL</span></span>
-<span id="cb57-3"><a href="W04_04_tasks_and_inputs.html#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-4"><a href="W04_04_tasks_and_inputs.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(testfun)</span>
-<span id="cb57-5"><a href="W04_04_tasks_and_inputs.html#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;function&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="W04_04_tasks_and_inputs.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span>
+<span id="cb59-2"><a href="W04_04_tasks_and_inputs.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="do">## NULL</span></span>
+<span id="cb59-3"><a href="W04_04_tasks_and_inputs.html#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="W04_04_tasks_and_inputs.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(testfun)</span>
+<span id="cb59-5"><a href="W04_04_tasks_and_inputs.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;function&quot;</span></span></code></pre></div>
 <p>To make the function actually <em>do</em> something, we need to specify <em>what</em> should be done within the curly brackets <code>{}</code>. The following function always prints the same statement and accepts no input values:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="W04_04_tasks_and_inputs.html#cb58-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){<span class="fu">print</span>(<span class="st">&quot;this function does nothing&quot;</span>)}</span>
-<span id="cb58-2"><a href="W04_04_tasks_and_inputs.html#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-3"><a href="W04_04_tasks_and_inputs.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span>
-<span id="cb58-4"><a href="W04_04_tasks_and_inputs.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;this function does nothing&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="W04_04_tasks_and_inputs.html#cb60-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){<span class="fu">print</span>(<span class="st">&quot;this function does nothing&quot;</span>)}</span>
+<span id="cb60-2"><a href="W04_04_tasks_and_inputs.html#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="W04_04_tasks_and_inputs.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span>
+<span id="cb60-4"><a href="W04_04_tasks_and_inputs.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;this function does nothing&quot;</span></span></code></pre></div>
 <p>If we want the function to accept some input values, we have to define them within the round brackets. For example, I specify a variable named <code>sometext</code> and can call this variable within the execution.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="W04_04_tasks_and_inputs.html#cb59-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(sometext){<span class="fu">print</span>(sometext)}</span>
-<span id="cb59-2"><a href="W04_04_tasks_and_inputs.html#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-3"><a href="W04_04_tasks_and_inputs.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>(<span class="at">sometext =</span> <span class="st">&quot;this function does slightly more, but still not much&quot;</span>)</span>
-<span id="cb59-4"><a href="W04_04_tasks_and_inputs.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;this function does slightly more, but still not much&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="W04_04_tasks_and_inputs.html#cb61-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(sometext){<span class="fu">print</span>(sometext)}</span>
+<span id="cb61-2"><a href="W04_04_tasks_and_inputs.html#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="W04_04_tasks_and_inputs.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>(<span class="at">sometext =</span> <span class="st">&quot;this function does slightly more, but still not much&quot;</span>)</span>
+<span id="cb61-4"><a href="W04_04_tasks_and_inputs.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;this function does slightly more, but still not much&quot;</span></span></code></pre></div>
 <p>Let’s take a more practical example. Say we want a function that calculates the n<sup>th</sup> root of a value, since the base function <code>sqrt()</code> just returns the 2<sup>nd</sup> root. To do this, we need to know two things:</p>
 <ul>
 <li>taking the n<sup>th</sup> rooth of x is the same as raising <code>x</code> by the the reciprocal value (“Kehrwert”) of n <span class="math display">\[\sqrt[n]{x}=\ x^{\frac{1}{n}}\]</span></li>
 <li>We can raise a value <code>x</code> to the power of a value <code>n</code> in R with the following code: <code>x^n</code></li>
 </ul>
 <p>To create a function that simplifies taking the n<sup>th</sup> root, we just need one line of code:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="W04_04_tasks_and_inputs.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify two parameters:</span></span>
-<span id="cb60-2"><a href="W04_04_tasks_and_inputs.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x: the value  with want to take the root from</span></span>
-<span id="cb60-3"><a href="W04_04_tasks_and_inputs.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># n: the root we want to take (2 for 2nd root)</span></span>
-<span id="cb60-4"><a href="W04_04_tasks_and_inputs.html#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-5"><a href="W04_04_tasks_and_inputs.html#cb60-5" aria-hidden="true" tabindex="-1"></a>nthroot <span class="ot">&lt;-</span> <span class="cf">function</span>(x,n){x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)}</span>
-<span id="cb60-6"><a href="W04_04_tasks_and_inputs.html#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-7"><a href="W04_04_tasks_and_inputs.html#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Test function by taking the second root of 4. </span></span>
-<span id="cb60-8"><a href="W04_04_tasks_and_inputs.html#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Expecting the result to be 2:</span></span>
-<span id="cb60-9"><a href="W04_04_tasks_and_inputs.html#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="at">x =</span> <span class="dv">4</span>,<span class="at">n =</span> <span class="dv">2</span>)</span>
-<span id="cb60-10"><a href="W04_04_tasks_and_inputs.html#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="W04_04_tasks_and_inputs.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify two parameters:</span></span>
+<span id="cb62-2"><a href="W04_04_tasks_and_inputs.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x: the value  with want to take the root from</span></span>
+<span id="cb62-3"><a href="W04_04_tasks_and_inputs.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># n: the root we want to take (2 for 2nd root)</span></span>
+<span id="cb62-4"><a href="W04_04_tasks_and_inputs.html#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="W04_04_tasks_and_inputs.html#cb62-5" aria-hidden="true" tabindex="-1"></a>nthroot <span class="ot">&lt;-</span> <span class="cf">function</span>(x,n){x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)}</span>
+<span id="cb62-6"><a href="W04_04_tasks_and_inputs.html#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="W04_04_tasks_and_inputs.html#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Test function by taking the second root of 4. </span></span>
+<span id="cb62-8"><a href="W04_04_tasks_and_inputs.html#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Expecting the result to be 2:</span></span>
+<span id="cb62-9"><a href="W04_04_tasks_and_inputs.html#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="at">x =</span> <span class="dv">4</span>,<span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb62-10"><a href="W04_04_tasks_and_inputs.html#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span></code></pre></div>
 <p>As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of <code>x =</code>and <code>n =</code>).</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="W04_04_tasks_and_inputs.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">27</span>,<span class="dv">3</span>)</span>
-<span id="cb61-2"><a href="W04_04_tasks_and_inputs.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3</span></span>
-<span id="cb61-3"><a href="W04_04_tasks_and_inputs.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb61-4"><a href="W04_04_tasks_and_inputs.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1.44225</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="W04_04_tasks_and_inputs.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">27</span>,<span class="dv">3</span>)</span>
+<span id="cb63-2"><a href="W04_04_tasks_and_inputs.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3</span></span>
+<span id="cb63-3"><a href="W04_04_tasks_and_inputs.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb63-4"><a href="W04_04_tasks_and_inputs.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1.44225</span></span></code></pre></div>
 <p>If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="W04_04_tasks_and_inputs.html#cb62-1" aria-hidden="true" tabindex="-1"></a>nthroot <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">n =</span> <span class="dv">2</span>){x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)}</span>
-<span id="cb62-2"><a href="W04_04_tasks_and_inputs.html#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-3"><a href="W04_04_tasks_and_inputs.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># if not stated otherwise, our function takes the square root</span></span>
-<span id="cb62-4"><a href="W04_04_tasks_and_inputs.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">10</span>)</span>
-<span id="cb62-5"><a href="W04_04_tasks_and_inputs.html#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3.162278</span></span>
-<span id="cb62-6"><a href="W04_04_tasks_and_inputs.html#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite n</span></span>
-<span id="cb62-7"><a href="W04_04_tasks_and_inputs.html#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">10</span>,<span class="dv">3</span>)</span>
-<span id="cb62-8"><a href="W04_04_tasks_and_inputs.html#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2.154435</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="W04_04_tasks_and_inputs.html#cb64-1" aria-hidden="true" tabindex="-1"></a>nthroot <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">n =</span> <span class="dv">2</span>){x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)}</span>
+<span id="cb64-2"><a href="W04_04_tasks_and_inputs.html#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="W04_04_tasks_and_inputs.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co"># if not stated otherwise, our function takes the square root</span></span>
+<span id="cb64-4"><a href="W04_04_tasks_and_inputs.html#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">10</span>)</span>
+<span id="cb64-5"><a href="W04_04_tasks_and_inputs.html#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3.162278</span></span>
+<span id="cb64-6"><a href="W04_04_tasks_and_inputs.html#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite n</span></span>
+<span id="cb64-7"><a href="W04_04_tasks_and_inputs.html#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nthroot</span>(<span class="dv">10</span>,<span class="dv">3</span>)</span>
+<span id="cb64-8"><a href="W04_04_tasks_and_inputs.html#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2.154435</span></span></code></pre></div>
 <p>All you need to do now is run these few lines of code at the beginning of your script, and you can use the function for your entire R session. After starting a new session, you will simply have to re-run the lines. So it might be a good idea to place this function within the section <code>Loading environment / libraries</code> of your project.</p>
 </div>
 <div id="task-1-write-your-own-functions" class="section level3">
@@ -338,24 +345,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="task-3-create-join-key" class="section level3">
 <h3>Task 3: Create Join Key</h3>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="W04_04_tasks_and_inputs.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wildschwein_filter)</span>
-<span id="cb63-2"><a href="W04_04_tasks_and_inputs.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 6 features and 11 fields</span></span>
-<span id="cb63-3"><a href="W04_04_tasks_and_inputs.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
-<span id="cb63-4"><a href="W04_04_tasks_and_inputs.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
-<span id="cb63-5"><a href="W04_04_tasks_and_inputs.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2570245 ymin: 1205259 xmax: 2570375 ymax: 1205320</span></span>
-<span id="cb63-6"><a href="W04_04_tasks_and_inputs.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
-<span id="cb63-7"><a href="W04_04_tasks_and_inputs.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 x 12</span></span>
-<span id="cb63-8"><a href="W04_04_tasks_and_inputs.html#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   TierID [1]</span></span>
-<span id="cb63-9"><a href="W04_04_tasks_and_inputs.html#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID TierName CollarID DatetimeUTC           Lat  Long        E        N</span></span>
-<span id="cb63-10"><a href="W04_04_tasks_and_inputs.html#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
-<span id="cb63-11"><a href="W04_04_tasks_and_inputs.html#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A   Sabi        12275 2015-03-31 22:00:28  47.0  7.05 2570296. 1205283.</span></span>
-<span id="cb63-12"><a href="W04_04_tasks_and_inputs.html#cb63-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 002A   Sabi        12275 2015-03-31 22:15:44  47.0  7.05 2570259. 1205259.</span></span>
-<span id="cb63-13"><a href="W04_04_tasks_and_inputs.html#cb63-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 002A   Sabi        12275 2015-03-31 22:30:44  47.0  7.05 2570255. 1205259.</span></span>
-<span id="cb63-14"><a href="W04_04_tasks_and_inputs.html#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 002A   Sabi        12275 2015-03-31 22:46:04  47.0  7.05 2570245. 1205268.</span></span>
-<span id="cb63-15"><a href="W04_04_tasks_and_inputs.html#cb63-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 002A   Sabi        12275 2015-03-31 23:00:17  47.0  7.05 2570364. 1205314.</span></span>
-<span id="cb63-16"><a href="W04_04_tasks_and_inputs.html#cb63-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 002A   Sabi        12275 2015-03-31 23:15:12  47.0  7.05 2570375. 1205320.</span></span>
-<span id="cb63-17"><a href="W04_04_tasks_and_inputs.html#cb63-17" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 4 more variables: geometry &lt;POINT [m]&gt;, timelag &lt;dbl&gt;,</span></span>
-<span id="cb63-18"><a href="W04_04_tasks_and_inputs.html#cb63-18" aria-hidden="true" tabindex="-1"></a><span class="do">## #   steplength &lt;dbl&gt;, speed &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="W04_04_tasks_and_inputs.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wildschwein_filter)</span>
+<span id="cb65-2"><a href="W04_04_tasks_and_inputs.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 6 features and 11 fields</span></span>
+<span id="cb65-3"><a href="W04_04_tasks_and_inputs.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
+<span id="cb65-4"><a href="W04_04_tasks_and_inputs.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
+<span id="cb65-5"><a href="W04_04_tasks_and_inputs.html#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2570245 ymin: 1205259 xmax: 2570375 ymax: 1205320</span></span>
+<span id="cb65-6"><a href="W04_04_tasks_and_inputs.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb65-7"><a href="W04_04_tasks_and_inputs.html#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 x 12</span></span>
+<span id="cb65-8"><a href="W04_04_tasks_and_inputs.html#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   TierID [1]</span></span>
+<span id="cb65-9"><a href="W04_04_tasks_and_inputs.html#cb65-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID TierName CollarID DatetimeUTC           Lat  Long        E        N</span></span>
+<span id="cb65-10"><a href="W04_04_tasks_and_inputs.html#cb65-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb65-11"><a href="W04_04_tasks_and_inputs.html#cb65-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 002A   Sabi        12275 2015-03-31 22:00:28  47.0  7.05 2570296. 1205283.</span></span>
+<span id="cb65-12"><a href="W04_04_tasks_and_inputs.html#cb65-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 002A   Sabi        12275 2015-03-31 22:15:44  47.0  7.05 2570259. 1205259.</span></span>
+<span id="cb65-13"><a href="W04_04_tasks_and_inputs.html#cb65-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 002A   Sabi        12275 2015-03-31 22:30:44  47.0  7.05 2570255. 1205259.</span></span>
+<span id="cb65-14"><a href="W04_04_tasks_and_inputs.html#cb65-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 002A   Sabi        12275 2015-03-31 22:46:04  47.0  7.05 2570245. 1205268.</span></span>
+<span id="cb65-15"><a href="W04_04_tasks_and_inputs.html#cb65-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 002A   Sabi        12275 2015-03-31 23:00:17  47.0  7.05 2570364. 1205314.</span></span>
+<span id="cb65-16"><a href="W04_04_tasks_and_inputs.html#cb65-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 002A   Sabi        12275 2015-03-31 23:15:12  47.0  7.05 2570375. 1205320.</span></span>
+<span id="cb65-17"><a href="W04_04_tasks_and_inputs.html#cb65-17" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 4 more variables: geometry &lt;POINT [m]&gt;, timelag &lt;dbl&gt;,</span></span>
+<span id="cb65-18"><a href="W04_04_tasks_and_inputs.html#cb65-18" aria-hidden="true" tabindex="-1"></a><span class="do">## #   steplength &lt;dbl&gt;, speed &lt;dbl&gt;</span></span></code></pre></div>
 <p>Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. Verify if we have the same sampling interval (<code>timelag</code>) throughout our filtered dataset.</p>
 <pre><code>## Simple feature collection with 6 features and 11 fields
 ## geometry type:  POINT
@@ -383,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Task 4: Measuring distance at concurrent locations</h3>
 <p>To measure the distance between concurrent locations, we need to follow the following steps.</p>
 <ol style="list-style-type: decimal">
-<li>First, split the <code>wildschwein_filter</code> object into one <code>data.frame</code> per animal.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></li>
+<li>First, split the <code>wildschwein_filter</code> object into one <code>data.frame</code> per animal.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></li>
 <li>Next, join these datasets by the new, manipulated <code>Datetime</code> column and save it to the variable <code>wildschwein_join</code>. Which join-type is appropriate? The joined observations are <em>temporally close</em>.</li>
 <li>On <code>wildschwein_join</code>, calculate Euclidean distances between concurrent observations. Store the values in a new column <code>distance</code>.</li>
 <li>Use a reasonable threshold on <code>distance</code> to determine if the animals are also <em>spatially close</em> enough to constitute a <em>meet</em> (we use 50 meters). Store this Boolean information (<code>TRUE</code>/<code>FALSE</code>) in a new column named <code>meet</code>.</li>
@@ -423,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="task-6-optional-visualize-data-as-timecube-with-plotly" class="section level3">
 <h3>Task 6 (optional): Visualize data as timecube with <code>plotly</code></h3>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="W04_04_tasks_and_inputs.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Task 6 ######################################################################</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="W04_04_tasks_and_inputs.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Task 6 ######################################################################</span></span></code></pre></div>
 <p>Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube <span class="citation">(<a href="references.html#ref-hagerstraand1970" role="doc-biblioref">Hägerstraand 1970</a>)</span> with the package <code>plotly</code>. There are some <a href="https://plot.ly/r/3d-line-plots/">nice ressources</a> available online.</p>
 <p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 
@@ -432,8 +439,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="footnotes">
 <hr />
-<ol start="5">
-<li id="fn5"><p>This is a perfect opportunity to learn functional programming if you are an intermediate to advanced programmer (or want to be). You can use <code>purrr::map()</code> specifically for these tasks. Ask us if you want to learn this but are struggling<a href="W04_04_tasks_and_inputs.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<ol start="6">
+<li id="fn6"><p>This is a perfect opportunity to learn functional programming if you are an intermediate to advanced programmer (or want to be). You can use <code>purrr::map()</code> specifically for these tasks. Ask us if you want to learn this but are struggling<a href="W04_04_tasks_and_inputs.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <script src="https://utteranc.es/client.js"

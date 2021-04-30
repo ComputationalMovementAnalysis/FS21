@@ -192,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-1-create-a-github-account"><i class="fa fa-check"></i>Step 1: Create a Github account</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-2-authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Step 2: Authenticate Git to work with Github</a></li>
-<li><a href="W02_03_preparation.html#step-3-create-a-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
+<li><a href="W02_03_preparation.html#create-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#w2-project"><i class="fa fa-check"></i>Step 4: Create a new RStudio Project</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
@@ -208,7 +208,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-1-create-a-normal-rstudio-project"><i class="fa fa-check"></i>Step 1: Create a “normal” RStudio Project</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-2-activate-git-version-control"><i class="fa fa-check"></i>Step 2: Activate Git Version Control</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-3-rename-branch"><i class="fa fa-check"></i>Step 3: Rename branch</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-4-create-a-github-repository"><i class="fa fa-check"></i>Step 4: Create a Github Repository</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-5-connect-to-github"><i class="fa fa-check"></i>Step 5: Connect to Github</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
 <ul>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
@@ -268,41 +275,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preparation-1" class="section level2">
+<div id="w3-preparation" class="section level2">
 <h2>Preparation</h2>
-<p>Install the following libraries:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="W03_03_preparation.html#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-2"><a href="W03_03_preparation.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparation #################################################################</span></span>
-<span id="cb46-3"><a href="W03_03_preparation.html#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="W03_03_preparation.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;SimilarityMeasures&quot;</span>)</span></code></pre></div>
-<p>Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today’s exercise.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="W03_03_preparation.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb47-2"><a href="W03_03_preparation.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb47-3"><a href="W03_03_preparation.html#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="W03_03_preparation.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import as dataframe</span></span>
-<span id="cb47-5"><a href="W03_03_preparation.html#cb47-5" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
-<span id="cb47-6"><a href="W03_03_preparation.html#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-7"><a href="W03_03_preparation.html#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf-object</span></span>
-<span id="cb47-8"><a href="W03_03_preparation.html#cb47-8" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>,<span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb47-9"><a href="W03_03_preparation.html#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-10"><a href="W03_03_preparation.html#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to CH1903 LV95</span></span>
-<span id="cb47-11"><a href="W03_03_preparation.html#cb47-11" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
-<span id="cb47-12"><a href="W03_03_preparation.html#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-13"><a href="W03_03_preparation.html#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometry as E/N integer Columns</span></span>
-<span id="cb47-14"><a href="W03_03_preparation.html#cb47-14" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE) <span class="sc">%&gt;%</span></span>
-<span id="cb47-15"><a href="W03_03_preparation.html#cb47-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(wildschwein_BE,.) <span class="sc">%&gt;%</span></span>
-<span id="cb47-16"><a href="W03_03_preparation.html#cb47-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">E =</span> X) <span class="sc">%&gt;%</span></span>
-<span id="cb47-17"><a href="W03_03_preparation.html#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">N =</span> Y)</span>
-<span id="cb47-18"><a href="W03_03_preparation.html#cb47-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-19"><a href="W03_03_preparation.html#cb47-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute timelag, steplength and speed</span></span>
-<span id="cb47-20"><a href="W03_03_preparation.html#cb47-20" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> wildschwein_BE <span class="sc">%&gt;%</span></span>
-<span id="cb47-21"><a href="W03_03_preparation.html#cb47-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span></span>
-<span id="cb47-22"><a href="W03_03_preparation.html#cb47-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb47-23"><a href="W03_03_preparation.html#cb47-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb47-24"><a href="W03_03_preparation.html#cb47-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb47-25"><a href="W03_03_preparation.html#cb47-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb47-26"><a href="W03_03_preparation.html#cb47-26" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>We need to create a new RStudio Project with Git and Github this week. Last week you created an RStudio Project which was automatically connected to Github. You did this by <em>first</em> creating a Github Repo, and then initiating the RStudio Project via <em>File &gt; New Project &gt; Version Control &gt; Git</em> (adding the URL of your Github Repo). This is definitely the easiest way to set up a connection, but what if you have an existing project that you want to connect to Github?</p>
+<p>In this next section, we will go through setting up Git and Github without the use of RStudio. It will take slightly longer than the setup we used last week. Also, you will be confronted with some additional jargon.</p>
 
+<div class="rmdimportant">
+<p>You now have two choices:</p>
+<ol style="list-style-type: decimal">
+<li>Set up a new RStudio (with Git and Github) for this weeks exercises as described last week in <a href="W02_03_preparation.html#create-github-repo">Step 3</a> and <a href="W02_03_preparation.html#w2-project">Step 4</a> <em>or</em></li>
+<li>Follow the instructions below to set up your RStudio Project with Git and Github with a slightly more complicated, but also more canonical way</li>
+</ol>
+Either way: Report the URL of your new repo back to us via Moodle!
+</div>
+<p>As additional ressources to learning Git, we highly recommend:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=HVsySz-h9r4&amp;list=PL-osiE80TeTuRUfjRe54Eea17-YfnOOAx&amp;ab_channel=CoreySchafer">The video tutorials by Corey Schafer</a>. For example, <em><a href="https://youtu.be/HVsySz-h9r4">Git Tutorial for Beginners: Command-Line Fundamentals</a></em> gives a nice introduction to the command line</li>
+<li><a href="https://happygitwithr.com/">Happy Git with Github for the useR</a> is an excellent, easy to read, openly available book, written specifically for students working with R and RStudio in data science and related fields</li>
+</ul>
+<div id="step-1-create-a-normal-rstudio-project" class="section level3">
+<h3>Step 1: Create a “normal” RStudio Project</h3>
+<p>Create a new RStudio Project <em>File &gt; New Project &gt; New Directory &gt; New Project</em>.
+This will create a “normal” RStudio Project <em>without</em> Git version control (and consequently without a Github connection). This is a typical situation for a project that you started without version control in mind. Choose the following settings:</p>
+<ul>
+<li><strong>Directory name</strong>: Choose a directory name that suits your structure</li>
+<li><strong>Create project as a subdirectory of</strong>: Choose a parent directory that suits your folder structure</li>
+<li><strong>Create a git repository</strong>: not checked (we will do this manually in the next step)</li>
+<li><strong>Use renv with this project</strong>: not checked</li>
+</ul>
+</div>
+<div id="step-2-activate-git-version-control" class="section level3">
+<h3>Step 2: Activate Git Version Control</h3>
+<p>Activating Git Version Control for your project is one line of code. In your shell terminal, type the following command (which is what RStudio effectively does automatically when you activate the <em>Create a git repository</em> option while creating your project):</p>
+<pre><code>git init</code></pre>
+<p>You should get a message, saying <code>Initialized empty Git repository in C:/path/to/your/directory/.git/</code>. You will see this folder (named <code>.git</code>) in your project’s root directory (check your “Files” pane ). If you don’t see it there, click <em>Refresh file listing</em> (refresh symbol to the very right of the files pane). If you still dont see it, make hidden files visible (<em>Files pane &gt; More &gt; Show hidden files</em>)</p>
+<p>To see the “Git” Pane in RStudio, reload RStudio either by restarting it or clicking on the name of your RStudio project in the top right corner of RStudio and selecting your project from the project list).</p>
+</div>
+<div id="step-3-rename-branch" class="section level3">
+<h3>Step 3: Rename branch</h3>
+<p>In your Git pane, you will see that you do not have a branch yet, it says <code>(no branch)</code> in the top right corner. But what is branch?</p>
+<p>Branches are a way to have multiple versions of your project, which is especially useful if you want to do experiments that you are unsure about. We will not cover branches in this course, but it’s important that you have heard of the term, since its considered to be Git’s “Killer feature.”</p>
+<p>Once you make your first commit, Git will automatically create a branch named <code>master</code>. Test this by committing the<code>.gitignore</code> and <code>...*.Rproj</code>-File.
+<code>master</code> is just a convention for the main (and maybe only) version of your project. Since 2020, there are efforts to avoid offensive jargon in tech, including <code>master</code>. In this effort, Github has switched to using <code>main</code> as the name for the main branch, while Git still uses <code>master</code>. We can rename our <code>master</code> branch to <code>main</code> with the following line of code (note that you must have committed something first):</p>
+<pre><code>git branch -M main</code></pre>
+</div>
+<div id="step-4-create-a-github-repository" class="section level3">
+<h3>Step 4: Create a Github Repository</h3>
+<p>Now create a Github Repository following the instructions from <a href="W02_03_preparation.html#create-github-repo">last week</a>. This time however, don’t check <code>Add a README file</code>.
+Copy the https URL to your Github repo, which should look something like this: <code>https://github.com/YOUR-GITHUB-USERNAME/cma-week3.git</code></p>
+</div>
+<div id="step-5-connect-to-github" class="section level3">
+<h3>Step 5: Connect to Github</h3>
+<p>To connect your (local) RStudio Project to Github, we have to set up our Github repo to be our so called “<em>remote</em>” repository. We could have multiple <em>remotes</em>, which is why we need to name it, and the convention is to call it <code>origin</code>. To createa a <em>remote</em> named <code>origin</code>, type the following command in your shell terminal:</p>
+<pre><code>git remote add origin https://github.com/YOUR-GITHUB-USERNAME/cma-week3.git</code></pre>
+<p>The first time we push to this <em>remote</em> repository, we need to specify the an upstream, so that future <code>git push</code> will be directed to the correct remote branch. We can to this with the <code>--set-upstream</code><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<pre><code>git push --set-upstream origin main</code></pre>
+<p>This command prints a couple of messages, ending with the following statement: <code>Branch 'main' set up to track remote branch 'main' from 'origin'.</code>. Now that the upstream (i.e.) tracking branch is correctly set up, you can also push via the Git pane in RStudio (you might need to refresh the Git pane first).</p>
+<!-- ### Closing remarks -->
+<!-- This setup is a bit more complex that how we set up RStudio with Github last week, but it also makes you independent of RStudio and gives you a look behind the scenes. And by the way, you will see the correct command line instructions on the landing page of your Github Repo after you created it, so next time you can copy and paste the commands from there.  -->
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="5">
+<li id="fn5"><p>Synonymously you can use <code>-u</code> instead of <code>--set-upstream</code>.<a href="W03_03_preparation.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
 <script src="https://utteranc.es/client.js"
         repo="ComputationalMovementAnalysis/utterances"

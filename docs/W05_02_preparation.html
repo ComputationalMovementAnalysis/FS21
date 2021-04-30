@@ -192,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-1-create-a-github-account"><i class="fa fa-check"></i>Step 1: Create a Github account</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-2-authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Step 2: Authenticate Git to work with Github</a></li>
-<li><a href="W02_03_preparation.html#step-3-create-a-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
+<li><a href="W02_03_preparation.html#create-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#w2-project"><i class="fa fa-check"></i>Step 4: Create a new RStudio Project</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
@@ -208,7 +208,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-1-create-a-normal-rstudio-project"><i class="fa fa-check"></i>Step 1: Create a “normal” RStudio Project</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-2-activate-git-version-control"><i class="fa fa-check"></i>Step 2: Activate Git Version Control</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-3-rename-branch"><i class="fa fa-check"></i>Step 3: Rename branch</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-4-create-a-github-repository"><i class="fa fa-check"></i>Step 4: Create a Github Repository</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-5-connect-to-github"><i class="fa fa-check"></i>Step 5: Connect to Github</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
 <ul>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
@@ -268,30 +275,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preparation-3" class="section level2">
+<div id="preparation-2" class="section level2">
 <h2>Preparation</h2>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="W05_02_preparation.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparation ##################################################################</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="W05_02_preparation.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparation ##################################################################</span></span></code></pre></div>
 <p>Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today’s exercise.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="W05_02_preparation.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb68-2"><a href="W05_02_preparation.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb68-3"><a href="W05_02_preparation.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
-<span id="cb68-4"><a href="W05_02_preparation.html#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
-<span id="cb68-5"><a href="W05_02_preparation.html#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-6"><a href="W05_02_preparation.html#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Import as tibble</span></span>
-<span id="cb68-7"><a href="W05_02_preparation.html#cb68-7" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
-<span id="cb68-8"><a href="W05_02_preparation.html#cb68-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-9"><a href="W05_02_preparation.html#cb68-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-10"><a href="W05_02_preparation.html#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf-object</span></span>
-<span id="cb68-11"><a href="W05_02_preparation.html#cb68-11" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>,<span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb68-12"><a href="W05_02_preparation.html#cb68-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-13"><a href="W05_02_preparation.html#cb68-13" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to CH1903 LV95</span></span>
-<span id="cb68-14"><a href="W05_02_preparation.html#cb68-14" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
-<span id="cb68-15"><a href="W05_02_preparation.html#cb68-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-16"><a href="W05_02_preparation.html#cb68-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometry as E/N integer Columns</span></span>
-<span id="cb68-17"><a href="W05_02_preparation.html#cb68-17" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE) <span class="sc">%&gt;%</span></span>
-<span id="cb68-18"><a href="W05_02_preparation.html#cb68-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(wildschwein_BE,.) <span class="sc">%&gt;%</span></span>
-<span id="cb68-19"><a href="W05_02_preparation.html#cb68-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">E =</span> X) <span class="sc">%&gt;%</span></span>
-<span id="cb68-20"><a href="W05_02_preparation.html#cb68-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">N =</span> Y)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="W05_02_preparation.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb70-2"><a href="W05_02_preparation.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb70-3"><a href="W05_02_preparation.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
+<span id="cb70-4"><a href="W05_02_preparation.html#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb70-5"><a href="W05_02_preparation.html#cb70-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-6"><a href="W05_02_preparation.html#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Import as tibble</span></span>
+<span id="cb70-7"><a href="W05_02_preparation.html#cb70-7" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb70-8"><a href="W05_02_preparation.html#cb70-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-9"><a href="W05_02_preparation.html#cb70-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-10"><a href="W05_02_preparation.html#cb70-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf-object</span></span>
+<span id="cb70-11"><a href="W05_02_preparation.html#cb70-11" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>,<span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb70-12"><a href="W05_02_preparation.html#cb70-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-13"><a href="W05_02_preparation.html#cb70-13" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to CH1903 LV95</span></span>
+<span id="cb70-14"><a href="W05_02_preparation.html#cb70-14" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
+<span id="cb70-15"><a href="W05_02_preparation.html#cb70-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-16"><a href="W05_02_preparation.html#cb70-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometry as E/N integer Columns</span></span>
+<span id="cb70-17"><a href="W05_02_preparation.html#cb70-17" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE) <span class="sc">%&gt;%</span></span>
+<span id="cb70-18"><a href="W05_02_preparation.html#cb70-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(wildschwein_BE,.) <span class="sc">%&gt;%</span></span>
+<span id="cb70-19"><a href="W05_02_preparation.html#cb70-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">E =</span> X) <span class="sc">%&gt;%</span></span>
+<span id="cb70-20"><a href="W05_02_preparation.html#cb70-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">N =</span> Y)</span></code></pre></div>
 
 </div>
 <script src="https://utteranc.es/client.js"

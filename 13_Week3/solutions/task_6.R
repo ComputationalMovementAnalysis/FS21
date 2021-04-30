@@ -2,13 +2,6 @@
 # sjnej eqaycav y bnvc zg rycygqymav. Faab gqaa cz tva y macjzr
 # sncj sjnej hzt gaab ezmgzqcydba.
 
-<<<<<<< HEAD
-oaravcqnypv_mycqnw <- oaravcqnypv %>%
-  robhq::vabaec(E, N) %>%
-  vobnc(oaravcqnypv$TqyxID) %>%
-  myo(yv.mycqnw)
-=======
->>>>>>> dev-w3
 
 bndqyqh(SnmnbyqnchMayvtqav)  # gzq cja vnmnbyqnch mayvtqa gtpecnzpv
 bndqyqh(otqqq)               # gzq cja myo_*-gtpecnzpv

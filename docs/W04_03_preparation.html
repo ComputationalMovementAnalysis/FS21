@@ -192,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-1-create-a-github-account"><i class="fa fa-check"></i>Step 1: Create a Github account</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-2-authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Step 2: Authenticate Git to work with Github</a></li>
-<li><a href="W02_03_preparation.html#step-3-create-a-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
+<li><a href="W02_03_preparation.html#create-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#w2-project"><i class="fa fa-check"></i>Step 4: Create a new RStudio Project</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
@@ -208,7 +208,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-1-create-a-normal-rstudio-project"><i class="fa fa-check"></i>Step 1: Create a “normal” RStudio Project</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-2-activate-git-version-control"><i class="fa fa-check"></i>Step 2: Activate Git Version Control</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-3-rename-branch"><i class="fa fa-check"></i>Step 3: Rename branch</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-4-create-a-github-repository"><i class="fa fa-check"></i>Step 4: Create a Github Repository</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-5-connect-to-github"><i class="fa fa-check"></i>Step 5: Connect to Github</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
 <ul>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
@@ -268,37 +275,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preparation-2" class="section level2">
+<div id="preparation-1" class="section level2">
 <h2>Preparation</h2>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="W04_03_preparation.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparation #################################################################</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="W04_03_preparation.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparation #################################################################</span></span></code></pre></div>
 <p>Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today’s exercise.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="W04_03_preparation.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb54-2"><a href="W04_03_preparation.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb54-3"><a href="W04_03_preparation.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb54-4"><a href="W04_03_preparation.html#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-5"><a href="W04_03_preparation.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import as tibble</span></span>
-<span id="cb54-6"><a href="W04_03_preparation.html#cb54-6" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
-<span id="cb54-7"><a href="W04_03_preparation.html#cb54-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-8"><a href="W04_03_preparation.html#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf-object</span></span>
-<span id="cb54-9"><a href="W04_03_preparation.html#cb54-9" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>,<span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb54-10"><a href="W04_03_preparation.html#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-11"><a href="W04_03_preparation.html#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to CH1903 LV95</span></span>
-<span id="cb54-12"><a href="W04_03_preparation.html#cb54-12" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
-<span id="cb54-13"><a href="W04_03_preparation.html#cb54-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-14"><a href="W04_03_preparation.html#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometry as E/N integer Columns</span></span>
-<span id="cb54-15"><a href="W04_03_preparation.html#cb54-15" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE) <span class="sc">%&gt;%</span></span>
-<span id="cb54-16"><a href="W04_03_preparation.html#cb54-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(wildschwein_BE,.) <span class="sc">%&gt;%</span></span>
-<span id="cb54-17"><a href="W04_03_preparation.html#cb54-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">E =</span> X) <span class="sc">%&gt;%</span></span>
-<span id="cb54-18"><a href="W04_03_preparation.html#cb54-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">N =</span> Y)</span>
-<span id="cb54-19"><a href="W04_03_preparation.html#cb54-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-20"><a href="W04_03_preparation.html#cb54-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute timelag, steplength and speed</span></span>
-<span id="cb54-21"><a href="W04_03_preparation.html#cb54-21" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> wildschwein_BE <span class="sc">%&gt;%</span></span>
-<span id="cb54-22"><a href="W04_03_preparation.html#cb54-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span></span>
-<span id="cb54-23"><a href="W04_03_preparation.html#cb54-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb54-24"><a href="W04_03_preparation.html#cb54-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb54-25"><a href="W04_03_preparation.html#cb54-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb54-26"><a href="W04_03_preparation.html#cb54-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb54-27"><a href="W04_03_preparation.html#cb54-27" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="W04_03_preparation.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb56-2"><a href="W04_03_preparation.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb56-3"><a href="W04_03_preparation.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb56-4"><a href="W04_03_preparation.html#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="W04_03_preparation.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import as tibble</span></span>
+<span id="cb56-6"><a href="W04_03_preparation.html#cb56-6" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb56-7"><a href="W04_03_preparation.html#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-8"><a href="W04_03_preparation.html#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf-object</span></span>
+<span id="cb56-9"><a href="W04_03_preparation.html#cb56-9" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>,<span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb56-10"><a href="W04_03_preparation.html#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="W04_03_preparation.html#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to CH1903 LV95</span></span>
+<span id="cb56-12"><a href="W04_03_preparation.html#cb56-12" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
+<span id="cb56-13"><a href="W04_03_preparation.html#cb56-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-14"><a href="W04_03_preparation.html#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometry as E/N integer Columns</span></span>
+<span id="cb56-15"><a href="W04_03_preparation.html#cb56-15" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE) <span class="sc">%&gt;%</span></span>
+<span id="cb56-16"><a href="W04_03_preparation.html#cb56-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(wildschwein_BE,.) <span class="sc">%&gt;%</span></span>
+<span id="cb56-17"><a href="W04_03_preparation.html#cb56-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">E =</span> X) <span class="sc">%&gt;%</span></span>
+<span id="cb56-18"><a href="W04_03_preparation.html#cb56-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">N =</span> Y)</span>
+<span id="cb56-19"><a href="W04_03_preparation.html#cb56-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-20"><a href="W04_03_preparation.html#cb56-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute timelag, steplength and speed</span></span>
+<span id="cb56-21"><a href="W04_03_preparation.html#cb56-21" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> wildschwein_BE <span class="sc">%&gt;%</span></span>
+<span id="cb56-22"><a href="W04_03_preparation.html#cb56-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span></span>
+<span id="cb56-23"><a href="W04_03_preparation.html#cb56-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb56-24"><a href="W04_03_preparation.html#cb56-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
+<span id="cb56-25"><a href="W04_03_preparation.html#cb56-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb56-26"><a href="W04_03_preparation.html#cb56-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
+<span id="cb56-27"><a href="W04_03_preparation.html#cb56-27" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 
 </div>
 <script src="https://utteranc.es/client.js"

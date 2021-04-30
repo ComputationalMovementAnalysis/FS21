@@ -192,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-1-create-a-github-account"><i class="fa fa-check"></i>Step 1: Create a Github account</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-2-authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Step 2: Authenticate Git to work with Github</a></li>
-<li><a href="W02_03_preparation.html#step-3-create-a-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
+<li><a href="W02_03_preparation.html#create-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
 <li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#w2-project"><i class="fa fa-check"></i>Step 4: Create a new RStudio Project</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
@@ -208,7 +208,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W03_01_learning_outcomes.html"><a href="W03_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W03_02_prerequisites.html"><a href="W03_02_prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-1-create-a-normal-rstudio-project"><i class="fa fa-check"></i>Step 1: Create a “normal” RStudio Project</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-2-activate-git-version-control"><i class="fa fa-check"></i>Step 2: Activate Git Version Control</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-3-rename-branch"><i class="fa fa-check"></i>Step 3: Rename branch</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-4-create-a-github-repository"><i class="fa fa-check"></i>Step 4: Create a Github Repository</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-5-connect-to-github"><i class="fa fa-check"></i>Step 5: Connect to Github</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
 <ul>
 <li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
@@ -335,6 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?</p>
 <p>After completing the task, commit your changes to git using a good commit message (e.g. <code>completed task 1</code>).</p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-55-1.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-55-2.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-55-3.png" width="672" /></p>
 </div>
 <div id="w2-task2" class="section level3">
 <h3>Task 2: Deriving movement parameters I: Speed</h3>
@@ -342,17 +350,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can calculate the Euclidean distance with the following formula: <span class="math display">\[\text{distance} = \sqrt{(\text{E1} - \text{E2})^{2}+(\text{N1} - \text{N2})^{2}}\]</span></p>
 <ul>
 <li><code>E1</code>, <code>N1</code> refers to the current location</li>
-<li><code>E2</code>, <code>N2</code> refers to the subsequent location</li>
+<li><code>E2</code>, <code>N2</code> refers to the consecutive location</li>
 <li>you can use <code>lead(E,1)</code> to address <code>E2</code></li>
 <li>store the output in a new column (e.g. <code>steplength</code>)</li>
 </ul>
-<p>Now calculate the animals’ speed between subsequent locations based on <code>steplength</code> and the <code>timelag</code> (from the last task). What speed unit do you get?</p>
+<p>Now calculate the animals’ speed between consecutive locations based on <code>steplength</code> and the <code>timelag</code> (from the last task). What speed unit do you get?</p>
 <p>After completing the task, commit your changes to git using a good commit message.</p>
 </div>
 <div id="task-3-cross-scale-movement-analysis" class="section level3">
 <h3>Task 3: Cross-scale movement analysis</h3>
 <p><span class="citation"><a href="references.html#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="references.html#ref-laube2011" role="doc-biblioref">2011</a>)</span> analyse animal movement across different scales (see below). In their paper, the authors suggest reducing the granularity of the data by subsetting the data to every n<sup>th</sup> element. We will do the same on a dataset that includes 200 locations of a single wild boar with a constant sampling interval of 60 seconds.</p>
-<div class="figure"><span id="fig:unnamed-chunk-56"></span>
+<div class="figure"><span id="fig:unnamed-chunk-57"></span>
 <img src="02_Images/laube_2011_2.jpg" alt="Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale (Laube and Purves, 2011)" width="705" />
 <p class="caption">
 Figure 2: Black points are used in calculation of movement parameters (e.g. speed) at a given termporal scale (Laube and Purves, 2011)
@@ -386,7 +394,7 @@ Figure 2: Black points are used in calculation of movement parameters (e.g. spe
 ##  9 010C   Caro        13973 2015-09-15 08:31:00 2570497. 1205091.
 ## 10 010C   Caro        13973 2015-09-15 08:34:00 2570499. 1205091.
 ## # ... with 57 more rows</code></pre>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-59-1.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-59-2.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-59-3.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-59-4.png" width="672" /></p>
+<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-60-1.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-60-2.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-60-3.png" width="672" /><img src="patterns-and-trends_files/figure-html/unnamed-chunk-60-4.png" width="672" /></p>
 </div>
 <div id="task-4-deriving-movement-parameters-ii-rolling-window-functions" class="section level3">
 <h3>Task 4: Deriving movement parameters II: Rolling window functions</h3>
