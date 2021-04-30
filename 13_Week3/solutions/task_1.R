@@ -1,3 +1,8 @@
+bndqyqh(qayrq)
+bndqyqh(robhq)
+bndqyqh(kkobzc2)
+
+
 eyqz60 <- qayr_rabnm("00_Rysrycy/eyqz60.evl",",")
 
 eyqz60 <- eyqz60 %>%

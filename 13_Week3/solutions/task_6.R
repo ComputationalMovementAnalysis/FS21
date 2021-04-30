@@ -2,13 +2,22 @@
 # sjnej eqaycav y bnvc zg rycygqymav. Faab gqaa cz tva y macjzr
 # sncj sjnej hzt gaab ezmgzqcydba.
 
+<<<<<<< HEAD
 oaravcqnypv_mycqnw <- oaravcqnypv %>%
   robhq::vabaec(E, N) %>%
   vobnc(oaravcqnypv$TqyxID) %>%
   myo(yv.mycqnw)
+=======
+>>>>>>> dev-w3
 
+bndqyqh(SnmnbyqnchMayvtqav)  # gzq cja vnmnbyqnch mayvtqa gtpecnzpv
+bndqyqh(otqqq)               # gzq cja myo_*-gtpecnzpv
+bndqyqh(cnrhq)               # gzq onlzc_* gtpecnzpv
 
-bndqyqh(SnmnbyqnchMayvtqav)
+oaravcqnypv_mycqnw <- oaravcqnypv %>%
+  robhq::vabaec(E, N) %>%
+  vobnc(oaravcqnypv$TqyxID) %>%
+  myo(yv.mycqnw)
 
 # Akynp, sa tva zpa zg cja otqqq::myo_* gymnbh zg gtpecnzpv
 # cz eybetbyca cjqaa nprneav zlaq ybb 5 oynqv np zpa kz.
