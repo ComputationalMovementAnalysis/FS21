@@ -2,8 +2,6 @@
 
 You've read @laube2011 about segmenting trajectories. In the paper, the authors define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d*", as illustrated in the following figure:
 
-
-
 (ref:laubeimg) The figure from @laube2011 visualizes steps a) zu d), which will be explained below:
 
 ```{r laubeimg, fig.cap="(ref:laubeimg)", echo = FALSE}
@@ -22,6 +20,9 @@ We will demonstrate implementing this method on the wild boar "Sabi", restrictin
 ```{r, opts.label="solution_showOutput"}
 library(readr)
 library(dplyr)
+library(ggplot2)
+
+
 wildschwein <- read_delim("00_Rawdata/wildschwein_BE_2056.csv",",")
 
 sabi <- wildschwein %>%
@@ -95,7 +96,7 @@ sabi
 
 We can now determine if an animal is moving or not by specifying a threshold distance on `stepMean`. In our example, we use the mean value as a threshold: Positions with distances below this value are considered static.
 
-```{r, opts.label="example_showOutput", fig.cap = "The trajectory of sabi, reduced to the positions where the animal was not static"}
+```{r, opts.label="example_showOutput", fig.cap = "The trajectory of sabi, filtered to the positions where the animal was not static"}
 sabi <- sabi %>% 
   ungroup() %>%
   mutate(static = stepMean < mean(stepMean, na.rm = TRUE))
@@ -104,7 +105,8 @@ sabi <- sabi %>%
 sabi_filter <- sabi %>%
   filter(!static)
 
-ggplot(sabi_filter, aes(E, N))  +
+sabi_filter%>%
+  ggplot(aes(E, N))  +
   geom_path() +
   geom_point() +
   coord_fixed() +
@@ -116,9 +118,13 @@ ggplot(sabi_filter, aes(E, N))  +
 
 ### Task 1: Segmentation
 
+If you haven't already done so open the RStudio Project [you have prepared](#w3-preparation) for this week.
+
 With the skills from the input above you can now implement the segmentation algorithm described in @laube2011 on the dataset `r download_url("caro60.csv","00_Rawdata")`. Download this dataset (right click > save target as...) and import it as a simple `data.frame` or `tibble` (you don't need an `sf`-object for today's task).
 
-The sampling interval for this dataset is 1 minute. Use a temporal window $v$ of 6 minutes, i.e. a window size of 7 positions (`n±3`)
+The sampling interval for this dataset is 1 minute. Use a temporal window $v$ of 6 minutes, i.e. a window size of 6 positions (`n±3`). 
+
+Once you have completed the task, commit your changes with a meaningful commit message and test your connection to Github by pushing your changes to your remote repository.
 
 
 ```{r, code =  mydecrypt("13_Week3/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
@@ -133,6 +139,8 @@ After calculating the Euclidean distances to positions within the temporal windo
 
 Store the new information (boolean to differentiate between stops (`TRUE`) and moves (`FALSE`)) in a new column named `static`.
 
+Commit your changes with a meaningful commit message. 
+
 ```{r, code =  mydecrypt("13_Week3/solutions/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
@@ -140,6 +148,8 @@ Store the new information (boolean to differentiate between stops (`TRUE`) and m
 ### Task 3: Visualize segmented trajectories
 
 Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with `geom_path()`, `geom_point()` and `coord_equal()`. Assign `colour = static` within `aes()` to distinguish between segments *with* "movement" and *without*.
+
+Commit your changes with a meaningful commit message. 
 
 ```{r, code =  mydecrypt("13_Week3/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
 ```
@@ -160,6 +170,8 @@ rle_id <- function(vec){
 
 You can use the newly created function `rle_id` to assign unique IDs to subtrajectories (as shown below). Visualize the *moving* segments by colourizing them by `segment_ID`. 
 Then use `segment_ID` as a grouping variable to determine the segments duration and remove short segments (e.g. segments with a duration < 10 Minutes) 
+
+Commit your changes with a meaningful commit message. 
 
 
 ```{r}
@@ -182,11 +194,12 @@ p1 + p2 + patchwork::plot_annotation(title = "Moving segments coloured by segmen
 
 ### Task 5: Similarity measures 
 
-We will now leave the 
+We will now leave the wild boar data and turn our attentian to human movement. You will use the dataset  `r download_url("pedestrian.csv","00_Rawdata")` (right click > save target as..) for this (and the following) task. Download an import this dataset as a `data.frame`  or `tibble`. It it a set of six different but similar trajectories from pedestrians walking on a path. 
 
-Download and import the dataset `r download_url("pedestrian.csv","00_Rawdata")` (right click > save target as..) as a dataframe (you don't need an `sf` object). It it a set of six different but similar trajectories from pedestrians walking on a path. Explore this data visually.
+or this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
 
-We will analyse these trajectories with the package `SimilarityMeasures`, always comparing trajectory 1 pairwise to the other trajectories 2-6. For this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don't express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!
+Commit your changes with a meaningful commit message. 
+
 
 ```{r, code =  mydecrypt("13_Week3/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 ```
@@ -196,13 +209,16 @@ We will analyse these trajectories with the package `SimilarityMeasures`, always
 
 ### Task 6: Calculate similarity
 
+Install the package `SimilarityMeasures` (`install.packages("SimilarityMeasures")`). Familiarize yourself with this package by skimming through the function descriptions `help(package = "SimilarityMeasures")`. Now compare trajectory 1 to trajectories 2-6 using different similarity measures from the package. Your options are. `DTW`, `EditDist`, `Frechet` and `LCSS`.
 
-Calculate the similarity between trajectory 1 and trajectories 2-6. Use the different similarity measures in the package `SimilarityMeasures`. Visualize your results and try to understand the different results with respect to your reading of @both2018. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?
+Visualize your results and try to understand the different results with respect to your reading of @both2018. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?
 
 Note: 
 
 - All functions in the package need matrices as input, with one trajectory per matrix. 
 - `LCSS`takes very long to compute. The accuracy of the algorithm (`pointSpacing =` ,`pointDistance =` and `errorMarg =`) can be varied to provide faster calculations. Please see @vlachos2002 for more information.
+
+Commit your changes with a meaningful commit message. Now push all your changes to Github.
 
 
 ```{r, code =  mydecrypt("13_Week3/solutions/task_6.R",".passphrase"), opts.label="solution_showOutput"}
