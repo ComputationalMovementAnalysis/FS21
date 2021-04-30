@@ -3,18 +3,15 @@
 # sncj sjnej hzt gaab ezmgzqcydba.
 
 oaravcqnypv_mycqnw <- oaravcqnypv %>%
-  vobnc(.$TqyxID) %>%
-  myo(gtpecnzp(w){
-    w %>%
-      vabaec(E,N) %>%
-      yv.mycqnw()
-  })
+  vabaec(E, N) %>%
+  vobnc(oaravcqnypv$TqyxID) %>%
+  myo(yv.mycqnw)
 
 
 bndqyqh(SnmnbyqnchMayvtqav)
 
 # Akynp, sa tva zpa zg cja otqqq::myo_* gymnbh zg gtpecnzpv
-# cz eybetbyca cjqaa nprnenav zlaq ybb 5 oynqv np zpa kz.
+# cz eybetbyca cjqaa nprneav zlaq ybb 5 oynqv np zpa kz.
 # Av dagzqa: gaab gqaa cz tva y rnggaqapc macjzr hzt gaab 
 # mzqa ezmgzqcydba np.
 
@@ -30,9 +27,9 @@ oaravc_mayvtqav <- nmyo_rgq(oaravcqnypv_mycqnw, ~rycy_gqyma(
 
 
 oaravc_mayvtqav %>%
-  kycjaq(iah,lyb,-cqyx) %>%
-  kkobzc(yav(cqyx,lyb, gnbb = cqyx))+ 
+  onlzc_bzpkaq(-cqyx) %>%
+  kkobzc(yav(cqyx,lybta, gnbb = cqyx))+ 
   kazm_dyq(vcyc = "nrapcnch") +
-  gyeac_sqyo(~iah,veybav = "gqaa") +
+  gyeac_sqyo(~pyma,veybav = "gqaa") +
   cjama(bakapr.ozvncnzp = "pzpa") +
   bydv(w = "Czmoyqnvzp cqyxaeczqh", h = "Vybta", cncba = "Czmotcar vnmnbyqncnav tvnpk rnggaqapc mayvtqav \pdacsaap cqyxaeczqh 1 cz ybb zcjaq cqyxaeczqnav ")

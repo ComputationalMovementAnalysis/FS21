@@ -14,7 +14,7 @@ Create a new RStudio Project *File > New Project > New Directory > New Project*.
 - **Use renv with this project**: not checked
 
 
-Now you have a normal RStudio Project *without* Git version control and without a Github connection. This is a typical situation for a project that you started without version control in mind. Let's add these to elements in the following step:
+Now you have a normal RStudio Project *without* Git version control and without a Github connection. This is a typical situation for a project that you started without version control in mind. Let's add these to elements in the following steps.
 
 ### Step 2: Activate Git Version Control
 
@@ -34,7 +34,7 @@ You should get a message, saying `Initialized empty Git repository in C:/path/to
 To see the "Git" Pane in RStudio, reload RStudio either by restarting it or clicking on the name of your RStudio project in the top right corner of RStudio and selecting your project from the project list). 
 
 
-## Step 3: Rename branche
+## Step 3: Rename branch
 
 In your Git pane, you will see that you do not have a branch yet, it says `(no branch)` in the top right corner. But what is  branch?
 
