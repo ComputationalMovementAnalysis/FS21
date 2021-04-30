@@ -58,12 +58,12 @@ In this task we will derive some additional movement parameters from our traject
 You can calculate the Euclidean distance with the following formula: $$\text{distance} = \sqrt{(\text{E1} - \text{E2})^{2}+(\text{N1} - \text{N2})^{2}}$$
 
 - `E1`, `N1` refers to the current location
-- `E2`, `N2` refers to the subsequent location
+- `E2`, `N2` refers to the consecutive location
 - you can use `lead(E,1)` to address `E2`
 - store the output in a new column (e.g. `steplength`)
 
   
-Now calculate the animals' speed between subsequent locations based on `steplength` and the `timelag` (from the last task). What speed unit do you get?
+Now calculate the animals' speed between consecutive locations based on `steplength` and the `timelag` (from the last task). What speed unit do you get?
 
 After completing the task, commit your changes to git using a good commit message.
 

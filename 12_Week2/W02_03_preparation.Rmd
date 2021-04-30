@@ -72,10 +72,16 @@ repourl_git <- paste0(repourl, ".git")
 
 Click on `Create repository`, then on the green button "Code". Select HTTPS (it might already be selected) and then copy the URL by clicking on the clipboard symbol. The URL should look something list this ``r repourl_git``. 
 
-**Report this URL back to us via Moodle** (under *L2 Data Issues > R Exercises E2 > Exercise 2 (Github URL)*)
+
+
+```{block2, type="rmdimportant"}
+Report this URL back to us via Moodle (under *L2 Data Issues > R Exercises E2 > Exercise 2 (Github URL)*)
+```
 
 
 ### Step 4: Create a new RStudio Project {#w2-project}
+
+**Typically, you do this once per project**
 
 You will now create a new RStudio Project for week 2. Unlike last week, we will create the project in such a way that it is immediately connected to our Git*hub* repo. In RStudio, start a new project. Choose: File > New Project > **Version Control** > Git. 
 
