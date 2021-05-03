@@ -47,7 +47,7 @@ my_age(birthday = "1997-04-23", units = "days")
 ```
 
 As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of `birthday = ` and `units =`).
-```{r, opts.label="example_showOutput"T}
+```{r, opts.label="example_showOutput"}
 my_age("1997-04-23", "days")
 ```
 

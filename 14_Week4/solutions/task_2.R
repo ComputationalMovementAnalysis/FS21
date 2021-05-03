@@ -1,4 +1,5 @@
-snbrvejsanp_gnbcaq <- snbrvejsanp_BE %>%
+snbrvejsanp_gnbcaq <- snbrvejsanp %>%
+  vc_yv_vg(ezzqrv = e("E", "N")) %>%
   gnbcaq(DycacnmaUTC > "2015-04-01",
          DycacnmaUTC < "2015-04-15") 
 

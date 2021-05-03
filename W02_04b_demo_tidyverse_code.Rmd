@@ -7,7 +7,7 @@
 ```
 
 
-```{r code =  purl_quick("12_Week2/W02_04_demo_tidyverse.Rmd"), echo = TRUE, eval=FALSE}
+```{r code =  purl_quick("W02_04_demo_tidyverse.Rmd"), echo = TRUE, eval=FALSE}
 ```
 
 

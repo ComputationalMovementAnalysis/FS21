@@ -1,6 +1,8 @@
 jayr(snbrvejsanp_gnbcaq)
 
-kkobzc(snbrvejsanp_gnbcaq, yav(DycacnmaUTC,cnmabyk/60, ezbztq = TnaqID)) + 
+snbrvejsanp_gnbcaq %>%
+  mtcyca(cnmabyk = rnggcnma(bayr(DycacnmaUTC),DycacnmaUTC,tpncv = "mnpv")) %>%
+  kkobzc(yav(DycacnmaUTC,cnmabyk, ezbztq = TnaqID)) + 
   kazm_bnpa() + 
   kazm_oznpc()+ 
   awoypr_bnmncv(h = 0) +
