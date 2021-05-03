@@ -1,13 +1,6 @@
 ## Tasks and inputs
 
-### Input: Creating functions
-
-
-```{r}
-## Input: Creating Functions ###################################################
-```
-
-Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you’ve copied and pasted a block of code more than twice, you should consider writing a function [@wickham2017]. 
+Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you have copied and pasted a block of code more than twice, you should consider writing a function [@wickham2017]. 
 
 We have violated this rule multiple times when calculating the Euclidean distances between points. Writing and rewriting the code `sqrt((x-lead(x,1))^2+(y-lead(y,1))^2)` over and over again is not only cumbersome, it is also error prone. We can easily wrap this operation into a function. This input on writing functions should bring you up to speed to do this in your first task.
 
@@ -34,8 +27,8 @@ testfun <- function(){print("this function does nothing")}
 testfun()
 ```
 
-If we want the function to accept some input values, we have to define them within the round brackets. For example, I specify a variable named `sometext` and can call this variable within the execution.
 
+If we want the function to accept some input values, we have to define them within the round brackets. For example, I specify a variable named `sometext` and can call this variable within the execution.
 
 ```{r, opts.label="example_showOutput"}
 testfun <- function(sometext){print(sometext)}
@@ -43,54 +36,45 @@ testfun <- function(sometext){print(sometext)}
 testfun(sometext = "this function does slightly more, but still not much")
 ```
 
-Let's take a more practical example. Say we want a function that calculates the n^th^ root of a value, since the base function `sqrt()` just returns the 2^nd^ root. To do this, we need to know two things:
-
-- taking the n^th^ rooth of x is the same as raising `x` by the the reciprocal value ("Kehrwert") of n $$\sqrt[n]{x}=\ x^{\frac{1}{n}}$$
-- We can raise a value `x` to the power of a value `n` in R with the following code: `x^n`
-
-To create a function that simplifies taking the n^th^ root, we just need one line of code:
-
+Let's take a more practical example. Say we want a function that calculates our age if provided with the date of our birthday. We can use `Sys.time()` to provide today's date and `difftime()` to calculate the time difference between today and our birthday.
 
 ```{r, opts.label="example_showOutput"}
-# specify two parameters:
-# x: the value  with want to take the root from
-# n: the root we want to take (2 for 2nd root)
+my_age <- function(birthday, units){
+  difftime(Sys.time(),birthday, units = units)
+  }
 
-nthroot <- function(x,n){x^(1/n)}
-
-# Test function by taking the second root of 4. 
-# Expecting the result to be 2:
-nthroot(x = 4,n = 2)
-
+my_age(birthday = "1997-04-23", units = "days")
 ```
 
-As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of `x = `and `n = `).
-```{r, echo = T, include = T, eval = T}
-nthroot(27,3)
-nthroot(3,3)
+As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of `birthday = ` and `units =`).
+```{r, opts.label="example_showOutput"T}
+my_age("1997-04-23", "days")
 ```
 
 
 If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.
 ```{r, opts.label="example_showOutput"}
-nthroot <- function(x,n = 2){x^(1/n)}
+my_age <- function(birthday, units = "days"){
+  difftime(Sys.time(),birthday, units = units)
+  }
 
-# if not stated otherwise, our function takes the square root
-nthroot(10)
-# We can still overwrite n
-nthroot(10,3)
+# if not stated otherwise, our function uses the unit "days"
+my_age("1997-04-23")
+
+# We can still overwrite units
+my_age("1997-04-23", "hours")
+
 
 ```
 
-All you need to do now is run these few lines of code at the beginning of your script, and you can use the function for your entire R session. After starting a new session, you will simply have to re-run the lines. So it might be a good idea to place this function within the section `Loading environment / libraries` of your project.
-
+All you need to do now is run execute the function deceleration (`myage <- function...` etc.) at the beginning of your script, and you can use the function for your entire R session. Tip: Always try to make your function self sufficient: Don't call variables that were created outside the function call.
 
 
 ### Task 1: Write your own functions
 
-Create a function for our Euclidean distance calculation. Optionally, write another function to number successive `TRUE` values with the `cumsum()` approach from last week. 
+Create a function for our Euclidean distance calculation. 
 
-Note: if you treat your input variables as vectors, they will work in most use cases (in particular in `dplyr`s `mutate()` and `summarise()` functions). 
+Note: if you treat your input variables as vectors, they will work in `dplyr`s `mutate()` and `summarise()` operations. 
 
 ```{r, code =  mydecrypt("14_Week4/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
@@ -163,10 +147,6 @@ To create a plot similar to the one below:
 
 
 ### Task 6 (optional): Visualize data as timecube with `plotly`
-
-```{r}
-## Task 6 ######################################################################
-```
 
 Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube [@hagerstraand1970] with the package `plotly`. There are some [nice ressources](https://plot.ly/r/3d-line-plots/) available online.
 
