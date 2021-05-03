@@ -26,10 +26,12 @@ wildschwein_BE %>%
   st_as_sf(coords = c("Long", "Lat"), crs = 4326) %>%
   st_transform(2056) %>%
   cbind(st_coordinates(.)) %>%
-  rename(N = X, E = Y) %>%
+  rename(E = X, N = Y) %>%
   st_set_geometry(NULL) %>%
   head(200) %>%
   write_delim("00_Rawdata/caro60.csv",",")
   
+
+
 
   
