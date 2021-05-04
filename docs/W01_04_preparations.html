@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Preparation | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
   <meta name="description" content="Preparation | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Preparation | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
@@ -50,16 +50,8 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -124,6 +116,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="90_misc/mystyle.css" type="text/css" />
@@ -233,7 +248,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
 <ul>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
@@ -242,19 +256,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W05_02_preparation.html"><a href="W05_02_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /></a>.
 
@@ -277,18 +278,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="w1-preparation" class="section level2">
 <h2>Preparation</h2>
-<p>Much of this chapter was taken from <span class="citation"><a href="references.html#ref-bryan2021" role="doc-biblioref">Bryan and Heister</a> (<a href="references.html#ref-bryan2021" role="doc-biblioref">2021</a>)</span>. If you want to dive deeper into using Git, we highly recommend this book. For an <em>even</em> deeper dive into Git, read <span class="citation"><a href="references.html#ref-chacon2014" role="doc-biblioref">Chacon and Straub</a> (<a href="references.html#ref-chacon2014" role="doc-biblioref">2014</a>)</span>. Both books are available free and open source on <a href="https://happygitwithr.com/">happygitwithr.com</a> and <a href="https://git-scm.com/book/">git-scm.com/book</a>, respectively.</p>
+<p>Much of this chapter was taken from <span class="citation"><a href="#ref-bryan2021" role="doc-biblioref">Bryan and Heister</a> (<a href="#ref-bryan2021" role="doc-biblioref">2021</a>)</span>. If you want to dive deeper into using Git, we highly recommend this book. For an <em>even</em> deeper dive into Git, read <span class="citation"><a href="#ref-chacon2014" role="doc-biblioref">Chacon and Straub</a> (<a href="#ref-chacon2014" role="doc-biblioref">2014</a>)</span>. Both books are available free and open source on <a href="https://happygitwithr.com/">happygitwithr.com</a> and <a href="https://git-scm.com/book/">git-scm.com/book</a>, respectively.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="W01_04_preparations.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rversions)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;rversions&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="W01_04_preparations.html#cb3-1" aria-hidden="true" tabindex="-1"></a>rversion_current <span class="ot">&lt;-</span> rversions<span class="sc">::</span><span class="fu">r_release</span>()</span>
+<span id="cb3-2"><a href="W01_04_preparations.html#cb3-2" aria-hidden="true" tabindex="-1"></a>rversion_current</span></code></pre></div>
+<pre><code>##     version                date        nickname
+## 122   4.0.5 2021-03-31 07:05:15 Shake and Throw</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="W01_04_preparations.html#cb5-1" aria-hidden="true" tabindex="-1"></a>rversion_current_sep <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(<span class="fu">as.character</span>(base<span class="sc">::</span><span class="fu">getRversion</span>()), <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb5-2"><a href="W01_04_preparations.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="W01_04_preparations.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="W01_04_preparations.html#cb5-4" aria-hidden="true" tabindex="-1"></a>rversion_minimal <span class="ot">&lt;-</span> <span class="cf">function</span>(version_string){</span>
+<span id="cb5-5"><a href="W01_04_preparations.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  version_int <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">strsplit</span>(version_string, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)[[<span class="dv">1</span>]])</span>
+<span id="cb5-6"><a href="W01_04_preparations.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(version_int[<span class="dv">1</span>], <span class="fu">ifelse</span>(version_int[<span class="dv">2</span>] <span class="sc">==</span> <span class="dv">0</span>, version_int[<span class="dv">2</span>], version_int[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">1</span>), <span class="dv">0</span>,<span class="at">sep =</span> <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb5-7"><a href="W01_04_preparations.html#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <div id="check-you-version-of-r" class="section level3">
 <h3>Check you version of <code>R</code></h3>
 <p>Check your Version of <code>R</code> by opening RStudio and typing the following command into the console.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="W01_04_preparations.html#cb1-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span>
-<span id="cb1-2"><a href="W01_04_preparations.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;R version 4.0.3 (2020-10-10)&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="W01_04_preparations.html#cb6-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div>
+<pre><code>## [1] &quot;R version 4.0.3 (2020-10-10)&quot;</code></pre>
 <p>This returns the version number of your R installation, whereas the first digit (<code>4</code>) indicates the number of the <em>major release</em>, the second digit (<code>0</code>) indicates the <em>minor release</em> and the last digit (<code>3</code>) refers to the <em>patch release</em>. As a general rule of thumb, you will want to update R if you</p>
 <ul>
 <li>don’t have the current <em>major</em> version or</li>
 <li>are lagging two (or more) versions behind the current <em>minor release</em></li>
 </ul>
-<p>In the time of writing (May, 2021), the current <code>R</code> Version is 4.0.5 (released on 2021-03-31 07:05:15, see <a href="https://cran.r-project.org/">cran.r-project.org</a>). Your installation should therefore not be older than 4.0.0. If it is, make sure that you have updated R until next week (doing it now will probably take too long). Check <a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/">these instructions on how to update R</a></p>
+<p>In the time of writing (Mai, 2021), the current <code>R</code> Version is 4.0.5 (released on 2021-03-31 07:05:15, see <a href="https://cran.r-project.org/">cran.r-project.org</a>). Your installation should therefore not be older than 4.0.0. If it is, make sure that you have updated R until next week (doing it now will probably take too long). Check <a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/">these instructions on how to update R</a></p>
 </div>
 <div id="check-your-version-of-rstudio" class="section level3">
 <h3>Check your version of RStudio</h3>
@@ -297,9 +311,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="install-the-necessary-packages" class="section level3">
 <h3>Install the necessary packages</h3>
 <p>If you haven’t already, install the packages <code>tidyverse</code>, <code>sf</code> and <code>terra</code>(using <code>install.packages()</code>).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="W01_04_preparations.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb2-2"><a href="W01_04_preparations.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span>
-<span id="cb2-3"><a href="W01_04_preparations.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;terra&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="W01_04_preparations.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb8-2"><a href="W01_04_preparations.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb8-3"><a href="W01_04_preparations.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;terra&quot;</span>)</span></code></pre></div>
 </div>
 <div id="install-git" class="section level3">
 <h3>Install Git</h3>
@@ -408,10 +422,22 @@ git config --global user.email &quot;nussmar@email.com&quot;</code></pre>
 
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bryan2021" class="csl-entry">
+Bryan, Jenny, and Jim Heister. 2021. <em>Happy Git and GitHub for the useR</em>. <a href="https://happygitwithr.com/">https://happygitwithr.com/</a>.
+</div>
+<div id="ref-chacon2014" class="csl-entry">
+Chacon, Scott, and Ben Straub. 2014. <em>Pro Git</em>. 2nd Edition. Apress. <a href="https://git-scm.com/book/en/v2">https://git-scm.com/book/en/v2</a>.
+</div>
+<div id="ref-wickham2017" class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. O’Reilly Media, Inc.
+</div>
+</div>
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>We recommend that you start each RStudio session with a blank slate, as recommended by <span class="citation"><a href="references.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="references.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span> see <a href="https://r4ds.had.co.nz/workflow-projects.html">here</a><a href="W01_04_preparations.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>We recommend that you start each RStudio session with a blank slate, as recommended by <span class="citation"><a href="#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span> see <a href="https://r4ds.had.co.nz/workflow-projects.html">here</a><a href="W01_04_preparations.html#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>If we don’t restore the workspace at startup, there is no need to save it on exit.<a href="W01_04_preparations.html#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>You will see the project names of all your RStudio Projects listed in RStudio. Having the week number in the project name keeps you from getting confused on which project you are working on.<a href="W01_04_preparations.html#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
@@ -451,7 +477,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/11_Week1/W01_04_preparations.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/W01_04_preparations.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -459,7 +485,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/11_Week1/W01_04_preparations.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/W01_04_preparations.Rmd",
 "text": null
 },
 "download": null,

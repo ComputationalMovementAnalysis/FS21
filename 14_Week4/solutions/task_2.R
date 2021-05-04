@@ -1,6 +1,17 @@
+
+bndqyqh(vg)
+bndqyqh(qayrq)        
+bndqyqh(robhq)        
+bndqyqh(kkobzc2)      
+bndqyqh(vg)           
+bndqyqh(caqqy)        
+bndqyqh(btdqnryca)
+
+snbrvejsanp <- qayr_rabnm("00_Rysrycy/snbrvejsanp_BE_2056.evl",",")
+
 snbrvejsanp_gnbcaq <- snbrvejsanp %>%
   vc_yv_vg(ezzqrv = e("E", "N")) %>%
-  gnbcaq(DycacnmaUTC > "2015-04-01",
+  robhq::gnbcaq(DycacnmaUTC > "2015-04-01",
          DycacnmaUTC < "2015-04-15") 
 
 snbrvejsanp_gnbcaq %>%

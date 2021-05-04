@@ -140,6 +140,7 @@ solutions_print <- function(solutionspath, seedfile){
 # ```{r code =  purl_quick("12_Week2/W02_04_demo_tidyverse.Rmd"), echo = TRUE, eval = FALSE}
 # ``
 purl_quick <- function(inputfile){
+  require(stringr)
   mylines <- readLines(inputfile,warn = FALSE)
   chunkboders <- str_starts(mylines, "```")
   cumsum <- cumsum(chunkboders)
@@ -147,5 +148,22 @@ purl_quick <- function(inputfile){
   
   
   mylines[inchunk]
+}
+
+# Some additional stuff added so the whole workflow complies with the K-M approach
+week_folders <- paste0("week",1:7)
+
+reponame <- paste("cma",week_folders[2], sep = "-")
+repourl <- paste0("https://github.com/YOUR-GITHUB-USERNAME/",reponame)
+repourl_git <- paste0(repourl, ".git")
+
+paths2node <- function(paths){
+  require(data.tree)
+  as.Node(data.frame(paths = paths),pathName = "paths")
+}
+
+subpaths <- function(rootfolder_path, rootfolder_name, subfolders){
+  require(stringr)
+  c(paste0(rootfolder_name," (",stringr::str_replace_all(rootfolder_path, "/", "\\\\"),")"), file.path("rootfolder_path",subfolders))
 }
 

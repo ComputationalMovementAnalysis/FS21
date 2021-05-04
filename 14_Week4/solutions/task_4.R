@@ -1,3 +1,5 @@
+bndqyqh(otqqq)
+
 snbrvejsanp_xznp <- snbrvejsanp_gnbcaq %>%
   tpkqzto() %>%
   robhq::vabaec(TnaqID,DycacnmaRztpr,E,N) %>%

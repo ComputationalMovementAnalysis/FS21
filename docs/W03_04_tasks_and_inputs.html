@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
   <meta name="description" content="Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
@@ -50,16 +50,8 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -124,6 +116,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="90_misc/mystyle.css" type="text/css" />
@@ -233,7 +248,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
 <ul>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
@@ -242,19 +256,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W05_02_preparation.html"><a href="W05_02_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /></a>.
 
@@ -277,12 +278,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="tasks-and-inputs-1" class="section level2">
 <h2>Tasks and Inputs</h2>
-<p>You’ve read <span class="citation"><a href="references.html#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="references.html#ref-laube2011" role="doc-biblioref">2011</a>)</span> about segmenting trajectories. In the paper, the authors define “<em>static</em>” fixes as “<em>those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d</em>,” as illustrated in the following figure:</p>
+<p>You’ve read <span class="citation"><a href="#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="#ref-laube2011" role="doc-biblioref">2011</a>)</span> about segmenting trajectories. In the paper, the authors define “<em>static</em>” fixes as “<em>those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d</em>,” as illustrated in the following figure:</p>
 
 <div class="figure"><span id="fig:laubeimg"></span>
 <img src="02_Images/laube_2011.jpg" alt="The figure from Laube and Purves (2011) visualizes steps a) zu d), which will be explained below:"  />
 <p class="caption">
-Figure 3: The figure from <span class="citation"><a href="references.html#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="references.html#ref-laube2011" role="doc-biblioref">2011</a>)</span> visualizes steps a) zu d), which will be explained below:
+Figure 3: The figure from <span class="citation"><a href="#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="#ref-laube2011" role="doc-biblioref">2011</a>)</span> visualizes steps a) zu d), which will be explained below:
 </p>
 </div>
 <ol style="list-style-type: lower-alpha">
@@ -292,8 +293,43 @@ Figure 3: The figure from <span class="citation"><a href="references.html#ref-la
 <li>Now remove short subtrajectories: These are trajectories with a short duration (whereas “short” is tbd)</li>
 </ol>
 <p>We will demonstrate implementing this method on the wild boar “Sabi,” restricting ourselves to a couple of tracking days. Your task will be to understand this implementation and apply it on Caro, with a different sampling interval.</p>
-<div class="figure"><span id="fig:unnamed-chunk-65"></span>
-<img src="patterns-and-trends_files/figure-html/unnamed-chunk-65-1.png" alt="Movement of the wildboar 'Sabi' in the timespan 01-02.07.2015. The circle highlingts possible 'static points'" width="672" />
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="W03_04_tasks_and_inputs.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;readr&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="W03_04_tasks_and_inputs.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;dplyr&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
+<pre><code>## 
+## Attache Paket: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="W03_04_tasks_and_inputs.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;ggplot2&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="W03_04_tasks_and_inputs.html#cb222-1" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE_2056.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   TierID = col_character(),
+##   TierName = col_character(),
+##   CollarID = col_double(),
+##   DatetimeUTC = col_datetime(format = &quot;&quot;),
+##   E = col_double(),
+##   N = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="W03_04_tasks_and_inputs.html#cb224-1" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> wildschwein <span class="sc">%&gt;%</span></span>
+<span id="cb224-2"><a href="W03_04_tasks_and_inputs.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TierName <span class="sc">==</span> <span class="st">&quot;Sabi&quot;</span>, DatetimeUTC <span class="sc">&gt;=</span> <span class="st">&quot;2015-07-01&quot;</span>, DatetimeUTC <span class="sc">&lt;</span> <span class="st">&quot;2015-07-03&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="W03_04_tasks_and_inputs.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sabi, <span class="fu">aes</span>(E, N, <span class="at">color =</span> DatetimeUTC))  <span class="sc">+</span></span>
+<span id="cb225-2"><a href="W03_04_tasks_and_inputs.html#cb225-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb225-3"><a href="W03_04_tasks_and_inputs.html#cb225-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb225-4"><a href="W03_04_tasks_and_inputs.html#cb225-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb225-5"><a href="W03_04_tasks_and_inputs.html#cb225-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_datetime</span>(<span class="at">low =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb225-6"><a href="W03_04_tasks_and_inputs.html#cb225-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_colorbar</span>(<span class="at">title.position =</span> <span class="st">&#39;top&#39;</span>, <span class="at">title.hjust =</span> .<span class="dv">5</span>, <span class="at">barwidth =</span> <span class="fu">unit</span>(<span class="dv">20</span>, <span class="st">&#39;lines&#39;</span>), <span class="at">barheight =</span> <span class="fu">unit</span>(.<span class="dv">5</span>, <span class="st">&#39;lines&#39;</span>))) <span class="sc">+</span></span>
+<span id="cb225-7"><a href="W03_04_tasks_and_inputs.html#cb225-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="sc">+</span></span>
+<span id="cb225-8"><a href="W03_04_tasks_and_inputs.html#cb225-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">y =</span> <span class="dv">1205120</span>, <span class="at">x =</span> <span class="dv">2570470</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">stroke =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-3-1.png" alt="Movement of the wildboar 'Sabi' in the timespan 01-02.07.2015. The circle highlingts possible 'static points'" width="672" />
 <p class="caption">
 Figure 4: Movement of the wildboar ‘Sabi’ in the timespan 01-02.07.2015. The circle highlingts possible ‘static points’
 </p>
@@ -311,59 +347,58 @@ Figure 4: Movement of the wildboar ‘Sabi’ in the timespan 01-02.07.2015. The
 <div id="step-b-measure-the-distance-from-every-point-to-every-other-point-within-this-temporal-window-v" class="section level4">
 <h4>Step b): Measure the distance from every point to every other point within this temporal window <span class="math inline">\(v\)</span></h4>
 <p>Just like last week, we use the formula for calculating the Euclidean distance in in combination with <code>lead()</code> and <code>lag()</code>. For example, to create the necessary offset of n-2, we use <code>lag(x, 2)</code>. For each offset, we create one individual column.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="W03_04_tasks_and_inputs.html#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-2"><a href="W03_04_tasks_and_inputs.html#cb50-2" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span></span>
-<span id="cb50-3"><a href="W03_04_tasks_and_inputs.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb50-4"><a href="W03_04_tasks_and_inputs.html#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nMinus2 =</span> <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">2</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(N,<span class="dv">2</span>)<span class="sc">-</span>N)<span class="sc">^</span><span class="dv">2</span>),   <span class="co"># distance to pos -30 minutes</span></span>
-<span id="cb50-5"><a href="W03_04_tasks_and_inputs.html#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nMinus1 =</span> <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">1</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(N,<span class="dv">1</span>)<span class="sc">-</span>N)<span class="sc">^</span><span class="dv">2</span>),   <span class="co"># distance to pos -15 minutes</span></span>
-<span id="cb50-6"><a href="W03_04_tasks_and_inputs.html#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nPlus1  =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span>), <span class="co"># distance to pos +15 mintues</span></span>
-<span id="cb50-7"><a href="W03_04_tasks_and_inputs.html#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nPlus2  =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span>)  <span class="co"># distance to pos +30 minutes</span></span>
-<span id="cb50-8"><a href="W03_04_tasks_and_inputs.html#cb50-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="W03_04_tasks_and_inputs.html#cb226-1" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span></span>
+<span id="cb226-2"><a href="W03_04_tasks_and_inputs.html#cb226-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb226-3"><a href="W03_04_tasks_and_inputs.html#cb226-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">nMinus2 =</span> <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">2</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(N,<span class="dv">2</span>)<span class="sc">-</span>N)<span class="sc">^</span><span class="dv">2</span>),   <span class="co"># distance to pos -30 minutes</span></span>
+<span id="cb226-4"><a href="W03_04_tasks_and_inputs.html#cb226-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nMinus1 =</span> <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">1</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(N,<span class="dv">1</span>)<span class="sc">-</span>N)<span class="sc">^</span><span class="dv">2</span>),   <span class="co"># distance to pos -15 minutes</span></span>
+<span id="cb226-5"><a href="W03_04_tasks_and_inputs.html#cb226-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nPlus1  =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span>), <span class="co"># distance to pos +15 mintues</span></span>
+<span id="cb226-6"><a href="W03_04_tasks_and_inputs.html#cb226-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nPlus2  =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span>)  <span class="co"># distance to pos +30 minutes</span></span>
+<span id="cb226-7"><a href="W03_04_tasks_and_inputs.html#cb226-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Now we want to calculate the mean distance of <code>nMinus2</code>, <code>nMinus1</code>, <code>nPlus1</code>, <code>nPlus2</code> for each row. Since we want the mean value <em>per Row</em>, we have to explicitly specify this before <code>mutate()</code> with the function <code>rowwise()</code>. To remove this rowwise-grouping, we end the operation with <code>ungroup()</code>.</p>
 <p>Note that for the first two positions, we cannot calculate a <code>stepMean</code> since there is no Position <code>n-2</code> for these positions. This is also true for the last to positions (lacking a position <code>n+2</code>).</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="W03_04_tasks_and_inputs.html#cb51-1" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span></span>
-<span id="cb51-2"><a href="W03_04_tasks_and_inputs.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb51-3"><a href="W03_04_tasks_and_inputs.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb51-4"><a href="W03_04_tasks_and_inputs.html#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">stepMean =</span> <span class="fu">mean</span>(<span class="fu">c</span>(nMinus2, nMinus1,nPlus1,nPlus2))</span>
-<span id="cb51-5"><a href="W03_04_tasks_and_inputs.html#cb51-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb51-6"><a href="W03_04_tasks_and_inputs.html#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() </span>
-<span id="cb51-7"><a href="W03_04_tasks_and_inputs.html#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-8"><a href="W03_04_tasks_and_inputs.html#cb51-8" aria-hidden="true" tabindex="-1"></a>sabi</span>
-<span id="cb51-9"><a href="W03_04_tasks_and_inputs.html#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 192 x 11</span></span>
-<span id="cb51-10"><a href="W03_04_tasks_and_inputs.html#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                E       N nMinus2 nMinus1</span></span>
-<span id="cb51-11"><a href="W03_04_tasks_and_inputs.html#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb51-12"><a href="W03_04_tasks_and_inputs.html#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 002A   Sabi        12275 2015-06-30 22:00:13 2569972.  1.21e6   NA      NA   </span></span>
-<span id="cb51-13"><a href="W03_04_tasks_and_inputs.html#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 002A   Sabi        12275 2015-06-30 22:16:06 2569975.  1.21e6   NA     271.  </span></span>
-<span id="cb51-14"><a href="W03_04_tasks_and_inputs.html#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 002A   Sabi        12275 2015-06-30 22:30:19 2570266.  1.21e6  573.    365.  </span></span>
-<span id="cb51-15"><a href="W03_04_tasks_and_inputs.html#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 002A   Sabi        12275 2015-06-30 22:45:13 2570208.  1.21e6  361.     80.5 </span></span>
-<span id="cb51-16"><a href="W03_04_tasks_and_inputs.html#cb51-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 002A   Sabi        12275 2015-06-30 23:00:10 2570247.  1.21e6  127.    186.  </span></span>
-<span id="cb51-17"><a href="W03_04_tasks_and_inputs.html#cb51-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 002A   Sabi        12275 2015-06-30 23:15:17 2570512.  1.21e6  703.    524.  </span></span>
-<span id="cb51-18"><a href="W03_04_tasks_and_inputs.html#cb51-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 002A   Sabi        12275 2015-06-30 23:30:38 2570684.  1.21e6  766.    247.  </span></span>
-<span id="cb51-19"><a href="W03_04_tasks_and_inputs.html#cb51-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 002A   Sabi        12275 2015-06-30 23:45:16 2570526.  1.21e6  229.    167.  </span></span>
-<span id="cb51-20"><a href="W03_04_tasks_and_inputs.html#cb51-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 002A   Sabi        12275 2015-07-01 00:00:10 2570532.  1.21e6  163.      9.33</span></span>
-<span id="cb51-21"><a href="W03_04_tasks_and_inputs.html#cb51-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 002A   Sabi        12275 2015-07-01 00:15:14 2570530.  1.21e6    8.98   15.4 </span></span>
-<span id="cb51-22"><a href="W03_04_tasks_and_inputs.html#cb51-22" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 182 more rows, and 3 more variables: nPlus1 &lt;dbl&gt;, nPlus2 &lt;dbl&gt;,</span></span>
-<span id="cb51-23"><a href="W03_04_tasks_and_inputs.html#cb51-23" aria-hidden="true" tabindex="-1"></a><span class="do">## #   stepMean &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="W03_04_tasks_and_inputs.html#cb227-1" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span></span>
+<span id="cb227-2"><a href="W03_04_tasks_and_inputs.html#cb227-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb227-3"><a href="W03_04_tasks_and_inputs.html#cb227-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb227-4"><a href="W03_04_tasks_and_inputs.html#cb227-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">stepMean =</span> <span class="fu">mean</span>(<span class="fu">c</span>(nMinus2, nMinus1,nPlus1,nPlus2))</span>
+<span id="cb227-5"><a href="W03_04_tasks_and_inputs.html#cb227-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb227-6"><a href="W03_04_tasks_and_inputs.html#cb227-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() </span>
+<span id="cb227-7"><a href="W03_04_tasks_and_inputs.html#cb227-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb227-8"><a href="W03_04_tasks_and_inputs.html#cb227-8" aria-hidden="true" tabindex="-1"></a>sabi</span></code></pre></div>
+<pre><code>## # A tibble: 192 x 11
+##    TierID TierName CollarID DatetimeUTC                E       N nMinus2 nMinus1
+##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 002A   Sabi        12275 2015-06-30 22:00:13 2569972.  1.21e6   NA      NA   
+##  2 002A   Sabi        12275 2015-06-30 22:16:06 2569975.  1.21e6   NA     271.  
+##  3 002A   Sabi        12275 2015-06-30 22:30:19 2570266.  1.21e6  573.    365.  
+##  4 002A   Sabi        12275 2015-06-30 22:45:13 2570208.  1.21e6  361.     80.5 
+##  5 002A   Sabi        12275 2015-06-30 23:00:10 2570247.  1.21e6  127.    186.  
+##  6 002A   Sabi        12275 2015-06-30 23:15:17 2570512.  1.21e6  703.    524.  
+##  7 002A   Sabi        12275 2015-06-30 23:30:38 2570684.  1.21e6  766.    247.  
+##  8 002A   Sabi        12275 2015-06-30 23:45:16 2570526.  1.21e6  229.    167.  
+##  9 002A   Sabi        12275 2015-07-01 00:00:10 2570532.  1.21e6  163.      9.33
+## 10 002A   Sabi        12275 2015-07-01 00:15:14 2570530.  1.21e6    8.98   15.4 
+## # ... with 182 more rows, and 3 more variables: nPlus1 &lt;dbl&gt;, nPlus2 &lt;dbl&gt;,
+## #   stepMean &lt;dbl&gt;</code></pre>
 </div>
 <div id="step-c-remove-static-points" class="section level4">
 <h4>Step c): Remove “static points”</h4>
 <p>We can now determine if an animal is moving or not by specifying a threshold distance on <code>stepMean</code>. In our example, we use the mean value as a threshold: Positions with distances below this value are considered static.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="W03_04_tasks_and_inputs.html#cb52-1" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span> </span>
-<span id="cb52-2"><a href="W03_04_tasks_and_inputs.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb52-3"><a href="W03_04_tasks_and_inputs.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">static =</span> stepMean <span class="sc">&lt;</span> <span class="fu">mean</span>(stepMean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb52-4"><a href="W03_04_tasks_and_inputs.html#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-5"><a href="W03_04_tasks_and_inputs.html#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-6"><a href="W03_04_tasks_and_inputs.html#cb52-6" aria-hidden="true" tabindex="-1"></a>sabi_filter <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span></span>
-<span id="cb52-7"><a href="W03_04_tasks_and_inputs.html#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>static)</span>
-<span id="cb52-8"><a href="W03_04_tasks_and_inputs.html#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-9"><a href="W03_04_tasks_and_inputs.html#cb52-9" aria-hidden="true" tabindex="-1"></a>sabi_filter<span class="sc">%&gt;%</span></span>
-<span id="cb52-10"><a href="W03_04_tasks_and_inputs.html#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(E, N))  <span class="sc">+</span></span>
-<span id="cb52-11"><a href="W03_04_tasks_and_inputs.html#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
-<span id="cb52-12"><a href="W03_04_tasks_and_inputs.html#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb52-13"><a href="W03_04_tasks_and_inputs.html#cb52-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb52-14"><a href="W03_04_tasks_and_inputs.html#cb52-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-68"></span>
-<img src="patterns-and-trends_files/figure-html/unnamed-chunk-68-1.png" alt="The trajectory of sabi, filtered to the positions where the animal was not static" width="672" />
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="W03_04_tasks_and_inputs.html#cb229-1" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span> </span>
+<span id="cb229-2"><a href="W03_04_tasks_and_inputs.html#cb229-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb229-3"><a href="W03_04_tasks_and_inputs.html#cb229-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">static =</span> stepMean <span class="sc">&lt;</span> <span class="fu">mean</span>(stepMean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb229-4"><a href="W03_04_tasks_and_inputs.html#cb229-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb229-5"><a href="W03_04_tasks_and_inputs.html#cb229-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb229-6"><a href="W03_04_tasks_and_inputs.html#cb229-6" aria-hidden="true" tabindex="-1"></a>sabi_filter <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span></span>
+<span id="cb229-7"><a href="W03_04_tasks_and_inputs.html#cb229-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>static)</span>
+<span id="cb229-8"><a href="W03_04_tasks_and_inputs.html#cb229-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb229-9"><a href="W03_04_tasks_and_inputs.html#cb229-9" aria-hidden="true" tabindex="-1"></a>sabi_filter<span class="sc">%&gt;%</span></span>
+<span id="cb229-10"><a href="W03_04_tasks_and_inputs.html#cb229-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(E, N))  <span class="sc">+</span></span>
+<span id="cb229-11"><a href="W03_04_tasks_and_inputs.html#cb229-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb229-12"><a href="W03_04_tasks_and_inputs.html#cb229-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb229-13"><a href="W03_04_tasks_and_inputs.html#cb229-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb229-14"><a href="W03_04_tasks_and_inputs.html#cb229-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-6-1.png" alt="The trajectory of sabi, filtered to the positions where the animal was not static" width="672" />
 <p class="caption">
 Figure 5: The trajectory of sabi, filtered to the positions where the animal was not static
 </p>
@@ -372,72 +407,223 @@ Figure 5: The trajectory of sabi, filtered to the positions where the animal was
 <div id="task-1-segmentation" class="section level3">
 <h3>Task 1: Segmentation</h3>
 <p>If you haven’t already done so open the RStudio Project <a href="W03_03_preparation.html#w3-preparation">you have prepared</a> for this week.</p>
-<p>With the skills from the input above you can now implement the segmentation algorithm described in <span class="citation"><a href="references.html#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="references.html#ref-laube2011" role="doc-biblioref">2011</a>)</span> on the dataset <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/caro60.csv">caro60.csv</a>. Download this dataset (right click &gt; save target as…) and import it as a simple <code>data.frame</code> or <code>tibble</code> (you don’t need an <code>sf</code>-object for today’s task).</p>
+<p>With the skills from the input above you can now implement the segmentation algorithm described in <span class="citation"><a href="#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="#ref-laube2011" role="doc-biblioref">2011</a>)</span> on the dataset <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/caro60.csv">caro60.csv</a>. Download this dataset (right click &gt; save target as…) and import it as a simple <code>data.frame</code> or <code>tibble</code> (you don’t need an <code>sf</code>-object for today’s task).</p>
 <p>The sampling interval for this dataset is 1 minute. Use a temporal window <span class="math inline">\(v\)</span> of 6 minutes, i.e. a window size of 6 positions (<code>n±3</code>).</p>
 <p>Once you have completed the task, commit your changes with a meaningful commit message and test your connection to Github by pushing your changes to your remote repository.</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="W03_04_tasks_and_inputs.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb230-2"><a href="W03_04_tasks_and_inputs.html#cb230-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb230-3"><a href="W03_04_tasks_and_inputs.html#cb230-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb230-4"><a href="W03_04_tasks_and_inputs.html#cb230-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-5"><a href="W03_04_tasks_and_inputs.html#cb230-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-6"><a href="W03_04_tasks_and_inputs.html#cb230-6" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/caro60.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   TierID = col_character(),
+##   TierName = col_character(),
+##   CollarID = col_double(),
+##   DatetimeUTC = col_datetime(format = &quot;&quot;),
+##   E = col_double(),
+##   N = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="W03_04_tasks_and_inputs.html#cb232-1" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span> caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb232-2"><a href="W03_04_tasks_and_inputs.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb232-3"><a href="W03_04_tasks_and_inputs.html#cb232-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">stepMean =</span> <span class="fu">rowMeans</span>(                       </span>
+<span id="cb232-4"><a href="W03_04_tasks_and_inputs.html#cb232-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cbind</span>(                                   </span>
+<span id="cb232-5"><a href="W03_04_tasks_and_inputs.html#cb232-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">3</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(E,<span class="dv">3</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span>),   </span>
+<span id="cb232-6"><a href="W03_04_tasks_and_inputs.html#cb232-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">2</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(E,<span class="dv">2</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span>),   </span>
+<span id="cb232-7"><a href="W03_04_tasks_and_inputs.html#cb232-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">1</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(E,<span class="dv">1</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span>),   </span>
+<span id="cb232-8"><a href="W03_04_tasks_and_inputs.html#cb232-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span>),  </span>
+<span id="cb232-9"><a href="W03_04_tasks_and_inputs.html#cb232-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb232-10"><a href="W03_04_tasks_and_inputs.html#cb232-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">3</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">3</span>))<span class="sc">^</span><span class="dv">2</span>)  </span>
+<span id="cb232-11"><a href="W03_04_tasks_and_inputs.html#cb232-11" aria-hidden="true" tabindex="-1"></a>        )                                        </span>
+<span id="cb232-12"><a href="W03_04_tasks_and_inputs.html#cb232-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb232-13"><a href="W03_04_tasks_and_inputs.html#cb232-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb232-14"><a href="W03_04_tasks_and_inputs.html#cb232-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-15"><a href="W03_04_tasks_and_inputs.html#cb232-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: </span></span>
+<span id="cb232-16"><a href="W03_04_tasks_and_inputs.html#cb232-16" aria-hidden="true" tabindex="-1"></a><span class="co"># We present here a slightly different approach as presented in the input:</span></span>
+<span id="cb232-17"><a href="W03_04_tasks_and_inputs.html#cb232-17" aria-hidden="true" tabindex="-1"></a><span class="co"># - cbind() creates a matrix with the same number of rows as the original dataframe</span></span>
+<span id="cb232-18"><a href="W03_04_tasks_and_inputs.html#cb232-18" aria-hidden="true" tabindex="-1"></a><span class="co"># - It has 6 columns, one for each Euclidean distance calculation</span></span>
+<span id="cb232-19"><a href="W03_04_tasks_and_inputs.html#cb232-19" aria-hidden="true" tabindex="-1"></a><span class="co"># - rowMeans() returns a single vector with the same number of rows as the original dataframe</span></span></code></pre></div>
 </div>
 <div id="task-2-specify-and-apply-threshold-d" class="section level3">
 <h3>Task 2: Specify and apply threshold <em>d</em></h3>
 <p>After calculating the Euclidean distances to positions within the temporal window <em>v</em> in task 1, you can explore these values (we stored them in the column <code>stepMean</code>) using summary statistics (histograms, boxplot, <code>summary()</code>): This way we can define a reasonable threshold value to differentiate between <em>stops</em> and <em>moves</em>. There is no “correct” way of doing this, specifying a threshold always depends on data as well as the question that needs to be answered. In this exercise, use the mean of all <code>stepMean</code> values.</p>
 <p>Store the new information (boolean to differentiate between stops (<code>TRUE</code>) and moves (<code>FALSE</code>)) in a new column named <code>static</code>.</p>
 <p>Commit your changes with a meaningful commit message.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="W03_04_tasks_and_inputs.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(caro60<span class="sc">$</span>stepMean)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##  0.6417  2.1858  3.1216  6.7741  6.0652 85.6911       6</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="W03_04_tasks_and_inputs.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(caro60, <span class="fu">aes</span>(stepMean)) <span class="sc">+</span></span>
+<span id="cb235-2"><a href="W03_04_tasks_and_inputs.html#cb235-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb235-3"><a href="W03_04_tasks_and_inputs.html#cb235-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(caro60<span class="sc">$</span>stepMean,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 6 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="W03_04_tasks_and_inputs.html#cb237-1" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span> caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb237-2"><a href="W03_04_tasks_and_inputs.html#cb237-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb237-3"><a href="W03_04_tasks_and_inputs.html#cb237-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">static =</span> stepMean <span class="sc">&lt;</span> <span class="fu">mean</span>(caro60<span class="sc">$</span>stepMean,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb237-4"><a href="W03_04_tasks_and_inputs.html#cb237-4" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div>
 </div>
 <div id="task-3-visualize-segmented-trajectories" class="section level3">
 <h3>Task 3: Visualize segmented trajectories</h3>
 <p>Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with <code>geom_path()</code>, <code>geom_point()</code> and <code>coord_equal()</code>. Assign <code>colour = static</code> within <code>aes()</code> to distinguish between segments <em>with</em> “movement” and <em>without</em>.</p>
 <p>Commit your changes with a meaningful commit message.</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="W03_04_tasks_and_inputs.html#cb238-1" aria-hidden="true" tabindex="-1"></a>caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb238-2"><a href="W03_04_tasks_and_inputs.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb238-3"><a href="W03_04_tasks_and_inputs.html#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(E,N), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb238-4"><a href="W03_04_tasks_and_inputs.html#cb238-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(E,N,<span class="at">colour =</span> static)) <span class="sc">+</span></span>
+<span id="cb238-5"><a href="W03_04_tasks_and_inputs.html#cb238-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb238-6"><a href="W03_04_tasks_and_inputs.html#cb238-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span></code></pre></div>
+<p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="task-4-segment-based-analysis" class="section level3">
 <h3>Task 4: Segment-based analysis</h3>
-<p>In applying <span class="citation"><a href="references.html#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="references.html#ref-laube2011" role="doc-biblioref">2011</a>)</span>, we’ve come as far as steps b in figure <a href="W03_04_tasks_and_inputs.html#fig:laubeimg">3</a>. In order to complete the last steps (c and d), we need a <em>unique</em> ID for each segment that we can use as a grouping variable. The following function does just that (it assigns unique IDs based on the column <code>static</code> which you created in Task 2). You will learn about functions next week. For now, just copy the following code chunk into your script and run it.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="W03_04_tasks_and_inputs.html#cb53-1" aria-hidden="true" tabindex="-1"></a>rle_id <span class="ot">&lt;-</span> <span class="cf">function</span>(vec){</span>
-<span id="cb53-2"><a href="W03_04_tasks_and_inputs.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rle</span>(vec)<span class="sc">$</span>lengths</span>
-<span id="cb53-3"><a href="W03_04_tasks_and_inputs.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">seq_along</span>(x), <span class="at">times=</span>x))</span>
-<span id="cb53-4"><a href="W03_04_tasks_and_inputs.html#cb53-4" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<p>In applying <span class="citation"><a href="#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="#ref-laube2011" role="doc-biblioref">2011</a>)</span>, we’ve come as far as steps b in figure <a href="W03_04_tasks_and_inputs.html#fig:laubeimg">3</a>. In order to complete the last steps (c and d), we need a <em>unique</em> ID for each segment that we can use as a grouping variable. The following function does just that (it assigns unique IDs based on the column <code>static</code> which you created in Task 2). You will learn about functions next week. For now, just copy the following code chunk into your script and run it.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="W03_04_tasks_and_inputs.html#cb239-1" aria-hidden="true" tabindex="-1"></a>rle_id <span class="ot">&lt;-</span> <span class="cf">function</span>(vec){</span>
+<span id="cb239-2"><a href="W03_04_tasks_and_inputs.html#cb239-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rle</span>(vec)<span class="sc">$</span>lengths</span>
+<span id="cb239-3"><a href="W03_04_tasks_and_inputs.html#cb239-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">seq_along</span>(x), <span class="at">times=</span>x))</span>
+<span id="cb239-4"><a href="W03_04_tasks_and_inputs.html#cb239-4" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
 <p>You can use the newly created function <code>rle_id</code> to assign unique IDs to subtrajectories (as shown below). Visualize the <em>moving</em> segments by colourizing them by <code>segment_ID</code>.
 Then use <code>segment_ID</code> as a grouping variable to determine the segments duration and remove short segments (e.g. segments with a duration &lt; 10 Minutes)</p>
 <p>Commit your changes with a meaningful commit message.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="W03_04_tasks_and_inputs.html#cb54-1" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span> caro60 <span class="sc">%&gt;%</span></span>
-<span id="cb54-2"><a href="W03_04_tasks_and_inputs.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">segment_id =</span> <span class="fu">rle_id</span>(static))</span>
-<span id="cb54-3"><a href="W03_04_tasks_and_inputs.html#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-4"><a href="W03_04_tasks_and_inputs.html#cb54-4" aria-hidden="true" tabindex="-1"></a>caro60</span>
-<span id="cb54-5"><a href="W03_04_tasks_and_inputs.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 200 x 9</span></span>
-<span id="cb54-6"><a href="W03_04_tasks_and_inputs.html#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                E       N stepMean static</span></span>
-<span id="cb54-7"><a href="W03_04_tasks_and_inputs.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt; </span></span>
-<span id="cb54-8"><a href="W03_04_tasks_and_inputs.html#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 010C   Caro        13973 2015-09-15 08:07:00 2570589.  1.21e6    NA    NA    </span></span>
-<span id="cb54-9"><a href="W03_04_tasks_and_inputs.html#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 010C   Caro        13973 2015-09-15 08:08:00 2570573.  1.21e6    NA    NA    </span></span>
-<span id="cb54-10"><a href="W03_04_tasks_and_inputs.html#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 010C   Caro        13973 2015-09-15 08:09:00 2570536.  1.21e6    NA    NA    </span></span>
-<span id="cb54-11"><a href="W03_04_tasks_and_inputs.html#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 010C   Caro        13973 2015-09-15 08:10:00 2570518.  1.21e6    53.8  FALSE </span></span>
-<span id="cb54-12"><a href="W03_04_tasks_and_inputs.html#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 010C   Caro        13973 2015-09-15 08:11:00 2570499.  1.21e6    41.2  FALSE </span></span>
-<span id="cb54-13"><a href="W03_04_tasks_and_inputs.html#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 010C   Caro        13973 2015-09-15 08:12:00 2570489.  1.21e6    24.4  FALSE </span></span>
-<span id="cb54-14"><a href="W03_04_tasks_and_inputs.html#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 010C   Caro        13973 2015-09-15 08:13:00 2570482.  1.21e6    17.1  FALSE </span></span>
-<span id="cb54-15"><a href="W03_04_tasks_and_inputs.html#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 010C   Caro        13973 2015-09-15 08:14:00 2570481.  1.21e6    13.4  FALSE </span></span>
-<span id="cb54-16"><a href="W03_04_tasks_and_inputs.html#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 010C   Caro        13973 2015-09-15 08:15:00 2570486.  1.21e6     9.05 FALSE </span></span>
-<span id="cb54-17"><a href="W03_04_tasks_and_inputs.html#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 010C   Caro        13973 2015-09-15 08:16:00 2570490.  1.21e6    10.1  FALSE </span></span>
-<span id="cb54-18"><a href="W03_04_tasks_and_inputs.html#cb54-18" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 190 more rows, and 1 more variable: segment_id &lt;fct&gt;</span></span></code></pre></div>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="W03_04_tasks_and_inputs.html#cb240-1" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span> caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb240-2"><a href="W03_04_tasks_and_inputs.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">segment_id =</span> <span class="fu">rle_id</span>(static))</span>
+<span id="cb240-3"><a href="W03_04_tasks_and_inputs.html#cb240-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-4"><a href="W03_04_tasks_and_inputs.html#cb240-4" aria-hidden="true" tabindex="-1"></a>caro60</span></code></pre></div>
+<pre><code>## # A tibble: 200 x 9
+##    TierID TierName CollarID DatetimeUTC                E       N stepMean static
+##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt; 
+##  1 010C   Caro        13973 2015-09-15 08:07:00 2570589.  1.21e6    NA    NA    
+##  2 010C   Caro        13973 2015-09-15 08:08:00 2570573.  1.21e6    NA    NA    
+##  3 010C   Caro        13973 2015-09-15 08:09:00 2570536.  1.21e6    NA    NA    
+##  4 010C   Caro        13973 2015-09-15 08:10:00 2570518.  1.21e6    53.8  FALSE 
+##  5 010C   Caro        13973 2015-09-15 08:11:00 2570499.  1.21e6    41.2  FALSE 
+##  6 010C   Caro        13973 2015-09-15 08:12:00 2570489.  1.21e6    24.4  FALSE 
+##  7 010C   Caro        13973 2015-09-15 08:13:00 2570482.  1.21e6    17.1  FALSE 
+##  8 010C   Caro        13973 2015-09-15 08:14:00 2570481.  1.21e6    13.4  FALSE 
+##  9 010C   Caro        13973 2015-09-15 08:15:00 2570486.  1.21e6     9.05 FALSE 
+## 10 010C   Caro        13973 2015-09-15 08:16:00 2570490.  1.21e6    10.1  FALSE 
+## # ... with 190 more rows, and 1 more variable: segment_id &lt;fct&gt;</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="W03_04_tasks_and_inputs.html#cb242-1" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span>caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb242-2"><a href="W03_04_tasks_and_inputs.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb242-3"><a href="W03_04_tasks_and_inputs.html#cb242-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">segment_ID =</span> <span class="fu">rle_id</span>(static)</span>
+<span id="cb242-4"><a href="W03_04_tasks_and_inputs.html#cb242-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb242-5"><a href="W03_04_tasks_and_inputs.html#cb242-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-6"><a href="W03_04_tasks_and_inputs.html#cb242-6" aria-hidden="true" tabindex="-1"></a>caro60_moves <span class="ot">&lt;-</span> caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb242-7"><a href="W03_04_tasks_and_inputs.html#cb242-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>static)</span>
+<span id="cb242-8"><a href="W03_04_tasks_and_inputs.html#cb242-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-9"><a href="W03_04_tasks_and_inputs.html#cb242-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-10"><a href="W03_04_tasks_and_inputs.html#cb242-10" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(caro60_moves, <span class="fu">aes</span>(E, N, <span class="at">color =</span> segment_ID)) <span class="sc">+</span></span>
+<span id="cb242-11"><a href="W03_04_tasks_and_inputs.html#cb242-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb242-12"><a href="W03_04_tasks_and_inputs.html#cb242-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb242-13"><a href="W03_04_tasks_and_inputs.html#cb242-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb242-14"><a href="W03_04_tasks_and_inputs.html#cb242-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb242-15"><a href="W03_04_tasks_and_inputs.html#cb242-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span>  <span class="st">&quot;All segments (uncleaned)&quot;</span>)</span>
+<span id="cb242-16"><a href="W03_04_tasks_and_inputs.html#cb242-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-17"><a href="W03_04_tasks_and_inputs.html#cb242-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-18"><a href="W03_04_tasks_and_inputs.html#cb242-18" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> caro60_moves <span class="sc">%&gt;%</span></span>
+<span id="cb242-19"><a href="W03_04_tasks_and_inputs.html#cb242-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(segment_ID) <span class="sc">%&gt;%</span></span>
+<span id="cb242-20"><a href="W03_04_tasks_and_inputs.html#cb242-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration =</span> <span class="fu">as.integer</span>(<span class="fu">difftime</span>(<span class="fu">max</span>(DatetimeUTC),<span class="fu">min</span>(DatetimeUTC),<span class="st">&quot;mins&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb242-21"><a href="W03_04_tasks_and_inputs.html#cb242-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(duration <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb242-22"><a href="W03_04_tasks_and_inputs.html#cb242-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(E, N, <span class="at">color =</span> segment_ID))<span class="sc">+</span></span>
+<span id="cb242-23"><a href="W03_04_tasks_and_inputs.html#cb242-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(data = caro60, color = &quot;black&quot;) +</span></span>
+<span id="cb242-24"><a href="W03_04_tasks_and_inputs.html#cb242-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb242-25"><a href="W03_04_tasks_and_inputs.html#cb242-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb242-26"><a href="W03_04_tasks_and_inputs.html#cb242-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb242-27"><a href="W03_04_tasks_and_inputs.html#cb242-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb242-28"><a href="W03_04_tasks_and_inputs.html#cb242-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Long segments (removed segements &lt;5 minutes)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="W03_04_tasks_and_inputs.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;patchwork&#39; wurde unter R Version 4.0.4 erstellt</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="W03_04_tasks_and_inputs.html#cb245-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> patchwork<span class="sc">::</span><span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&quot;Moving segments coloured by segment ID&quot;</span>)</span></code></pre></div>
+<p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="task-5-similarity-measures" class="section level3">
 <h3>Task 5: Similarity measures</h3>
 <p>We will now leave the wild boar data and turn our attentian to human movement. You will use the dataset <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/pedestrian.csv">pedestrian.csv</a> (right click &gt; save target as..) for this (and the following) task. Download an import this dataset as a <code>data.frame</code> or <code>tibble</code>. It it a set of six different but similar trajectories from pedestrians walking on a path.</p>
 <p>or this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don’t express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!</p>
 <p>Commit your changes with a meaningful commit message.</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="W03_04_tasks_and_inputs.html#cb246-1" aria-hidden="true" tabindex="-1"></a>pedestrians <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/pedestrian.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   TrajID = col_double(),
+##   E = col_double(),
+##   N = col_double(),
+##   DatetimeUTC = col_datetime(format = &quot;&quot;)
+## )</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="W03_04_tasks_and_inputs.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pedestrians, <span class="fu">aes</span>(E,N)) <span class="sc">+</span></span>
+<span id="cb248-2"><a href="W03_04_tasks_and_inputs.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">select</span>(pedestrians, <span class="sc">-</span>TrajID),<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb248-3"><a href="W03_04_tasks_and_inputs.html#cb248-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(TrajID)), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb248-4"><a href="W03_04_tasks_and_inputs.html#cb248-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(TrajID))) <span class="sc">+</span></span>
+<span id="cb248-5"><a href="W03_04_tasks_and_inputs.html#cb248-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>TrajID,<span class="at">labeller =</span> label_both) <span class="sc">+</span></span>
+<span id="cb248-6"><a href="W03_04_tasks_and_inputs.html#cb248-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb248-7"><a href="W03_04_tasks_and_inputs.html#cb248-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb248-8"><a href="W03_04_tasks_and_inputs.html#cb248-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Visual comparison of the 6 trajectories&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Each subplot highlights a trajectory&quot;</span>) <span class="sc">+</span></span>
+<span id="cb248-9"><a href="W03_04_tasks_and_inputs.html#cb248-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 <div id="task-6-calculate-similarity" class="section level3">
 <h3>Task 6: Calculate similarity</h3>
 <p>Install the package <code>SimilarityMeasures</code> (<code>install.packages("SimilarityMeasures")</code>). Familiarize yourself with this package by skimming through the function descriptions <code>help(package = "SimilarityMeasures")</code>. Now compare trajectory 1 to trajectories 2-6 using different similarity measures from the package. Your options are. <code>DTW</code>, <code>EditDist</code>, <code>Frechet</code> and <code>LCSS</code>.</p>
-<p>Visualize your results and try to understand the different results with respect to your reading of <span class="citation"><a href="references.html#ref-both2018" role="doc-biblioref">Alan Both</a> (<a href="references.html#ref-both2018" role="doc-biblioref">2018</a>)</span>. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?</p>
+<p>Visualize your results and try to understand the different results with respect to your reading of <span class="citation"><a href="#ref-both2018" role="doc-biblioref">Alan Both</a> (<a href="#ref-both2018" role="doc-biblioref">2018</a>)</span>. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?</p>
 <p>Note:</p>
 <ul>
 <li>All functions in the package need matrices as input, with one trajectory per matrix.</li>
-<li><code>LCSS</code>takes very long to compute. The accuracy of the algorithm (<code>pointSpacing =</code> ,<code>pointDistance =</code> and <code>errorMarg =</code>) can be varied to provide faster calculations. Please see <span class="citation"><a href="references.html#ref-vlachos2002" role="doc-biblioref">Vlachos, Gunopoulos, and Kollios</a> (<a href="references.html#ref-vlachos2002" role="doc-biblioref">2002</a>)</span> for more information.</li>
+<li><code>LCSS</code>takes very long to compute. The accuracy of the algorithm (<code>pointSpacing =</code> ,<code>pointDistance =</code> and <code>errorMarg =</code>) can be varied to provide faster calculations. Please see <span class="citation"><a href="#ref-vlachos2002" role="doc-biblioref">Vlachos, Gunopoulos, and Kollios</a> (<a href="#ref-vlachos2002" role="doc-biblioref">2002</a>)</span> for more information.</li>
 </ul>
 <p>Commit your changes with a meaningful commit message. Now push all your changes to Github.</p>
-<p><img src="patterns-and-trends_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="W03_04_tasks_and_inputs.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of repeating the same step 6 times, I use purrr::map() </span></span>
+<span id="cb249-2"><a href="W03_04_tasks_and_inputs.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="co"># which creates a list of dataframes. Feel free to use a method</span></span>
+<span id="cb249-3"><a href="W03_04_tasks_and_inputs.html#cb249-3" aria-hidden="true" tabindex="-1"></a><span class="co"># with which you feel comfortable.</span></span>
+<span id="cb249-4"><a href="W03_04_tasks_and_inputs.html#cb249-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb249-5"><a href="W03_04_tasks_and_inputs.html#cb249-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb249-6"><a href="W03_04_tasks_and_inputs.html#cb249-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SimilarityMeasures)  <span class="co"># for the similarity measure functions</span></span>
+<span id="cb249-7"><a href="W03_04_tasks_and_inputs.html#cb249-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)               <span class="co"># for the map_*-functions</span></span></code></pre></div>
+<pre><code>## Warning: Paket &#39;purrr&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="W03_04_tasks_and_inputs.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)               <span class="co"># for pivot_* functions</span></span></code></pre></div>
+<pre><code>## Warning: Paket &#39;tidyr&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="W03_04_tasks_and_inputs.html#cb253-1" aria-hidden="true" tabindex="-1"></a>pedestrians_matrix <span class="ot">&lt;-</span> pedestrians <span class="sc">%&gt;%</span></span>
+<span id="cb253-2"><a href="W03_04_tasks_and_inputs.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(E, N) <span class="sc">%&gt;%</span></span>
+<span id="cb253-3"><a href="W03_04_tasks_and_inputs.html#cb253-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(pedestrians<span class="sc">$</span>TrajID) <span class="sc">%&gt;%</span></span>
+<span id="cb253-4"><a href="W03_04_tasks_and_inputs.html#cb253-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(as.matrix)</span>
+<span id="cb253-5"><a href="W03_04_tasks_and_inputs.html#cb253-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-6"><a href="W03_04_tasks_and_inputs.html#cb253-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Again, we use one of the purrr::map_* family of functions</span></span>
+<span id="cb253-7"><a href="W03_04_tasks_and_inputs.html#cb253-7" aria-hidden="true" tabindex="-1"></a><span class="co"># to calculate three indices over all 5 pairs in one go.</span></span>
+<span id="cb253-8"><a href="W03_04_tasks_and_inputs.html#cb253-8" aria-hidden="true" tabindex="-1"></a><span class="co"># As before: feel free to use a different method you feel </span></span>
+<span id="cb253-9"><a href="W03_04_tasks_and_inputs.html#cb253-9" aria-hidden="true" tabindex="-1"></a><span class="co"># more comfortable in.</span></span>
+<span id="cb253-10"><a href="W03_04_tasks_and_inputs.html#cb253-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-11"><a href="W03_04_tasks_and_inputs.html#cb253-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-12"><a href="W03_04_tasks_and_inputs.html#cb253-12" aria-hidden="true" tabindex="-1"></a>pedest_measures <span class="ot">&lt;-</span> <span class="fu">imap_dfr</span>(pedestrians_matrix, <span class="sc">~</span><span class="fu">data_frame</span>(</span>
+<span id="cb253-13"><a href="W03_04_tasks_and_inputs.html#cb253-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">traj =</span> .y,</span>
+<span id="cb253-14"><a href="W03_04_tasks_and_inputs.html#cb253-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">DTW =</span> <span class="fu">DTW</span>(.x,pedestrians_matrix[[<span class="dv">1</span>]]),</span>
+<span id="cb253-15"><a href="W03_04_tasks_and_inputs.html#cb253-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">EditDist =</span> <span class="fu">EditDist</span>(.x,pedestrians_matrix[[<span class="dv">1</span>]]),</span>
+<span id="cb253-16"><a href="W03_04_tasks_and_inputs.html#cb253-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">Frechet =</span> <span class="fu">Frechet</span>(.x,pedestrians_matrix[[<span class="dv">1</span>]]),</span>
+<span id="cb253-17"><a href="W03_04_tasks_and_inputs.html#cb253-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">LCSS =</span> <span class="fu">LCSS</span>(.x,pedestrians_matrix[[<span class="dv">1</span>]],<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span>
+<span id="cb253-18"><a href="W03_04_tasks_and_inputs.html#cb253-18" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<pre><code>## Warning: `data_frame()` was deprecated in tibble 1.1.0.
+## Please use `tibble()` instead.</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="W03_04_tasks_and_inputs.html#cb255-1" aria-hidden="true" tabindex="-1"></a>pedest_measures <span class="sc">%&gt;%</span></span>
+<span id="cb255-2"><a href="W03_04_tasks_and_inputs.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>traj) <span class="sc">%&gt;%</span></span>
+<span id="cb255-3"><a href="W03_04_tasks_and_inputs.html#cb255-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(traj,value, <span class="at">fill =</span> traj))<span class="sc">+</span> </span>
+<span id="cb255-4"><a href="W03_04_tasks_and_inputs.html#cb255-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb255-5"><a href="W03_04_tasks_and_inputs.html#cb255-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name,<span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb255-6"><a href="W03_04_tasks_and_inputs.html#cb255-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb255-7"><a href="W03_04_tasks_and_inputs.html#cb255-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comparison trajectory&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Computed similarities using different measures </span><span class="sc">\n</span><span class="st">between trajectory 1 to all other trajectories &quot;</span>)</span></code></pre></div>
+<p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-both2018" class="csl-entry">
+Alan Both, Matt Duckham, Kevin Buchin. 2018. <span>“A Comparative Analysis of Trajectory Similarity Measures: Recommendations for Selection and Use.”</span>
+</div>
+<div id="ref-laube2011" class="csl-entry">
+Laube, Patrick, and Ross S. Purves. 2011. <span>“How Fast Is a Cow? Cross - Scale Analysis of Movement Data.”</span> <em>Transactions in GIS</em> 15 (3): 401–18. <a href="https://doi.org/10.1111/j.1467-9671.2011.01256.x">https://doi.org/10.1111/j.1467-9671.2011.01256.x</a>.
+</div>
+<div id="ref-vlachos2002" class="csl-entry">
+Vlachos, Michail, Dimitrios Gunopoulos, and George Kollios. 2002. <span>“Discovering Similar Multidimensional Trajectories.”</span> In <em>Proceedings of the 18th International Conference on Data Engineering</em>, 673–73. ICDE ’02. Washington, DC, USA: IEEE Computer Society. <a href="http://dl.acm.org/citation.cfm?id=876875.878994">http://dl.acm.org/citation.cfm?id=876875.878994</a>.
 </div>
 </div>
 <script src="https://utteranc.es/client.js"
@@ -475,7 +661,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/13_Week3/W03_04_tasks_and_inputs.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/W03_04_tasks_and_inputs.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -483,7 +669,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/13_Week3/W03_04_tasks_and_inputs.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/W03_04_tasks_and_inputs.Rmd",
 "text": null
 },
 "download": null,

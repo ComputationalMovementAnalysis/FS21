@@ -138,6 +138,7 @@ By this point, you probably have created a folder for this course somewhere on y
 
 
 ```{r, include=FALSE}
+library(dplyr)
 week_folders <- paste0("week",1:7)
 
 subpaths(rootdir,"Course Folder",c(week_folders,"semester_project")) %>%

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Demo Tidyverse (R-Code) | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
   <meta name="description" content="Demo Tidyverse (R-Code) | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Demo Tidyverse (R-Code) | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
@@ -50,16 +50,8 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -124,6 +116,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="90_misc/mystyle.css" type="text/css" />
@@ -233,7 +248,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
 <ul>
-<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#input-creating-functions"><i class="fa fa-check"></i>Input: Creating functions</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-filter-data"><i class="fa fa-check"></i>Task 2: Filter data</a></li>
 <li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
@@ -242,19 +256,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="W05_02_preparation.html"><a href="W05_02_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
-<ul>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /></a>.
 
@@ -277,84 +278,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="demo-tidyverse-r-code" class="section level2">
 <h2>Demo Tidyverse (R-Code)</h2>
-<p>Hover over the code and copy the content by clicking on the clipboard icon on the top right. You can now paste this into an R-Script.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="W02_04b_demo_tidyverse_code.html#cb41-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb41-2"><a href="W02_04b_demo_tidyverse_code.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="W02_04b_demo_tidyverse_code.html#cb41-3" aria-hidden="true" tabindex="-1"></a>later <span class="ot">&lt;-</span> now <span class="sc">+</span> <span class="dv">10000</span></span>
-<span id="cb41-4"><a href="W02_04b_demo_tidyverse_code.html#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="W02_04b_demo_tidyverse_code.html#cb41-5" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now)</span>
-<span id="cb41-6"><a href="W02_04b_demo_tidyverse_code.html#cb41-6" aria-hidden="true" tabindex="-1"></a>time_difference</span>
-<span id="cb41-7"><a href="W02_04b_demo_tidyverse_code.html#cb41-7" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>)</span>
-<span id="cb41-8"><a href="W02_04b_demo_tidyverse_code.html#cb41-8" aria-hidden="true" tabindex="-1"></a>time_difference</span>
-<span id="cb41-9"><a href="W02_04b_demo_tidyverse_code.html#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
-<span id="cb41-10"><a href="W02_04b_demo_tidyverse_code.html#cb41-10" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>))</span>
-<span id="cb41-11"><a href="W02_04b_demo_tidyverse_code.html#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-12"><a href="W02_04b_demo_tidyverse_code.html#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
-<span id="cb41-13"><a href="W02_04b_demo_tidyverse_code.html#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-14"><a href="W02_04b_demo_tidyverse_code.html#cb41-14" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb41-15"><a href="W02_04b_demo_tidyverse_code.html#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-16"><a href="W02_04b_demo_tidyverse_code.html#cb41-16" aria-hidden="true" tabindex="-1"></a>numbers</span>
-<span id="cb41-17"><a href="W02_04b_demo_tidyverse_code.html#cb41-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-18"><a href="W02_04b_demo_tidyverse_code.html#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-19"><a href="W02_04b_demo_tidyverse_code.html#cb41-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-20"><a href="W02_04b_demo_tidyverse_code.html#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers)</span>
-<span id="cb41-21"><a href="W02_04b_demo_tidyverse_code.html#cb41-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-22"><a href="W02_04b_demo_tidyverse_code.html#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers,<span class="at">n =</span> <span class="dv">2</span>)</span>
-<span id="cb41-23"><a href="W02_04b_demo_tidyverse_code.html#cb41-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-24"><a href="W02_04b_demo_tidyverse_code.html#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers)</span>
-<span id="cb41-25"><a href="W02_04b_demo_tidyverse_code.html#cb41-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-26"><a href="W02_04b_demo_tidyverse_code.html#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb41-27"><a href="W02_04b_demo_tidyverse_code.html#cb41-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-28"><a href="W02_04b_demo_tidyverse_code.html#cb41-28" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>, <span class="at">default =</span> <span class="dv">0</span>)</span>
-<span id="cb41-29"><a href="W02_04b_demo_tidyverse_code.html#cb41-29" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb41-30"><a href="W02_04b_demo_tidyverse_code.html#cb41-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Hans&quot;</span>,<span class="dv">5</span>),<span class="fu">rep</span>(<span class="st">&quot;Klara&quot;</span>,<span class="dv">5</span>)),</span>
-<span id="cb41-31"><a href="W02_04b_demo_tidyverse_code.html#cb41-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">DatetimeUTC =</span> <span class="fu">rep</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;2015-01-01 00:00:00&quot;</span>,<span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)<span class="sc">+</span><span class="dv">0</span><span class="sc">:</span><span class="dv">4</span><span class="sc">*</span><span class="dv">15</span><span class="sc">*</span><span class="dv">60</span>, <span class="dv">2</span>)</span>
-<span id="cb41-32"><a href="W02_04b_demo_tidyverse_code.html#cb41-32" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-33"><a href="W02_04b_demo_tidyverse_code.html#cb41-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-34"><a href="W02_04b_demo_tidyverse_code.html#cb41-34" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
-<span id="cb41-35"><a href="W02_04b_demo_tidyverse_code.html#cb41-35" aria-hidden="true" tabindex="-1"></a>wildschwein<span class="sc">$</span>timelag  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(wildschwein<span class="sc">$</span>DatetimeUTC), wildschwein<span class="sc">$</span>DatetimeUTC))</span>
-<span id="cb41-36"><a href="W02_04b_demo_tidyverse_code.html#cb41-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-37"><a href="W02_04b_demo_tidyverse_code.html#cb41-37" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC)))</span>
-<span id="cb41-38"><a href="W02_04b_demo_tidyverse_code.html#cb41-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-39"><a href="W02_04b_demo_tidyverse_code.html#cb41-39" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
-<span id="cb41-40"><a href="W02_04b_demo_tidyverse_code.html#cb41-40" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">group_by</span>(wildschwein,TierID)</span>
-<span id="cb41-41"><a href="W02_04b_demo_tidyverse_code.html#cb41-41" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC)))</span>
-<span id="cb41-42"><a href="W02_04b_demo_tidyverse_code.html#cb41-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-43"><a href="W02_04b_demo_tidyverse_code.html#cb41-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-44"><a href="W02_04b_demo_tidyverse_code.html#cb41-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-45"><a href="W02_04b_demo_tidyverse_code.html#cb41-45" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
-<span id="cb41-46"><a href="W02_04b_demo_tidyverse_code.html#cb41-46" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(wildschwein, <span class="at">mean =</span> <span class="fu">mean</span>(timelag, <span class="at">na.rm =</span> T))</span>
-<span id="cb41-47"><a href="W02_04b_demo_tidyverse_code.html#cb41-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-48"><a href="W02_04b_demo_tidyverse_code.html#cb41-48" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="sc">%&gt;%</span>                           <span class="co"># Take wildschwein...</span></span>
-<span id="cb41-49"><a href="W02_04b_demo_tidyverse_code.html#cb41-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span>                    <span class="co"># ...group it by TierID</span></span>
-<span id="cb41-50"><a href="W02_04b_demo_tidyverse_code.html#cb41-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(                              <span class="co"># Summarise the data...</span></span>
-<span id="cb41-51"><a href="W02_04b_demo_tidyverse_code.html#cb41-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_timelag =</span> <span class="fu">mean</span>(timelag,<span class="at">na.rm =</span> T)<span class="co"># ...by calculating the mean timelag</span></span>
-<span id="cb41-52"><a href="W02_04b_demo_tidyverse_code.html#cb41-52" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-53"><a href="W02_04b_demo_tidyverse_code.html#cb41-53" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb41-54"><a href="W02_04b_demo_tidyverse_code.html#cb41-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID =</span> <span class="fu">c</span>(<span class="dv">8001</span>,<span class="dv">8003</span>,<span class="dv">8004</span>,<span class="dv">8005</span>,<span class="dv">8800</span>,<span class="dv">8820</span>,<span class="dv">3000</span>,<span class="dv">3001</span>,<span class="dv">3002</span>,<span class="dv">3003</span>,<span class="dv">8330</span>,<span class="dv">7222</span>),</span>
-<span id="cb41-55"><a href="W02_04b_demo_tidyverse_code.html#cb41-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>),</span>
-<span id="cb41-56"><a href="W02_04b_demo_tidyverse_code.html#cb41-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">age=</span> <span class="fu">c</span> (<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>),</span>
-<span id="cb41-57"><a href="W02_04b_demo_tidyverse_code.html#cb41-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="fl">50.755</span>,<span class="fl">43.409</span>,<span class="fl">12.000</span>,<span class="fl">16.787</span>,<span class="fl">20.987</span>,<span class="fl">25.765</span>,<span class="fl">22.0122</span>,<span class="fl">21.343</span>,<span class="fl">12.532</span>,<span class="fl">54.32</span>,<span class="fl">11.027</span>,<span class="fl">88.08</span>)</span>
-<span id="cb41-58"><a href="W02_04b_demo_tidyverse_code.html#cb41-58" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb41-59"><a href="W02_04b_demo_tidyverse_code.html#cb41-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-60"><a href="W02_04b_demo_tidyverse_code.html#cb41-60" aria-hidden="true" tabindex="-1"></a>pigs</span>
-<span id="cb41-61"><a href="W02_04b_demo_tidyverse_code.html#cb41-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-62"><a href="W02_04b_demo_tidyverse_code.html#cb41-62" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
-<span id="cb41-63"><a href="W02_04b_demo_tidyverse_code.html#cb41-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(         </span>
-<span id="cb41-64"><a href="W02_04b_demo_tidyverse_code.html#cb41-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
-<span id="cb41-65"><a href="W02_04b_demo_tidyverse_code.html#cb41-65" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-66"><a href="W02_04b_demo_tidyverse_code.html#cb41-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-67"><a href="W02_04b_demo_tidyverse_code.html#cb41-67" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
-<span id="cb41-68"><a href="W02_04b_demo_tidyverse_code.html#cb41-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb41-69"><a href="W02_04b_demo_tidyverse_code.html#cb41-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
-<span id="cb41-70"><a href="W02_04b_demo_tidyverse_code.html#cb41-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
-<span id="cb41-71"><a href="W02_04b_demo_tidyverse_code.html#cb41-71" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-72"><a href="W02_04b_demo_tidyverse_code.html#cb41-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-73"><a href="W02_04b_demo_tidyverse_code.html#cb41-73" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
-<span id="cb41-74"><a href="W02_04b_demo_tidyverse_code.html#cb41-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex,age) <span class="sc">%&gt;%</span></span>
-<span id="cb41-75"><a href="W02_04b_demo_tidyverse_code.html#cb41-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
-<span id="cb41-76"><a href="W02_04b_demo_tidyverse_code.html#cb41-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
-<span id="cb41-77"><a href="W02_04b_demo_tidyverse_code.html#cb41-77" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="W02_04b_demo_tidyverse_code.html#cb130-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb130-2"><a href="W02_04b_demo_tidyverse_code.html#cb130-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-3"><a href="W02_04b_demo_tidyverse_code.html#cb130-3" aria-hidden="true" tabindex="-1"></a>later <span class="ot">&lt;-</span> now <span class="sc">+</span> <span class="dv">10000</span></span>
+<span id="cb130-4"><a href="W02_04b_demo_tidyverse_code.html#cb130-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-5"><a href="W02_04b_demo_tidyverse_code.html#cb130-5" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now)</span>
+<span id="cb130-6"><a href="W02_04b_demo_tidyverse_code.html#cb130-6" aria-hidden="true" tabindex="-1"></a>time_difference</span>
+<span id="cb130-7"><a href="W02_04b_demo_tidyverse_code.html#cb130-7" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>)</span>
+<span id="cb130-8"><a href="W02_04b_demo_tidyverse_code.html#cb130-8" aria-hidden="true" tabindex="-1"></a>time_difference</span>
+<span id="cb130-9"><a href="W02_04b_demo_tidyverse_code.html#cb130-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
+<span id="cb130-10"><a href="W02_04b_demo_tidyverse_code.html#cb130-10" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>))</span>
+<span id="cb130-11"><a href="W02_04b_demo_tidyverse_code.html#cb130-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-12"><a href="W02_04b_demo_tidyverse_code.html#cb130-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
+<span id="cb130-13"><a href="W02_04b_demo_tidyverse_code.html#cb130-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-14"><a href="W02_04b_demo_tidyverse_code.html#cb130-14" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb130-15"><a href="W02_04b_demo_tidyverse_code.html#cb130-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-16"><a href="W02_04b_demo_tidyverse_code.html#cb130-16" aria-hidden="true" tabindex="-1"></a>numbers</span>
+<span id="cb130-17"><a href="W02_04b_demo_tidyverse_code.html#cb130-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-18"><a href="W02_04b_demo_tidyverse_code.html#cb130-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb130-19"><a href="W02_04b_demo_tidyverse_code.html#cb130-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-20"><a href="W02_04b_demo_tidyverse_code.html#cb130-20" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers)</span>
+<span id="cb130-21"><a href="W02_04b_demo_tidyverse_code.html#cb130-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-22"><a href="W02_04b_demo_tidyverse_code.html#cb130-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers,<span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb130-23"><a href="W02_04b_demo_tidyverse_code.html#cb130-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-24"><a href="W02_04b_demo_tidyverse_code.html#cb130-24" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers)</span>
+<span id="cb130-25"><a href="W02_04b_demo_tidyverse_code.html#cb130-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-26"><a href="W02_04b_demo_tidyverse_code.html#cb130-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb130-27"><a href="W02_04b_demo_tidyverse_code.html#cb130-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-28"><a href="W02_04b_demo_tidyverse_code.html#cb130-28" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>, <span class="at">default =</span> <span class="dv">0</span>)</span>
+<span id="cb130-29"><a href="W02_04b_demo_tidyverse_code.html#cb130-29" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb130-30"><a href="W02_04b_demo_tidyverse_code.html#cb130-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Hans&quot;</span>,<span class="dv">5</span>),<span class="fu">rep</span>(<span class="st">&quot;Klara&quot;</span>,<span class="dv">5</span>)),</span>
+<span id="cb130-31"><a href="W02_04b_demo_tidyverse_code.html#cb130-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">DatetimeUTC =</span> <span class="fu">rep</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;2015-01-01 00:00:00&quot;</span>,<span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)<span class="sc">+</span><span class="dv">0</span><span class="sc">:</span><span class="dv">4</span><span class="sc">*</span><span class="dv">15</span><span class="sc">*</span><span class="dv">60</span>, <span class="dv">2</span>)</span>
+<span id="cb130-32"><a href="W02_04b_demo_tidyverse_code.html#cb130-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb130-33"><a href="W02_04b_demo_tidyverse_code.html#cb130-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-34"><a href="W02_04b_demo_tidyverse_code.html#cb130-34" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
+<span id="cb130-35"><a href="W02_04b_demo_tidyverse_code.html#cb130-35" aria-hidden="true" tabindex="-1"></a>wildschwein<span class="sc">$</span>timelag  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(wildschwein<span class="sc">$</span>DatetimeUTC), wildschwein<span class="sc">$</span>DatetimeUTC))</span>
+<span id="cb130-36"><a href="W02_04b_demo_tidyverse_code.html#cb130-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-37"><a href="W02_04b_demo_tidyverse_code.html#cb130-37" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC)))</span>
+<span id="cb130-38"><a href="W02_04b_demo_tidyverse_code.html#cb130-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-39"><a href="W02_04b_demo_tidyverse_code.html#cb130-39" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
+<span id="cb130-40"><a href="W02_04b_demo_tidyverse_code.html#cb130-40" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">group_by</span>(wildschwein,TierID)</span>
+<span id="cb130-41"><a href="W02_04b_demo_tidyverse_code.html#cb130-41" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC)))</span>
+<span id="cb130-42"><a href="W02_04b_demo_tidyverse_code.html#cb130-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-43"><a href="W02_04b_demo_tidyverse_code.html#cb130-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-44"><a href="W02_04b_demo_tidyverse_code.html#cb130-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-45"><a href="W02_04b_demo_tidyverse_code.html#cb130-45" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
+<span id="cb130-46"><a href="W02_04b_demo_tidyverse_code.html#cb130-46" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(wildschwein, <span class="at">mean =</span> <span class="fu">mean</span>(timelag, <span class="at">na.rm =</span> T))</span>
+<span id="cb130-47"><a href="W02_04b_demo_tidyverse_code.html#cb130-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-48"><a href="W02_04b_demo_tidyverse_code.html#cb130-48" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="sc">%&gt;%</span>                           <span class="co"># Take wildschwein...</span></span>
+<span id="cb130-49"><a href="W02_04b_demo_tidyverse_code.html#cb130-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span>                    <span class="co"># ...group it by TierID</span></span>
+<span id="cb130-50"><a href="W02_04b_demo_tidyverse_code.html#cb130-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(                              <span class="co"># Summarise the data...</span></span>
+<span id="cb130-51"><a href="W02_04b_demo_tidyverse_code.html#cb130-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_timelag =</span> <span class="fu">mean</span>(timelag,<span class="at">na.rm =</span> T)<span class="co"># ...by calculating the mean timelag</span></span>
+<span id="cb130-52"><a href="W02_04b_demo_tidyverse_code.html#cb130-52" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb130-53"><a href="W02_04b_demo_tidyverse_code.html#cb130-53" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb130-54"><a href="W02_04b_demo_tidyverse_code.html#cb130-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID =</span> <span class="fu">c</span>(<span class="dv">8001</span>,<span class="dv">8003</span>,<span class="dv">8004</span>,<span class="dv">8005</span>,<span class="dv">8800</span>,<span class="dv">8820</span>,<span class="dv">3000</span>,<span class="dv">3001</span>,<span class="dv">3002</span>,<span class="dv">3003</span>,<span class="dv">8330</span>,<span class="dv">7222</span>),</span>
+<span id="cb130-55"><a href="W02_04b_demo_tidyverse_code.html#cb130-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>),</span>
+<span id="cb130-56"><a href="W02_04b_demo_tidyverse_code.html#cb130-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">age=</span> <span class="fu">c</span> (<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>),</span>
+<span id="cb130-57"><a href="W02_04b_demo_tidyverse_code.html#cb130-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="fl">50.755</span>,<span class="fl">43.409</span>,<span class="fl">12.000</span>,<span class="fl">16.787</span>,<span class="fl">20.987</span>,<span class="fl">25.765</span>,<span class="fl">22.0122</span>,<span class="fl">21.343</span>,<span class="fl">12.532</span>,<span class="fl">54.32</span>,<span class="fl">11.027</span>,<span class="fl">88.08</span>)</span>
+<span id="cb130-58"><a href="W02_04b_demo_tidyverse_code.html#cb130-58" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb130-59"><a href="W02_04b_demo_tidyverse_code.html#cb130-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-60"><a href="W02_04b_demo_tidyverse_code.html#cb130-60" aria-hidden="true" tabindex="-1"></a>pigs</span>
+<span id="cb130-61"><a href="W02_04b_demo_tidyverse_code.html#cb130-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-62"><a href="W02_04b_demo_tidyverse_code.html#cb130-62" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
+<span id="cb130-63"><a href="W02_04b_demo_tidyverse_code.html#cb130-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(         </span>
+<span id="cb130-64"><a href="W02_04b_demo_tidyverse_code.html#cb130-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
+<span id="cb130-65"><a href="W02_04b_demo_tidyverse_code.html#cb130-65" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb130-66"><a href="W02_04b_demo_tidyverse_code.html#cb130-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-67"><a href="W02_04b_demo_tidyverse_code.html#cb130-67" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
+<span id="cb130-68"><a href="W02_04b_demo_tidyverse_code.html#cb130-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb130-69"><a href="W02_04b_demo_tidyverse_code.html#cb130-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
+<span id="cb130-70"><a href="W02_04b_demo_tidyverse_code.html#cb130-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
+<span id="cb130-71"><a href="W02_04b_demo_tidyverse_code.html#cb130-71" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb130-72"><a href="W02_04b_demo_tidyverse_code.html#cb130-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-73"><a href="W02_04b_demo_tidyverse_code.html#cb130-73" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
+<span id="cb130-74"><a href="W02_04b_demo_tidyverse_code.html#cb130-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex,age) <span class="sc">%&gt;%</span></span>
+<span id="cb130-75"><a href="W02_04b_demo_tidyverse_code.html#cb130-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
+<span id="cb130-76"><a href="W02_04b_demo_tidyverse_code.html#cb130-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
+<span id="cb130-77"><a href="W02_04b_demo_tidyverse_code.html#cb130-77" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 
 </div>
 <script src="https://utteranc.es/client.js"
@@ -392,7 +392,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/12_Week2/W02_04b_demo_tidyverse_code.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/W02_04b_demo_tidyverse_code.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -400,7 +400,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/12_Week2/W02_04b_demo_tidyverse_code.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/W02_04b_demo_tidyverse_code.Rmd",
 "text": null
 },
 "download": null,

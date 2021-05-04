@@ -2,6 +2,10 @@
 
 ## Demo Tidyverse (R-Code)
 
+```{r, include=FALSE}
+source('01_R_Files/helperfunctions.R')
+```
+
 
 ```{block2, copychunk-text}
 ```

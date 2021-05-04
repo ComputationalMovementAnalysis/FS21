@@ -58,6 +58,14 @@ Then, store your PAT in you local Git
 
 Now you can create a Repository on Github that you can afterwards connect to your RStudio project from this week (which you will create in the next step). To do this, go to [github.com](https://github.com) and click on the plus sign in the top right corner, then fill in the following information:
 
+```{r, include=FALSE}
+source('01_R_Files/helperfunctions.R')
+library(dplyr)
+rootdir <- "C:/Users/yourname/semester2/Modul_CMA"
+subpaths(rootdir,"Course Folder",c(week_folders,"semester_project")) %>%
+  paths2node()
+```
+
 ```{r, echo = FALSE}
 reponame <- paste("cma",week_folders[2], sep = "-")
 repourl <- paste0("https://github.com/YOUR-GITHUB-USERNAME/",reponame)

@@ -1,5 +1,10 @@
 ## Tasks and Inputs
 
+```{r, include=FALSE}
+source('01_R_Files/helperfunctions.R')
+```
+
+
 You've read @laube2011 about segmenting trajectories. In the paper, the authors define "*static*" fixes as "*those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d*", as illustrated in the following figure:
 
 (ref:laubeimg) The figure from @laube2011 visualizes steps a) zu d), which will be explained below:
