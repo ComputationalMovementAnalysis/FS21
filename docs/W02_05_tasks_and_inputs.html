@@ -278,7 +278,6 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="tasks-and-inputs" class="section level2">
 <h2>Tasks and Inputs</h2>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="W02_05_tasks_and_inputs.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;01_R_Files/helperfunctions.R&#39;</span>)</span></code></pre></div>
 <ul>
 <li>Open the RStudio Project you created for week 2 in <a href="W02_03_preparation.html#w2-project">the preparation</a></li>
 <li>Download the new wildboar movement data, and save it to your new project’s directory <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/wildschwein_BE_2056.csv">wildschwein_BE_2056.csv</a> (right click “Save target as..”)</li>
@@ -299,63 +298,20 @@ div.csl-indent {
 <div id="task-0-import-your-data" class="section level3">
 <h3>Task 0: Import your data</h3>
 <p>Create a new R- (or RMarkdown-) file and begin with the following lines of code (adjust the path to your csv file accordingly).</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="W02_05_tasks_and_inputs.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the necessary libraries ################################################</span></span>
-<span id="cb132-2"><a href="W02_05_tasks_and_inputs.html#cb132-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-3"><a href="W02_05_tasks_and_inputs.html#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)        <span class="co"># to import tabular data (e.g. csv)</span></span></code></pre></div>
-<pre><code>## Warning: Paket &#39;readr&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="W02_05_tasks_and_inputs.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)        <span class="co"># to manipulate (tabular) data</span></span></code></pre></div>
-<pre><code>## Warning: Paket &#39;dplyr&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## 
-## Attache Paket: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:glue&#39;:
-## 
-##     collapse</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="W02_05_tasks_and_inputs.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># to visualize data</span></span></code></pre></div>
-<pre><code>## Warning: Paket &#39;ggplot2&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="W02_05_tasks_and_inputs.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)           <span class="co"># to handle spatial vector data</span></span></code></pre></div>
-<pre><code>## Warning: Paket &#39;sf&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="W02_05_tasks_and_inputs.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)        <span class="co"># To handle raster data</span></span></code></pre></div>
-<pre><code>## Warning: Paket &#39;terra&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## terra version 1.1.17</code></pre>
-<pre><code>## 
-## Attache Paket: &#39;terra&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     collapse, desc, near</code></pre>
-<pre><code>## The following object is masked from &#39;package:glue&#39;:
-## 
-##     collapse</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="W02_05_tasks_and_inputs.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)    <span class="co"># To handle dates and times</span></span></code></pre></div>
-<pre><code>## Warning: Paket &#39;lubridate&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## 
-## Attache Paket: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:terra&#39;:
-## 
-##     intersect, union</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="W02_05_tasks_and_inputs.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import the downloaded csv ##################################################</span></span>
-<span id="cb156-2"><a href="W02_05_tasks_and_inputs.html#cb156-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-3"><a href="W02_05_tasks_and_inputs.html#cb156-3" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE_2056.csv&quot;</span>,<span class="st">&quot;,&quot;</span>) <span class="co"># adjust path</span></span></code></pre></div>
-<pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = &quot;&quot;),
-##   E = col_double(),
-##   N = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="W02_05_tasks_and_inputs.html#cb158-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>, <span class="st">&quot;N&quot;</span>), <span class="at">crs =</span> <span class="dv">2056</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="W02_05_tasks_and_inputs.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the necessary libraries ################################################</span></span>
+<span id="cb80-2"><a href="W02_05_tasks_and_inputs.html#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="W02_05_tasks_and_inputs.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)        <span class="co"># to import tabular data (e.g. csv)</span></span>
+<span id="cb80-4"><a href="W02_05_tasks_and_inputs.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)        <span class="co"># to manipulate (tabular) data</span></span>
+<span id="cb80-5"><a href="W02_05_tasks_and_inputs.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># to visualize data</span></span>
+<span id="cb80-6"><a href="W02_05_tasks_and_inputs.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)           <span class="co"># to handle spatial vector data</span></span>
+<span id="cb80-7"><a href="W02_05_tasks_and_inputs.html#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)        <span class="co"># To handle raster data</span></span>
+<span id="cb80-8"><a href="W02_05_tasks_and_inputs.html#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)    <span class="co"># To handle dates and times</span></span>
+<span id="cb80-9"><a href="W02_05_tasks_and_inputs.html#cb80-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-10"><a href="W02_05_tasks_and_inputs.html#cb80-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Import the downloaded csv ##################################################</span></span>
+<span id="cb80-11"><a href="W02_05_tasks_and_inputs.html#cb80-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-12"><a href="W02_05_tasks_and_inputs.html#cb80-12" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE_2056.csv&quot;</span>,<span class="st">&quot;,&quot;</span>) <span class="co"># adjust path</span></span>
+<span id="cb80-13"><a href="W02_05_tasks_and_inputs.html#cb80-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-14"><a href="W02_05_tasks_and_inputs.html#cb80-14" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>, <span class="st">&quot;N&quot;</span>), <span class="at">crs =</span> <span class="dv">2056</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Note:</p>
 <ul>
 <li>that this dataset is already converted to EPSG 2056</li>
@@ -380,26 +336,7 @@ div.csl-indent {
 </ul>
 <p>Here are some exemplary visualisation you could produce to answer these questions. Can you now answer the above questions?</p>
 <p>After completing the task, commit your changes to git using a good commit message (e.g. <code>completed task 1</code>).</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="W02_05_tasks_and_inputs.html#cb159-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> wildschwein_BE <span class="sc">%&gt;%</span></span>
-<span id="cb159-2"><a href="W02_05_tasks_and_inputs.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)))</span>
-<span id="cb159-3"><a href="W02_05_tasks_and_inputs.html#cb159-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-4"><a href="W02_05_tasks_and_inputs.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wildschwein_BE, <span class="fu">aes</span>(DatetimeUTC,TierID)) <span class="sc">+</span></span>
-<span id="cb159-5"><a href="W02_05_tasks_and_inputs.html#cb159-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="W02_05_tasks_and_inputs.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wildschwein_BE, <span class="fu">aes</span>(timelag)) <span class="sc">+</span></span>
-<span id="cb160-2"><a href="W02_05_tasks_and_inputs.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb160-3"><a href="W02_05_tasks_and_inputs.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15000</span>)) <span class="sc">+</span></span>
-<span id="cb160-4"><a href="W02_05_tasks_and_inputs.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
-<pre><code>## Warning: Removed 35 rows containing non-finite values (stat_bin).</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 205 rows containing missing values (geom_bar).</code></pre>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="W02_05_tasks_and_inputs.html#cb164-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="sc">%&gt;%</span></span>
-<span id="cb164-2"><a href="W02_05_tasks_and_inputs.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(DatetimeUTC)  <span class="sc">==</span> <span class="dv">2014</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb164-3"><a href="W02_05_tasks_and_inputs.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(DatetimeUTC,timelag, <span class="at">colour =</span> TierID)) <span class="sc">+</span></span>
-<span id="cb164-4"><a href="W02_05_tasks_and_inputs.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb164-5"><a href="W02_05_tasks_and_inputs.html#cb164-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-2.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
 </div>
 <div id="w2-task2" class="section level3">
 <h3>Task 2: Deriving movement parameters I: Speed</h3>
@@ -413,17 +350,6 @@ div.csl-indent {
 </ul>
 <p>Now calculate the animals’ speed between consecutive locations based on <code>steplength</code> and the <code>timelag</code> (from the last task). What speed unit do you get?</p>
 <p>After completing the task, commit your changes to git using a good commit message.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="W02_05_tasks_and_inputs.html#cb165-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> wildschwein_BE <span class="sc">%&gt;%</span></span>
-<span id="cb165-2"><a href="W02_05_tasks_and_inputs.html#cb165-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span></span>
-<span id="cb165-3"><a href="W02_05_tasks_and_inputs.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb165-4"><a href="W02_05_tasks_and_inputs.html#cb165-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb165-5"><a href="W02_05_tasks_and_inputs.html#cb165-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb165-6"><a href="W02_05_tasks_and_inputs.html#cb165-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb165-7"><a href="W02_05_tasks_and_inputs.html#cb165-7" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> wildschwein_BE <span class="sc">%&gt;%</span></span>
-<span id="cb165-8"><a href="W02_05_tasks_and_inputs.html#cb165-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span></span>
-<span id="cb165-9"><a href="W02_05_tasks_and_inputs.html#cb165-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb165-10"><a href="W02_05_tasks_and_inputs.html#cb165-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb165-11"><a href="W02_05_tasks_and_inputs.html#cb165-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
 <div id="task-3-cross-scale-movement-analysis" class="section level3">
 <h3>Task 3: Cross-scale movement analysis</h3>
@@ -437,272 +363,32 @@ Figure 2: Black points are used in calculation of movement parameters (e.g. spe
 <p>Download this dataset here: <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/caro60.csv">caro60.csv</a> (right click: save target as..). Import it just like you imported the other wild boar data and save it to a new variable named <code>caro</code> (note that the locations are stored in EPSG 2056).</p>
 <p>Now manually reduce the granularity of our sampling interval by selecting every 3<sup>rd</sup>, 6<sup>th</sup> and 9<sup>th</sup> position and save the output to <code>caro_3</code>, <code>caro_6</code>,<code>caro_9</code> accordingly.</p>
 <p>Tip: There are many ways to go about this, we recommend using <code>seq()</code> where <code>from = 1</code>, <code>to =</code> the length of the dataset and <code>by = n</code> (i.e. <code>3</code>, <code>6</code> or <code>9</code>). This creates an integer vector that can either used in <code>dplyr::slice()</code> or in row subsetting (type <code>?slice()</code> or <code>?"[.data.frame"</code> to get help on either of these methods).</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="W02_05_tasks_and_inputs.html#cb166-1" aria-hidden="true" tabindex="-1"></a>caro <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/caro60.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = &quot;&quot;),
-##   E = col_double(),
-##   N = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="W02_05_tasks_and_inputs.html#cb168-1" aria-hidden="true" tabindex="-1"></a>caro[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(caro),<span class="dv">3</span>), ]</span></code></pre></div>
-<pre><code>## # A tibble: 67 x 6
-##    TierID TierName CollarID DatetimeUTC                E        N
-##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;    &lt;dbl&gt;
-##  1 010C   Caro        13973 2015-09-15 08:07:00 2570589. 1205095.
-##  2 010C   Caro        13973 2015-09-15 08:10:00 2570518. 1205115.
-##  3 010C   Caro        13973 2015-09-15 08:13:00 2570482. 1205124.
-##  4 010C   Caro        13973 2015-09-15 08:16:00 2570490. 1205100.
-##  5 010C   Caro        13973 2015-09-15 08:19:00 2570497. 1205092.
-##  6 010C   Caro        13973 2015-09-15 08:22:00 2570499. 1205091.
-##  7 010C   Caro        13973 2015-09-15 08:25:00 2570500. 1205087.
-##  8 010C   Caro        13973 2015-09-15 08:28:00 2570496. 1205094.
-##  9 010C   Caro        13973 2015-09-15 08:31:00 2570497. 1205091.
-## 10 010C   Caro        13973 2015-09-15 08:34:00 2570499. 1205091.
-## # ... with 57 more rows</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="W02_05_tasks_and_inputs.html#cb170-1" aria-hidden="true" tabindex="-1"></a>caro_3 <span class="ot">&lt;-</span> caro[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(caro),<span class="dv">3</span>), ]</span>
-<span id="cb170-2"><a href="W02_05_tasks_and_inputs.html#cb170-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-3"><a href="W02_05_tasks_and_inputs.html#cb170-3" aria-hidden="true" tabindex="-1"></a>caro_6 <span class="ot">&lt;-</span> caro[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(caro),<span class="dv">6</span>), ]</span>
-<span id="cb170-4"><a href="W02_05_tasks_and_inputs.html#cb170-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-5"><a href="W02_05_tasks_and_inputs.html#cb170-5" aria-hidden="true" tabindex="-1"></a>caro_9 <span class="ot">&lt;-</span> caro[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(caro),<span class="dv">9</span>), ]</span>
-<span id="cb170-6"><a href="W02_05_tasks_and_inputs.html#cb170-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-7"><a href="W02_05_tasks_and_inputs.html#cb170-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-8"><a href="W02_05_tasks_and_inputs.html#cb170-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-9"><a href="W02_05_tasks_and_inputs.html#cb170-9" aria-hidden="true" tabindex="-1"></a>caro <span class="ot">&lt;-</span> caro <span class="sc">%&gt;%</span></span>
-<span id="cb170-10"><a href="W02_05_tasks_and_inputs.html#cb170-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb170-11"><a href="W02_05_tasks_and_inputs.html#cb170-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb170-12"><a href="W02_05_tasks_and_inputs.html#cb170-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb170-13"><a href="W02_05_tasks_and_inputs.html#cb170-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb170-14"><a href="W02_05_tasks_and_inputs.html#cb170-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb170-15"><a href="W02_05_tasks_and_inputs.html#cb170-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-16"><a href="W02_05_tasks_and_inputs.html#cb170-16" aria-hidden="true" tabindex="-1"></a>caro_3 <span class="ot">&lt;-</span> caro_3 <span class="sc">%&gt;%</span></span>
-<span id="cb170-17"><a href="W02_05_tasks_and_inputs.html#cb170-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb170-18"><a href="W02_05_tasks_and_inputs.html#cb170-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb170-19"><a href="W02_05_tasks_and_inputs.html#cb170-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb170-20"><a href="W02_05_tasks_and_inputs.html#cb170-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb170-21"><a href="W02_05_tasks_and_inputs.html#cb170-21" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb170-22"><a href="W02_05_tasks_and_inputs.html#cb170-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-23"><a href="W02_05_tasks_and_inputs.html#cb170-23" aria-hidden="true" tabindex="-1"></a>caro_6 <span class="ot">&lt;-</span> caro_6 <span class="sc">%&gt;%</span></span>
-<span id="cb170-24"><a href="W02_05_tasks_and_inputs.html#cb170-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb170-25"><a href="W02_05_tasks_and_inputs.html#cb170-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb170-26"><a href="W02_05_tasks_and_inputs.html#cb170-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb170-27"><a href="W02_05_tasks_and_inputs.html#cb170-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb170-28"><a href="W02_05_tasks_and_inputs.html#cb170-28" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb170-29"><a href="W02_05_tasks_and_inputs.html#cb170-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-30"><a href="W02_05_tasks_and_inputs.html#cb170-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-31"><a href="W02_05_tasks_and_inputs.html#cb170-31" aria-hidden="true" tabindex="-1"></a>caro_9 <span class="ot">&lt;-</span> caro_9 <span class="sc">%&gt;%</span></span>
-<span id="cb170-32"><a href="W02_05_tasks_and_inputs.html#cb170-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb170-33"><a href="W02_05_tasks_and_inputs.html#cb170-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb170-34"><a href="W02_05_tasks_and_inputs.html#cb170-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb170-35"><a href="W02_05_tasks_and_inputs.html#cb170-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb170-36"><a href="W02_05_tasks_and_inputs.html#cb170-36" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb170-37"><a href="W02_05_tasks_and_inputs.html#cb170-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-38"><a href="W02_05_tasks_and_inputs.html#cb170-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-39"><a href="W02_05_tasks_and_inputs.html#cb170-39" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb170-40"><a href="W02_05_tasks_and_inputs.html#cb170-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb170-41"><a href="W02_05_tasks_and_inputs.html#cb170-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb170-42"><a href="W02_05_tasks_and_inputs.html#cb170-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro_3, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;3 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb170-43"><a href="W02_05_tasks_and_inputs.html#cb170-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro_3, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;3 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb170-44"><a href="W02_05_tasks_and_inputs.html#cb170-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;Trajectory&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Comparing original- with 3 minutes-resampled data&quot;</span>)  <span class="sc">+</span></span>
-<span id="cb170-45"><a href="W02_05_tasks_and_inputs.html#cb170-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="W02_05_tasks_and_inputs.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb171-2"><a href="W02_05_tasks_and_inputs.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb171-3"><a href="W02_05_tasks_and_inputs.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb171-4"><a href="W02_05_tasks_and_inputs.html#cb171-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro_6, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;6 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb171-5"><a href="W02_05_tasks_and_inputs.html#cb171-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro_6, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;6 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb171-6"><a href="W02_05_tasks_and_inputs.html#cb171-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;Trajectory&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Comparing original- with 6 minutes-resampled data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb171-7"><a href="W02_05_tasks_and_inputs.html#cb171-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="W02_05_tasks_and_inputs.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb172-2"><a href="W02_05_tasks_and_inputs.html#cb172-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb172-3"><a href="W02_05_tasks_and_inputs.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb172-4"><a href="W02_05_tasks_and_inputs.html#cb172-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro_9, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;9 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb172-5"><a href="W02_05_tasks_and_inputs.html#cb172-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro_9, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;9 minutes&quot;</span>))<span class="sc">+</span></span>
-<span id="cb172-6"><a href="W02_05_tasks_and_inputs.html#cb172-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;Trajectory&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Comparing original- with 9 minutes-resampled data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb172-7"><a href="W02_05_tasks_and_inputs.html#cb172-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="W02_05_tasks_and_inputs.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb173-2"><a href="W02_05_tasks_and_inputs.html#cb173-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(DatetimeUTC,speed, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb173-3"><a href="W02_05_tasks_and_inputs.html#cb173-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> caro_3, <span class="fu">aes</span>(DatetimeUTC,speed, <span class="at">colour =</span> <span class="st">&quot;3 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb173-4"><a href="W02_05_tasks_and_inputs.html#cb173-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> caro_6, <span class="fu">aes</span>(DatetimeUTC,speed, <span class="at">colour =</span> <span class="st">&quot;6 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb173-5"><a href="W02_05_tasks_and_inputs.html#cb173-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> caro_9, <span class="fu">aes</span>(DatetimeUTC,speed, <span class="at">colour =</span> <span class="st">&quot;9 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb173-6"><a href="W02_05_tasks_and_inputs.html#cb173-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time&quot;</span>,<span class="at">y =</span> <span class="st">&quot;Speed (m/s)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Comparing derived speed at different sampling intervals&quot;</span>) <span class="sc">+</span></span>
-<span id="cb173-7"><a href="W02_05_tasks_and_inputs.html#cb173-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-6-4.png" width="672" /></p>
 <p>You should now have 4 datasets with different number of rows:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="W02_05_tasks_and_inputs.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro)</span></code></pre></div>
-<pre><code>## [1] 200</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="W02_05_tasks_and_inputs.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_3)</span></code></pre></div>
-<pre><code>## [1] 67</code></pre>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="W02_05_tasks_and_inputs.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_6)</span></code></pre></div>
-<pre><code>## [1] 34</code></pre>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="W02_05_tasks_and_inputs.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_9)</span></code></pre></div>
-<pre><code>## [1] 23</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="W02_05_tasks_and_inputs.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro)</span>
+<span id="cb81-2"><a href="W02_05_tasks_and_inputs.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 200</span></span>
+<span id="cb81-3"><a href="W02_05_tasks_and_inputs.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_3)</span>
+<span id="cb81-4"><a href="W02_05_tasks_and_inputs.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 67</span></span>
+<span id="cb81-5"><a href="W02_05_tasks_and_inputs.html#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_6)</span>
+<span id="cb81-6"><a href="W02_05_tasks_and_inputs.html#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 34</span></span>
+<span id="cb81-7"><a href="W02_05_tasks_and_inputs.html#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_9)</span>
+<span id="cb81-8"><a href="W02_05_tasks_and_inputs.html#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 23</span></span></code></pre></div>
 <p>Now calculate <code>timelag</code>, <code>steplength</code> and <code>speed</code> for these data sets, just as you did in the <a href="W02_05_tasks_and_inputs.html#w2-task2">last task</a>. To finish the task, compare the speeds visually in a line plot and also visualize the trajectories in a map (see examples below). Interpret the line plot, what do the different lines for the different temporal granularities tell you?</p>
 <p>After completing the task, commit your changes to git using a good commit message.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="W02_05_tasks_and_inputs.html#cb183-1" aria-hidden="true" tabindex="-1"></a>caro <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/caro60.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = &quot;&quot;),
-##   E = col_double(),
-##   N = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="W02_05_tasks_and_inputs.html#cb185-1" aria-hidden="true" tabindex="-1"></a>caro[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(caro),<span class="dv">3</span>), ]</span></code></pre></div>
-<pre><code>## # A tibble: 67 x 6
-##    TierID TierName CollarID DatetimeUTC                E        N
-##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;    &lt;dbl&gt;
-##  1 010C   Caro        13973 2015-09-15 08:07:00 2570589. 1205095.
-##  2 010C   Caro        13973 2015-09-15 08:10:00 2570518. 1205115.
-##  3 010C   Caro        13973 2015-09-15 08:13:00 2570482. 1205124.
-##  4 010C   Caro        13973 2015-09-15 08:16:00 2570490. 1205100.
-##  5 010C   Caro        13973 2015-09-15 08:19:00 2570497. 1205092.
-##  6 010C   Caro        13973 2015-09-15 08:22:00 2570499. 1205091.
-##  7 010C   Caro        13973 2015-09-15 08:25:00 2570500. 1205087.
-##  8 010C   Caro        13973 2015-09-15 08:28:00 2570496. 1205094.
-##  9 010C   Caro        13973 2015-09-15 08:31:00 2570497. 1205091.
-## 10 010C   Caro        13973 2015-09-15 08:34:00 2570499. 1205091.
-## # ... with 57 more rows</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="W02_05_tasks_and_inputs.html#cb187-1" aria-hidden="true" tabindex="-1"></a>caro_3 <span class="ot">&lt;-</span> caro[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(caro),<span class="dv">3</span>), ]</span>
-<span id="cb187-2"><a href="W02_05_tasks_and_inputs.html#cb187-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-3"><a href="W02_05_tasks_and_inputs.html#cb187-3" aria-hidden="true" tabindex="-1"></a>caro_6 <span class="ot">&lt;-</span> caro[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(caro),<span class="dv">6</span>), ]</span>
-<span id="cb187-4"><a href="W02_05_tasks_and_inputs.html#cb187-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-5"><a href="W02_05_tasks_and_inputs.html#cb187-5" aria-hidden="true" tabindex="-1"></a>caro_9 <span class="ot">&lt;-</span> caro[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(caro),<span class="dv">9</span>), ]</span>
-<span id="cb187-6"><a href="W02_05_tasks_and_inputs.html#cb187-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-7"><a href="W02_05_tasks_and_inputs.html#cb187-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-8"><a href="W02_05_tasks_and_inputs.html#cb187-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-9"><a href="W02_05_tasks_and_inputs.html#cb187-9" aria-hidden="true" tabindex="-1"></a>caro <span class="ot">&lt;-</span> caro <span class="sc">%&gt;%</span></span>
-<span id="cb187-10"><a href="W02_05_tasks_and_inputs.html#cb187-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb187-11"><a href="W02_05_tasks_and_inputs.html#cb187-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb187-12"><a href="W02_05_tasks_and_inputs.html#cb187-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb187-13"><a href="W02_05_tasks_and_inputs.html#cb187-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb187-14"><a href="W02_05_tasks_and_inputs.html#cb187-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb187-15"><a href="W02_05_tasks_and_inputs.html#cb187-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-16"><a href="W02_05_tasks_and_inputs.html#cb187-16" aria-hidden="true" tabindex="-1"></a>caro_3 <span class="ot">&lt;-</span> caro_3 <span class="sc">%&gt;%</span></span>
-<span id="cb187-17"><a href="W02_05_tasks_and_inputs.html#cb187-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb187-18"><a href="W02_05_tasks_and_inputs.html#cb187-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb187-19"><a href="W02_05_tasks_and_inputs.html#cb187-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb187-20"><a href="W02_05_tasks_and_inputs.html#cb187-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb187-21"><a href="W02_05_tasks_and_inputs.html#cb187-21" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb187-22"><a href="W02_05_tasks_and_inputs.html#cb187-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-23"><a href="W02_05_tasks_and_inputs.html#cb187-23" aria-hidden="true" tabindex="-1"></a>caro_6 <span class="ot">&lt;-</span> caro_6 <span class="sc">%&gt;%</span></span>
-<span id="cb187-24"><a href="W02_05_tasks_and_inputs.html#cb187-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb187-25"><a href="W02_05_tasks_and_inputs.html#cb187-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb187-26"><a href="W02_05_tasks_and_inputs.html#cb187-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb187-27"><a href="W02_05_tasks_and_inputs.html#cb187-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb187-28"><a href="W02_05_tasks_and_inputs.html#cb187-28" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb187-29"><a href="W02_05_tasks_and_inputs.html#cb187-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-30"><a href="W02_05_tasks_and_inputs.html#cb187-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-31"><a href="W02_05_tasks_and_inputs.html#cb187-31" aria-hidden="true" tabindex="-1"></a>caro_9 <span class="ot">&lt;-</span> caro_9 <span class="sc">%&gt;%</span></span>
-<span id="cb187-32"><a href="W02_05_tasks_and_inputs.html#cb187-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb187-33"><a href="W02_05_tasks_and_inputs.html#cb187-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)),</span>
-<span id="cb187-34"><a href="W02_05_tasks_and_inputs.html#cb187-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">steplength =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb187-35"><a href="W02_05_tasks_and_inputs.html#cb187-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> steplength<span class="sc">/</span>timelag</span>
-<span id="cb187-36"><a href="W02_05_tasks_and_inputs.html#cb187-36" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb187-37"><a href="W02_05_tasks_and_inputs.html#cb187-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-38"><a href="W02_05_tasks_and_inputs.html#cb187-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-39"><a href="W02_05_tasks_and_inputs.html#cb187-39" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb187-40"><a href="W02_05_tasks_and_inputs.html#cb187-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb187-41"><a href="W02_05_tasks_and_inputs.html#cb187-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb187-42"><a href="W02_05_tasks_and_inputs.html#cb187-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro_3, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;3 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb187-43"><a href="W02_05_tasks_and_inputs.html#cb187-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro_3, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;3 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb187-44"><a href="W02_05_tasks_and_inputs.html#cb187-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;Trajectory&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Comparing original- with 3 minutes-resampled data&quot;</span>)  <span class="sc">+</span></span>
-<span id="cb187-45"><a href="W02_05_tasks_and_inputs.html#cb187-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="W02_05_tasks_and_inputs.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb188-2"><a href="W02_05_tasks_and_inputs.html#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb188-3"><a href="W02_05_tasks_and_inputs.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb188-4"><a href="W02_05_tasks_and_inputs.html#cb188-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro_6, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;6 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb188-5"><a href="W02_05_tasks_and_inputs.html#cb188-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro_6, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;6 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb188-6"><a href="W02_05_tasks_and_inputs.html#cb188-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;Trajectory&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Comparing original- with 6 minutes-resampled data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb188-7"><a href="W02_05_tasks_and_inputs.html#cb188-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="W02_05_tasks_and_inputs.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb189-2"><a href="W02_05_tasks_and_inputs.html#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb189-3"><a href="W02_05_tasks_and_inputs.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb189-4"><a href="W02_05_tasks_and_inputs.html#cb189-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> caro_9, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;9 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb189-5"><a href="W02_05_tasks_and_inputs.html#cb189-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> caro_9, <span class="fu">aes</span>(E,N, <span class="at">colour =</span> <span class="st">&quot;9 minutes&quot;</span>))<span class="sc">+</span></span>
-<span id="cb189-6"><a href="W02_05_tasks_and_inputs.html#cb189-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;Trajectory&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Comparing original- with 9 minutes-resampled data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb189-7"><a href="W02_05_tasks_and_inputs.html#cb189-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="W02_05_tasks_and_inputs.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb190-2"><a href="W02_05_tasks_and_inputs.html#cb190-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> caro, <span class="fu">aes</span>(DatetimeUTC,speed, <span class="at">colour =</span> <span class="st">&quot;1 minute&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb190-3"><a href="W02_05_tasks_and_inputs.html#cb190-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> caro_3, <span class="fu">aes</span>(DatetimeUTC,speed, <span class="at">colour =</span> <span class="st">&quot;3 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb190-4"><a href="W02_05_tasks_and_inputs.html#cb190-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> caro_6, <span class="fu">aes</span>(DatetimeUTC,speed, <span class="at">colour =</span> <span class="st">&quot;6 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb190-5"><a href="W02_05_tasks_and_inputs.html#cb190-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> caro_9, <span class="fu">aes</span>(DatetimeUTC,speed, <span class="at">colour =</span> <span class="st">&quot;9 minutes&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb190-6"><a href="W02_05_tasks_and_inputs.html#cb190-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time&quot;</span>,<span class="at">y =</span> <span class="st">&quot;Speed (m/s)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Comparing derived speed at different sampling intervals&quot;</span>) <span class="sc">+</span></span>
-<span id="cb190-7"><a href="W02_05_tasks_and_inputs.html#cb190-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-4.png" width="672" /></p>
 </div>
 <div id="task-4-deriving-movement-parameters-ii-rolling-window-functions" class="section level3">
 <h3>Task 4: Deriving movement parameters II: Rolling window functions</h3>
 <p>A different approach would be to <em>smoothen</em> the derived parameters using a <a href="https://docs.wavefront.com/images/5sec_moving_window.png">moving window function</a>. The <code>zoo</code> package offers a variate of moving window functions (<code>roll_*</code>). Install this package, load it into the session and use the function <code>roll_mean()</code> to smooth the calculated speed. Familiarise yourself with this function by working on some dummy data, for example:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="W02_05_tasks_and_inputs.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span></code></pre></div>
-<pre><code>## 
-## Attache Paket: &#39;zoo&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:terra&#39;:
-## 
-##     time&lt;-</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     as.Date, as.Date.numeric</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="W02_05_tasks_and_inputs.html#cb196-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb196-2"><a href="W02_05_tasks_and_inputs.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">3</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
-<pre><code>##  [1]  0.93634335  0.31709038  0.02370048  0.67869801  0.73369105  0.50401344
-##  [7] -0.56144365 -0.56902598          NA          NA</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="W02_05_tasks_and_inputs.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">4</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
-<pre><code>##  [1]  0.6775521  0.2045005  0.5848215  0.5255629  0.3446928  0.1459635
-##  [7] -0.4102301         NA         NA         NA</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="W02_05_tasks_and_inputs.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb82-2"><a href="W02_05_tasks_and_inputs.html#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="W02_05_tasks_and_inputs.html#cb82-3" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb82-4"><a href="W02_05_tasks_and_inputs.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">3</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb82-5"><a href="W02_05_tasks_and_inputs.html#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  0.93634335  0.31709038  0.02370048  0.67869801  0.73369105  0.50401344</span></span>
+<span id="cb82-6"><a href="W02_05_tasks_and_inputs.html#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.56144365 -0.56902598          NA          NA</span></span>
+<span id="cb82-7"><a href="W02_05_tasks_and_inputs.html#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">4</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb82-8"><a href="W02_05_tasks_and_inputs.html#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  0.6775521  0.2045005  0.5848215  0.5255629  0.3446928  0.1459635</span></span>
+<span id="cb82-9"><a href="W02_05_tasks_and_inputs.html#cb82-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] -0.4102301         NA         NA         NA</span></span></code></pre></div>
 <p>Now run <code>rollmean</code>on the <code>speed</code> variable of the subset (<code>caro</code>). Visualize the output from your moving windows and compare different window sizes (<code>k =</code>).
 After completing the task, commit your changes to git using a good commit message. <strong>Additionally</strong>, push all your commits to your remote repository on Github by clicking the green upwards pointing arrow in the Git pane in RStudio.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="W02_05_tasks_and_inputs.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
-<span id="cb200-2"><a href="W02_05_tasks_and_inputs.html#cb200-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-3"><a href="W02_05_tasks_and_inputs.html#cb200-3" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb200-4"><a href="W02_05_tasks_and_inputs.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">3</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.5049544 -0.3781283 -0.1273157  0.4523153  0.4534811  0.8658536
-##  [7]  0.5452571  1.0210648         NA         NA</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="W02_05_tasks_and_inputs.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollmean</span>(example,<span class="at">k =</span> <span class="dv">4</span>,<span class="at">fill =</span> <span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.25933381 -0.22379720  0.06456868  0.45949282  0.70918920  0.56899826
-##  [7]  0.88605495          NA          NA          NA</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="W02_05_tasks_and_inputs.html#cb204-1" aria-hidden="true" tabindex="-1"></a>caro <span class="ot">&lt;-</span> caro <span class="sc">%&gt;%</span></span>
-<span id="cb204-2"><a href="W02_05_tasks_and_inputs.html#cb204-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb204-3"><a href="W02_05_tasks_and_inputs.html#cb204-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed3 =</span> <span class="fu">rollmean</span>(speed,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>),</span>
-<span id="cb204-4"><a href="W02_05_tasks_and_inputs.html#cb204-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed6 =</span> <span class="fu">rollmean</span>(speed,<span class="dv">6</span>,<span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>),</span>
-<span id="cb204-5"><a href="W02_05_tasks_and_inputs.html#cb204-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed9 =</span> <span class="fu">rollmean</span>(speed,<span class="dv">9</span>,<span class="cn">NA</span>,<span class="at">align =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb204-6"><a href="W02_05_tasks_and_inputs.html#cb204-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb204-7"><a href="W02_05_tasks_and_inputs.html#cb204-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-8"><a href="W02_05_tasks_and_inputs.html#cb204-8" aria-hidden="true" tabindex="-1"></a>caro <span class="sc">%&gt;%</span></span>
-<span id="cb204-9"><a href="W02_05_tasks_and_inputs.html#cb204-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb204-10"><a href="W02_05_tasks_and_inputs.html#cb204-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(DatetimeUTC,speed), <span class="at">colour =</span> <span class="st">&quot;#E41A1C&quot;</span>) <span class="sc">+</span></span>
-<span id="cb204-11"><a href="W02_05_tasks_and_inputs.html#cb204-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(DatetimeUTC,speed3), <span class="at">colour =</span> <span class="st">&quot;#377EB8&quot;</span>) <span class="sc">+</span></span>
-<span id="cb204-12"><a href="W02_05_tasks_and_inputs.html#cb204-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(DatetimeUTC,speed6), <span class="at">colour =</span> <span class="st">&quot;#4DAF4A&quot;</span>) <span class="sc">+</span></span>
-<span id="cb204-13"><a href="W02_05_tasks_and_inputs.html#cb204-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(DatetimeUTC,speed9), <span class="at">colour =</span> <span class="st">&quot;#984EA3&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 9 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <!-- ### Task 5 (optional): Calculate turning angles -->
 <!-- Just like we did with `speed` in tasks 2 - 4, we could do the same with turning angles of the trajectory. If you like a challenge, try to calculate these with the same approach! Warning: this task is pretty complex. Note, as this task is optional, you don't have to include it in your mandatory submission of Exercise 2! -->
 <!-- ```{r, code =  mydecrypt("12_Week2/solutions/task_5.R",".passphrase"), opts.label="solution_hideOutput"} -->

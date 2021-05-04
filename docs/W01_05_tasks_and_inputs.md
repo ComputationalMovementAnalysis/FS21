@@ -32,49 +32,8 @@ Create a new R- (or RMarkdown) file and begin by loading the following packages:
 
 ```r
 library(readr)        # to import tabular data (e.g. csv)
-```
-
-```
-## Warning: Paket 'readr' wurde unter R Version 4.0.5 erstellt
-```
-
-```r
 library(dplyr)        # to manipulate (tabular) data
-```
-
-```
-## Warning: Paket 'dplyr' wurde unter R Version 4.0.5 erstellt
-```
-
-```
-## 
-## Attache Paket: 'dplyr'
-```
-
-```
-## The following object is masked from 'package:glue':
-## 
-##     collapse
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(ggplot2)      # to visualize data
-```
-
-```
-## Warning: Paket 'ggplot2' wurde unter R Version 4.0.5 erstellt
 ```
 
 
@@ -87,40 +46,6 @@ Note:
 
 
 
-```r
-# Data import ####
-wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
-```
-
-```
-## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = ""),
-##   Lat = col_double(),
-##   Long = col_double()
-## )
-```
-
-```r
-# Check Timezone
-attr(wildschwein_BE$DatetimeUTC,"tzone") # or
-```
-
-```
-## [1] "UTC"
-```
-
-```r
-wildschwein_BE$DatetimeUTC[1]
-```
-
-```
-## [1] "2014-08-22 21:00:12 UTC"
-```
 
 
 Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Write a meaningful commit message (e.g. "`completed task 1`").
@@ -136,14 +61,6 @@ Assigning every individual its own colour is done using the `ggplot` argument `c
 
 Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
 
-
-
-```r
-ggplot(wildschwein_BE, aes(Long,Lat, colour = TierID)) +
-  geom_point() +
-  coord_map() +
-  theme(legend.position = "none")
-```
 
 <div class="figure">
 <img src="W01_05_tasks_and_inputs_files/figure-html/unnamed-chunk-4-1.png" alt="Your plot should look something like this." width="672" />
@@ -164,18 +81,9 @@ We will largely rely on `sf`when working with vector data in `R`. In order to tr
 
 
 ```r
+
 library(sf)
-```
 
-```
-## Warning: Paket 'sf' wurde unter R Version 4.0.5 erstellt
-```
-
-```
-## Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1
-```
-
-```r
 wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
                               coords = c("Long", "Lat"), 
                               crs = 4326)
@@ -237,9 +145,6 @@ As you can see, `st_as_sf()` has added some metadata to our dataframe (`geometry
 
 ```r
 is.data.frame(wildschwein_BE_sf)
-```
-
-```
 ## [1] TRUE
 ```
 
@@ -248,80 +153,10 @@ All operations we know from handling `data.frames` can be used on the `sf` objec
 ```r
 # subset rows
 wildschwein_BE_sf[1:10,]
-```
-
-```
-## Simple feature collection with 10 features and 4 fields
-## Geometry type: POINT
-## Dimension:     XY
-## Bounding box:  xmin: 7.048383 ymin: 46.99317 xmax: 7.049618 ymax: 46.99481
-## Geodetic CRS:  WGS 84
-## # A tibble: 10 x 5
-##    TierID TierName CollarID DatetimeUTC                    geometry
-##    <chr>  <chr>       <dbl> <dttm>                      <POINT [°]>
-##  1 002A   Sabi        12275 2014-08-22 21:00:12 (7.049618 46.99317)
-##  2 002A   Sabi        12275 2014-08-22 21:15:16 (7.049509 46.99416)
-##  3 002A   Sabi        12275 2014-08-22 21:30:43 (7.049406 46.99383)
-##  4 002A   Sabi        12275 2014-08-22 21:46:07 (7.049217 46.99375)
-##  5 002A   Sabi        12275 2014-08-22 22:00:22 (7.049359 46.99375)
-##  6 002A   Sabi        12275 2014-08-22 22:15:10 (7.049363 46.99382)
-##  7 002A   Sabi        12275 2014-08-22 22:30:13 (7.049326 46.99387)
-##  8 002A   Sabi        12275 2014-08-22 22:45:11 (7.049237 46.99395)
-##  9 002A   Sabi        12275 2014-08-22 23:00:27 (7.048383 46.99481)
-## 10 002A   Sabi        12275 2014-08-22 23:15:41 (7.049396 46.99373)
-```
-
-```r
 wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Sabi",]
-```
 
-```
-## Simple feature collection with 22746 features and 4 fields
-## Geometry type: POINT
-## Dimension:     XY
-## Bounding box:  xmin: 7.029718 ymin: 46.98947 xmax: 7.059671 ymax: 47.01454
-## Geodetic CRS:  WGS 84
-## # A tibble: 22,746 x 5
-##    TierID TierName CollarID DatetimeUTC                    geometry
-##    <chr>  <chr>       <dbl> <dttm>                      <POINT [°]>
-##  1 002A   Sabi        12275 2014-08-22 21:00:12 (7.049618 46.99317)
-##  2 002A   Sabi        12275 2014-08-22 21:15:16 (7.049509 46.99416)
-##  3 002A   Sabi        12275 2014-08-22 21:30:43 (7.049406 46.99383)
-##  4 002A   Sabi        12275 2014-08-22 21:46:07 (7.049217 46.99375)
-##  5 002A   Sabi        12275 2014-08-22 22:00:22 (7.049359 46.99375)
-##  6 002A   Sabi        12275 2014-08-22 22:15:10 (7.049363 46.99382)
-##  7 002A   Sabi        12275 2014-08-22 22:30:13 (7.049326 46.99387)
-##  8 002A   Sabi        12275 2014-08-22 22:45:11 (7.049237 46.99395)
-##  9 002A   Sabi        12275 2014-08-22 23:00:27 (7.048383 46.99481)
-## 10 002A   Sabi        12275 2014-08-22 23:15:41 (7.049396 46.99373)
-## # ... with 22,736 more rows
-```
-
-```r
 # subset colums
 wildschwein_BE_sf[,2:3]
-```
-
-```
-## Simple feature collection with 51246 features and 2 fields
-## Geometry type: POINT
-## Dimension:     XY
-## Bounding box:  xmin: 7.019889 ymin: 46.97125 xmax: 7.112075 ymax: 47.01882
-## Geodetic CRS:  WGS 84
-## # A tibble: 51,246 x 3
-##    TierName CollarID            geometry
-##    <chr>       <dbl>         <POINT [°]>
-##  1 Sabi        12275 (7.049618 46.99317)
-##  2 Sabi        12275 (7.049509 46.99416)
-##  3 Sabi        12275 (7.049406 46.99383)
-##  4 Sabi        12275 (7.049217 46.99375)
-##  5 Sabi        12275 (7.049359 46.99375)
-##  6 Sabi        12275 (7.049363 46.99382)
-##  7 Sabi        12275 (7.049326 46.99387)
-##  8 Sabi        12275 (7.049237 46.99395)
-##  9 Sabi        12275 (7.048383 46.99481)
-## 10 Sabi        12275 (7.049396 46.99373)
-## # ... with 51,236 more rows
 ```
 
 Instead of keeping the same data twice (once as a `data.frame`, and once as an `sf` object), we will overwrite the `data.frame` and continue working with the `sf` object from now on. This saves some memory space in `R` and avoids confusion. 
@@ -345,18 +180,12 @@ So what can we do with our new `sf` object that we couldn't before? One example 
 
 
 
-```r
-wildschwein_BE <- st_transform(wildschwein_BE, 2056)
-```
 
 
 Here's the resulting `sf` object from the operation:
 
 ```r
 wildschwein_BE
-```
-
-```
 ## Simple feature collection with 51246 features and 4 fields
 ## Geometry type: POINT
 ## Dimension:     XY
@@ -393,12 +222,10 @@ First: add a grouping variable to the `sf` object. Note the new grouping variabl
 
 
 ```r
+
 wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
 
 wildschwein_BE_grouped
-```
-
-```
 ## Simple feature collection with 51246 features and 4 fields
 ## Geometry type: POINT
 ## Dimension:     XY
@@ -429,9 +256,6 @@ Second: use `summarise()` to "dissolve" all points into a mulipoint object.
 wildschwein_BE_smry <- summarise(wildschwein_BE_grouped)
 
 wildschwein_BE_smry
-```
-
-```
 ## Simple feature collection with 3 features and 1 field
 ## Geometry type: MULTIPOINT
 ## Dimension:     XY
@@ -470,20 +294,6 @@ But since we use `ggplot` extensively, try and plot the object `mcp` with `ggplo
 Note: `ggplot` refuses to use our specified CRS, so we need to force this by specifying `datum = ` in `coord_sf()`. Try it out.
 
 
-```r
-ggplot(mcp,aes(fill = TierID)) +
-  geom_sf(alpha = 0.4)
-```
-
-<img src="W01_05_tasks_and_inputs_files/figure-html/unnamed-chunk-16-1.png" width="672" />
-
-```r
-ggplot(mcp,aes(fill = TierID)) +
-  geom_sf(alpha = 0.4) +
-  coord_sf(datum = 2056)
-```
-
-<img src="W01_05_tasks_and_inputs_files/figure-html/unnamed-chunk-16-2.png" width="672" />
 
 
 
@@ -500,40 +310,10 @@ To import the file into `R`, we use the package `terra` with the function `rast`
 
 ```r
 library(terra)
-```
 
-```
-## Warning: Paket 'terra' wurde unter R Version 4.0.5 erstellt
-```
-
-```
-## terra version 1.1.17
-```
-
-```
-## 
-## Attache Paket: 'terra'
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     collapse, desc, near
-```
-
-```
-## The following object is masked from 'package:glue':
-## 
-##     collapse
-```
-
-```r
 pk100_BE <- terra::rast("00_Rawdata/pk100_BE.tif")
 
 pk100_BE
-```
-
-```
 ## class       : SpatRaster 
 ## dimensions  : 1821, 2321, 3  (nrow, ncol, nlyr)
 ## resolution  : 5, 5  (x, y)
@@ -575,71 +355,16 @@ There are multiple ways to add a background map in `ggplot`, many require additi
 
 ```r
 library(tmap)
-```
 
-```
-## Warning: Paket 'tmap' wurde unter R Version 4.0.5 erstellt
-```
-
-```r
 tm_shape(pk100_BE) + 
   tm_rgb() 
-```
-
-```
-## Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer_proj
-## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in CRS
-## definition
-```
-
-```
-## stars object downsampled to 1129 by 886 cells. See tm_shape manual (argument raster.downsample)
 ```
 
 <img src="W01_05_tasks_and_inputs_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 As you can see, plotting layers in `tmap` is combined with the `+` sign, just as in `ggplot2`. In `tmap` however, each layer consists of two objects: a `tm_shape()` in which the data is called, and a `tm_*` object in which we define how the data is visualized (`tm_rgb()` states that it is plotted as an RGB Raster Layer). Add the object `mcp` to the plot in this manner. Read [the vignette](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html) if you are having trouble.
 
-
-```r
-library(tmap)
-
-
-tm_shape(pk100_BE) + 
-  tm_rgb() 
-```
-
-```
-## Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer_proj
-## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in CRS
-## definition
-```
-
-```
-## stars object downsampled to 1129 by 886 cells. See tm_shape manual (argument raster.downsample)
-```
-
-<img src="W01_05_tasks_and_inputs_files/figure-html/unnamed-chunk-21-1.png" width="672" />
-
-```r
-tm_shape(pk100_BE) + 
-  tm_rgb() +
-  tm_shape(mcp) +
-  tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
-  tm_legend(bg.color = "white")
-```
-
-```
-## Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer_proj
-## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in CRS
-## definition
-```
-
-```
-## stars object downsampled to 1129 by 886 cells. See tm_shape manual (argument raster.downsample)
-```
-
-<img src="W01_05_tasks_and_inputs_files/figure-html/unnamed-chunk-21-2.png" width="672" />
+<img src="W01_05_tasks_and_inputs_files/figure-html/unnamed-chunk-21-1.png" width="672" /><img src="W01_05_tasks_and_inputs_files/figure-html/unnamed-chunk-21-2.png" width="672" />
 
 Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
 
@@ -652,22 +377,4 @@ Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have 
 
 
 
-```r
-tmap_mode("view")
-```
-
-```
-## tmap mode set to interactive viewing
-```
-
-```r
-tm_shape(mcp) +
-  tm_polygons(col = "TierID",alpha = 0.4,border.col = "red") +
-  tm_legend(bg.color = "white")
-```
-
-```{=html}
-<div id="htmlwidget-e562cb7acdeffaf032be" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e562cb7acdeffaf032be">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addPolygons","args":[[[[{"lng":[7.0485673069553,7.04480010695054,7.04388090694936,7.03191630693396,7.02971800693093,7.03131540693212,7.03994030694012,7.04203140694239,7.04775800694908,7.05630880696145,7.05967110696632,7.05858900696524,7.0485673069553],"lat":[46.9894736104127,46.9923246104147,46.9930763104152,47.003360510422,47.0061217104236,47.0085111104241,47.0145212104245,47.0145358104241,47.0125095104219,46.9993116104148,46.9940891104119,46.9936355104121,46.9894736104127]}]],[[{"lng":[7.07619130698957,7.0414600069492,7.04114270694867,7.03405870693643,7.03425300693622,7.03468420693658,7.03929650694115,7.04535300694784,7.10132590701219,7.10904380702132,7.10912860702142,7.11207480702635,7.11165290702618,7.1110452070258,7.10499670702065,7.07619130698957],"lat":[46.9712499103991,46.9823290104115,46.9831421104119,47.0027406104213,47.0045792104219,47.005043010422,47.0070029104217,47.0065901104202,46.9914530104013,46.9882352103983,46.9881850103982,46.9807710103946,46.9795645103942,46.9783256103939,46.9722751103929,46.9712499103991]}]],[[{"lng":[7.04377190694875,7.04330840694825,7.01988930692145,7.02124780691949,7.03724010693618,7.03765310693663,7.03931370693846,7.04024220693953,7.04327770694326,7.06348590696848,7.06296120696853,7.06113770696678,7.04377190694875],"lat":[46.9952165104161,46.9952182104162,47.0007840104237,47.0157176104293,47.0188050104268,47.0188231104267,47.0187111104263,47.018454010426,47.0166098104246,47.0026493104145,46.9999647104135,46.9989840104136,46.9952165104161]}]]],["X002A","X016A","X018A"],"mcp",{"interactive":true,"className":"","pane":"tmap401","stroke":true,"color":"#FF0000","weight":1,"opacity":1,"fill":true,"fillColor":["#8DD3C7","#FFFFB3","#BEBADA"],"fillOpacity":[0.4,0.4,0.4],"dashArray":"none","smoothFactor":1,"noClip":false},["<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>002A<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>TierID<\/nobr><\/td><td align=\"right\"><nobr>002A<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>016A<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>TierID<\/nobr><\/td><td align=\"right\"><nobr>016A<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>018A<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>TierID<\/nobr><\/td><td align=\"right\"><nobr>018A<\/nobr><\/td><\/tr><\/table><\/div>"],null,["002A","016A","018A"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#8DD3C7","#FFFFB3","#BEBADA"],"labels":["002A","016A","018A"],"na_color":null,"na_label":"NA","opacity":0.4,"position":"topright","type":"unknown","title":"TierID","extra":null,"layerId":"legend401","className":"info legend mcp","group":"mcp"}]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"mcp",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[46.9712499103991,47.0188231104267],"lng":[7.01988930692145,7.11207480702635]},"fitBounds":[46.9712499103991,7.01988930692145,47.0188231104267,7.11207480702635,[]]},"evals":[],"jsHooks":[]}</script>
-```
 

@@ -22,80 +22,6 @@ We will demonstrate implementing this method on the wild boar "Sabi", restrictin
 
 
 
-```r
-library(readr)
-```
-
-```
-## Warning: Paket 'readr' wurde unter R Version 4.0.5 erstellt
-```
-
-```r
-library(dplyr)
-```
-
-```
-## Warning: Paket 'dplyr' wurde unter R Version 4.0.5 erstellt
-```
-
-```
-## 
-## Attache Paket: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
-library(ggplot2)
-```
-
-```
-## Warning: Paket 'ggplot2' wurde unter R Version 4.0.5 erstellt
-```
-
-```r
-wildschwein <- read_delim("00_Rawdata/wildschwein_BE_2056.csv",",")
-```
-
-```
-## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = ""),
-##   E = col_double(),
-##   N = col_double()
-## )
-```
-
-```r
-sabi <- wildschwein %>%
-  filter(TierName == "Sabi", DatetimeUTC >= "2015-07-01", DatetimeUTC < "2015-07-03")
-```
-
-
-```r
-ggplot(sabi, aes(E, N, color = DatetimeUTC))  +
-  geom_point() +
-  geom_path() +
-  coord_fixed() +
-  scale_color_datetime(low = "blue", high = "red") +
-  guides(color = guide_colorbar(title.position = 'top', title.hjust = .5, barwidth = unit(20, 'lines'), barheight = unit(.5, 'lines'))) +
-  theme(legend.position = "bottom") +
-  geom_point(y = 1205120, x = 2570470, size = 20, pch = 21, color = "black", stroke = 4)
-```
 
 <div class="figure">
 <img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-3-1.png" alt="Movement of the wildboar 'Sabi' in the timespan 01-02.07.2015. The circle highlingts possible 'static points'" width="672" />
@@ -121,6 +47,7 @@ Just like last week, we use the formula for calculating the Euclidean distance i
 
 
 ```r
+
 sabi <- sabi %>%
   mutate(
     nMinus2 = sqrt((lag(E,2)-E)^2+(lag(N,2)-N)^2),   # distance to pos -30 minutes
@@ -144,9 +71,6 @@ sabi <- sabi %>%
   ungroup() 
 
 sabi
-```
-
-```
 ## # A tibble: 192 x 11
 ##    TierID TierName CollarID DatetimeUTC                E       N nMinus2 nMinus1
 ##    <chr>  <chr>       <dbl> <dttm>                 <dbl>   <dbl>   <dbl>   <dbl>
@@ -208,49 +132,6 @@ Once you have completed the task, commit your changes with a meaningful commit m
 
 
 
-```r
-library(readr)
-library(dplyr)
-library(ggplot2)
-
-
-caro60 <- read_delim("00_Rawdata/caro60.csv",",")
-```
-
-```
-## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = ""),
-##   E = col_double(),
-##   N = col_double()
-## )
-```
-
-```r
-caro60 <- caro60 %>%
-  mutate(
-    stepMean = rowMeans(                       
-      cbind(                                   
-        sqrt((lag(E,3)-E)^2+(lag(E,3)-E)^2),   
-        sqrt((lag(E,2)-E)^2+(lag(E,2)-E)^2),   
-        sqrt((lag(E,1)-E)^2+(lag(E,1)-E)^2),   
-        sqrt((E-lead(E,1))^2+(E-lead(E,1))^2),  
-        sqrt((E-lead(E,2))^2+(E-lead(E,2))^2),
-        sqrt((E-lead(E,3))^2+(E-lead(E,3))^2)  
-        )                                        
-    )
-  )
-
-# Note: 
-# We present here a slightly different approach as presented in the input:
-# - cbind() creates a matrix with the same number of rows as the original dataframe
-# - It has 6 columns, one for each Euclidean distance calculation
-# - rowMeans() returns a single vector with the same number of rows as the original dataframe
-```
 
 
 
@@ -264,33 +145,6 @@ Store the new information (boolean to differentiate between stops (`TRUE`) and m
 Commit your changes with a meaningful commit message. 
 
 
-```r
-summary(caro60$stepMean)
-```
-
-```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-##  0.6417  2.1858  3.1216  6.7741  6.0652 85.6911       6
-```
-
-```r
-ggplot(caro60, aes(stepMean)) +
-  geom_histogram(binwidth = 1) +
-  geom_vline(xintercept = mean(caro60$stepMean,na.rm = TRUE))
-```
-
-```
-## Warning: Removed 6 rows containing non-finite values (stat_bin).
-```
-
-<img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-8-1.png" width="672" />
-
-```r
-caro60 <- caro60 %>%
-  mutate(
-    static = stepMean < mean(caro60$stepMean,na.rm = TRUE)
-  ) 
-```
 
 
 ### Task 3: Visualize segmented trajectories
@@ -298,16 +152,6 @@ caro60 <- caro60 %>%
 Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with `geom_path()`, `geom_point()` and `coord_equal()`. Assign `colour = static` within `aes()` to distinguish between segments *with* "movement" and *without*.
 
 Commit your changes with a meaningful commit message. 
-
-
-```r
-caro60 %>%
-  ggplot() +
-  geom_path(aes(E,N), alpha = 0.5) +
-  geom_point(aes(E,N,colour = static)) +
-  theme_minimal() +
-  coord_equal()
-```
 
 <img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
@@ -338,9 +182,6 @@ caro60 <- caro60 %>%
   mutate(segment_id = rle_id(static))
 
 caro60
-```
-
-```
 ## # A tibble: 200 x 9
 ##    TierID TierName CollarID DatetimeUTC                E       N stepMean static
 ##    <chr>  <chr>       <dbl> <dttm>                 <dbl>   <dbl>    <dbl> <lgl> 
@@ -360,50 +201,7 @@ caro60
 
 
 
-```r
-caro60 <-caro60 %>%
-  mutate(
-    segment_ID = rle_id(static)
-  )
 
-caro60_moves <- caro60 %>%
-  filter(!static)
-
-
-p1 <- ggplot(caro60_moves, aes(E, N, color = segment_ID)) +
-  geom_point() +
-  geom_path() +
-  coord_equal() +
-  theme(legend.position = "none") +
-  labs(subtitle =  "All segments (uncleaned)")
-
-
-p2 <- caro60_moves %>%
-  group_by(segment_ID) %>%
-  mutate(duration = as.integer(difftime(max(DatetimeUTC),min(DatetimeUTC),"mins"))) %>%
-  filter(duration > 5) %>%
-  ggplot(aes(E, N, color = segment_ID))+
-  # geom_point(data = caro60, color = "black") +
-  geom_point() +
-  geom_path() +
-  coord_equal() +
-  theme(legend.position = "none") +
-  labs(subtitle = "Long segments (removed segements <5 minutes)")
-```
-
-
-
-```r
-library(patchwork)
-```
-
-```
-## Warning: Paket 'patchwork' wurde unter R Version 4.0.4 erstellt
-```
-
-```r
-p1 + p2 + patchwork::plot_annotation(title = "Moving segments coloured by segment ID")
-```
 
 <img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
@@ -415,34 +213,6 @@ or this task, explore the trajectories first and get an idea on how the pedestri
 
 Commit your changes with a meaningful commit message. 
 
-
-
-```r
-pedestrians <- read_delim("00_Rawdata/pedestrian.csv",",")
-```
-
-```
-## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TrajID = col_double(),
-##   E = col_double(),
-##   N = col_double(),
-##   DatetimeUTC = col_datetime(format = "")
-## )
-```
-
-```r
-ggplot(pedestrians, aes(E,N)) +
-  geom_point(data = dplyr::select(pedestrians, -TrajID),alpha = 0.1) +
-  geom_point(aes(color = as.factor(TrajID)), size = 2) +
-  geom_path(aes(color = as.factor(TrajID))) +
-  facet_wrap(~TrajID,labeller = label_both) +
-  coord_equal() +
-  theme_minimal() +
-  labs(title = "Visual comparison of the 6 trajectories", subtitle = "Each subplot highlights a trajectory") +
-  theme(legend.position = "none")
-```
 
 <img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
@@ -462,65 +232,6 @@ Note:
 
 Commit your changes with a meaningful commit message. Now push all your changes to Github.
 
-
-
-```r
-# instead of repeating the same step 6 times, I use purrr::map() 
-# which creates a list of dataframes. Feel free to use a method
-# with which you feel comfortable.
-
-
-library(SimilarityMeasures)  # for the similarity measure functions
-library(purrr)               # for the map_*-functions
-```
-
-```
-## Warning: Paket 'purrr' wurde unter R Version 4.0.5 erstellt
-```
-
-```r
-library(tidyr)               # for pivot_* functions
-```
-
-```
-## Warning: Paket 'tidyr' wurde unter R Version 4.0.5 erstellt
-```
-
-```r
-pedestrians_matrix <- pedestrians %>%
-  dplyr::select(E, N) %>%
-  split(pedestrians$TrajID) %>%
-  map(as.matrix)
-
-# Again, we use one of the purrr::map_* family of functions
-# to calculate three indices over all 5 pairs in one go.
-# As before: feel free to use a different method you feel 
-# more comfortable in.
-
-
-pedest_measures <- imap_dfr(pedestrians_matrix, ~data_frame(
-  traj = .y,
-  DTW = DTW(.x,pedestrians_matrix[[1]]),
-  EditDist = EditDist(.x,pedestrians_matrix[[1]]),
-  Frechet = Frechet(.x,pedestrians_matrix[[1]]),
-  LCSS = LCSS(.x,pedestrians_matrix[[1]],5,4,4)
-))
-```
-
-```
-## Warning: `data_frame()` was deprecated in tibble 1.1.0.
-## Please use `tibble()` instead.
-```
-
-```r
-pedest_measures %>%
-  pivot_longer(-traj) %>%
-  ggplot(aes(traj,value, fill = traj))+ 
-  geom_bar(stat = "identity") +
-  facet_wrap(~name,scales = "free") +
-  theme(legend.position = "none") +
-  labs(x = "Comparison trajectory", y = "Value", title = "Computed similarities using different measures \nbetween trajectory 1 to all other trajectories ")
-```
 
 <img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 

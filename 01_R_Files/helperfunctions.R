@@ -167,3 +167,13 @@ subpaths <- function(rootfolder_path, rootfolder_name, subfolders){
   c(paste0(rootfolder_name," (",stringr::str_replace_all(rootfolder_path, "/", "\\\\"),")"), file.path("rootfolder_path",subfolders))
 }
 
+
+## Templates for chunk outputs
+knitr::opts_chunk$set(collapse = TRUE, warning = FALSE,message = FALSE)
+
+knitr::opts_template$set(
+  solution_showOutput = list(echo = FALSE),
+  solution_hideOutput = list(echo = FALSE, include = FALSE),
+  example_showOutput = list(echo = TRUE),
+  example_hideOutput = list(echo = TRUE, results = "hide")
+)

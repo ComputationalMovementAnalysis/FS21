@@ -87,6 +87,7 @@ pigs %>%
   summarise(         
     mean_weight = mean(weight)
   )
+
 ```
 
 

@@ -1,5 +1,9 @@
 ## Tasks
 
+```{r, include=FALSE}
+source('01_R_Files/helperfunctions.R')
+```
+
 ### Tasks 1: Import and visualize spatial data
 
 ```{r}

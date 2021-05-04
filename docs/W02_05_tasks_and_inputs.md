@@ -1,9 +1,6 @@
 ## Tasks and Inputs
 
 
-```r
-source('01_R_Files/helperfunctions.R')
-```
 
 
 - Open the RStudio Project you created for week 2 in [the preparation](#w2-project)
@@ -26,137 +23,16 @@ Create a new R- (or RMarkdown-) file and begin with the following lines of code 
 ## Load the necessary libraries ################################################
 
 library(readr)        # to import tabular data (e.g. csv)
-```
-
-```
-## Warning: Paket 'readr' wurde unter R Version 4.0.5 erstellt
-```
-
-```r
 library(dplyr)        # to manipulate (tabular) data
-```
-
-```
-## Warning: Paket 'dplyr' wurde unter R Version 4.0.5 erstellt
-```
-
-```
-## 
-## Attache Paket: 'dplyr'
-```
-
-```
-## The following object is masked from 'package:glue':
-## 
-##     collapse
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(ggplot2)      # to visualize data
-```
-
-```
-## Warning: Paket 'ggplot2' wurde unter R Version 4.0.5 erstellt
-```
-
-```r
 library(sf)           # to handle spatial vector data
-```
-
-```
-## Warning: Paket 'sf' wurde unter R Version 4.0.5 erstellt
-```
-
-```
-## Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1
-```
-
-```r
 library(terra)        # To handle raster data
-```
-
-```
-## Warning: Paket 'terra' wurde unter R Version 4.0.5 erstellt
-```
-
-```
-## terra version 1.1.17
-```
-
-```
-## 
-## Attache Paket: 'terra'
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     collapse, desc, near
-```
-
-```
-## The following object is masked from 'package:glue':
-## 
-##     collapse
-```
-
-```r
 library(lubridate)    # To handle dates and times
-```
 
-```
-## Warning: Paket 'lubridate' wurde unter R Version 4.0.5 erstellt
-```
-
-```
-## 
-## Attache Paket: 'lubridate'
-```
-
-```
-## The following objects are masked from 'package:terra':
-## 
-##     intersect, union
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     date, intersect, setdiff, union
-```
-
-```r
 ## Import the downloaded csv ##################################################
 
 wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE_2056.csv",",") # adjust path
-```
 
-```
-## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = ""),
-##   E = col_double(),
-##   N = col_double()
-## )
-```
-
-```r
 wildschwein_BE <- st_as_sf(wildschwein_BE, coords = c("E", "N"), crs = 2056, remove = FALSE)
 ```
 
@@ -187,47 +63,7 @@ Here are some exemplary visualisation you could produce to answer these question
 After completing the task, commit your changes to git using a good commit message (e.g. `completed task 1`).
 
 
-
-```r
-wildschwein_BE <- wildschwein_BE %>%
-  mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")))
-
-ggplot(wildschwein_BE, aes(DatetimeUTC,TierID)) +
-  geom_line()
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-1.png" width="672" />
-
-```r
-ggplot(wildschwein_BE, aes(timelag)) +
-  geom_histogram(binwidth = 50) +
-  lims(x = c(0,15000)) +
-  scale_y_log10()
-```
-
-```
-## Warning: Removed 35 rows containing non-finite values (stat_bin).
-```
-
-```
-## Warning: Transformation introduced infinite values in continuous y-axis
-```
-
-```
-## Warning: Removed 205 rows containing missing values (geom_bar).
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-2.png" width="672" />
-
-```r
-wildschwein_BE %>%
-  filter(year(DatetimeUTC)  == 2014) %>%
-  ggplot(aes(DatetimeUTC,timelag, colour = TierID)) +
-  geom_line() +
-  geom_point()
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-3.png" width="672" />
+<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-2.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-3-3.png" width="672" />
 
 
 ### Task 2: Deriving movement parameters I: Speed {#w2-task2}
@@ -248,19 +84,6 @@ After completing the task, commit your changes to git using a good commit messag
 
 
 
-```r
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
-  mutate(
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2)
-  )
-
-wildschwein_BE <- wildschwein_BE %>%
-  group_by(TierID) %>%
-  mutate(
-    speed = steplength/timelag
-  )
-```
 
 
 
@@ -281,139 +104,6 @@ Now manually reduce the granularity of our sampling interval by selecting every 
 Tip: There are many ways to go about this, we recommend using `seq()` where `from = 1`, `to = ` the length of the dataset and `by = n` (i.e. `3`, `6` or `9`). This creates an integer vector that can either used in `dplyr::slice()` or in row subsetting (type `?slice()` or `?"[.data.frame"` to get help on either of these methods). 
 
 
-```r
-caro <- read_delim("00_Rawdata/caro60.csv",",")
-```
-
-```
-## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = ""),
-##   E = col_double(),
-##   N = col_double()
-## )
-```
-
-```r
-caro[seq(1, nrow(caro),3), ]
-```
-
-```
-## # A tibble: 67 x 6
-##    TierID TierName CollarID DatetimeUTC                E        N
-##    <chr>  <chr>       <dbl> <dttm>                 <dbl>    <dbl>
-##  1 010C   Caro        13973 2015-09-15 08:07:00 2570589. 1205095.
-##  2 010C   Caro        13973 2015-09-15 08:10:00 2570518. 1205115.
-##  3 010C   Caro        13973 2015-09-15 08:13:00 2570482. 1205124.
-##  4 010C   Caro        13973 2015-09-15 08:16:00 2570490. 1205100.
-##  5 010C   Caro        13973 2015-09-15 08:19:00 2570497. 1205092.
-##  6 010C   Caro        13973 2015-09-15 08:22:00 2570499. 1205091.
-##  7 010C   Caro        13973 2015-09-15 08:25:00 2570500. 1205087.
-##  8 010C   Caro        13973 2015-09-15 08:28:00 2570496. 1205094.
-##  9 010C   Caro        13973 2015-09-15 08:31:00 2570497. 1205091.
-## 10 010C   Caro        13973 2015-09-15 08:34:00 2570499. 1205091.
-## # ... with 57 more rows
-```
-
-```r
-caro_3 <- caro[seq(1, nrow(caro),3), ]
-
-caro_6 <- caro[seq(1, nrow(caro),6), ]
-
-caro_9 <- caro[seq(1, nrow(caro),9), ]
-
-
-
-caro <- caro %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-caro_3 <- caro_3 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-caro_6 <- caro_6 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-
-caro_9 <- caro_9 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-
-ggplot() +
-  geom_point(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro_3, aes(E,N, colour = "3 minutes")) +
-  geom_path(data = caro_3, aes(E,N, colour = "3 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 3 minutes-resampled data")  +
-  theme_minimal()
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-6-1.png" width="672" />
-
-```r
-ggplot() +
-  geom_point(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro_6, aes(E,N, colour = "6 minutes")) +
-  geom_path(data = caro_6, aes(E,N, colour = "6 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 6 minutes-resampled data") +
-  theme_minimal()
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-6-2.png" width="672" />
-
-```r
-ggplot() +
-  geom_point(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro_9, aes(E,N, colour = "9 minutes")) +
-  geom_path(data = caro_9, aes(E,N, colour = "9 minutes"))+
-  labs(color="Trajectory", title = "Comparing original- with 9 minutes-resampled data") +
-  theme_minimal()
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-6-3.png" width="672" />
-
-```r
-ggplot() +
-  geom_line(data = caro, aes(DatetimeUTC,speed, colour = "1 minute")) +
-  geom_line(data = caro_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
-  geom_line(data = caro_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
-  geom_line(data = caro_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
-  labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
-  theme_minimal()
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-6-4.png" width="672" />
 
 
 You should now have  4 datasets with different number of rows:
@@ -421,33 +111,12 @@ You should now have  4 datasets with different number of rows:
 
 ```r
 nrow(caro)
-```
-
-```
 ## [1] 200
-```
-
-```r
 nrow(caro_3)
-```
-
-```
 ## [1] 67
-```
-
-```r
 nrow(caro_6)
-```
-
-```
 ## [1] 34
-```
-
-```r
 nrow(caro_9)
-```
-
-```
 ## [1] 23
 ```
 
@@ -457,139 +126,6 @@ After completing the task, commit your changes to git using a good commit messag
 
 
 
-```r
-caro <- read_delim("00_Rawdata/caro60.csv",",")
-```
-
-```
-## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = ""),
-##   E = col_double(),
-##   N = col_double()
-## )
-```
-
-```r
-caro[seq(1, nrow(caro),3), ]
-```
-
-```
-## # A tibble: 67 x 6
-##    TierID TierName CollarID DatetimeUTC                E        N
-##    <chr>  <chr>       <dbl> <dttm>                 <dbl>    <dbl>
-##  1 010C   Caro        13973 2015-09-15 08:07:00 2570589. 1205095.
-##  2 010C   Caro        13973 2015-09-15 08:10:00 2570518. 1205115.
-##  3 010C   Caro        13973 2015-09-15 08:13:00 2570482. 1205124.
-##  4 010C   Caro        13973 2015-09-15 08:16:00 2570490. 1205100.
-##  5 010C   Caro        13973 2015-09-15 08:19:00 2570497. 1205092.
-##  6 010C   Caro        13973 2015-09-15 08:22:00 2570499. 1205091.
-##  7 010C   Caro        13973 2015-09-15 08:25:00 2570500. 1205087.
-##  8 010C   Caro        13973 2015-09-15 08:28:00 2570496. 1205094.
-##  9 010C   Caro        13973 2015-09-15 08:31:00 2570497. 1205091.
-## 10 010C   Caro        13973 2015-09-15 08:34:00 2570499. 1205091.
-## # ... with 57 more rows
-```
-
-```r
-caro_3 <- caro[seq(1, nrow(caro),3), ]
-
-caro_6 <- caro[seq(1, nrow(caro),6), ]
-
-caro_9 <- caro[seq(1, nrow(caro),9), ]
-
-
-
-caro <- caro %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-caro_3 <- caro_3 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-caro_6 <- caro_6 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-
-caro_9 <- caro_9 %>%
-  mutate(
-    timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-    steplength = sqrt((E-lead(E))^2+(N-lead(N))^2),
-    speed = steplength/timelag
-  )
-
-
-ggplot() +
-  geom_point(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro_3, aes(E,N, colour = "3 minutes")) +
-  geom_path(data = caro_3, aes(E,N, colour = "3 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 3 minutes-resampled data")  +
-  theme_minimal()
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-1.png" width="672" />
-
-```r
-ggplot() +
-  geom_point(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro_6, aes(E,N, colour = "6 minutes")) +
-  geom_path(data = caro_6, aes(E,N, colour = "6 minutes")) +
-  labs(color="Trajectory", title = "Comparing original- with 6 minutes-resampled data") +
-  theme_minimal()
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-2.png" width="672" />
-
-```r
-ggplot() +
-  geom_point(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_path(data = caro, aes(E,N, colour = "1 minute"), alpha = 0.2) +
-  geom_point(data = caro_9, aes(E,N, colour = "9 minutes")) +
-  geom_path(data = caro_9, aes(E,N, colour = "9 minutes"))+
-  labs(color="Trajectory", title = "Comparing original- with 9 minutes-resampled data") +
-  theme_minimal()
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-3.png" width="672" />
-
-```r
-ggplot() +
-  geom_line(data = caro, aes(DatetimeUTC,speed, colour = "1 minute")) +
-  geom_line(data = caro_3, aes(DatetimeUTC,speed, colour = "3 minutes")) +
-  geom_line(data = caro_6, aes(DatetimeUTC,speed, colour = "6 minutes")) +
-  geom_line(data = caro_9, aes(DatetimeUTC,speed, colour = "9 minutes")) +
-  labs(x = "Time",y = "Speed (m/s)", title = "Comparing derived speed at different sampling intervals") +
-  theme_minimal()
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-4.png" width="672" />
 
 
 ### Task 4: Deriving movement parameters II: Rolling window functions
@@ -601,40 +137,12 @@ A different approach would be to *smoothen* the derived parameters using a [movi
 
 ```r
 library(zoo)
-```
 
-```
-## 
-## Attache Paket: 'zoo'
-```
-
-```
-## The following object is masked from 'package:terra':
-## 
-##     time<-
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     as.Date, as.Date.numeric
-```
-
-```r
 example <- rnorm(10)
 rollmean(example,k = 3,fill = NA,align = "left")
-```
-
-```
 ##  [1]  0.93634335  0.31709038  0.02370048  0.67869801  0.73369105  0.50401344
 ##  [7] -0.56144365 -0.56902598          NA          NA
-```
-
-```r
 rollmean(example,k = 4,fill = NA,align = "left")
-```
-
-```
 ##  [1]  0.6775521  0.2045005  0.5848215  0.5255629  0.3446928  0.1459635
 ##  [7] -0.4102301         NA         NA         NA
 ```
@@ -644,60 +152,6 @@ After completing the task, commit your changes to git using a good commit messag
 
 
 
-```r
-library(zoo)
-
-example <- rnorm(10)
-rollmean(example,k = 3,fill = NA,align = "left")
-```
-
-```
-##  [1] -0.5049544 -0.3781283 -0.1273157  0.4523153  0.4534811  0.8658536
-##  [7]  0.5452571  1.0210648         NA         NA
-```
-
-```r
-rollmean(example,k = 4,fill = NA,align = "left")
-```
-
-```
-##  [1] -0.25933381 -0.22379720  0.06456868  0.45949282  0.70918920  0.56899826
-##  [7]  0.88605495          NA          NA          NA
-```
-
-```r
-caro <- caro %>%
-  mutate(
-    speed3 = rollmean(speed,3,NA,align = "left"),
-    speed6 = rollmean(speed,6,NA,align = "left"),
-    speed9 = rollmean(speed,9,NA,align = "left")
-  )
-
-caro %>%
-  ggplot() +
-  geom_line(aes(DatetimeUTC,speed), colour = "#E41A1C") +
-  geom_line(aes(DatetimeUTC,speed3), colour = "#377EB8") +
-  geom_line(aes(DatetimeUTC,speed6), colour = "#4DAF4A") +
-  geom_line(aes(DatetimeUTC,speed9), colour = "#984EA3")
-```
-
-```
-## Warning: Removed 1 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 3 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 6 row(s) containing missing values (geom_path).
-```
-
-```
-## Warning: Removed 9 row(s) containing missing values (geom_path).
-```
-
-<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 
 

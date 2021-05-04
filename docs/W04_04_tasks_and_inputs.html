@@ -281,140 +281,60 @@ div.csl-indent {
 <p>Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you have copied and pasted a block of code more than twice, you should consider writing a function <span class="citation">(<a href="#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
 <p>We have violated this rule multiple times when calculating the Euclidean distances between points. Writing and rewriting the code <code>sqrt((x-lead(x,1))^2+(y-lead(y,1))^2)</code> over and over again is not only cumbersome, it is also error prone. We can easily wrap this operation into a function. This input on writing functions should bring you up to speed to do this in your first task.</p>
 <p>The first step in writing a function, is picking a name and assigning <code>&lt;- function(){}</code> to it.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="W04_04_tasks_and_inputs.html#cb280-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){}</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="W04_04_tasks_and_inputs.html#cb116-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){}</span></code></pre></div>
 <p>To run the function, we have to call the assigned name with the brackets. This function gives no output, which is why we get <code>NULL</code> back.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="W04_04_tasks_and_inputs.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span></code></pre></div>
-<pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="W04_04_tasks_and_inputs.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(testfun)</span></code></pre></div>
-<pre><code>## [1] &quot;function&quot;</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="W04_04_tasks_and_inputs.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span>
+<span id="cb117-2"><a href="W04_04_tasks_and_inputs.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="do">## NULL</span></span>
+<span id="cb117-3"><a href="W04_04_tasks_and_inputs.html#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-4"><a href="W04_04_tasks_and_inputs.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(testfun)</span>
+<span id="cb117-5"><a href="W04_04_tasks_and_inputs.html#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;function&quot;</span></span></code></pre></div>
 <p>To make the function actually <em>do</em> something, we need to specify <em>what</em> should be done within the curly brackets <code>{}</code>. The following function always prints the same statement and accepts no input values:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="W04_04_tasks_and_inputs.html#cb285-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){<span class="fu">print</span>(<span class="st">&quot;this function does nothing&quot;</span>)}</span>
-<span id="cb285-2"><a href="W04_04_tasks_and_inputs.html#cb285-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb285-3"><a href="W04_04_tasks_and_inputs.html#cb285-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;this function does nothing&quot;</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="W04_04_tasks_and_inputs.html#cb118-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){<span class="fu">print</span>(<span class="st">&quot;this function does nothing&quot;</span>)}</span>
+<span id="cb118-2"><a href="W04_04_tasks_and_inputs.html#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="W04_04_tasks_and_inputs.html#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>()</span>
+<span id="cb118-4"><a href="W04_04_tasks_and_inputs.html#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;this function does nothing&quot;</span></span></code></pre></div>
 <p>If we want the function to accept some input values, we have to define them within the round brackets. For example, I specify a variable named <code>sometext</code> and can call this variable within the execution.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="W04_04_tasks_and_inputs.html#cb287-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(sometext){<span class="fu">print</span>(sometext)}</span>
-<span id="cb287-2"><a href="W04_04_tasks_and_inputs.html#cb287-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb287-3"><a href="W04_04_tasks_and_inputs.html#cb287-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>(<span class="at">sometext =</span> <span class="st">&quot;this function does slightly more, but still not much&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;this function does slightly more, but still not much&quot;</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="W04_04_tasks_and_inputs.html#cb119-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(sometext){<span class="fu">print</span>(sometext)}</span>
+<span id="cb119-2"><a href="W04_04_tasks_and_inputs.html#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-3"><a href="W04_04_tasks_and_inputs.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testfun</span>(<span class="at">sometext =</span> <span class="st">&quot;this function does slightly more, but still not much&quot;</span>)</span>
+<span id="cb119-4"><a href="W04_04_tasks_and_inputs.html#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;this function does slightly more, but still not much&quot;</span></span></code></pre></div>
 <p>Let’s take a more practical example. Say we want a function that calculates our age if provided with the date of our birthday. We can use <code>Sys.time()</code> to provide today’s date and <code>difftime()</code> to calculate the time difference between today and our birthday.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="W04_04_tasks_and_inputs.html#cb289-1" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="cf">function</span>(birthday, units){</span>
-<span id="cb289-2"><a href="W04_04_tasks_and_inputs.html#cb289-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">difftime</span>(<span class="fu">Sys.time</span>(),birthday, <span class="at">units =</span> units)</span>
-<span id="cb289-3"><a href="W04_04_tasks_and_inputs.html#cb289-3" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb289-4"><a href="W04_04_tasks_and_inputs.html#cb289-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-5"><a href="W04_04_tasks_and_inputs.html#cb289-5" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="at">birthday =</span> <span class="st">&quot;1997-04-23&quot;</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>)</span></code></pre></div>
-<pre><code>## Time difference of 8777.721 days</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="W04_04_tasks_and_inputs.html#cb120-1" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="cf">function</span>(birthday, units){</span>
+<span id="cb120-2"><a href="W04_04_tasks_and_inputs.html#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">difftime</span>(<span class="fu">Sys.time</span>(),birthday, <span class="at">units =</span> units)</span>
+<span id="cb120-3"><a href="W04_04_tasks_and_inputs.html#cb120-3" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb120-4"><a href="W04_04_tasks_and_inputs.html#cb120-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-5"><a href="W04_04_tasks_and_inputs.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="at">birthday =</span> <span class="st">&quot;1997-04-23&quot;</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>)</span>
+<span id="cb120-6"><a href="W04_04_tasks_and_inputs.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8777.758 days</span></span></code></pre></div>
 <p>As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of <code>birthday =</code> and <code>units =</code>).</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="W04_04_tasks_and_inputs.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;days&quot;</span>)</span></code></pre></div>
-<pre><code>## Time difference of 8777.721 days</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="W04_04_tasks_and_inputs.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;days&quot;</span>)</span>
+<span id="cb121-2"><a href="W04_04_tasks_and_inputs.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8777.758 days</span></span></code></pre></div>
 <p>If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="W04_04_tasks_and_inputs.html#cb293-1" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="cf">function</span>(birthday, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>){</span>
-<span id="cb293-2"><a href="W04_04_tasks_and_inputs.html#cb293-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">difftime</span>(<span class="fu">Sys.time</span>(),birthday, <span class="at">units =</span> units)</span>
-<span id="cb293-3"><a href="W04_04_tasks_and_inputs.html#cb293-3" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb293-4"><a href="W04_04_tasks_and_inputs.html#cb293-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb293-5"><a href="W04_04_tasks_and_inputs.html#cb293-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if not stated otherwise, our function uses the unit &quot;days&quot;</span></span>
-<span id="cb293-6"><a href="W04_04_tasks_and_inputs.html#cb293-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>)</span></code></pre></div>
-<pre><code>## Time difference of 8777.721 days</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="W04_04_tasks_and_inputs.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite units</span></span>
-<span id="cb295-2"><a href="W04_04_tasks_and_inputs.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;hours&quot;</span>)</span></code></pre></div>
-<pre><code>## Time difference of 210665.3 hours</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="W04_04_tasks_and_inputs.html#cb122-1" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="cf">function</span>(birthday, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>){</span>
+<span id="cb122-2"><a href="W04_04_tasks_and_inputs.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">difftime</span>(<span class="fu">Sys.time</span>(),birthday, <span class="at">units =</span> units)</span>
+<span id="cb122-3"><a href="W04_04_tasks_and_inputs.html#cb122-3" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb122-4"><a href="W04_04_tasks_and_inputs.html#cb122-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-5"><a href="W04_04_tasks_and_inputs.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if not stated otherwise, our function uses the unit &quot;days&quot;</span></span>
+<span id="cb122-6"><a href="W04_04_tasks_and_inputs.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>)</span>
+<span id="cb122-7"><a href="W04_04_tasks_and_inputs.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8777.758 days</span></span>
+<span id="cb122-8"><a href="W04_04_tasks_and_inputs.html#cb122-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-9"><a href="W04_04_tasks_and_inputs.html#cb122-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite units</span></span>
+<span id="cb122-10"><a href="W04_04_tasks_and_inputs.html#cb122-10" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;hours&quot;</span>)</span>
+<span id="cb122-11"><a href="W04_04_tasks_and_inputs.html#cb122-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 210666.2 hours</span></span></code></pre></div>
 <p>All you need to do now is run execute the function deceleration (<code>myage &lt;- function...</code> etc.) at the beginning of your script, and you can use the function for your entire R session. Tip: Always try to make your function self sufficient: Don’t call variables that were created outside the function call.</p>
 <div id="task-1-write-your-own-functions" class="section level3">
 <h3>Task 1: Write your own functions</h3>
 <p>Create a function for our Euclidean distance calculation.</p>
 <p>Note: if you treat your input variables as vectors, they will work in <code>dplyr</code>s <code>mutate()</code> and <code>summarise()</code> operations.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="W04_04_tasks_and_inputs.html#cb297-1" aria-hidden="true" tabindex="-1"></a>euclid <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y,<span class="at">leadval =</span> <span class="dv">1</span>){</span>
-<span id="cb297-2"><a href="W04_04_tasks_and_inputs.html#cb297-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>((x<span class="sc">-</span><span class="fu">lead</span>(x,leadval))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(y<span class="sc">-</span><span class="fu">lead</span>(y,leadval))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb297-3"><a href="W04_04_tasks_and_inputs.html#cb297-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="task-2-filter-data" class="section level3">
 <h3>Task 2: Filter data</h3>
 <p>We propose conceptualizing the pattern “meet” as “being close in space <em>and</em> time,” with the notion “close” to be defined for the spatial and the temporal case separately. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose manipulating the timestamps in such a way, that all observations are sampled concurrently, synchronously. This allows us using the data science concept <em>join</em> for detecting the temporal expression of meet - using <code>DateTimeUTC</code> as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on the Euclidean distances between concurrent positions.</p>
 <p>Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g. <code>wildschwein_filter</code>). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="W04_04_tasks_and_inputs.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
-<pre><code>## Warning: Paket &#39;sf&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="W04_04_tasks_and_inputs.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)        </span></code></pre></div>
-<pre><code>## Warning: Paket &#39;readr&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="W04_04_tasks_and_inputs.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)        </span></code></pre></div>
-<pre><code>## Warning: Paket &#39;dplyr&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## 
-## Attache Paket: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="W04_04_tasks_and_inputs.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      </span></code></pre></div>
-<pre><code>## Warning: Paket &#39;ggplot2&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="W04_04_tasks_and_inputs.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)           </span>
-<span id="cb310-2"><a href="W04_04_tasks_and_inputs.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)        </span></code></pre></div>
-<pre><code>## Warning: Paket &#39;terra&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## terra version 1.1.17</code></pre>
-<pre><code>## 
-## Attache Paket: &#39;terra&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     collapse, desc, near</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="W04_04_tasks_and_inputs.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
-<pre><code>## Warning: Paket &#39;lubridate&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## 
-## Attache Paket: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:terra&#39;:
-## 
-##     intersect, union</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="W04_04_tasks_and_inputs.html#cb320-1" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE_2056.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = &quot;&quot;),
-##   E = col_double(),
-##   N = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="W04_04_tasks_and_inputs.html#cb322-1" aria-hidden="true" tabindex="-1"></a>wildschwein_filter <span class="ot">&lt;-</span> wildschwein <span class="sc">%&gt;%</span></span>
-<span id="cb322-2"><a href="W04_04_tasks_and_inputs.html#cb322-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>, <span class="st">&quot;N&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb322-3"><a href="W04_04_tasks_and_inputs.html#cb322-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(DatetimeUTC <span class="sc">&gt;</span> <span class="st">&quot;2015-04-01&quot;</span>,</span>
-<span id="cb322-4"><a href="W04_04_tasks_and_inputs.html#cb322-4" aria-hidden="true" tabindex="-1"></a>         DatetimeUTC <span class="sc">&lt;</span> <span class="st">&quot;2015-04-15&quot;</span>) </span>
-<span id="cb322-5"><a href="W04_04_tasks_and_inputs.html#cb322-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb322-6"><a href="W04_04_tasks_and_inputs.html#cb322-6" aria-hidden="true" tabindex="-1"></a>wildschwein_filter <span class="sc">%&gt;%</span></span>
-<span id="cb322-7"><a href="W04_04_tasks_and_inputs.html#cb322-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span></span>
-<span id="cb322-8"><a href="W04_04_tasks_and_inputs.html#cb322-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb322-9"><a href="W04_04_tasks_and_inputs.html#cb322-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_convex_hull</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb322-10"><a href="W04_04_tasks_and_inputs.html#cb322-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> TierID),<span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
 <p><img src="W04_04_tasks_and_inputs_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="W04_04_tasks_and_inputs.html#cb323-1" aria-hidden="true" tabindex="-1"></a>wildschwein_filter <span class="ot">&lt;-</span> wildschwein_filter <span class="sc">%&gt;%</span></span>
-<span id="cb323-2"><a href="W04_04_tasks_and_inputs.html#cb323-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TierID <span class="sc">!=</span> <span class="st">&quot;018A&quot;</span>)</span></code></pre></div>
 </div>
 <div id="task-3-create-join-key" class="section level3">
 <h3>Task 3: Create Join Key</h3>
 <p>Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. Verify if we have the same sampling interval (<code>timelag</code>) throughout our filtered dataset.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="W04_04_tasks_and_inputs.html#cb324-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE_2056.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)                                         </span></code></pre></div>
-<pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = &quot;&quot;),
-##   E = col_double(),
-##   N = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="W04_04_tasks_and_inputs.html#cb326-1" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>, <span class="st">&quot;N&quot;</span>), <span class="at">crs =</span> <span class="dv">2056</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb326-2"><a href="W04_04_tasks_and_inputs.html#cb326-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb326-3"><a href="W04_04_tasks_and_inputs.html#cb326-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb326-4"><a href="W04_04_tasks_and_inputs.html#cb326-4" aria-hidden="true" tabindex="-1"></a>wildschwein_filter <span class="ot">&lt;-</span> wildschwein <span class="sc">%&gt;%</span></span>
-<span id="cb326-5"><a href="W04_04_tasks_and_inputs.html#cb326-5" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>, <span class="st">&quot;N&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb326-6"><a href="W04_04_tasks_and_inputs.html#cb326-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(DatetimeUTC <span class="sc">&gt;</span> <span class="st">&quot;2015-04-01&quot;</span>,DatetimeUTC <span class="sc">&lt;</span> <span class="st">&quot;2015-04-15&quot;</span>)</span>
-<span id="cb326-7"><a href="W04_04_tasks_and_inputs.html#cb326-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb326-8"><a href="W04_04_tasks_and_inputs.html#cb326-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb326-9"><a href="W04_04_tasks_and_inputs.html#cb326-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wildschwein_filter)</span></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 6 fields
 ## Geometry type: POINT
 ## Dimension:     XY
@@ -430,30 +350,7 @@ div.csl-indent {
 ## 5 002A   Sabi        12275 2015-03-31 23:00:17 2570364. 1205314.
 ## 6 002A   Sabi        12275 2015-03-31 23:15:12 2570375. 1205320.
 ## # ... with 1 more variable: geometry &lt;POINT [m]&gt;</code></pre>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="W04_04_tasks_and_inputs.html#cb328-1" aria-hidden="true" tabindex="-1"></a>wildschwein_filter <span class="sc">%&gt;%</span></span>
-<span id="cb328-2"><a href="W04_04_tasks_and_inputs.html#cb328-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">timelag =</span> <span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb328-3"><a href="W04_04_tasks_and_inputs.html#cb328-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(DatetimeUTC,timelag, <span class="at">colour =</span> TierID)) <span class="sc">+</span></span>
-<span id="cb328-4"><a href="W04_04_tasks_and_inputs.html#cb328-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb328-5"><a href="W04_04_tasks_and_inputs.html#cb328-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb328-6"><a href="W04_04_tasks_and_inputs.html#cb328-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb328-7"><a href="W04_04_tasks_and_inputs.html#cb328-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(TierID<span class="sc">~</span>.)</span></code></pre></div>
-<pre><code>## Don&#39;t know how to automatically pick scale for object of type difftime. Defaulting to continuous.</code></pre>
-<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
-<p><img src="W04_04_tasks_and_inputs_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="W04_04_tasks_and_inputs.html#cb332-1" aria-hidden="true" tabindex="-1"></a>wildschwein_filter <span class="ot">&lt;-</span> wildschwein_filter <span class="sc">%&gt;%</span></span>
-<span id="cb332-2"><a href="W04_04_tasks_and_inputs.html#cb332-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span></span>
-<span id="cb332-3"><a href="W04_04_tasks_and_inputs.html#cb332-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb332-4"><a href="W04_04_tasks_and_inputs.html#cb332-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">DatetimeRound =</span> lubridate<span class="sc">::</span><span class="fu">round_date</span>(DatetimeUTC,<span class="st">&quot;15 minutes&quot;</span>)</span>
-<span id="cb332-5"><a href="W04_04_tasks_and_inputs.html#cb332-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb332-6"><a href="W04_04_tasks_and_inputs.html#cb332-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb332-7"><a href="W04_04_tasks_and_inputs.html#cb332-7" aria-hidden="true" tabindex="-1"></a>wildschwein_filter <span class="sc">%&gt;%</span></span>
-<span id="cb332-8"><a href="W04_04_tasks_and_inputs.html#cb332-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">delta =</span> <span class="fu">abs</span>(<span class="fu">as.integer</span>(<span class="fu">difftime</span>(DatetimeUTC,DatetimeRound, <span class="at">units =</span> <span class="st">&quot;secs&quot;</span>)))) <span class="sc">%&gt;%</span></span>
-<span id="cb332-9"><a href="W04_04_tasks_and_inputs.html#cb332-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(delta)) <span class="sc">+</span></span>
-<span id="cb332-10"><a href="W04_04_tasks_and_inputs.html#cb332-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb332-11"><a href="W04_04_tasks_and_inputs.html#cb332-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Absolute time difference between original- and rounded Timestamp&quot;</span>,</span>
-<span id="cb332-12"><a href="W04_04_tasks_and_inputs.html#cb332-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of values&quot;</span>)</span></code></pre></div>
-<p><img src="W04_04_tasks_and_inputs_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p><img src="W04_04_tasks_and_inputs_files/figure-html/unnamed-chunk-11-1.png" width="672" /><img src="W04_04_tasks_and_inputs_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
 <p>With a few exceptions, the sampling interval is <em>around</em> 15 minutes. In order to join the data, however, we need <em>identical</em> time stamps to serve as a join key. We therefore need to slightly adjust our time stamps to a common, concurrent interval.</p>
 <p>Round the minutes of <code>DatetimeUTC</code> to a multiple of 15 (00, 15, 30,45) and store the values in a new column<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. You can use the <code>lubridate</code> function <code>round_date()</code> for this. See the examples <a href="https://lubridate.tidyverse.org/reference/round_date.html">here</a> to see how this goes.</p>
 </div>
@@ -466,35 +363,6 @@ div.csl-indent {
 <li>On <code>wildschwein_join</code>, calculate Euclidean distances between concurrent observations. Store the values in a new column <code>distance</code>.</li>
 <li>Use a reasonable threshold on <code>distance</code> to determine if the animals are also <em>spatially close</em> enough to constitute a <em>meet</em> (we use 50 meters). Store this Boolean information (<code>TRUE</code>/<code>FALSE</code>) in a new column named <code>meet</code>.</li>
 </ol>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="W04_04_tasks_and_inputs.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span></code></pre></div>
-<pre><code>## Warning: Paket &#39;purrr&#39; wurde unter R Version 4.0.5 erstellt</code></pre>
-<pre><code>## 
-## Attache Paket: &#39;purrr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:terra&#39;:
-## 
-##     transpose</code></pre>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="W04_04_tasks_and_inputs.html#cb337-1" aria-hidden="true" tabindex="-1"></a>wildschwein_join <span class="ot">&lt;-</span> wildschwein_filter <span class="sc">%&gt;%</span></span>
-<span id="cb337-2"><a href="W04_04_tasks_and_inputs.html#cb337-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb337-3"><a href="W04_04_tasks_and_inputs.html#cb337-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(TierID,DatetimeRound,E,N) <span class="sc">%&gt;%</span></span>
-<span id="cb337-4"><a href="W04_04_tasks_and_inputs.html#cb337-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_geometry</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb337-5"><a href="W04_04_tasks_and_inputs.html#cb337-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>TierID) <span class="sc">%&gt;%</span></span>
-<span id="cb337-6"><a href="W04_04_tasks_and_inputs.html#cb337-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accumulate</span>(<span class="sc">~</span><span class="fu">full_join</span>(.x,.y, <span class="at">by =</span> <span class="st">&quot;DatetimeRound&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb337-7"><a href="W04_04_tasks_and_inputs.html#cb337-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="fu">length</span>(.))</span>
-<span id="cb337-8"><a href="W04_04_tasks_and_inputs.html#cb337-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb337-9"><a href="W04_04_tasks_and_inputs.html#cb337-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb337-10"><a href="W04_04_tasks_and_inputs.html#cb337-10" aria-hidden="true" tabindex="-1"></a>euclid2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x1,y1,x2,y2){</span>
-<span id="cb337-11"><a href="W04_04_tasks_and_inputs.html#cb337-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>((x1<span class="sc">-</span>x2)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(y2<span class="sc">-</span>y2)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb337-12"><a href="W04_04_tasks_and_inputs.html#cb337-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb337-13"><a href="W04_04_tasks_and_inputs.html#cb337-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb337-14"><a href="W04_04_tasks_and_inputs.html#cb337-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb337-15"><a href="W04_04_tasks_and_inputs.html#cb337-15" aria-hidden="true" tabindex="-1"></a>wildschwein_join <span class="ot">&lt;-</span> wildschwein_join <span class="sc">%&gt;%</span></span>
-<span id="cb337-16"><a href="W04_04_tasks_and_inputs.html#cb337-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb337-17"><a href="W04_04_tasks_and_inputs.html#cb337-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">distance =</span> <span class="fu">euclid2</span>(E.x,N.x,E.y,N.y),</span>
-<span id="cb337-18"><a href="W04_04_tasks_and_inputs.html#cb337-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">meet =</span> distance <span class="sc">&lt;</span> <span class="dv">100</span></span>
-<span id="cb337-19"><a href="W04_04_tasks_and_inputs.html#cb337-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb337-20"><a href="W04_04_tasks_and_inputs.html#cb337-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb337-21"><a href="W04_04_tasks_and_inputs.html#cb337-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb337-22"><a href="W04_04_tasks_and_inputs.html#cb337-22" aria-hidden="true" tabindex="-1"></a>wildschwein_join</span></code></pre></div>
 <pre><code>## # A tibble: 1,344 x 12
 ##    TierID.x DatetimeRound            E.x     N.x TierID.y     E.y     N.y TierID
 ##    &lt;chr&gt;    &lt;dttm&gt;                 &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
@@ -527,99 +395,11 @@ div.csl-indent {
 <li>Add two more <code>geom_point</code>-layers, this time with the dataset <code>wildschwein_meet</code></li>
 <li>Facet the plot into small multiples either using <code>meet_seq</code> or <code>meet_time</code></li>
 </ol>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="W04_04_tasks_and_inputs.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(ggpmisc)</span></span>
-<span id="cb339-2"><a href="W04_04_tasks_and_inputs.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb339-3"><a href="W04_04_tasks_and_inputs.html#cb339-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pk25 &lt;- brick(&quot;../CMA_FS2018_Filestorage/pk25.tif&quot;)</span></span>
-<span id="cb339-4"><a href="W04_04_tasks_and_inputs.html#cb339-4" aria-hidden="true" tabindex="-1"></a><span class="co"># swissimage &lt;- brick(&quot;../CMA_FS2018_Filestorage/swissimage_250cm.tif&quot;)</span></span>
-<span id="cb339-5"><a href="W04_04_tasks_and_inputs.html#cb339-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb339-6"><a href="W04_04_tasks_and_inputs.html#cb339-6" aria-hidden="true" tabindex="-1"></a>number_seq <span class="ot">=</span> <span class="cf">function</span>(bool){</span>
-<span id="cb339-7"><a href="W04_04_tasks_and_inputs.html#cb339-7" aria-hidden="true" tabindex="-1"></a>  fac <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(bool,<span class="dv">1</span><span class="sc">+</span><span class="fu">cumsum</span>(<span class="sc">!</span>bool),<span class="cn">NA</span>))</span>
-<span id="cb339-8"><a href="W04_04_tasks_and_inputs.html#cb339-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">levels</span>(fac) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">levels</span>(fac))</span>
-<span id="cb339-9"><a href="W04_04_tasks_and_inputs.html#cb339-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(fac)</span>
-<span id="cb339-10"><a href="W04_04_tasks_and_inputs.html#cb339-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb339-11"><a href="W04_04_tasks_and_inputs.html#cb339-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb339-12"><a href="W04_04_tasks_and_inputs.html#cb339-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb339-13"><a href="W04_04_tasks_and_inputs.html#cb339-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lwgeom)</span></code></pre></div>
-<pre><code>## Linking to liblwgeom 3.0.0beta1 r16016, GEOS 3.8.0, PROJ 6.3.1</code></pre>
-<pre><code>## Warning in fun(libname, pkgname): GEOS versions differ: lwgeom has 3.8.0 sf has
-## 3.9.0</code></pre>
-<pre><code>## Warning in fun(libname, pkgname): PROJ versions differ: lwgeom has 6.3.1 sf has
-## 7.2.1</code></pre>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="W04_04_tasks_and_inputs.html#cb343-1" aria-hidden="true" tabindex="-1"></a>wildschwein_spread <span class="ot">&lt;-</span> wildschwein_join <span class="sc">%&gt;%</span></span>
-<span id="cb343-2"><a href="W04_04_tasks_and_inputs.html#cb343-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">meet_seq =</span> <span class="fu">number_seq</span>(meet)) <span class="sc">%&gt;%</span> </span>
-<span id="cb343-3"><a href="W04_04_tasks_and_inputs.html#cb343-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">gather</span>(key,val, <span class="fu">contains</span>(<span class="st">&quot;.&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb343-4"><a href="W04_04_tasks_and_inputs.html#cb343-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(key,<span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;key&quot;</span>,<span class="st">&quot;animal&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb343-5"><a href="W04_04_tasks_and_inputs.html#cb343-5" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">spread</span>(key,val,<span class="at">convert =</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb343-6"><a href="W04_04_tasks_and_inputs.html#cb343-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(TierID,DatetimeRound) <span class="sc">%&gt;%</span></span>
-<span id="cb343-7"><a href="W04_04_tasks_and_inputs.html#cb343-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>,<span class="st">&quot;N&quot;</span>),<span class="at">remove =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb343-8"><a href="W04_04_tasks_and_inputs.html#cb343-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_crs</span>(<span class="dv">2056</span>) </span>
-<span id="cb343-9"><a href="W04_04_tasks_and_inputs.html#cb343-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb343-10"><a href="W04_04_tasks_and_inputs.html#cb343-10" aria-hidden="true" tabindex="-1"></a>meets <span class="ot">&lt;-</span> wildschwein_spread <span class="sc">%&gt;%</span></span>
-<span id="cb343-11"><a href="W04_04_tasks_and_inputs.html#cb343-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(meet) <span class="sc">%&gt;%</span></span>
-<span id="cb343-12"><a href="W04_04_tasks_and_inputs.html#cb343-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(meet_seq) <span class="sc">%&gt;%</span></span>
-<span id="cb343-13"><a href="W04_04_tasks_and_inputs.html#cb343-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb343-14"><a href="W04_04_tasks_and_inputs.html#cb343-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="fu">min</span>(DatetimeRound),</span>
-<span id="cb343-15"><a href="W04_04_tasks_and_inputs.html#cb343-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">end =</span> <span class="fu">max</span>(DatetimeRound)</span>
-<span id="cb343-16"><a href="W04_04_tasks_and_inputs.html#cb343-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb343-17"><a href="W04_04_tasks_and_inputs.html#cb343-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">paste</span>(meet_seq,<span class="st">&quot;:&quot;</span>,start,<span class="st">&quot;-&quot;</span>,<span class="fu">strftime</span>(end,<span class="at">format =</span> <span class="st">&quot;%H:%M:%S&quot;</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb343-18"><a href="W04_04_tasks_and_inputs.html#cb343-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_minimum_bounding_circle</span>()</span>
-<span id="cb343-19"><a href="W04_04_tasks_and_inputs.html#cb343-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb343-20"><a href="W04_04_tasks_and_inputs.html#cb343-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wildschwein_spread) <span class="sc">+</span></span>
-<span id="cb343-21"><a href="W04_04_tasks_and_inputs.html#cb343-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(E,N,<span class="at">colour =</span> TierID),<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb343-22"><a href="W04_04_tasks_and_inputs.html#cb343-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(E,N,<span class="at">colour =</span> TierID),<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb343-23"><a href="W04_04_tasks_and_inputs.html#cb343-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> meets, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
-<span id="cb343-24"><a href="W04_04_tasks_and_inputs.html#cb343-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb343-25"><a href="W04_04_tasks_and_inputs.html#cb343-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">datum =</span> <span class="dv">2056</span>) <span class="sc">+</span></span>
-<span id="cb343-26"><a href="W04_04_tasks_and_inputs.html#cb343-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
-<span id="cb343-27"><a href="W04_04_tasks_and_inputs.html#cb343-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb343-28"><a href="W04_04_tasks_and_inputs.html#cb343-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,<span class="fu">nrow</span>(meets),<span class="st">&quot;meet events of the two animals&quot;</span>), <span class="at">subtitle =</span> <span class="st">&quot;Using a threshold of 100 meters&quot;</span>)</span></code></pre></div>
 <p><img src="W04_04_tasks_and_inputs_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="task-6-optional-visualize-data-as-timecube-with-plotly" class="section level3">
 <h3>Task 6 (optional): Visualize data as timecube with <code>plotly</code></h3>
 <p>Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube <span class="citation">(<a href="#ref-hagerstraand1970" role="doc-biblioref">Hägerstraand 1970</a>)</span> with the package <code>plotly</code>. There are some <a href="https://plot.ly/r/3d-line-plots/">nice ressources</a> available online.</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="W04_04_tasks_and_inputs.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(ggpmisc)</span></span>
-<span id="cb344-2"><a href="W04_04_tasks_and_inputs.html#cb344-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb344-3"><a href="W04_04_tasks_and_inputs.html#cb344-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pk25 &lt;- brick(&quot;../CMA_FS2018_Filestorage/pk25.tif&quot;)</span></span>
-<span id="cb344-4"><a href="W04_04_tasks_and_inputs.html#cb344-4" aria-hidden="true" tabindex="-1"></a><span class="co"># swissimage &lt;- brick(&quot;../CMA_FS2018_Filestorage/swissimage_250cm.tif&quot;)</span></span>
-<span id="cb344-5"><a href="W04_04_tasks_and_inputs.html#cb344-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-6"><a href="W04_04_tasks_and_inputs.html#cb344-6" aria-hidden="true" tabindex="-1"></a>number_seq <span class="ot">=</span> <span class="cf">function</span>(bool){</span>
-<span id="cb344-7"><a href="W04_04_tasks_and_inputs.html#cb344-7" aria-hidden="true" tabindex="-1"></a>  fac <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(bool,<span class="dv">1</span><span class="sc">+</span><span class="fu">cumsum</span>(<span class="sc">!</span>bool),<span class="cn">NA</span>))</span>
-<span id="cb344-8"><a href="W04_04_tasks_and_inputs.html#cb344-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">levels</span>(fac) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">levels</span>(fac))</span>
-<span id="cb344-9"><a href="W04_04_tasks_and_inputs.html#cb344-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(fac)</span>
-<span id="cb344-10"><a href="W04_04_tasks_and_inputs.html#cb344-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb344-11"><a href="W04_04_tasks_and_inputs.html#cb344-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-12"><a href="W04_04_tasks_and_inputs.html#cb344-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-13"><a href="W04_04_tasks_and_inputs.html#cb344-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lwgeom)</span>
-<span id="cb344-14"><a href="W04_04_tasks_and_inputs.html#cb344-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-15"><a href="W04_04_tasks_and_inputs.html#cb344-15" aria-hidden="true" tabindex="-1"></a>wildschwein_spread <span class="ot">&lt;-</span> wildschwein_join <span class="sc">%&gt;%</span></span>
-<span id="cb344-16"><a href="W04_04_tasks_and_inputs.html#cb344-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">meet_seq =</span> <span class="fu">number_seq</span>(meet)) <span class="sc">%&gt;%</span> </span>
-<span id="cb344-17"><a href="W04_04_tasks_and_inputs.html#cb344-17" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">gather</span>(key,val, <span class="fu">contains</span>(<span class="st">&quot;.&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb344-18"><a href="W04_04_tasks_and_inputs.html#cb344-18" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(key,<span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;key&quot;</span>,<span class="st">&quot;animal&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb344-19"><a href="W04_04_tasks_and_inputs.html#cb344-19" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">spread</span>(key,val,<span class="at">convert =</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb344-20"><a href="W04_04_tasks_and_inputs.html#cb344-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(TierID,DatetimeRound) <span class="sc">%&gt;%</span></span>
-<span id="cb344-21"><a href="W04_04_tasks_and_inputs.html#cb344-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>,<span class="st">&quot;N&quot;</span>),<span class="at">remove =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb344-22"><a href="W04_04_tasks_and_inputs.html#cb344-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_crs</span>(<span class="dv">2056</span>) </span>
-<span id="cb344-23"><a href="W04_04_tasks_and_inputs.html#cb344-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-24"><a href="W04_04_tasks_and_inputs.html#cb344-24" aria-hidden="true" tabindex="-1"></a>meets <span class="ot">&lt;-</span> wildschwein_spread <span class="sc">%&gt;%</span></span>
-<span id="cb344-25"><a href="W04_04_tasks_and_inputs.html#cb344-25" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(meet) <span class="sc">%&gt;%</span></span>
-<span id="cb344-26"><a href="W04_04_tasks_and_inputs.html#cb344-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(meet_seq) <span class="sc">%&gt;%</span></span>
-<span id="cb344-27"><a href="W04_04_tasks_and_inputs.html#cb344-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb344-28"><a href="W04_04_tasks_and_inputs.html#cb344-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="fu">min</span>(DatetimeRound),</span>
-<span id="cb344-29"><a href="W04_04_tasks_and_inputs.html#cb344-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">end =</span> <span class="fu">max</span>(DatetimeRound)</span>
-<span id="cb344-30"><a href="W04_04_tasks_and_inputs.html#cb344-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb344-31"><a href="W04_04_tasks_and_inputs.html#cb344-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">paste</span>(meet_seq,<span class="st">&quot;:&quot;</span>,start,<span class="st">&quot;-&quot;</span>,<span class="fu">strftime</span>(end,<span class="at">format =</span> <span class="st">&quot;%H:%M:%S&quot;</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb344-32"><a href="W04_04_tasks_and_inputs.html#cb344-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_minimum_bounding_circle</span>()</span>
-<span id="cb344-33"><a href="W04_04_tasks_and_inputs.html#cb344-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-34"><a href="W04_04_tasks_and_inputs.html#cb344-34" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wildschwein_spread) <span class="sc">+</span></span>
-<span id="cb344-35"><a href="W04_04_tasks_and_inputs.html#cb344-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(E,N,<span class="at">colour =</span> TierID),<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb344-36"><a href="W04_04_tasks_and_inputs.html#cb344-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(E,N,<span class="at">colour =</span> TierID),<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb344-37"><a href="W04_04_tasks_and_inputs.html#cb344-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> meets, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
-<span id="cb344-38"><a href="W04_04_tasks_and_inputs.html#cb344-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb344-39"><a href="W04_04_tasks_and_inputs.html#cb344-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">datum =</span> <span class="dv">2056</span>) <span class="sc">+</span></span>
-<span id="cb344-40"><a href="W04_04_tasks_and_inputs.html#cb344-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
-<span id="cb344-41"><a href="W04_04_tasks_and_inputs.html#cb344-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb344-42"><a href="W04_04_tasks_and_inputs.html#cb344-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,<span class="fu">nrow</span>(meets),<span class="st">&quot;meet events of the two animals&quot;</span>), <span class="at">subtitle =</span> <span class="st">&quot;Using a threshold of 100 meters&quot;</span>)</span></code></pre></div>
 <p><img src="W04_04_tasks_and_inputs_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 
 <div id="refs" class="references csl-bib-body hanging-indent">

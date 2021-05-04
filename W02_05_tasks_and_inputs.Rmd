@@ -1,6 +1,6 @@
 ## Tasks and Inputs
 
-```{r}
+```{r, include=FALSE}
 source('01_R_Files/helperfunctions.R')
 ```
 

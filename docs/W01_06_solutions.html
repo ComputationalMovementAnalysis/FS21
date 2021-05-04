@@ -279,64 +279,65 @@ div.csl-indent {
 <div id="solutions" class="section level2">
 <h2>Solutions</h2>
 <p>Hover over the code and copy the content by clicking on the clipboard icon on the top right. You can now paste this into an R-Script.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="W01_06_solutions.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># task 1 ########################################################################</span></span>
-<span id="cb81-2"><a href="W01_06_solutions.html#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-3"><a href="W01_06_solutions.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data import ####</span></span>
-<span id="cb81-4"><a href="W01_06_solutions.html#cb81-4" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
-<span id="cb81-5"><a href="W01_06_solutions.html#cb81-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-6"><a href="W01_06_solutions.html#cb81-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-7"><a href="W01_06_solutions.html#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check Timezone</span></span>
-<span id="cb81-8"><a href="W01_06_solutions.html#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(wildschwein_BE<span class="sc">$</span>DatetimeUTC,<span class="st">&quot;tzone&quot;</span>) <span class="co"># or</span></span>
-<span id="cb81-9"><a href="W01_06_solutions.html#cb81-9" aria-hidden="true" tabindex="-1"></a>wildschwein_BE<span class="sc">$</span>DatetimeUTC[<span class="dv">1</span>]</span>
-<span id="cb81-10"><a href="W01_06_solutions.html#cb81-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-11"><a href="W01_06_solutions.html#cb81-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-12"><a href="W01_06_solutions.html#cb81-12" aria-hidden="true" tabindex="-1"></a><span class="co"># task 2 ########################################################################</span></span>
-<span id="cb81-13"><a href="W01_06_solutions.html#cb81-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-14"><a href="W01_06_solutions.html#cb81-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wildschwein_BE, <span class="fu">aes</span>(Long,Lat, <span class="at">colour =</span> TierID)) <span class="sc">+</span></span>
-<span id="cb81-15"><a href="W01_06_solutions.html#cb81-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb81-16"><a href="W01_06_solutions.html#cb81-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_map</span>() <span class="sc">+</span></span>
-<span id="cb81-17"><a href="W01_06_solutions.html#cb81-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb81-18"><a href="W01_06_solutions.html#cb81-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-19"><a href="W01_06_solutions.html#cb81-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-20"><a href="W01_06_solutions.html#cb81-20" aria-hidden="true" tabindex="-1"></a><span class="co"># task 3 ########################################################################</span></span>
-<span id="cb81-21"><a href="W01_06_solutions.html#cb81-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-22"><a href="W01_06_solutions.html#cb81-22" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
-<span id="cb81-23"><a href="W01_06_solutions.html#cb81-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-24"><a href="W01_06_solutions.html#cb81-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-25"><a href="W01_06_solutions.html#cb81-25" aria-hidden="true" tabindex="-1"></a><span class="co"># task 4 ########################################################################</span></span>
-<span id="cb81-26"><a href="W01_06_solutions.html#cb81-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-27"><a href="W01_06_solutions.html#cb81-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-28"><a href="W01_06_solutions.html#cb81-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mcp,<span class="fu">aes</span>(<span class="at">fill =</span> TierID)) <span class="sc">+</span></span>
-<span id="cb81-29"><a href="W01_06_solutions.html#cb81-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>)</span>
-<span id="cb81-30"><a href="W01_06_solutions.html#cb81-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-31"><a href="W01_06_solutions.html#cb81-31" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mcp,<span class="fu">aes</span>(<span class="at">fill =</span> TierID)) <span class="sc">+</span></span>
-<span id="cb81-32"><a href="W01_06_solutions.html#cb81-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb81-33"><a href="W01_06_solutions.html#cb81-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">datum =</span> <span class="dv">2056</span>)</span>
-<span id="cb81-34"><a href="W01_06_solutions.html#cb81-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-35"><a href="W01_06_solutions.html#cb81-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-36"><a href="W01_06_solutions.html#cb81-36" aria-hidden="true" tabindex="-1"></a><span class="co"># task 5 ########################################################################</span></span>
-<span id="cb81-37"><a href="W01_06_solutions.html#cb81-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-38"><a href="W01_06_solutions.html#cb81-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
-<span id="cb81-39"><a href="W01_06_solutions.html#cb81-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-40"><a href="W01_06_solutions.html#cb81-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-41"><a href="W01_06_solutions.html#cb81-41" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pk100_BE) <span class="sc">+</span> </span>
-<span id="cb81-42"><a href="W01_06_solutions.html#cb81-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_rgb</span>() </span>
-<span id="cb81-43"><a href="W01_06_solutions.html#cb81-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-44"><a href="W01_06_solutions.html#cb81-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-45"><a href="W01_06_solutions.html#cb81-45" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pk100_BE) <span class="sc">+</span> </span>
-<span id="cb81-46"><a href="W01_06_solutions.html#cb81-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_rgb</span>() <span class="sc">+</span></span>
-<span id="cb81-47"><a href="W01_06_solutions.html#cb81-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(mcp) <span class="sc">+</span></span>
-<span id="cb81-48"><a href="W01_06_solutions.html#cb81-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;TierID&quot;</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>,<span class="at">border.col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb81-49"><a href="W01_06_solutions.html#cb81-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_legend</span>(<span class="at">bg.color =</span> <span class="st">&quot;white&quot;</span>)</span>
-<span id="cb81-50"><a href="W01_06_solutions.html#cb81-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-51"><a href="W01_06_solutions.html#cb81-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-52"><a href="W01_06_solutions.html#cb81-52" aria-hidden="true" tabindex="-1"></a><span class="co"># task 6 ########################################################################</span></span>
-<span id="cb81-53"><a href="W01_06_solutions.html#cb81-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-54"><a href="W01_06_solutions.html#cb81-54" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</span>
-<span id="cb81-55"><a href="W01_06_solutions.html#cb81-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-56"><a href="W01_06_solutions.html#cb81-56" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mcp) <span class="sc">+</span></span>
-<span id="cb81-57"><a href="W01_06_solutions.html#cb81-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;TierID&quot;</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>,<span class="at">border.col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb81-58"><a href="W01_06_solutions.html#cb81-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_legend</span>(<span class="at">bg.color =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="W01_06_solutions.html#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-2"><a href="W01_06_solutions.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># task 1 ########################################################################</span></span>
+<span id="cb30-3"><a href="W01_06_solutions.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="W01_06_solutions.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Data import ####</span></span>
+<span id="cb30-5"><a href="W01_06_solutions.html#cb30-5" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb30-6"><a href="W01_06_solutions.html#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="W01_06_solutions.html#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="W01_06_solutions.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Check Timezone</span></span>
+<span id="cb30-9"><a href="W01_06_solutions.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(wildschwein_BE<span class="sc">$</span>DatetimeUTC,<span class="st">&quot;tzone&quot;</span>) <span class="co"># or</span></span>
+<span id="cb30-10"><a href="W01_06_solutions.html#cb30-10" aria-hidden="true" tabindex="-1"></a>wildschwein_BE<span class="sc">$</span>DatetimeUTC[<span class="dv">1</span>]</span>
+<span id="cb30-11"><a href="W01_06_solutions.html#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="W01_06_solutions.html#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="W01_06_solutions.html#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co"># task 2 ########################################################################</span></span>
+<span id="cb30-14"><a href="W01_06_solutions.html#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="W01_06_solutions.html#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wildschwein_BE, <span class="fu">aes</span>(Long,Lat, <span class="at">colour =</span> TierID)) <span class="sc">+</span></span>
+<span id="cb30-16"><a href="W01_06_solutions.html#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb30-17"><a href="W01_06_solutions.html#cb30-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_map</span>() <span class="sc">+</span></span>
+<span id="cb30-18"><a href="W01_06_solutions.html#cb30-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb30-19"><a href="W01_06_solutions.html#cb30-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-20"><a href="W01_06_solutions.html#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="W01_06_solutions.html#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="co"># task 3 ########################################################################</span></span>
+<span id="cb30-22"><a href="W01_06_solutions.html#cb30-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-23"><a href="W01_06_solutions.html#cb30-23" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
+<span id="cb30-24"><a href="W01_06_solutions.html#cb30-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-25"><a href="W01_06_solutions.html#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-26"><a href="W01_06_solutions.html#cb30-26" aria-hidden="true" tabindex="-1"></a><span class="co"># task 4 ########################################################################</span></span>
+<span id="cb30-27"><a href="W01_06_solutions.html#cb30-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-28"><a href="W01_06_solutions.html#cb30-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-29"><a href="W01_06_solutions.html#cb30-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mcp,<span class="fu">aes</span>(<span class="at">fill =</span> TierID)) <span class="sc">+</span></span>
+<span id="cb30-30"><a href="W01_06_solutions.html#cb30-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>)</span>
+<span id="cb30-31"><a href="W01_06_solutions.html#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="W01_06_solutions.html#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mcp,<span class="fu">aes</span>(<span class="at">fill =</span> TierID)) <span class="sc">+</span></span>
+<span id="cb30-33"><a href="W01_06_solutions.html#cb30-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb30-34"><a href="W01_06_solutions.html#cb30-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">datum =</span> <span class="dv">2056</span>)</span>
+<span id="cb30-35"><a href="W01_06_solutions.html#cb30-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-36"><a href="W01_06_solutions.html#cb30-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-37"><a href="W01_06_solutions.html#cb30-37" aria-hidden="true" tabindex="-1"></a><span class="co"># task 5 ########################################################################</span></span>
+<span id="cb30-38"><a href="W01_06_solutions.html#cb30-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-39"><a href="W01_06_solutions.html#cb30-39" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb30-40"><a href="W01_06_solutions.html#cb30-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-41"><a href="W01_06_solutions.html#cb30-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-42"><a href="W01_06_solutions.html#cb30-42" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pk100_BE) <span class="sc">+</span> </span>
+<span id="cb30-43"><a href="W01_06_solutions.html#cb30-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_rgb</span>() </span>
+<span id="cb30-44"><a href="W01_06_solutions.html#cb30-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-45"><a href="W01_06_solutions.html#cb30-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-46"><a href="W01_06_solutions.html#cb30-46" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pk100_BE) <span class="sc">+</span> </span>
+<span id="cb30-47"><a href="W01_06_solutions.html#cb30-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_rgb</span>() <span class="sc">+</span></span>
+<span id="cb30-48"><a href="W01_06_solutions.html#cb30-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(mcp) <span class="sc">+</span></span>
+<span id="cb30-49"><a href="W01_06_solutions.html#cb30-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;TierID&quot;</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>,<span class="at">border.col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-50"><a href="W01_06_solutions.html#cb30-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_legend</span>(<span class="at">bg.color =</span> <span class="st">&quot;white&quot;</span>)</span>
+<span id="cb30-51"><a href="W01_06_solutions.html#cb30-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-52"><a href="W01_06_solutions.html#cb30-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-53"><a href="W01_06_solutions.html#cb30-53" aria-hidden="true" tabindex="-1"></a><span class="co"># task 6 ########################################################################</span></span>
+<span id="cb30-54"><a href="W01_06_solutions.html#cb30-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-55"><a href="W01_06_solutions.html#cb30-55" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</span>
+<span id="cb30-56"><a href="W01_06_solutions.html#cb30-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-57"><a href="W01_06_solutions.html#cb30-57" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mcp) <span class="sc">+</span></span>
+<span id="cb30-58"><a href="W01_06_solutions.html#cb30-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;TierID&quot;</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>,<span class="at">border.col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-59"><a href="W01_06_solutions.html#cb30-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_legend</span>(<span class="at">bg.color =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
