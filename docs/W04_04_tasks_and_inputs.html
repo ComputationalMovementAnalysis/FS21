@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="W04_03_preparation.html"/>
-
+<link rel="next" href="W05_01_exercise.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -256,6 +256,18 @@ div.csl-indent {
 <li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="W05_02_preparation.html"><a href="W05_02_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /></a>.
 
@@ -304,10 +316,10 @@ div.csl-indent {
 <span id="cb120-3"><a href="W04_04_tasks_and_inputs.html#cb120-3" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb120-4"><a href="W04_04_tasks_and_inputs.html#cb120-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-5"><a href="W04_04_tasks_and_inputs.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="at">birthday =</span> <span class="st">&quot;1997-04-23&quot;</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>)</span>
-<span id="cb120-6"><a href="W04_04_tasks_and_inputs.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8777.758 days</span></span></code></pre></div>
+<span id="cb120-6"><a href="W04_04_tasks_and_inputs.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8778.39 days</span></span></code></pre></div>
 <p>As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of <code>birthday =</code> and <code>units =</code>).</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="W04_04_tasks_and_inputs.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;days&quot;</span>)</span>
-<span id="cb121-2"><a href="W04_04_tasks_and_inputs.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8777.758 days</span></span></code></pre></div>
+<span id="cb121-2"><a href="W04_04_tasks_and_inputs.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8778.39 days</span></span></code></pre></div>
 <p>If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="W04_04_tasks_and_inputs.html#cb122-1" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="cf">function</span>(birthday, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>){</span>
 <span id="cb122-2"><a href="W04_04_tasks_and_inputs.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">difftime</span>(<span class="fu">Sys.time</span>(),birthday, <span class="at">units =</span> units)</span>
@@ -315,11 +327,11 @@ div.csl-indent {
 <span id="cb122-4"><a href="W04_04_tasks_and_inputs.html#cb122-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb122-5"><a href="W04_04_tasks_and_inputs.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if not stated otherwise, our function uses the unit &quot;days&quot;</span></span>
 <span id="cb122-6"><a href="W04_04_tasks_and_inputs.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>)</span>
-<span id="cb122-7"><a href="W04_04_tasks_and_inputs.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8777.758 days</span></span>
+<span id="cb122-7"><a href="W04_04_tasks_and_inputs.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8778.39 days</span></span>
 <span id="cb122-8"><a href="W04_04_tasks_and_inputs.html#cb122-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb122-9"><a href="W04_04_tasks_and_inputs.html#cb122-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite units</span></span>
 <span id="cb122-10"><a href="W04_04_tasks_and_inputs.html#cb122-10" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;hours&quot;</span>)</span>
-<span id="cb122-11"><a href="W04_04_tasks_and_inputs.html#cb122-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 210666.2 hours</span></span></code></pre></div>
+<span id="cb122-11"><a href="W04_04_tasks_and_inputs.html#cb122-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 210681.4 hours</span></span></code></pre></div>
 <p>All you need to do now is run execute the function deceleration (<code>myage &lt;- function...</code> etc.) at the beginning of your script, and you can use the function for your entire R session. Tip: Always try to make your function self sufficient: Don’t call variables that were created outside the function call.</p>
 <div id="task-1-write-your-own-functions" class="section level3">
 <h3>Task 1: Write your own functions</h3>
@@ -402,47 +414,9 @@ div.csl-indent {
 <p>Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube <span class="citation">(<a href="#ref-hagerstraand1970" role="doc-biblioref">Hägerstraand 1970</a>)</span> with the package <code>plotly</code>. There are some <a href="https://plot.ly/r/3d-line-plots/">nice ressources</a> available online.</p>
 <p><img src="W04_04_tasks_and_inputs_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Alan Both, Matt Duckham, Kevin Buchin. 2018. <span>“A Comparative Analysis of Trajectory Similarity Measures: Recommendations for Selection and Use.”</span>
-</div>
-<div class="csl-entry">
-Bryan, Jenny, and Jim Heister. 2021. <em>Happy Git and GitHub for the useR</em>. <a href="https://happygitwithr.com/">https://happygitwithr.com/</a>.
-</div>
-<div class="csl-entry">
-Chacon, Scott, and Ben Straub. 2014. <em>Pro Git</em>. 2nd Edition. Apress. <a href="https://git-scm.com/book/en/v2">https://git-scm.com/book/en/v2</a>.
-</div>
-<div class="csl-entry">
-Hägerstraand, Torsten. 1970. <span>“What about People in Regional Science?”</span> <em>Papers in Regional Science</em> 24 (1): 7–24.
-</div>
-<div class="csl-entry">
-Laube, Patrick. 2014. <em>Computational Movement Analysis</em>. SpringerBriefs in Computer Science. Springer International Publishing. <a href="https://books.google.ch/books?id=xMRpBAAAQBAJ">https://books.google.ch/books?id=xMRpBAAAQBAJ</a>.
-</div>
-<div class="csl-entry">
-Laube, Patrick, and Ross S. Purves. 2011. <span>“How Fast Is a Cow? Cross - Scale Analysis of Movement Data.”</span> <em>Transactions in GIS</em> 15 (3): 401–18. <a href="https://doi.org/10.1111/j.1467-9671.2011.01256.x">https://doi.org/10.1111/j.1467-9671.2011.01256.x</a>.
-</div>
-<div class="csl-entry">
-Vlachos, Michail, Dimitrios Gunopoulos, and George Kollios. 2002. <span>“Discovering Similar Multidimensional Trajectories.”</span> In <em>Proceedings of the 18th International Conference on Data Engineering</em>, 673–73. ICDE ’02. Washington, DC, USA: IEEE Computer Society. <a href="http://dl.acm.org/citation.cfm?id=876875.878994">http://dl.acm.org/citation.cfm?id=876875.878994</a>.
-</div>
-<div class="csl-entry">
-Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. O’Reilly Media, Inc.
 </div>
 </div>
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-hagerstraand1970" class="csl-entry">
@@ -471,8 +445,8 @@ Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Ti
           </div>
         </div>
       </div>
-<a href="W04_03_preparation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="W04_03_preparation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="W05_01_exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

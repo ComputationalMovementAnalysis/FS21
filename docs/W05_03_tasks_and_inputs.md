@@ -1,8 +1,6 @@
 ## Tasks
 
-```{r, include=FALSE}
-source('01_R_Files/helperfunctions.R')
-```
+
 
 ### Tasks 1: Import and visualize spatial data
 
@@ -14,8 +12,12 @@ source('01_R_Files/helperfunctions.R')
 - Create a map with the layers `fanel2016` and `mcp2015`.
 
 
-```{r, code =  mydecrypt("15_Week5/solutions/task_1.R",".passphrase"), opts.label="solution_showOutput"}
+
 ```
+## [1] "2015-07-27 11:00:14 UTC"
+```
+
+<img src="W05_03_tasks_and_inputs_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 
 ### Task 2: Annotate Trajectories from vector data
@@ -23,8 +25,7 @@ source('01_R_Files/helperfunctions.R')
 Now we would like to know what crop was most visited by our wild boar, and at what time. To this end, use `st_join()` to attach the attributes from `fanel2016` to your trajectory data `wildschwein_BE` (semantic annotation). Visualize the number of sample points in each category of `Frucht` over the course of the filtered time period.
 
 
-```{r, code =  mydecrypt("15_Week5/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput"}
-```
+<img src="W05_03_tasks_and_inputs_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 ### Task 3: Explore annotated trajectories
 Think of other ways you could visually explore the spatio-temporal patterns of wild boar in relation to the crops. 
@@ -41,5 +42,4 @@ Ideas:
 
 In terms of raster data, we have prepared the [Vegetation Height Model](https://map.geo.admin.ch/index.html?zoom=5&lang=en&topic=ech&bgLayer=ch.swisstopo.pixelkarte-grau&layers_opacity=0.5&layers=ch.bafu.landesforstinventar-vegetationshoehenmodell&E=2627157.14&N=1122170.97) provided by the Swiss National Forrest Inventory (NFI). This dataset contains high resolution information (1x1 Meter) on the vegetation height, which is determined from the difference between the digital surface models DSM and the digital terrain model by swisstopo (swissAlti3D). Buildings are eliminated using a combination of the ground areas of the swisstopo topographic landscape model (TLM) and spectral information from the stereo aerial photos. 
 
-```{r, code =  mydecrypt("15_Week5/solutions/task_4.R",".passphrase"), opts.label="solution_showOutput"}
-```
+<img src="W05_03_tasks_and_inputs_files/figure-html/unnamed-chunk-4-1.png" width="672" />
