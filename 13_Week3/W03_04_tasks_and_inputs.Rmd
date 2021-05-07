@@ -169,7 +169,7 @@ rle_id <- function(vec){
 
 
 You can use the newly created function `rle_id` to assign unique IDs to subtrajectories (as shown below). Visualize the *moving* segments by colourizing them by `segment_ID`. 
-Then use `segment_ID` as a grouping variable to determine the segments duration and remove short segments (e.g. segments with a duration < 10 Minutes) 
+Then use `segment_ID` as a grouping variable to determine the segments duration and remove short segments (e.g. segments with a duration < 5 Minutes) 
 
 Commit your changes with a meaningful commit message. 
 
