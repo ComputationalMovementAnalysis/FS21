@@ -84,11 +84,19 @@ Note: if you treat your input variables as vectors, they will work in `dplyr`s `
 ```
 
 
-### Task 2: Filter data
+### Task 2: Prepare Analysis
 
-We propose conceptualizing the pattern "meet" as "being close in space *and* time", with the notion "close" to be defined for the spatial and the temporal case separately. We will simplify the problem slightly so that we can use a number of R tools and data structures you now have learned to use by now. As a first simplification we propose manipulating the timestamps in such a way, that all observations are sampled concurrently, synchronously. This allows us using the data science concept *join* for detecting the temporal expression of meet - using `DateTimeUTC` as the key variable in a join statement: Observations with an identical time stamp will match. Once we have identified the temporal matches, we check if the concurrent observations are also close in space based on the Euclidean distances between concurrent positions.
+In the next tasks we will look for "meet" patterns in our wildboar data. To simplify this, we will only use a subset of our wildboar data: The individuals *Rosa* and *Sabi* for the timespan *01.04.2015 - 15.04.2015*. You can download the dataset here `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click > save target as...) and filter it with the aforementioned criteria. 
 
-Simplifying the task even further, we will focus on an interval where we have a continuous, small sampling interval over all our animals. So, filter your dataset to the time period 01.04.2015 - 15.04.2015) and save it to a new variable (e.g. `wildschwein_filter`). After filtering, visualize your data spatially. Just consider animals with a spatial overlap and remove animals where we cannot expect to find any meet patterns.
+Remember to load the necessary libraries first! We propose the following:
+
+```{r, opts.label="example_hideOutput"}
+library(readr)        
+library(dplyr)        
+library(ggplot2)      
+library(lubridate)
+```
+
 
 ```{r, code =  mydecrypt("14_Week4/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput"}
 ```
@@ -96,28 +104,32 @@ Simplifying the task even further, we will focus on an interval where we have a 
 
 ### Task 3: Create Join Key
 
-Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. Verify if we have the same sampling interval (`timelag`) throughout our filtered dataset.
+Have a look at your dataset. You will notice that samples are taken at every full hour, quarter past, half past and quarter to. The sampling time is usually off by a couple of seconds. 
+
+To compare Rosa and Sabi's locations, we first need to match the two animals *temporally*. For that we can use a `join`, but need *identical* time stamps to serve as a join key. We therefore need to slightly adjust our time stamps to a common, concurrent interval. 
+
+The task is therfore to round the minutes of `DatetimeUTC` to a multiple of 15 (00, 15, 30,45) and store the values in a new column[^interpolate]. You can use the  `lubridate` function `round_date()` for this. See the examples [here](https://lubridate.tidyverse.org/reference/round_date.html) to see how this goes.
+
+[^interpolate]: *Please note:* We are manipulating our time stamps without adjusting the x,y-coordinates. This is fine for our simple example, but we would advice against this in a more serious research endeavour, e.g. in your semester projects. One simple approach would be to linearly interpolate the positions to the new timestamps. If you choose Option A the wild boar projects as your semester projects, you should aim for a linear interpolation. Get in touch if you need help with this.
+
+Your new dataset should look something like this (note the additional column): 
 
 ```{r, code =  mydecrypt("14_Week4/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
-With a few exceptions, the sampling interval is *around* 15 minutes. In order to join the data, however, we need *identical* time stamps to serve as a join key. We therefore need to slightly adjust our time stamps to a common, concurrent interval. 
-
-Round the minutes of `DatetimeUTC` to a multiple of 15 (00, 15, 30,45) and store the values in a new column[^interpolate]. You can use the  `lubridate` function `round_date()` for this. See the examples [here](https://lubridate.tidyverse.org/reference/round_date.html) to see how this goes.
-
-[^interpolate]: *Please note:* We are manipulating our time stamps without adjusting the x,y-coordinates. This is fine for our simple example, but we would advice against this in a more serious research endeavour, e.g. in your semester projects. One simple approach would be to linearly interpolate the positions to the new timestamps. If you choose Option A the wild boar projects as your semester projects, you should aim for a linear interpolation. Get in touch if you need help with this.
 
 
 ### Task 4: Measuring distance at concurrent locations
 
 To measure the distance between concurrent locations, we need to follow the following steps.
 
-1. First, split the `wildschwein_filter` object into one `data.frame` per animal.[^1]
-2. Next, join these datasets by the new, manipulated `Datetime` column and save it to the variable `wildschwein_join`. Which join-type is appropriate? The joined observations are *temporally close*.
-3. On `wildschwein_join`, calculate Euclidean distances between concurrent observations. Store the values in a new column `distance`. 
-4. Use a reasonable threshold on `distance` to determine if the animals are also *spatially close* enough to constitute a *meet* (we use 50 meters). Store this Boolean information (`TRUE`/`FALSE`) in a new column named `meet`.
+1. Split the `wildschwein_filter` object into one `data.frame` per animal
+2. Join\* these datasets by the new `Datetime` column created in the last task. The joined observations are *temporally close*.
+3. In the joined dataset, calculate Euclidean distances between concurrent observations and store the values in a new column
+4. Use a reasonable threshold on `distance` to determine if the animals are also *spatially close* enough to constitute a *meet* (we use 100 meters). Store this Boolean information (`TRUE`/`FALSE`) in a new column
 
-[^1]: This is a perfect opportunity to learn functional programming if you are an intermediate to advanced programmer (or want to be). You can use `purrr::map()` specifically for these tasks. Ask us if you want to learn this but are struggling
+
+\* We recommend using one `dplyr`s join methods (`inner_join()`, `left_join()`, `right_join()` or `full_join()`), which one is appropriate? Tip: specify `suffix` to prevent column names ending in `.x` or `.y`.
 
 ```{r, code =  mydecrypt("14_Week4/solutions/task_4.R",".passphrase"), opts.label="solution_showOutput"}
 ```
@@ -125,20 +137,13 @@ To measure the distance between concurrent locations, we need to follow the foll
 
 ### Task 5: Visualize data
 
-Now, visualize the *meets* spatially in a way that you think reasonable. You can attempt to recreate the plot below, but this is not trivial. If you want to try it, these are the steps to take:
+Now, visualize the *meets* spatially in a way that you think reasonable. For example in the plot as shows below. To produce this plot we:
 
-Create a new dataset (e.g. `wildschwein_meet`) as follows:
+- Used the individual dataframes from `rosa` and `sabi` (from the previous task)
+- Used the joined dataset (also from the previous task), filtered to only the meets
+- Manually changed the x and y axis limits
 
-1. Using the `cumsum()`approach from last week, create a new column (e.g. `meet_seq`) enumerating the "meets" with individual ID (see proposed function below)
-2. Filter all rows where the animals _did_ meet. 
-3. Optional: create a column with the start- and endtime of each meet (e.g. `meet_time`)
 
-To create a plot similar to the one below:
-
-1. Initiate a `ggplot()` with the `wildschwein_join` dataset.
-2. Add two `geom_point`-layers (not `geom_sf`, since we haven't turned `wildschwein_join` into an `sf`object), one referring to E.x/N.x, the other to E.y/N.y
-3. Add two more `geom_point`-layers, this time with the dataset `wildschwein_meet`
-4. Facet the plot into small multiples either using `meet_seq` or `meet_time`
 
 ```{r, code =  mydecrypt("14_Week4/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 ```
@@ -148,6 +153,8 @@ To create a plot similar to the one below:
 
 Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube [@hagerstraand1970] with the package `plotly`. There are some [nice ressources](https://plot.ly/r/3d-line-plots/) available online.
 
-```{r, code =  mydecrypt("14_Week4/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
+![](02_Images/space_time_cube.jpg)
+
+```{r, code =  mydecrypt("14_Week4/solutions/task_6.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 

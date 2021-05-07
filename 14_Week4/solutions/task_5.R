@@ -1,42 +1,10 @@
-# bndqyqh(kkomnve)
-# 
-# oi25 <- dqnei("../CMA_FS2018_Fnbavczqyka/oi25.cng")
-# vsnvvnmyka <- dqnei("../CMA_FS2018_Fnbavczqyka/vsnvvnmyka_250em.cng")
+snbrvejsanp_maac <- snbrvejsanp_xznp %>%
+  gnbcaq(maac)
 
-ptmdaq_vau = gtpecnzp(dzzb){
-  gye <- yv.gyeczq(ngabva(dzzb,1+etmvtm(!dzzb),NA))
-  balabv(gye) <- 1:bapkcj(balabv(gye))
-  qactqp(gye)
-}
-
-
-bndqyqh(bskazm)
-
-snbrvejsanp_voqayr <- snbrvejsanp_xznp %>%
-  mtcyca(maac_vau = ptmdaq_vau(maac)) %>% 
-  cnrhq::kycjaq(iah,lyb, ezpcynpv(".")) %>%
-  cnrhq::vaoyqyca(iah,npcz = e("iah","ypnmyb")) %>%
-  cnrhq::voqayr(iah,lyb,ezplaqc = T) %>%
-  yqqypka(TnaqID,DycacnmaRztpr) %>%
-  vc_yv_vg(ezzqrv = e("E","N"),qamzla = F) %>%
-  vc_vac_eqv(2056) 
-
-maacv <- snbrvejsanp_voqayr %>%
-  robhq::gnbcaq(maac) %>%
-  kqzto_dh(maac_vau) %>%
-  vtmmyqnva(
-    vcyqc = mnp(DycacnmaRztpr),
-    apr = myw(DycacnmaRztpr)
-  ) %>%
-  mtcyca(pyma = oyvca(maac_vau,":",vcyqc,"-",vcqgcnma(apr,gzqmyc = "%H:%M:%S"))) %>%
-  vc_mnpnmtm_dztprnpk_enqeba()
-
-kkobzc(snbrvejsanp_voqayr) +
-  kazm_oznpc(yav(E,N,ezbztq = TnaqID),ybojy = 0.2) +
-  kazm_oycj(yav(E,N,ezbztq = TnaqID),ybojy = 0.2) +
-  kazm_vg(rycy = maacv, ybojy = 0.3, gnbb = "kqaap") +
-  gyeac_sqyo(~pyma, pezb = 2) +
-  ezzqr_vg(ryctm = 2056) +
-  cjama_bnkjc() +
-  cjama(ywnv.cncba = abamapc_dbypi()) +
-  bydv(cncba = oyvca("Tja",pqzs(maacv),"maac alapcv zg cja csz ypnmybv"), vtdcncba = "Uvnpk y cjqavjzbr zg 100 macaqv")
+kkobzc(snbrvejsanp_maac) +
+  kazm_oznpc(rycy = vydn, yav(E, N, ezbztq = "vydn"),vjyoa = 16, ybojy = 0.3) +
+  kazm_oznpc(rycy = qzvy, yav(E, N, ezbztq = "qzvy"),vjyoa = 16, ybojy = 0.3) +
+  kazm_oznpc(yav(w = E_vydn,h = N_vydn, gnbb = "vydn"),vjyoa = 21) +
+  kazm_oznpc(yav(E_qzvy, N_qzvy, gnbb = "qzvy"), vjyoa = 21) +
+  bydv(ezbzq = "Raktbyq Lzeycnzpv", gnbb = "Maacv") +
+  ezzqr_autyb(wbnm = e(2570000,2571000), h = e(1204500,1205500))
