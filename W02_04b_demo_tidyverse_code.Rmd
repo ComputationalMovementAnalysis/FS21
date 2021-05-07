@@ -1,0 +1,18 @@
+
+
+## Demo Tidyverse (R-Code)
+
+```{r, include=FALSE}
+source('01_R_Files/helperfunctions.R')
+```
+
+
+```{block2, copychunk-text}
+```
+
+
+```{r code =  purl_quick("W02_04_demo_tidyverse.Rmd"), echo = TRUE, eval=FALSE}
+```
+
+
+

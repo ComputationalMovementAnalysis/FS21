@@ -9,35 +9,6 @@ bibliography: ["00_Admin/bibliography.bib"]
 link-citations: true
 github-repo: ComputationalMovementAnalysis/FS21
 ---
-```{r, include=FALSE}
-```
-
-```{r, include=FALSE}
-# Allow duplicate Labels so that calling purl() does not create an error
-# https://stackoverflow.com/q/36868287/4139249
-options(knitr.duplicate.label = 'allow')
-
-# purl all Rmd Documents (with some exceptions) and store them in a Subfolder /RFiles
-# Document cannot be knitted if the folder "RFiles" does not exist!
-
-
-library(stringr)
-
-# rmds <- list.files(pattern = "tasks_and_inputs.Rmd$",recursive = T)
-# 
-# for (file in rmds){
-#   file_r <- paste0(str_split_fixed(file,"\\.",2)[1],"_code.R",collapse = "")
-#   file_r <- str_split_fixed(file_r,"/",Inf)   # split path at /
-#   file_r <- append(file_r, "RFiles",length(file_r)-1)# append Foldername
-#   file_r <- paste(file_r,collapse = "/")    # collapse vector to string
-#   if(file.exists(file_r)){
-#     file.remove(file_r)
-#   }
-#   knitr::purl(file,documentation = 0,output = file_r)
-# }
-```
-
-
 
 ```{r, include=FALSE}
 source("01_R_Files/helperfunctions.R")
@@ -46,7 +17,6 @@ source("01_R_Files/helperfunctions.R")
 
 
 ```{r, include=FALSE}
-
 files <- list.files(pattern = "_hide.R",recursive = TRUE)
 
 lapply(files, function(x){myencrypt(x,".passphrase")})
@@ -54,17 +24,7 @@ lapply(files, function(x){myencrypt(x,".passphrase")})
 
 
 ```{r, include=FALSE}
-
-
 knitr::opts_chunk$set(collapse = TRUE, warning = FALSE,message = FALSE)
-
-knitr::opts_template$set(
-  solution_showOutput = list(echo = FALSE),
-  solution_hideOutput = list(echo = FALSE, include = FALSE),
-  example_showOutput = list(echo = TRUE),
-  example_hideOutput = list(echo = TRUE, results = "hide")
-  )
-
 ```
 
 # Welcome to the course! {-}
