@@ -80,8 +80,3 @@ These R Exercises are created by Patrick Laube, Nils Ratnaweera and Nikolaos Bak
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-
-<!-- **Please note:** we are given application data from an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected. So, please do not pass on this data, for any use beyond this module contact Patrick Laube or the data owner Stefan Suter (suts@zhaw.ch). -->
-
-
-
