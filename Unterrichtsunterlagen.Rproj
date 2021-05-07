@@ -13,6 +13,5 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 BuildType: Website
-WebsitePath: C:/Users/bako/Desktop/kurse/FS21/FS21
 
 SpellingDictionary: en_GB
