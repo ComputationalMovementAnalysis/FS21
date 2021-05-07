@@ -1,10 +1,15 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ## Tasks and inputs {#w1-tasks-and-inputs}
+
+```{r, include=FALSE}
+source('01_R_Files/helperfunctions.R')
+```
+
 
 Before starting with the task:
 
@@ -12,11 +17,7 @@ Before starting with the task:
 2. In RStudio, open the RStudio Project you created for this week if you haven't done so already. You can see that you are in an RStudio Project if the project's name is visible next to the little RStudio logo in the top right corner of RStudio (otherwise it will read `Project: (None)`).
 3. Download the wildboar movement data here: `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click "Save target as..")
 
-
 Once you have set everything up, commit your file to your git repo in the following manner:
-
-
-
 
 
 ```{block2, commit-text, type="rmdtip"}

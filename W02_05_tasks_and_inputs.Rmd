@@ -1,5 +1,9 @@
 ## Tasks and Inputs
 
+```{r, include=FALSE}
+source('01_R_Files/helperfunctions.R')
+```
+
 
 - Open the RStudio Project you created for week 2 in [the preparation](#w2-project)
 - Download the new wildboar movement data, and save it to your new project's directory `r download_url("wildschwein_BE_2056.csv","00_Rawdata")` (right click "Save target as..")
@@ -106,7 +110,7 @@ Now calculate `timelag`, `steplength` and `speed` for these data sets, just as y
 After completing the task, commit your changes to git using a good commit message.
 
 
-```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
