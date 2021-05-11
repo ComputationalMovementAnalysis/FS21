@@ -15,7 +15,7 @@ source("01_R_Files/helperfunctions.R")
 ```
 
 
-```{r}
+```{r, include = FALSE}
 
 library(stringr)
 library(dplyr)
