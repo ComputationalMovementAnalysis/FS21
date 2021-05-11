@@ -10,7 +10,14 @@ source('01_R_Files/helperfunctions.R')
 - Now, commit your changes to your repo like we did [last week](#w1-tasks-and-inputs) (see below):
 
 ```{block2, commit-text, type="rmdtip"}
+1. Save your (R/RMarkdown) file
+2. Switch to the "Git"-Tab in the pane in the top right corner
+3. Click "commit" to open the "commit-Window"
+4. Click in the checkbox next to the file(s) you want to commit
+5. Add a commit message to explain what you are committing (e.g. "`initial commit`")
+6. Click on "commit" to commit your changes
 ```
+
 
 - Pushing our changes from our local repo the remote repo on Github
   - Simply click the green button "Push" in the Git tab in RStudio. 
@@ -110,7 +117,7 @@ Now calculate `timelag`, `steplength` and `speed` for these data sets, just as y
 After completing the task, commit your changes to git using a good commit message.
 
 
-```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("12_Week2/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
