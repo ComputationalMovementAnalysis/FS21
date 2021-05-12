@@ -13,6 +13,7 @@ rmd_files:
  - "W02_04b_demo_tidyverse_code.Rmd"
  - "W02_03_preparation.Rmd"
  - "W02_05_tasks_and_inputs.Rmd"
+ - "W02_06_solutions.Rmd"
  - "W03_01_exercise.Rmd"
  - "W03_01_learning_outcomes.Rmd"
  - "W03_02_prerequisites.Rmd"
