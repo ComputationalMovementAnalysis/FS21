@@ -6,10 +6,16 @@ source('01_R_Files/helperfunctions.R')
 
 If you haven't done so yet, load your RStudio Project from this week. Then, download the dataset `r download_url("Feldaufnahmen_Fanel_2016.gpkg","00_Rawdata")` and save it to your project folder. This is a vector dataset stored in the filetype *Geopackage*, which is similar to a *Shapefile*, with some advantages (see the website [shapefile must die](http://switchfromshapefile.org/)).
 
-Next, download the dataset `r download_url("nDSM.tif","00_Rawdata")`. This is a "raster" dataset stored in a Geotiff, similar to the map we imported in [week 1](#w1-importing-raster). 
+Next, download the dataset `r download_url("nDSM.tif","00_Rawdata")`. This is a "raster" dataset stored in a Geotiff, similar to the map we imported in [week 1](#w1-importing-raster). Also store this file in your project folder and commit these to your repo.
 
 
 ### Tasks 1: Import and visualize spatial data
+
+Since `Feldaufnahmen_Fanel_2016.gpkg` is a vector dataset, you can import it using `read_sf()`. Explore this dataset with the methods you are familiar with. 
+
+- What information does the dataste contain? 
+- What are the data types?
+- What is the coordinate system of the dataset? (Transform it to match your Wildboar data (EPSG 2056) if necessary)
 
 
 
