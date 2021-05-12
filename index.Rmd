@@ -29,6 +29,7 @@ now <- Sys.time()
 rfiles <- list.files(pattern = "\\.R$", recursive = TRUE)
 
 encrypted = rfiles[grepl("^\\d{2}_Week\\d/solutions/task_\\d\\.R$",rfiles)]
+
 decrypted = rfiles[grepl("^\\d{2}_Week\\d/solutions/task_\\d\\_hide.R$",rfiles)]
 
 encrypted_df <- tibble::tibble(encrypted = encrypted, key = str_sub(encrypted, end = -3))
@@ -45,7 +46,7 @@ library(magrittr)
 library(purrr)
 solutions %>%
   mutate(
-    encrypt = decrypted_age < encrypted_age | is.na(encrypted)
+    encrypt = (decrypted_age < encrypted_age | is.na(encrypted)) & !is.na(decrypted)
   ) %>%
   dplyr::select(encrypted, decrypted,encrypt) %>% 
   pmap(function(encrypted, decrypted,encrypt){

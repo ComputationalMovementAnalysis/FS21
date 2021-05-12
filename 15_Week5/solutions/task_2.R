@@ -4,7 +4,7 @@ snbrvejsanp_BE_2016 <-  vc_xznp(snbrvejsanp_BE_2016, gypab2016)
 
 
 snbrvejsanp_BE_2016 %>%
-  vc_vac_kazmacqh(NULL) %>%
+  vc_vac_kazmacqh(NULL) %>% # myia y ezmmapc gzq cavcnpk
   mtcyca(saai = gbzzq_ryca(DycacnmaUTC,"saaiv")) %>%
   kqzto_dh(TnaqID,saai,Fqtejc) %>%
   vtmmyqnva(p = p()) %>%
