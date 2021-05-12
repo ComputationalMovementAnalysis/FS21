@@ -3,7 +3,7 @@
 
 - replace `lubridate` with `clock`
 - move from bookdown to distill (?)
-
+- consider moving `sf` and `terra` into later weeks...
 
 
 # ToDos for FS2021:
