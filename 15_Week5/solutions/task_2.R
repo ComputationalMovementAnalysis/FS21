@@ -1,7 +1,6 @@
 bndqyqh(kkobzc2)
 
-snbrvejsanp_BE_2016 <- snbrvejsanp_BE_2016 %>%
-  vc_xznp(robhq::vabaec(gypab2016,Fqtejc))
+snbrvejsanp_BE_2016 <-  vc_xznp(snbrvejsanp_BE_2016, gypab2016)
 
 
 snbrvejsanp_BE_2016 %>%

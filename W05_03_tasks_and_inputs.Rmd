@@ -4,16 +4,30 @@
 source('01_R_Files/helperfunctions.R')
 ```
 
-If you haven't done so yet, load your RStudio Project from this week. Then, download the dataset `r download_url("Feldaufnahmen_Fanel_2016.gpkg","00_Rawdata")` and save it to your project folder. This is a vector dataset stored in the filetype *Geopackage*, which is similar to a *Shapefile*, with some advantages (see the website [shapefile must die](http://switchfromshapefile.org/)).
+Open your RStudio Project [which you prepared](#w5-preperation) from this week. Create a new RScript and import the libraries we need for this week. Import your wildboar dataset as an `sf` object
 
-Next, download the dataset `r download_url("nDSM.tif","00_Rawdata")`. This is a "raster" dataset stored in a Geotiff, similar to the map we imported in [week 1](#w1-importing-raster). Also store this file in your project folder and commit these to your repo.
+```{r, opts.label="example_hideOutput"}
+library(readr)
+library(sf)
+library(terra)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+
+wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE_2056.csv",",") %>%
+  st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)
+```
+
+Download the dataset `r download_url("Feldaufnahmen_Fanel_2016.gpkg","00_Rawdata")` and save it to your project folder. This is a vector dataset stored in the filetype *Geopackage*, which is similar to a *Shapefile*, with some advantages (see the website [shapefile must die](http://switchfromshapefile.org/)).
+
+Also download the dataset `r download_url("nDSM.tif","00_Rawdata")`. This is a "raster" dataset stored in a Geotiff, similar to the map we imported in [week 1](#w1-importing-raster). Also store this file in your project folder and commit these to your repo.
 
 
 ### Tasks 1: Import and visualize spatial data
 
 Since `Feldaufnahmen_Fanel_2016.gpkg` is a vector dataset, you can import it using `read_sf()`. Explore this dataset with the methods you are familiar with. 
 
-- What information does the dataste contain? 
+- What information does the dataset contain? 
 - What are the data types?
 - What is the coordinate system of the dataset? (Transform it to match your Wildboar data (EPSG 2056) if necessary)
 
@@ -26,7 +40,7 @@ Since `Feldaufnahmen_Fanel_2016.gpkg` is a vector dataset, you can import it usi
 - Create a map with the layers `fanel2016` and `mcp2015`.
 
 
-```{r, code =  mydecrypt("15_Week5/solutions/task_1.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("15_Week5/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 

@@ -1,4 +1,4 @@
-## Preparation
+## Preparation {#w5-preperation}
 
 Create a new RStudio Project and a new Github Repo for this week's exercises. Do this either the simple way we used in Exercise 2 ([Step 3](#create-github-repo) and then [Step 4](#w2-project)) or the more sophisticated way we suggested in [Exercise 3](#w3-preparation).
 
