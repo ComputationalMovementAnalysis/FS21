@@ -1,13 +1,19 @@
-## Tasks
+## Tasks and Inputs
 
 ```{r, include=FALSE}
 source('01_R_Files/helperfunctions.R')
 ```
 
+If you haven't done so yet, load your RStudio Project from this week. Then, download the dataset `r download_url("Feldaufnahmen_Fanel_2016.gpkg","00_Rawdata")` and save it to your project folder. This is a vector dataset stored in the filetype *Geopackage*, which is similar to a *Shapefile*, with some advantages (see the website [shapefile must die](http://switchfromshapefile.org/)).
+
+Next, download the dataset `r download_url("nDSM.tif","00_Rawdata")`. This is a "raster" dataset stored in a Geotiff, similar to the map we imported in [week 1](#w1-importing-raster). 
+
+
 ### Tasks 1: Import and visualize spatial data
 
 
-- Import the vector dataset `Feldaufnahmen_Fanel_2016.shp` from moodle with `read_sf()` and save it to the variable `fanel2016`. The file .shp stands for Shapefile, which is a simple format for spatial vector data (points, lines, or polygons). This shapefile contains vector data about cultivated crops in the study area.
+
+`read_sf()` and save it to the variable `fanel2016`. The file .shp stands for Shapefile, which is a simple format for spatial vector data (points, lines, or polygons). This shapefile contains vector data about cultivated crops in the study area.
 - Transform the coordinates to `CH1903+ LV95`.
 - Filter the dataset `wildschwein_BE` to the months May, June and July of 2016 and store the data in a new variable (`wildschwein_BE_2015`).
 - Create a minimum convex polygon for each individual in `wildschwein_BE_2015` and store it in a new variable (`mcp2015`)
