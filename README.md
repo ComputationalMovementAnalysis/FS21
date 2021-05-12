@@ -1,6 +1,7 @@
 
 # Todos for FS2022
 
+- remove hierarchical level */solutions/*, since this level is not necessary (Rscripts could be in 11_Week1/*)
 - replace `lubridate` with `clock`
 - move from bookdown to distill (?)
 - consider moving `sf` and `terra` into later weeks...
