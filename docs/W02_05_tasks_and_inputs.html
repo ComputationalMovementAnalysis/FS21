@@ -273,8 +273,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 
 <div class="rmdtip">
-
-</div>
+<ol style="list-style-type: decimal">
+<li>Save your (R/RMarkdown) file</li>
+<li>Switch to the “Git”-Tab in the pane in the top right corner</li>
+<li>Click “commit” to open the “commit-Window”</li>
+<li>Click in the checkbox next to the file(s) you want to commit</li>
+<li>Add a commit message to explain what you are committing (e.g. “<code>initial commit</code>”)</li>
+<li>Click on “commit” to commit your changes
+</div></li>
+</ol>
 <ul>
 <li>Pushing our changes from our local repo the remote repo on Github
 <ul>
@@ -286,20 +293,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="task-0-import-your-data" class="section level3">
 <h3>Task 0: Import your data</h3>
 <p>Create a new R- (or RMarkdown-) file and begin with the following lines of code (adjust the path to your csv file accordingly).</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="W02_05_tasks_and_inputs.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the necessary libraries ################################################</span></span>
-<span id="cb81-2"><a href="W02_05_tasks_and_inputs.html#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-3"><a href="W02_05_tasks_and_inputs.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)        <span class="co"># to import tabular data (e.g. csv)</span></span>
-<span id="cb81-4"><a href="W02_05_tasks_and_inputs.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)        <span class="co"># to manipulate (tabular) data</span></span>
-<span id="cb81-5"><a href="W02_05_tasks_and_inputs.html#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># to visualize data</span></span>
-<span id="cb81-6"><a href="W02_05_tasks_and_inputs.html#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)           <span class="co"># to handle spatial vector data</span></span>
-<span id="cb81-7"><a href="W02_05_tasks_and_inputs.html#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)        <span class="co"># To handle raster data</span></span>
-<span id="cb81-8"><a href="W02_05_tasks_and_inputs.html#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)    <span class="co"># To handle dates and times</span></span>
-<span id="cb81-9"><a href="W02_05_tasks_and_inputs.html#cb81-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-10"><a href="W02_05_tasks_and_inputs.html#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Import the downloaded csv ##################################################</span></span>
-<span id="cb81-11"><a href="W02_05_tasks_and_inputs.html#cb81-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-12"><a href="W02_05_tasks_and_inputs.html#cb81-12" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE_2056.csv&quot;</span>,<span class="st">&quot;,&quot;</span>) <span class="co"># adjust path</span></span>
-<span id="cb81-13"><a href="W02_05_tasks_and_inputs.html#cb81-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-14"><a href="W02_05_tasks_and_inputs.html#cb81-14" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>, <span class="st">&quot;N&quot;</span>), <span class="at">crs =</span> <span class="dv">2056</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="W02_05_tasks_and_inputs.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the necessary libraries ################################################</span></span>
+<span id="cb80-2"><a href="W02_05_tasks_and_inputs.html#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="W02_05_tasks_and_inputs.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)        <span class="co"># to import tabular data (e.g. csv)</span></span>
+<span id="cb80-4"><a href="W02_05_tasks_and_inputs.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)        <span class="co"># to manipulate (tabular) data</span></span>
+<span id="cb80-5"><a href="W02_05_tasks_and_inputs.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># to visualize data</span></span>
+<span id="cb80-6"><a href="W02_05_tasks_and_inputs.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)           <span class="co"># to handle spatial vector data</span></span>
+<span id="cb80-7"><a href="W02_05_tasks_and_inputs.html#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)        <span class="co"># To handle raster data</span></span>
+<span id="cb80-8"><a href="W02_05_tasks_and_inputs.html#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)    <span class="co"># To handle dates and times</span></span>
+<span id="cb80-9"><a href="W02_05_tasks_and_inputs.html#cb80-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-10"><a href="W02_05_tasks_and_inputs.html#cb80-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Import the downloaded csv ##################################################</span></span>
+<span id="cb80-11"><a href="W02_05_tasks_and_inputs.html#cb80-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-12"><a href="W02_05_tasks_and_inputs.html#cb80-12" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE_2056.csv&quot;</span>,<span class="st">&quot;,&quot;</span>) <span class="co"># adjust path</span></span>
+<span id="cb80-13"><a href="W02_05_tasks_and_inputs.html#cb80-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-14"><a href="W02_05_tasks_and_inputs.html#cb80-14" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>, <span class="st">&quot;N&quot;</span>), <span class="at">crs =</span> <span class="dv">2056</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Note:</p>
 <ul>
 <li>that this dataset is already converted to EPSG 2056</li>
@@ -352,16 +359,31 @@ Figure 2: Black points are used in calculation of movement parameters (e.g. spe
 <p>Now manually reduce the granularity of our sampling interval by selecting every 3<sup>rd</sup>, 6<sup>th</sup> and 9<sup>th</sup> position and save the output to <code>caro_3</code>, <code>caro_6</code>,<code>caro_9</code> accordingly.</p>
 <p>Tip: There are many ways to go about this, we recommend using <code>seq()</code> where <code>from = 1</code>, <code>to =</code> the length of the dataset and <code>by = n</code> (i.e. <code>3</code>, <code>6</code> or <code>9</code>). This creates an integer vector that can either used in <code>dplyr::slice()</code> or in row subsetting (type <code>?slice()</code> or <code>?"[.data.frame"</code> to get help on either of these methods).</p>
 <p>You should now have 4 datasets with different number of rows:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="W02_05_tasks_and_inputs.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro)</span>
-<span id="cb82-2"><a href="W02_05_tasks_and_inputs.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 200</span></span>
-<span id="cb82-3"><a href="W02_05_tasks_and_inputs.html#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_3)</span>
-<span id="cb82-4"><a href="W02_05_tasks_and_inputs.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 67</span></span>
-<span id="cb82-5"><a href="W02_05_tasks_and_inputs.html#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_6)</span>
-<span id="cb82-6"><a href="W02_05_tasks_and_inputs.html#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 34</span></span>
-<span id="cb82-7"><a href="W02_05_tasks_and_inputs.html#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_9)</span>
-<span id="cb82-8"><a href="W02_05_tasks_and_inputs.html#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 23</span></span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="W02_05_tasks_and_inputs.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro)</span>
+<span id="cb81-2"><a href="W02_05_tasks_and_inputs.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 200</span></span>
+<span id="cb81-3"><a href="W02_05_tasks_and_inputs.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_3)</span>
+<span id="cb81-4"><a href="W02_05_tasks_and_inputs.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 67</span></span>
+<span id="cb81-5"><a href="W02_05_tasks_and_inputs.html#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_6)</span>
+<span id="cb81-6"><a href="W02_05_tasks_and_inputs.html#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 34</span></span>
+<span id="cb81-7"><a href="W02_05_tasks_and_inputs.html#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(caro_9)</span>
+<span id="cb81-8"><a href="W02_05_tasks_and_inputs.html#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 23</span></span></code></pre></div>
 <p>Now calculate <code>timelag</code>, <code>steplength</code> and <code>speed</code> for these data sets, just as you did in the <a href="W02_05_tasks_and_inputs.html#w2-task2">last task</a>. To finish the task, compare the speeds visually in a line plot and also visualize the trajectories in a map (see examples below). Interpret the line plot, what do the different lines for the different temporal granularities tell you?</p>
 <p>After completing the task, commit your changes to git using a good commit message.</p>
+<pre><code>## # A tibble: 67 x 6
+##    TierID TierName CollarID DatetimeUTC                E        N
+##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;    &lt;dbl&gt;
+##  1 010C   Caro        13973 2015-09-15 08:07:00 2570589. 1205095.
+##  2 010C   Caro        13973 2015-09-15 08:10:00 2570518. 1205115.
+##  3 010C   Caro        13973 2015-09-15 08:13:00 2570482. 1205124.
+##  4 010C   Caro        13973 2015-09-15 08:16:00 2570490. 1205100.
+##  5 010C   Caro        13973 2015-09-15 08:19:00 2570497. 1205092.
+##  6 010C   Caro        13973 2015-09-15 08:22:00 2570499. 1205091.
+##  7 010C   Caro        13973 2015-09-15 08:25:00 2570500. 1205087.
+##  8 010C   Caro        13973 2015-09-15 08:28:00 2570496. 1205094.
+##  9 010C   Caro        13973 2015-09-15 08:31:00 2570497. 1205091.
+## 10 010C   Caro        13973 2015-09-15 08:34:00 2570499. 1205091.
+## # ... with 57 more rows</code></pre>
+<p><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-2.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-3.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-4.png" width="672" /></p>
 </div>
 <div id="task-4-deriving-movement-parameters-ii-rolling-window-functions" class="section level3">
 <h3>Task 4: Deriving movement parameters II: Rolling window functions</h3>

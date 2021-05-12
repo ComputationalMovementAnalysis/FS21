@@ -267,23 +267,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="w1-preparation" class="section level2">
 <h2>Preparation</h2>
 <p>Much of this chapter was taken from <span class="citation"><a href="90_references.html#ref-bryan2021" role="doc-biblioref">Bryan and Heister</a> (<a href="90_references.html#ref-bryan2021" role="doc-biblioref">2021</a>)</span>. If you want to dive deeper into using Git, we highly recommend this book. For an <em>even</em> deeper dive into Git, read <span class="citation"><a href="90_references.html#ref-chacon2014" role="doc-biblioref">Chacon and Straub</a> (<a href="90_references.html#ref-chacon2014" role="doc-biblioref">2014</a>)</span>. Both books are available free and open source on <a href="https://happygitwithr.com/">happygitwithr.com</a> and <a href="https://git-scm.com/book/">git-scm.com/book</a>, respectively.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="W01_04_preparations.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rversions)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="W01_04_preparations.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rversions)</span></code></pre></div>
 <pre><code>## Warning: package &#39;rversions&#39; was built under R version 4.0.5</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="W01_04_preparations.html#cb4-1" aria-hidden="true" tabindex="-1"></a>rversion_current <span class="ot">&lt;-</span> rversions<span class="sc">::</span><span class="fu">r_release</span>()</span>
-<span id="cb4-2"><a href="W01_04_preparations.html#cb4-2" aria-hidden="true" tabindex="-1"></a>rversion_current</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="W01_04_preparations.html#cb3-1" aria-hidden="true" tabindex="-1"></a>rversion_current <span class="ot">&lt;-</span> rversions<span class="sc">::</span><span class="fu">r_release</span>()</span>
+<span id="cb3-2"><a href="W01_04_preparations.html#cb3-2" aria-hidden="true" tabindex="-1"></a>rversion_current</span></code></pre></div>
 <pre><code>##     version                date        nickname
 ## 122   4.0.5 2021-03-31 07:05:15 Shake and Throw</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="W01_04_preparations.html#cb6-1" aria-hidden="true" tabindex="-1"></a>rversion_current_sep <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(<span class="fu">as.character</span>(base<span class="sc">::</span><span class="fu">getRversion</span>()), <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb6-2"><a href="W01_04_preparations.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="W01_04_preparations.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="W01_04_preparations.html#cb6-4" aria-hidden="true" tabindex="-1"></a>rversion_minimal <span class="ot">&lt;-</span> <span class="cf">function</span>(version_string){</span>
-<span id="cb6-5"><a href="W01_04_preparations.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  version_int <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">strsplit</span>(version_string, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)[[<span class="dv">1</span>]])</span>
-<span id="cb6-6"><a href="W01_04_preparations.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(version_int[<span class="dv">1</span>], <span class="fu">ifelse</span>(version_int[<span class="dv">2</span>] <span class="sc">==</span> <span class="dv">0</span>, version_int[<span class="dv">2</span>], version_int[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">1</span>), <span class="dv">0</span>,<span class="at">sep =</span> <span class="st">&quot;.&quot;</span>)</span>
-<span id="cb6-7"><a href="W01_04_preparations.html#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="W01_04_preparations.html#cb5-1" aria-hidden="true" tabindex="-1"></a>rversion_current_sep <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(<span class="fu">as.character</span>(base<span class="sc">::</span><span class="fu">getRversion</span>()), <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb5-2"><a href="W01_04_preparations.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="W01_04_preparations.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="W01_04_preparations.html#cb5-4" aria-hidden="true" tabindex="-1"></a>rversion_minimal <span class="ot">&lt;-</span> <span class="cf">function</span>(version_string){</span>
+<span id="cb5-5"><a href="W01_04_preparations.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  version_int <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">strsplit</span>(version_string, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)[[<span class="dv">1</span>]])</span>
+<span id="cb5-6"><a href="W01_04_preparations.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(version_int[<span class="dv">1</span>], <span class="fu">ifelse</span>(version_int[<span class="dv">2</span>] <span class="sc">==</span> <span class="dv">0</span>, version_int[<span class="dv">2</span>], version_int[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">1</span>), <span class="dv">0</span>,<span class="at">sep =</span> <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb5-7"><a href="W01_04_preparations.html#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <div id="check-you-version-of-r" class="section level3">
 <h3>Check you version of <code>R</code></h3>
 <p>Check your Version of <code>R</code> by opening RStudio and typing the following command into the console.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="W01_04_preparations.html#cb7-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="W01_04_preparations.html#cb6-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div>
 <pre><code>## [1] &quot;R version 4.0.3 (2020-10-10)&quot;</code></pre>
 <p>This returns the version number of your R installation, whereas the first digit (<code>4</code>) indicates the number of the <em>major release</em>, the second digit (<code>0</code>) indicates the <em>minor release</em> and the last digit (<code>3</code>) refers to the <em>patch release</em>. As a general rule of thumb, you will want to update R if you</p>
 <ul>
@@ -299,9 +299,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="install-the-necessary-packages" class="section level3">
 <h3>Install the necessary packages</h3>
 <p>If you haven’t already, install the packages <code>tidyverse</code>, <code>sf</code> and <code>terra</code>(using <code>install.packages()</code>).</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="W01_04_preparations.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb9-2"><a href="W01_04_preparations.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span>
-<span id="cb9-3"><a href="W01_04_preparations.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;terra&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="W01_04_preparations.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb8-2"><a href="W01_04_preparations.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb8-3"><a href="W01_04_preparations.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;terra&quot;</span>)</span></code></pre></div>
 </div>
 <div id="install-git" class="section level3">
 <h3>Install Git</h3>

@@ -7,7 +7,13 @@
 - Download the new wildboar movement data, and save it to your new project's directory [wildschwein_BE_2056.csv](https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/wildschwein_BE_2056.csv) (right click "Save target as..")
 - Now, commit your changes to your repo like we did [last week](#w1-tasks-and-inputs) (see below):
 
-\BeginKnitrBlock{rmdtip}<div class="rmdtip"></div>\EndKnitrBlock{rmdtip}
+\BeginKnitrBlock{rmdtip}<div class="rmdtip">1. Save your (R/RMarkdown) file
+2. Switch to the "Git"-Tab in the pane in the top right corner
+3. Click "commit" to open the "commit-Window"
+4. Click in the checkbox next to the file(s) you want to commit
+5. Add a commit message to explain what you are committing (e.g. "`initial commit`")
+6. Click on "commit" to commit your changes</div>\EndKnitrBlock{rmdtip}
+
 
 - Pushing our changes from our local repo the remote repo on Github
   - Simply click the green button "Push" in the Git tab in RStudio. 
@@ -126,6 +132,24 @@ After completing the task, commit your changes to git using a good commit messag
 
 
 
+```
+## # A tibble: 67 x 6
+##    TierID TierName CollarID DatetimeUTC                E        N
+##    <chr>  <chr>       <dbl> <dttm>                 <dbl>    <dbl>
+##  1 010C   Caro        13973 2015-09-15 08:07:00 2570589. 1205095.
+##  2 010C   Caro        13973 2015-09-15 08:10:00 2570518. 1205115.
+##  3 010C   Caro        13973 2015-09-15 08:13:00 2570482. 1205124.
+##  4 010C   Caro        13973 2015-09-15 08:16:00 2570490. 1205100.
+##  5 010C   Caro        13973 2015-09-15 08:19:00 2570497. 1205092.
+##  6 010C   Caro        13973 2015-09-15 08:22:00 2570499. 1205091.
+##  7 010C   Caro        13973 2015-09-15 08:25:00 2570500. 1205087.
+##  8 010C   Caro        13973 2015-09-15 08:28:00 2570496. 1205094.
+##  9 010C   Caro        13973 2015-09-15 08:31:00 2570497. 1205091.
+## 10 010C   Caro        13973 2015-09-15 08:34:00 2570499. 1205091.
+## # ... with 57 more rows
+```
+
+<img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-2.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-3.png" width="672" /><img src="W02_05_tasks_and_inputs_files/figure-html/unnamed-chunk-8-4.png" width="672" />
 
 
 ### Task 4: Deriving movement parameters II: Rolling window functions

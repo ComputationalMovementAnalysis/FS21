@@ -268,149 +268,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Computational Movement Analysis: Patterns and Trends in Environmental Data</h1>
 <h2 class="subtitle"><em>Master ENR, Spring Semester 2021</em></h2>
 <p class="author"><em>Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis</em></p>
-<p class="date"><em>07 May, 2021</em></p>
+<p class="date"><em>12 May, 2021</em></p>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb1-5"><a href="index.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="index.html#cb1-6" aria-hidden="true" tabindex="-1"></a>get_mod_age <span class="ot">&lt;-</span> <span class="cf">function</span>(files, now){</span>
-<span id="cb1-7"><a href="index.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">difftime</span>(now,<span class="fu">file.info</span>(files)<span class="sc">$</span>mtime)</span>
-<span id="cb1-8"><a href="index.html#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-9"><a href="index.html#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="index.html#cb1-10" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb1-11"><a href="index.html#cb1-11" aria-hidden="true" tabindex="-1"></a>rfiles <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.R$&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-12"><a href="index.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="index.html#cb1-13" aria-hidden="true" tabindex="-1"></a>encrypted <span class="ot">=</span> rfiles[<span class="fu">grepl</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d{2}_Week</span><span class="sc">\\</span><span class="st">d/solutions/task_</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">.R$&quot;</span>,rfiles)]</span>
-<span id="cb1-14"><a href="index.html#cb1-14" aria-hidden="true" tabindex="-1"></a>decrypted <span class="ot">=</span> rfiles[<span class="fu">grepl</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d{2}_Week</span><span class="sc">\\</span><span class="st">d/solutions/task_</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">_hide.R$&quot;</span>,rfiles)]</span>
-<span id="cb1-15"><a href="index.html#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="index.html#cb1-16" aria-hidden="true" tabindex="-1"></a>encrypted_df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">encrypted =</span> encrypted, <span class="at">key =</span> <span class="fu">str_sub</span>(encrypted, <span class="at">end =</span> <span class="sc">-</span><span class="dv">3</span>))</span>
-<span id="cb1-17"><a href="index.html#cb1-17" aria-hidden="true" tabindex="-1"></a>decrypted_df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">decrypted =</span> decrypted, <span class="at">key =</span> <span class="fu">str_sub</span>(decrypted, <span class="at">end =</span> <span class="sc">-</span><span class="dv">8</span>))</span>
-<span id="cb1-18"><a href="index.html#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="index.html#cb1-19" aria-hidden="true" tabindex="-1"></a>solutions <span class="ot">&lt;-</span> <span class="fu">full_join</span>(encrypted_df, decrypted_df, <span class="at">by =</span> <span class="st">&quot;key&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-20"><a href="index.html#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-21"><a href="index.html#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">encrypted_age =</span> <span class="fu">get_mod_age</span>(encrypted, now),</span>
-<span id="cb1-22"><a href="index.html#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">decrypted_age =</span> <span class="fu">get_mod_age</span>(decrypted, now)</span>
-<span id="cb1-23"><a href="index.html#cb1-23" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-24"><a href="index.html#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="index.html#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="index.html#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb1-27"><a href="index.html#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb1-28"><a href="index.html#cb1-28" aria-hidden="true" tabindex="-1"></a>solutions <span class="sc">%&gt;%</span></span>
-<span id="cb1-29"><a href="index.html#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-30"><a href="index.html#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">encrypt =</span> decrypted_age <span class="sc">&lt;</span> encrypted_age <span class="sc">|</span> <span class="fu">is.na</span>(encrypted)</span>
-<span id="cb1-31"><a href="index.html#cb1-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb1-32"><a href="index.html#cb1-32" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(encrypted, decrypted,encrypt) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-33"><a href="index.html#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pmap</span>(<span class="cf">function</span>(encrypted, decrypted,encrypt){</span>
-<span id="cb1-34"><a href="index.html#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(encrypt){</span>
-<span id="cb1-35"><a href="index.html#cb1-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">myencrypt</span>(decrypted,<span class="st">&quot;.passphrase&quot;</span>)</span>
-<span id="cb1-36"><a href="index.html#cb1-36" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
-<span id="cb1-37"><a href="index.html#cb1-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mydecrypt</span>(encrypted, <span class="st">&quot;.passphrase&quot;</span>,<span class="cn">TRUE</span>)</span>
-<span id="cb1-38"><a href="index.html#cb1-38" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-39"><a href="index.html#cb1-39" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-40"><a href="index.html#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_2.R&quot;</span></span>
-<span id="cb1-41"><a href="index.html#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_3.R&quot;</span></span>
-<span id="cb1-42"><a href="index.html#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_4.R&quot;</span></span>
-<span id="cb1-43"><a href="index.html#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_5.R&quot;</span></span>
-<span id="cb1-44"><a href="index.html#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_6.R&quot;</span></span>
-<span id="cb1-45"><a href="index.html#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_0.R&quot;</span></span>
-<span id="cb1-46"><a href="index.html#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_1.R&quot;</span></span>
-<span id="cb1-47"><a href="index.html#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_2.R&quot;</span></span>
-<span id="cb1-48"><a href="index.html#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_3.R&quot;</span></span>
-<span id="cb1-49"><a href="index.html#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_4.R&quot;</span></span>
-<span id="cb1-50"><a href="index.html#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_1.R&quot;</span></span>
-<span id="cb1-51"><a href="index.html#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_2.R&quot;</span></span>
-<span id="cb1-52"><a href="index.html#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_3.R&quot;</span></span>
-<span id="cb1-53"><a href="index.html#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_4.R&quot;</span></span>
-<span id="cb1-54"><a href="index.html#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_5.R&quot;</span></span>
-<span id="cb1-55"><a href="index.html#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_6.R&quot;</span></span>
-<span id="cb1-56"><a href="index.html#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_1.R&quot;</span></span>
-<span id="cb1-57"><a href="index.html#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_2.R&quot;</span></span>
-<span id="cb1-58"><a href="index.html#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_3.R&quot;</span></span>
-<span id="cb1-59"><a href="index.html#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_4.R&quot;</span></span>
-<span id="cb1-60"><a href="index.html#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_5.R&quot;</span></span>
-<span id="cb1-61"><a href="index.html#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_6.R&quot;</span></span>
-<span id="cb1-62"><a href="index.html#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;15_Week5/solutions/task_1.R&quot;</span></span>
-<span id="cb1-63"><a href="index.html#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;15_Week5/solutions/task_2.R&quot;</span></span>
-<span id="cb1-64"><a href="index.html#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;15_Week5/solutions/task_4.R&quot;</span></span>
-<span id="cb1-65"><a href="index.html#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="do">## [[1]]</span></span>
-<span id="cb1-66"><a href="index.html#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="do">## NULL</span></span>
-<span id="cb1-67"><a href="index.html#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-68"><a href="index.html#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="do">## [[2]]</span></span>
-<span id="cb1-69"><a href="index.html#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_2.R&quot;</span></span>
-<span id="cb1-70"><a href="index.html#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-71"><a href="index.html#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="do">## [[3]]</span></span>
-<span id="cb1-72"><a href="index.html#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_3.R&quot;</span></span>
-<span id="cb1-73"><a href="index.html#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-74"><a href="index.html#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="do">## [[4]]</span></span>
-<span id="cb1-75"><a href="index.html#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_4.R&quot;</span></span>
-<span id="cb1-76"><a href="index.html#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-77"><a href="index.html#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="do">## [[5]]</span></span>
-<span id="cb1-78"><a href="index.html#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_5.R&quot;</span></span>
-<span id="cb1-79"><a href="index.html#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-80"><a href="index.html#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="do">## [[6]]</span></span>
-<span id="cb1-81"><a href="index.html#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;11_Week1/solutions/task_6.R&quot;</span></span>
-<span id="cb1-82"><a href="index.html#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-83"><a href="index.html#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="do">## [[7]]</span></span>
-<span id="cb1-84"><a href="index.html#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_0.R&quot;</span></span>
-<span id="cb1-85"><a href="index.html#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-86"><a href="index.html#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="do">## [[8]]</span></span>
-<span id="cb1-87"><a href="index.html#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_1.R&quot;</span></span>
-<span id="cb1-88"><a href="index.html#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-89"><a href="index.html#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="do">## [[9]]</span></span>
-<span id="cb1-90"><a href="index.html#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_2.R&quot;</span></span>
-<span id="cb1-91"><a href="index.html#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-92"><a href="index.html#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="do">## [[10]]</span></span>
-<span id="cb1-93"><a href="index.html#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_3.R&quot;</span></span>
-<span id="cb1-94"><a href="index.html#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-95"><a href="index.html#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="do">## [[11]]</span></span>
-<span id="cb1-96"><a href="index.html#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;12_Week2/solutions/task_4.R&quot;</span></span>
-<span id="cb1-97"><a href="index.html#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-98"><a href="index.html#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="do">## [[12]]</span></span>
-<span id="cb1-99"><a href="index.html#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_1.R&quot;</span></span>
-<span id="cb1-100"><a href="index.html#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-101"><a href="index.html#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="do">## [[13]]</span></span>
-<span id="cb1-102"><a href="index.html#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_2.R&quot;</span></span>
-<span id="cb1-103"><a href="index.html#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-104"><a href="index.html#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="do">## [[14]]</span></span>
-<span id="cb1-105"><a href="index.html#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_3.R&quot;</span></span>
-<span id="cb1-106"><a href="index.html#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-107"><a href="index.html#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="do">## [[15]]</span></span>
-<span id="cb1-108"><a href="index.html#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_4.R&quot;</span></span>
-<span id="cb1-109"><a href="index.html#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-110"><a href="index.html#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="do">## [[16]]</span></span>
-<span id="cb1-111"><a href="index.html#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_5.R&quot;</span></span>
-<span id="cb1-112"><a href="index.html#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-113"><a href="index.html#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="do">## [[17]]</span></span>
-<span id="cb1-114"><a href="index.html#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;13_Week3/solutions/task_6.R&quot;</span></span>
-<span id="cb1-115"><a href="index.html#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-116"><a href="index.html#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="do">## [[18]]</span></span>
-<span id="cb1-117"><a href="index.html#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_1.R&quot;</span></span>
-<span id="cb1-118"><a href="index.html#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-119"><a href="index.html#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="do">## [[19]]</span></span>
-<span id="cb1-120"><a href="index.html#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_2.R&quot;</span></span>
-<span id="cb1-121"><a href="index.html#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-122"><a href="index.html#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="do">## [[20]]</span></span>
-<span id="cb1-123"><a href="index.html#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_3.R&quot;</span></span>
-<span id="cb1-124"><a href="index.html#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-125"><a href="index.html#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="do">## [[21]]</span></span>
-<span id="cb1-126"><a href="index.html#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_4.R&quot;</span></span>
-<span id="cb1-127"><a href="index.html#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-128"><a href="index.html#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="do">## [[22]]</span></span>
-<span id="cb1-129"><a href="index.html#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_5.R&quot;</span></span>
-<span id="cb1-130"><a href="index.html#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-131"><a href="index.html#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="do">## [[23]]</span></span>
-<span id="cb1-132"><a href="index.html#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;14_Week4/solutions/task_6.R&quot;</span></span>
-<span id="cb1-133"><a href="index.html#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-134"><a href="index.html#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="do">## [[24]]</span></span>
-<span id="cb1-135"><a href="index.html#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;15_Week5/solutions/task_1.R&quot;</span></span>
-<span id="cb1-136"><a href="index.html#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-137"><a href="index.html#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="do">## [[25]]</span></span>
-<span id="cb1-138"><a href="index.html#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;15_Week5/solutions/task_2.R&quot;</span></span>
-<span id="cb1-139"><a href="index.html#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-140"><a href="index.html#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="do">## [[26]]</span></span>
-<span id="cb1-141"><a href="index.html#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;15_Week5/solutions/task_4.R&quot;</span></span></code></pre></div>
 <div id="welcome-to-the-course" class="section level1 unnumbered">
 <h1>Welcome to the course!</h1>
 <p>For the practical part of the course, building-up skills for analyzing movement data in the software environment <code>R</code>, you’ll be using data from the ZHAW project <a href="https://www.zhaw.ch/de/ueber-uns/aktuell/news/detailansicht-news/event-news/wildschweinschaeden-mit-akustischer-methode-verhindern/">“Prävention von Wildschweinschäden in der Landwirtschaft”</a>.</p>
@@ -426,7 +285,6 @@ This video gives a nice introduction into the project
 <h1>License</h1>
 <p>These R Exercises are created by Patrick Laube, Nils Ratnaweera and Nikolaos Bakogiannis for the Course *Computational Movement Analysis" and are licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
-<!-- **Please note:** we are given application data from an ongoing research project. Capturing wild living animals and then equipping them with GPS collars is a very labor and cost intensive form of research. Consequently, data resulting such campaigns is a very valuable asset that must be protected. So, please do not pass on this data, for any use beyond this module contact Patrick Laube or the data owner Stefan Suter (suts@zhaw.ch). -->
 
 </div>
 <script src="https://utteranc.es/client.js"
