@@ -4,38 +4,3 @@
 Create a new RStudio Project and a new Github Repo for this week's exercises. Do this either the simple way we used in Exercise 2 ([Step 3](#create-github-repo) and then [Step 4](#w2-project)) or the more sophisticated way we suggested in [Exercise 3](#w3-preparation).
 
 If you want to publish your Report as a website (to share with others), activate Github Pages by going to your repo on Github, clicking on *Settings > Pages*, and under *Source* switch from *None* to your Main branch. **You can do this only after pushing your first commit**.
-
-
-
-```{r, echo = FALSE}
-# library(tidyverse)
-# library(sf)
-# library(lubridate)
-# 
-# # Import as tibble
-# wildschwein_BE <- read_delim("00_Rawdata/wildschwein_BE.csv",",")
-# 
-# # Convert to sf-object
-# wildschwein_BE <- st_as_sf(wildschwein_BE, coords = c("Long", "Lat"), crs = 4326,remove = FALSE)
-# 
-# # transform to CH1903 LV95
-# wildschwein_BE <- st_transform(wildschwein_BE, 2056)
-# 
-# # Add geometry as E/N integer Columns
-# wildschwein_BE <- st_coordinates(wildschwein_BE) %>%
-#   cbind(wildschwein_BE,.) %>%
-#   rename(E = X) %>%
-#   rename(N = Y)
-# 
-# # Compute timelag, steplength and speed
-# wildschwein_BE <- wildschwein_BE %>%
-#   group_by(TierID) %>%
-#   mutate(
-#     timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC,units = "secs")),
-#     steplength = sqrt((E-lead(E,1))^2+(N-lead(N,1))^2),
-#     speed = steplength/timelag
-#   )
-
-```
-
-
