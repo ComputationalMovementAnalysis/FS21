@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-3-project-data-from-wgs84"><i class="fa fa-check"></i>Task 3: Project data from WGS84</a></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-calculate-convex-hull"><i class="fa fa-check"></i>Input: Calculate Convex Hull</a></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-4-ploting-spatial-objects"><i class="fa fa-check"></i>Task 4: Ploting spatial objects</a></li>
-<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-importing-raster-data"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#w1-importing-raster"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-5-adding-a-background-map"><i class="fa fa-check"></i>Task 5: Adding a background map</a></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-6-create-an-interactive-map"><i class="fa fa-check"></i>Task 6: Create an interactive map</a></li>
 </ul></li>
@@ -235,12 +235,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W05_02_preparation.html"><a href="W05_02_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
 <ul>
 <li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#w5-annotate-vector"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
 <li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-import-and-visualize-vegetationindex-raster-data"><i class="fa fa-check"></i>Task 4: Import and visualize vegetationindex (raster data)</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-5-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 5: Annotate Trajectories from raster data</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="90_references.html"><a href="90_references.html"><i class="fa fa-check"></i>References</a></li>
@@ -264,58 +265,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preparation-2" class="section level2">
+<div id="w5-preperation" class="section level2">
 <h2>Preparation</h2>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="W05_02_preparation.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparation ##################################################################</span></span></code></pre></div>
-<p>Open your R Project from last week. Either run your own script from last week or the following lines to transform the data into the form we need for today’s exercise.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="W05_02_preparation.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --</code></pre>
-<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
-## v tibble  3.0.4     v dplyr   1.0.4
-## v tidyr   1.1.2     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.1</code></pre>
-<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.0.4</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.4</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="W05_02_preparation.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
-<pre><code>## Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="W05_02_preparation.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span></code></pre></div>
-<pre><code>## Warning: package &#39;ggspatial&#39; was built under R version 4.0.4</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="W05_02_preparation.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code></pre></div>
-<pre><code>## Loading required package: sp</code></pre>
-<pre><code>## 
-## Attaching package: &#39;raster&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     select</code></pre>
-<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     extract</code></pre>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="W05_02_preparation.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import as tibble</span></span>
-<span id="cb118-2"><a href="W05_02_preparation.html#cb118-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## -- Column specification --------------------------------------------------------
-## cols(
-##   TierID = col_character(),
-##   TierName = col_character(),
-##   CollarID = col_double(),
-##   DatetimeUTC = col_datetime(format = &quot;&quot;),
-##   Lat = col_double(),
-##   Long = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="W05_02_preparation.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf-object</span></span>
-<span id="cb120-2"><a href="W05_02_preparation.html#cb120-2" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildschwein_BE, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>,<span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb120-3"><a href="W05_02_preparation.html#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-4"><a href="W05_02_preparation.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to CH1903 LV95</span></span>
-<span id="cb120-5"><a href="W05_02_preparation.html#cb120-5" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(wildschwein_BE, <span class="dv">2056</span>)</span>
-<span id="cb120-6"><a href="W05_02_preparation.html#cb120-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-7"><a href="W05_02_preparation.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometry as E/N integer Columns</span></span>
-<span id="cb120-8"><a href="W05_02_preparation.html#cb120-8" aria-hidden="true" tabindex="-1"></a>wildschwein_BE <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(wildschwein_BE) <span class="sc">%&gt;%</span></span>
-<span id="cb120-9"><a href="W05_02_preparation.html#cb120-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(wildschwein_BE,.) <span class="sc">%&gt;%</span></span>
-<span id="cb120-10"><a href="W05_02_preparation.html#cb120-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">E =</span> X) <span class="sc">%&gt;%</span></span>
-<span id="cb120-11"><a href="W05_02_preparation.html#cb120-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">N =</span> Y)</span></code></pre></div>
+<p>Create a new RStudio Project and a new Github Repo for this week’s exercises. Do this either the simple way we used in Exercise 2 (<a href="W02_03_preparation.html#create-github-repo">Step 3</a> and then <a href="W02_03_preparation.html#w2-project">Step 4</a>) or the more sophisticated way we suggested in <a href="W03_03_preparation.html#w3-preparation">Exercise 3</a>.</p>
+<p>If you want to publish your Report as a website (to share with others), activate Github Pages by going to your repo on Github, clicking on <em>Settings &gt; Pages</em>, and under <em>Source</em> switch from <em>None</em> to your Main branch. <strong>You can do this only after pushing your first commit</strong>.</p>
 
 </div>
 <script src="https://utteranc.es/client.js"

@@ -300,7 +300,7 @@ Note: `ggplot` refuses to use our specified CRS, so we need to force this by spe
 Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
 
 
-### Input: Importing raster data
+### Input: Importing raster data {#w1-importing-raster}
 
 In the next task, we would like to add a background map to our `mcp` object. Download the file here: [pk100_BE.tif](https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/pk100_BE.tif) 
 To import the file into `R`, we use the package `terra` with the function `rast`.

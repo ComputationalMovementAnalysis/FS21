@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-3-project-data-from-wgs84"><i class="fa fa-check"></i>Task 3: Project data from WGS84</a></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-calculate-convex-hull"><i class="fa fa-check"></i>Input: Calculate Convex Hull</a></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-4-ploting-spatial-objects"><i class="fa fa-check"></i>Task 4: Ploting spatial objects</a></li>
-<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-importing-raster-data"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#w1-importing-raster"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-5-adding-a-background-map"><i class="fa fa-check"></i>Task 5: Adding a background map</a></li>
 <li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-6-create-an-interactive-map"><i class="fa fa-check"></i>Task 6: Create an interactive map</a></li>
 </ul></li>
@@ -235,12 +235,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="W05_01_learning_outcomes.html"><a href="W05_01_learning_outcomes.html"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="W05_02_preparation.html"><a href="W05_02_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks</a>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
 <ul>
 <li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-2-annotate-trajectories-from-vector-data"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#w5-annotate-vector"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
 <li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
-<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 4: Annotate Trajectories from raster data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-import-and-visualize-vegetationindex-raster-data"><i class="fa fa-check"></i>Task 4: Import and visualize vegetationindex (raster data)</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-5-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 5: Annotate Trajectories from raster data</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="90_references.html"><a href="90_references.html"><i class="fa fa-check"></i>References</a></li>
@@ -461,7 +462,7 @@ Let’s compare our original <code>data.frame</code> with this new <code>sf</cod
 Note: <code>ggplot</code> refuses to use our specified CRS, so we need to force this by specifying <code>datum =</code> in <code>coord_sf()</code>. Try it out.</p>
 <p>Commit your changes as described <a href="W01_05_tasks_and_inputs.html#w1-tasks-and-inputs">in the beginning</a>. Have a look at your commit history by clicking on “History” in the “Git”-Pane.</p>
 </div>
-<div id="input-importing-raster-data" class="section level3">
+<div id="w1-importing-raster" class="section level3">
 <h3>Input: Importing raster data</h3>
 <p>In the next task, we would like to add a background map to our <code>mcp</code> object. Download the file here: <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/pk100_BE.tif">pk100_BE.tif</a>
 To import the file into <code>R</code>, we use the package <code>terra</code> with the function <code>rast</code>.</p>
