@@ -4,6 +4,11 @@ library(sf)
 library(stringr)
 library(tmap)
 
+################################################################################
+## Prepare Wildboar data #######################################################
+################################################################################
+
+
 wildschwein <- read_delim("../../CMA_FS2018_Filestorage/wildschwein.csv",";",col_types = cols(timelag = col_double()))
 
 # mit diesem Halsband (091) wurde rumgespielt (vermutlich transportiert und nochmal verwendet)
@@ -109,5 +114,17 @@ wildschwein %>%
 
 
 
+################################################################################
+## Prepare Crop data
+################################################################################
+
+
+fanel2016 <- read_sf("00_Rawdata/Feldaufnahmen_Fanel_2016.shp") %>%
+  st_transform(2056)
+
+
+fanel2016 %>%
+  select(FieldID, Frucht) %>%
+  st_write("00_Rawdata/Feldaufnahmen_Fanel_2016.gpkg")
 
 
