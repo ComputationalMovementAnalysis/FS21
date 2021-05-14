@@ -319,10 +319,10 @@ div.csl-indent {
 <span id="cb98-3"><a href="W04_04_tasks_and_inputs.html#cb98-3" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb98-4"><a href="W04_04_tasks_and_inputs.html#cb98-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb98-5"><a href="W04_04_tasks_and_inputs.html#cb98-5" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="at">birthday =</span> <span class="st">&quot;1997-04-23&quot;</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>)</span>
-<span id="cb98-6"><a href="W04_04_tasks_and_inputs.html#cb98-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8785.631 days</span></span></code></pre></div>
+<span id="cb98-6"><a href="W04_04_tasks_and_inputs.html#cb98-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8787.508 days</span></span></code></pre></div>
 <p>As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of <code>birthday =</code> and <code>units =</code>).</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="W04_04_tasks_and_inputs.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;days&quot;</span>)</span>
-<span id="cb99-2"><a href="W04_04_tasks_and_inputs.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8785.631 days</span></span></code></pre></div>
+<span id="cb99-2"><a href="W04_04_tasks_and_inputs.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8787.508 days</span></span></code></pre></div>
 <p>If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="W04_04_tasks_and_inputs.html#cb100-1" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="cf">function</span>(birthday, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>){</span>
 <span id="cb100-2"><a href="W04_04_tasks_and_inputs.html#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">difftime</span>(<span class="fu">Sys.time</span>(),birthday, <span class="at">units =</span> units)</span>
@@ -330,11 +330,11 @@ div.csl-indent {
 <span id="cb100-4"><a href="W04_04_tasks_and_inputs.html#cb100-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb100-5"><a href="W04_04_tasks_and_inputs.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if not stated otherwise, our function uses the unit &quot;days&quot;</span></span>
 <span id="cb100-6"><a href="W04_04_tasks_and_inputs.html#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>)</span>
-<span id="cb100-7"><a href="W04_04_tasks_and_inputs.html#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8785.631 days</span></span>
+<span id="cb100-7"><a href="W04_04_tasks_and_inputs.html#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8787.508 days</span></span>
 <span id="cb100-8"><a href="W04_04_tasks_and_inputs.html#cb100-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb100-9"><a href="W04_04_tasks_and_inputs.html#cb100-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite units</span></span>
 <span id="cb100-10"><a href="W04_04_tasks_and_inputs.html#cb100-10" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;hours&quot;</span>)</span>
-<span id="cb100-11"><a href="W04_04_tasks_and_inputs.html#cb100-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 210855.1 hours</span></span></code></pre></div>
+<span id="cb100-11"><a href="W04_04_tasks_and_inputs.html#cb100-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 210900.2 hours</span></span></code></pre></div>
 <p>All you need to do now is run execute the function deceleration (<code>myage &lt;- function...</code> etc.) at the beginning of your script, and you can use the function for your entire R session. Tip: Always try to make your function self sufficient: Don’t call variables that were created outside the function call.</p>
 <div id="task-1-write-your-own-functions" class="section level3">
 <h3>Task 1: Write your own functions</h3>
@@ -343,7 +343,7 @@ div.csl-indent {
 </div>
 <div id="task-2-prepare-analysis" class="section level3">
 <h3>Task 2: Prepare Analysis</h3>
-<p>In the next tasks we will look for “meet” patterns in our wildboar data. To simplify this, we will only use a subset of our wildboar data: The individuals <em>Rosa</em> and <em>Sabi</em> for the timespan <em>01.04.2015 - 15.04.2015</em>. You can download the dataset here <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/wildschwein_BE.csv">wildschwein_BE.csv</a> (right click &gt; save target as…) and filter it with the aforementioned criteria.</p>
+<p>In the next tasks we will look for “meet” patterns in our wildboar data. To simplify this, we will only use a subset of our wildboar data: The individuals <em>Rosa</em> and <em>Sabi</em> for the timespan <em>01.04.2015 - 15.04.2015</em>. You can download the dataset here <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/wildschwein_BE_2056.csv">wildschwein_BE_2056.csv</a> (right click &gt; save target as…) and filter it with the aforementioned criteria.</p>
 <p>Remember to load the necessary libraries first! We propose the following:</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="W04_04_tasks_and_inputs.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)        </span>
 <span id="cb101-2"><a href="W04_04_tasks_and_inputs.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)        </span>
