@@ -120,10 +120,10 @@ wildschwein_BE_sf
 
 ```
 ## Simple feature collection with 51246 features and 4 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 7.019889 ymin: 46.97125 xmax: 7.112075 ymax: 47.01882
-## geographic CRS: WGS 84
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 7.019889 ymin: 46.97125 xmax: 7.112075 ymax: 47.01882
+## Geodetic CRS:  WGS 84
 ## # A tibble: 51,246 x 5
 ##    TierID TierName CollarID DatetimeUTC                    geometry
 ##  * <chr>  <chr>       <dbl> <dttm>                      <POINT [°]>
@@ -187,10 +187,10 @@ Here's the resulting `sf` object from the operation:
 ```r
 wildschwein_BE
 ## Simple feature collection with 51246 features and 4 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
-## projected CRS:  CH1903+ / LV95
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
+## Projected CRS: CH1903+ / LV95
 ## # A tibble: 51,246 x 5
 ##    TierID TierName CollarID DatetimeUTC                  geometry
 ##  * <chr>  <chr>       <dbl> <dttm>                    <POINT [m]>
@@ -227,10 +227,10 @@ wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
 
 wildschwein_BE_grouped
 ## Simple feature collection with 51246 features and 4 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
-## projected CRS:  CH1903+ / LV95
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
+## Projected CRS: CH1903+ / LV95
 ## # A tibble: 51,246 x 5
 ## # Groups:   TierID [3]
 ##    TierID TierName CollarID DatetimeUTC                  geometry
@@ -257,10 +257,10 @@ wildschwein_BE_smry <- summarise(wildschwein_BE_grouped)
 
 wildschwein_BE_smry
 ## Simple feature collection with 3 features and 1 field
-## geometry type:  MULTIPOINT
-## dimension:      XY
-## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
-## projected CRS:  CH1903+ / LV95
+## Geometry type: MULTIPOINT
+## Dimension:     XY
+## Bounding box:  xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
+## Projected CRS: CH1903+ / LV95
 ## # A tibble: 3 x 2
 ##   TierID                                                                geometry
 ##   <chr>                                                         <MULTIPOINT [m]>

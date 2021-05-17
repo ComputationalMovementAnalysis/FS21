@@ -54,14 +54,14 @@ my_age <- function(birthday, units){
   }
 
 my_age(birthday = "1997-04-23", units = "days")
-## Time difference of 8785.499 days
+## Time difference of 8787.508 days
 ```
 
 As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of `birthday = ` and `units =`).
 
 ```r
 my_age("1997-04-23", "days")
-## Time difference of 8785.499 days
+## Time difference of 8787.508 days
 ```
 
 
@@ -74,11 +74,11 @@ my_age <- function(birthday, units = "days"){
 
 # if not stated otherwise, our function uses the unit "days"
 my_age("1997-04-23")
-## Time difference of 8785.499 days
+## Time difference of 8787.508 days
 
 # We can still overwrite units
 my_age("1997-04-23", "hours")
-## Time difference of 210852 hours
+## Time difference of 210900.2 hours
 ```
 
 All you need to do now is run execute the function deceleration (`myage <- function...` etc.) at the beginning of your script, and you can use the function for your entire R session. Tip: Always try to make your function self sufficient: Don't call variables that were created outside the function call.
@@ -95,7 +95,7 @@ Note: if you treat your input variables as vectors, they will work in `dplyr`s `
 
 ### Task 2: Prepare Analysis
 
-In the next tasks we will look for "meet" patterns in our wildboar data. To simplify this, we will only use a subset of our wildboar data: The individuals *Rosa* and *Sabi* for the timespan *01.04.2015 - 15.04.2015*. You can download the dataset here [wildschwein_BE.csv](https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/wildschwein_BE.csv) (right click > save target as...) and filter it with the aforementioned criteria. 
+In the next tasks we will look for "meet" patterns in our wildboar data. To simplify this, we will only use a subset of our wildboar data: The individuals *Rosa* and *Sabi* for the timespan *01.04.2015 - 15.04.2015*. You can download the dataset here [wildschwein_BE_2056.csv](https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/wildschwein_BE_2056.csv) (right click > save target as...) and filter it with the aforementioned criteria. 
 
 Remember to load the necessary libraries first! We propose the following:
 
