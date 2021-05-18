@@ -42,8 +42,6 @@ solutions <- full_join(encrypted_df, decrypted_df, by = "key") %>%
     )
 
 
-library(magrittr)
-library(purrr)
 solutions %>%
   mutate(
     encrypt = (decrypted_age < encrypted_age | is.na(encrypted)) & !is.na(decrypted)
