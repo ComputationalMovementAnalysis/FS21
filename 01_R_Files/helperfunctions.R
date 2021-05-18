@@ -169,7 +169,7 @@ subpaths <- function(rootfolder_path, rootfolder_name, subfolders){
 
 
 ## Templates for chunk outputs
-knitr::opts_chunk$set(collapse = TRUE, warning = FALSE,message = FALSE)
+knitr::opts_chunk$set(collapse = TRUE, warning = FALSE, message = FALSE)
 
 knitr::opts_template$set(
   solution_showOutput = list(echo = FALSE),
