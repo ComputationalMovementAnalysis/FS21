@@ -12,6 +12,3 @@ bookdown::gitbook:
   includes: 
     after_body: 90_misc/utterances.html
   css: "90_misc/mystyle.css"
-# bookdown::pdf_book:
-#   number_sections: true
-#   keep_tex: yes
