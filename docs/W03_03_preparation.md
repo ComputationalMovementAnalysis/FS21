@@ -1,4 +1,4 @@
-## Preparation{#w3-preparation}
+## Preparation {#w3-preparation}
 
 We need to create a new RStudio Project with Git and Github this week. Last week you created an RStudio Project which was automatically connected to Github. You did this by *first* creating a Github Repo, and then initiating the RStudio Project via *File > New Project > Version Control > Git*  (adding the URL of your Github Repo). This is definitely the easiest way to set up a connection, but what if you have an existing project that you want to connect to Github? 
 

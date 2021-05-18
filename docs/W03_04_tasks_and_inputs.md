@@ -233,6 +233,12 @@ Note:
 Commit your changes with a meaningful commit message. Now push all your changes to Github.
 
 
+
+```
+## [1] 31622.66
+## [1] 50858.93
+```
+
 <img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 
