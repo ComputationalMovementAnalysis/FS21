@@ -3,33 +3,9 @@
 Much of this chapter was taken from @bryan2021. If you want to dive deeper into using Git, we highly recommend this book. For an *even* deeper dive into Git, read @chacon2014. Both books are available free and open source on [happygitwithr.com](https://happygitwithr.com/) and [git-scm.com/book](https://git-scm.com/book/), respectively. 
 
 
-```r
-library(rversions)
-```
-
-```
-## Warning: package 'rversions' was built under R version 4.0.5
-```
-
-```r
-rversion_current <- rversions::r_release()
-rversion_current
-```
-
-```
-##     version                date        nickname
-## 123   4.1.0 2021-05-18 07:05:22 Camp Pontanezen
-```
-
-```r
-rversion_current_sep <- strsplit(as.character(base::getRversion()), "\\.")[[1]]
 
 
-rversion_minimal <- function(version_string){
-  version_int <- as.integer(strsplit(version_string, "\\.")[[1]])
-  paste(version_int[1], ifelse(version_int[2] == 0, version_int[2], version_int[2]-1), 0,sep = ".")
-}
-```
+
 
 
 ### Check you version of `R`
@@ -39,9 +15,6 @@ Check your Version of `R` by opening RStudio and typing the following command in
 
 ```r
 R.version.string
-```
-
-```
 ## [1] "R version 4.0.3 (2020-10-10)"
 ```
 
@@ -119,7 +92,7 @@ Now it is time to introduce yourself to git. For this, we need to use the shell 
 
 The shell is a program on your computer whose job is to run other programs. It looks very much like the `R`-console (in the bottom left of RStudio) that you are already know: You have a place to input text which is transferred to (and interpreted by) the computer when you press "enter". RStudio has a shell terminal right next to the `R`-console (tab `Terminal`).
 
-Every Windows comes with two different shell installations: "Command prompt" and "PowerShell". After installing Git we now have a third option, "Git Bash". The shell terminal in RStudio uses "Command prompt" per default, in [the last step][#configure-rstudio] we just switched the shell to "Git Bash".
+Every Windows comes with two different shell installations: "Command prompt" and "PowerShell". After installing Git we now have a third option, "Git Bash". The shell terminal in RStudio uses "Command prompt" per default, in [the last step](#configure-rstudio) we just switched the shell to "Git Bash".
 
 Now use the terminal in RStudio to introduce yourself:
 

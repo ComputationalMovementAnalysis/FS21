@@ -259,83 +259,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="demo-tidyverse-r-code" class="section level2">
 <h2>Demo Tidyverse (R-Code)</h2>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="W02_04b_demo_tidyverse_code.html#cb79-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb79-2"><a href="W02_04b_demo_tidyverse_code.html#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-3"><a href="W02_04b_demo_tidyverse_code.html#cb79-3" aria-hidden="true" tabindex="-1"></a>later <span class="ot">&lt;-</span> now <span class="sc">+</span> <span class="dv">10000</span></span>
-<span id="cb79-4"><a href="W02_04b_demo_tidyverse_code.html#cb79-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-5"><a href="W02_04b_demo_tidyverse_code.html#cb79-5" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now)</span>
-<span id="cb79-6"><a href="W02_04b_demo_tidyverse_code.html#cb79-6" aria-hidden="true" tabindex="-1"></a>time_difference</span>
-<span id="cb79-7"><a href="W02_04b_demo_tidyverse_code.html#cb79-7" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>)</span>
-<span id="cb79-8"><a href="W02_04b_demo_tidyverse_code.html#cb79-8" aria-hidden="true" tabindex="-1"></a>time_difference</span>
-<span id="cb79-9"><a href="W02_04b_demo_tidyverse_code.html#cb79-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
-<span id="cb79-10"><a href="W02_04b_demo_tidyverse_code.html#cb79-10" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>))</span>
-<span id="cb79-11"><a href="W02_04b_demo_tidyverse_code.html#cb79-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-12"><a href="W02_04b_demo_tidyverse_code.html#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
-<span id="cb79-13"><a href="W02_04b_demo_tidyverse_code.html#cb79-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-14"><a href="W02_04b_demo_tidyverse_code.html#cb79-14" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb79-15"><a href="W02_04b_demo_tidyverse_code.html#cb79-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-16"><a href="W02_04b_demo_tidyverse_code.html#cb79-16" aria-hidden="true" tabindex="-1"></a>numbers</span>
-<span id="cb79-17"><a href="W02_04b_demo_tidyverse_code.html#cb79-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-18"><a href="W02_04b_demo_tidyverse_code.html#cb79-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb79-19"><a href="W02_04b_demo_tidyverse_code.html#cb79-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-20"><a href="W02_04b_demo_tidyverse_code.html#cb79-20" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers)</span>
-<span id="cb79-21"><a href="W02_04b_demo_tidyverse_code.html#cb79-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-22"><a href="W02_04b_demo_tidyverse_code.html#cb79-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers,<span class="at">n =</span> <span class="dv">2</span>)</span>
-<span id="cb79-23"><a href="W02_04b_demo_tidyverse_code.html#cb79-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-24"><a href="W02_04b_demo_tidyverse_code.html#cb79-24" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers)</span>
-<span id="cb79-25"><a href="W02_04b_demo_tidyverse_code.html#cb79-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-26"><a href="W02_04b_demo_tidyverse_code.html#cb79-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb79-27"><a href="W02_04b_demo_tidyverse_code.html#cb79-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-28"><a href="W02_04b_demo_tidyverse_code.html#cb79-28" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>, <span class="at">default =</span> <span class="dv">0</span>)</span>
-<span id="cb79-29"><a href="W02_04b_demo_tidyverse_code.html#cb79-29" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb79-30"><a href="W02_04b_demo_tidyverse_code.html#cb79-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Hans&quot;</span>,<span class="dv">5</span>),<span class="fu">rep</span>(<span class="st">&quot;Klara&quot;</span>,<span class="dv">5</span>)),</span>
-<span id="cb79-31"><a href="W02_04b_demo_tidyverse_code.html#cb79-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">DatetimeUTC =</span> <span class="fu">rep</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;2015-01-01 00:00:00&quot;</span>,<span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)<span class="sc">+</span><span class="dv">0</span><span class="sc">:</span><span class="dv">4</span><span class="sc">*</span><span class="dv">15</span><span class="sc">*</span><span class="dv">60</span>, <span class="dv">2</span>)</span>
-<span id="cb79-32"><a href="W02_04b_demo_tidyverse_code.html#cb79-32" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb79-33"><a href="W02_04b_demo_tidyverse_code.html#cb79-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-34"><a href="W02_04b_demo_tidyverse_code.html#cb79-34" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
-<span id="cb79-35"><a href="W02_04b_demo_tidyverse_code.html#cb79-35" aria-hidden="true" tabindex="-1"></a>wildschwein<span class="sc">$</span>timelag  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(wildschwein<span class="sc">$</span>DatetimeUTC), wildschwein<span class="sc">$</span>DatetimeUTC))</span>
-<span id="cb79-36"><a href="W02_04b_demo_tidyverse_code.html#cb79-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-37"><a href="W02_04b_demo_tidyverse_code.html#cb79-37" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC)))</span>
-<span id="cb79-38"><a href="W02_04b_demo_tidyverse_code.html#cb79-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-39"><a href="W02_04b_demo_tidyverse_code.html#cb79-39" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
-<span id="cb79-40"><a href="W02_04b_demo_tidyverse_code.html#cb79-40" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">group_by</span>(wildschwein,TierID)</span>
-<span id="cb79-41"><a href="W02_04b_demo_tidyverse_code.html#cb79-41" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC)))</span>
-<span id="cb79-42"><a href="W02_04b_demo_tidyverse_code.html#cb79-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-43"><a href="W02_04b_demo_tidyverse_code.html#cb79-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-44"><a href="W02_04b_demo_tidyverse_code.html#cb79-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-45"><a href="W02_04b_demo_tidyverse_code.html#cb79-45" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
-<span id="cb79-46"><a href="W02_04b_demo_tidyverse_code.html#cb79-46" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(wildschwein, <span class="at">mean =</span> <span class="fu">mean</span>(timelag, <span class="at">na.rm =</span> T))</span>
-<span id="cb79-47"><a href="W02_04b_demo_tidyverse_code.html#cb79-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-48"><a href="W02_04b_demo_tidyverse_code.html#cb79-48" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="sc">%&gt;%</span>                           <span class="co"># Take wildschwein...</span></span>
-<span id="cb79-49"><a href="W02_04b_demo_tidyverse_code.html#cb79-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span>                    <span class="co"># ...group it by TierID</span></span>
-<span id="cb79-50"><a href="W02_04b_demo_tidyverse_code.html#cb79-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(                              <span class="co"># Summarise the data...</span></span>
-<span id="cb79-51"><a href="W02_04b_demo_tidyverse_code.html#cb79-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_timelag =</span> <span class="fu">mean</span>(timelag,<span class="at">na.rm =</span> T)<span class="co"># ...by calculating the mean timelag</span></span>
-<span id="cb79-52"><a href="W02_04b_demo_tidyverse_code.html#cb79-52" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb79-53"><a href="W02_04b_demo_tidyverse_code.html#cb79-53" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb79-54"><a href="W02_04b_demo_tidyverse_code.html#cb79-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID =</span> <span class="fu">c</span>(<span class="dv">8001</span>,<span class="dv">8003</span>,<span class="dv">8004</span>,<span class="dv">8005</span>,<span class="dv">8800</span>,<span class="dv">8820</span>,<span class="dv">3000</span>,<span class="dv">3001</span>,<span class="dv">3002</span>,<span class="dv">3003</span>,<span class="dv">8330</span>,<span class="dv">7222</span>),</span>
-<span id="cb79-55"><a href="W02_04b_demo_tidyverse_code.html#cb79-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>),</span>
-<span id="cb79-56"><a href="W02_04b_demo_tidyverse_code.html#cb79-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">age=</span> <span class="fu">c</span> (<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>),</span>
-<span id="cb79-57"><a href="W02_04b_demo_tidyverse_code.html#cb79-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="fl">50.755</span>,<span class="fl">43.409</span>,<span class="fl">12.000</span>,<span class="fl">16.787</span>,<span class="fl">20.987</span>,<span class="fl">25.765</span>,<span class="fl">22.0122</span>,<span class="fl">21.343</span>,<span class="fl">12.532</span>,<span class="fl">54.32</span>,<span class="fl">11.027</span>,<span class="fl">88.08</span>)</span>
-<span id="cb79-58"><a href="W02_04b_demo_tidyverse_code.html#cb79-58" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb79-59"><a href="W02_04b_demo_tidyverse_code.html#cb79-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-60"><a href="W02_04b_demo_tidyverse_code.html#cb79-60" aria-hidden="true" tabindex="-1"></a>pigs</span>
-<span id="cb79-61"><a href="W02_04b_demo_tidyverse_code.html#cb79-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-62"><a href="W02_04b_demo_tidyverse_code.html#cb79-62" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
-<span id="cb79-63"><a href="W02_04b_demo_tidyverse_code.html#cb79-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(         </span>
-<span id="cb79-64"><a href="W02_04b_demo_tidyverse_code.html#cb79-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
-<span id="cb79-65"><a href="W02_04b_demo_tidyverse_code.html#cb79-65" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb79-66"><a href="W02_04b_demo_tidyverse_code.html#cb79-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-67"><a href="W02_04b_demo_tidyverse_code.html#cb79-67" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
-<span id="cb79-68"><a href="W02_04b_demo_tidyverse_code.html#cb79-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb79-69"><a href="W02_04b_demo_tidyverse_code.html#cb79-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
-<span id="cb79-70"><a href="W02_04b_demo_tidyverse_code.html#cb79-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
-<span id="cb79-71"><a href="W02_04b_demo_tidyverse_code.html#cb79-71" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb79-72"><a href="W02_04b_demo_tidyverse_code.html#cb79-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-73"><a href="W02_04b_demo_tidyverse_code.html#cb79-73" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
-<span id="cb79-74"><a href="W02_04b_demo_tidyverse_code.html#cb79-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex,age) <span class="sc">%&gt;%</span></span>
-<span id="cb79-75"><a href="W02_04b_demo_tidyverse_code.html#cb79-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
-<span id="cb79-76"><a href="W02_04b_demo_tidyverse_code.html#cb79-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
-<span id="cb79-77"><a href="W02_04b_demo_tidyverse_code.html#cb79-77" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="W02_04b_demo_tidyverse_code.html#cb73-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb73-2"><a href="W02_04b_demo_tidyverse_code.html#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="W02_04b_demo_tidyverse_code.html#cb73-3" aria-hidden="true" tabindex="-1"></a>later <span class="ot">&lt;-</span> now <span class="sc">+</span> <span class="dv">10000</span></span>
+<span id="cb73-4"><a href="W02_04b_demo_tidyverse_code.html#cb73-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-5"><a href="W02_04b_demo_tidyverse_code.html#cb73-5" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now)</span>
+<span id="cb73-6"><a href="W02_04b_demo_tidyverse_code.html#cb73-6" aria-hidden="true" tabindex="-1"></a>time_difference</span>
+<span id="cb73-7"><a href="W02_04b_demo_tidyverse_code.html#cb73-7" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>)</span>
+<span id="cb73-8"><a href="W02_04b_demo_tidyverse_code.html#cb73-8" aria-hidden="true" tabindex="-1"></a>time_difference</span>
+<span id="cb73-9"><a href="W02_04b_demo_tidyverse_code.html#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
+<span id="cb73-10"><a href="W02_04b_demo_tidyverse_code.html#cb73-10" aria-hidden="true" tabindex="-1"></a>time_difference <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(later,now,<span class="at">units =</span> <span class="st">&quot;mins&quot;</span>))</span>
+<span id="cb73-11"><a href="W02_04b_demo_tidyverse_code.html#cb73-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-12"><a href="W02_04b_demo_tidyverse_code.html#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(time_difference)</span>
+<span id="cb73-13"><a href="W02_04b_demo_tidyverse_code.html#cb73-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-14"><a href="W02_04b_demo_tidyverse_code.html#cb73-14" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb73-15"><a href="W02_04b_demo_tidyverse_code.html#cb73-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-16"><a href="W02_04b_demo_tidyverse_code.html#cb73-16" aria-hidden="true" tabindex="-1"></a>numbers</span>
+<span id="cb73-17"><a href="W02_04b_demo_tidyverse_code.html#cb73-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-18"><a href="W02_04b_demo_tidyverse_code.html#cb73-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb73-19"><a href="W02_04b_demo_tidyverse_code.html#cb73-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-20"><a href="W02_04b_demo_tidyverse_code.html#cb73-20" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers)</span>
+<span id="cb73-21"><a href="W02_04b_demo_tidyverse_code.html#cb73-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-22"><a href="W02_04b_demo_tidyverse_code.html#cb73-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lead</span>(numbers,<span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb73-23"><a href="W02_04b_demo_tidyverse_code.html#cb73-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-24"><a href="W02_04b_demo_tidyverse_code.html#cb73-24" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers)</span>
+<span id="cb73-25"><a href="W02_04b_demo_tidyverse_code.html#cb73-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-26"><a href="W02_04b_demo_tidyverse_code.html#cb73-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb73-27"><a href="W02_04b_demo_tidyverse_code.html#cb73-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-28"><a href="W02_04b_demo_tidyverse_code.html#cb73-28" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(numbers,<span class="at">n =</span> <span class="dv">5</span>, <span class="at">default =</span> <span class="dv">0</span>)</span>
+<span id="cb73-29"><a href="W02_04b_demo_tidyverse_code.html#cb73-29" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb73-30"><a href="W02_04b_demo_tidyverse_code.html#cb73-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Hans&quot;</span>,<span class="dv">5</span>),<span class="fu">rep</span>(<span class="st">&quot;Klara&quot;</span>,<span class="dv">5</span>)),</span>
+<span id="cb73-31"><a href="W02_04b_demo_tidyverse_code.html#cb73-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">DatetimeUTC =</span> <span class="fu">rep</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;2015-01-01 00:00:00&quot;</span>,<span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)<span class="sc">+</span><span class="dv">0</span><span class="sc">:</span><span class="dv">4</span><span class="sc">*</span><span class="dv">15</span><span class="sc">*</span><span class="dv">60</span>, <span class="dv">2</span>)</span>
+<span id="cb73-32"><a href="W02_04b_demo_tidyverse_code.html#cb73-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb73-33"><a href="W02_04b_demo_tidyverse_code.html#cb73-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-34"><a href="W02_04b_demo_tidyverse_code.html#cb73-34" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
+<span id="cb73-35"><a href="W02_04b_demo_tidyverse_code.html#cb73-35" aria-hidden="true" tabindex="-1"></a>wildschwein<span class="sc">$</span>timelag  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(wildschwein<span class="sc">$</span>DatetimeUTC), wildschwein<span class="sc">$</span>DatetimeUTC))</span>
+<span id="cb73-36"><a href="W02_04b_demo_tidyverse_code.html#cb73-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-37"><a href="W02_04b_demo_tidyverse_code.html#cb73-37" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC)))</span>
+<span id="cb73-38"><a href="W02_04b_demo_tidyverse_code.html#cb73-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-39"><a href="W02_04b_demo_tidyverse_code.html#cb73-39" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
+<span id="cb73-40"><a href="W02_04b_demo_tidyverse_code.html#cb73-40" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">group_by</span>(wildschwein,TierID)</span>
+<span id="cb73-41"><a href="W02_04b_demo_tidyverse_code.html#cb73-41" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">mutate</span>(wildschwein,<span class="at">timelag =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">lead</span>(DatetimeUTC),DatetimeUTC)))</span>
+<span id="cb73-42"><a href="W02_04b_demo_tidyverse_code.html#cb73-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-43"><a href="W02_04b_demo_tidyverse_code.html#cb73-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-44"><a href="W02_04b_demo_tidyverse_code.html#cb73-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-45"><a href="W02_04b_demo_tidyverse_code.html#cb73-45" aria-hidden="true" tabindex="-1"></a>wildschwein</span>
+<span id="cb73-46"><a href="W02_04b_demo_tidyverse_code.html#cb73-46" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(wildschwein, <span class="at">mean =</span> <span class="fu">mean</span>(timelag, <span class="at">na.rm =</span> T))</span>
+<span id="cb73-47"><a href="W02_04b_demo_tidyverse_code.html#cb73-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-48"><a href="W02_04b_demo_tidyverse_code.html#cb73-48" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="sc">%&gt;%</span>                           <span class="co"># Take wildschwein...</span></span>
+<span id="cb73-49"><a href="W02_04b_demo_tidyverse_code.html#cb73-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span>                    <span class="co"># ...group it by TierID</span></span>
+<span id="cb73-50"><a href="W02_04b_demo_tidyverse_code.html#cb73-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(                              <span class="co"># Summarise the data...</span></span>
+<span id="cb73-51"><a href="W02_04b_demo_tidyverse_code.html#cb73-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_timelag =</span> <span class="fu">mean</span>(timelag,<span class="at">na.rm =</span> T)<span class="co"># ...by calculating the mean timelag</span></span>
+<span id="cb73-52"><a href="W02_04b_demo_tidyverse_code.html#cb73-52" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb73-53"><a href="W02_04b_demo_tidyverse_code.html#cb73-53" aria-hidden="true" tabindex="-1"></a>pigs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb73-54"><a href="W02_04b_demo_tidyverse_code.html#cb73-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">TierID =</span> <span class="fu">c</span>(<span class="dv">8001</span>,<span class="dv">8003</span>,<span class="dv">8004</span>,<span class="dv">8005</span>,<span class="dv">8800</span>,<span class="dv">8820</span>,<span class="dv">3000</span>,<span class="dv">3001</span>,<span class="dv">3002</span>,<span class="dv">3003</span>,<span class="dv">8330</span>,<span class="dv">7222</span>),</span>
+<span id="cb73-55"><a href="W02_04b_demo_tidyverse_code.html#cb73-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>),</span>
+<span id="cb73-56"><a href="W02_04b_demo_tidyverse_code.html#cb73-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">age=</span> <span class="fu">c</span> (<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>),</span>
+<span id="cb73-57"><a href="W02_04b_demo_tidyverse_code.html#cb73-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="fl">50.755</span>,<span class="fl">43.409</span>,<span class="fl">12.000</span>,<span class="fl">16.787</span>,<span class="fl">20.987</span>,<span class="fl">25.765</span>,<span class="fl">22.0122</span>,<span class="fl">21.343</span>,<span class="fl">12.532</span>,<span class="fl">54.32</span>,<span class="fl">11.027</span>,<span class="fl">88.08</span>)</span>
+<span id="cb73-58"><a href="W02_04b_demo_tidyverse_code.html#cb73-58" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb73-59"><a href="W02_04b_demo_tidyverse_code.html#cb73-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-60"><a href="W02_04b_demo_tidyverse_code.html#cb73-60" aria-hidden="true" tabindex="-1"></a>pigs</span>
+<span id="cb73-61"><a href="W02_04b_demo_tidyverse_code.html#cb73-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-62"><a href="W02_04b_demo_tidyverse_code.html#cb73-62" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
+<span id="cb73-63"><a href="W02_04b_demo_tidyverse_code.html#cb73-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(         </span>
+<span id="cb73-64"><a href="W02_04b_demo_tidyverse_code.html#cb73-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
+<span id="cb73-65"><a href="W02_04b_demo_tidyverse_code.html#cb73-65" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb73-66"><a href="W02_04b_demo_tidyverse_code.html#cb73-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-67"><a href="W02_04b_demo_tidyverse_code.html#cb73-67" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
+<span id="cb73-68"><a href="W02_04b_demo_tidyverse_code.html#cb73-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb73-69"><a href="W02_04b_demo_tidyverse_code.html#cb73-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
+<span id="cb73-70"><a href="W02_04b_demo_tidyverse_code.html#cb73-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
+<span id="cb73-71"><a href="W02_04b_demo_tidyverse_code.html#cb73-71" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb73-72"><a href="W02_04b_demo_tidyverse_code.html#cb73-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-73"><a href="W02_04b_demo_tidyverse_code.html#cb73-73" aria-hidden="true" tabindex="-1"></a>pigs <span class="sc">%&gt;%</span></span>
+<span id="cb73-74"><a href="W02_04b_demo_tidyverse_code.html#cb73-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex,age) <span class="sc">%&gt;%</span></span>
+<span id="cb73-75"><a href="W02_04b_demo_tidyverse_code.html#cb73-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(         </span>
+<span id="cb73-76"><a href="W02_04b_demo_tidyverse_code.html#cb73-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight)</span>
+<span id="cb73-77"><a href="W02_04b_demo_tidyverse_code.html#cb73-77" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 
 </div>
 <script src="https://utteranc.es/client.js"

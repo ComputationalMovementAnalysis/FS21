@@ -38,8 +38,8 @@ cqyx6 <- rg_cz_cqyx(oaravcqnypv, 6)
 
 # Tjap sa eyp vcyqc ezmoyqnpk cqyxaeczqnav sncj ayej zcjaq
 
-DTW(cqyx1, cqyx2)
-DTW(cqyx1, cqyx3)
+rcs_1_2 <- DTW(cqyx1, cqyx2)
+rcs_1_3 <- DTW(cqyx1, cqyx3)
 
 # ... ypr vz zp. Snpea cjnv ybvz bayrv cz mtej ezra qaoacncnzp, sa snbb 
 # ramzvcqyca y rngggaqapc yooqzyej:
