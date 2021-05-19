@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
-  <meta name="description" content="References | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <title>Peer Feedback | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
+  <meta name="description" content="Peer Feedback | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <meta property="og:title" content="Peer Feedback | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ComputationalMovementAnalysis/FS21" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <meta name="twitter:title" content="Peer Feedback | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="W03_05_peer_feedback.html"/>
-
+<link rel="prev" href="W03_01_exercise.html"/>
+<link rel="next" href="90_references.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -100,18 +100,41 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="peer-feedback" class="section level2">
+<h2>Peer Feedback</h2>
+<p>For the submissions of the exercises of week 3, you will give <em>each other</em> peer feedback similiar to how you received feedback from us in week 2. Each of you will be assigned a fellow student to provide feedback and will receive feedback from a different student. You will get the URL of the repo that you provide feedback via moodle.</p>
+<p>Using the URL of the Github Repo to which you will provide feedback, create a new RStudio Project following <a href="#w2-project">step 4</a> we described in week 2. This will create a clone of that project on your local machine and open it in RStudio.</p>
+<p>Try to run the code written by your fellow student locally. <em>TODO</em>: Add more detail on what the students should provide feedback on.</p>
+<p>Git and Github provide rich functionalities to give feedback on code. We recommend you use <em>issues</em> to deliver your feedback to your peer (in the way we provided feedback in week 2). Using issues you can reference specific lines of code, similar like the <em>comment</em> feature in Microsoft Word. You have two ways to reference of specific line(s):</p>
+<ol style="list-style-type: decimal">
+<li>via <a href="W03_05_peer_feedback.html#issues-option1">the browser (on github.com)</a></li>
+<li>via <a href="W03_05_peer_feedback.html#issues-option2">our RStudio Addin</a></li>
+</ol>
+<p>Option 1 requires no initial set up and is quite straightforward. However, you will need to switch back and forth between RStudio and Github, which can be quite tiresome.</p>
+<p>Option 2 will require 10 minutes of set up, but should be faster to use afterwards. We therefore recommend this option, however: We developed this addin ourselves and it might not be stable for everyone. Please contact us if it does not work for you.</p>
+<div id="issues-option1" class="section level3">
+<h3>Option 1: via the browser on github.com</h3>
+<ol style="list-style-type: decimal">
+<li>Open the repo’s URL in your browser</li>
+<li>Find and open the R / RMarkdown script containing the code you want to provide feedback on</li>
+<li>Highlight the lines you want to reference by clicking on the respective line numbers (you can select multiple lines by selecting the first line, holding the shift key and then selecting the last line)</li>
+<li>Click on the three dots situatied to the left of the first line</li>
+<li>Choose <em>Reference in new issue</em>. This will create a new issue with a link referencing the specific lines.</li>
+<li>Add your comment</li>
+</ol>
+<p><img src="https://github.blog/wp-content/uploads/2017/08/29093044-6477ba12-7c56-11e7-9bd2-e6db926d70be.gif?resize=1360%2C600" /></p>
+</div>
+<div id="issues-option2" class="section level3">
+<h3>Option 2: via our RStudio addin</h3>
+<p>One time setup:</p>
+<ol style="list-style-type: decimal">
+<li>Install <code>devtools</code> (<code>install.packages("devtools")</code>)</li>
+<li>Install <code>inlineComments</code> <a href="github.com/ratnanil/inlineComments">from Github</a> (<code>devtools::install_github("ratnanil/inlineComments")</code>)</li>
+<li>Restart RStudio</li>
+<li>Click on <em>tools &gt; Modify keyboard shortcuts</em> and add a shortcut for the command <em>Insert inline comment</em> (e.g. <code>Ctrl + Shift + k</code>)</li>
+</ol>
+<p>Now for each comment, you can highlight the lines you wish to comment and use the keyboard shortcut you assigned in the last step (e.g. <code>Ctrl + Shift + k</code>). This should open a window where you can add your comment and if you hit <em>Create issue</em>, your comments will be added to your fellow student’s repo and a message will show you a link to the new issue.</p>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-both2018" class="csl-entry">
-Alan Both, Matt Duckham, Kevin Buchin. 2018. <span>“A Comparative Analysis of Trajectory Similarity Measures: Recommendations for Selection and Use.”</span>
-</div>
-<div id="ref-laube2011" class="csl-entry">
-Laube, Patrick, and Ross S. Purves. 2011. <span>“How Fast Is a Cow? Cross - Scale Analysis of Movement Data.”</span> <em>Transactions in GIS</em> 15 (3): 401–18. <a href="https://doi.org/10.1111/j.1467-9671.2011.01256.x">https://doi.org/10.1111/j.1467-9671.2011.01256.x</a>.
-</div>
-<div id="ref-wickham2017" class="csl-entry">
-Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. O’Reilly Media, Inc.
 </div>
 </div>
 </div>
@@ -127,8 +150,8 @@ Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Ti
           </div>
         </div>
       </div>
-<a href="W03_05_peer_feedback.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="W03_01_exercise.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="90_references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -150,7 +173,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/90_references.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/W03_05_peer_feedback.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -158,7 +181,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/90_references.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/W03_05_peer_feedback.Rmd",
 "text": null
 },
 "download": null,
