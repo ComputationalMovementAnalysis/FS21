@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
   <meta name="description" content="Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="W04_03_preparation.html"/>
 <link rel="next" href="W05_01_exercise.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -114,6 +116,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="90_misc/mystyle.css" type="text/css" />
@@ -259,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="tasks-and-inputs-2" class="section level2">
 <h2>Tasks and inputs</h2>
-<p>Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you have copied and pasted a block of code more than twice, you should consider writing a function <span class="citation">(<a href="90_references.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
+<p>Up to now, we have used a variety of different functions designed by other developers. Sometimes we need to execute an operation multiple times, and most often it is reasonable to write a function to do so. Whenever you have copied and pasted a block of code more than twice, you should consider writing a function <span class="citation">(<a href="#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
 <p>We have violated this rule multiple times when calculating the Euclidean distances between points. Writing and rewriting the code <code>sqrt((x-lead(x,1))^2+(y-lead(y,1))^2)</code> over and over again is not only cumbersome, it is also error prone. We can easily wrap this operation into a function. This input on writing functions should bring you up to speed to do this in your first task.</p>
 <p>The first step in writing a function, is picking a name and assigning <code>&lt;- function(){}</code> to it.</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="W04_04_tasks_and_inputs.html#cb88-1" aria-hidden="true" tabindex="-1"></a>testfun <span class="ot">&lt;-</span> <span class="cf">function</span>(){}</span></code></pre></div>
@@ -285,10 +310,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb92-3"><a href="W04_04_tasks_and_inputs.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb92-4"><a href="W04_04_tasks_and_inputs.html#cb92-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb92-5"><a href="W04_04_tasks_and_inputs.html#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="at">birthday =</span> <span class="st">&quot;1997-04-23&quot;</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>)</span>
-<span id="cb92-6"><a href="W04_04_tasks_and_inputs.html#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8791.887 days</span></span></code></pre></div>
+<span id="cb92-6"><a href="W04_04_tasks_and_inputs.html#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8792.422 days</span></span></code></pre></div>
 <p>As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of <code>birthday =</code> and <code>units =</code>).</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="W04_04_tasks_and_inputs.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;days&quot;</span>)</span>
-<span id="cb93-2"><a href="W04_04_tasks_and_inputs.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8791.887 days</span></span></code></pre></div>
+<span id="cb93-2"><a href="W04_04_tasks_and_inputs.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8792.422 days</span></span></code></pre></div>
 <p>If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="W04_04_tasks_and_inputs.html#cb94-1" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="cf">function</span>(birthday, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>){</span>
 <span id="cb94-2"><a href="W04_04_tasks_and_inputs.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">difftime</span>(<span class="fu">Sys.time</span>(),birthday, <span class="at">units =</span> units)</span>
@@ -296,11 +321,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb94-4"><a href="W04_04_tasks_and_inputs.html#cb94-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb94-5"><a href="W04_04_tasks_and_inputs.html#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if not stated otherwise, our function uses the unit &quot;days&quot;</span></span>
 <span id="cb94-6"><a href="W04_04_tasks_and_inputs.html#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>)</span>
-<span id="cb94-7"><a href="W04_04_tasks_and_inputs.html#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8791.887 days</span></span>
+<span id="cb94-7"><a href="W04_04_tasks_and_inputs.html#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8792.422 days</span></span>
 <span id="cb94-8"><a href="W04_04_tasks_and_inputs.html#cb94-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb94-9"><a href="W04_04_tasks_and_inputs.html#cb94-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite units</span></span>
 <span id="cb94-10"><a href="W04_04_tasks_and_inputs.html#cb94-10" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;hours&quot;</span>)</span>
-<span id="cb94-11"><a href="W04_04_tasks_and_inputs.html#cb94-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 211005.3 hours</span></span></code></pre></div>
+<span id="cb94-11"><a href="W04_04_tasks_and_inputs.html#cb94-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 211018.1 hours</span></span></code></pre></div>
 <p>All you need to do now is run execute the function deceleration (<code>myage &lt;- function...</code> etc.) at the beginning of your script, and you can use the function for your entire R session. Tip: Always try to make your function self sufficient: Don’t call variables that were created outside the function call.</p>
 <div id="task-1-write-your-own-functions" class="section level3">
 <h3>Task 1: Write your own functions</h3>
@@ -356,10 +381,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="task-6-optional-visualize-data-as-timecube-with-plotly" class="section level3">
 <h3>Task 6 (optional): Visualize data as timecube with <code>plotly</code></h3>
-<p>Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube <span class="citation">(<a href="90_references.html#ref-hagerstraand1970" role="doc-biblioref">Hägerstraand 1970</a>)</span> with the package <code>plotly</code>. There are some <a href="https://plot.ly/r/3d-line-plots/">nice ressources</a> available online.</p>
+<p>Finally, you can nicely visualize the meeting patterns and trajectories in a Space-Time-Cube <span class="citation">(<a href="#ref-hagerstraand1970" role="doc-biblioref">Hägerstraand 1970</a>)</span> with the package <code>plotly</code>. There are some <a href="https://plot.ly/r/3d-line-plots/">nice ressources</a> available online.</p>
 <p><img src="02_Images/space_time_cube.jpg" /></p>
 
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-hagerstraand1970" class="csl-entry">
+Hägerstraand, Torsten. 1970. <span>“What about People in Regional Science?”</span> <em>Papers in Regional Science</em> 24 (1): 7–24.
+</div>
+<div id="ref-wickham2017" class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. O’Reilly Media, Inc.
 </div>
 </div>
 <div class="footnotes">
