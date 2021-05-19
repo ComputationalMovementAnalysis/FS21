@@ -4,7 +4,7 @@
 source('01_R_Files/helperfunctions.R')
 ```
 
-Open your RStudio Project [which you prepared](#w5-preperation) from this week. Create a new RScript and import the libraries we need for this week. Import your wildboar dataset as an `sf` object
+Open your RStudio Project [which you prepared](#w5-preperation) from this week. Create a new RScript and import the libraries we need for this week. Import your wildboar dataset `r download_url("wildschwein_BE_2056.csv","00_Rawdata")` as an `sf` object
 
 ```{r, opts.label="example_hideOutput"}
 library(readr)
