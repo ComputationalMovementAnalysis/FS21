@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
   <meta name="description" content="Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Tasks and inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="W01_04_preparations.html"/>
 <link rel="next" href="W01_06_solutions.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -114,6 +116,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="90_misc/mystyle.css" type="text/css" />
@@ -336,10 +361,10 @@ Let’s compare our original <code>data.frame</code> with this new <code>sf</cod
 ## # ... with 51,236 more rows</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="W01_05_tasks_and_inputs.html#cb10-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_sf</span></code></pre></div>
 <pre><code>## Simple feature collection with 51246 features and 4 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 7.019889 ymin: 46.97125 xmax: 7.112075 ymax: 47.01882
-## geographic CRS: WGS 84
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 7.019889 ymin: 46.97125 xmax: 7.112075 ymax: 47.01882
+## Geodetic CRS:  WGS 84
 ## # A tibble: 51,246 x 5
 ##    TierID TierName CollarID DatetimeUTC                    geometry
 ##  * &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                      &lt;POINT [°]&gt;
@@ -378,10 +403,10 @@ Let’s compare our original <code>data.frame</code> with this new <code>sf</cod
 <p>Here’s the resulting <code>sf</code> object from the operation:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="W01_05_tasks_and_inputs.html#cb15-1" aria-hidden="true" tabindex="-1"></a>wildschwein_BE</span>
 <span id="cb15-2"><a href="W01_05_tasks_and_inputs.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 51246 features and 4 fields</span></span>
-<span id="cb15-3"><a href="W01_05_tasks_and_inputs.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
-<span id="cb15-4"><a href="W01_05_tasks_and_inputs.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
-<span id="cb15-5"><a href="W01_05_tasks_and_inputs.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
-<span id="cb15-6"><a href="W01_05_tasks_and_inputs.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb15-3"><a href="W01_05_tasks_and_inputs.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Geometry type: POINT</span></span>
+<span id="cb15-4"><a href="W01_05_tasks_and_inputs.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Dimension:     XY</span></span>
+<span id="cb15-5"><a href="W01_05_tasks_and_inputs.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Bounding box:  xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
+<span id="cb15-6"><a href="W01_05_tasks_and_inputs.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Projected CRS: CH1903+ / LV95</span></span>
 <span id="cb15-7"><a href="W01_05_tasks_and_inputs.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 51,246 x 5</span></span>
 <span id="cb15-8"><a href="W01_05_tasks_and_inputs.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                  geometry</span></span>
 <span id="cb15-9"><a href="W01_05_tasks_and_inputs.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  * &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                    &lt;POINT [m]&gt;</span></span>
@@ -408,10 +433,10 @@ Let’s compare our original <code>data.frame</code> with this new <code>sf</cod
 <span id="cb16-3"><a href="W01_05_tasks_and_inputs.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="W01_05_tasks_and_inputs.html#cb16-4" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_grouped</span>
 <span id="cb16-5"><a href="W01_05_tasks_and_inputs.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 51246 features and 4 fields</span></span>
-<span id="cb16-6"><a href="W01_05_tasks_and_inputs.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  POINT</span></span>
-<span id="cb16-7"><a href="W01_05_tasks_and_inputs.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
-<span id="cb16-8"><a href="W01_05_tasks_and_inputs.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
-<span id="cb16-9"><a href="W01_05_tasks_and_inputs.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb16-6"><a href="W01_05_tasks_and_inputs.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Geometry type: POINT</span></span>
+<span id="cb16-7"><a href="W01_05_tasks_and_inputs.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Dimension:     XY</span></span>
+<span id="cb16-8"><a href="W01_05_tasks_and_inputs.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Bounding box:  xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
+<span id="cb16-9"><a href="W01_05_tasks_and_inputs.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Projected CRS: CH1903+ / LV95</span></span>
 <span id="cb16-10"><a href="W01_05_tasks_and_inputs.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 51,246 x 5</span></span>
 <span id="cb16-11"><a href="W01_05_tasks_and_inputs.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   TierID [3]</span></span>
 <span id="cb16-12"><a href="W01_05_tasks_and_inputs.html#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                  geometry</span></span>
@@ -432,10 +457,10 @@ Let’s compare our original <code>data.frame</code> with this new <code>sf</cod
 <span id="cb17-2"><a href="W01_05_tasks_and_inputs.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="W01_05_tasks_and_inputs.html#cb17-3" aria-hidden="true" tabindex="-1"></a>wildschwein_BE_smry</span>
 <span id="cb17-4"><a href="W01_05_tasks_and_inputs.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 3 features and 1 field</span></span>
-<span id="cb17-5"><a href="W01_05_tasks_and_inputs.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">## geometry type:  MULTIPOINT</span></span>
-<span id="cb17-6"><a href="W01_05_tasks_and_inputs.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="do">## dimension:      XY</span></span>
-<span id="cb17-7"><a href="W01_05_tasks_and_inputs.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="do">## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
-<span id="cb17-8"><a href="W01_05_tasks_and_inputs.html#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## projected CRS:  CH1903+ / LV95</span></span>
+<span id="cb17-5"><a href="W01_05_tasks_and_inputs.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Geometry type: MULTIPOINT</span></span>
+<span id="cb17-6"><a href="W01_05_tasks_and_inputs.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Dimension:     XY</span></span>
+<span id="cb17-7"><a href="W01_05_tasks_and_inputs.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Bounding box:  xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609</span></span>
+<span id="cb17-8"><a href="W01_05_tasks_and_inputs.html#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Projected CRS: CH1903+ / LV95</span></span>
 <span id="cb17-9"><a href="W01_05_tasks_and_inputs.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
 <span id="cb17-10"><a href="W01_05_tasks_and_inputs.html#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   TierID                                                                geometry</span></span>
 <span id="cb17-11"><a href="W01_05_tasks_and_inputs.html#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                         &lt;MULTIPOINT [m]&gt;</span></span>
