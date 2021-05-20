@@ -2,24 +2,20 @@
 
 
 
-For the submissions of the exercises of week 3, you will give *each other* peer feedback similiar to how you received feedback from us in week 2. Each of you will be assigned a fellow student to provide feedback and will receive feedback from a different student. You will get the URL of the repo that you provide feedback via moodle.
+This weeks exercises are not mandatory. However, we recommend you submit your solutions none the less and give each other peer feedback similar to how you received feedback from us in week 2. If you would like to receive peer feedback on your exercise, provide the URL to your repo in the comment section at the bottom of this page. 
 
-Using the URL of the Github Repo to which you will provide feedback, create a new RStudio Project following [step 4](#w2-project) we described in week 2:
+To be notified of any such comments, got to the repo [ComputationalMovementAnalysis/utterances](https://github.com/ComputationalMovementAnalysis/utterances), click on *watch* and select *all activity*.
+
+If you would like to provide peer feedback, reply to such a post accordingly. Then, to get the repo of your fellow student on your local hard drive you can use the Github URL and create a new RStudio in the following manner:
 
 1. In RStudio, start a new project
 2. Choose: File > New Project > Version Control > Git.
 3. In the repository URL, paste the URL from your peer
 
-This will create a clone of that project on your local machine and open it in RStudio. Try to run the code written by your fellow student locally. *TODO*: Add more detail on what the students should provide feedback on.
+This will create a clone of that project on your local machine and open it in RStudio. You can then run and inspect the code of your peer and provide feedback using issues(in the way we provided feedback in week 2). In issues you can reference specific lines of code, similar like the *comment* feature in Microsoft Word. You have two ways to reference of specific line(s):
 
-Git and Github provide rich functionalities to give feedback on code. We recommend you use *issues* to deliver your feedback to your peer (in the way we provided feedback in week 2). Using issues you can reference specific lines of code, similar like the *comment* feature in Microsoft Word. You have two ways to reference of specific line(s):
-
-1. via [the browser (on github.com)](#issues-option1)
-2. via [our RStudio Addin](#issues-option2)
-
-Option 1 requires no initial set up and is quite straightforward. However, you will need to switch back and forth between RStudio and Github, which can be quite tiresome. 
-
-Option 2 will require 10 minutes of set up, but should be faster to use afterwards. We therefore recommend this option, however: We developed this addin ourselves and it might not be stable for everyone. Please contact us if it does not work for you.
+1. via [the browser (on github.com)](#issues-option1): This requires no initial set up and is quite straightforward. However, you will need to switch back and forth between RStudio and Github, which can be quite tiresome. 
+2. via [our RStudio Addin](#issues-option2): this will require 10 minutes of set up, but should be faster to use afterwards. We therefore recommend this option, however: We developed this addin ourselves and it might not be stable for everyone. Please contact us if it does not work for you.
 
 ### Option 1: via the browser on github.com {#issues-option1}
 
