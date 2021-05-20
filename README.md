@@ -8,6 +8,7 @@
 - if we use utterances, everyone needs to subscribe to the repo
 - don't duplicate prerequisites and reading assignments
 - update the learning outcomes, they are outdated!
+- think about making peer feedback mandatory (i.e. for a mandatory submission)
 
 # ToDos for FS2021:
 

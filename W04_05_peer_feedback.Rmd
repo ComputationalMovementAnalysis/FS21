@@ -6,6 +6,8 @@ source('01_R_Files/helperfunctions.R')
 
 This weeks exercises are not mandatory. However, we recommend you submit your solutions none the less and give each other peer feedback similar to how you received feedback from us in week 2. If you would like to receive peer feedback on your exercise, provide the URL to your repo in the comment section at the bottom of this page. 
 
+To be notified of any such comments, got to the repo [ComputationalMovementAnalysis/utterances](https://github.com/ComputationalMovementAnalysis/utterances), click on *watch* and select *all activity*.
+
 If you would like to provide peer feedback, reply to such a post accordingly. Then, to get the repo of your fellow student on your local hard drive you can use the Github URL and create a new RStudio in the following manner:
 
 1. In RStudio, start a new project
