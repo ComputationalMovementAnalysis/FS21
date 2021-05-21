@@ -34,7 +34,7 @@ This will create a clone of that project on your local machine and open it in RS
 One time setup:
 
 1. Install `devtools` (`install.packages("devtools")`)
-2. Install `inlineComments` [from Github](github.com/ratnanil/inlineComments) (`devtools::install_github("ratnanil/inlineComments")`)
+2. Install `inlineComments` from Github ([ratnanil/inlineComments](https://github.com/ratnanil/inlineComments), via `devtools::install_github("ratnanil/inlineComments")`)
 4. Restart RStudio
 5. Click on *tools > Modify keyboard shortcuts* and add a shortcut for the command *Insert inline comment* (e.g. `Ctrl + Shift + k`) 
 

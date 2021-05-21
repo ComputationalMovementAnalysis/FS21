@@ -54,14 +54,14 @@ my_age <- function(birthday, units){
   }
 
 my_age(birthday = "1997-04-23", units = "days")
-## Time difference of 8794.388 days
+## Time difference of 8794.403 days
 ```
 
 As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of `birthday = ` and `units =`).
 
 ```r
 my_age("1997-04-23", "days")
-## Time difference of 8794.388 days
+## Time difference of 8794.403 days
 ```
 
 
@@ -74,11 +74,11 @@ my_age <- function(birthday, units = "days"){
 
 # if not stated otherwise, our function uses the unit "days"
 my_age("1997-04-23")
-## Time difference of 8794.388 days
+## Time difference of 8794.403 days
 
 # We can still overwrite units
 my_age("1997-04-23", "hours")
-## Time difference of 211065.3 hours
+## Time difference of 211065.7 hours
 ```
 
 All you need to do now is run execute the function deceleration (`myage <- function...` etc.) at the beginning of your script, and you can use the function for your entire R session. Tip: Always try to make your function self sufficient: Don't call variables that were created outside the function call.

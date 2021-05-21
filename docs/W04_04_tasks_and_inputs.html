@@ -293,10 +293,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb92-3"><a href="W04_04_tasks_and_inputs.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb92-4"><a href="W04_04_tasks_and_inputs.html#cb92-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb92-5"><a href="W04_04_tasks_and_inputs.html#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="at">birthday =</span> <span class="st">&quot;1997-04-23&quot;</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>)</span>
-<span id="cb92-6"><a href="W04_04_tasks_and_inputs.html#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8794.388 days</span></span></code></pre></div>
+<span id="cb92-6"><a href="W04_04_tasks_and_inputs.html#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8794.403 days</span></span></code></pre></div>
 <p>As we already know from using other functions, if we declare our variables in the order that we initially listed them, we do not need to specify the parameters (no need of <code>birthday =</code> and <code>units =</code>).</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="W04_04_tasks_and_inputs.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;days&quot;</span>)</span>
-<span id="cb93-2"><a href="W04_04_tasks_and_inputs.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8794.388 days</span></span></code></pre></div>
+<span id="cb93-2"><a href="W04_04_tasks_and_inputs.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8794.403 days</span></span></code></pre></div>
 <p>If we want any of our parameters to have default value, we can assign an initial value to the parameter when declaring the variables within the round brackets.</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="W04_04_tasks_and_inputs.html#cb94-1" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> <span class="cf">function</span>(birthday, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>){</span>
 <span id="cb94-2"><a href="W04_04_tasks_and_inputs.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">difftime</span>(<span class="fu">Sys.time</span>(),birthday, <span class="at">units =</span> units)</span>
@@ -304,11 +304,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb94-4"><a href="W04_04_tasks_and_inputs.html#cb94-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb94-5"><a href="W04_04_tasks_and_inputs.html#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if not stated otherwise, our function uses the unit &quot;days&quot;</span></span>
 <span id="cb94-6"><a href="W04_04_tasks_and_inputs.html#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>)</span>
-<span id="cb94-7"><a href="W04_04_tasks_and_inputs.html#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8794.388 days</span></span>
+<span id="cb94-7"><a href="W04_04_tasks_and_inputs.html#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 8794.403 days</span></span>
 <span id="cb94-8"><a href="W04_04_tasks_and_inputs.html#cb94-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb94-9"><a href="W04_04_tasks_and_inputs.html#cb94-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We can still overwrite units</span></span>
 <span id="cb94-10"><a href="W04_04_tasks_and_inputs.html#cb94-10" aria-hidden="true" tabindex="-1"></a><span class="fu">my_age</span>(<span class="st">&quot;1997-04-23&quot;</span>, <span class="st">&quot;hours&quot;</span>)</span>
-<span id="cb94-11"><a href="W04_04_tasks_and_inputs.html#cb94-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 211065.3 hours</span></span></code></pre></div>
+<span id="cb94-11"><a href="W04_04_tasks_and_inputs.html#cb94-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 211065.7 hours</span></span></code></pre></div>
 <p>All you need to do now is run execute the function deceleration (<code>myage &lt;- function...</code> etc.) at the beginning of your script, and you can use the function for your entire R session. Tip: Always try to make your function self sufficient: Don’t call variables that were created outside the function call.</p>
 <div id="task-1-write-your-own-functions" class="section level3">
 <h3>Task 1: Write your own functions</h3>
