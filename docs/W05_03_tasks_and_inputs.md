@@ -70,10 +70,10 @@ Semantically annotate your wildboar locations with the vegetation index (similar
 
 ```
 ## Simple feature collection with 51246 features and 7 fields
-## Geometry type: POINT
-## Dimension:     XY
-## Bounding box:  xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
-## Projected CRS: CH1903+ / LV95
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: 2568153 ymin: 1202306 xmax: 2575154 ymax: 1207609
+## projected CRS:  CH1903+ / LV95
 ## First 10 features:
 ##    TierID TierName CollarID         DatetimeUTC       E       N
 ## 1    002A     Sabi    12275 2014-08-22 21:00:12 2570409 1204752

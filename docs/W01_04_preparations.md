@@ -23,7 +23,7 @@ This returns the version number of your R installation, whereas the first digit 
 - don't have the current *major* version or
 - are lagging two (or more) versions behind the current *minor release*
 
-In the time of writing (Mai, 2021), the current `R` Version is 4.1.0 (released on 2021-05-18 07:05:22, see [cran.r-project.org](https://cran.r-project.org/)). Your installation should therefore not be older than 4.0.0. If it is, make sure that you have updated R until next week (doing it now will probably take too long). Check [these instructions on how to update R](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/)
+In the time of writing (May, 2021), the current `R` Version is 4.1.0 (released on 2021-05-18 07:05:22, see [cran.r-project.org](https://cran.r-project.org/)). Your installation should therefore not be older than 4.0.0. If it is, make sure that you have updated R until next week (doing it now will probably take too long). Check [these instructions on how to update R](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/)
 
 
 ### Check your version of RStudio
