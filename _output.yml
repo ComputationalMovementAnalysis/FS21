@@ -1,5 +1,6 @@
 bookdown::gitbook:
   number_sections: false
+  split_bib: false
   config:
     toc:
       collapse: section

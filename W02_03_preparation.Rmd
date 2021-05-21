@@ -1,4 +1,4 @@
-## Preparation
+## Preparation {#w2-preparation}
 
 
 These preparations for week 2 build up on week 1. Make sure your software is up to date: 
