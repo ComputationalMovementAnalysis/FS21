@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Solutions | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
+  <meta name="description" content="Solutions | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Solutions | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="ComputationalMovementAnalysis/FS21" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Solutions | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  
+  
+  
+
+<meta name="author" content="Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="W03_04_tasks_and_inputs.html"/>
+<link rel="next" href="W04_01_exercise.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="90_misc/mystyle.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<img src="02_Images/zhaw_lsfm_schwarz.png" alt="ZHAW Logo" width="300">
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to the course!</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="W01_01_exercise.html"><a href="W01_01_exercise.html"><i class="fa fa-check"></i>Exercise 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="W01_03_Slides.html"><a href="W01_03_Slides.html"><i class="fa fa-check"></i>Slides</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li><a href="W01_04_preparations.html#check-you-version-of-r">Check you version of <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#check-your-version-of-rstudio"><i class="fa fa-check"></i>Check your version of RStudio</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#install-the-necessary-packages"><i class="fa fa-check"></i>Install the necessary packages</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#install-git"><i class="fa fa-check"></i>Install Git</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#configure-rstudio"><i class="fa fa-check"></i>Configure RStudio</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#introduce-yourself-git"><i class="fa fa-check"></i>Introduce yourself to Git</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#folder-structure"><i class="fa fa-check"></i>Prepare the folder structure for this course</a></li>
+<li><a href="W01_04_preparations.html#create-an-rstudio-project-for-the-first-week">Create an RStudio <em>project</em> for the first week</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-1-import-data"><i class="fa fa-check"></i>Task 1: Import data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-2-explore-data"><i class="fa fa-check"></i>Task 2: Explore Data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-handling-spatial-data"><i class="fa fa-check"></i>Input: Handling spatial data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-3-project-data-from-wgs84"><i class="fa fa-check"></i>Task 3: Project data from WGS84</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-calculate-convex-hull"><i class="fa fa-check"></i>Input: Calculate Convex Hull</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-4-ploting-spatial-objects"><i class="fa fa-check"></i>Task 4: Ploting spatial objects</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#w1-importing-raster"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-5-adding-a-background-map"><i class="fa fa-check"></i>Task 5: Adding a background map</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-6-create-an-interactive-map"><i class="fa fa-check"></i>Task 6: Create an interactive map</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W01_06_solutions.html"><a href="W01_06_solutions.html"><i class="fa fa-check"></i>Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_01_exercise.html"><a href="W02_01_exercise.html"><i class="fa fa-check"></i>Exercise 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html"><i class="fa fa-check"></i>Demo Tidyverse</a>
+<ul>
+<li><a href="W02_04_demo_tidyverse.html#difftime"><code>difftime</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#lead-lag"><code>lead()</code> / <code>lag()</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#mutate"><code>mutate()</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#group_by"><code>group_by()</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#summarise"><code>summarise()</code></a></li>
+<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#bring-it-all-together"><i class="fa fa-check"></i>Bring it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_04b_demo_tidyverse_code.html"><a href="W02_04b_demo_tidyverse_code.html"><i class="fa fa-check"></i>Demo Tidyverse (R-Code)</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-1-create-a-github-account"><i class="fa fa-check"></i>Step 1: Create a Github account</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-2-authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Step 2: Authenticate Git to work with Github</a></li>
+<li><a href="W02_03_preparation.html#create-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#w2-project"><i class="fa fa-check"></i>Step 4: Create a new RStudio Project</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-0-import-your-data"><i class="fa fa-check"></i>Task 0: Import your data</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an overview</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#w2-task2"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Speed</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_06_solutions.html"><a href="W02_06_solutions.html"><i class="fa fa-check"></i>Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W03_01_exercise.html"><a href="W03_01_exercise.html"><i class="fa fa-check"></i>Exercise 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_02_Slides.html"><a href="W03_02_Slides.html"><i class="fa fa-check"></i>Slides</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-1-create-a-normal-rstudio-project"><i class="fa fa-check"></i>Step 1: Create a “normal” RStudio Project</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-2-activate-git-version-control"><i class="fa fa-check"></i>Step 2: Activate Git Version Control</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-3-rename-branch"><i class="fa fa-check"></i>Step 3: Rename branch</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-4-create-a-github-repository"><i class="fa fa-check"></i>Step 4: Create a Github Repository</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-5-connect-to-github"><i class="fa fa-check"></i>Step 5: Connect to Github</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
+<li><a href="W03_04_tasks_and_inputs.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W03_05_solutions.html"><a href="W03_05_solutions.html"><i class="fa fa-check"></i>Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W04_01_exercise.html"><a href="W04_01_exercise.html"><i class="fa fa-check"></i>Exercise 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_02_Slides.html"><a href="W04_02_Slides.html"><i class="fa fa-check"></i>Slides</a></li>
+<li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-prepare-analysis"><i class="fa fa-check"></i>Task 2: Prepare Analysis</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-4-measuring-distance-at-concurrent-locations"><i class="fa fa-check"></i>Task 4: Measuring distance at concurrent locations</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-5-visualize-data"><i class="fa fa-check"></i>Task 5: Visualize data</a></li>
+<li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W04_05_peer_feedback.html"><a href="W04_05_peer_feedback.html"><i class="fa fa-check"></i>Peer Feedback</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_05_peer_feedback.html"><a href="W04_05_peer_feedback.html#issues-option1"><i class="fa fa-check"></i>Option 1: via the browser on github.com</a></li>
+<li class="chapter" data-level="" data-path="W04_05_peer_feedback.html"><a href="W04_05_peer_feedback.html#issues-option2"><i class="fa fa-check"></i>Option 2: via our RStudio addin</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W04_06_solutions.html"><a href="W04_06_solutions.html"><i class="fa fa-check"></i>Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_02_preparation.html"><a href="W05_02_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#w5-annotate-vector"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-import-and-visualize-vegetationindex-raster-data"><i class="fa fa-check"></i>Task 4: Import and visualize vegetationindex (raster data)</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-5-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 5: Annotate Trajectories from raster data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="90_references.html"><a href="90_references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /></a>.
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Movement Analysis: Patterns and Trends in Environmental Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solutions-2" class="section level2">
+<h2>Solutions</h2>
+<p>Hover over the code and copy the content by clicking on the clipboard icon on the top right. You can now paste this into an R-Script.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="W03_05_solutions.html#cb88-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-2"><a href="W03_05_solutions.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="co"># task 1 ########################################################################</span></span>
+<span id="cb88-3"><a href="W03_05_solutions.html#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="W03_05_solutions.html#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb88-5"><a href="W03_05_solutions.html#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb88-6"><a href="W03_05_solutions.html#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb88-7"><a href="W03_05_solutions.html#cb88-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-8"><a href="W03_05_solutions.html#cb88-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-9"><a href="W03_05_solutions.html#cb88-9" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/caro60.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb88-10"><a href="W03_05_solutions.html#cb88-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-11"><a href="W03_05_solutions.html#cb88-11" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span> caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb88-12"><a href="W03_05_solutions.html#cb88-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb88-13"><a href="W03_05_solutions.html#cb88-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">stepMean =</span> <span class="fu">rowMeans</span>(                       </span>
+<span id="cb88-14"><a href="W03_05_solutions.html#cb88-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cbind</span>(                                   </span>
+<span id="cb88-15"><a href="W03_05_solutions.html#cb88-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">3</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(E,<span class="dv">3</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span>),   </span>
+<span id="cb88-16"><a href="W03_05_solutions.html#cb88-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">2</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(E,<span class="dv">2</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span>),   </span>
+<span id="cb88-17"><a href="W03_05_solutions.html#cb88-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">1</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(E,<span class="dv">1</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span>),   </span>
+<span id="cb88-18"><a href="W03_05_solutions.html#cb88-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span>),  </span>
+<span id="cb88-19"><a href="W03_05_solutions.html#cb88-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb88-20"><a href="W03_05_solutions.html#cb88-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">3</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">3</span>))<span class="sc">^</span><span class="dv">2</span>)  </span>
+<span id="cb88-21"><a href="W03_05_solutions.html#cb88-21" aria-hidden="true" tabindex="-1"></a>        )                                        </span>
+<span id="cb88-22"><a href="W03_05_solutions.html#cb88-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb88-23"><a href="W03_05_solutions.html#cb88-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb88-24"><a href="W03_05_solutions.html#cb88-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-25"><a href="W03_05_solutions.html#cb88-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: </span></span>
+<span id="cb88-26"><a href="W03_05_solutions.html#cb88-26" aria-hidden="true" tabindex="-1"></a><span class="co"># We present here a slightly different approach as presented in the input:</span></span>
+<span id="cb88-27"><a href="W03_05_solutions.html#cb88-27" aria-hidden="true" tabindex="-1"></a><span class="co"># - cbind() creates a matrix with the same number of rows as the original dataframe</span></span>
+<span id="cb88-28"><a href="W03_05_solutions.html#cb88-28" aria-hidden="true" tabindex="-1"></a><span class="co"># - It has 6 columns, one for each Euclidean distance calculation</span></span>
+<span id="cb88-29"><a href="W03_05_solutions.html#cb88-29" aria-hidden="true" tabindex="-1"></a><span class="co"># - rowMeans() returns a single vector with the same number of rows as the original dataframe</span></span>
+<span id="cb88-30"><a href="W03_05_solutions.html#cb88-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-31"><a href="W03_05_solutions.html#cb88-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-32"><a href="W03_05_solutions.html#cb88-32" aria-hidden="true" tabindex="-1"></a><span class="co"># task 2 ########################################################################</span></span>
+<span id="cb88-33"><a href="W03_05_solutions.html#cb88-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-34"><a href="W03_05_solutions.html#cb88-34" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(caro60<span class="sc">$</span>stepMean)</span>
+<span id="cb88-35"><a href="W03_05_solutions.html#cb88-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-36"><a href="W03_05_solutions.html#cb88-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(caro60, <span class="fu">aes</span>(stepMean)) <span class="sc">+</span></span>
+<span id="cb88-37"><a href="W03_05_solutions.html#cb88-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb88-38"><a href="W03_05_solutions.html#cb88-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(caro60<span class="sc">$</span>stepMean,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb88-39"><a href="W03_05_solutions.html#cb88-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-40"><a href="W03_05_solutions.html#cb88-40" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span> caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb88-41"><a href="W03_05_solutions.html#cb88-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb88-42"><a href="W03_05_solutions.html#cb88-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">static =</span> stepMean <span class="sc">&lt;</span> <span class="fu">mean</span>(caro60<span class="sc">$</span>stepMean,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb88-43"><a href="W03_05_solutions.html#cb88-43" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb88-44"><a href="W03_05_solutions.html#cb88-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-45"><a href="W03_05_solutions.html#cb88-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-46"><a href="W03_05_solutions.html#cb88-46" aria-hidden="true" tabindex="-1"></a><span class="co"># task 3 ########################################################################</span></span>
+<span id="cb88-47"><a href="W03_05_solutions.html#cb88-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-48"><a href="W03_05_solutions.html#cb88-48" aria-hidden="true" tabindex="-1"></a>caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb88-49"><a href="W03_05_solutions.html#cb88-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb88-50"><a href="W03_05_solutions.html#cb88-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(E,N), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb88-51"><a href="W03_05_solutions.html#cb88-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(E,N,<span class="at">colour =</span> static)) <span class="sc">+</span></span>
+<span id="cb88-52"><a href="W03_05_solutions.html#cb88-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb88-53"><a href="W03_05_solutions.html#cb88-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span>
+<span id="cb88-54"><a href="W03_05_solutions.html#cb88-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-55"><a href="W03_05_solutions.html#cb88-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-56"><a href="W03_05_solutions.html#cb88-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-57"><a href="W03_05_solutions.html#cb88-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-58"><a href="W03_05_solutions.html#cb88-58" aria-hidden="true" tabindex="-1"></a><span class="co"># task 4 ########################################################################</span></span>
+<span id="cb88-59"><a href="W03_05_solutions.html#cb88-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-60"><a href="W03_05_solutions.html#cb88-60" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span>caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb88-61"><a href="W03_05_solutions.html#cb88-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb88-62"><a href="W03_05_solutions.html#cb88-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">segment_ID =</span> <span class="fu">rle_id</span>(static)</span>
+<span id="cb88-63"><a href="W03_05_solutions.html#cb88-63" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb88-64"><a href="W03_05_solutions.html#cb88-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-65"><a href="W03_05_solutions.html#cb88-65" aria-hidden="true" tabindex="-1"></a>caro60_moves <span class="ot">&lt;-</span> caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb88-66"><a href="W03_05_solutions.html#cb88-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>static)</span>
+<span id="cb88-67"><a href="W03_05_solutions.html#cb88-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-68"><a href="W03_05_solutions.html#cb88-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-69"><a href="W03_05_solutions.html#cb88-69" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(caro60_moves, <span class="fu">aes</span>(E, N, <span class="at">color =</span> segment_ID)) <span class="sc">+</span></span>
+<span id="cb88-70"><a href="W03_05_solutions.html#cb88-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb88-71"><a href="W03_05_solutions.html#cb88-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb88-72"><a href="W03_05_solutions.html#cb88-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb88-73"><a href="W03_05_solutions.html#cb88-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb88-74"><a href="W03_05_solutions.html#cb88-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span>  <span class="st">&quot;All segments (uncleaned)&quot;</span>)</span>
+<span id="cb88-75"><a href="W03_05_solutions.html#cb88-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-76"><a href="W03_05_solutions.html#cb88-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-77"><a href="W03_05_solutions.html#cb88-77" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> caro60_moves <span class="sc">%&gt;%</span></span>
+<span id="cb88-78"><a href="W03_05_solutions.html#cb88-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(segment_ID) <span class="sc">%&gt;%</span></span>
+<span id="cb88-79"><a href="W03_05_solutions.html#cb88-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration =</span> <span class="fu">as.integer</span>(<span class="fu">difftime</span>(<span class="fu">max</span>(DatetimeUTC),<span class="fu">min</span>(DatetimeUTC),<span class="st">&quot;mins&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb88-80"><a href="W03_05_solutions.html#cb88-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(duration <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb88-81"><a href="W03_05_solutions.html#cb88-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(E, N, <span class="at">color =</span> segment_ID))<span class="sc">+</span></span>
+<span id="cb88-82"><a href="W03_05_solutions.html#cb88-82" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(data = caro60, color = &quot;black&quot;) +</span></span>
+<span id="cb88-83"><a href="W03_05_solutions.html#cb88-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb88-84"><a href="W03_05_solutions.html#cb88-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb88-85"><a href="W03_05_solutions.html#cb88-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb88-86"><a href="W03_05_solutions.html#cb88-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb88-87"><a href="W03_05_solutions.html#cb88-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Long segments (removed segements &lt;5 minutes)&quot;</span>)</span>
+<span id="cb88-88"><a href="W03_05_solutions.html#cb88-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-89"><a href="W03_05_solutions.html#cb88-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-90"><a href="W03_05_solutions.html#cb88-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-91"><a href="W03_05_solutions.html#cb88-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-92"><a href="W03_05_solutions.html#cb88-92" aria-hidden="true" tabindex="-1"></a><span class="co"># task 5 ########################################################################</span></span>
+<span id="cb88-93"><a href="W03_05_solutions.html#cb88-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-94"><a href="W03_05_solutions.html#cb88-94" aria-hidden="true" tabindex="-1"></a>pedestrians <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/pedestrian.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb88-95"><a href="W03_05_solutions.html#cb88-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-96"><a href="W03_05_solutions.html#cb88-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-97"><a href="W03_05_solutions.html#cb88-97" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pedestrians, <span class="fu">aes</span>(E,N)) <span class="sc">+</span></span>
+<span id="cb88-98"><a href="W03_05_solutions.html#cb88-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">select</span>(pedestrians, <span class="sc">-</span>TrajID),<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb88-99"><a href="W03_05_solutions.html#cb88-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(TrajID)), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb88-100"><a href="W03_05_solutions.html#cb88-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(TrajID))) <span class="sc">+</span></span>
+<span id="cb88-101"><a href="W03_05_solutions.html#cb88-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>TrajID,<span class="at">labeller =</span> label_both) <span class="sc">+</span></span>
+<span id="cb88-102"><a href="W03_05_solutions.html#cb88-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb88-103"><a href="W03_05_solutions.html#cb88-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb88-104"><a href="W03_05_solutions.html#cb88-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Visual comparison of the 6 trajectories&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Each subplot highlights a trajectory&quot;</span>) <span class="sc">+</span></span>
+<span id="cb88-105"><a href="W03_05_solutions.html#cb88-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb88-106"><a href="W03_05_solutions.html#cb88-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-107"><a href="W03_05_solutions.html#cb88-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-108"><a href="W03_05_solutions.html#cb88-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-109"><a href="W03_05_solutions.html#cb88-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-110"><a href="W03_05_solutions.html#cb88-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-111"><a href="W03_05_solutions.html#cb88-111" aria-hidden="true" tabindex="-1"></a><span class="co"># task 6 ########################################################################</span></span>
+<span id="cb88-112"><a href="W03_05_solutions.html#cb88-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-113"><a href="W03_05_solutions.html#cb88-113" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SimilarityMeasures)  <span class="co"># for the similarity measure functions</span></span>
+<span id="cb88-114"><a href="W03_05_solutions.html#cb88-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-115"><a href="W03_05_solutions.html#cb88-115" aria-hidden="true" tabindex="-1"></a><span class="co"># all functions compare two trajectories (traj1 and traj2). Each trajectory</span></span>
+<span id="cb88-116"><a href="W03_05_solutions.html#cb88-116" aria-hidden="true" tabindex="-1"></a><span class="co"># must be an numeric matrix of n dimensions. Since our dataset is spatiotemporal</span></span>
+<span id="cb88-117"><a href="W03_05_solutions.html#cb88-117" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to turn our Datetime column from POSIXct to integer:</span></span>
+<span id="cb88-118"><a href="W03_05_solutions.html#cb88-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-119"><a href="W03_05_solutions.html#cb88-119" aria-hidden="true" tabindex="-1"></a>pedestrians <span class="ot">&lt;-</span> pedestrians <span class="sc">%&gt;%</span></span>
+<span id="cb88-120"><a href="W03_05_solutions.html#cb88-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Datetime_int =</span> <span class="fu">as.integer</span>(DatetimeUTC))</span>
+<span id="cb88-121"><a href="W03_05_solutions.html#cb88-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-122"><a href="W03_05_solutions.html#cb88-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-123"><a href="W03_05_solutions.html#cb88-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Next, we make an object for each trajectory only containing the</span></span>
+<span id="cb88-124"><a href="W03_05_solutions.html#cb88-124" aria-hidden="true" tabindex="-1"></a><span class="co"># coordinates in the three-dimensional space and turn it into a matrix</span></span>
+<span id="cb88-125"><a href="W03_05_solutions.html#cb88-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-126"><a href="W03_05_solutions.html#cb88-126" aria-hidden="true" tabindex="-1"></a>traj1 <span class="ot">&lt;-</span> pedestrians <span class="sc">%&gt;%</span></span>
+<span id="cb88-127"><a href="W03_05_solutions.html#cb88-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TrajID <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb88-128"><a href="W03_05_solutions.html#cb88-128" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(E, N, Datetime_int) <span class="sc">%&gt;%</span></span>
+<span id="cb88-129"><a href="W03_05_solutions.html#cb88-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
+<span id="cb88-130"><a href="W03_05_solutions.html#cb88-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-131"><a href="W03_05_solutions.html#cb88-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-132"><a href="W03_05_solutions.html#cb88-132" aria-hidden="true" tabindex="-1"></a><span class="co"># But instead of repeating these lines 6 times, we turn them into a function.</span></span>
+<span id="cb88-133"><a href="W03_05_solutions.html#cb88-133" aria-hidden="true" tabindex="-1"></a><span class="co"># (this is still more repetition than necessary, use the purr::map if you know </span></span>
+<span id="cb88-134"><a href="W03_05_solutions.html#cb88-134" aria-hidden="true" tabindex="-1"></a><span class="co"># how!)</span></span>
+<span id="cb88-135"><a href="W03_05_solutions.html#cb88-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-136"><a href="W03_05_solutions.html#cb88-136" aria-hidden="true" tabindex="-1"></a>df_to_traj <span class="ot">&lt;-</span> <span class="cf">function</span>(df, traj){</span>
+<span id="cb88-137"><a href="W03_05_solutions.html#cb88-137" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb88-138"><a href="W03_05_solutions.html#cb88-138" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(TrajID <span class="sc">==</span> traj) <span class="sc">%&gt;%</span></span>
+<span id="cb88-139"><a href="W03_05_solutions.html#cb88-139" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(E, N, Datetime_int) <span class="sc">%&gt;%</span></span>
+<span id="cb88-140"><a href="W03_05_solutions.html#cb88-140" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>()</span>
+<span id="cb88-141"><a href="W03_05_solutions.html#cb88-141" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb88-142"><a href="W03_05_solutions.html#cb88-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-143"><a href="W03_05_solutions.html#cb88-143" aria-hidden="true" tabindex="-1"></a>traj2 <span class="ot">&lt;-</span> <span class="fu">df_to_traj</span>(pedestrians, <span class="dv">2</span>)</span>
+<span id="cb88-144"><a href="W03_05_solutions.html#cb88-144" aria-hidden="true" tabindex="-1"></a>traj3 <span class="ot">&lt;-</span> <span class="fu">df_to_traj</span>(pedestrians, <span class="dv">3</span>)</span>
+<span id="cb88-145"><a href="W03_05_solutions.html#cb88-145" aria-hidden="true" tabindex="-1"></a>traj4 <span class="ot">&lt;-</span> <span class="fu">df_to_traj</span>(pedestrians, <span class="dv">4</span>)</span>
+<span id="cb88-146"><a href="W03_05_solutions.html#cb88-146" aria-hidden="true" tabindex="-1"></a>traj5 <span class="ot">&lt;-</span> <span class="fu">df_to_traj</span>(pedestrians, <span class="dv">5</span>)</span>
+<span id="cb88-147"><a href="W03_05_solutions.html#cb88-147" aria-hidden="true" tabindex="-1"></a>traj6 <span class="ot">&lt;-</span> <span class="fu">df_to_traj</span>(pedestrians, <span class="dv">6</span>)</span>
+<span id="cb88-148"><a href="W03_05_solutions.html#cb88-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-149"><a href="W03_05_solutions.html#cb88-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-150"><a href="W03_05_solutions.html#cb88-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-151"><a href="W03_05_solutions.html#cb88-151" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we can start comparing trajectories with each other</span></span>
+<span id="cb88-152"><a href="W03_05_solutions.html#cb88-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-153"><a href="W03_05_solutions.html#cb88-153" aria-hidden="true" tabindex="-1"></a>dtw_1_2 <span class="ot">&lt;-</span> <span class="fu">DTW</span>(traj1, traj2)</span>
+<span id="cb88-154"><a href="W03_05_solutions.html#cb88-154" aria-hidden="true" tabindex="-1"></a>dtw_1_3 <span class="ot">&lt;-</span> <span class="fu">DTW</span>(traj1, traj3)</span>
+<span id="cb88-155"><a href="W03_05_solutions.html#cb88-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-156"><a href="W03_05_solutions.html#cb88-156" aria-hidden="true" tabindex="-1"></a><span class="co"># ... and so on. Since this also leads to much code repetition, we will </span></span>
+<span id="cb88-157"><a href="W03_05_solutions.html#cb88-157" aria-hidden="true" tabindex="-1"></a><span class="co"># demostrate a diffferent approach:</span></span>
+<span id="cb88-158"><a href="W03_05_solutions.html#cb88-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-159"><a href="W03_05_solutions.html#cb88-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of creating 6 objects, we can also create a single list containing 6</span></span>
+<span id="cb88-160"><a href="W03_05_solutions.html#cb88-160" aria-hidden="true" tabindex="-1"></a><span class="co"># elements by using &quot;split&quot; and &quot;purrr::map&quot;</span></span>
+<span id="cb88-161"><a href="W03_05_solutions.html#cb88-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-162"><a href="W03_05_solutions.html#cb88-162" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb88-163"><a href="W03_05_solutions.html#cb88-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-164"><a href="W03_05_solutions.html#cb88-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-165"><a href="W03_05_solutions.html#cb88-165" aria-hidden="true" tabindex="-1"></a>pedestrians_list <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="cf">function</span>(x){</span>
+<span id="cb88-166"><a href="W03_05_solutions.html#cb88-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">df_to_traj</span>(pedestrians,x)</span>
+<span id="cb88-167"><a href="W03_05_solutions.html#cb88-167" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb88-168"><a href="W03_05_solutions.html#cb88-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-169"><a href="W03_05_solutions.html#cb88-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-170"><a href="W03_05_solutions.html#cb88-170" aria-hidden="true" tabindex="-1"></a>comparison_df <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>, <span class="cf">function</span>(x){</span>
+<span id="cb88-171"><a href="W03_05_solutions.html#cb88-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb88-172"><a href="W03_05_solutions.html#cb88-172" aria-hidden="true" tabindex="-1"></a>    <span class="at">trajID =</span> x,</span>
+<span id="cb88-173"><a href="W03_05_solutions.html#cb88-173" aria-hidden="true" tabindex="-1"></a>    <span class="at">DTW =</span> <span class="fu">DTW</span>(pedestrians_list[[<span class="dv">1</span>]], pedestrians_list[[x]]),</span>
+<span id="cb88-174"><a href="W03_05_solutions.html#cb88-174" aria-hidden="true" tabindex="-1"></a>    <span class="at">EditDist =</span> <span class="fu">EditDist</span>(pedestrians_list[[<span class="dv">1</span>]], pedestrians_list[[x]]),</span>
+<span id="cb88-175"><a href="W03_05_solutions.html#cb88-175" aria-hidden="true" tabindex="-1"></a>    <span class="at">Frechet =</span> <span class="fu">Frechet</span>(pedestrians_list[[<span class="dv">1</span>]], pedestrians_list[[x]]),</span>
+<span id="cb88-176"><a href="W03_05_solutions.html#cb88-176" aria-hidden="true" tabindex="-1"></a>    <span class="at">LCSS =</span> <span class="fu">LCSS</span>(pedestrians_list[[<span class="dv">1</span>]], pedestrians_list[[x]],<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span>
+<span id="cb88-177"><a href="W03_05_solutions.html#cb88-177" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb88-178"><a href="W03_05_solutions.html#cb88-178" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb88-179"><a href="W03_05_solutions.html#cb88-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-180"><a href="W03_05_solutions.html#cb88-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-181"><a href="W03_05_solutions.html#cb88-181" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># for pivot_longer</span></span>
+<span id="cb88-182"><a href="W03_05_solutions.html#cb88-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-183"><a href="W03_05_solutions.html#cb88-183" aria-hidden="true" tabindex="-1"></a>comparison_df <span class="sc">%&gt;%</span></span>
+<span id="cb88-184"><a href="W03_05_solutions.html#cb88-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>trajID) <span class="sc">%&gt;%</span></span>
+<span id="cb88-185"><a href="W03_05_solutions.html#cb88-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trajID,value, <span class="at">fill =</span> <span class="fu">as.factor</span>(trajID)))<span class="sc">+</span> </span>
+<span id="cb88-186"><a href="W03_05_solutions.html#cb88-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb88-187"><a href="W03_05_solutions.html#cb88-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name,<span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb88-188"><a href="W03_05_solutions.html#cb88-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb88-189"><a href="W03_05_solutions.html#cb88-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comparison trajectory&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Computed similarities using different measures </span><span class="sc">\n</span><span class="st">between trajectory 1 to all other trajectories &quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+<script src="https://utteranc.es/client.js"
+        repo="ComputationalMovementAnalysis/utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="W03_04_tasks_and_inputs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="W04_01_exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/W03_05_solutions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/W03_05_solutions.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

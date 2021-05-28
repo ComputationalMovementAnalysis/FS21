@@ -1,0 +1,207 @@
+{
+    "sources": [
+        {
+            "ISBN": "1491910399, 9781491910399",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                }
+            ],
+            "edition": "1st",
+            "id": "wickham2017",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017
+                    ]
+                ]
+            },
+            "publisher": "O’Reilly Media, Inc.",
+            "title": "R for data science: Import, tidy, transform, visualize, and model data",
+            "title-short": "R for data science",
+            "type": "book"
+        },
+        {
+            "ISBN": "1484200772",
+            "URL": "https://git-scm.com/book/en/v2",
+            "author": [
+                {
+                    "family": "Chacon",
+                    "given": "Scott"
+                },
+                {
+                    "family": "Straub",
+                    "given": "Ben"
+                }
+            ],
+            "edition": "2nd Edition",
+            "id": "chacon2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "publisher": "Apress",
+            "title": "Pro git",
+            "type": "book"
+        },
+        {
+            "URL": "https://happygitwithr.com/",
+            "author": [
+                {
+                    "family": "Bryan",
+                    "given": "Jenny"
+                },
+                {
+                    "family": "Heister",
+                    "given": "Jim"
+                }
+            ],
+            "id": "bryan2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "title": "Happy git and GitHub for the useR",
+            "type": "book"
+        },
+        {
+            "DOI": "10.1111/j.1467-9671.2011.01256.x",
+            "URL": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9671.2011.01256.x",
+            "author": [
+                {
+                    "family": "Laube",
+                    "given": "Patrick"
+                },
+                {
+                    "family": "Purves",
+                    "given": "Ross S."
+                }
+            ],
+            "container-title": "Transactions in GIS",
+            "id": "laube2011",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011
+                    ]
+                ]
+            },
+            "page": "401-418",
+            "title": "How fast is a cow? Cross - scale analysis of movement data",
+            "type": "article-journal",
+            "volume": "15"
+        },
+        {
+            "author": [
+                {
+                    "family": "Alan Both",
+                    "given": "Matt Duckham",
+                    "suffix": "Kevin Buchin"
+                }
+            ],
+            "id": "both2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "note": "in review with PLOS ONE, confidential",
+            "title": "A comparative analysis of trajectory similarity measures: Recommendations for selection and use",
+            "title-short": "A comparative analysis of trajectory similarity measures",
+            "type": "manuscript"
+        },
+        {
+            "URL": "http://dl.acm.org/citation.cfm?id=876875.878994",
+            "author": [
+                {
+                    "family": "Vlachos",
+                    "given": "Michail"
+                },
+                {
+                    "family": "Gunopoulos",
+                    "given": "Dimitrios"
+                },
+                {
+                    "family": "Kollios",
+                    "given": "George"
+                }
+            ],
+            "collection-title": "ICDE ’02",
+            "container-title": "Proceedings of the 18th international conference on data engineering",
+            "id": "vlachos2002",
+            "issued": {
+                "date-parts": [
+                    [
+                        2002
+                    ]
+                ]
+            },
+            "page": "673-",
+            "publisher": "IEEE Computer Society",
+            "publisher-place": "Washington, DC, USA",
+            "title": "Discovering similar multidimensional trajectories",
+            "type": "paper-conference"
+        },
+        {
+            "ISBN": "9783319102689",
+            "URL": "https://books.google.ch/books?id=xMRpBAAAQBAJ",
+            "author": [
+                {
+                    "family": "Laube",
+                    "given": "Patrick"
+                }
+            ],
+            "collection-title": "SpringerBriefs in computer science",
+            "id": "laube2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "publisher": "Springer International Publishing",
+            "title": "Computational movement analysis",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Hägerstraand",
+                    "given": "Torsten"
+                }
+            ],
+            "container-title": "Papers in Regional Science",
+            "id": "hagerstraand1970",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        1970
+                    ]
+                ]
+            },
+            "page": "7-24",
+            "title": "What about people in regional science?",
+            "type": "article-journal",
+            "volume": "24"
+        }
+    ],
+    "project_biblios": [
+        "00_Admin/bibliography.bib"
+    ]
+}

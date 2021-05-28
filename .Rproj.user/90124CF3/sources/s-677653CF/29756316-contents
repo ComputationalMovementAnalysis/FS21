@@ -1,0 +1,17 @@
+
+
+
+untracked <- system("git ls-files --others --exclude-standard",intern = TRUE)
+untracked_docs <- untracked[grepl("^docs/",untracked)]
+
+
+purrr::map(untracked_docs, ~print(glue::glue("git update-index --assume-unchanged {.x}")))
+
+
+list.files("docs",recursive = TRUE,include.dirs = FALSE) %>%
+  file.path("docs",.) %>%
+  purrr::map(~system(glue::glue("git update-index --no-assume-unchanged {.x}"))) %>%
+  invisible()
+
+  
+purrr::map(file.path("docs",list.files("docs"))[1], ~print(glue::glue("git update-index --assume-unchanged {.x}")))

@@ -1,0 +1,270 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+## Tasks and inputs {#w1-tasks-and-inputs}
+
+```{r, include=FALSE}
+source('01_R_Files/helperfunctions.R')
+```
+
+
+Before starting with the task:
+
+1. make sure you have read and followed the instructions in section [Preparation](#w1-preparation)
+2. In RStudio, open the RStudio Project you created for this week if you haven't done so already. You can see that you are in an RStudio Project if the project's name is visible next to the little RStudio logo in the top right corner of RStudio (otherwise it will read `Project: (None)`).
+3. Download the wildboar movement data here: `r download_url("wildschwein_BE.csv","00_Rawdata")` (right click "Save target as..")
+
+Once you have set everything up, commit your file to your git repo in the following manner:
+
+
+```{block2, commit-text, type="rmdtip"}
+1. Save your (R/RMarkdown) file
+2. Switch to the "Git"-Tab in the pane in the top right corner
+3. Click "commit" to open the "commit-Window"
+4. Click in the checkbox next to the file(s) you want to commit
+5. Add a commit message to explain what you are committing (e.g. "`initial commit`")
+6. Click on "commit" to commit your changes
+```
+
+### Task 1: Import data
+
+Create a new R- (or RMarkdown) file and begin by loading the following packages: 
+
+```{r, opts.label = "example_hideOutput"}
+library(readr)        # to import tabular data (e.g. csv)
+library(dplyr)        # to manipulate (tabular) data
+library(ggplot2)      # to visualize data
+```
+
+
+Move the file `wildschwein_BE.csv` into your project directory and import it into `r` as a `data.frame`.  Assign correct column types as necessary and make sure the time zone is set correctly for the date/time column.
+
+Note: 
+
+- We recommend using the `readr` package to import your data (they all begin with `read_*`, note the underscore). These functions are less error prone than the base `R` functions (`read.*`, note the period). Specifically for the wild boar data, we recommend `read_delim()`.
+- For everyone working on the RStudio Server: You will first need to upload this data to the server using the "*upload*"-button in the "*Files*" tab.
+
+
+```{r, code =  mydecrypt("11_Week1/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
+```
+
+
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Write a meaningful commit message (e.g. "`completed task 1`").
+
+### Task 2: Explore Data
+
+We will use a range of different visualization tools (i.e. R-packages) in this course. Several packages techniques have emerged in recent years, each with their specific strengths and weaknesses. While `base::plot() `is quick and simple, it not very scalable with growing complexity. `ggplot2` offers solutions for most use cases and has an elegant, consistent syntax that is easy to get accustomed to. We will get to know other techniques later in the course.
+
+Get an overview of your data by creating a first "map-like" plot of your data producing a simple scatter plot with `ggplot2`. 
+Setting up a `ggplot` with our data is done using the command `ggplot(wildschwein_BE, aes(Long, Lat, colour = TierID))`. Creating a map is done via the basic scatter plot command `geom_point()`.
+<!-- Use `coord_map()` to get a reasonable aspect ratio of `Lat` and `Long`. -->
+Assigning every individual its own colour is done using the `ggplot` argument `colour =`.
+
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
+
+
+```{r code =  mydecrypt("11_Week1/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput", fig.cap="Your plot should look something like this."}
+```
+
+
+
+
+### Input: Handling spatial data
+
+Until now, we've stored our location data within data frames as Lat/Long columns. This works well for many tasks, but sometimes we need special *spatial* classes to handle our trajectories. We will get to know such cases in our next tasks, but first we need to convert our `data.frame` into a spatial object.
+
+We will largely rely on `sf`when working with vector data in `R`. In order to transform our `data.frame` into an sf object, we need to use the function `st_as_sf()` while specifying the columns storing the coordinates and the coordinate reference system.
+
+(At this point, we assume you know what a Coordinate Reference Systems is. Check out [this link](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/) if this is not the case.)
+
+
+```{r, opts.label="example_showOutput"}
+
+library(sf)
+
+wildschwein_BE_sf <- st_as_sf(wildschwein_BE, 
+                              coords = c("Long", "Lat"), 
+                              crs = 4326)
+
+```
+
+Notice how `st_as_sf` takes the EPSG code for the `crs =` argument. You can find a lot of useful information on Coordinate Reference Systems (including EPSG Codes, etc.) under [epsg.io](http://epsg.io).  
+Let's compare our original `data.frame` with this new `sf` object:
+
+```{r, opts.label="example_showOutput", collapse=FALSE}
+wildschwein_BE
+
+wildschwein_BE_sf
+```
+
+As you can see, `st_as_sf()` has added some metadata to our dataframe (`geometry type`, `dimension`, `bbox`, `epsg` and `proj4string`) and replaced the columns `Lat` and `Long` with a column named `geometry`. Other than that, the new `sf` object is very similar to our original dataframe. In fact, `sf` objects *are* essentially `dataframes`, as you can verify with the function `is.data.frame()`:
+
+```{r, opts.label="example_showOutput"}
+is.data.frame(wildschwein_BE_sf)
+```
+
+All operations we know from handling `data.frames` can be used on the `sf` object. Try some out!
+```{r, opts.label="example_hideOutput"}
+# subset rows
+wildschwein_BE_sf[1:10,]
+wildschwein_BE_sf[wildschwein_BE_sf$TierName == "Sabi",]
+
+# subset colums
+wildschwein_BE_sf[,2:3]
+```
+
+Instead of keeping the same data twice (once as a `data.frame`, and once as an `sf` object), we will overwrite the `data.frame` and continue working with the `sf` object from now on. This saves some memory space in `R` and avoids confusion. 
+
+```{r, opts.label="example_showOutput"}
+wildschwein_BE <- st_as_sf(wildschwein_BE, 
+                          coords = c("Long", "Lat"), 
+                          crs = 4326)
+
+rm(wildschwein_BE_sf) 
+# we can remove this sf object, since it just eats up our memory
+
+```
+
+
+### Task 3: Project data from WGS84
+
+So what can we do with our new `sf` object that we couldn't before? One example is projecting the WGS84 (`Lat`/`Long`) coordinates into the new Swiss CRS `CH1903+ LV95`[^50]. Do this by using the function `st_transform`. By the way, do you notice a pattern here? The package `sf` names most functions for spatial operations with the prefix `st_*`, just as in PostGIS.
+
+[^50]: As we've mentioned in the first Input, you can look up the EPSG codes under (epsg.io)[http://epsg.io]. For information specific to Switzerland, check the [swisstopo website](https://www.swisstopo.admin.ch/en/knowledge-facts/surveying-geodesy/reference-systems.html) 
+
+
+```{r, code =  mydecrypt("11_Week1/solutions/task_3.R",".passphrase"), opts.label="solution_hideOutput"}
+```
+
+
+Here's the resulting `sf` object from the operation:
+```{r, opts.label="example_showOutput"}
+wildschwein_BE
+```
+
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
+
+
+### Input: Calculate Convex Hull
+
+Transforming from one Coordinate Reference System to another was one operation where we needed an object with a spatial nature. In this way, we were able to use an off the shelf function to project the coordinates from one CRS to another. In our next example, we again rely on a spatial function: We want to calculate a [convex hull](https://en.wikipedia.org/wiki/Convex_hull) per Wild boar. And guess what the function for calculating a convex hull is called in `sf`? If you guessed `st_convex_hull()`, you were right! 
+
+By default `st_convex_hull()` calculates the convex hull *per feature*, i.e. *per point* in our dataset. This of course makes little sense. In order to calculate the convex hull per animal, we need to convert our point- to multipoint-features where each feature contains all positions of one animal. This is achieved in two steps:
+
+First: add a grouping variable to the `sf` object. Note the new grouping variable in the metadata of the `sf` object. Other than that, `group_by` has no effect on our `sf` object.
+
+
+
+```{r, opts.label="example_showOutput"}
+
+wildschwein_BE_grouped <- group_by(wildschwein_BE,TierID)
+
+wildschwein_BE_grouped
+
+```
+
+
+Second: use `summarise()` to "dissolve" all points into a mulipoint object. 
+
+```{r, opts.label="example_showOutput"}
+wildschwein_BE_smry <- summarise(wildschwein_BE_grouped)
+
+wildschwein_BE_smry
+
+```
+
+
+Now we can run `st_convex_hull` on the new `sf` object. 
+
+```{r, opts.label="example_showOutput"}
+mcp <- st_convex_hull(wildschwein_BE_smry)
+
+```
+
+
+### Task 4: Ploting spatial objects
+
+Using base plot to visualize `sf` objects is easy enough, just try the following code. 
+
+
+```{r, opts.label="example_showOutput"}
+plot(mcp)
+```
+
+But since we use `ggplot` extensively, try and plot the object `mcp` with `ggplot`. Hint: Use the layer `geom_sf()` to add an `sf` object.
+Note: `ggplot` refuses to use our specified CRS, so we need to force this by specifying `datum = ` in `coord_sf()`. Try it out.
+
+```{r, code =  mydecrypt("11_Week1/solutions/task_4.R",".passphrase"), opts.label="solution_hideOutput"}
+```
+
+
+
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
+
+
+### Input: Importing raster data {#w1-importing-raster}
+
+In the next task, we would like to add a background map to our `mcp` object. Download the file here: `r download_url("pk100_BE.tif","00_Rawdata")` 
+To import the file into `R`, we use the package `terra` with the function `rast`.
+
+
+
+```{r, opts.label="example_showOutput"}
+library(terra)
+
+pk100_BE <- terra::rast("00_Rawdata/pk100_BE.tif")
+
+pk100_BE
+```
+
+
+`pk100_BE_2056.tif` is a three layered geotiff File. The above console output shows some metadata including the resolution, extent and the names of our layers (`pk1_1`, `pk1_2`etc). With the default `plot` method, each layer is displayed individually:
+
+```{r, opts.label="example_showOutput"}
+plot(pk100_BE)
+
+```
+
+With `plotRGB` all three layers are combined into a single image:
+
+```{r}
+plotRGB(pk100_BE)
+```
+
+
+
+
+### Task 5: Adding a background map
+
+There are multiple ways to add a background map in `ggplot`, many require additional packages. This is a good opportunity to get to know a completely different package for creating maps: `tmap` ("thematic map"). This package was developed with a syntax very similar to `ggplot2`, which makes it easy to learn.
+
+
+```{r, opts.label="example_showOutput"}
+library(tmap)
+
+tm_shape(pk100_BE) + 
+  tm_rgb() 
+
+```
+
+As you can see, plotting layers in `tmap` is combined with the `+` sign, just as in `ggplot2`. In `tmap` however, each layer consists of two objects: a `tm_shape()` in which the data is called, and a `tm_*` object in which we define how the data is visualized (`tm_rgb()` states that it is plotted as an RGB Raster Layer). Add the object `mcp` to the plot in this manner. Read [the vignette](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html) if you are having trouble.
+
+```{r, code =  mydecrypt("11_Week1/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
+```
+
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs).
+
+
+### Task 6: Create an interactive map
+
+Rerun the `tmap()...` command from the previous task, but switch the plotting mode to "view"" (`tmap_mode("view")`) beforehand. Omit the raster layer (`pk100_BE`), you won't be needing it.
+
+Commit your changes as described [in the beginning](#w1-tasks-and-inputs). Have a look at your commit history by clicking on "History" in the "Git"-Pane.
+
+
+```{r code =  mydecrypt("11_Week1/solutions/task_6.R",".passphrase"), opts.label="solution_hideOutput"}
+```
+
