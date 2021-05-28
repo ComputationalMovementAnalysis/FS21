@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Exercise 1 | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
-  <meta name="description" content="Exercise 1 | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <title>Solutions | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
+  <meta name="description" content="Solutions | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Exercise 1 | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <meta property="og:title" content="Solutions | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ComputationalMovementAnalysis/FS21" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Exercise 1 | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <meta name="twitter:title" content="Solutions | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="W01_03_Slides.html"/>
+<link rel="prev" href="W04_05_peer_feedback.html"/>
+<link rel="next" href="W05_01_exercise.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -292,29 +292,110 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exercise-1" class="section level1">
-<h1>Exercise 1</h1>
-<p>This exercise covers the necessary steps for getting ready in <code>R</code> and some basic concepts for setting up a well-structured <code>R</code> project. The lesson introduces how additional packages that provide useful functions for data science are made available and how spatial data is handled. The exercise concludes with the creation of your first map featuring movement data.</p>
-<p><strong>Learning Outcomes</strong>*</p>
-<ul>
-<li>You learn how to structure an <code>R</code> project.</li>
-<li>You can read movement data from a .csv-file into a <code>data.frame</code></li>
-<li>You can convert spatial point data from a <code>data.frame</code> to a spatial object <code>sf</code></li>
-<li>You can perform basic spatial operations on spatial objects in <code>R</code></li>
-<li>You can produce simple maps of your spatial data using <code>ggplot2</code></li>
-<li>You can produce simple maps of your spatial data using <code>tmap</code></li>
-</ul>
-<p><strong>Prerequisites</strong>*</p>
-<p>Readings Skills from “R for Data Science” <span class="citation">(<a href="90_references.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>:</p>
-<ul>
-<li>RS1.1 Preface (16p, ix-xxiv)</li>
-<li>RS1.2 Chap2 Workflow basics (3p, 37-39)</li>
-<li>RS1.3 Chap4 Workflow scripts (3p, 77-79)</li>
-<li>RS1.4 Chap6 workflow projects (6p, 111-116)</li>
-<li>RS1.5 Chap8 Data Import with <code>readr</code> (21p)</li>
-<li>RS1.6 Chap13 Date and Times with <code>lubridate</code> (18p, 237-256)</li>
-</ul>
+<div id="solutions-3" class="section level2">
+<h2>Solutions</h2>
+<p>Hover over the code and copy the content by clicking on the clipboard icon on the top right. You can now paste this into an R-Script.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="W04_06_solutions.html#cb98-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-2"><a href="W04_06_solutions.html#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="co"># task 1 ########################################################################</span></span>
+<span id="cb98-3"><a href="W04_06_solutions.html#cb98-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-4"><a href="W04_06_solutions.html#cb98-4" aria-hidden="true" tabindex="-1"></a>euclid <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y,<span class="at">leadval =</span> <span class="dv">1</span>){</span>
+<span id="cb98-5"><a href="W04_06_solutions.html#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>((x<span class="sc">-</span><span class="fu">lead</span>(x,leadval))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(y<span class="sc">-</span><span class="fu">lead</span>(y,leadval))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb98-6"><a href="W04_06_solutions.html#cb98-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb98-7"><a href="W04_06_solutions.html#cb98-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-8"><a href="W04_06_solutions.html#cb98-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-9"><a href="W04_06_solutions.html#cb98-9" aria-hidden="true" tabindex="-1"></a><span class="co"># task 2 ########################################################################</span></span>
+<span id="cb98-10"><a href="W04_06_solutions.html#cb98-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-11"><a href="W04_06_solutions.html#cb98-11" aria-hidden="true" tabindex="-1"></a>wildschwein <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;00_Rawdata/wildschwein_BE_2056.csv&quot;</span>,<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb98-12"><a href="W04_06_solutions.html#cb98-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-13"><a href="W04_06_solutions.html#cb98-13" aria-hidden="true" tabindex="-1"></a>wildschwein_filter <span class="ot">&lt;-</span> wildschwein <span class="sc">%&gt;%</span></span>
+<span id="cb98-14"><a href="W04_06_solutions.html#cb98-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DatetimeUTC <span class="sc">&gt;</span> <span class="st">&quot;2015-04-01&quot;</span>,</span>
+<span id="cb98-15"><a href="W04_06_solutions.html#cb98-15" aria-hidden="true" tabindex="-1"></a>         DatetimeUTC <span class="sc">&lt;</span> <span class="st">&quot;2015-04-15&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb98-16"><a href="W04_06_solutions.html#cb98-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TierName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Rosa&quot;</span>, <span class="st">&quot;Sabi&quot;</span>))</span>
+<span id="cb98-17"><a href="W04_06_solutions.html#cb98-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-18"><a href="W04_06_solutions.html#cb98-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-19"><a href="W04_06_solutions.html#cb98-19" aria-hidden="true" tabindex="-1"></a><span class="co"># task 3 ########################################################################</span></span>
+<span id="cb98-20"><a href="W04_06_solutions.html#cb98-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-21"><a href="W04_06_solutions.html#cb98-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-22"><a href="W04_06_solutions.html#cb98-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-23"><a href="W04_06_solutions.html#cb98-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-24"><a href="W04_06_solutions.html#cb98-24" aria-hidden="true" tabindex="-1"></a>wildschwein_filter <span class="ot">&lt;-</span> wildschwein_filter <span class="sc">%&gt;%</span></span>
+<span id="cb98-25"><a href="W04_06_solutions.html#cb98-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TierID) <span class="sc">%&gt;%</span></span>
+<span id="cb98-26"><a href="W04_06_solutions.html#cb98-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb98-27"><a href="W04_06_solutions.html#cb98-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">DatetimeRound =</span> lubridate<span class="sc">::</span><span class="fu">round_date</span>(DatetimeUTC,<span class="st">&quot;15 minutes&quot;</span>)</span>
+<span id="cb98-28"><a href="W04_06_solutions.html#cb98-28" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb98-29"><a href="W04_06_solutions.html#cb98-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-30"><a href="W04_06_solutions.html#cb98-30" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wildschwein_filter)</span>
+<span id="cb98-31"><a href="W04_06_solutions.html#cb98-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-32"><a href="W04_06_solutions.html#cb98-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-33"><a href="W04_06_solutions.html#cb98-33" aria-hidden="true" tabindex="-1"></a><span class="co"># task 4 ########################################################################</span></span>
+<span id="cb98-34"><a href="W04_06_solutions.html#cb98-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-35"><a href="W04_06_solutions.html#cb98-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb98-36"><a href="W04_06_solutions.html#cb98-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-37"><a href="W04_06_solutions.html#cb98-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-38"><a href="W04_06_solutions.html#cb98-38" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> wildschwein_filter <span class="sc">%&gt;%</span></span>
+<span id="cb98-39"><a href="W04_06_solutions.html#cb98-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TierName <span class="sc">==</span> <span class="st">&quot;Sabi&quot;</span>)</span>
+<span id="cb98-40"><a href="W04_06_solutions.html#cb98-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-41"><a href="W04_06_solutions.html#cb98-41" aria-hidden="true" tabindex="-1"></a>rosa <span class="ot">&lt;-</span> wildschwein_filter <span class="sc">%&gt;%</span></span>
+<span id="cb98-42"><a href="W04_06_solutions.html#cb98-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TierName <span class="sc">==</span> <span class="st">&quot;Rosa&quot;</span>)</span>
+<span id="cb98-43"><a href="W04_06_solutions.html#cb98-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-44"><a href="W04_06_solutions.html#cb98-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-45"><a href="W04_06_solutions.html#cb98-45" aria-hidden="true" tabindex="-1"></a>wildschwein_join <span class="ot">&lt;-</span> <span class="fu">full_join</span>(sabi, rosa, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;DatetimeRound&quot;</span>), <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">&quot;_sabi&quot;</span>,<span class="st">&quot;_rosa&quot;</span>))</span>
+<span id="cb98-46"><a href="W04_06_solutions.html#cb98-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-47"><a href="W04_06_solutions.html#cb98-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-48"><a href="W04_06_solutions.html#cb98-48" aria-hidden="true" tabindex="-1"></a>wildschwein_join <span class="ot">&lt;-</span> wildschwein_join <span class="sc">%&gt;%</span></span>
+<span id="cb98-49"><a href="W04_06_solutions.html#cb98-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb98-50"><a href="W04_06_solutions.html#cb98-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">distance =</span> <span class="fu">sqrt</span>((E_rosa<span class="sc">-</span>E_sabi)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N_rosa<span class="sc">-</span>N_sabi)<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb98-51"><a href="W04_06_solutions.html#cb98-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">meet =</span> distance <span class="sc">&lt;</span> <span class="dv">100</span></span>
+<span id="cb98-52"><a href="W04_06_solutions.html#cb98-52" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb98-53"><a href="W04_06_solutions.html#cb98-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-54"><a href="W04_06_solutions.html#cb98-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-55"><a href="W04_06_solutions.html#cb98-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-56"><a href="W04_06_solutions.html#cb98-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-57"><a href="W04_06_solutions.html#cb98-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-58"><a href="W04_06_solutions.html#cb98-58" aria-hidden="true" tabindex="-1"></a><span class="co"># task 5 ########################################################################</span></span>
+<span id="cb98-59"><a href="W04_06_solutions.html#cb98-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-60"><a href="W04_06_solutions.html#cb98-60" aria-hidden="true" tabindex="-1"></a>wildschwein_meet <span class="ot">&lt;-</span> wildschwein_join <span class="sc">%&gt;%</span></span>
+<span id="cb98-61"><a href="W04_06_solutions.html#cb98-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(meet)</span>
+<span id="cb98-62"><a href="W04_06_solutions.html#cb98-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-63"><a href="W04_06_solutions.html#cb98-63" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wildschwein_meet) <span class="sc">+</span></span>
+<span id="cb98-64"><a href="W04_06_solutions.html#cb98-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> sabi, <span class="fu">aes</span>(E, N, <span class="at">colour =</span> <span class="st">&quot;sabi&quot;</span>),<span class="at">shape =</span> <span class="dv">16</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb98-65"><a href="W04_06_solutions.html#cb98-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> rosa, <span class="fu">aes</span>(E, N, <span class="at">colour =</span> <span class="st">&quot;rosa&quot;</span>),<span class="at">shape =</span> <span class="dv">16</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb98-66"><a href="W04_06_solutions.html#cb98-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> E_sabi,<span class="at">y =</span> N_sabi, <span class="at">fill =</span> <span class="st">&quot;sabi&quot;</span>),<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb98-67"><a href="W04_06_solutions.html#cb98-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(E_rosa, N_rosa, <span class="at">fill =</span> <span class="st">&quot;rosa&quot;</span>), <span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb98-68"><a href="W04_06_solutions.html#cb98-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Regular Locations&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Meets&quot;</span>) <span class="sc">+</span></span>
+<span id="cb98-69"><a href="W04_06_solutions.html#cb98-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">2570000</span>,<span class="dv">2571000</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1204500</span>,<span class="dv">1205500</span>))</span>
+<span id="cb98-70"><a href="W04_06_solutions.html#cb98-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-71"><a href="W04_06_solutions.html#cb98-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-72"><a href="W04_06_solutions.html#cb98-72" aria-hidden="true" tabindex="-1"></a><span class="co"># task 6 ########################################################################</span></span>
+<span id="cb98-73"><a href="W04_06_solutions.html#cb98-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-74"><a href="W04_06_solutions.html#cb98-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-75"><a href="W04_06_solutions.html#cb98-75" aria-hidden="true" tabindex="-1"></a>meanmeetpoints <span class="ot">&lt;-</span> wildschwein_join <span class="sc">%&gt;%</span></span>
+<span id="cb98-76"><a href="W04_06_solutions.html#cb98-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(meet) <span class="sc">%&gt;%</span></span>
+<span id="cb98-77"><a href="W04_06_solutions.html#cb98-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb98-78"><a href="W04_06_solutions.html#cb98-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">E.mean =</span> (E_rosa<span class="sc">+</span>E_sabi)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb98-79"><a href="W04_06_solutions.html#cb98-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">N.mean =</span> (N_rosa<span class="sc">+</span>N_sabi)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb98-80"><a href="W04_06_solutions.html#cb98-80" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb98-81"><a href="W04_06_solutions.html#cb98-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-82"><a href="W04_06_solutions.html#cb98-82" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb98-83"><a href="W04_06_solutions.html#cb98-83" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ly</span>(wildschwein_join, <span class="at">x =</span> <span class="sc">~</span>E_rosa,<span class="at">y =</span> <span class="sc">~</span>N_rosa, <span class="at">z =</span> <span class="sc">~</span>DatetimeRound,<span class="at">type =</span> <span class="st">&quot;scatter3d&quot;</span>, <span class="at">mode =</span> <span class="st">&quot;lines&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb98-84"><a href="W04_06_solutions.html#cb98-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(wildschwein_join, <span class="at">x =</span> <span class="sc">~</span>E_sabi,<span class="at">y =</span> <span class="sc">~</span>N_sabi, <span class="at">z =</span> <span class="sc">~</span>DatetimeRound) <span class="sc">%&gt;%</span></span>
+<span id="cb98-85"><a href="W04_06_solutions.html#cb98-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_markers</span>(<span class="at">data =</span> meanmeetpoints, <span class="at">x =</span> <span class="sc">~</span>E.mean,<span class="at">y =</span> <span class="sc">~</span>N.mean, <span class="at">z =</span> <span class="sc">~</span>DatetimeRound) <span class="sc">%&gt;%</span></span>
+<span id="cb98-86"><a href="W04_06_solutions.html#cb98-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(<span class="at">scene =</span> <span class="fu">list</span>(<span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;E&#39;</span>),</span>
+<span id="cb98-87"><a href="W04_06_solutions.html#cb98-87" aria-hidden="true" tabindex="-1"></a>                      <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;N&#39;</span>),</span>
+<span id="cb98-88"><a href="W04_06_solutions.html#cb98-88" aria-hidden="true" tabindex="-1"></a>                      <span class="at">zaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;Time&#39;</span>)))</span>
+<span id="cb98-89"><a href="W04_06_solutions.html#cb98-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-90"><a href="W04_06_solutions.html#cb98-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-91"><a href="W04_06_solutions.html#cb98-91" aria-hidden="true" tabindex="-1"></a>wildschwein_join <span class="sc">%&gt;%</span></span>
+<span id="cb98-92"><a href="W04_06_solutions.html#cb98-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DatetimeRound<span class="sc">&lt;</span><span class="st">&quot;2015-04-04&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb98-93"><a href="W04_06_solutions.html#cb98-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_ly</span>(<span class="at">x =</span> <span class="sc">~</span>E_rosa,<span class="at">y =</span> <span class="sc">~</span>N_rosa, <span class="at">z =</span> <span class="sc">~</span>DatetimeRound,<span class="at">type =</span> <span class="st">&quot;scatter3d&quot;</span>, <span class="at">mode =</span> <span class="st">&quot;lines&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb98-94"><a href="W04_06_solutions.html#cb98-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(wildschwein_join, <span class="at">x =</span> <span class="sc">~</span>E_sabi,<span class="at">y =</span> <span class="sc">~</span>N_sabi, <span class="at">z =</span> <span class="sc">~</span>DatetimeRound) <span class="sc">%&gt;%</span></span>
+<span id="cb98-95"><a href="W04_06_solutions.html#cb98-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_markers</span>(<span class="at">data =</span> meanmeetpoints, <span class="at">x =</span> <span class="sc">~</span>E.mean,<span class="at">y =</span> <span class="sc">~</span>N.mean, <span class="at">z =</span> <span class="sc">~</span>DatetimeRound) <span class="sc">%&gt;%</span></span>
+<span id="cb98-96"><a href="W04_06_solutions.html#cb98-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(<span class="at">scene =</span> <span class="fu">list</span>(<span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;E&#39;</span>),</span>
+<span id="cb98-97"><a href="W04_06_solutions.html#cb98-97" aria-hidden="true" tabindex="-1"></a>                      <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;N&#39;</span>),</span>
+<span id="cb98-98"><a href="W04_06_solutions.html#cb98-98" aria-hidden="true" tabindex="-1"></a>                      <span class="at">zaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;Time&#39;</span>)))</span></code></pre></div>
 
+</div>
+</div>
 <script src="https://utteranc.es/client.js"
         repo="ComputationalMovementAnalysis/utterances"
         issue-term="pathname"
@@ -327,8 +408,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="W01_03_Slides.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="W04_05_peer_feedback.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="W05_01_exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -350,7 +431,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/W01_01_exercise.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/W04_06_solutions.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -358,7 +439,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/W01_01_exercise.Rmd",
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/W04_06_solutions.Rmd",
 "text": null
 },
 "download": null,
