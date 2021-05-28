@@ -1,9 +1,14 @@
-mydecrypt <- function(file_encrypted,seedfile, write = FALSE){
+mydecrypt <- function(file_encrypted, seedfile, write = FALSE){
   require(stringr)
   
   rl_scrambled <- readLines(file_encrypted,warn = FALSE)
   
-  seed <- as.integer(readLines(seedfile,warn = FALSE))
+  if(is.numeric(seedfile)){
+    seed <- seedfile
+  } else{
+    seed <- as.integer(readLines(seedfile,warn = FALSE))
+  }
+  
   # seed = 1
   unscramble <- function(l){
     
@@ -25,7 +30,11 @@ mydecrypt <- function(file_encrypted,seedfile, write = FALSE){
 myencrypt <- function(file_plain,seedfile){
   rl <- readLines(file_plain,warn = FALSE)
   
-  seed <- as.integer(readLines(seedfile,warn = FALSE))
+  if(is.numeric(seedfile)){
+    seed <- seedfile
+  } else{
+    seed <- as.integer(readLines(seedfile,warn = FALSE))
+  }
   
   scramble <- function(l){
     
