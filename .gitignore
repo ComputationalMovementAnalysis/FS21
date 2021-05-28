@@ -5,3 +5,4 @@
 .passphrase
 **/solutions/*_hide.R
 patterns-and-trends.Rmd
+^docs$
