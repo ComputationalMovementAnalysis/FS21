@@ -1,9 +1,10 @@
 on:
   push:
     branches:
-      - gh-pages
+      - main
+      - master
 
-name: Push gh-pages to computationalmovementanalysis.github.io
+name: Push docs/ to computationalmovementanalysis.github.io
 
 jobs:
   build:
