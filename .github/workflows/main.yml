@@ -1,8 +1,7 @@
 on:
   push:
     branches:
-      - main
-      - master
+      - gh-pages
 
 name: Push to computationalmovementanalysis.github.io
 
@@ -20,9 +19,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'docs'
+          source-directory: '.'
           destination-github-username: 'ratnanil'
-          destination-repository-name: 'computationalmovementanalysis.github.io'
+          destination-repository-name: 'test'
           destination-repository-username: 'ComputationalMovementAnalysis'
           user-email: 'rata@zhaw.ch'
           commit-message: 'updated html files'
