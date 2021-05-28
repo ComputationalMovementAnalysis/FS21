@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - gh-pages
+
+name: Push gh-pages to computationalmovementanalysis.github.io
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Pushes to another repository  
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: '.'
+          destination-github-username: 'ratnanil'
+          destination-repository-name: 'computationalmovementanalysis.github.io'
+          destination-repository-username: 'ComputationalMovementAnalysis'
+          user-email: 'rata@zhaw.ch'
+          commit-message: 'updated html files'
