@@ -21,6 +21,7 @@ rmd_files:
  - "W04_03_preparation.Rmd"
  - "W04_04_tasks_and_inputs.Rmd"
  - "W04_05_peer_feedback.Rmd"
+ - "W04_06_solutions.Rmd"
  - "W05_01_exercise.Rmd"
  - "W05_02_preparation.Rmd"
  - "W05_03_tasks_and_inputs.Rmd"
