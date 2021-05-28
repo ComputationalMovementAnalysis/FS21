@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
   <meta name="description" content="Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="W03_03_preparation.html"/>
 <link rel="next" href="W03_05_solutions.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,8 +50,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -116,29 +114,6 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 <link rel="stylesheet" href="90_misc/mystyle.css" type="text/css" />
@@ -308,7 +283,7 @@ Figure 3: The figure from <span class="citation"><a href="90_references.html#ref
 <li>Remove “static points”: These are points where the average distance is less than a given threshold. This segments the trajectory into subtrajectories</li>
 <li>Now remove short subtrajectories: These are trajectories with a short duration (whereas “short” is tbd)</li>
 </ol>
-<p>We will demonstrate implementing this method on the wild boar “Sabi,” restricting ourselves to a couple of tracking days. Your task will be to understand this implementation and apply it on Caro, with a different sampling interval.</p>
+<p>We will <strong>demonstrate</strong> implementing this method on the wild boar “Sabi,” restricting ourselves to a couple of tracking days. Your task will be to understand this implementation and apply it on Caro, with a different sampling interval.</p>
 <div class="figure"><span id="fig:unnamed-chunk-3"></span>
 <img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-3-1.png" alt="Movement of the wildboar 'Sabi' in the timespan 01-02.07.2015. The circle highlingts possible 'static points'" width="672" />
 <p class="caption">
@@ -438,7 +413,7 @@ Then use <code>segment_ID</code> as a grouping variable to determine the segment
 <div id="task-5-similarity-measures" class="section level3">
 <h3>Task 5: Similarity measures</h3>
 <p>We will now leave the wild boar data and turn our attentian to human movement. You will use the dataset <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/pedestrian.csv">pedestrian.csv</a> (right click &gt; save target as..) for this (and the following) task. Download an import this dataset as a <code>data.frame</code> or <code>tibble</code>. It it a set of six different but similar trajectories from pedestrians walking on a path.</p>
-<p>or this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don’t express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!</p>
+<p>For this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don’t express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!</p>
 <p>Commit your changes with a meaningful commit message.</p>
 <p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>

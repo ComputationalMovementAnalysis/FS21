@@ -94,12 +94,12 @@ library(dplyr)
 ```
 
 ```
-## Warning: Paket 'dplyr' wurde unter R Version 4.0.5 erstellt
+## Warning: package 'dplyr' was built under R version 4.0.4
 ```
 
 ```
 ## 
-## Attache Paket: 'dplyr'
+## Attaching package: 'dplyr'
 ```
 
 ```
@@ -273,7 +273,7 @@ summarise(wildschwein, mean = mean(timelag, na.rm = T))
 ```
 ## # A tibble: 2 x 2
 ##   TierID  mean
-##   <chr>  <dbl>
+## * <chr>  <dbl>
 ## 1 Hans      15
 ## 2 Klara     15
 ```
@@ -296,7 +296,7 @@ wildschwein %>%                           # Take wildschwein...
 ```
 ## # A tibble: 2 x 2
 ##   TierID mean_timelag
-##   <chr>         <dbl>
+## * <chr>         <dbl>
 ## 1 Hans             15
 ## 2 Klara            15
 ```
@@ -361,7 +361,7 @@ pigs %>%
 ```
 ## # A tibble: 2 x 2
 ##   sex   mean_weight
-##   <chr>       <dbl>
+## * <chr>       <dbl>
 ## 1 F            40.5
 ## 2 M            25.2
 ```
