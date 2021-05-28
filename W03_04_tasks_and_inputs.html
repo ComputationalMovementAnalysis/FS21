@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data</title>
+  <meta name="description" content="Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="ComputationalMovementAnalysis/FS21" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tasks and Inputs | Computational Movement Analysis: Patterns and Trends in Environmental Data" />
+  
+  
+  
+
+<meta name="author" content="Patrick Laube, Nils Ratnaweera, Nikolaos Bakogiannis" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="W03_03_preparation.html"/>
+<link rel="next" href="W03_05_solutions.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="90_misc/mystyle.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<img src="02_Images/zhaw_lsfm_schwarz.png" alt="ZHAW Logo" width="300">
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to the course!</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="W01_01_exercise.html"><a href="W01_01_exercise.html"><i class="fa fa-check"></i>Exercise 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="W01_03_Slides.html"><a href="W01_03_Slides.html"><i class="fa fa-check"></i>Slides</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li><a href="W01_04_preparations.html#check-you-version-of-r">Check you version of <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#check-your-version-of-rstudio"><i class="fa fa-check"></i>Check your version of RStudio</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#install-the-necessary-packages"><i class="fa fa-check"></i>Install the necessary packages</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#install-git"><i class="fa fa-check"></i>Install Git</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#configure-rstudio"><i class="fa fa-check"></i>Configure RStudio</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#introduce-yourself-git"><i class="fa fa-check"></i>Introduce yourself to Git</a></li>
+<li class="chapter" data-level="" data-path="W01_04_preparations.html"><a href="W01_04_preparations.html#folder-structure"><i class="fa fa-check"></i>Prepare the folder structure for this course</a></li>
+<li><a href="W01_04_preparations.html#create-an-rstudio-project-for-the-first-week">Create an RStudio <em>project</em> for the first week</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-1-import-data"><i class="fa fa-check"></i>Task 1: Import data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-2-explore-data"><i class="fa fa-check"></i>Task 2: Explore Data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-handling-spatial-data"><i class="fa fa-check"></i>Input: Handling spatial data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-3-project-data-from-wgs84"><i class="fa fa-check"></i>Task 3: Project data from WGS84</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#input-calculate-convex-hull"><i class="fa fa-check"></i>Input: Calculate Convex Hull</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-4-ploting-spatial-objects"><i class="fa fa-check"></i>Task 4: Ploting spatial objects</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#w1-importing-raster"><i class="fa fa-check"></i>Input: Importing raster data</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-5-adding-a-background-map"><i class="fa fa-check"></i>Task 5: Adding a background map</a></li>
+<li class="chapter" data-level="" data-path="W01_05_tasks_and_inputs.html"><a href="W01_05_tasks_and_inputs.html#task-6-create-an-interactive-map"><i class="fa fa-check"></i>Task 6: Create an interactive map</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W01_06_solutions.html"><a href="W01_06_solutions.html"><i class="fa fa-check"></i>Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_01_exercise.html"><a href="W02_01_exercise.html"><i class="fa fa-check"></i>Exercise 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html"><i class="fa fa-check"></i>Demo Tidyverse</a>
+<ul>
+<li><a href="W02_04_demo_tidyverse.html#difftime"><code>difftime</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#lead-lag"><code>lead()</code> / <code>lag()</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#mutate"><code>mutate()</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#group_by"><code>group_by()</code></a></li>
+<li><a href="W02_04_demo_tidyverse.html#summarise"><code>summarise()</code></a></li>
+<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="W02_04_demo_tidyverse.html"><a href="W02_04_demo_tidyverse.html#bring-it-all-together"><i class="fa fa-check"></i>Bring it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_04b_demo_tidyverse_code.html"><a href="W02_04b_demo_tidyverse_code.html"><i class="fa fa-check"></i>Demo Tidyverse (R-Code)</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-1-create-a-github-account"><i class="fa fa-check"></i>Step 1: Create a Github account</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#step-2-authenticate-git-to-work-with-github"><i class="fa fa-check"></i>Step 2: Authenticate Git to work with Github</a></li>
+<li><a href="W02_03_preparation.html#create-github-repo">Step 3: Create a Git<strong>hub</strong> repo</a></li>
+<li class="chapter" data-level="" data-path="W02_03_preparation.html"><a href="W02_03_preparation.html#w2-project"><i class="fa fa-check"></i>Step 4: Create a new RStudio Project</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-0-import-your-data"><i class="fa fa-check"></i>Task 0: Import your data</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-1-getting-an-overview"><i class="fa fa-check"></i>Task 1: Getting an overview</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#w2-task2"><i class="fa fa-check"></i>Task 2: Deriving movement parameters I: Speed</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-3-cross-scale-movement-analysis"><i class="fa fa-check"></i>Task 3: Cross-scale movement analysis</a></li>
+<li class="chapter" data-level="" data-path="W02_05_tasks_and_inputs.html"><a href="W02_05_tasks_and_inputs.html#task-4-deriving-movement-parameters-ii-rolling-window-functions"><i class="fa fa-check"></i>Task 4: Deriving movement parameters II: Rolling window functions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W02_06_solutions.html"><a href="W02_06_solutions.html"><i class="fa fa-check"></i>Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W03_01_exercise.html"><a href="W03_01_exercise.html"><i class="fa fa-check"></i>Exercise 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_02_Slides.html"><a href="W03_02_Slides.html"><i class="fa fa-check"></i>Slides</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html"><i class="fa fa-check"></i>Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-1-create-a-normal-rstudio-project"><i class="fa fa-check"></i>Step 1: Create a “normal” RStudio Project</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-2-activate-git-version-control"><i class="fa fa-check"></i>Step 2: Activate Git Version Control</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-3-rename-branch"><i class="fa fa-check"></i>Step 3: Rename branch</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-4-create-a-github-repository"><i class="fa fa-check"></i>Step 4: Create a Github Repository</a></li>
+<li class="chapter" data-level="" data-path="W03_03_preparation.html"><a href="W03_03_preparation.html#step-5-connect-to-github"><i class="fa fa-check"></i>Step 5: Connect to Github</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-1-segmentation"><i class="fa fa-check"></i>Task 1: Segmentation</a></li>
+<li><a href="W03_04_tasks_and_inputs.html#task-2-specify-and-apply-threshold-d">Task 2: Specify and apply threshold <em>d</em></a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-3-visualize-segmented-trajectories"><i class="fa fa-check"></i>Task 3: Visualize segmented trajectories</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-4-segment-based-analysis"><i class="fa fa-check"></i>Task 4: Segment-based analysis</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-5-similarity-measures"><i class="fa fa-check"></i>Task 5: Similarity measures</a></li>
+<li class="chapter" data-level="" data-path="W03_04_tasks_and_inputs.html"><a href="W03_04_tasks_and_inputs.html#task-6-calculate-similarity"><i class="fa fa-check"></i>Task 6: Calculate similarity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W03_05_solutions.html"><a href="W03_05_solutions.html"><i class="fa fa-check"></i>Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W04_01_exercise.html"><a href="W04_01_exercise.html"><i class="fa fa-check"></i>Exercise 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_02_Slides.html"><a href="W04_02_Slides.html"><i class="fa fa-check"></i>Slides</a></li>
+<li class="chapter" data-level="" data-path="W04_03_preparation.html"><a href="W04_03_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-1-write-your-own-functions"><i class="fa fa-check"></i>Task 1: Write your own functions</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-2-prepare-analysis"><i class="fa fa-check"></i>Task 2: Prepare Analysis</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-3-create-join-key"><i class="fa fa-check"></i>Task 3: Create Join Key</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-4-measuring-distance-at-concurrent-locations"><i class="fa fa-check"></i>Task 4: Measuring distance at concurrent locations</a></li>
+<li class="chapter" data-level="" data-path="W04_04_tasks_and_inputs.html"><a href="W04_04_tasks_and_inputs.html#task-5-visualize-data"><i class="fa fa-check"></i>Task 5: Visualize data</a></li>
+<li><a href="W04_04_tasks_and_inputs.html#task-6-optional-visualize-data-as-timecube-with-plotly">Task 6 (optional): Visualize data as timecube with <code>plotly</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W04_05_peer_feedback.html"><a href="W04_05_peer_feedback.html"><i class="fa fa-check"></i>Peer Feedback</a>
+<ul>
+<li class="chapter" data-level="" data-path="W04_05_peer_feedback.html"><a href="W04_05_peer_feedback.html#issues-option1"><i class="fa fa-check"></i>Option 1: via the browser on github.com</a></li>
+<li class="chapter" data-level="" data-path="W04_05_peer_feedback.html"><a href="W04_05_peer_feedback.html#issues-option2"><i class="fa fa-check"></i>Option 2: via our RStudio addin</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="W05_01_exercise.html"><a href="W05_01_exercise.html"><i class="fa fa-check"></i>Exercise 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_02_preparation.html"><a href="W05_02_preparation.html"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html"><i class="fa fa-check"></i>Tasks and Inputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#tasks-1-import-and-visualize-spatial-data"><i class="fa fa-check"></i>Tasks 1: Import and visualize spatial data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#w5-annotate-vector"><i class="fa fa-check"></i>Task 2: Annotate Trajectories from vector data</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-3-explore-annotated-trajectories"><i class="fa fa-check"></i>Task 3: Explore annotated trajectories</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-4-import-and-visualize-vegetationindex-raster-data"><i class="fa fa-check"></i>Task 4: Import and visualize vegetationindex (raster data)</a></li>
+<li class="chapter" data-level="" data-path="W05_03_tasks_and_inputs.html"><a href="W05_03_tasks_and_inputs.html#task-5-annotate-trajectories-from-raster-data"><i class="fa fa-check"></i>Task 5: Annotate Trajectories from raster data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="90_references.html"><a href="90_references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /></a>.
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Movement Analysis: Patterns and Trends in Environmental Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tasks-and-inputs-1" class="section level2">
+<h2>Tasks and Inputs</h2>
+<p>You’ve read <span class="citation"><a href="90_references.html#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="90_references.html#ref-laube2011" role="doc-biblioref">2011</a>)</span> about segmenting trajectories. In the paper, the authors define “<em>static</em>” fixes as “<em>those whose average Euclidean distance to other fixes inside a temporal window v is less than some threshold d</em>,” as illustrated in the following figure:</p>
+
+<div class="figure"><span id="fig:laubeimg"></span>
+<img src="02_Images/laube_2011.jpg" alt="The figure from Laube and Purves (2011) visualizes steps a) zu d), which will be explained below:"  />
+<p class="caption">
+Figure 3: The figure from <span class="citation"><a href="90_references.html#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="90_references.html#ref-laube2011" role="doc-biblioref">2011</a>)</span> visualizes steps a) zu d), which will be explained below:
+</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li>Specify a temporal windows <span class="math inline">\(v\)</span> for in which to measure Euclidean distances</li>
+<li>Measure the distance from every point to every other point within this temporal window (<span class="math inline">\(v\)</span>)</li>
+<li>Remove “static points”: These are points where the average distance is less than a given threshold. This segments the trajectory into subtrajectories</li>
+<li>Now remove short subtrajectories: These are trajectories with a short duration (whereas “short” is tbd)</li>
+</ol>
+<p>We will demonstrate implementing this method on the wild boar “Sabi,” restricting ourselves to a couple of tracking days. Your task will be to understand this implementation and apply it on Caro, with a different sampling interval.</p>
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-3-1.png" alt="Movement of the wildboar 'Sabi' in the timespan 01-02.07.2015. The circle highlingts possible 'static points'" width="672" />
+<p class="caption">
+Figure 4: Movement of the wildboar ‘Sabi’ in the timespan 01-02.07.2015. The circle highlingts possible ‘static points’
+</p>
+</div>
+<div id="step-a-specify-a-temporal-window-v" class="section level4">
+<h4>Step a): Specify a temporal window <span class="math inline">\(v\)</span></h4>
+<p>In the above dataset, the sampling interval is 15 minutes. If we take a temporal window of 60 minutes, that would mean including 4 fixes. We need to calculate the following Euclidean distances (pos representing single location):</p>
+<ol style="list-style-type: decimal">
+<li><code>pos[n-2]</code> to <code>pos[n]</code></li>
+<li><code>pos[n-1]</code> to <code>pos[n]</code></li>
+<li><code>pos[n]</code> to <code>pos[n+1]</code></li>
+<li><code>pos[n]</code> to <code>pos[n+2]</code></li>
+</ol>
+</div>
+<div id="step-b-measure-the-distance-from-every-point-to-every-other-point-within-this-temporal-window-v" class="section level4">
+<h4>Step b): Measure the distance from every point to every other point within this temporal window <span class="math inline">\(v\)</span></h4>
+<p>Just like last week, we use the formula for calculating the Euclidean distance in in combination with <code>lead()</code> and <code>lag()</code>. For example, to create the necessary offset of n-2, we use <code>lag(x, 2)</code>. For each offset, we create one individual column.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="W03_04_tasks_and_inputs.html#cb83-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-2"><a href="W03_04_tasks_and_inputs.html#cb83-2" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span></span>
+<span id="cb83-3"><a href="W03_04_tasks_and_inputs.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb83-4"><a href="W03_04_tasks_and_inputs.html#cb83-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nMinus2 =</span> <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">2</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(N,<span class="dv">2</span>)<span class="sc">-</span>N)<span class="sc">^</span><span class="dv">2</span>),   <span class="co"># distance to pos -30 minutes</span></span>
+<span id="cb83-5"><a href="W03_04_tasks_and_inputs.html#cb83-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nMinus1 =</span> <span class="fu">sqrt</span>((<span class="fu">lag</span>(E,<span class="dv">1</span>)<span class="sc">-</span>E)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(<span class="fu">lag</span>(N,<span class="dv">1</span>)<span class="sc">-</span>N)<span class="sc">^</span><span class="dv">2</span>),   <span class="co"># distance to pos -15 minutes</span></span>
+<span id="cb83-6"><a href="W03_04_tasks_and_inputs.html#cb83-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nPlus1  =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N,<span class="dv">1</span>))<span class="sc">^</span><span class="dv">2</span>), <span class="co"># distance to pos +15 mintues</span></span>
+<span id="cb83-7"><a href="W03_04_tasks_and_inputs.html#cb83-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nPlus2  =</span> <span class="fu">sqrt</span>((E<span class="sc">-</span><span class="fu">lead</span>(E,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>(N<span class="sc">-</span><span class="fu">lead</span>(N,<span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span>)  <span class="co"># distance to pos +30 minutes</span></span>
+<span id="cb83-8"><a href="W03_04_tasks_and_inputs.html#cb83-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>Now we want to calculate the mean distance of <code>nMinus2</code>, <code>nMinus1</code>, <code>nPlus1</code>, <code>nPlus2</code> for each row. Since we want the mean value <em>per Row</em>, we have to explicitly specify this before <code>mutate()</code> with the function <code>rowwise()</code>. To remove this rowwise-grouping, we end the operation with <code>ungroup()</code>.</p>
+<p>Note that for the first two positions, we cannot calculate a <code>stepMean</code> since there is no Position <code>n-2</code> for these positions. This is also true for the last to positions (lacking a position <code>n+2</code>).</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="W03_04_tasks_and_inputs.html#cb84-1" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span></span>
+<span id="cb84-2"><a href="W03_04_tasks_and_inputs.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb84-3"><a href="W03_04_tasks_and_inputs.html#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb84-4"><a href="W03_04_tasks_and_inputs.html#cb84-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">stepMean =</span> <span class="fu">mean</span>(<span class="fu">c</span>(nMinus2, nMinus1,nPlus1,nPlus2))</span>
+<span id="cb84-5"><a href="W03_04_tasks_and_inputs.html#cb84-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb84-6"><a href="W03_04_tasks_and_inputs.html#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() </span>
+<span id="cb84-7"><a href="W03_04_tasks_and_inputs.html#cb84-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-8"><a href="W03_04_tasks_and_inputs.html#cb84-8" aria-hidden="true" tabindex="-1"></a>sabi</span>
+<span id="cb84-9"><a href="W03_04_tasks_and_inputs.html#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 192 x 11</span></span>
+<span id="cb84-10"><a href="W03_04_tasks_and_inputs.html#cb84-10" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                E       N nMinus2 nMinus1</span></span>
+<span id="cb84-11"><a href="W03_04_tasks_and_inputs.html#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb84-12"><a href="W03_04_tasks_and_inputs.html#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 002A   Sabi        12275 2015-06-30 22:00:13 2569972.  1.21e6   NA      NA   </span></span>
+<span id="cb84-13"><a href="W03_04_tasks_and_inputs.html#cb84-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 002A   Sabi        12275 2015-06-30 22:16:06 2569975.  1.21e6   NA     271.  </span></span>
+<span id="cb84-14"><a href="W03_04_tasks_and_inputs.html#cb84-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 002A   Sabi        12275 2015-06-30 22:30:19 2570266.  1.21e6  573.    365.  </span></span>
+<span id="cb84-15"><a href="W03_04_tasks_and_inputs.html#cb84-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 002A   Sabi        12275 2015-06-30 22:45:13 2570208.  1.21e6  361.     80.5 </span></span>
+<span id="cb84-16"><a href="W03_04_tasks_and_inputs.html#cb84-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 002A   Sabi        12275 2015-06-30 23:00:10 2570247.  1.21e6  127.    186.  </span></span>
+<span id="cb84-17"><a href="W03_04_tasks_and_inputs.html#cb84-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 002A   Sabi        12275 2015-06-30 23:15:17 2570512.  1.21e6  703.    524.  </span></span>
+<span id="cb84-18"><a href="W03_04_tasks_and_inputs.html#cb84-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 002A   Sabi        12275 2015-06-30 23:30:38 2570684.  1.21e6  766.    247.  </span></span>
+<span id="cb84-19"><a href="W03_04_tasks_and_inputs.html#cb84-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 002A   Sabi        12275 2015-06-30 23:45:16 2570526.  1.21e6  229.    167.  </span></span>
+<span id="cb84-20"><a href="W03_04_tasks_and_inputs.html#cb84-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 002A   Sabi        12275 2015-07-01 00:00:10 2570532.  1.21e6  163.      9.33</span></span>
+<span id="cb84-21"><a href="W03_04_tasks_and_inputs.html#cb84-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 002A   Sabi        12275 2015-07-01 00:15:14 2570530.  1.21e6    8.98   15.4 </span></span>
+<span id="cb84-22"><a href="W03_04_tasks_and_inputs.html#cb84-22" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 182 more rows, and 3 more variables: nPlus1 &lt;dbl&gt;, nPlus2 &lt;dbl&gt;,</span></span>
+<span id="cb84-23"><a href="W03_04_tasks_and_inputs.html#cb84-23" aria-hidden="true" tabindex="-1"></a><span class="do">## #   stepMean &lt;dbl&gt;</span></span></code></pre></div>
+</div>
+<div id="step-c-remove-static-points" class="section level4">
+<h4>Step c): Remove “static points”</h4>
+<p>We can now determine if an animal is moving or not by specifying a threshold distance on <code>stepMean</code>. In our example, we use the mean value as a threshold: Positions with distances below this value are considered static.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="W03_04_tasks_and_inputs.html#cb85-1" aria-hidden="true" tabindex="-1"></a>sabi <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span> </span>
+<span id="cb85-2"><a href="W03_04_tasks_and_inputs.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb85-3"><a href="W03_04_tasks_and_inputs.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">static =</span> stepMean <span class="sc">&lt;</span> <span class="fu">mean</span>(stepMean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb85-4"><a href="W03_04_tasks_and_inputs.html#cb85-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-5"><a href="W03_04_tasks_and_inputs.html#cb85-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-6"><a href="W03_04_tasks_and_inputs.html#cb85-6" aria-hidden="true" tabindex="-1"></a>sabi_filter <span class="ot">&lt;-</span> sabi <span class="sc">%&gt;%</span></span>
+<span id="cb85-7"><a href="W03_04_tasks_and_inputs.html#cb85-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>static)</span>
+<span id="cb85-8"><a href="W03_04_tasks_and_inputs.html#cb85-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-9"><a href="W03_04_tasks_and_inputs.html#cb85-9" aria-hidden="true" tabindex="-1"></a>sabi_filter<span class="sc">%&gt;%</span></span>
+<span id="cb85-10"><a href="W03_04_tasks_and_inputs.html#cb85-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(E, N))  <span class="sc">+</span></span>
+<span id="cb85-11"><a href="W03_04_tasks_and_inputs.html#cb85-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
+<span id="cb85-12"><a href="W03_04_tasks_and_inputs.html#cb85-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb85-13"><a href="W03_04_tasks_and_inputs.html#cb85-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb85-14"><a href="W03_04_tasks_and_inputs.html#cb85-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-6-1.png" alt="The trajectory of sabi, filtered to the positions where the animal was not static" width="672" />
+<p class="caption">
+Figure 5: The trajectory of sabi, filtered to the positions where the animal was not static
+</p>
+</div>
+</div>
+<div id="task-1-segmentation" class="section level3">
+<h3>Task 1: Segmentation</h3>
+<p>If you haven’t already done so open the RStudio Project <a href="W03_03_preparation.html#w3-preparation">you have prepared</a> for this week.</p>
+<p>With the skills from the input above you can now implement the segmentation algorithm described in <span class="citation"><a href="90_references.html#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="90_references.html#ref-laube2011" role="doc-biblioref">2011</a>)</span> on the dataset <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/caro60.csv">caro60.csv</a>. Download this dataset (right click &gt; save target as…) and import it as a simple <code>data.frame</code> or <code>tibble</code> (you don’t need an <code>sf</code>-object for today’s task).</p>
+<p>The sampling interval for this dataset is 1 minute. Use a temporal window <span class="math inline">\(v\)</span> of 6 minutes, i.e. a window size of 6 positions (<code>n±3</code>).</p>
+<p>Once you have completed the task, commit your changes with a meaningful commit message and test your connection to Github by pushing your changes to your remote repository.</p>
+</div>
+<div id="task-2-specify-and-apply-threshold-d" class="section level3">
+<h3>Task 2: Specify and apply threshold <em>d</em></h3>
+<p>After calculating the Euclidean distances to positions within the temporal window <em>v</em> in task 1, you can explore these values (we stored them in the column <code>stepMean</code>) using summary statistics (histograms, boxplot, <code>summary()</code>): This way we can define a reasonable threshold value to differentiate between <em>stops</em> and <em>moves</em>. There is no “correct” way of doing this, specifying a threshold always depends on data as well as the question that needs to be answered. In this exercise, use the mean of all <code>stepMean</code> values.</p>
+<p>Store the new information (boolean to differentiate between stops (<code>TRUE</code>) and moves (<code>FALSE</code>)) in a new column named <code>static</code>.</p>
+<p>Commit your changes with a meaningful commit message.</p>
+</div>
+<div id="task-3-visualize-segmented-trajectories" class="section level3">
+<h3>Task 3: Visualize segmented trajectories</h3>
+<p>Now visualize the segmented trajectory spatially. Just like last week, you can use ggplot with <code>geom_path()</code>, <code>geom_point()</code> and <code>coord_equal()</code>. Assign <code>colour = static</code> within <code>aes()</code> to distinguish between segments <em>with</em> “movement” and <em>without</em>.</p>
+<p>Commit your changes with a meaningful commit message.</p>
+<p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="task-4-segment-based-analysis" class="section level3">
+<h3>Task 4: Segment-based analysis</h3>
+<p>In applying <span class="citation"><a href="90_references.html#ref-laube2011" role="doc-biblioref">Laube and Purves</a> (<a href="90_references.html#ref-laube2011" role="doc-biblioref">2011</a>)</span>, we’ve come as far as steps b in figure <a href="W03_04_tasks_and_inputs.html#fig:laubeimg">3</a>. In order to complete the last steps (c and d), we need a <em>unique</em> ID for each segment that we can use as a grouping variable. The following function does just that (it assigns unique IDs based on the column <code>static</code> which you created in Task 2). You will learn about functions next week. For now, just copy the following code chunk into your script and run it.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="W03_04_tasks_and_inputs.html#cb86-1" aria-hidden="true" tabindex="-1"></a>rle_id <span class="ot">&lt;-</span> <span class="cf">function</span>(vec){</span>
+<span id="cb86-2"><a href="W03_04_tasks_and_inputs.html#cb86-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rle</span>(vec)<span class="sc">$</span>lengths</span>
+<span id="cb86-3"><a href="W03_04_tasks_and_inputs.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">seq_along</span>(x), <span class="at">times=</span>x))</span>
+<span id="cb86-4"><a href="W03_04_tasks_and_inputs.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<p>You can use the newly created function <code>rle_id</code> to assign unique IDs to subtrajectories (as shown below). Visualize the <em>moving</em> segments by colourizing them by <code>segment_ID</code>.
+Then use <code>segment_ID</code> as a grouping variable to determine the segments duration and remove short segments (e.g. segments with a duration &lt; 5 Minutes)</p>
+<p>Commit your changes with a meaningful commit message.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="W03_04_tasks_and_inputs.html#cb87-1" aria-hidden="true" tabindex="-1"></a>caro60 <span class="ot">&lt;-</span> caro60 <span class="sc">%&gt;%</span></span>
+<span id="cb87-2"><a href="W03_04_tasks_and_inputs.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">segment_id =</span> <span class="fu">rle_id</span>(static))</span>
+<span id="cb87-3"><a href="W03_04_tasks_and_inputs.html#cb87-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="W03_04_tasks_and_inputs.html#cb87-4" aria-hidden="true" tabindex="-1"></a>caro60</span>
+<span id="cb87-5"><a href="W03_04_tasks_and_inputs.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 200 x 9</span></span>
+<span id="cb87-6"><a href="W03_04_tasks_and_inputs.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    TierID TierName CollarID DatetimeUTC                E       N stepMean static</span></span>
+<span id="cb87-7"><a href="W03_04_tasks_and_inputs.html#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt; </span></span>
+<span id="cb87-8"><a href="W03_04_tasks_and_inputs.html#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 010C   Caro        13973 2015-09-15 08:07:00 2570589.  1.21e6    NA    NA    </span></span>
+<span id="cb87-9"><a href="W03_04_tasks_and_inputs.html#cb87-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 010C   Caro        13973 2015-09-15 08:08:00 2570573.  1.21e6    NA    NA    </span></span>
+<span id="cb87-10"><a href="W03_04_tasks_and_inputs.html#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 010C   Caro        13973 2015-09-15 08:09:00 2570536.  1.21e6    NA    NA    </span></span>
+<span id="cb87-11"><a href="W03_04_tasks_and_inputs.html#cb87-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 010C   Caro        13973 2015-09-15 08:10:00 2570518.  1.21e6    53.8  FALSE </span></span>
+<span id="cb87-12"><a href="W03_04_tasks_and_inputs.html#cb87-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 010C   Caro        13973 2015-09-15 08:11:00 2570499.  1.21e6    41.2  FALSE </span></span>
+<span id="cb87-13"><a href="W03_04_tasks_and_inputs.html#cb87-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 010C   Caro        13973 2015-09-15 08:12:00 2570489.  1.21e6    24.4  FALSE </span></span>
+<span id="cb87-14"><a href="W03_04_tasks_and_inputs.html#cb87-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 010C   Caro        13973 2015-09-15 08:13:00 2570482.  1.21e6    17.1  FALSE </span></span>
+<span id="cb87-15"><a href="W03_04_tasks_and_inputs.html#cb87-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 010C   Caro        13973 2015-09-15 08:14:00 2570481.  1.21e6    13.4  FALSE </span></span>
+<span id="cb87-16"><a href="W03_04_tasks_and_inputs.html#cb87-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 010C   Caro        13973 2015-09-15 08:15:00 2570486.  1.21e6     9.05 FALSE </span></span>
+<span id="cb87-17"><a href="W03_04_tasks_and_inputs.html#cb87-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 010C   Caro        13973 2015-09-15 08:16:00 2570490.  1.21e6    10.1  FALSE </span></span>
+<span id="cb87-18"><a href="W03_04_tasks_and_inputs.html#cb87-18" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 190 more rows, and 1 more variable: segment_id &lt;fct&gt;</span></span></code></pre></div>
+<p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="task-5-similarity-measures" class="section level3">
+<h3>Task 5: Similarity measures</h3>
+<p>We will now leave the wild boar data and turn our attentian to human movement. You will use the dataset <a href="https://github.com/ComputationalMovementAnalysis/FS21/raw/master/00_Rawdata/pedestrian.csv">pedestrian.csv</a> (right click &gt; save target as..) for this (and the following) task. Download an import this dataset as a <code>data.frame</code> or <code>tibble</code>. It it a set of six different but similar trajectories from pedestrians walking on a path.</p>
+<p>or this task, explore the trajectories first and get an idea on how the pedestrians moved. We step away from using the wild boar data for this task because our animals don’t express the type of similarity we want to illustrate here. Also, using the constructed pedestrian data allows us illustrating very typical similarity issues, that are picked-up in different ways by the different similarity measures. In later exercises we will get back to our wild boar!</p>
+<p>Commit your changes with a meaningful commit message.</p>
+<p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="task-6-calculate-similarity" class="section level3">
+<h3>Task 6: Calculate similarity</h3>
+<p>Install the package <code>SimilarityMeasures</code> (<code>install.packages("SimilarityMeasures")</code>). Familiarize yourself with this package by skimming through the function descriptions <code>help(package = "SimilarityMeasures")</code>. Now compare trajectory 1 to trajectories 2-6 using different similarity measures from the package. Your options are. <code>DTW</code>, <code>EditDist</code>, <code>Frechet</code> and <code>LCSS</code>.</p>
+<p>Visualize your results and try to understand the different results with respect to your reading of <span class="citation"><a href="90_references.html#ref-both2018" role="doc-biblioref">Alan Both</a> (<a href="90_references.html#ref-both2018" role="doc-biblioref">2018</a>)</span>. Can you see connections between the properties of the trajectories and the similarity values computed by the different measures?</p>
+<p>Note:</p>
+<ul>
+<li>All functions in the package need matrices as input, with one trajectory per matrix.</li>
+<li><code>LCSS</code>takes very long to compute. The accuracy of the algorithm (<code>pointSpacing =</code> ,<code>pointDistance =</code> and <code>errorMarg =</code>) can be varied to provide faster calculations. Please see <span class="citation"><a href="90_references.html#ref-vlachos2002" role="doc-biblioref">Vlachos, Gunopoulos, and Kollios</a> (<a href="90_references.html#ref-vlachos2002" role="doc-biblioref">2002</a>)</span> for more information.</li>
+</ul>
+<p>Commit your changes with a meaningful commit message. Now push all your changes to Github.</p>
+<p><img src="W03_04_tasks_and_inputs_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+
+</div>
+</div>
+<script src="https://utteranc.es/client.js"
+        repo="ComputationalMovementAnalysis/utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="W03_03_preparation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="W03_05_solutions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/edit/master/W03_04_tasks_and_inputs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ComputationalMovementAnalysis/FS21/blob/master/W03_04_tasks_and_inputs.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
