@@ -21,10 +21,6 @@ library(stringr)
 library(dplyr)
 library(purrr)
 
-get_mod_age <- function(files, now){
-  difftime(now,file.info(files)$mtime)
-}
-
 now <- Sys.time()
 rfiles <- list.files(pattern = "\\.R$", recursive = TRUE)
 

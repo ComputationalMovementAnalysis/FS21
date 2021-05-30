@@ -186,3 +186,8 @@ knitr::opts_template$set(
   example_showOutput = list(echo = TRUE),
   example_hideOutput = list(echo = TRUE, results = "hide")
 )
+
+
+get_mod_age <- function(files, now){
+  difftime(now,file.info(files)$mtime)
+}
