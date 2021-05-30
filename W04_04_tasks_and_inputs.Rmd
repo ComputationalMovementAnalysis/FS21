@@ -80,7 +80,7 @@ Create a function for our Euclidean distance calculation.
 
 Note: if you treat your input variables as vectors, they will work in `dplyr`s `mutate()` and `summarise()` operations. 
 
-```{r, code =  mydecrypt("14_Week4/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("14_Week4/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
@@ -98,7 +98,7 @@ library(lubridate)
 ```
 
 
-```{r, code =  mydecrypt("14_Week4/solutions/task_2.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("14_Week4/task_2.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -114,7 +114,7 @@ The task is therfore to round the minutes of `DatetimeUTC` to a multiple of 15 (
 
 Your new dataset should look something like this (note the additional column): 
 
-```{r, code =  mydecrypt("14_Week4/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("14_Week4/task_3.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -131,7 +131,7 @@ To measure the distance between concurrent locations, we need to follow the foll
 
 \* We recommend using one `dplyr`s join methods (`inner_join()`, `left_join()`, `right_join()` or `full_join()`), which one is appropriate? Tip: specify `suffix` to prevent column names ending in `.x` or `.y`.
 
-```{r, code =  mydecrypt("14_Week4/solutions/task_4.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("14_Week4/task_4.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -145,7 +145,7 @@ Now, visualize the *meets* spatially in a way that you think reasonable. For exa
 
 
 
-```{r, code =  mydecrypt("14_Week4/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("14_Week4/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -155,6 +155,6 @@ Finally, you can nicely visualize the meeting patterns and trajectories in a Spa
 
 ![](02_Images/space_time_cube.jpg)
 
-```{r, code =  mydecrypt("14_Week4/solutions/task_6.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("14_Week4/task_6.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 

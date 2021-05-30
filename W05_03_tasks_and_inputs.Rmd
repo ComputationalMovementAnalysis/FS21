@@ -33,7 +33,7 @@ Since `Feldaufnahmen_Fanel.gpkg` is a vector dataset, you can import it using `r
 - What are the data types of the other columns?
 - What is the coordinate system of the dataset?
 
-```{r, code =  mydecrypt("15_Week5/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("15_Week5/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
@@ -44,7 +44,7 @@ We would like to know what crop was visited by which wild boar, and at what time
 To sematically annotate each wildboar location with crop information, you can use a *spatial join* with the function `st_join()`. Do this and explore your annotated dataset. 
 
 
-```{r, code =  mydecrypt("15_Week5/solutions/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("15_Week5/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 ### Task 3: Explore annotated trajectories
@@ -52,7 +52,7 @@ To sematically annotate each wildboar location with crop information, you can us
 Think of ways you could visually explore the spatio-temporal patterns of wild boar in relation to the crops. In our example below we visualize the percentage of samples in a given crop per hour.
 
 
-```{r, code =  mydecrypt("15_Week5/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("15_Week5/task_3.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 ### Task 4: Import and visualize vegetationindex (raster data)
@@ -63,7 +63,7 @@ In terms of raster data, we have prepared the [Vegetation Height Model](https://
 
 Import the dataset just like you imported the raster map in [week 1](#w1-importing-raster) (using `terra::rast()`). Visualize the raster data using `tmap` (`ggplot` is very slow with raster data).
 
-```{r, code =  mydecrypt("15_Week5/solutions/task_4.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("15_Week5/task_4.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -72,7 +72,7 @@ Import the dataset just like you imported the raster map in [week 1](#w1-importi
 
 Semantically annotate your wildboar locations with the vegetation index (similar as you did with the crop data in [Task 2](#w5-annotate-vector)). Since you are annotating a vector dataset with information from a raster dataset, you cannot use `st_join` but need the function `extract` from the `terra` package. Read the help on the `extract` function to see what the function expects. The output should look something like this:
 
-```{r, code =  mydecrypt("15_Week5/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("15_Week5/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 
 ```
 

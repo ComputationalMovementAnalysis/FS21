@@ -11,6 +11,6 @@ Hover over the code and copy the content by clicking on the clipboard icon on th
 ```
 
 
-```{r code =  solutions_print("14_Week4/solutions/",".passphrase"), echo = TRUE, eval=FALSE}
+```{r code =  solutions_print("14_Week4/",".passphrase"), echo = TRUE, eval=FALSE}
 ```
 

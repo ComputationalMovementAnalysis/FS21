@@ -125,7 +125,7 @@ download_url <- function(filename,folder){
 # - the filename of the R-file can be used as comment to describe the code (after)
 #   some cleanup)
 # This function is to be used in combination with a code chunk
-# ```{r code =  solutions_print("11_Week1/solutions/",".passphrase"), , opts.label="solution_print"}
+# ```{r code =  solutions_print("11_Week1/",".passphrase"), , opts.label="solution_print"}
 # ```
 solutions_print <- function(solutionspath, seedfile){
   require(stringr)

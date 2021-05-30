@@ -24,9 +24,9 @@ library(purrr)
 now <- Sys.time()
 rfiles <- list.files(pattern = "\\.R$", recursive = TRUE)
 
-encrypted = rfiles[grepl("^\\d{2}_Week\\d/solutions/task_\\d\\.R$",rfiles)]
+encrypted = rfiles[grepl("^\\d{2}_Week\\d/task_\\d\\.R$",rfiles)]
 
-decrypted = rfiles[grepl("^\\d{2}_Week\\d/solutions/task_\\d\\_hide.R$",rfiles)]
+decrypted = rfiles[grepl("^\\d{2}_Week\\d/task_\\d\\_hide.R$",rfiles)]
 
 encrypted_df <- tibble::tibble(encrypted = encrypted, key = str_sub(encrypted, end = -3))
 decrypted_df <- tibble::tibble(decrypted = decrypted, key = str_sub(decrypted, end = -8))

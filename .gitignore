@@ -4,7 +4,7 @@
 .Ruserdata
 .passphrase
 *.rds
-**/solutions/*_hide.R
+**/*_hide.R
 patterns-and-trends.Rmd
 docs/
 bookdown_files/

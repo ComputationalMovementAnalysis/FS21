@@ -132,7 +132,7 @@ The sampling interval for this dataset is 1 minute. Use a temporal window $v$ of
 Once you have completed the task, commit your changes with a meaningful commit message and test your connection to Github by pushing your changes to your remote repository.
 
 
-```{r, code =  mydecrypt("13_Week3/solutions/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("13_Week3/task_1.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
@@ -146,7 +146,7 @@ Store the new information (boolean to differentiate between stops (`TRUE`) and m
 
 Commit your changes with a meaningful commit message. 
 
-```{r, code =  mydecrypt("13_Week3/solutions/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("13_Week3/task_2.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
@@ -156,7 +156,7 @@ Now visualize the segmented trajectory spatially. Just like last week, you can u
 
 Commit your changes with a meaningful commit message. 
 
-```{r, code =  mydecrypt("13_Week3/solutions/task_3.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("13_Week3/task_3.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -188,7 +188,7 @@ caro60
 
 
 
-```{r, code =  mydecrypt("13_Week3/solutions/task_4.R",".passphrase"), opts.label="solution_hideOutput"}
+```{r, code =  mydecrypt("13_Week3/task_4.R",".passphrase"), opts.label="solution_hideOutput"}
 ```
 
 
@@ -206,7 +206,7 @@ For this task, explore the trajectories first and get an idea on how the pedestr
 Commit your changes with a meaningful commit message. 
 
 
-```{r, code =  mydecrypt("13_Week3/solutions/task_5.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("13_Week3/task_5.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
@@ -226,7 +226,7 @@ Note:
 Commit your changes with a meaningful commit message. Now push all your changes to Github.
 
 
-```{r, code =  mydecrypt("13_Week3/solutions/task_6.R",".passphrase"), opts.label="solution_showOutput"}
+```{r, code =  mydecrypt("13_Week3/task_6.R",".passphrase"), opts.label="solution_showOutput"}
 ```
 
 
