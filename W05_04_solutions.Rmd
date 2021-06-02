@@ -1,0 +1,16 @@
+
+## Solutions
+
+
+```{r include=FALSE}
+source('01_R_Files/helperfunctions.R')
+```
+
+```{block2, copychunk-text}
+Hover over the code and copy the content by clicking on the clipboard icon on the top right. You can now paste this into an R-Script.
+```
+
+
+```{r code =  solutions_print("15_Week5/",".passphrase"), echo = TRUE, eval=FALSE}
+```
+

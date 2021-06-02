@@ -25,6 +25,7 @@ rmd_files:
  - "W05_01_exercise.Rmd"
  - "W05_02_preparation.Rmd"
  - "W05_03_tasks_and_inputs.Rmd"
+ - "W05_04_solutions.Rmd"
  - "90_references.Rmd"
 delete_merged_file: true
 book_filename: "patterns-and-trends.Rmd"
