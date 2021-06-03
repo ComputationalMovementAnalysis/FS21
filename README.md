@@ -4,7 +4,7 @@
 
 After making this repo open to the public, we had to find a way to temporally hide the exercise solutions from the students (see [this discussion](https://github.com/orgs/ComputationalMovementAnalysis/teams/core-team/discussions/2)). Removing the respective R-code from the repo was not an option, since the code itself was part of the question (e.g. only the code output is shown and needs to be reproduced). To solve this, we used the following approach: 
 
-We created an RScript for every task containing the solution code. These Rscripts are named `task_*_hide.R` and are excluded from versioncontrol via `.gitignore`. Every time the document is built, a function is run to generate corresponding *obfuscated* R scripts of the same name, without the trailing `_hide` (i.e. `task_*.R`). Obfuscation is achieved with the function `my_encrypt()` which needs a passphrase. This passphrase is an integer value stored in a file in the working directory, but it is removed from version control via `.gitignore` (which means that all persons wanting to build the book locally must agree on a passphrase and store the respective file in their working directory manually). The obfuscated files *are* version controlled, which is how changes in the solutions are shared between coworkers.
+We created an RScript for every task containing the solution code. These Rscripts are named `task_*_hide.R` and are excluded from versioncontrol via `.gitignore`. Every time the document is built, a function is run to generate corresponding *obfuscated* R scripts of the same name, without the trailing `_hide` (i.e. `task_*.R`). Obfuscation is achieved with the function `myencrypt()` which needs a passphrase. This passphrase is an integer value stored in a file in the working directory, but it is removed from version control via `.gitignore` (which means that all persons wanting to build the book locally must agree on a passphrase and store the respective file in their working directory manually). The obfuscated files *are* version controlled, which is how changes in the solutions are shared between coworkers.
 
 Using a (complex) heuristic, either changes in `task_*_hide.R` override `task_*.R` or the other way round. We need to see if this heuristic is always correct (since it's mainly based on the file's timestamp, which might not be a good approach).
 
@@ -25,7 +25,6 @@ See also [this discussion](https://github.com/orgs/ComputationalMovementAnalysis
 
 ## Todos for FS2022
 
-- [ ] remove hierarchical level */solutions/*, since this level is not necessary (Rscripts could be in 11_Week1/*)
 - [ ] replace `lubridate` with `clock`
 - [ ] move from bookdown to distill (?)
 - [ ] consider moving `sf` and `terra` into later weeks...
